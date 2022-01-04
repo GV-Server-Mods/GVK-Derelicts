@@ -1,0 +1,67 @@
+<?xml version="1.0"?>
+<Definitions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+	<EntityComponents>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Derelict-Loot-Small</SubtypeId>
+			</Id>
+			<Description>
+				[MES Loot]
+				[ContainerBlockTypes:MyObjectBuilder_CargoContainer/LargeBlockSmallContainer]
+				[ContainerTypes:Kharak_Loot_Small]
+				[MinBlocks:2]
+				[MaxBlocks:4]
+				[AppendNameToBlock:true]
+				[AppendedName: (Loot)]
+				[Chance:100]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Derelict-Loot-Medium</SubtypeId>
+			</Id>
+			<Description>
+				[MES Loot]
+				[ContainerBlockTypes:MyObjectBuilder_CargoContainer/LargeBlockSmallContainer]
+				[ContainerBlockTypes:MyObjectBuilder_CargoContainer/LargeBlockLargeContainer]
+				[ContainerTypes:Kharak_Loot_Medium]
+				[MinBlocks:4]
+				[MaxBlocks:8]
+				[AppendNameToBlock:true]
+				[AppendedName: (Loot)]
+				[Chance:100]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Derelict-Loot-Large</SubtypeId>
+			</Id>
+			<Description>
+				[MES Loot]
+				[ContainerBlockTypes:MyObjectBuilder_CargoContainer/LargeBlockSmallContainer]
+				[ContainerBlockTypes:MyObjectBuilder_CargoContainer/LargeBlockLargeContainer]
+				[ContainerTypes:Kharak_Loot_Large]
+				[MinBlocks:8]
+				[MaxBlocks:12]
+				[AppendNameToBlock:true]
+				[AppendedName: (Loot)]
+				[Chance:100]
+			</Description>
+		</EntityComponent>
+	
+		<!-- only using the loot groups because there is a bug with loot profiles used directly -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Derelict-Loot-Group</SubtypeId>
+			</Id>
+			<Description>
+				[MES Loot Group]
+				[LootProfiles:GVK-Derelict-Loot-Small]
+			</Description>
+		</EntityComponent>
+	</EntityComponents>
+</Definitions>

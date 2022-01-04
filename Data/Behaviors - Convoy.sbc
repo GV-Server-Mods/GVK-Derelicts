@@ -1,0 +1,453 @@
+<?xml version="1.0"?>
+<Definitions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+	<EntityComponents>
+		<!-- Horsefly Rover Mothership Behavior -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>Mothership-Rover-Behavior-Start</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Behavior]
+				[BehaviorName:Patrol]
+				[UseStaticGuns:true]
+				[MaxStaticWeaponRange:1500]
+				[WeaponMaxAngleFromTarget:10]
+				[UseAmmoReplenish:true]
+				[AmmoReplenishClipAmount:10]
+				[MaxAmmoReplenishments:99999999]
+				[UsePlayerDistanceTimer:true]
+				[PlayerDistanceTimerTrigger:0]
+				[PlayerDistanceTrigger:15000]
+				[UseNoTargetTimer:true]
+				[NoTargetTimerTrigger:1800]
+				[UseRetreatTimer:true]
+				[RetreatTimerTrigger:3600]
+				[RetreatDespawnDistance:1500]
+				[EscortOffsets:{X:200 Y:0 Z:200}]
+				[EscortOffsets:{X:-200 Y:0 Z:-200}]
+				[EscortOffsets:{X:0 Y:0 Z:300}]
+				[EscortOffsets:{X:0 Y:0 Z:-300}]
+				[EscortOffsets:{X:200 Y:0 Z:-200}]
+				[EscortOffsets:{X:-200 Y:0 Z:200}]
+				[EscortOffsets:{X:200 Y:0 Z:0}]
+				[EscortOffsets:{X:-200 Y:0 Z:0}]
+				[AutopilotData:Mothership-Rover-Autopilot]
+				[TargetData:GVK-Generic-TargetProfile-EnemyGrids]
+				[Triggers:DefenseDrone-Trigger-FireArchers]
+				[Triggers:DefenseDrone-Trigger-StopArchers]
+				[Triggers:DefenseDrone-Trigger-WeaponsToMaxRange]
+				[Triggers:GVK-Generic-Trigger-SPRTTargetAcquiredChatter]
+				[Triggers:Mothership-Trigger-SpawnEscorts]
+				[Triggers:Mothership-Trigger-AssignEscortSlot]
+				[Triggers:Mothership-Trigger-SendScatterCommand]
+				[Triggers:DefenseDrone-Trigger-Compromised]
+				[Triggers:GVK-Generic-Trigger-SPRTNoWeapon]
+				[RemoteControlCode:ConvoyEncounter]
+			</Description>
+		</EntityComponent>
+		<!-- Horsefly Rover Mothership Autopilot -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>Mothership-Rover-Autopilot</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Autopilot]
+				[UseVelocityCollisionEvasion:true]
+				[RotationMultiplier:1]
+				[DisableInertiaDampeners:false]
+				[FlyLevelWithGravity:true]
+				[LevelWithGravityWhenIdle:true]
+				[IdealPlanetAltitude:3]
+				[MinimumPlanetAltitude:-100]
+				[AltitudeTolerance:5000]
+				[CollisionEvasionWaypointCalculatedAwayFromEntity:true]
+				[WaypointAbandonTimeTrigger:20]
+				[WaypointTolerance:100]
+				[IdealMinSpeed:25]
+				[IdealMaxSpeed:75]
+				[UseSurfaceHoverThrustMode:false]
+				[HoverPathStepDistance:150]
+				[LimitRotationSpeed:true]
+				[MaxRotationMagnitude:0.3]
+				[OffsetPlanetMinDistFromTarget:5000]
+				[OffsetPlanetMaxDistFromTarget:10000]
+				[OffsetPlanetMinTargetAltitude:-50]
+				[OffsetPlanetMaxTargetAltitude:50]
+				[ReverseOffsetDistAltAboveHeight:false]
+				[ReverseOffsetHeight:0]
+				[AngleAllowedForForwardThrust:120]
+				[MaxVelocityAngleForSpeedControl:180]
+			</Description>
+		</EntityComponent>
+		<!-- Escort Drone Rover Behavior -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>EscortDrone-Rover-Behavior-Start</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Behavior]
+				[BehaviorName:Escort]
+				[UseStaticGuns:true]
+				[MaxStaticWeaponRange:1500]
+				[WeaponMaxAngleFromTarget:10]
+				[UseAmmoReplenish:true]
+				[AmmoReplenishClipAmount:10]
+				[MaxAmmoReplenishments:99999999]
+				[UsePlayerDistanceTimer:false]
+				[PlayerDistanceTimerTrigger:0]
+				[PlayerDistanceTrigger:15000]
+				[UseNoTargetTimer:false]
+				[NoTargetTimerTrigger:1800]
+				[UseRetreatTimer:false]
+				[RetreatTimerTrigger:3600]
+				[RetreatDespawnDistance:1500]
+				[AutopilotData:EscortDrone-Rover-Autopilot]
+				[SecondaryAutopilotData:DefenseDrone-Rover-Autopilot]
+				[TargetData:GVK-Generic-TargetProfile-EnemyGrids]
+				[Triggers:EscortDrone-Trigger-RequestEscortSlot]
+				[Triggers:EscortDrone-Trigger-ReceiveScatterCommand]
+				[Triggers:DefenseDrone-Trigger-FireArchers]
+				[Triggers:DefenseDrone-Trigger-StopArchers]
+				[Triggers:DefenseDrone-Trigger-WeaponsToMaxRange]
+				[Triggers:GVK-Generic-Trigger-SPRTTargetAcquiredChatter]
+				[Triggers:DefenseDrone-Trigger-Compromised]
+				[Triggers:GVK-Generic-Trigger-SPRTNoWeapon]
+			</Description>
+		</EntityComponent>
+		<!-- Escort Drone Rover Autopilot -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>EscortDrone-Rover-Autopilot</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Autopilot]
+				[UseVelocityCollisionEvasion:false]
+				[CollisionEvasionWaypointDistance:50]
+				[CollisionEvasionResumeDistance:30]
+				[CollisionEvasionResumeTime:4]
+				[RotationMultiplier:1]
+				[DisableInertiaDampeners:false]
+				[FlyLevelWithGravity:true]
+				[LevelWithGravityWhenIdle:true]
+				[IdealPlanetAltitude:3]
+				[MinimumPlanetAltitude:-100]
+				[AltitudeTolerance:5000]
+				[CollisionEvasionWaypointCalculatedAwayFromEntity:false]
+				[WaypointAbandonTimeTrigger:20]
+				[WaypointWaitTimeTrigger:60]
+				[WaypointTolerance:5]
+				[SlowDownOnWaypointApproach:false]
+				[ExtraSlowDownDistance:20]
+				[IdealMinSpeed:25]
+				[IdealMaxSpeed:75]
+				[UseSurfaceHoverThrustMode:false]
+				[HoverPathStepDistance:150]
+				[AngleAllowedForForwardThrust:180]
+				[MaxVelocityAngleForSpeedControl:180]
+			</Description>
+		</EntityComponent>
+		<!-- Trigger sequence for Mothership to spawn escorts -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>Mothership-Trigger-SpawnEscorts</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Trigger]
+				[Type:Timer]
+				[UseTrigger:true]
+				[StartsReady:false]
+				[MinCooldownMs:1000]
+				[MaxCooldownMs:1000]
+				[MaxActions:4]
+				[Actions:Mothership-Action-SpawnEscorts]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>Mothership-Action-SpawnEscorts</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Action]
+				[Chance:100]
+				[SpawnEncounter:true]
+				[Spawner:Mothership-Spawner-SpawnEscorts]
+				[UseChatBroadcast:true]
+				[ChatData:Mothership-Chat-SpawnEscorts]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>Mothership-Spawner-SpawnEscorts</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Spawn]
+				[UseSpawn:true]
+				[SpawningType:CustomSpawn]
+				[StartsReady:true]
+				[MaxSpawns:4]
+				[MinDistance:300]
+				[MaxDistance:1200]
+				[MinAltitude:5]
+				[MaxAltitude:50]
+				[InheritNpcAltitude:true]
+				[SpawnGroups:GVK-EscortDrone-GAALSIEN-Dragoon]
+				[SpawnGroups:GVK-EscortDrone-GAALSIEN-Pollux]
+				[SpawnGroups:GVK-EscortDrone-GAALSIEN-Stryker]
+				[IgnoreSafetyChecks:true]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>Mothership-Chat-SpawnEscorts</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Chat]
+				[UseChat:true]
+				[StartsReady:true]
+				[Chance:100]
+				[MaxChats:-1]
+				[BroadcastRandomly:false]
+				[Author:Mothership]
+				[Color:Red]
+				[ChatMessages:Spwaning Escort Drone]
+				[ChatAudio:GreetingSoundId-A]
+				[BroadcastChatType:Chat]
+				[SendToAllOnlinePlayers:true]
+			</Description>
+		</EntityComponent>
+		<!-- Trigger sequence for Drone to request an escort slot from Mothership -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>EscortDrone-Trigger-RequestEscortSlot</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Trigger]
+				[Type:Timer]
+				[UseTrigger:true]
+				[StartsReady:true]
+				[MaxActions:1]
+				[Actions:EscortDrone-Action-RequestEscortSlot]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>EscortDrone-Action-RequestEscortSlot</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Action]
+				[BroadcastCommandProfiles:true]
+				[CommandProfileIds:EscortDrone-Command-RequestEscortSlot]
+				[UseChatBroadcast:true]
+				[ChatData:EscortDrone-Chat-RequestEscortSlot]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>EscortDrone-Command-RequestEscortSlot</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Command]
+				[SingleRecipient:true]
+				[MatchSenderReceiverOwners:true]
+				[IgnoreAntennaRequirement:true]
+				[IgnoreReceiverAntennaRequirement:true]
+				[Radius:5000]
+				[CommandCode:Mothership_RequestEscortSlot]
+				[RequestEscortSlot:true]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>EscortDrone-Chat-RequestEscortSlot</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Chat]
+				[UseChat:true]
+				[StartsReady:true]
+				[Chance:100]
+				[MaxChats:-1]
+				[BroadcastRandomly:false]
+				[Author:Escort Drone]
+				[Color:Red]
+				[ChatMessages:Requesting escort slot.]
+				[ChatAudio:GreetingSoundId-A]
+				[BroadcastChatType:Chat]
+				[SendToAllOnlinePlayers:true]
+			</Description>
+		</EntityComponent>
+		<!-- Trigger sequence for Mothership to receive the Drone's escort request command -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>Mothership-Trigger-AssignEscortSlot</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Trigger]
+				[Type:CommandReceived]
+				[UseTrigger:true]
+				[StartsReady:true]
+				[MaxActions:-1]
+				[CommandReceiveCode:Mothership_RequestEscortSlot]
+				[Actions:Mothership-Action-AssignEscortSlot]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>Mothership-Action-AssignEscortSlot</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Action]
+				[AssignEscortFromCommand:true]
+				[UseChatBroadcast:true]
+				[ChatData:Mothership-Chat-AssignEscortSlot]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>Mothership-Chat-AssignEscortSlot</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Chat]
+				[UseChat:true]
+				[StartsReady:true]
+				[Chance:100]
+				[MaxChats:-1]
+				[BroadcastRandomly:false]
+				[Author:Mothership]
+				[Color:Red]
+				[ChatMessages:Assigning an escort slot.]
+				[ChatAudio:GreetingSoundId-A]
+				[BroadcastChatType:Chat]
+				[SendToAllOnlinePlayers:true]
+			</Description>
+		</EntityComponent>
+		<!-- Trigger sequence for Mothership to send disabled command to escorts -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>Mothership-Trigger-SendScatterCommand</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Trigger]
+				[Type:Compromised]
+				[UseTrigger:true]
+				[StartsReady:true]
+				[MaxActions:1]
+				[Actions:Mothership-Action-SendScatterCommand]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>Mothership-Action-SendScatterCommand</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Action]
+				[BroadcastCommandProfiles:true]
+				[CommandProfileIds:Mothership-Command-SendScatterCommand]
+				[UseChatBroadcast:true]
+				[ChatData:Mothership-Chat-SendScatterCommand]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>Mothership-Command-SendScatterCommand</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Command]
+				[SingleRecipient:false]
+				[MatchSenderReceiverOwners:true]
+				[IgnoreAntennaRequirement:true]
+				[IgnoreReceiverAntennaRequirement:true]
+				[Radius:5000]
+				[CommandCode:EscortDrone_SendScatterCommand]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>Mothership-Chat-SendScatterCommand</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Chat]
+				[UseChat:true]
+				[StartsReady:true]
+				[Chance:100]
+				[MaxChats:-1]
+				[BroadcastRandomly:false]
+				[Author:Escort Drone]
+				[Color:Red]
+				[ChatMessages:Convoy Lead has been disabled.]
+				[ChatAudio:GreetingSoundId-A]
+				[BroadcastChatType:Chat]
+				[SendToAllOnlinePlayers:true]
+			</Description>
+		</EntityComponent>
+		<!-- Trigger sequence for Escorts to switch behaviors after mothership is disabled -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>EscortDrone-Trigger-ReceiveScatterCommand</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Trigger]
+				[Type:CommandReceived]
+				[UseTrigger:true]
+				[StartsReady:true]
+				[MaxActions:-1]
+				[CommandReceiveCode:EscortDrone_SendScatterCommand]
+				[Actions:EscortDrone-Action-ReceiveScatterCommand]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>EscortDrone-Action-ReceiveScatterCommand</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Action]
+				[UseChatBroadcast:true]
+				[ChatData:EscortDrone-Chat-ReceiveScatterCommand]
+				[ChangeBehaviorSubclass:true]
+				[NewBehaviorSubclass:Horsefly]
+				[ChangeAutopilotProfile:true]
+				[AutopilotProfile:Secondary]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>EscortDrone-Chat-ReceiveScatterCommand</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Chat]
+				[UseChat:true]
+				[StartsReady:true]
+				[Chance:100]
+				[MaxChats:-1]
+				[BroadcastRandomly:false]
+				[Author:EscortDrone]
+				[Color:Red]
+				[ChatMessages:Scattering escorts.]
+				[ChatAudio:GreetingSoundId-A]
+				[BroadcastChatType:Chat]
+				[SendToAllOnlinePlayers:true]
+			</Description>
+		</EntityComponent>
+	</EntityComponents>
+</Definitions>

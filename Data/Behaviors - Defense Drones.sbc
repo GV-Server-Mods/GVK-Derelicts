@@ -1,0 +1,907 @@
+<?xml version="1.0"?>
+<Definitions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <EntityComponents>
+
+	<!-- Horsefly Drone Behavior -->
+    <EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+      <Id>
+          <TypeId>Inventory</TypeId>
+          <SubtypeId>DefenseDrone-Horsefly-Behavior-Start</SubtypeId>
+      </Id>
+      <Description>
+	  
+      [RivalAI Behavior]
+	  
+      [BehaviorName:Horsefly]
+
+	  [UseStaticGuns:true]
+	  [UseTurrets:true]
+	  [MaxStaticWeaponRange:5000]
+	  [WeaponMaxAngleFromTarget:10]
+	  [UseAmmoReplenish:true]
+	  [AmmoReplenishClipAmount:10]
+	  [MaxAmmoReplenishments:99999999]
+
+	  [UsePlayerDistanceTimer:true]
+	  [PlayerDistanceTimerTrigger:0]
+	  [PlayerDistanceTrigger:15000]
+	  [UseNoTargetTimer:true]
+	  [NoTargetTimerTrigger:1800]
+	  [UseRetreatTimer:true]
+	  [RetreatTimerTrigger:3600]
+	  [RetreatDespawnDistance:1500]
+
+	  [TargetData:GVK-Generic-TargetProfile-EnemyPlayers]
+	  
+	  [AutopilotData:DefenseDrone-Horsefly-Autopilot]
+
+	  [Triggers:DefenseDrone-Trigger-WeaponsToMaxRange]
+	  [Triggers:DefenseDrone-Trigger-FireArchers]
+	  [Triggers:DefenseDrone-Trigger-StopArchers]
+	  [Triggers:GVK-Generic-Trigger-SPRTTargetAcquiredChatter]
+	  [Triggers:DefenseDrone-Trigger-Crashed]
+	  [Triggers:DefenseDrone-Trigger-Compromised]
+	  [Triggers:GVK-Generic-Trigger-SPRTNoWeapon]
+  
+      </Description>
+    </EntityComponent>
+
+	<!-- Horsefly Autopilot -->
+	<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+      <Id>
+          <TypeId>Inventory</TypeId>
+          <SubtypeId>DefenseDrone-Horsefly-Autopilot</SubtypeId>
+      </Id>
+      <Description>
+
+      [RivalAI Autopilot]
+      
+	  [UseVelocityCollisionEvasion:true]
+
+      [RotationMultiplier:1]
+	  [DisableInertiaDampeners:false]
+      [FlyLevelWithGravity:true]
+      [LevelWithGravityWhenIdle:true]
+	  [MaxVerticalSpeed:20]
+	  [IdealPlanetAltitude:250]
+	  [MinimumPlanetAltitude:150]
+	  [AltitudeTolerance:50]
+	  [CollisionEvasionWaypointCalculatedAwayFromEntity:true]
+      [WaypointTolerance:100]
+      [IdealMinSpeed:50]
+      [IdealMaxSpeed:75]
+
+      [OffsetSpaceMinDistFromTarget:900]
+      [OffsetSpaceMaxDistFromTarget:1200]
+      [OffsetPlanetMinDistFromTarget:500]
+      [OffsetPlanetMaxDistFromTarget:1200]
+      [OffsetPlanetMinTargetAltitude:15]
+      [OffsetPlanetMaxTargetAltitude:100]
+	  
+	  [MaxVerticalSpeed:20]
+
+      [ReverseOffsetDistAltAboveHeight:false]
+      [ReverseOffsetHeight:0]
+	  [AngleAllowedForForwardThrust:90]
+      
+      </Description>
+    </EntityComponent>
+
+	<!-- HorseFighter Drone Behavior -->
+    <EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+      <Id>
+          <TypeId>Inventory</TypeId>
+          <SubtypeId>DefenseDrone-HorseFighter-Behavior-Start</SubtypeId>
+      </Id>
+      <Description>
+	  
+      [RivalAI Behavior]
+	  
+      [BehaviorName:HorseFighter]
+
+	  [UseStaticGuns:true]
+	  [UseTurrets:true]
+	  [MaxStaticWeaponRange:5000]
+	  [WeaponMaxAngleFromTarget:10]
+	  [UseAmmoReplenish:true]
+	  [AmmoReplenishClipAmount:10]
+	  [MaxAmmoReplenishments:99999999]
+	  [UsePlayerDistanceTimer:true]
+	  [PlayerDistanceTimerTrigger:0]
+	  [PlayerDistanceTrigger:15000]
+	  [UseNoTargetTimer:true]
+	  [NoTargetTimerTrigger:1800]
+	  [UseRetreatTimer:true]
+	  [RetreatTimerTrigger:3600]
+	  [RetreatDespawnDistance:1500]
+	  
+	  [HorseFighterTimeApproaching:10]
+	  [HorseFighterTimeEngaging:10]
+
+	  [TargetData:GVK-Generic-TargetProfile-EnemyPlayers]
+
+	  [AutopilotData:DefenseDrone-HorseFighter-Autopilot]
+
+	  [Triggers:DefenseDrone-Trigger-WeaponsToMaxRange]
+	  [Triggers:DefenseDrone-Trigger-FireRockets]
+	  [Triggers:DefenseDrone-Trigger-StopRockets]
+	  [Triggers:DefenseDrone-Trigger-FireArchers]
+	  [Triggers:DefenseDrone-Trigger-StopArchers]
+	  [Triggers:DefenseDrone-Trigger-FireRailguns]
+	  [Triggers:DefenseDrone-Trigger-StopRailguns]
+	  [Triggers:GVK-Generic-Trigger-SPRTTargetAcquiredChatter]
+	  [Triggers:DefenseDrone-Trigger-Crashed]
+	  [Triggers:DefenseDrone-Trigger-Compromised]
+	  [Triggers:GVK-Generic-Trigger-SPRTNoWeapon]
+  
+      </Description>
+    </EntityComponent>
+
+	<!-- HorseFighter Autopilot -->
+	<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+      <Id>
+          <TypeId>Inventory</TypeId>
+          <SubtypeId>DefenseDrone-HorseFighter-Autopilot</SubtypeId>
+      </Id>
+      <Description>
+
+      [RivalAI Autopilot]
+      
+	  [UseVelocityCollisionEvasion:true]
+	  [CollisionEvasionWaypointDistance:50]
+      [CollisionFallEvasionWaypointDistance:35]
+
+	  [UseProjectileLeadPrediction:true]
+
+      [RotationMultiplier:0.5]
+	  [DisableInertiaDampeners:false]
+      [FlyLevelWithGravity:false]
+      [LevelWithGravityWhenIdle:true]
+	  [MaxVerticalSpeed:20]
+	  [IdealPlanetAltitude:250]
+	  [MinimumPlanetAltitude:150]
+	  [AltitudeTolerance:50]
+	  [CollisionEvasionWaypointCalculatedAwayFromEntity:true]
+      [WaypointTolerance:100]
+      [IdealMinSpeed:50]
+      [IdealMaxSpeed:75]
+      [SlowDownOnWaypointApproach:true]
+      [ExtraSlowDownDistance:25]
+
+      [OffsetSpaceMinDistFromTarget:250]
+      [OffsetSpaceMaxDistFromTarget:500]
+      [OffsetPlanetMinDistFromTarget:250]
+      [OffsetPlanetMaxDistFromTarget:500]
+      [OffsetPlanetMinTargetAltitude:-200]
+      [OffsetPlanetMaxTargetAltitude:200]
+      [AllowStrafing:true]
+      [StrafeMinDurationMs:1500]
+      [StrafeMaxDurationMs:5000]
+	  [StrafeMinCooldownMs:0]
+	  [StrafeMaxCooldownMs:1]
+      [StrafeSpeedCutOff:45]	  
+	  [StrafeMinimumTargetDistance:400]
+	  [StrafeMinimumSafeAngleFromTarget:30]
+
+      [ReverseOffsetDistAltAboveHeight:false]
+      [ReverseOffsetHeight:0]
+	  [AngleAllowedForForwardThrust:90]
+      
+      </Description>
+    </EntityComponent>
+
+	<!-- Large Ship HorseFighter Drone Behavior -->
+    <EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+      <Id>
+          <TypeId>Inventory</TypeId>
+          <SubtypeId>DefenseDrone-LargeHorseFighter-Behavior-Start</SubtypeId>
+      </Id>
+      <Description>
+	  
+      [RivalAI Behavior]
+	  
+      [BehaviorName:HorseFighter]
+
+	  [UseStaticGuns:false]
+	  [UseTurrets:false]
+	  [MaxStaticWeaponRange:5000]
+	  [WeaponMaxAngleFromTarget:15]
+	  [UseAmmoReplenish:true]
+	  [AmmoReplenishClipAmount:10]
+	  [MaxAmmoReplenishments:99999999]
+	  [UsePlayerDistanceTimer:true]
+	  [PlayerDistanceTimerTrigger:0]
+	  [PlayerDistanceTrigger:15000]
+	  [UseNoTargetTimer:true]
+	  [NoTargetTimerTrigger:1800]
+	  [UseRetreatTimer:true]
+	  [RetreatTimerTrigger:3600]
+	  [RetreatDespawnDistance:1500]
+	  
+	  [HorseFighterTimeApproaching:10]
+	  [HorseFighterTimeEngaging:10]
+
+	  [TargetData:GVK-Generic-TargetProfile-EnemyPlayers]
+
+	  [AutopilotData:DefenseDrone-LargeHorseFighter-Autopilot]
+
+	  [Triggers:DefenseDrone-Trigger-WeaponsToMaxRange]
+	  [Triggers:DefenseDrone-Trigger-FireRockets]
+	  [Triggers:DefenseDrone-Trigger-StopRockets]
+	  [Triggers:DefenseDrone-Trigger-FireArchers]
+	  [Triggers:DefenseDrone-Trigger-StopArchers]
+	  [Triggers:DefenseDrone-Trigger-FireRailguns]
+	  [Triggers:DefenseDrone-Trigger-StopRailguns]
+	  [Triggers:GVK-Generic-Trigger-SPRTTargetAcquiredChatter]
+	  [Triggers:DefenseDrone-Trigger-Crashed]
+	  [Triggers:DefenseDrone-Trigger-Compromised]
+	  [Triggers:GVK-Generic-Trigger-SPRTNoWeapon]
+  
+      </Description>
+    </EntityComponent>
+
+	<!-- Large Ship HorseFighter Autopilot -->
+	<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+      <Id>
+          <TypeId>Inventory</TypeId>
+          <SubtypeId>DefenseDrone-LargeHorseFighter-Autopilot</SubtypeId>
+      </Id>
+      <Description>
+
+      [RivalAI Autopilot]
+      
+	  [UseVelocityCollisionEvasion:true]
+	  [CollisionEvasionWaypointDistance:50]
+      [CollisionFallEvasionWaypointDistance:35]
+
+	  [UseProjectileLeadPrediction:true]
+
+      [RotationMultiplier:0.7]
+	  [DisableInertiaDampeners:false]
+      [FlyLevelWithGravity:false]
+      [LevelWithGravityWhenIdle:true]
+	  [MaxVerticalSpeed:20]
+	  [IdealPlanetAltitude:250]
+	  [MinimumPlanetAltitude:250]
+	  [AltitudeTolerance:50]
+	  [CollisionEvasionWaypointCalculatedAwayFromEntity:true]
+      [WaypointTolerance:100]
+      [IdealMinSpeed:50]
+      [IdealMaxSpeed:75]
+      [SlowDownOnWaypointApproach:false]
+      [ExtraSlowDownDistance:25]
+
+      [OffsetSpaceMinDistFromTarget:600]
+      [OffsetSpaceMaxDistFromTarget:1200]
+      [OffsetPlanetMinDistFromTarget:600]
+      [OffsetPlanetMaxDistFromTarget:1200]
+      [OffsetPlanetMinTargetAltitude:-200]
+      [OffsetPlanetMaxTargetAltitude:300]
+      [AllowStrafing:true]
+      [StrafeMinDurationMs:2000]
+      [StrafeMaxDurationMs:10000]
+	  [StrafeMinCooldownMs:0]
+	  [StrafeMaxCooldownMs:1]
+      [StrafeSpeedCutOff:45]	  
+	  [StrafeMinimumTargetDistance:600]
+	  [StrafeMinimumSafeAngleFromTarget:30]
+
+      [ReverseOffsetDistAltAboveHeight:false]
+      [ReverseOffsetHeight:0]
+	  [AngleAllowedForForwardThrust:90]
+      
+      </Description>
+    </EntityComponent>
+
+	<!-- Horsefly Rover Drone Behavior -->
+    <EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+      <Id>
+          <TypeId>Inventory</TypeId>
+          <SubtypeId>DefenseDrone-Rover-Behavior-Start</SubtypeId>
+      </Id>
+      <Description>
+	  
+      [RivalAI Behavior]
+	  
+      [BehaviorName:Horsefly]
+
+	  [UseStaticGuns:true]
+	  [MaxStaticWeaponRange:1500]
+	  [WeaponMaxAngleFromTarget:10]
+	  [UseAmmoReplenish:true]
+	  [AmmoReplenishClipAmount:10]
+	  [MaxAmmoReplenishments:99999999]
+	  [UsePlayerDistanceTimer:true]
+	  [PlayerDistanceTimerTrigger:0]
+	  [PlayerDistanceTrigger:15000]
+	  [UseNoTargetTimer:true]
+	  [NoTargetTimerTrigger:1800]
+	  [UseRetreatTimer:true]
+	  [RetreatTimerTrigger:3600]
+	  [RetreatDespawnDistance:1500]
+	  
+	  [AutopilotData:DefenseDrone-Rover-Autopilot]
+	  
+	  [TargetData:GVK-Generic-TargetProfile-EnemyPlayers]
+
+	  [Triggers:DefenseDrone-Trigger-FireArchers]
+	  [Triggers:DefenseDrone-Trigger-StopArchers]
+	  [Triggers:DefenseDrone-Trigger-WeaponsToMaxRange]
+	  [Triggers:GVK-Generic-Trigger-SPRTTargetAcquiredChatter]
+	  [Triggers:DefenseDrone-Trigger-Compromised]
+	  [Triggers:GVK-Generic-Trigger-SPRTNoWeapon]
+  
+      </Description>
+    </EntityComponent>
+
+	<!-- Horsefly Rover Autopilot -->
+	<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+      <Id>
+          <TypeId>Inventory</TypeId>
+          <SubtypeId>DefenseDrone-Rover-Autopilot</SubtypeId>
+      </Id>
+      <Description>
+
+      [RivalAI Autopilot]
+      
+	  [UseVelocityCollisionEvasion:true]
+
+      [RotationMultiplier:1]
+	  [DisableInertiaDampeners:false]
+      [FlyLevelWithGravity:true]
+      [LevelWithGravityWhenIdle:true]
+	  [IdealPlanetAltitude:3]
+	  [MinimumPlanetAltitude:-100]
+	  [AltitudeTolerance:5000]
+	  [CollisionEvasionWaypointCalculatedAwayFromEntity:true]
+	  [WaypointAbandonTimeTrigger:20]
+      [WaypointTolerance:100]
+      [IdealMinSpeed:35]
+      [IdealMaxSpeed:75]
+	  [UseSurfaceHoverThrustMode:false]
+	  [HoverPathStepDistance:150]
+
+      [OffsetPlanetMinDistFromTarget:500]
+      [OffsetPlanetMaxDistFromTarget:800]
+      [OffsetPlanetMinTargetAltitude:-50]
+      [OffsetPlanetMaxTargetAltitude:50]
+	  
+      [ReverseOffsetDistAltAboveHeight:false]
+      [ReverseOffsetHeight:0]
+	  [AngleAllowedForForwardThrust:120]
+	  [MaxVelocityAngleForSpeedControl:180]
+      
+      </Description>
+    </EntityComponent>
+
+	<!-- Action group to set turrets to max range because of a bug in MES right now -->
+
+    <EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+      <Id>
+          <TypeId>Inventory</TypeId>
+          <SubtypeId>DefenseDrone-Trigger-WeaponsToMaxRange</SubtypeId>
+      </Id>
+      <Description>
+	  
+      [RivalAI Trigger]
+	  
+	  [UseTrigger:true]
+	  [Type:Timer]
+	  [StartsReady:true]
+	  [MinCooldownMs:1000000]
+	  [MaxCooldownMs:1000000]
+	  	  
+	  [Actions:DefenseDrone-Action-WeaponsToMaxRange]
+	  
+      </Description>
+    </EntityComponent>
+
+	<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+      <Id>
+          <TypeId>Inventory</TypeId>
+          <SubtypeId>DefenseDrone-Action-WeaponsToMaxRange</SubtypeId>
+      </Id>
+      <Description>
+	  
+      [RivalAI Action]
+	  	  
+	  [SetWeaponsToMaxRange:true]
+	  
+      </Description>
+    </EntityComponent>
+
+	<!-- Action group to fire Fixed Rockets because of a bug in WC2 right now -->
+
+    <EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+      <Id>
+          <TypeId>Inventory</TypeId>
+          <SubtypeId>DefenseDrone-Trigger-FireRockets</SubtypeId>
+      </Id>
+      <Description>
+	  
+      [RivalAI Trigger]
+	  
+	  [UseTrigger:true]
+	  [Type:TargetNear]
+	  
+	  [TargetDistance:1000]
+	  
+	  [Conditions:DefenseDrone-Condition-FireRockets]
+	  
+	  [Actions:DefenseDrone-Action-FireRockets]
+	  
+      </Description>
+    </EntityComponent>
+
+    <EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+      <Id>
+          <TypeId>Inventory</TypeId>
+          <SubtypeId>DefenseDrone-Condition-FireRockets</SubtypeId>
+      </Id>
+      <Description>
+
+      [RivalAI Condition]
+      
+      [UseConditions:true]
+      [MatchAnyCondition:true]
+	  
+	  [CheckTargetAngleFromForward:true]
+	  [MinTargetAngle:0]
+	  [MaxTargetAngle:15]
+      
+      </Description> 
+    </EntityComponent>		
+
+	<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+      <Id>
+          <TypeId>Inventory</TypeId>
+          <SubtypeId>DefenseDrone-Action-FireRockets</SubtypeId>
+      </Id>
+      <Description>
+	  
+      [RivalAI Action]
+	  	  
+	  [ToggleBlocksOfType:true]
+	  [BlockTypesToToggle:MyObjectBuilder_SmallMissileLauncher/]
+	  [BlockTypeToggles:On]
+	  [BlockTypesToToggle:MyObjectBuilder_SmallMissileLauncher/null]
+	  [BlockTypeToggles:On]
+	  [BlockTypesToToggle:MyObjectBuilder_SmallMissileLauncher/LargeMissileLauncher]
+	  [BlockTypeToggles:On]
+	  
+	  [ResetCooldownTimeOfTriggers:true]
+	  [ResetTriggerCooldownNames:DefenseDrone-Trigger-StopRockets]
+	  
+      </Description>
+    </EntityComponent>
+
+    <EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+      <Id>
+          <TypeId>Inventory</TypeId>
+          <SubtypeId>DefenseDrone-Trigger-StopRockets</SubtypeId>
+      </Id>
+      <Description>
+	  
+      [RivalAI Trigger]
+	  
+	  [UseTrigger:true]
+	  [Type:Timer]
+	  [MinCooldownMs:1000]
+	  [MaxCooldownMs:1000]
+	  	  
+	  [Actions:DefenseDrone-Action-StopRockets]
+	  
+      </Description>
+    </EntityComponent>
+		
+	<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+      <Id>
+          <TypeId>Inventory</TypeId>
+          <SubtypeId>DefenseDrone-Action-StopRockets</SubtypeId>
+      </Id>
+      <Description>
+	  
+      [RivalAI Action]
+	  
+	  [ToggleBlocksOfType:true]
+	  [BlockTypesToToggle:MyObjectBuilder_SmallMissileLauncher/]
+	  [BlockTypeToggles:Off]
+	  [BlockTypesToToggle:MyObjectBuilder_SmallMissileLauncher/null]
+	  [BlockTypeToggles:Off]
+	  [BlockTypesToToggle:MyObjectBuilder_SmallMissileLauncher/LargeMissileLauncher]
+	  [BlockTypeToggles:Off]
+	  
+      </Description>
+    </EntityComponent>
+	
+	<!-- Action group to fire Archer Pods because of a bug in WC2 right now -->
+
+    <EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+      <Id>
+          <TypeId>Inventory</TypeId>
+          <SubtypeId>DefenseDrone-Trigger-FireArchers</SubtypeId>
+      </Id>
+      <Description>
+	  
+      [RivalAI Trigger]
+	  
+	  [UseTrigger:true]
+	  [Type:TurretTarget]
+	  
+	  [MinCooldownMs:1000]
+	  [MaxCooldownMs:1000]
+	  [StartsReady:false]
+	  
+	  [TargetDistance:2000]
+	  
+	  [Conditions:DefenseDrone-Condition-FireArchers]
+	  [ConditionCheckResetsTimer:false]
+	  
+	  [Actions:DefenseDrone-Action-FireArchers]
+	  
+      </Description>
+    </EntityComponent>
+
+    <EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+      <Id>
+          <TypeId>Inventory</TypeId>
+          <SubtypeId>DefenseDrone-Condition-FireArchers</SubtypeId>
+      </Id>
+      <Description>
+
+      [RivalAI Condition]
+      
+      [UseConditions:true]
+      [MatchAnyCondition:true]
+	  
+	  [CheckTargetAngleFromForward:true]
+	  [MinTargetAngle:0]
+	  [MaxTargetAngle:180]
+      
+      </Description> 
+    </EntityComponent>		
+
+	<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+      <Id>
+          <TypeId>Inventory</TypeId>
+          <SubtypeId>DefenseDrone-Action-FireArchers</SubtypeId>
+      </Id>
+      <Description>
+	  
+      [RivalAI Action]
+	  	  
+
+	  [ToggleBlocksOfType:true]
+	  [BlockTypesToToggle:MyObjectBuilder_SmallMissileLauncherReload/SmallRocketLauncherReload]
+	  [BlockTypeToggles:On]
+	  [BlockTypesToToggle:MyObjectBuilder_SmallMissileLauncherReload/]
+	  [BlockTypeToggles:On]
+	  [BlockTypesToToggle:MyObjectBuilder_ConveyorSorter/MXA_ArcherPods]
+	  [BlockTypeToggles:On]
+	  
+	  [ResetCooldownTimeOfTriggers:true]
+	  [ResetTriggerCooldownNames:DefenseDrone-Trigger-StopArchers]
+	  
+      </Description>
+    </EntityComponent>
+
+    <EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+      <Id>
+          <TypeId>Inventory</TypeId>
+          <SubtypeId>DefenseDrone-Trigger-StopArchers</SubtypeId>
+      </Id>
+      <Description>
+	  
+      [RivalAI Trigger]
+	  
+	  [UseTrigger:true]
+	  [Type:Timer]
+	  [MinCooldownMs:1500]
+	  [MaxCooldownMs:1500]
+	  	  
+	  [Actions:DefenseDrone-Action-StopArchers]
+	  
+      </Description>
+    </EntityComponent>
+		
+	<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+      <Id>
+          <TypeId>Inventory</TypeId>
+          <SubtypeId>DefenseDrone-Action-StopArchers</SubtypeId>
+      </Id>
+      <Description>
+	  
+      [RivalAI Action]
+	  
+	  [ToggleBlocksOfType:true]
+	  [BlockTypesToToggle:MyObjectBuilder_SmallMissileLauncherReload/SmallRocketLauncherReload]
+	  [BlockTypeToggles:Off]
+	  [BlockTypesToToggle:MyObjectBuilder_SmallMissileLauncherReload/]
+	  [BlockTypeToggles:Off]
+	  [BlockTypesToToggle:MyObjectBuilder_ConveyorSorter/MXA_ArcherPods]
+	  [BlockTypeToggles:Off]
+	  
+      </Description>
+    </EntityComponent>
+	
+	<!-- Action group to fire Fixed Railguns because of a bug in WC2 right now -->
+
+    <EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+      <Id>
+          <TypeId>Inventory</TypeId>
+          <SubtypeId>DefenseDrone-Trigger-FireRailguns</SubtypeId>
+      </Id>
+      <Description>
+	  
+      [RivalAI Trigger]
+	  
+	  [UseTrigger:true]
+	  [Type:TargetNear]
+	  
+	  [TargetDistance:3000]
+	  
+	  [Conditions:DefenseDrone-Condition-FireRailguns]
+	  
+	  [Actions:DefenseDrone-Action-FireRailguns]
+	  
+      </Description>
+    </EntityComponent>
+
+    <EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+      <Id>
+          <TypeId>Inventory</TypeId>
+          <SubtypeId>DefenseDrone-Condition-FireRailguns</SubtypeId>
+      </Id>
+      <Description>
+
+      [RivalAI Condition]
+      
+      [UseConditions:true]
+      [MatchAnyCondition:true]
+	  
+	  [CheckTargetAngleFromForward:true]
+	  [MinTargetAngle:0]
+	  [MaxTargetAngle:10]
+      
+      </Description> 
+    </EntityComponent>		
+
+	<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+      <Id>
+          <TypeId>Inventory</TypeId>
+          <SubtypeId>DefenseDrone-Action-FireRailguns</SubtypeId>
+      </Id>
+      <Description>
+	  
+      [RivalAI Action]
+	  	  
+	  [ToggleBlocksOfType:true]
+	  [BlockTypesToToggle:MyObjectBuilder_ConveyorSorter/ARYXRailgun]
+	  [BlockTypeToggles:On]
+	  [BlockTypesToToggle:MyObjectBuilder_ConveyorSorter/MXA_MACL]
+	  [BlockTypeToggles:On]
+	  
+	  [ResetCooldownTimeOfTriggers:true]
+	  [ResetTriggerCooldownNames:DefenseDrone-Trigger-StopRailguns]
+	  
+      </Description>
+    </EntityComponent>
+
+    <EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+      <Id>
+          <TypeId>Inventory</TypeId>
+          <SubtypeId>DefenseDrone-Trigger-StopRailguns</SubtypeId>
+      </Id>
+      <Description>
+	  
+      [RivalAI Trigger]
+	  
+	  [UseTrigger:true]
+	  [Type:Timer]
+	  [MinCooldownMs:5000]
+	  [MaxCooldownMs:5000]
+	  	  
+	  [Actions:DefenseDrone-Action-StopRailguns]
+	  
+      </Description>
+    </EntityComponent>
+		
+	<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+      <Id>
+          <TypeId>Inventory</TypeId>
+          <SubtypeId>DefenseDrone-Action-StopRailguns</SubtypeId>
+      </Id>
+      <Description>
+	  
+      [RivalAI Action]
+	  
+	  [ToggleBlocksOfType:true]
+	  [BlockTypesToToggle:MyObjectBuilder_ConveyorSorter/ARYXRailgun]
+	  [BlockTypeToggles:Off]
+	  [BlockTypesToToggle:MyObjectBuilder_ConveyorSorter/MXA_MACL]
+	  [BlockTypeToggles:Off]
+	  
+      </Description>
+    </EntityComponent>
+	
+	<!-- Trigger sequence when Drone crashes into the ground -->
+	
+    <EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+      <Id>
+          <TypeId>Inventory</TypeId>
+          <SubtypeId>DefenseDrone-Trigger-Crashed</SubtypeId>
+      </Id>
+      <Description>
+
+      [RivalAI Trigger]
+	  
+	  [Type:Timer]
+	  [UseTrigger:true]
+	  [StartsReady:false]
+	  [MinCooldownMs:5000]
+	  [MaxCooldownMs:5000]
+	  [MaxActions:1]
+	  [ActionExecution:All]
+	  
+	  [Conditions:DefenseDrone-Condition-Crashed]
+	  
+	  [Actions:DefenseDrone-Action-Crashed]
+      
+      </Description>
+    </EntityComponent>
+      
+    <EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+      <Id>
+          <TypeId>Inventory</TypeId>
+          <SubtypeId>DefenseDrone-Condition-Crashed</SubtypeId>
+      </Id>
+      <Description>
+
+      [RivalAI Condition]
+      
+      [UseConditions:true]
+      [MatchAnyCondition:false]
+      
+	  [CheckGridSpeed:true]
+	  [MinGridSpeed:0]
+	  [MaxGridSpeed:10]
+	  
+	  [AltitudeCheck:true]
+	  [MinAltitude:-999999]
+	  [MaxAltitude:5]
+	  
+      </Description>
+    </EntityComponent>
+	  
+    <EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+      <Id>
+          <TypeId>Inventory</TypeId>
+          <SubtypeId>DefenseDrone-Action-Crashed</SubtypeId>
+      </Id>
+      <Description>
+
+      [RivalAI Action]
+	  
+	  [DisableTriggers:true]
+	  [DisableTriggerNames:DefenseDrone-Trigger-Compromised]
+	  
+	  [GenerateExplosion:true]
+	  [ExplosionRange:25]
+	  [ExplosionDamage:5000]
+	  [ExplosionIgnoresVoxels:true]
+      
+      [UseChatBroadcast:true]
+      [ChatData:DefenseDrone-Chat-Crashed]
+	  	  
+	  [ForceDespawn:true]
+	  [ChangeInertiaDampeners:true]
+	  [InertiaDampenersEnable:false]
+	  [TerminateBehavior:true]
+
+      </Description>
+    </EntityComponent>
+	
+    <EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+      <Id>
+          <TypeId>Inventory</TypeId>
+          <SubtypeId>DefenseDrone-Chat-Crashed</SubtypeId>
+      </Id>
+      <Description>
+
+      [RivalAI Chat]
+      
+      [UseChat:true]
+      [StartsReady:true]
+      [Chance:100]
+      [MaxChats:1]
+      [BroadcastRandomly:true]
+      
+      [Author:{GridName}]
+      [Color:White]
+      
+      [ChatMessages:A defense drone has crashed.]
+      [ChatAudio:GreetingSoundId-A]
+      [BroadcastChatType:Notify]
+	  [SendToAllOnlinePlayers:true]
+
+      </Description>
+    </EntityComponent>
+		
+	<!-- Trigger sequence when plane RAI Remote is disabled -->
+	
+    <EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+      <Id>
+          <TypeId>Inventory</TypeId>
+          <SubtypeId>DefenseDrone-Trigger-Compromised</SubtypeId>
+      </Id>
+      <Description>
+
+      [RivalAI Trigger]
+	  
+	  [Type:Compromised]
+	  [UseTrigger:true]
+	  [StartsReady:true]
+	  [MaxActions:1]
+	  [ActionExecution:All]
+	  	  
+	  [Actions:DefenseDrone-Action-Compromised]
+      
+      </Description>
+    </EntityComponent>
+      	  
+    <EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+      <Id>
+          <TypeId>Inventory</TypeId>
+          <SubtypeId>DefenseDrone-Action-Compromised</SubtypeId>
+      </Id>
+      <Description>
+
+      [RivalAI Action]
+	  
+	  [DisableTriggers:true]
+	  [DisableTriggerNames:DefenseDrone-Trigger-Crashed]
+	  
+	  [GenerateExplosion:true]
+	  [ExplosionRange:25]
+	  [ExplosionDamage:5000]
+	  [ExplosionIgnoresVoxels:true]
+      
+      [UseChatBroadcast:true]
+      [ChatData:DefenseDrone-Chat-Compromised]
+	  
+	  [ForceDespawn:true]
+	  [ChangeInertiaDampeners:true]
+	  [InertiaDampenersEnable:false]
+	  [TerminateBehavior:true]
+	  
+      </Description>
+    </EntityComponent>
+	
+    <EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+      <Id>
+          <TypeId>Inventory</TypeId>
+          <SubtypeId>DefenseDrone-Chat-Compromised</SubtypeId>
+      </Id>
+      <Description>
+
+      [RivalAI Chat]
+      
+      [UseChat:true]
+      [StartsReady:true]
+      [Chance:100]
+      [MaxChats:1]
+      [BroadcastRandomly:true]
+      
+      [Author:{GridName}]
+      [Color:White]
+      
+      [ChatMessages:A defense drone has been shot down.]
+      [ChatAudio:GreetingSoundId-A]
+      [BroadcastChatType:Notify]
+	  [SendToAllOnlinePlayers:true]
+
+      </Description>
+    </EntityComponent>
+
+  </EntityComponents>
+</Definitions>
