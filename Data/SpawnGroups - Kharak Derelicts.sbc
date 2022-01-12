@@ -1067,6 +1067,36 @@
 		<SpawnGroup>
 			<Id>
 				<TypeId>SpawnGroupDefinition</TypeId>
+				<SubtypeId>GVK-NPC-PlanetDerelict-GAALSIEN-Guardia</SubtypeId>
+			</Id>
+			<Description>
+				[Modular Encounters SpawnGroup]
+				[IgnoreCleanupRules:true]
+				[ReplenishSystems:true]
+				[SpawnConditionsProfiles:GVK-SpawnConditions-Derelicts-Large]
+				[ManipulationProfiles:MES-Manipulation-RivalAi]
+				[ManipulationProfiles:GVK-Manipulation-Derelicts-Large-NoReducedArmor]
+				[CutVoxelsAtAirtightCells:true]
+				[CutVoxelSize:6]
+			</Description>
+			<IsPirate>true</IsPirate>
+			<Frequency>5.0</Frequency>
+			<Prefabs>
+				<Prefab SubtypeId="[NPC Large Wreck] Guardia">
+					<Position>
+						<X>0.0</X>
+						<Y>-28</Y>
+						<Z>0.0</Z>
+					</Position>
+					<Speed>0</Speed>
+					<BeaconText>Large Crash Site</BeaconText>
+					<Behaviour>GVK-NPC-PlanetDerelictLarge-Behavior-Start</Behaviour>
+				</Prefab>
+			</Prefabs>
+		</SpawnGroup>
+		<SpawnGroup>
+			<Id>
+				<TypeId>SpawnGroupDefinition</TypeId>
 				<SubtypeId>GVK-NPC-PlanetDerelict-GAALSIEN-Tower</SubtypeId>
 			</Id>
 			<Description>
