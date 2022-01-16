@@ -44,6 +44,26 @@
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Manipulation-ConvoySpawner</SubtypeId>
+			</Id>
+			<Description>
+				[MES Manipulation]
+				[ManipulationChance:100]
+				[ClearAuthorship:true]
+				[EraseIngameScripts:true]
+				[IgnoreGlobalBlockReplacer:true]
+				[UseBlockReplacerProfile:true]
+				[UseRivalAi:true]
+				[RivalAiReplaceRemoteControl:true]
+				[BlockReplacerProfileNames:GVK-Replacer-ProprietaryReactors]
+				[ClearGridInventories:true]
+				[GridsAreEditable:false]
+				[GridsAreDestructable:false]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
 				<SubtypeId>GVK-Manipulation-Derelicts-Small</SubtypeId>
 			</Id>
 			<Description>
@@ -177,6 +197,43 @@
 				[DerelictionProfiles:GVK-Dereliction-DerelictTurrets-NoComps]
 				[DerelictionProfiles:GVK-Dereliction-RocketLaunchers-NoComps]
 				[EnableBlocksWithName:Designator,Turret,turret,interior,Interior,gatling,Gatling]
+				[AllowPartialNames:true]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Manipulation-Convoy-Mothership</SubtypeId>
+			</Id>
+			<Description>
+				[MES Manipulation]
+				[ManipulationChance:100]
+				[ClearAuthorship:true]
+				[EraseIngameScripts:true]
+				[UseBlockReplacer:true]
+				[AssignGridSkin:Dust_Armor]
+				[SkinRandomBlocks:true]
+				[SkinRandomBlocksTextures:Heavy_Rust_Armor]
+				[MinPercentageSkinRandomBlocks:10]
+				[MaxPercentageSkinRandomBlocks:25]
+				[IgnoreGlobalBlockReplacer:false]
+				[ClearGridInventories:true]
+				[DisableBlocksWithName:Survival,Blood]
+				[AllowPartialNames:true]
+				[UseLootProfiles:true]
+				[LootProfiles:GVK-Derelict-Loot-Huge]
+				[UseBlockReplacerProfile:true]
+				[BlockReplacerProfileNames:MES-Armor-LightToHeavy]
+				[ConfigureSpecialNpcThrusters:true]
+				[RestrictNpcIonThrust:true]
+				[NpcIonThrustForceMultiply:5]
+				[NpcIonThrustPowerMultiply:0.0001]
+				[RestrictNpcAtmoThrust:true]
+				[NpcAtmoThrustForceMultiply:5]
+				[NpcAtmoThrustPowerMultiply:0.0001]
+				[RestrictNpcHydroThrust:true]
+				[NpcHydroThrustForceMultiply:5]
+				[NpcHydroThrustPowerMultiply:0.000001]
 				[AllowPartialNames:true]
 			</Description>
 		</EntityComponent>

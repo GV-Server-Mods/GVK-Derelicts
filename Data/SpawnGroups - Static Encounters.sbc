@@ -27,6 +27,7 @@
 				[StaticEncounterPlanetAltitude:-6.33689236012287]
 				[SpawnConditionsProfiles:GVK-SpawnConditions-TradeStationBridge]
 				[ManipulationProfiles:GVK-Manipulation-TradeStationBridge]
+				[ManipulationProfiles:MES-Manipulation-RivalAi]
 			</Description>
 			<IsPirate>true</IsPirate>
 			<Frequency>5.0</Frequency>
@@ -124,6 +125,48 @@
 					<Speed>0</Speed>
 					<BeaconText>KOTH West</BeaconText>
 					<Behaviour></Behaviour>
+				</Prefab>
+			</Prefabs>
+		</SpawnGroup>
+		<SpawnGroup>
+			<Id>
+				<TypeId>SpawnGroupDefinition</TypeId>
+				<SubtypeId>GVK-NPC-StaticEncounter-ConvoyOutpost</SubtypeId>
+			</Id>
+			<Description>
+				[Modular Encounters SpawnGroup]
+				[IgnoreCleanupRules:true]
+				[IgnoreGlobalBlockReplacer:true]
+				[ReplenishSystems:true]
+				[StaticEncounter:true]
+				[ForceStaticGrid:true]
+				[RotateFirstCockpitToForward:false]
+				[FactionOwner:COALITION]
+				[TriggerCoords:{X:87173.1874046345 Y:85239.7540604316 Z:87178.7416673571}]
+				[TriggerRadius:999999]
+				[ForceExactPositionAndOrientation:true]
+				[StaticEncounterCoords:{X:87173.1874046345 Y:85239.7540604316 Z:87178.7416673571}]
+				[StaticEncounterForward:{X:-0.70374549233246 Y:-0.0059308517465501 Z:0.710427411506133}]
+				[StaticEncounterUp:{X:0.594862386126838 Y:0.541803956340877 Z:0.593790547638524}]
+				[StaticEncounterUsePlanetDirectionAndAltitude:true]
+				[StaticEncounterPlanet:AlphaKharak]
+				[StaticEncounterPlanetDirection:{X:0.594460963082179 Y:0.541341737077609 Z:0.594613561121175}]
+				[StaticEncounterPlanetAltitude:-1.48794570378959]
+				[SpawnConditionsProfiles:GVK-SpawnConditions-ConvoyOutpoust]
+				[ManipulationProfiles:GVK-Manipulation-ConvoySpawner]
+			</Description>
+			<IsPirate>true</IsPirate>
+			<Frequency>5.0</Frequency>
+			<Prefabs>
+				<Prefab SubtypeId="[NPC] Convoy Outpost">
+					<Position>
+						<X>0.0</X>
+						<Y>0</Y>
+						<Z>0.0</Z>
+					</Position>
+					<Speed>0</Speed>
+					<BeaconText>Abandoned Outpost</BeaconText>
+					<Behaviour>GVK-NPC-ConvoySpawner-Behavior-Start</Behaviour>
 				</Prefab>
 			</Prefabs>
 		</SpawnGroup>

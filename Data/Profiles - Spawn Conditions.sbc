@@ -145,11 +145,29 @@
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-SpawnConditions-ConvoyOutpoust</SubtypeId>
+			</Id>
+			<Description>
+				[MES Spawn Conditions]
+				[PlanetaryInstallation:false]
+				[PlanetaryInstallationType:Small]
+				[FactionOwner:GAALSIEN]
+				[ForceStaticGrid:true]
+				[InitializeStoreBlocks:false]
+				[ReactorsOn:true]
+				[ForceStaticGrid:true]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
 				<SubtypeId>GVK-SpawnConditions-Mothership-Hover</SubtypeId>
 			</Id>
 			<Description>
 				[MES Spawn Conditions]
-				[DroneEncounter:true]
+				[RivalAiAnySpawn:true]
+				[DroneEncounter:false]
+				[BossEncounterAtmo:false]
 				[BossEncounterAny:false]
 				[BossCustomAnnounceEnable:true]
 				[BossCustomAnnounceAuthor:Coalition]
@@ -159,7 +177,7 @@
 				[MaximumPlayerTime:60]
 				[MinDroneDistance:1000]
 				[MaxDroneDistance:5000]
-				[MinDroneAltitude:10]
+				[MinDroneAltitude:25]
 				[MaxDroneAltitude:50]
 				[SkipAirDensityCheck:true]
 				[FactionOwner:GAALSIEN]
@@ -169,24 +187,6 @@
 				[MaxGravity:1.5]
 				[MinSpawnFromPlanetSurface:-1]
 				[MaxSpawnFromPlanetSurface:2000]
-				[UseRemoteControlCodeRestrictions:true]
-				[RemoteControlCode:ConvoyEncounter]
-				[RemoteControlCodeMinDistance:9999999]
-				[ZoneName:Convoy Encounter]
-				[MaxDistanceFromZoneCenter:5000]
-				[MinSpawnedZoneEncounters:0]
-			</Description>
-		</EntityComponent>
-		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
-			<Id>
-				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-ZoneConditions-Mothership-Hover</SubtypeId>
-			</Id>
-			<Description>
-				[MES Zone Conditions]
-				[ZoneName:Convoy Encounter]
-				[MaxDistanceFromZoneCenter:5000]
-				[MinSpawnedZoneEncounters:0]
 			</Description>
 		</EntityComponent>
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
@@ -202,6 +202,7 @@
 				[ForceStaticGrid:false]
 				[MinGravity:0.5]
 				[MaxGravity:1.5]
+				[SkipAirDensityCheck:true]
 			</Description>
 		</EntityComponent>
 	</EntityComponents>
