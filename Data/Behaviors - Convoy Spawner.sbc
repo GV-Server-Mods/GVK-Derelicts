@@ -72,12 +72,13 @@
       [RivalAI Trigger]
 	  
       [Type:Timer]
-	  [MinCooldownMs:60000000]
-	  [MaxCooldownMs:90000000]
+	  [MinCooldownMs:30000000]
+	  [MaxCooldownMs:60000000]
 	  [UseTrigger:true]
 	  [StartsReady:true]
 	  
 	  [Conditions:GVK-NPC-ConvoySpawner-Condition-ConvoySpawner]
+	  [ConditionCheckResetsTimer:true]
 	  	  
 	  [Actions:GVK-NPC-ConvoySpawner-Action-ConvoySpawner]
 	  
@@ -110,8 +111,6 @@
 
       [RivalAI Action]
 	  	  
-      [UseChatBroadcast:false]
-      [ChatData:GVK-NPC-ConvoySpawner-Chat-ConvoySpawner]
 	  [SpawnEncounter:true]
       [Spawner:GVK-NPC-ConvoySpawner-Spawner-Convoy]
 	  [SetSandboxBooleansFalse:ConvoyInactive]
@@ -136,8 +135,8 @@
 
       [MinDistance:2000]
       [MaxDistance:5000]
-	  [MinAltitude:25]
-	  [MaxAltitude:50]
+	  [MinAltitude:30]
+	  [MaxAltitude:60]
 	  [InheritNpcAltitude:false]
       [IgnoreSafetyChecks:true]
 	  
