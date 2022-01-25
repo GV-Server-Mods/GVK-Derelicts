@@ -1,6 +1,54 @@
 <?xml version="1.0"?>
 <Definitions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
 	<EntityComponents>
+		<!-- Horsefly Rover Mothership Behavior for Season 2 Event-->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>Mothership-Rover-Behavior-Season2Event-Start</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Behavior]
+				[BehaviorName:Patrol]
+				[UseStaticGuns:true]
+				[MaxStaticWeaponRange:1500]
+				[WeaponMaxAngleFromTarget:10]
+				[UseAmmoReplenish:true]
+				[AmmoReplenishClipAmount:10]
+				[MaxAmmoReplenishments:99999999]
+				[UsePlayerDistanceTimer:false]
+				[PlayerDistanceTimerTrigger:0]
+				[PlayerDistanceTrigger:15000]
+				[UseNoTargetTimer:false]
+				[NoTargetTimerTrigger:1800]
+				[UseRetreatTimer:true]
+				[RetreatTimerTrigger:3600]
+				[RetreatDespawnDistance:2000]
+				[EscortOffsets:{X:200 Y:0 Z:200}]
+				[EscortOffsets:{X:-200 Y:0 Z:-200}]
+				[EscortOffsets:{X:0 Y:0 Z:300}]
+				[EscortOffsets:{X:0 Y:0 Z:-300}]
+				[EscortOffsets:{X:200 Y:0 Z:-200}]
+				[EscortOffsets:{X:-200 Y:0 Z:200}]
+				[EscortOffsets:{X:200 Y:0 Z:0}]
+				[EscortOffsets:{X:-200 Y:0 Z:0}]
+				[AutopilotData:Mothership-Rover-Autopilot]
+				[TargetData:GVK-Generic-TargetProfile-EnemyGrids]
+				[Triggers:DefenseDrone-Trigger-FireArchers]
+				[Triggers:DefenseDrone-Trigger-StopArchers]
+				[Triggers:DefenseDrone-Trigger-WeaponsToMaxRange]
+				[Triggers:GVK-Generic-Trigger-SPRTTargetAcquiredChatter]
+				[Triggers:Mothership-Trigger-SpawnEscorts]
+				[Triggers:Mothership-Trigger-AssignEscortSlot]
+				[Triggers:Mothership-Trigger-Compromised]
+				[Triggers:Mothership-Trigger-Despawn]
+				[Triggers:Mothership-Trigger-DespawnMES]
+				[Triggers:DefenseDrone-Trigger-Compromised]
+				[Triggers:GVK-Generic-Trigger-SPRTNoWeapon]
+				[RemoteControlCode:ConvoyEncounter]
+				[WaypointProfiles:Mothership-Rover-Waypoint-Season2Event]
+			</Description>
+		</EntityComponent>
 		<!-- Horsefly Rover Mothership Behavior -->
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>

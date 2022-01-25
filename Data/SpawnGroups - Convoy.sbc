@@ -1,32 +1,8 @@
 <?xml version="1.0"?>
 <Definitions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
-	<EntityComponents>
-		<!-- Zone for Convoy Spawns -->
-		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
-			<Id>
-				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Convoy-GAALSIEN-Zone</SubtypeId>
-			</Id>
-			<Description>
-				[MES Zone]
-				[PublicName:Convoy Encounter]
-				[Active:true]
-				[Persistent:true]
-				[Strict:false]
-				[Coordinates:{X:87171 Y:85257 Z:87167}]
-				[Radius:15000]
-				[UseAllowedSpawnGroups:true]
-				[AllowedSpawnGroups:GVK-Mothership-GAALSIEN-Convoy1]
-				[AllowedSpawnGroups:GVK-NPC-StaticEncounter-ConvoyOutpost]
-				[UseZoneAnnounce:true]
-				[ZoneEnterAnnounce:Entering Convoy Zone]
-				[ZoneLeaveAnnounce:Leaving Convoy Zone]
-			</Description>
-		</EntityComponent>
-	</EntityComponents>
 	<SpawnGroups>
-		<!-- [NPC Drone] Denizen Hover Mothership -->
-		<SpawnGroup>
+		<!-- [NPC Drone] Mammoth Hover Mothership -->
+		<!-- <SpawnGroup>
 			<Id>
 				<TypeId>SpawnGroupDefinition</TypeId>
 				<SubtypeId>GVK-Mothership-GAALSIEN-Convoy1</SubtypeId>
@@ -55,6 +31,99 @@
 					<Speed>0</Speed>
 					<BeaconText>Convoy Lead</BeaconText>
 					<Behaviour>Mothership-Rover-Behavior-Start</Behaviour>
+				</Prefab>
+				<Prefab SubtypeId="[NPC Drone] Kerrim Cannon">
+					<Position>
+						<X>100</X>
+						<Y>0</Y>
+						<Z>-100</Z>
+					</Position>
+					<Speed>0</Speed>
+					<BeaconText>Kerrim Cannon</BeaconText>
+					<Behaviour>EscortDrone-Rover-Behavior-Start</Behaviour>
+				</Prefab>
+				<Prefab SubtypeId="[NPC Drone] Kerrim Railgun">
+					<Position>
+						<X>-100</X>
+						<Y>0</Y>
+						<Z>100</Z>
+					</Position>
+					<Speed>0</Speed>
+					<BeaconText>Kerrim Railgun</BeaconText>
+					<Behaviour>EscortDrone-Rover-Behavior-Start</Behaviour>
+				</Prefab>
+				<Prefab SubtypeId="[NPC Drone] Kerrim Railgun">
+					<Position>
+						<X>200</X>
+						<Y>0</Y>
+						<Z>0</Z>
+					</Position>
+					<Speed>0</Speed>
+					<BeaconText>Kerrim Railgun</BeaconText>
+					<Behaviour>EscortDrone-Rover-Behavior-Start</Behaviour>
+				</Prefab>
+				<Prefab SubtypeId="[NPC Drone] Kerrim Missle">
+					<Position>
+						<X>100</X>
+						<Y>0.0</Y>
+						<Z>100</Z>
+					</Position>
+					<Speed>0</Speed>
+					<BeaconText>Kerrim Missle</BeaconText>
+					<Behaviour>EscortDrone-Rover-Behavior-Start</Behaviour>
+				</Prefab>
+				<Prefab SubtypeId="[NPC Drone] Kerrim Missle">
+					<Position>
+						<X>-200</X>
+						<Y>0.0</Y>
+						<Z>0</Z>
+					</Position>
+					<Speed>0</Speed>
+					<BeaconText>Kerrim Missle</BeaconText>
+					<Behaviour>EscortDrone-Rover-Behavior-Start</Behaviour>
+				</Prefab>
+				<Prefab SubtypeId="[NPC Drone] Kerrim Cannon">
+					<Position>
+						<X>-100</X>
+						<Y>0.0</Y>
+						<Z>-100</Z>
+					</Position>
+					<Speed>0</Speed>
+					<BeaconText>Kerrim Cannon</BeaconText>
+					<Behaviour>EscortDrone-Rover-Behavior-Start</Behaviour>
+				</Prefab>
+			</Prefabs>
+		</SpawnGroup> -->
+		<!-- [NPC Drone] Mammoth Hover Mothership For S2 Final Event -->
+		<SpawnGroup>
+			<Id>
+				<TypeId>SpawnGroupDefinition</TypeId>
+				<SubtypeId>GVK-Mothership-GAALSIEN-ConvoyS2Event</SubtypeId>
+			</Id>
+			<Description>
+				[Modular Encounters SpawnGroup]
+				[IgnoreCleanupRules:true]
+				[ReplenishSystems:true]
+				[ManipulationProfiles:MES-Manipulation-RivalAi]
+				[SpawnConditionsProfiles:GVK-SpawnConditions-Mothership-Admin]
+				[ManipulationProfiles:GVK-Manipulation-Convoy-Mothership]
+				[UseRemoteControlCodeRestrictions:true]
+				[RemoteControlCode:ConvoyEncounter]
+				[RemoteControlCodeMinDistance:9999999]
+				[ZoneConditions:GVK-ZoneConditions-Mothership-Hover]
+			</Description>
+			<IsPirate>true</IsPirate>
+			<Frequency>0.1</Frequency>
+			<Prefabs>
+				<Prefab SubtypeId="[NPC Convoy] Mammoth">
+					<Position>
+						<X>0.0</X>
+						<Y>15</Y>
+						<Z>0.0</Z>
+					</Position>
+					<Speed>0</Speed>
+					<BeaconText>Convoy Lead</BeaconText>
+					<Behaviour>Mothership-Rover-Behavior-Season2Event-Start</Behaviour>
 				</Prefab>
 				<Prefab SubtypeId="[NPC Drone] Kerrim Cannon">
 					<Position>
