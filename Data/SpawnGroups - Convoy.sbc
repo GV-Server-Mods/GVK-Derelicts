@@ -1,34 +1,9 @@
 <?xml version="1.0"?>
 <Definitions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
-	<EntityComponents>
-		<!-- Zone for Convoy Spawns -->
-		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
-			<Id>
-				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Convoy-GAALSIEN-Zone</SubtypeId>
-			</Id>
-			<Description>
-				[MES Zone]
-				[PublicName:Convoy Encounter]
-				[Active:true]
-				[Persistent:true]
-				[Strict:false]
-				[Coordinates:{X:87171 Y:85257 Z:87167}]
-				[Radius:15000]
-				[UseAllowedSpawnGroups:true]
-				[AllowedSpawnGroups:GVK-Mothership-GAALSIEN-Convoy1]
-				[AllowedSpawnGroups:GVK-NPC-StaticEncounter-ConvoyOutpost]
-				[UseZoneAnnounce:true]
-				[ZoneEnterAnnounce:Entering Convoy Zone]
-				[ZoneLeaveAnnounce:Leaving Convoy Zone]
-			</Description>
-<<<<<<< Updated upstream
-		</EntityComponent>
-	</EntityComponents>
 	<SpawnGroups>
 		<!-- [NPC Drone] Denizen Hover Mothership -->
+		<!-- This spawngroup's details went AWOL -->
 		<SpawnGroup>
-=======
 			<IsPirate>true</IsPirate>
 			<Frequency>0.1</Frequency>
 			<Prefabs>
@@ -103,10 +78,9 @@
 					<Behaviour>EscortDrone-Rover-Behavior-Start</Behaviour>
 				</Prefab>
 			</Prefabs>
-		</SpawnGroup> -->
+		</SpawnGroup> 
 		<!-- [NPC Drone] Mammoth Hover Mothership For S2 Final Event -->
 		<!-- <SpawnGroup>
->>>>>>> Stashed changes
 			<Id>
 				<TypeId>SpawnGroupDefinition</TypeId>
 				<SubtypeId>GVK-Mothership-GAALSIEN-Convoy1</SubtypeId>
@@ -119,13 +93,10 @@
 				[UseRetreatTimer:false]
 				[ReplenishSystems:true]
 				[ManipulationProfiles:MES-Manipulation-RivalAi]
-<<<<<<< Updated upstream
 				[SpawnConditionsProfiles:GVK-SpawnConditions-Mothership-Hover]
 				[ManipulationProfiles:GVK-Manipulation-Convoy-Mothership]
-=======
 				[SpawnConditionsProfiles:GVK-SpawnConditions-Mothership-Admin]
 				[ManipulationProfiles:GVK-Manipulation-Convoy-GaalsienCarrier]
->>>>>>> Stashed changes
 				[UseRemoteControlCodeRestrictions:true]
 				[RemoteControlCode:ConvoyEncounter]
 				[RemoteControlCodeMinDistance:9999999]
