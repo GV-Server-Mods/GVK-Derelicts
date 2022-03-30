@@ -524,106 +524,6 @@
 
 	<!-- Trigger Sequence for Small Defenses currently unused -->
 	
-    <EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
-      <Id>
-        <TypeId>Inventory</TypeId>
-        <SubtypeId>GVK-NPC-PlanetDerelict-Trigger-Defenses-Small</SubtypeId>
-      </Id>
-      <Description>
-
-        [RivalAI Trigger]
-
-		[UseTrigger:true]
-		[Type:PlayerNear]
-		[TargetDistance:500]
-
-        [MaxActions:1]
-        [Actions:GVK-NPC-PlanetDerelict-Action-Defenses-Small]
-
-      </Description>
-    </EntityComponent>
-
-    <EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
-      <Id>
-        <TypeId>Inventory</TypeId>
-        <SubtypeId>GVK-NPC-PlanetDerelict-Action-Defenses-Small</SubtypeId>
-      </Id>
-      <Description>
-
-        [RivalAI Action]
-		
-		[Chance:25]
-
-        [SpawnEncounter:true]
-        [Spawner:GVK-NPC-PlanetDerelict-Spawner-DefenseBots-Small]
-        [Spawner:GVK-NPC-PlanetDerelict-Spawner-DefenseDrones-Small]
-
-      </Description>
-    </EntityComponent>
-
-    <!-- <EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
-      <Id>
-        <TypeId>Inventory</TypeId>
-        <SubtypeId>GVK-NPC-PlanetDerelict-Spawner-DefenseBots-Small</SubtypeId>
-      </Id>
-      <Description>
-
-        [RivalAI Spawn]
-
-        [UseSpawn:true]
-        [SpawningType:Creature]
-        [SpawnMinCooldown:1]
-        [SpawnMaxCooldown:2]
-        [MaxSpawns:1]
-
-        [SpawnGroups:GVK-NPC-Derelict-GAALSIEN-DefenseBots]
-        [ProcessAsAdminSpawn:true]
-
-        [MinDistance:50]
-        [MaxDistance:100]
-	    [InheritNpcAltitude:false]
-        [IgnoreSafetyChecks:true]
-		
-      </Description>
-    </EntityComponent> -->
-		
-	<!-- NOTE: add more enemies to bigger wrecks -->
-	<!-- NOTE: add threat check to some defenses -->
-
-	<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
-      <Id>
-          <TypeId>Inventory</TypeId>
-          <SubtypeId>GVK-NPC-PlanetDerelict-Spawner-DefenseDrones-Small</SubtypeId>
-      </Id>
-      <Description>
-	  
-      [RivalAI Spawn]
-	  
-      [UseSpawn:true]
-	  [SpawningType:CustomSpawn]
-      [StartsReady:true]
-	  [ProcessAsAdminSpawn:false]
-      [MaxSpawns:1]
-	  
-	  [SpawnGroups:GVK-Drone-GAALSIEN-Reaper]
-	  [SpawnGroups:GVK-Drone-GAALSIEN-Revenant]
-	  [SpawnGroups:GVK-Drone-GAALSIEN-Wasp]
-	  [SpawnGroups:GVK-Drone-GAALSIEN-Hornet]
-	  [SpawnGroups:GVK-Drone-GAALSIEN-Slicer]
-	  [SpawnGroups:GVK-Drone-GAALSIEN-Dragoon]
-	  [SpawnGroups:GVK-Drone-GAALSIEN-Pollux]
-	  [SpawnGroups:GVK-Drone-GAALSIEN-Stryker]
-
-      [MinDistance:500]
-      [MaxDistance:1000]
-	  [MinAltitude:50]
-	  [MaxAltitude:150]
-	  [InheritNpcAltitude:false]
-      [IgnoreSafetyChecks:true]
-	  
-      </Description>
-    </EntityComponent>
-
 	<!-- Trigger Sequence for Medium Defenses -->
 	
     <EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
@@ -660,37 +560,10 @@
 		[Chance:50]
 
         [SpawnEncounter:true]
-        [Spawner:GVK-NPC-PlanetDerelict-Spawner-DefenseBots-Medium]
         [Spawner:GVK-NPC-PlanetDerelict-Spawner-DefenseDrones-Medium]
 
       </Description>
     </EntityComponent>
-
-    <!-- <EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
-      <Id>
-        <TypeId>Inventory</TypeId>
-        <SubtypeId>GVK-NPC-PlanetDerelict-Spawner-DefenseBots-Medium</SubtypeId>
-      </Id>
-      <Description>
-
-        [RivalAI Spawn]
-
-        [UseSpawn:true]
-        [SpawningType:Creature]
-        [SpawnMinCooldown:1]
-        [SpawnMaxCooldown:2]
-        [MaxSpawns:2]
-
-        [SpawnGroups:GVK-NPC-Derelict-GAALSIEN-DefenseBots]
-        [ProcessAsAdminSpawn:true]
-
-        [MinDistance:50]
-        [MaxDistance:100]
-	    [InheritNpcAltitude:false]
-        [IgnoreSafetyChecks:true]
-
-      </Description>
-    </EntityComponent> -->
 	
 	<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
       <Id>
@@ -707,6 +580,8 @@
 	  [ProcessAsAdminSpawn:false]
       [MaxSpawns:2]
 	  
+	  [SpawnGroups:GVK-Drone-GAALSIEN-Defiant]
+	  [SpawnGroups:GVK-Drone-GAALSIEN-Hawk]
 	  [SpawnGroups:GVK-Drone-GAALSIEN-Reaper]
 	  [SpawnGroups:GVK-Drone-GAALSIEN-Revenant]
 	  [SpawnGroups:GVK-Drone-GAALSIEN-Wasp]
@@ -714,13 +589,14 @@
 	  [SpawnGroups:GVK-Drone-GAALSIEN-Slicer]
 	  [SpawnGroups:GVK-Drone-GAALSIEN-Dragoon]
 	  [SpawnGroups:GVK-Drone-GAALSIEN-Stryker]
+	  [SpawnGroups:GVK-Drone-GAALSIEN-StrykerICV]
 	  [SpawnGroups:GVK-Drone-GAALSIEN-Pollux]
 
       [MinDistance:500]
-      [MaxDistance:1000]
+      [MaxDistance:1500]
 	  [MinAltitude:50]
-	  [MaxAltitude:150]
-	  [InheritNpcAltitude:false]
+	  [MaxAltitude:200]
+	  [InheritNpcAltitude:true]
       [IgnoreSafetyChecks:true]
 	  
       </Description>
@@ -759,10 +635,9 @@
 
         [RivalAI Action]
 		
-		[Chance:50]
+		[Chance:60]
 
         [SpawnEncounter:true]
-        [Spawner:GVK-NPC-PlanetDerelict-Spawner-DefenseBots-Large]
         [Spawner:GVK-NPC-PlanetDerelict-Spawner-DefenseDrones-Large]
 
       </Description>
@@ -811,13 +686,16 @@
 	  [ProcessAsAdminSpawn:false]
       [MaxSpawns:3]
 	  
-	  [SpawnGroups:GVK-Drone-GAALSIEN-Reaper]
+	  [SpawnGroups:GVK-Drone-GAALSIEN-ReaperSquad]
+	  [SpawnGroups:GVK-Drone-GAALSIEN-HornetSquad]
+	  [SpawnGroups:GVK-Drone-GAALSIEN-SlicerSquad]
+	  [SpawnGroups:GVK-Drone-GAALSIEN-Defiant]
+	  [SpawnGroups:GVK-Drone-GAALSIEN-Hawk]
 	  [SpawnGroups:GVK-Drone-GAALSIEN-Revenant]
 	  [SpawnGroups:GVK-Drone-GAALSIEN-Wasp]
-	  [SpawnGroups:GVK-Drone-GAALSIEN-Hornet]
-	  [SpawnGroups:GVK-Drone-GAALSIEN-Slicer]
 	  [SpawnGroups:GVK-Drone-GAALSIEN-Dragoon]
 	  [SpawnGroups:GVK-Drone-GAALSIEN-Stryker]
+	  [SpawnGroups:GVK-Drone-GAALSIEN-StrykerICV]
 	  [SpawnGroups:GVK-Drone-GAALSIEN-DenizenHover]
 	  [SpawnGroups:GVK-Drone-GAALSIEN-KerrimRailgun]
 	  [SpawnGroups:GVK-Drone-GAALSIEN-KerrimCannon]
@@ -826,8 +704,8 @@
       [MinDistance:500]
       [MaxDistance:1000]
 	  [MinAltitude:50]
-	  [MaxAltitude:150]
-	  [InheritNpcAltitude:false]
+	  [MaxAltitude:200]
+	  [InheritNpcAltitude:true]
       [IgnoreSafetyChecks:true]
 	  
       </Description>
