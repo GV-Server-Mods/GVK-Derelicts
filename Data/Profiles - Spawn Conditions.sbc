@@ -17,8 +17,8 @@
 				[PlayerCountCheckRadius:999999]
 				[MinimumPlayers:1]
 				[CutVoxelsAtAirtightCells:true]
-				[CutVoxelsAtAirtightCells:true]
 				[CutVoxelSize:9]
+				[ZoneConditions:GVK-ZoneConditions-WreckZone1]
 			</Description>
 		</EntityComponent>
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
@@ -33,13 +33,9 @@
 				[FactionOwner:GAALSIEN]
 				[ForceStaticGrid:true]
 				[RotateInstallations:{X:100 Y:100 Z:100}]
-				[UsePlayerCountCheck:false]
-				[PlayerCountCheckRadius:999999]
-				[MinimumPlayers:3]
-				[CutVoxelsAtAirtightCells:true]
-				[PCUCheckRadius:3000]
 				[CutVoxelsAtAirtightCells:true]
 				[CutVoxelSize:9]
+				[ZoneConditions:GVK-ZoneConditions-WreckZone2]
 			</Description>
 		</EntityComponent>
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
@@ -54,11 +50,10 @@
 				[FactionOwner:GAALSIEN]
 				[ForceStaticGrid:true]
 				[RotateInstallations:{X:100 Y:100 Z:100}]
-				[UsePlayerCountCheck:false]
-				[PlayerCountCheckRadius:999999]
-				[MinimumPlayers:6]
 				[CutVoxelsAtAirtightCells:true]
 				[CutVoxelSize:9]
+				[ZoneConditions:GVK-ZoneConditions-WreckZone3]
+				[SandboxVariables:LargeWrecksEnabled]
 			</Description>
 		</EntityComponent>
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
@@ -72,17 +67,16 @@
 				[PlanetaryInstallationType:Large]
 				[FactionOwner:GAALSIEN]
 				[ForceStaticGrid:true]
-				[UsePlayerCountCheck:false]
-				[PlayerCountCheckRadius:999999]
-				[MinimumPlayers:6]
 				[CutVoxelsAtAirtightCells:true]
-				[CutVoxelSize:3]
+				[CutVoxelSize:9]
+				[ZoneConditions:GVK-ZoneConditions-WreckZone3]
+				[SandboxVariables:LargeWrecksEnabled]
 			</Description>
 		</EntityComponent>
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-SpawnConditions-DefenseDrones-AtmoFlyer</SubtypeId>
+				<SubtypeId>GVK-SpawnConditions-DefenseDrones-GAALSIEN-H2Flyer</SubtypeId>
 			</Id>
 			<Description>
 				[MES Spawn Conditions]
@@ -90,16 +84,14 @@
 				[FactionOwner:GAALSIEN]
 				[ReactorsOn:true]
 				[ForceStaticGrid:false]
-				[MinAirDensity:0.5]
-				[MaxAirDensity:1]
-				[MinSpawnFromPlanetSurface:-1]
-				[MaxSpawnFromPlanetSurface:4000]
+				[SkipVoxelSpawnChecks:true]
+				[SkipGridSpawnChecks:true]
 			</Description>
 		</EntityComponent>
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-SpawnConditions-DefenseDrones-Hover</SubtypeId>
+				<SubtypeId>GVK-SpawnConditions-DefenseDrones-GAALSIEN-Hover</SubtypeId>
 			</Id>
 			<Description>
 				[MES Spawn Conditions]
@@ -107,10 +99,74 @@
 				[FactionOwner:GAALSIEN]
 				[ReactorsOn:true]
 				[ForceStaticGrid:false]
-				[MinGravity:0.5]
-				[MaxGravity:1.5]
 				[MinSpawnFromPlanetSurface:-1]
 				[MaxSpawnFromPlanetSurface:2000]
+				[SkipVoxelSpawnChecks:true]
+				[SkipGridSpawnChecks:true]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-SpawnConditions-DefenseDrones-SOBAN-H2Flyer</SubtypeId>
+			</Id>
+			<Description>
+				[MES Spawn Conditions]
+				[RivalAiAtmosphericSpawn:true]
+				[FactionOwner:SOBAN]
+				[ReactorsOn:true]
+				[ForceStaticGrid:false]
+				[SkipVoxelSpawnChecks:true]
+				[SkipGridSpawnChecks:true]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-SpawnConditions-DefenseDrones-SOBAN-Hover</SubtypeId>
+			</Id>
+			<Description>
+				[MES Spawn Conditions]
+				[RivalAiAtmosphericSpawn:true]
+				[FactionOwner:SOBAN]
+				[ReactorsOn:true]
+				[ForceStaticGrid:false]
+				[MinSpawnFromPlanetSurface:-1]
+				[MaxSpawnFromPlanetSurface:2000]
+				[SkipVoxelSpawnChecks:true]
+				[SkipGridSpawnChecks:true]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-SpawnConditions-DefenseDrones-KHAANEPH-H2Flyer</SubtypeId>
+			</Id>
+			<Description>
+				[MES Spawn Conditions]
+				[RivalAiAtmosphericSpawn:true]
+				[FactionOwner:KHAANEPH]
+				[ReactorsOn:true]
+				[ForceStaticGrid:false]
+				[SkipVoxelSpawnChecks:true]
+				[SkipGridSpawnChecks:true]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-SpawnConditions-DefenseDrones-KHAANEPH-Hover</SubtypeId>
+			</Id>
+			<Description>
+				[MES Spawn Conditions]
+				[RivalAiAtmosphericSpawn:true]
+				[FactionOwner:KHAANEPH]
+				[ReactorsOn:true]
+				[ForceStaticGrid:false]
+				[MinSpawnFromPlanetSurface:-1]
+				[MaxSpawnFromPlanetSurface:2000]
+				[SkipVoxelSpawnChecks:true]
+				[SkipGridSpawnChecks:true]
 			</Description>
 		</EntityComponent>
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
@@ -128,6 +184,8 @@
 				[MaxAirDensity:1]
 				[MinSpawnFromPlanetSurface:-1]
 				[MaxSpawnFromPlanetSurface:2000]
+				[SkipVoxelSpawnChecks:true]
+				[SkipGridSpawnChecks:true]
 			</Description>
 		</EntityComponent>
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
@@ -155,7 +213,6 @@
 				[ForceStaticGrid:true]
 				[InitializeStoreBlocks:false]
 				[ReactorsOn:true]
-				[ForceStaticGrid:true]
 			</Description>
 		</EntityComponent>
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
@@ -165,28 +222,14 @@
 			</Id>
 			<Description>
 				[MES Spawn Conditions]
+				[AdminSpawnOnly:true]
 				[RivalAiAnySpawn:true]
-				[DroneEncounter:false]
-				[BossEncounterAtmo:false]
-				[BossEncounterAny:false]
-				[BossCustomAnnounceEnable:true]
-				[BossCustomAnnounceAuthor:Coalition]
-				[BossCustomAnnounceMessage:Gaalsien convoy has been spotted]
-				[BossCustomGPSLabel:Convoy last known location]
-				[MinimumPlayerTime:0]
-				[MaximumPlayerTime:60]
-				[MinDroneDistance:1000]
-				[MaxDroneDistance:5000]
-				[MinDroneAltitude:25]
-				[MaxDroneAltitude:50]
+				[PlanetaryInstallation:true]
 				[SkipAirDensityCheck:true]
 				[FactionOwner:GAALSIEN]
 				[ReactorsOn:true]
 				[ForceStaticGrid:false]
-				[MinGravity:0.5]
-				[MaxGravity:1.5]
-				[MinSpawnFromPlanetSurface:-1]
-				[MaxSpawnFromPlanetSurface:2000]
+				[SandboxVariables:CarrierEnabled]
 			</Description>
 		</EntityComponent>
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
@@ -237,6 +280,36 @@
 				[MinGravity:0.5]
 				[MaxGravity:1.5]
 				[SkipAirDensityCheck:true]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-SpawnConditions-CargoShip-Soban</SubtypeId>
+			</Id>
+			<Description>
+				[MES Spawn Conditions]
+				[AdminSpawnOnly:false]
+				[RivalAiAnySpawn:true]
+				[AtmosphericCargoShip:true]
+				[SkipAirDensityCheck:true]
+				[FactionOwner:SOBAN]
+				[ReactorsOn:true]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-SpawnConditions-CargoShip-Khaaneph</SubtypeId>
+			</Id>
+			<Description>
+				[MES Spawn Conditions]
+				[AdminSpawnOnly:false]
+				[RivalAiAnySpawn:true]
+				[AtmosphericCargoShip:true]
+				[SkipAirDensityCheck:true]
+				[FactionOwner:KHAANEPH]
+				[ReactorsOn:true]
 			</Description>
 		</EntityComponent>
 	</EntityComponents>

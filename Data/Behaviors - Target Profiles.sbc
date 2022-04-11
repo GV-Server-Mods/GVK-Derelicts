@@ -1,0 +1,128 @@
+<?xml version="1.0"?>
+<Definitions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+	<EntityComponents>
+		<!--=== Target Profiles ===-->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Generic-TargetProfile-EnemyPlayers</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Target]
+				[UseCustomTargeting:true]
+				[Target:PlayerAndGrid]
+				[UseTargetRefresh:true]
+				[TimeUntilNextRefresh:15]
+				[TimeUntilNextEvaluation:10]
+				[MaxDistance:2000]
+				[MaxExistingTargetDistance:2000]
+				[GetTargetBy:ClosestDistance]
+				[MatchAllFilters:Relation]
+				[MatchAllFilters:OutsideOfSafezone]
+				[MatchNoneFilters:Name]
+				[MatchAllFilters:TargetValue]
+				[MatchAllFilters:PlayerControlled]
+				[Relations:Enemy]
+				[Names:GVK Kharak Bridge]
+				[UsePartialNameMatching:true]
+				[MinTargetValue:10]
+				[MaxTargetValue:99999]
+				[PrioritizePlayerControlled:true]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Generic-TargetProfile-EnemyGrids</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Target]
+				[UseCustomTargeting:true]
+				[Target:Grid]
+				[UseTargetRefresh:true]
+				[TimeUntilNextRefresh:15]
+				[TimeUntilNextEvaluation:10]
+				[MaxDistance:800]
+				[MaxExistingTargetDistance:1500]
+				[GetTargetBy:ClosestDistance]
+				[MatchAllFilters:Relation]
+				[MatchAllFilters:OutsideOfSafezone]
+				[MatchNoneFilters:Name]
+				[MatchAllFilters:TargetValue]
+				[MatchAllFilters:PlayerControlled]
+				[Relations:Enemy]
+				[Names:[NPC] Trade Station Bridge]
+				[UsePartialNameMatching:true]
+				[MinTargetValue:15]
+				[MaxTargetValue:99999]
+				[PrioritizePlayerControlled:true]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Generic-TargetProfile-EnemyGrids-LongRange</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Target]
+				[UseCustomTargeting:true]
+				[Target:Grid]
+				[UseTargetRefresh:true]
+				[TimeUntilNextRefresh:15]
+				[TimeUntilNextEvaluation:10]
+				[MaxDistance:3000]
+				[MaxExistingTargetDistance:5000]
+				[GetTargetBy:ClosestDistance]
+				[MatchAllFilters:Relation]
+				[MatchAllFilters:OutsideOfSafezone]
+				[MatchAllFilters:TargetValue]
+				[MatchAllFilters:PlayerControlled]
+				[Relations:Enemy]
+				[MinTargetValue:10]
+				[MaxTargetValue:99999]
+				[PrioritizePlayerControlled:true]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Convoy-TargetProfile-TradeStation</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Target]
+				[UseCustomTargeting:true]
+				[Target:Grid]
+				[MaxDistance:90000]
+				[MaxExistingTargetDistance:90000]
+				[GetTargetBy:ClosestDistance]
+				[MatchAllFilters:Name]
+				[Names:[NPC] Trade Station Bridge]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Convoy-TargetProfileOverride-EnemyGrids</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Target]
+				[UseCustomTargeting:true]
+				[Target:Grid]
+				[UseTargetRefresh:true]
+				[TimeUntilNextRefresh:15]
+				[TimeUntilNextEvaluation:10]
+				[MaxDistance:2300]
+				[MaxExistingTargetDistance:2300]
+				[GetTargetBy:ClosestDistance]
+				[MatchAllFilters:Relation]
+				[MatchAllFilters:OutsideOfSafezone]
+				[MatchAllFilters:TargetValue]
+				[MatchAllFilters:PlayerControlled]
+				[Relations:Enemy]
+				[MinTargetValue:10]
+				[MaxTargetValue:99999]
+				[PrioritizePlayerControlled:true]
+			</Description>
+		</EntityComponent>
+	</EntityComponents>
+</Definitions>

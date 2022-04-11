@@ -9,6 +9,10 @@
 			</Id>
 			<Description>
 				[RivalAI Behavior]
+				[BehaviorName:CargoShip]
+				[UseStaticGuns:true]
+				[MaxStaticWeaponRange:-1]
+				[WeaponMaxAngleFromTarget:180]
 				[BehaviorName:Patrol]
 				[UseStaticGuns:true]
 				[MaxStaticWeaponRange:1500]
@@ -24,6 +28,16 @@
 				[UseRetreatTimer:true]
 				[RetreatTimerTrigger:3600]
 				[RetreatDespawnDistance:2000]
+				[EscortOffsets:{X:400 Y:0 Z:400}]
+				[EscortOffsets:{X:-400 Y:0 Z:-400}]
+				[EscortOffsets:{X:0 Y:0 Z:400}]
+				[EscortOffsets:{X:400 Y:0 Z:-400}]
+				[EscortOffsets:{X:-400 Y:0 Z:400}]
+				[EscortOffsets:{X:400 Y:0 Z:0}]
+				[EscortOffsets:{X:-400 Y:0 Z:0}]
+				[AutopilotData:Mothership-Rover-Autopilot-Season2Event]
+				[TargetData:GVK-Generic-TargetProfile-EnemyGrids]
+				[OverrideTargetData:GVK-Convoy-TargetProfileOverride-EnemyGrids]
 				[EscortOffsets:{X:200 Y:0 Z:200}]
 				[EscortOffsets:{X:-200 Y:0 Z:-200}]
 				[EscortOffsets:{X:0 Y:0 Z:300}]
@@ -45,6 +59,41 @@
 				[Triggers:Mothership-Trigger-DespawnMES]
 				[Triggers:DefenseDrone-Trigger-Compromised]
 				[Triggers:GVK-Generic-Trigger-SPRTNoWeapon]
+				[Triggers:Mothership-Trigger-ArrivedAtTarget]
+				[RemoteControlCode:ConvoyEncounter]
+				[CustomWaypoints:{X:101904 Y:64470 Z:66981}]
+			</Description>
+		</EntityComponent>
+		<!-- Horsefly Rover Mothership Autopilot for Season 2 Event-->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>Mothership-Rover-Autopilot-Season2Event</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Autopilot]
+				[UseVelocityCollisionEvasion:false]
+				[RotationMultiplier:0.05]
+				[DisableInertiaDampeners:false]
+				[FlyLevelWithGravity:true]
+				[LevelWithGravityWhenIdle:true]
+				[IdealPlanetAltitude:15]
+				[MinimumPlanetAltitude:-100]
+				[AltitudeTolerance:5000]
+				[IdealMinSpeed:20]
+				[IdealMaxSpeed:50]
+				[MaxSpeedTolerance:5]
+				[SlowDownOnWaypointApproach:true]
+				[ExtraSlowDownDistance:1000]
+				[WaypointTolerance:400]
+				[LimitRotationSpeed:true]
+				[MaxRotationMagnitude:0.1]
+				[OffsetPlanetMinTargetAltitude:-50]
+				[OffsetPlanetMaxTargetAltitude:50]
+				[ReverseOffsetDistAltAboveHeight:false]
+				[ReverseOffsetHeight:0]
+				[AngleAllowedForForwardThrust:60]
+				[MaxVelocityAngleForSpeedControl:180]
 				[RemoteControlCode:ConvoyEncounter]
 				[WaypointProfiles:Mothership-Rover-Waypoint-Season2Event]
 			</Description>
@@ -72,14 +121,13 @@
 				[UseRetreatTimer:true]
 				[RetreatTimerTrigger:3600]
 				[RetreatDespawnDistance:2000]
-				[EscortOffsets:{X:200 Y:0 Z:200}]
-				[EscortOffsets:{X:-200 Y:0 Z:-200}]
-				[EscortOffsets:{X:0 Y:0 Z:300}]
-				[EscortOffsets:{X:0 Y:0 Z:-300}]
-				[EscortOffsets:{X:200 Y:0 Z:-200}]
-				[EscortOffsets:{X:-200 Y:0 Z:200}]
-				[EscortOffsets:{X:200 Y:0 Z:0}]
-				[EscortOffsets:{X:-200 Y:0 Z:0}]
+				[EscortOffsets:{X:400 Y:0 Z:400}]
+				[EscortOffsets:{X:-400 Y:0 Z:-400}]
+				[EscortOffsets:{X:0 Y:0 Z:400}]
+				[EscortOffsets:{X:400 Y:0 Z:-400}]
+				[EscortOffsets:{X:-400 Y:0 Z:400}]
+				[EscortOffsets:{X:400 Y:0 Z:0}]
+				[EscortOffsets:{X:-400 Y:0 Z:0}]
 				[AutopilotData:Mothership-Rover-Autopilot]
 				[TargetData:GVK-Generic-TargetProfile-EnemyGrids]
 				[Triggers:DefenseDrone-Trigger-FireArchers]
@@ -116,13 +164,13 @@
 				[WaypointAbandonTimeTrigger:20]
 				[WaypointTolerance:100]
 				[IdealMinSpeed:25]
-				[IdealMaxSpeed:75]
+				[IdealMaxSpeed:50]
 				[UseSurfaceHoverThrustMode:false]
 				[HoverPathStepDistance:150]
 				[LimitRotationSpeed:true]
 				[MaxRotationMagnitude:0.3]
-				[OffsetPlanetMinDistFromTarget:5000]
-				[OffsetPlanetMaxDistFromTarget:10000]
+				[OffsetPlanetMinDistFromTarget:2000]
+				[OffsetPlanetMaxDistFromTarget:5000]
 				[OffsetPlanetMinTargetAltitude:-50]
 				[OffsetPlanetMaxTargetAltitude:50]
 				[ReverseOffsetDistAltAboveHeight:false]
@@ -141,8 +189,8 @@
 				[RivalAI Behavior]
 				[BehaviorName:Escort]
 				[UseStaticGuns:true]
-				[MaxStaticWeaponRange:1500]
-				[WeaponMaxAngleFromTarget:10]
+				[MaxStaticWeaponRange:-1]
+				[WeaponMaxAngleFromTarget:180]
 				[UseAmmoReplenish:true]
 				[AmmoReplenishClipAmount:10]
 				[MaxAmmoReplenishments:99999999]
@@ -208,12 +256,12 @@
 			</Id>
 			<Description>
 				[RivalAI Trigger]
-				[Type:Timer]
+				[Type:PlayerNear]
 				[UseTrigger:true]
-				[StartsReady:false]
-				[MinCooldownMs:1000]
-				[MaxCooldownMs:1000]
-				[MaxActions:4]
+				[TargetDistance:2000]
+				[StartsReady:true]
+				[MinCooldownMs:120000]
+				[MaxCooldownMs:240000]
 				[Actions:Mothership-Action-SpawnEscorts]
 			</Description>
 		</EntityComponent>
@@ -225,10 +273,37 @@
 			<Description>
 				[RivalAI Action]
 				[Chance:100]
+				[SetWeaponsToMaxRange:true]
 				[SpawnEncounter:true]
 				[Spawner:Mothership-Spawner-SpawnEscorts]
+				[SpawnEncounter:true]
+				[Spawner:Mothership-Spawner-SpawnHonorguard]
 				[UseChatBroadcast:true]
 				[ChatData:Mothership-Chat-Announce]
+				[UseJetpackInhibitorEffect:true]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>Mothership-Spawner-SpawnHonorguard</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Spawn]
+				[UseSpawn:true]
+				[SpawningType:CustomSpawn]
+				[StartsReady:true]
+				[SpawnMinCooldown:30]
+				[SpawnMinCooldown:60]
+				[MinDistance:1000]
+				[MaxDistance:1500]
+				[MinAltitude:20]
+				[MaxAltitude:20]
+				[MaxSpawns:3]
+				[InheritNpcAltitude:false]
+				[SpawnGroups:GVK-Drone-GAALSIEN-Honorguard]
+				[ProcessAsAdminSpawn:true]
+				[IgnoreSafetyChecks:true]
 			</Description>
 		</EntityComponent>
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
@@ -241,15 +316,15 @@
 				[UseSpawn:true]
 				[SpawningType:CustomSpawn]
 				[StartsReady:true]
-				[MaxSpawns:4]
 				[MinDistance:500]
-				[MaxDistance:2000]
-				[MinAltitude:10]
-				[MaxAltitude:50]
+				[MaxDistance:1000]
+				[MinAltitude:100]
+				[MaxAltitude:400]
 				[InheritNpcAltitude:true]
-				[SpawnGroups:GVK-EscortDrone-GAALSIEN-Dragoon]
-				[SpawnGroups:GVK-EscortDrone-GAALSIEN-Pollux]
-				[SpawnGroups:GVK-EscortDrone-GAALSIEN-Stryker]
+				[SpawnGroups:GVK-Drone-GAALSIEN-HornetIon]
+				[SpawnGroups:GVK-Drone-GAALSIEN-SlicerIon]
+				[SpawnGroups:GVK-Drone-GAALSIEN-ReaperIon]
+				[ProcessAsAdminSpawn:true]
 				[IgnoreSafetyChecks:true]
 			</Description>
 		</EntityComponent>
@@ -289,14 +364,13 @@
 			</Id>
 			<Description>
 				[RivalAI Chat]
-				[UseChat:false]
+				[UseChat:true]
 				[StartsReady:true]
 				[Chance:100]
-				[MaxChats:1]
 				[BroadcastRandomly:false]
 				[Author:Mothership]
 				[Color:Red]
-				[ChatMessages:Spwaning Escort Drone]
+				[ChatMessages:Fighters Inbound.]
 				[ChatAudio:GreetingSoundId-A]
 				[BroadcastChatType:Chat]
 				[SendToAllOnlinePlayers:true]
@@ -312,7 +386,9 @@
 				[RivalAI Trigger]
 				[Type:Timer]
 				[UseTrigger:true]
-				[StartsReady:true]
+				[MinCooldownMs:2000]
+				[MaxCooldownMs:2000]
+				[StartsReady:false]
 				[MaxActions:1]
 				[Actions:EscortDrone-Action-RequestEscortSlot]
 			</Description>
@@ -427,6 +503,7 @@
 				[StartsReady:true]
 				[MaxActions:1]
 				[Actions:Mothership-Action-SendScatterCommand]
+				[Actions:Mothership-Action-Compromised]
 			</Description>
 		</EntityComponent>
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
@@ -441,6 +518,7 @@
 				[StartsReady:true]
 				[MaxActions:1]
 				[Actions:Mothership-Action-SendScatterCommand]
+				[Actions:Mothership-Action-Compromised]
 			</Description>
 		</EntityComponent>
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
@@ -455,8 +533,42 @@
 				[StartsReady:true]
 				[MaxActions:1]
 				[Actions:Mothership-Action-SendScatterCommand]
+				[Actions:Mothership-Action-Compromised]
 			</Description>
 		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>Mothership-Action-Compromised</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Action]
+				[UseChatBroadcast:true]
+				[ChatData:Mothership-Chat-Compromised]
+				[SetSandboxBooleansTrue:ConvoyInactive]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>Mothership-Chat-Compromised</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Chat]
+				[UseChat:true]
+				[StartsReady:true]
+				[Chance:100]
+				[MaxChats:-1]
+				[BroadcastRandomly:false]
+				[Author:Escort Drone]
+				[Color:Red]
+				[ChatMessages:Convoy Lead has been disabled.]
+				[ChatAudio:GreetingSoundId-A]
+				[BroadcastChatType:Chat]
+				[SendToAllOnlinePlayers:true]
+			</Description>
+		</EntityComponent>
+
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
@@ -500,7 +612,7 @@
 				[BroadcastRandomly:false]
 				[Author:Escort Drone]
 				[Color:Red]
-				[ChatMessages:Convoy Lead has been disabled.]
+				[ChatMessages:Scattering Escorts.]
 				[ChatAudio:GreetingSoundId-A]
 				[BroadcastChatType:Chat]
 				[SendToAllOnlinePlayers:true]
@@ -557,6 +669,84 @@
 				[ChatAudio:GreetingSoundId-A]
 				[BroadcastChatType:Chat]
 				[SendToAllOnlinePlayers:true]
+			</Description>
+		</EntityComponent>
+		<!-- Trigger sequence for Convoy to stop when reaching the bridge -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>Mothership-Trigger-ArrivedAtTarget</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Trigger]
+				[Type:BehaviorTriggerA]
+				[UseTrigger:true]
+				[StartsReady:true]
+				[MaxActions:1]
+				[Actions:Mothership-Action-ArrivedAtTarget]
+				[Actions:Mothership-Action-SendScatterCommand]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>Mothership-Action-ArrivedAtTarget</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Action]
+				[ChangeAutopilotSpeed:true]
+				[NewAutopilotSpeed:0]
+				[ChangeInertiaDampeners:true]
+				[InertiaDampenersEnable:true]
+				[StopAllRotation:true]
+				[StopAllThrust:true]
+				[ChangeBehaviorSubclass:true]
+				[NewBehaviorSubclass:Passive]
+				[UseChatBroadcast:true]
+				[ChatData:Mothership-Chat-ArrivedAtTarget]
+				[SpawnEncounter:true]
+				[Spawner:GVK-Drone-GAALSIEN-GR-650]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>Mothership-Chat-ArrivedAtTarget</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Chat]
+				[UseChat:true]
+				[StartsReady:true]
+				[Chance:100]
+				[MaxChats:1]
+				[BroadcastRandomly:false]
+				[Author:Convoy]
+				[Color:Red]
+				[ChatMessages:Arrived at target.]
+				[ChatAudio:GreetingSoundId-A]
+				[BroadcastChatType:Chat]
+				[SendToAllOnlinePlayers:true]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>Mothership-Spawner-ArrivedAtTarget</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Spawn]
+				[UseSpawn:true]
+				[SpawningType:CustomSpawn]
+				[StartsReady:true]
+				[MaxSpawns:1]
+				[MinDistance:500]
+				[MaxDistance:1000]
+				[MinAltitude:100]
+				[MaxAltitude:400]
+				[InheritNpcAltitude:true]
+				[SpawnGroups:GVK-Drone-GAALSIEN-GR-650]
+				[ProcessAsAdminSpawn:true]
+				[IgnoreSafetyChecks:true]
 			</Description>
 		</EntityComponent>
 	</EntityComponents>

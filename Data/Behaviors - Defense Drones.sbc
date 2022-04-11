@@ -16,8 +16,8 @@
 
 	  [UseStaticGuns:true]
 	  [UseTurrets:true]
-	  [MaxStaticWeaponRange:5000]
-	  [WeaponMaxAngleFromTarget:10]
+	  [MaxStaticWeaponRange:-1]
+	  [WeaponMaxAngleFromTarget:180]
 	  [UseAmmoReplenish:true]
 	  [AmmoReplenishClipAmount:10]
 	  [MaxAmmoReplenishments:99999999]
@@ -59,10 +59,11 @@
 	  [UseVelocityCollisionEvasion:true]
 
       [RotationMultiplier:1]
+	  [LimitRotationSpeed:true]
+	  [MaxRotationMagnitude:0.5]
 	  [DisableInertiaDampeners:false]
       [FlyLevelWithGravity:true]
       [LevelWithGravityWhenIdle:true]
-	  [MaxVerticalSpeed:20]
 	  [IdealPlanetAltitude:250]
 	  [MinimumPlanetAltitude:150]
 	  [AltitudeTolerance:50]
@@ -101,8 +102,8 @@
 
 	  [UseStaticGuns:true]
 	  [UseTurrets:true]
-	  [MaxStaticWeaponRange:5000]
-	  [WeaponMaxAngleFromTarget:10]
+	  [MaxStaticWeaponRange:-1]
+	  [WeaponMaxAngleFromTarget:180]
 	  [UseAmmoReplenish:true]
 	  [AmmoReplenishClipAmount:10]
 	  [MaxAmmoReplenishments:99999999]
@@ -164,7 +165,7 @@
 	  [CollisionEvasionWaypointCalculatedAwayFromEntity:true]
       [WaypointTolerance:100]
       [IdealMinSpeed:50]
-      [IdealMaxSpeed:75]
+      [IdealMaxSpeed:100]
       [SlowDownOnWaypointApproach:true]
       [ExtraSlowDownDistance:25]
 
@@ -172,8 +173,8 @@
       [OffsetSpaceMaxDistFromTarget:500]
       [OffsetPlanetMinDistFromTarget:250]
       [OffsetPlanetMaxDistFromTarget:500]
-      [OffsetPlanetMinTargetAltitude:-200]
-      [OffsetPlanetMaxTargetAltitude:200]
+      [OffsetPlanetMinTargetAltitude:100]
+      [OffsetPlanetMaxTargetAltitude:300]
       [AllowStrafing:true]
       [StrafeMinDurationMs:1500]
       [StrafeMaxDurationMs:5000]
@@ -351,7 +352,7 @@
       [FlyLevelWithGravity:true]
       [LevelWithGravityWhenIdle:true]
 	  [IdealPlanetAltitude:3]
-	  [MinimumPlanetAltitude:-100]
+	  [MinimumPlanetAltitude:0]
 	  [AltitudeTolerance:5000]
 	  [CollisionEvasionWaypointCalculatedAwayFromEntity:true]
 	  [WaypointAbandonTimeTrigger:20]
@@ -374,6 +375,247 @@
       </Description>
     </EntityComponent>
 
+	<!-- HorseFighter Hover Drone Behavior -->
+    <EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+      <Id>
+          <TypeId>Inventory</TypeId>
+          <SubtypeId>DefenseDrone-HorseFighterHoverMAC-Behavior-Start</SubtypeId>
+      </Id>
+      <Description>
+	  
+      [RivalAI Behavior]
+	  
+      [BehaviorName:HorseFighter]
+
+	  [UseStaticGuns:true]
+	  [UseTurrets:true]
+	  [MaxStaticWeaponRange:-1]
+	  [WeaponMaxAngleFromTarget:180]
+	  [UseAmmoReplenish:true]
+	  [AmmoReplenishClipAmount:10]
+	  [MaxAmmoReplenishments:99999999]
+	  [UsePlayerDistanceTimer:true]
+	  [PlayerDistanceTimerTrigger:0]
+	  [PlayerDistanceTrigger:15000]
+	  [UseNoTargetTimer:true]
+	  [NoTargetTimerTrigger:1800]
+	  [UseRetreatTimer:true]
+	  [RetreatTimerTrigger:3600]
+	  [RetreatDespawnDistance:1500]
+	  
+	  [HorseFighterTimeApproaching:10]
+	  [HorseFighterTimeEngaging:30]
+
+	  [TargetData:GVK-Generic-TargetProfile-EnemyGrids-LongRange]
+
+	  [AutopilotData:DefenseDrone-HorseFighterHover-Autopilot-Primary]
+	  [SecondaryAutopilotData:DefenseDrone-HorseFighterHover-Autopilot-Secondary]
+
+	  [Triggers:DefenseDrone-Trigger-WeaponsToMaxRange]
+	  [Triggers:DefenseDrone-Trigger-FireMAC]
+	  [Triggers:DefenseDrone-Trigger-StopMAC]
+	  [Triggers:DefenseDrone-Trigger-FireArchers]
+	  [Triggers:DefenseDrone-Trigger-StopArchers]
+	  [Triggers:GVK-Generic-Trigger-SPRTTargetAcquiredChatter]
+	  [Triggers:DefenseDrone-Trigger-Crashed]
+	  [Triggers:DefenseDrone-Trigger-Compromised]
+	  [Triggers:GVK-Generic-Trigger-SPRTNoWeapon]
+	  [Triggers:DefenseDrone-Trigger-StrafeingAutopilot]
+	  [Triggers:DefenseDrone-Trigger-ApproachingAutopilot]
+  
+      </Description>
+    </EntityComponent>
+
+	<!-- HorseFighter Hover Autopilot -->
+	<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+      <Id>
+          <TypeId>Inventory</TypeId>
+          <SubtypeId>DefenseDrone-HorseFighterHover-Autopilot-Primary</SubtypeId>
+      </Id>
+      <Description>
+
+      [RivalAI Autopilot]
+      
+	  [UseVelocityCollisionEvasion:true]
+	  [CollisionEvasionWaypointDistance:50]
+      [CollisionFallEvasionWaypointDistance:35]
+
+	  [UseProjectileLeadPrediction:true]
+
+      [RotationMultiplier:0.5]
+	  [LimitRotationSpeed:true]
+	  [MaxRotationMagnitude:0.5]
+	  [DisableInertiaDampeners:false]
+      [FlyLevelWithGravity:true]
+      [LevelWithGravityWhenIdle:true]
+	  [MaxVerticalSpeed:20]
+	  [IdealPlanetAltitude:15]
+	  [MinimumPlanetAltitude:15]
+	  [AltitudeTolerance:5000]
+	  [CollisionEvasionWaypointCalculatedAwayFromEntity:true]
+      [WaypointTolerance:100]
+	  [WaypointWaitTimeTrigger:0]
+	  [WaypointAbandonTimeTrigger:30]
+      [IdealMinSpeed:40]
+      [IdealMaxSpeed:80]
+      [SlowDownOnWaypointApproach:false]
+      [ExtraSlowDownDistance:25]
+
+      [OffsetSpaceMinDistFromTarget:500]
+      [OffsetSpaceMaxDistFromTarget:1500]
+      [OffsetPlanetMinDistFromTarget:500]
+      [OffsetPlanetMaxDistFromTarget:1500]
+      [OffsetPlanetMinTargetAltitude:10]
+      [OffsetPlanetMaxTargetAltitude:10]
+      [AllowStrafing:true]
+      [StrafeMinDurationMs:20000]
+      [StrafeMaxDurationMs:30000]
+	  [StrafeMinCooldownMs:0]
+	  [StrafeMaxCooldownMs:1]
+      [StrafeSpeedCutOff:150]	  
+	  [StrafeMinimumTargetDistance:400]
+	  [StrafeMinimumSafeAngleFromTarget:30]
+
+      [ReverseOffsetDistAltAboveHeight:false]
+      [ReverseOffsetHeight:0]
+	  [AngleAllowedForForwardThrust:120]
+	  [MaxVelocityAngleForSpeedControl:180]
+      
+      </Description>
+    </EntityComponent>
+
+	<!-- HorseFighter Hover Autopilot Secondary-->
+	<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+      <Id>
+          <TypeId>Inventory</TypeId>
+          <SubtypeId>DefenseDrone-HorseFighterHover-Autopilot-Secondary</SubtypeId>
+      </Id>
+      <Description>
+
+      [RivalAI Autopilot]
+      
+	  [UseVelocityCollisionEvasion:true]
+	  [CollisionEvasionWaypointDistance:50]
+      [CollisionFallEvasionWaypointDistance:35]
+
+	  [UseProjectileLeadPrediction:true]
+
+      [RotationMultiplier:0.5]
+	  [LimitRotationSpeed:true]
+	  [MaxRotationMagnitude:0.5]
+	  [DisableInertiaDampeners:false]
+      [FlyLevelWithGravity:false]
+      [LevelWithGravityWhenIdle:true]
+	  [MaxVerticalSpeed:10]
+	  [IdealPlanetAltitude:15]
+	  [MinimumPlanetAltitude:15]
+	  [AltitudeTolerance:5000]
+	  [CollisionEvasionWaypointCalculatedAwayFromEntity:true]
+      [WaypointTolerance:100]
+	  [WaypointWaitTimeTrigger:0]
+	  [WaypointAbandonTimeTrigger:30]
+      [IdealMinSpeed:40]
+      [IdealMaxSpeed:80]
+      [SlowDownOnWaypointApproach:false]
+      [ExtraSlowDownDistance:25]
+
+      [OffsetSpaceMinDistFromTarget:500]
+      [OffsetSpaceMaxDistFromTarget:1500]
+      [OffsetPlanetMinDistFromTarget:500]
+      [OffsetPlanetMaxDistFromTarget:1500]
+      [OffsetPlanetMinTargetAltitude:10]
+      [OffsetPlanetMaxTargetAltitude:10]
+      [AllowStrafing:true]
+      [StrafeMinDurationMs:20000]
+      [StrafeMaxDurationMs:30000]
+	  [StrafeMinCooldownMs:0]
+	  [StrafeMaxCooldownMs:1]
+      [StrafeSpeedCutOff:150]	  
+	  [StrafeMinimumTargetDistance:400]
+	  [StrafeMinimumSafeAngleFromTarget:30]
+
+      [ReverseOffsetDistAltAboveHeight:false]
+      [ReverseOffsetHeight:0]
+	  [AngleAllowedForForwardThrust:120]
+	  [MaxVelocityAngleForSpeedControl:180]
+      
+      </Description>
+    </EntityComponent>
+
+	<!-- Action group switch to secondary autopilot when strafing -->
+
+    <EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+      <Id>
+          <TypeId>Inventory</TypeId>
+          <SubtypeId>DefenseDrone-Trigger-StrafeingAutopilot</SubtypeId>
+      </Id>
+      <Description>
+	  
+      [RivalAI Trigger]
+	  
+	  [UseTrigger:true]
+	  [Type:BehaviorTriggerA]
+	  [StartsReady:true]
+	  [MinCooldownMs:1000]
+	  [MaxCooldownMs:1000]
+	  	  
+	  [Actions:DefenseDrone-Action-StrafeingAutopilot]
+	  
+      </Description>
+    </EntityComponent>
+
+	<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+      <Id>
+          <TypeId>Inventory</TypeId>
+          <SubtypeId>DefenseDrone-Action-StrafeingAutopilot</SubtypeId>
+      </Id>
+      <Description>
+	  
+      [RivalAI Action]
+	  	  
+	  [AutopilotProfile:Secondary]
+	  [EnableTriggers:true]
+	  [EnableTriggerNames:DefenseDrone-Trigger-FireMAC]
+	  
+      </Description>
+    </EntityComponent>
+
+    <EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+      <Id>
+          <TypeId>Inventory</TypeId>
+          <SubtypeId>DefenseDrone-Trigger-ApproachingAutopilot</SubtypeId>
+      </Id>
+      <Description>
+	  
+      [RivalAI Trigger]
+	  
+	  [UseTrigger:true]
+	  [Type:BehaviorTriggerB]
+	  [StartsReady:true]
+	  [MinCooldownMs:1000]
+	  [MaxCooldownMs:1000]
+	  	  
+	  [Actions:DefenseDrone-Action-ApproachingAutopilot]
+	  
+      </Description>
+    </EntityComponent>
+
+	<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+      <Id>
+          <TypeId>Inventory</TypeId>
+          <SubtypeId>DefenseDrone-Action-ApproachingAutopilot</SubtypeId>
+      </Id>
+      <Description>
+	  
+      [RivalAI Action]
+	  	  
+	  [AutopilotProfile:Primary]
+	  [DisableTriggers:true]
+	  [DisableTriggerNames:DefenseDrone-Trigger-FireMAC]
+	  
+      </Description>
+    </EntityComponent>
+
 	<!-- Action group to set turrets to max range because of a bug in MES right now -->
 
     <EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
@@ -386,10 +628,10 @@
       [RivalAI Trigger]
 	  
 	  [UseTrigger:true]
-	  [Type:Timer]
-	  [StartsReady:true]
-	  [MinCooldownMs:1000000]
-	  [MaxCooldownMs:1000000]
+	  [Type:Session]
+	  [StartsReady:false]
+	  [MinCooldownMs:1000]
+	  [MaxCooldownMs:1000]
 	  	  
 	  [Actions:DefenseDrone-Action-WeaponsToMaxRange]
 	  
@@ -410,6 +652,102 @@
       </Description>
     </EntityComponent>
 
+	<!-- Action group to fire Fixed Rockets because of a bug in WC2 right now -->
+
+    <EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+      <Id>
+          <TypeId>Inventory</TypeId>
+          <SubtypeId>DefenseDrone-Trigger-FireMAC</SubtypeId>
+      </Id>
+      <Description>
+	  
+      [RivalAI Trigger]
+	  
+	  [UseTrigger:true]
+	  [Type:TargetNear]
+	  
+	  [TargetDistance:1000]
+	  
+	  [Conditions:DefenseDrone-Condition-FireMAC]
+	  
+	  [Actions:DefenseDrone-Action-FireMAC]
+	  
+      </Description>
+    </EntityComponent>
+
+    <EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+      <Id>
+          <TypeId>Inventory</TypeId>
+          <SubtypeId>DefenseDrone-Condition-FireMAC</SubtypeId>
+      </Id>
+      <Description>
+
+      [RivalAI Condition]
+      
+      [UseConditions:true]
+      [MatchAnyCondition:true]
+	  
+	  [CheckTargetAngleFromForward:true]
+	  [MinTargetAngle:0]
+	  [MaxTargetAngle:20]
+      
+      </Description> 
+    </EntityComponent>		
+
+	<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+      <Id>
+          <TypeId>Inventory</TypeId>
+          <SubtypeId>DefenseDrone-Action-FireMAC</SubtypeId>
+      </Id>
+      <Description>
+	  
+      [RivalAI Action]
+	  	  
+	  [ToggleBlocksOfType:true]
+	  [BlockTypesToToggle:MyObjectBuilder_ConveyorSorter/ARYXLightCoilgun]
+	  [BlockTypeToggles:On]
+	  
+	  [ResetCooldownTimeOfTriggers:true]
+	  [ResetTriggerCooldownNames:DefenseDrone-Trigger-StopMAC]
+	  
+      </Description>
+    </EntityComponent>
+
+    <EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+      <Id>
+          <TypeId>Inventory</TypeId>
+          <SubtypeId>DefenseDrone-Trigger-StopMAC</SubtypeId>
+      </Id>
+      <Description>
+	  
+      [RivalAI Trigger]
+	  
+	  [UseTrigger:true]
+	  [Type:Timer]
+	  [MinCooldownMs:1000]
+	  [MaxCooldownMs:1000]
+	  	  
+	  [Actions:DefenseDrone-Action-StopMAC]
+	  
+      </Description>
+    </EntityComponent>
+		
+	<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+      <Id>
+          <TypeId>Inventory</TypeId>
+          <SubtypeId>DefenseDrone-Action-StopMAC</SubtypeId>
+      </Id>
+      <Description>
+	  
+      [RivalAI Action]
+	  
+	  [ToggleBlocksOfType:true]
+	  [BlockTypesToToggle:MyObjectBuilder_ConveyorSorter/ARYXLightCoilgun]
+	  [BlockTypeToggles:Off]
+	  
+      </Description>
+    </EntityComponent>
+	
 	<!-- Action group to fire Fixed Rockets because of a bug in WC2 right now -->
 
     <EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
@@ -526,10 +864,10 @@
       [RivalAI Trigger]
 	  
 	  [UseTrigger:true]
-	  [Type:TurretTarget]
+	  [Type:TargetNear]
 	  
-	  [MinCooldownMs:1000]
-	  [MaxCooldownMs:1000]
+	  [MinCooldownMs:2000]
+	  [MaxCooldownMs:2000]
 	  [StartsReady:false]
 	  
 	  [TargetDistance:2000]
@@ -547,14 +885,21 @@
       <Description>
 	  
       [RivalAI Action]
-	  	  
-
+	  
+	  [ChangeTargetProfile:false]
+	  [NewTargetProfileId:GVK-Convoy-TargetProfileOverride-EnemyGrids]
+	  [RefreshTarget:true]
+		  
 	  [ToggleBlocksOfType:true]
 	  [BlockTypesToToggle:MyObjectBuilder_SmallMissileLauncherReload/SmallRocketLauncherReload]
 	  [BlockTypeToggles:On]
 	  [BlockTypesToToggle:MyObjectBuilder_SmallMissileLauncherReload/]
 	  [BlockTypeToggles:On]
 	  [BlockTypesToToggle:MyObjectBuilder_ConveyorSorter/MXA_ArcherPods]
+	  [BlockTypeToggles:On]
+	  [BlockTypesToToggle:MyObjectBuilder_ConveyorSorter/Missile_Torpedo_Large]
+	  [BlockTypeToggles:On]
+	  [BlockTypesToToggle:MyObjectBuilder_ConveyorSorter/Missile_Torpedo_Small]
 	  [BlockTypeToggles:On]
 	  
 	  [ResetCooldownTimeOfTriggers:true]
@@ -574,8 +919,11 @@
 	  
 	  [UseTrigger:true]
 	  [Type:Timer]
-	  [MinCooldownMs:1500]
-	  [MaxCooldownMs:1500]
+	  [StartsReady:true]
+	  [MinCooldownMs:5000]
+	  [MaxCooldownMs:5000]
+	  
+	  [TargetDistance:2000]
 	  	  
 	  [Actions:DefenseDrone-Action-StopArchers]
 	  
@@ -597,6 +945,10 @@
 	  [BlockTypesToToggle:MyObjectBuilder_SmallMissileLauncherReload/]
 	  [BlockTypeToggles:Off]
 	  [BlockTypesToToggle:MyObjectBuilder_ConveyorSorter/MXA_ArcherPods]
+	  [BlockTypeToggles:Off]
+	  [BlockTypesToToggle:MyObjectBuilder_ConveyorSorter/Missile_Torpedo_Large]
+	  [BlockTypeToggles:Off]
+	  [BlockTypesToToggle:MyObjectBuilder_ConveyorSorter/Missile_Torpedo_Small]
 	  [BlockTypeToggles:Off]
 	  
       </Description>

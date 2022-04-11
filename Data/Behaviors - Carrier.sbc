@@ -1,0 +1,658 @@
+<?xml version="1.0"?>
+<Definitions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+	<EntityComponents>
+		<!-- Horsefly Rover Carrier Behavior for Season 2 Event-->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>Carrier-Rover-Behavior-Season3Event-Start</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Behavior]
+				[BehaviorName:CargoShip]
+				[UseStaticGuns:false]
+				[MaxStaticWeaponRange:-1]
+				[WeaponMaxAngleFromTarget:180]
+				[UseAmmoReplenish:true]
+				[AmmoReplenishClipAmount:10]
+				[MaxAmmoReplenishments:99999999]
+				[UsePlayerDistanceTimer:false]
+				[UseRetreatTimer:false]
+				[UseNoTargetTimer:false]
+				[RetreatDespawnDistance:1000]
+				[AutopilotData:Carrier-Rover-Autopilot-Season3Event]
+				[TargetData:GVK-Generic-TargetProfile-EnemyGrids]
+				[OverrideTargetData:GVK-Convoy-TargetProfileOverride-EnemyGrids]
+				[Triggers:Carrier-Trigger-OnSpawn]
+				[Triggers:Carrier-Trigger-ArrivedAtWaypoint]
+				[Triggers:Carrier-Trigger-HeadToDespawn]
+				[Triggers:Carrier-Trigger-ReceiveWaypoint1]
+				[Triggers:Carrier-Trigger-ReceiveWaypoint2]
+				[Triggers:DefenseDrone-Trigger-FireArchers]
+				[Triggers:DefenseDrone-Trigger-StopArchers]
+				[Triggers:DefenseDrone-Trigger-WeaponsToMaxRange]
+				[Triggers:GVK-Generic-Trigger-SPRTTargetAcquiredChatter]
+				[Triggers:Carrier-Trigger-Compromised]
+				[Triggers:GVK-Generic-Trigger-SPRTNoWeapon]
+				[WeaponSystem:GVK-NPC-Weapons-GAALSIEN-Carrier]
+				[RemoteControlCode:ConvoyEncounter]
+				[CustomWaypoints:{X:64544 Y:59937 Z:99518}]
+			</Description>
+		</EntityComponent>
+		<!-- Horsefly Rover Carrier Autopilot for Season 2 Event-->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>Carrier-Rover-Autopilot-Season3Event</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Autopilot]
+				[UseVelocityCollisionEvasion:false]
+				[RotationMultiplier:0.05]
+				[DisableInertiaDampeners:false]
+				[FlyLevelWithGravity:true]
+				[LevelWithGravityWhenIdle:true]
+				[UseSurfaceHoverThrustMode:false]
+				[HoverPathStepDistance:50]
+				[IdealPlanetAltitude:30]
+				[MinimumPlanetAltitude:10]
+				[AltitudeTolerance:50]
+				[IdealMinSpeed:20]
+				[IdealMaxSpeed:50]
+				[MaxSpeedTolerance:5]
+				[SlowDownOnWaypointApproach:true]
+				[WaypointWaitTimeTrigger:5]
+				[ExtraSlowDownDistance:500]
+				[WaypointTolerance:200]
+				[LimitRotationSpeed:true]
+				[MaxRotationMagnitude:0.1]
+				[OffsetPlanetMinTargetAltitude:-50]
+				[OffsetPlanetMaxTargetAltitude:50]
+				[ReverseOffsetDistAltAboveHeight:false]
+				[ReverseOffsetHeight:0]
+				[AngleAllowedForForwardThrust:90]
+				[MaxVelocityAngleForSpeedControl:180]
+			</Description>
+		</EntityComponent>
+		<!-- Behaviors for NavTowers -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+		  <Id>
+			  <TypeId>Inventory</TypeId>
+			  <SubtypeId>GVK-NPC-ConvoyNavTower1-Behavior-Start</SubtypeId>
+		  </Id>
+		  <Description>
+
+		  [RivalAI Behavior]
+		  
+		  [BehaviorName:Passive]
+
+		  [UseRetreatTimer:false]
+		  [UseNoTargetTimer:false]
+		  [UsePlayerDistanceTimer:false]
+			  
+		  [Triggers:NavTower-Trigger-SendWaypoint2]
+			  
+		  </Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+		  <Id>
+			  <TypeId>Inventory</TypeId>
+			  <SubtypeId>GVK-NPC-ConvoyNavTower2-Behavior-Start</SubtypeId>
+		  </Id>
+		  <Description>
+
+		  [RivalAI Behavior]
+		  
+		  [BehaviorName:Passive]
+
+		  [UseRetreatTimer:false]
+		  [UseNoTargetTimer:false]
+		  [UsePlayerDistanceTimer:false]
+			  
+		  [Triggers:NavTower-Trigger-SendWaypoint1]
+
+		  </Description>
+		</EntityComponent>
+		<!-- Trigger sequence when Carrier Spawns -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>Carrier-Trigger-OnSpawn</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Trigger]
+				[Type:Timer]
+				[UseTrigger:true]
+				[StartsReady:true]
+				[MinCooldownMs:900000]
+				[MaxCooldownMs:900000]
+				[Actions:Carrier-Action-OnSpawn]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>Carrier-Action-OnSpawn</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Action]
+				[Chance:100]
+				[SetWeaponsToMaxRange:true]
+				[UseChatBroadcast:true]
+				[ChatData:Carrier-Chat-Announce]
+				[UseJetpackInhibitorEffect:true]
+			</Description>
+		</EntityComponent>
+		<!-- need to run jetpack inhibitor on restart as well -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+		  <Id>
+			  <TypeId>Inventory</TypeId>
+			  <SubtypeId>Carrier-Chat-Announce</SubtypeId>
+		  </Id>
+		  <Description>
+
+			  [RivalAI Chat]
+			  
+			  [UseChat:true]
+			  [StartsReady:true]
+			  [Chance:100]
+			  [MaxChats:-1]
+			  [BroadcastRandomly:false]
+			  [Author:COALITION]
+			  [Color:White]
+			  [GPSLabel:Convoy]
+			  
+			  [ChatMessages:A Gaalsien Convoy has been spotted near `{GPS}`]
+			  [ChatAudio:ArcHudGPSNotification2]
+			  [BroadcastChatType:Chat]
+			  [ChatMessages:A Gaalsien Convoy has been spotted.]
+			  [BroadcastChatType:Notify]
+			  [SendToAllOnlinePlayers:true]
+
+		  </Description>      
+		</EntityComponent>
+		<!-- Trigger sequence for NavTower 2 to send waypoint 1 to Carrier -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>NavTower-Trigger-SendWaypoint1</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Trigger]
+				[Type:CommandReceived] 
+				[UseTrigger:true]
+				[MinCooldownMs:30000]
+				[MaxCooldownMs:30000]
+				[StartsReady:true]
+				[MaxActions:-1]
+				[CommandReceiveCode:Carrier_RequestWaypoint]
+				[Actions:NavTower-Action-SendWaypoint1]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>NavTower-Action-SendWaypoint1</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Action]
+				[BroadcastCommandProfiles:true]
+				[CommandProfileIds:NavTower-Command-Waypoint1]
+				[UseChatBroadcast:false]
+				[ChatData:NavTower-Chat-SendWaypoint1]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>NavTower-Command-Waypoint1</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Command]
+				[CommandCode:Carrier_ReceiveWaypoint1]
+				[SingleRecipient:false]
+				[MatchSenderReceiverOwners:true]
+				[IgnoreAntennaRequirement:true]
+				[IgnoreReceiverAntennaRequirement:true]
+				[Radius:1000]
+				[SendWaypoint:true]
+				[Waypoint:NavTower-Waypoint1]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>NavTower-Chat-SendWaypoint1</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Chat]
+				[UseChat:true]
+				[StartsReady:true]
+				[Chance:100]
+				[MaxChats:-1]
+				[BroadcastRandomly:false]
+				[Author:NavTower 2]
+				[Color:Red]
+				[ChatMessages:Sending Waypoint 1]
+				[ChatAudio:GreetingSoundId-A]
+				[BroadcastChatType:Chat]
+				[SendToAllOnlinePlayers:true]
+			</Description>
+		</EntityComponent>
+		<!-- Trigger sequence for NavTower 1 to send waypoint 2 to Carrier -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>NavTower-Trigger-SendWaypoint2</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Trigger]
+				[Type:CommandReceived] 
+				[UseTrigger:true]
+				[MinCooldownMs:30000]
+				[MaxCooldownMs:30000]
+				[StartsReady:true]
+				[MaxActions:-1]
+				[CommandReceiveCode:Carrier_RequestWaypoint]
+				[Actions:NavTower-Action-SendWaypoint2]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>NavTower-Action-SendWaypoint2</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Action]
+				[BroadcastCommandProfiles:true]
+				[CommandProfileIds:NavTower-Command-Waypoint2]
+				[UseChatBroadcast:false]
+				[ChatData:NavTower-Chat-SendWaypoint2]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>NavTower-Command-Waypoint2</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Command]
+				[CommandCode:Carrier_ReceiveWaypoint2]
+				[SingleRecipient:false]
+				[MatchSenderReceiverOwners:true]
+				[IgnoreAntennaRequirement:true]
+				[IgnoreReceiverAntennaRequirement:true]
+				[Radius:1000]
+				[SendWaypoint:true]
+				[Waypoint:NavTower-Waypoint2]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>NavTower-Chat-SendWaypoint2</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Chat]
+				[UseChat:true]
+				[StartsReady:true]
+				[Chance:100]
+				[MaxChats:-1]
+				[BroadcastRandomly:false]
+				[Author:NavTower 1]
+				[Color:Red]
+				[ChatMessages:Sending Waypoint 2]
+				[ChatAudio:GreetingSoundId-A]
+				[BroadcastChatType:Chat]
+				[SendToAllOnlinePlayers:true]
+			</Description>
+		</EntityComponent>
+		<!-- Trigger sequence for Carrier to receive waypoint 1 from NavTower -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>Carrier-Trigger-ReceiveWaypoint1</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Trigger]
+				[Type:CommandReceived]
+				[UseTrigger:true]
+				[StartsReady:true]
+				[MaxActions:-1]
+				[CommandReceiveCode:Carrier_ReceiveWaypoint1]
+				[Actions:Carrier-Action-ReceiveWaypoint1]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>Carrier-Action-ReceiveWaypoint1</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Action]
+				[AddWaypointFromCommand:true]
+				[UseChatBroadcast:false]
+				[ChatData:Carrier-Chat-ReceiveWaypoint1]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>Carrier-Chat-ReceiveWaypoint1</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Chat]
+				[UseChat:true]
+				[StartsReady:true]
+				[Chance:100]
+				[MaxChats:-1]
+				[BroadcastRandomly:false]
+				[Author:Carrier]
+				[Color:Red]
+				[ChatMessages:Waypoint 1 Received]
+				[ChatAudio:GreetingSoundId-A]
+				[BroadcastChatType:Chat]
+				[SendToAllOnlinePlayers:true]
+			</Description>
+		</EntityComponent>
+		<!-- Trigger sequence for Carrier to receive waypoint 2 from NavTower -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>Carrier-Trigger-ReceiveWaypoint2</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Trigger]
+				[Type:CommandReceived]
+				[UseTrigger:true]
+				[StartsReady:true]
+				[MaxActions:-1]
+				[CommandReceiveCode:Carrier_ReceiveWaypoint2]
+				[Actions:Carrier-Action-ReceiveWaypoint2]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>Carrier-Action-ReceiveWaypoint2</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Action]
+				[AddWaypointFromCommand:true]
+				[UseChatBroadcast:false]
+				[ChatData:Carrier-Chat-ReceiveWaypoint2]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>Carrier-Chat-ReceiveWaypoint2</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Chat]
+				[UseChat:true]
+				[StartsReady:true]
+				[Chance:100]
+				[MaxChats:-1]
+				[BroadcastRandomly:false]
+				[Author:Carrier]
+				[Color:Red]
+				[ChatMessages:Waypoint 2 Received]
+				[ChatAudio:GreetingSoundId-A]
+				[BroadcastChatType:Chat]
+				[SendToAllOnlinePlayers:true]
+			</Description>
+		</EntityComponent>
+		<!-- Trigger sequence for Carrier to die -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>Carrier-Trigger-Compromised</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Trigger]
+				[Type:Compromised]
+				[UseTrigger:true]
+				[StartsReady:true]
+				[MaxActions:1]
+				[Actions:Carrier-Action-Compromised]
+				[Actions:Carrier-Action-LargeWrecksEnabled]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>Carrier-Trigger-Despawn</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Trigger]
+				[Type:Despawn]
+				[UseTrigger:true]
+				[StartsReady:true]
+				[MaxActions:1]
+				[Actions:Carrier-Action-Compromised]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>Carrier-Trigger-DespawnMES</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Trigger]
+				[Type:DespawnMES]
+				[UseTrigger:true]
+				[StartsReady:true]
+				[MaxActions:1]
+				[Actions:Carrier-Action-Compromised]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>Carrier-Action-Compromised</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Action]
+				[ChangeInertiaDampeners:true]
+				[InertiaDampenersEnable:false]
+				[EnableBlocks:true]
+				[EnableBlockNames:HoverEngine]
+				[EnableBlockStates:Off]
+				[EnableBlockNames:Thruster]
+				[EnableBlockStates:Off]
+				[EnableBlockNames:Magnetic Plate]
+				[EnableBlockStates:On]
+				[UseChatBroadcast:true]
+				[GenerateExplosion:true]
+				[ExplosionRange:25]
+				[ExplosionDamage:5000]
+				[ExplosionIgnoresVoxels:true]
+				[ChatData:Carrier-Chat-Compromised]
+				[SetSandboxBooleansTrue:ConvoyInactive]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>Carrier-Action-LargeWrecksEnabled</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Action]
+				[UseChatBroadcast:true]
+				[ChatData:Carrier-Chat-LargeWrecksEnabled]
+				[SetSandboxBooleansTrue:LargeWrecksEnabled]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>Carrier-Chat-Compromised</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Chat]
+				[UseChat:true]
+				[StartsReady:true]
+				[Chance:100]
+				[MaxChats:1]
+				[BroadcastRandomly:false]
+				[Author:Coalition]
+				[Color:White]
+				[ChatMessages:The Gaalsien Carrier has been defeated!]
+				[ChatAudio:GreetingSoundId-A]
+				[BroadcastChatType:Chat]
+				[SendToAllOnlinePlayers:true]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>Carrier-Chat-LargeWrecksEnabled</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Chat]
+				[UseChat:true]
+				[StartsReady:true]
+				[Chance:100]
+				[MaxChats:1]
+				[BroadcastRandomly:false]
+				[Author:Coalition]
+				[Color:White]
+				[ChatMessages:Look for large Gaalsien wrecks in Zone 3.]
+				[ChatAudio:GreetingSoundId-A]
+				[BroadcastChatType:Chat]
+				[SendToAllOnlinePlayers:true]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>Mothership-Action-ArrivedAtTarget</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Action]
+				[ChangeAutopilotSpeed:true]
+				[NewAutopilotSpeed:0]
+				[ChangeInertiaDampeners:true]
+				[InertiaDampenersEnable:true]
+				[StopAllRotation:true]
+				[StopAllThrust:true]
+				[ChangeBehaviorSubclass:true]
+				[NewBehaviorSubclass:Passive]
+				[UseChatBroadcast:true]
+				[ChatData:Mothership-Chat-ArrivedAtTarget]
+				[SpawnEncounter:true]
+				[Spawner:GVK-Drone-GAALSIEN-GR-650]
+			</Description>
+		</EntityComponent>
+		<!-- Trigger sequence when Carrier arrives at a waypoint -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>Carrier-Trigger-ArrivedAtWaypoint</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Trigger]
+				[Type:BehaviorTriggerA]
+				[UseTrigger:true]
+				[StartsReady:true]
+				[MaxActions:-1]
+				[Actions:Carrier-Action-ArrivedAtWaypoint]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>Carrier-Action-ArrivedAtWaypoint</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Action]
+				[BroadcastCommandProfiles:true]
+				[CommandProfileIds:Carrier-Command-ArrivedAtWaypoint]
+				[UseChatBroadcast:false]
+				[ChatData:Carrier-Chat-ArrivedAtWaypoint]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>Carrier-Command-ArrivedAtWaypoint</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Command]
+				[CommandCode:Carrier_RequestWaypoint]
+				[SingleRecipient:false]
+				[MatchSenderReceiverOwners:true]
+				[IgnoreAntennaRequirement:true]
+				[IgnoreReceiverAntennaRequirement:true]
+				[Radius:1000]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>Carrier-Chat-ArrivedAtWaypoint</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Chat]
+				[UseChat:true]
+				[StartsReady:true]
+				[Chance:100]
+				[MaxChats:-1]
+				[BroadcastRandomly:false]
+				[Author:Convoy]
+				[Color:Red]
+				[ChatMessages:Arrived at Waypoint]
+				[ChatAudio:GreetingSoundId-A]
+				[BroadcastChatType:Chat]
+				[SendToAllOnlinePlayers:true]
+			</Description>
+		</EntityComponent>
+		<!-- Trigger sequence when Carrier departs to despawn waypoint -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>Carrier-Trigger-HeadToDespawn</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Trigger]
+				[Type:BehaviorTriggerD]
+				[UseTrigger:false]
+				[StartsReady:true]
+				[MaxActions:-1]
+				[Actions:Carrier-Action-HeadToDespawn]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>Carrier-Action-HeadToDespawn</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Action]
+				[UseChatBroadcast:true]
+				[ChatData:Carrier-Chat-HeadToDespawn]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>Carrier-Chat-HeadToDespawn</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Chat]
+				[UseChat:true]
+				[StartsReady:true]
+				[Chance:100]
+				[MaxChats:-1]
+				[BroadcastRandomly:false]
+				[Author:Convoy]
+				[Color:Red]
+				[ChatMessages:Heading to despawn]
+				[ChatAudio:GreetingSoundId-A]
+				[BroadcastChatType:Chat]
+				[SendToAllOnlinePlayers:true]
+			</Description>
+		</EntityComponent>
+	</EntityComponents>
+</Definitions>
