@@ -79,7 +79,7 @@
 				</Prefab>
 			</Prefabs>
 		</SpawnGroup>  -->
-		<!-- [NPC Drone] Mammoth Hover Mothership For S2 Final Event -->
+		<!-- [NPC Drone] Gaalsien Carrier For S2 Final Event -->
 		<!-- <SpawnGroup>
 			<Id>
 				<TypeId>SpawnGroupDefinition</TypeId>
@@ -187,6 +187,39 @@
 				</Prefab>
 			</Prefabs>
 		</SpawnGroup> -->
+		<!-- [NPC Drone] Gaalsien Carrier Patrol For S3 Week 1 Event -->
+		<SpawnGroup>
+			<Id>
+				<TypeId>SpawnGroupDefinition</TypeId>
+				<SubtypeId>GVK-Mothership-GAALSIEN-EastOasisPatrol</SubtypeId>
+			</Id>
+			<Description>
+				[Modular Encounters SpawnGroup]
+				[IgnoreCleanupRules:true]
+				[UsePlayerDistanceTimer:false]
+				[UseNoTargetTimer:false]
+				[UseRetreatTimer:false]
+				[ReplenishSystems:true]
+				[ManipulationProfiles:MES-Manipulation-RivalAi]
+				[SpawnConditionsProfiles:GVK-SpawnConditions-Mothership-Hover]
+				[ManipulationProfiles:GVK-Manipulation-Convoy-GaalsienCarrier]
+				[UseRemoteControlCodeRestrictions:true]
+			</Description>
+			<IsPirate>true</IsPirate>
+			<Frequency>0.1</Frequency>
+			<Prefabs>
+				<Prefab SubtypeId="[NPC Convoy] Gaalsien Carrier Atmo">
+					<Position>
+						<X>0.0</X>
+						<Y>35</Y>
+						<Z>0.0</Z>
+					</Position>
+					<Speed>0</Speed>
+					<BeaconText>Convoy Lead</BeaconText>
+					<Behaviour>Mothership-Rover-Behavior-Start</Behaviour>
+				</Prefab>
+			</Prefabs>
+		</SpawnGroup>
 		<!-- [NPC Drone] Honorguard MAC Hover -->
 		<SpawnGroup>
 			<Id>

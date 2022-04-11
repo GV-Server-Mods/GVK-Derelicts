@@ -14,6 +14,8 @@
 				[IgnoreGlobalBlockReplacer:true]
 				[UseBlockReplacerProfile:true]
 				[BlockReplacerProfileNames:GVK-Replacer-ProprietaryReactors]
+				[UseRivalAi:true]
+				[RivalAiReplaceRemoteControl:true]
 				[ClearGridInventories:true]
 				[GridsAreEditable:false]
 				[GridsAreDestructable:false]
@@ -251,6 +253,8 @@
 				[AllowPartialNames:true]
 				[UseLootProfiles:true]
 				[LootProfiles:GVK-Derelict-Loot-Huge]
+				[UseRivalAi:true]
+				[RivalAiReplaceRemoteControl:true]
 				[UseBlockReplacerProfile:true]
 				[BlockReplacerProfileNames:GVK-Replacer-LargeCockpitToRivalAI]
 				[BlockReplacerProfileNames:MES-Armor-LightToHeavy]
@@ -283,6 +287,37 @@
 				[AllowPartialNames:true]
 				[UseLootProfiles:false]
 				[LootProfiles:GVK-Derelict-Loot-Small]
+				[DisableGyroOverride:true]
+				[UseBlockReplacerProfile:true]
+				[BlockReplacerProfileNames:MES-Armor-HeavyToLight]
+				[ConfigureSpecialNpcThrusters:true]
+				[RestrictNpcIonThrust:true]
+				[NpcIonThrustForceMultiply:5]
+				[NpcIonThrustPowerMultiply:0.0001]
+				[RestrictNpcAtmoThrust:true]
+				[NpcAtmoThrustForceMultiply:2]
+				[NpcAtmoThrustPowerMultiply:0.0001]
+				[RestrictNpcHydroThrust:true]
+				[NpcHydroThrustForceMultiply:2]
+				[NpcHydroThrustPowerMultiply:0.000001]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Manipulation-CargoShip</SubtypeId>
+			</Id>
+			<Description>
+				[MES Manipulation]
+				[ManipulationChance:100]
+				[ClearAuthorship:true]
+				[EraseIngameScripts:true]
+				[IgnoreGlobalBlockReplacer:false]
+				[ClearGridInventories:true]
+				[DisableBlocksWithName:Survival]
+				[AllowPartialNames:true]
+				[UseLootProfiles:true]
+				[LootProfiles:GVK-Derelict-Loot-Huge]
 				[DisableGyroOverride:true]
 				[UseBlockReplacerProfile:true]
 				[BlockReplacerProfileNames:MES-Armor-HeavyToLight]
