@@ -53,7 +53,11 @@
 				[CutVoxelsAtAirtightCells:true]
 				[CutVoxelSize:9]
 				[ZoneConditions:GVK-ZoneConditions-WreckZone3]
-				[SandboxVariables:LargeWrecksEnabled]
+				[UseRemoteControlCodeRestrictions:false]
+				[RemoteControlCode:GVK-LargeDerelict]
+				[RemoteControlCodeMinDistance:90000]
+				[RemoteControlCodeMaxDistance:-1]
+				[FalseSandboxVariables:LargeWreckActive]
 			</Description>
 		</EntityComponent>
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
@@ -70,7 +74,10 @@
 				[CutVoxelsAtAirtightCells:true]
 				[CutVoxelSize:9]
 				[ZoneConditions:GVK-ZoneConditions-WreckZone3]
-				[SandboxVariables:LargeWrecksEnabled]
+				[UseRemoteControlCodeRestrictions:true]
+				[RemoteControlCode:GVK-LargeDerelict]
+				[RemoteControlCodeMinDistance:90000]
+				[RemoteControlCodeMaxDistance:-1]
 			</Description>
 		</EntityComponent>
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
@@ -310,6 +317,16 @@
 				[SkipAirDensityCheck:true]
 				[FactionOwner:KHAANEPH]
 				[ReactorsOn:true]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-SpawnConditions-DefenseDrones-Prefabs</SubtypeId>
+			</Id>
+			<Description>
+				[MES Spawn Conditions]
+				[PrefabSpawningMode:Random]
 			</Description>
 		</EntityComponent>
 	</EntityComponents>

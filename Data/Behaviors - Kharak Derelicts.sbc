@@ -83,13 +83,13 @@
 	  [Triggers:GVK-NPC-PlanetDerelict-Trigger-Spawned-Large]
 	  [Triggers:GVK-NPC-PlanetDerelict-Trigger-Despawn]
 	  [Triggers:GVK-NPC-PlanetDerelict-Trigger-DespawnMES]
-	  [Triggers:GVK-NPC-PlanetDerelict-Trigger-Compromised]
-	  [Triggers:GVK-NPC-PlanetDerelict-Trigger-BeaconDisabled]
+	  [Triggers:GVK-NPC-PlanetDerelict-Trigger-Compromised-Large]
+	  [Triggers:GVK-NPC-PlanetDerelict-Trigger-BeaconDisabled-Large]
 	  [Triggers:GVK-NPC-PlanetDerelict-Trigger-Defenses-Large]
 
 	  [TargetData:GVK-Generic-TargetProfile-EnemyPlayers]
 	  
-	  [RemoteControlCode:GVK-Derelict]
+	  [RemoteControlCode:GVK-LargeDerelict]
 	  
       </Description>
     </EntityComponent>
@@ -256,7 +256,8 @@
       <Description>
 
       [RivalAI Action]
-	  	  
+	  
+	  [SetSandboxBooleansTrue:LargeWreckActive]
       [UseChatBroadcast:true]
       [ChatData:GVK-NPC-PlanetDerelict-Chat-Spawned-Large]
 	  	  
@@ -393,6 +394,25 @@
 	<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
       <Id>
           <TypeId>Inventory</TypeId>
+          <SubtypeId>GVK-NPC-PlanetDerelict-Trigger-Compromised-Large</SubtypeId>
+      </Id>
+      <Description>
+
+      [RivalAI Trigger]
+	  
+      [Type:Compromised]
+	  [UseTrigger:true]
+	  [MaxActions:1]
+	  
+	  [Actions:GVK-NPC-PlanetDerelict-Action-Compromised]
+	  [Actions:GVK-NPC-PlanetDerelict-Action-LargeWreckActiveSandboxBoolean]
+	  
+      </Description>      
+    </EntityComponent>
+
+	<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+      <Id>
+          <TypeId>Inventory</TypeId>
           <SubtypeId>GVK-NPC-PlanetDerelict-Action-Compromised</SubtypeId>
       </Id>
       <Description>
@@ -410,9 +430,28 @@
 	  [RazeBlocksNames:Proprietary Beacon]
 	  [RazeBlocksNames:Planet Derelict]
 	  [RazeBlocksNames:Large Abandoned Building]
+	  [ToggleBlocksOfType:true]
+	  [BlockTypesToToggle:MyObjectBuilder_Beacon/ZoneBlock]
+	  [BlockTypeToggles:Off]
 
       </Description>
     </EntityComponent>
+
+	<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+      <Id>
+          <TypeId>Inventory</TypeId>
+          <SubtypeId>GVK-NPC-PlanetDerelict-Action-LargeWreckActiveSandboxBoolean</SubtypeId>
+      </Id>
+      <Description>
+
+      [RivalAI Action]
+
+	  [SetSandboxBooleansFalse:LargeWreckActive]	  	  
+
+      </Description>
+    </EntityComponent>
+
+	
 
 	<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
       <Id>
@@ -457,6 +496,28 @@
 	  [Conditions:GVK-NPC-PlanetDerelict-Condition-BeaconDisabled]
 	  	  
 	  [Actions:GVK-NPC-PlanetDerelict-Action-BeaconDisabled]
+	  
+      </Description>      
+    </EntityComponent>
+	<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+      <Id>
+          <TypeId>Inventory</TypeId>
+          <SubtypeId>GVK-NPC-PlanetDerelict-Trigger-BeaconDisabled-Large</SubtypeId>
+      </Id>
+      <Description>
+
+      [RivalAI Trigger]
+	  
+      [Type:Timer]
+	  [UseTrigger:true]
+	  [MinCooldownMs:10000]
+	  [MaxCooldownMs:10000]
+	  [StartsReady:false]
+	  
+	  [Conditions:GVK-NPC-PlanetDerelict-Condition-BeaconDisabled]
+	  	  
+	  [Actions:GVK-NPC-PlanetDerelict-Action-BeaconDisabled]
+	  [Actions:GVK-NPC-PlanetDerelict-Action-LargeWreckActiveSandboxBoolean]
 	  
       </Description>      
     </EntityComponent>
@@ -511,6 +572,9 @@
 	  [RazeBlocksNames:Proprietary Beacon]
 	  [RazeBlocksNames:Planet Derelict]
 	  [RazeBlocksNames:Large Abandoned Building]
+	  [ToggleBlocksOfType:true]
+	  [BlockTypesToToggle:MyObjectBuilder_Beacon/ZoneBlock]
+	  [BlockTypeToggles:Off]
 	   
 	  [GenerateExplosion:true]
 	  [ExplosionRange:1]
