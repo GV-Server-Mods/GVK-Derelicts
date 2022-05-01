@@ -1,7 +1,8 @@
 <?xml version="1.0"?>
 <Definitions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
 
-	<!--Dereliction Profiles-->
+	<!-- Dereliction Profiles-->
+	<!-- Dereliction really needs UseSeparatePercentages:true otherwise it gets buggy -->
 	
 	<EntityComponents>
 
@@ -113,7 +114,7 @@
 			[MatchOnlyTypeId:true]
 
 			[Chance:100]
-			[UseSeparatePercentages:false]
+			[UseSeparatePercentages:true]
 			[MinIntegrityPercentage:100]
 			[MaxIntegrityPercentage:100]
 			[MinBuildPercentage:100]
@@ -121,6 +122,55 @@
 
 			</Description>
 		</EntityComponent>
+
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Dereliction-DerelictTurrets-NonFunctional</SubtypeId>
+			</Id>
+			<Description>
+
+			[MES Dereliction]
+
+			[Blocks:MyObjectBuilder_LargeGatlingTurret/(null)]
+			[Blocks:MyObjectBuilder_LargeMissileTurret/(null)]
+			[Blocks:MyObjectBuilder_InteriorTurret/(null)]
+			[MatchOnlyTypeId:true]
+
+			[Chance:100]
+			[UseSeparatePercentages:true]
+			[MinIntegrityPercentage:1]
+			[MaxIntegrityPercentage:1]
+			[MinBuildPercentage:1]
+			[MaxBuildPercentage:1]
+
+			</Description>
+		</EntityComponent>
+		
+
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Dereliction-ProgrammableBlocks-NonFunctional</SubtypeId>
+			</Id>
+			<Description>
+
+			[MES Dereliction]
+
+			[Blocks:MyObjectBuilder_MyProgrammableBlock/SmallProgrammableBlock]
+			[Blocks:MyObjectBuilder_MyProgrammableBlock/LargeProgrammableBlock]
+			[MatchOnlyTypeId:true]
+
+			[Chance:100]
+			[UseSeparatePercentages:true]
+			[MinIntegrityPercentage:1]
+			[MaxIntegrityPercentage:1]
+			[MinBuildPercentage:1]
+			[MaxBuildPercentage:1]
+
+			</Description>
+		</EntityComponent>
+
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
@@ -146,6 +196,7 @@
 
 			</Description>
 		</EntityComponent>
+
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
