@@ -27,6 +27,7 @@
 				[Triggers:GVK-CargoShip-KHAANEPH-Trigger-Compromised]
 				[Triggers:GVK-CargoShip-KHAANEPH-Trigger-Attacked]
 				[Triggers:GVK-CargoShip-KHAANEPH-Trigger-Defenses]
+				[Triggers:GVK-CargoShip-KHAANEPH-Trigger-LongWait]
 				[WeaponSystem:GVK-NPC-Weapons-GAALSIEN-Carrier]
 			</Description>
 		</EntityComponent>
@@ -635,7 +636,7 @@
 				[StartsReady:true]
 				[MinCooldownMs:120000]
 				[MaxCooldownMs:240000]
-				[MaxActions:3]
+				[MaxActions:5]
 				[Actions:GVK-CargoShip-KHAANEPH-Action-Defenses]
 			</Description>
 		</EntityComponent>
@@ -646,7 +647,7 @@
 			</Id>
 			<Description>
 				[RivalAI Action]
-				[Chance:50]
+				[Chance:60]
 				[SpawnEncounter:true]
 				[Spawner:GVK-CargoShip-KHAANEPH-Spawner-DefenseDrones]
 			</Description>
@@ -662,7 +663,7 @@
 				[SpawningType:CustomSpawn]
 				[StartsReady:true]
 				[ProcessAsAdminSpawn:false]
-				[MaxSpawns:3]
+				[MaxSpawns:5]
 				[SpawnGroups:GVK-DefenseDrone-KHAANEPH-ReaperSquad]
 				[SpawnGroups:GVK-DefenseDrone-KHAANEPH-HornetSquad]
 				[SpawnGroups:GVK-DefenseDrone-KHAANEPH-SlicerSquad]
@@ -673,13 +674,58 @@
 				[SpawnGroups:GVK-DefenseDrone-KHAANEPH-Hornet]
 				[SpawnGroups:GVK-DefenseDrone-KHAANEPH-Wasp]
 				[SpawnGroups:GVK-DefenseDrone-KHAANEPH-Denizen]
-				[SpawnGroups:GVK-DefenseDrone-KHAANEPH-Shuttle]
 				[MinDistance:500]
 				[MaxDistance:1000]
 				[MinAltitude:50]
 				[MaxAltitude:200]
 				[InheritNpcAltitude:true]
 				[IgnoreSafetyChecks:true]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-CargoShip-KHAANEPH-Trigger-LongWait</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Trigger]
+				[Type:Timer]
+				[UseTrigger:true]
+				[StartsReady:false]
+				[MaxActions:-1]
+				[MinCooldownMs:120000]
+				[MaxCooldownMs:120000]
+				[Conditions:GVK-CargoShip-KHAANEPH-Condition-LongWait]
+				[ConditionCheckResetsTimer:true]
+				[Actions:GVK-CargoShip-KHAANEPH-Action-LongWait]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-CargoShip-KHAANEPH-Condition-LongWait</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Condition]
+				[UseConditions:true]
+				[MatchAnyCondition:false]
+				[CheckGridSpeed:true]
+				[MinGridSpeed:0]
+				[MaxGridSpeed:5]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-CargoShip-KHAANEPH-Action-LongWait</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Action]
+				[Chance:100]
+				[Retreat:true]
+				[RecalculateDespawnCoords:true]
+				[UseChatBroadcast:true]
+				[ChatData:GVK-CargoShip-KHAANEPH-Chat-HeadToDespawn]
 			</Description>
 		</EntityComponent>
 	</EntityComponents>
