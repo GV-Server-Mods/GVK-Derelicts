@@ -717,11 +717,11 @@
 				[IgnoreCleanupRules:true]
 				[ReplenishSystems:true]
 				[ManipulationProfiles:MES-Manipulation-RivalAi] 
+				[ManipulationProfiles:GVK-Manipulation-DefenseDrones-Hover]
 				[SpawnConditionsProfiles:GVK-SpawnConditions-DefenseDrones-GAALSIEN-Hover]
 				[SpawnConditionsProfiles:GVK-SpawnConditions-DefenseDrones-SOBAN-Hover]
 				[SpawnConditionsProfiles:GVK-SpawnConditions-DefenseDrones-KHAANEPH-Hover]
 				[SpawnConditionsProfiles:GVK-SpawnConditions-RandomEncounters-GAALSIEN-Hover]
-				[ManipulationProfiles:GVK-Manipulation-DefenseDrones-Hover]
 			</Description>
 			<IsPirate>true</IsPirate>
 			<!--Do not edit-->
@@ -736,6 +736,38 @@
 					<Speed>0</Speed>
 					<BeaconText>Kerrim Missile</BeaconText>
 					<Behaviour>DefenseDrone-Rover-Behavior-Start</Behaviour>
+				</Prefab>
+			</Prefabs>
+		</SpawnGroup>
+		<!-- [NPC Drone] Honorguard Cruiser MAC Hover -->
+		<SpawnGroup>
+			<Id>
+				<TypeId>SpawnGroupDefinition</TypeId>
+				<!--Do Not Edit-->
+				<SubtypeId>GVK-Drone-GAALSIEN-Honorguard</SubtypeId>
+			</Id>
+			<Description>
+				[Modular Encounters SpawnGroup]
+				[IgnoreCleanupRules:true]
+				[ReplenishSystems:true]
+				[ManipulationProfiles:MES-Manipulation-RivalAi]
+				[ManipulationProfiles:GVK-Manipulation-DefenseDrones-Hover]
+				[SpawnConditionsProfiles:GVK-SpawnConditions-DefenseDrones-GAALSIEN-Hover]
+				[SpawnConditionsProfiles:GVK-SpawnConditions-RandomEncounters-GAALSIEN-Hover]
+			</Description>
+			<IsPirate>true</IsPirate>
+			<!--Do not edit-->
+			<Frequency>0.1</Frequency>
+			<Prefabs>
+				<Prefab SubtypeId="[NPC Drone] Honorguard Cruiser">
+					<Position>
+						<X>0.0</X>
+						<Y>0.0</Y>
+						<Z>0.0</Z>
+					</Position>
+					<Speed>0</Speed>
+					<BeaconText>Honorguard</BeaconText>
+					<Behaviour>DefenseDrone-HorseFighterHoverMAC-Behavior-Start</Behaviour>
 				</Prefab>
 			</Prefabs>
 		</SpawnGroup>
