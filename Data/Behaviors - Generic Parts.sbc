@@ -1,73 +1,7 @@
 <?xml version="1.0"?>
 <Definitions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <EntityComponents>
-  
-    <!--=== Target Profiles ===-->
-  
-	<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
-      <Id>
-          <TypeId>Inventory</TypeId>
-          <SubtypeId>GVK-Generic-TargetProfile-EnemyPlayers</SubtypeId>
-      </Id>
-      <Description>
-
-      [RivalAI Target]
-      
-      [UseCustomTargeting:true]
-      [Target:PlayerAndGrid]
-	  [UseTargetRefresh:true]
-	  [TimeUntilNextRefresh:15]
-	  [TimeUntilNextEvaluation:10]
-	  [MaxDistance:800]
-	  [MaxExistingTargetDistance:1500]
-      [GetTargetBy:ClosestDistance]
-	  [MatchAllFilters:Relation]
-	  [MatchAllFilters:OutsideOfSafezone]
-	  [MatchNoneFilters:Name]
-	  [MatchAllFilters:TargetValue]
-	  [MatchAllFilters:PlayerControlled]
-      [Relations:Enemy]
-	  [Names:GVK Kharak Bridge]
-	  [UsePartialNameMatching:true]
-	  [MinTargetValue:10]
-	  [MaxTargetValue:99999]
-	  [PrioritizePlayerControlled:true]
-      
-      </Description>
-    </EntityComponent>
-
-	<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
-      <Id>
-          <TypeId>Inventory</TypeId>
-          <SubtypeId>GVK-Generic-TargetProfile-EnemyGrids</SubtypeId>
-      </Id>
-      <Description>
-
-      [RivalAI Target]
-      
-      [UseCustomTargeting:true]
-      [Target:Grid]
-	  [UseTargetRefresh:true]
-	  [TimeUntilNextRefresh:15]
-	  [TimeUntilNextEvaluation:10]
-	  [MaxDistance:800]
-	  [MaxExistingTargetDistance:1500]
-      [GetTargetBy:ClosestDistance]
-	  [MatchAllFilters:Relation]
-	  [MatchAllFilters:OutsideOfSafezone]
-	  [MatchNoneFilters:Name]
-	  [MatchAllFilters:TargetValue]
-	  [MatchAllFilters:PlayerControlled]
-      [Relations:Enemy]
-	  [Names:GVK Kharak Bridge]
-	  [UsePartialNameMatching:true]
-	  [MinTargetValue:10]
-	  [MaxTargetValue:99999]
-	  [PrioritizePlayerControlled:true]
-      
-      </Description>
-    </EntityComponent>
-		
+  		
 	<!--=== Trigger Sequences ===-->
 	
 	<!--NPC Defeated when all thrusters or gyros offline: Trigger warheads, generic SPRT Defeated Chat-->
