@@ -5,7 +5,7 @@
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Convoy-GAALSIEN-Zone</SubtypeId>
+				<SubtypeId>GVK-Convoy-GAALSIEN-ZoneNew</SubtypeId>
 			</Id>
 			<Description>
 				[MES Zone]
@@ -23,11 +23,11 @@
 				[ZoneLeaveAnnounce:Leaving Convoy Zone]
 			</Description>
 		</EntityComponent>
-		<!-- Large Wreck Zone -->
+		<!-- Large Wreck Zone, 52km from Z0 -->
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-WreckZone3-GAALSIEN-Zone</SubtypeId>
+				<SubtypeId>GVK-WreckZone3-GAALSIEN-ZoneNew</SubtypeId>
 			</Id>
 			<Description>
 				[MES Zone]
@@ -36,18 +36,18 @@
 				[Persistent:true]
 				[Strict:false]
 				[Coordinates:{X:3524.27 Y:37455.28 Z:28406.15}]
-				[NoSpawnZone:true]
-				[Radius:25810]
+				[NoSpawnZone:false]
+				[Radius:30000]
 				[UseZoneAnnounce:true]
 				[ZoneEnterAnnounce:Entering Zone 3]
-				[ZoneLeaveAnnounce:Entering Zone 2]
+				[ZoneLeaveAnnounce:Leaving Zone 3]
 			</Description>
 		</EntityComponent>
-		<!-- Medium Wrecks Zone -->
+		<!-- Medium Wrecks Zone, 35km to 56km from Z0 -->
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-WreckZone2-GAALSIEN-Zone</SubtypeId>
+				<SubtypeId>GVK-WreckZone2-GAALSIEN-ZoneNew</SubtypeId>
 			</Id>
 			<Description>
 				[MES Zone]
@@ -56,17 +56,17 @@
 				[Persistent:true]
 				[Strict:false]
 				[Coordinates:{X:3524.27 Y:37455.28 Z:28406.15}]
-				[Radius:47390]
+				[Radius:48980]
 				[UseZoneAnnounce:true]
 				[ZoneEnterAnnounce:Entering Zone 2]
-				[ZoneLeaveAnnounce:Entering Zone 1]
+				[ZoneLeaveAnnounce:Leaving Zone 2]
 			</Description>
 		</EntityComponent>
-		<!-- Small Wrecks Zone -->
+		<!-- Small Wrecks Zone, 20km from Z0-->
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-WreckZone1-GAALSIEN-Zone</SubtypeId>
+				<SubtypeId>GVK-WreckZone1-GAALSIEN-ZoneNew</SubtypeId>
 			</Id>
 			<Description>
 				[MES Zone]
@@ -75,15 +75,17 @@
 				[Persistent:true]
 				[Strict:false]
 				[Coordinates:{X:3524.27 Y:37455.28 Z:28406.15}]
-				[Radius:63030]
-				[UseZoneAnnounce:false]
+				[Radius:56530]
+				[UseZoneAnnounce:true]
+				[ZoneEnterAnnounce:Entering Zone 1]
+				[ZoneLeaveAnnounce:Leaving Zone 1]
 			</Description>
 		</EntityComponent>
 		<!-- West Oasis Zone -->
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-WreckZone0-GAALSIEN-Zone</SubtypeId>
+				<SubtypeId>GVK-WreckZone0-GAALSIEN-ZoneNew</SubtypeId>
 			</Id>
 			<Description>
 				[MES Zone]
@@ -107,10 +109,10 @@
 				[RestrictedSpawnGroups:GVK-Drone-GAALSIEN-KerrimCannon]
 				[RestrictedSpawnGroups:GVK-Drone-GAALSIEN-KerrimMissile]
 				[Coordinates:{X:62495.55 Y:28019.04 Z:37195.71}]
-				[Radius:30000]
+				[Radius:20000]
 				[UseZoneAnnounce:true]
 				[ZoneEnterAnnounce:Entering Zone 0]
-				[ZoneLeaveAnnounce:Entering Zone 1]
+				[ZoneLeaveAnnounce:Leaving Zone 0]
 			</Description>
 		</EntityComponent>
 	</EntityComponents>
