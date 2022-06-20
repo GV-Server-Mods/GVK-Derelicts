@@ -5,7 +5,7 @@
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
-				<SubtypeId>StaticEncounter-GaalsienFortress-Behavior</SubtypeId>
+				<SubtypeId>GVK-PlanetaryInstallations-GaalsienFortress-Behavior</SubtypeId>
 			</Id>
 			<Description>
 				[RivalAI Behavior]
@@ -17,17 +17,17 @@
 				[UseRetreatTimer:false]
 				[UseNoTargetTimer:false]
 				[TargetData:GVK-Generic-TargetProfile-EnemyGrids-LongRange]
-				[Triggers:GaalsienFortress-Trigger-OnSpawn]
+				[Triggers:GVK-PlanetaryInstallations-GaalsienFortress-Trigger-OnSpawn]
 				[Triggers:DefenseDrone-Trigger-FireArchersTimers]
 				[Triggers:GVK-Generic-Trigger-SPRTTargetAcquiredChatter]
-				[Triggers:GaalsienFortress-Trigger-Compromised]
+				[Triggers:GVK-PlanetaryInstallations-GaalsienFortress-Trigger-Compromised]
 			</Description>
 		</EntityComponent>
 		<!-- Trigger sequence when Carrier Spawns -->
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
-				<SubtypeId>GaalsienFortress-Trigger-OnSpawn</SubtypeId>
+				<SubtypeId>GVK-PlanetaryInstallations-GaalsienFortress-Trigger-OnSpawn</SubtypeId>
 			</Id>
 			<Description>
 				[RivalAI Trigger]
@@ -36,20 +36,20 @@
 				[StartsReady:true]
 				[MinCooldownMs:900000]
 				[MaxCooldownMs:900000]
-				[Actions:GaalsienFortress-Action-OnSpawn]
+				[Actions:GVK-PlanetaryInstallations-GaalsienFortress-Action-OnSpawn]
 			</Description>
 		</EntityComponent>
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
-				<SubtypeId>GaalsienFortress-Action-OnSpawn</SubtypeId>
+				<SubtypeId>GVK-PlanetaryInstallations-GaalsienFortress-Action-OnSpawn</SubtypeId>
 			</Id>
 			<Description>
 				[RivalAI Action]
 				[Chance:100]
 				[SetWeaponsToMaxRange:true]
 				[UseChatBroadcast:true]
-				[ChatData:GaalsienFortress-Chat-Announce]
+				[ChatData:GVK-PlanetaryInstallations-GaalsienFortress-Chat-Announce]
 				[UseJetpackInhibitorEffect:true]
 			</Description>
 		</EntityComponent>
@@ -57,7 +57,7 @@
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 		  <Id>
 			  <TypeId>Inventory</TypeId>
-			  <SubtypeId>GaalsienFortress-Chat-Announce</SubtypeId>
+			  <SubtypeId>GVK-PlanetaryInstallations-GaalsienFortress-Chat-Announce</SubtypeId>
 		  </Id>
 		  <Description>
 
@@ -85,7 +85,7 @@
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
-				<SubtypeId>GaalsienFortress-Trigger-Compromised</SubtypeId>
+				<SubtypeId>GVK-PlanetaryInstallations-GaalsienFortress-Trigger-Compromised</SubtypeId>
 			</Id>
 			<Description>
 				[RivalAI Trigger]
@@ -93,13 +93,13 @@
 				[UseTrigger:true]
 				[StartsReady:true]
 				[MaxActions:1]
-				[Actions:GaalsienFortress-Action-Compromised]
+				[Actions:GVK-PlanetaryInstallations-GaalsienFortress-Action-Compromised]
 			</Description>
 		</EntityComponent>
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
-				<SubtypeId>GaalsienFortress-Trigger-Despawn</SubtypeId>
+				<SubtypeId>GVK-PlanetaryInstallations-GaalsienFortress-Trigger-Despawn</SubtypeId>
 			</Id>
 			<Description>
 				[RivalAI Trigger]
@@ -107,13 +107,13 @@
 				[UseTrigger:true]
 				[StartsReady:true]
 				[MaxActions:1]
-				[Actions:GaalsienFortress-Action-Compromised]
+				[Actions:GVK-PlanetaryInstallations-GaalsienFortress-Action-Compromised]
 			</Description>
 		</EntityComponent>
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
-				<SubtypeId>GaalsienFortress-Trigger-DespawnMES</SubtypeId>
+				<SubtypeId>GVK-PlanetaryInstallations-GaalsienFortress-Trigger-DespawnMES</SubtypeId>
 			</Id>
 			<Description>
 				[RivalAI Trigger]
@@ -121,22 +121,22 @@
 				[UseTrigger:true]
 				[StartsReady:true]
 				[MaxActions:1]
-				[Actions:GaalsienFortress-Action-Compromised]
-				[Actions:GaalsienFortress-Action-SelfDestruct1]
-				[Actions:GaalsienFortress-Action-SelfDestruct2]
-				[Actions:GaalsienFortress-Action-SelfDestruct3]
-				[Actions:GaalsienFortress-Action-SelfDestruct4]
+				[Actions:GVK-PlanetaryInstallations-GaalsienFortress-Action-Compromised]
+				[Actions:GVK-PlanetaryInstallations-GaalsienFortress-Action-SelfDestruct1]
+				[Actions:GVK-PlanetaryInstallations-GaalsienFortress-Action-SelfDestruct2]
+				[Actions:GVK-PlanetaryInstallations-GaalsienFortress-Action-SelfDestruct3]
+				[Actions:GVK-PlanetaryInstallations-GaalsienFortress-Action-SelfDestruct4]
 			</Description>
 		</EntityComponent>
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
-				<SubtypeId>GaalsienFortress-Action-Compromised</SubtypeId>
+				<SubtypeId>GVK-PlanetaryInstallations-GaalsienFortress-Action-Compromised</SubtypeId>
 			</Id>
 			<Description>
 				[RivalAI Action]
 				[UseChatBroadcast:true]
-				[ChatData:GaalsienFortress-Chat-Compromised]
+				[ChatData:GVK-PlanetaryInstallations-GaalsienFortress-Chat-Compromised]
 				[GenerateExplosion:true]
 				[ExplosionOffsetFromRemote:{X:0 Y:60 Z:0}]
 				[ExplosionRange:100]
@@ -152,7 +152,7 @@
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
-				<SubtypeId>GaalsienFortress-Action-SelfDestruct1</SubtypeId>
+				<SubtypeId>GVK-PlanetaryInstallations-GaalsienFortress-Action-SelfDestruct1</SubtypeId>
 			</Id>
 			<Description>
 				[RivalAI Action]
@@ -166,7 +166,7 @@
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
-				<SubtypeId>GaalsienFortress-Action-SelfDestruct2</SubtypeId>
+				<SubtypeId>GVK-PlanetaryInstallations-GaalsienFortress-Action-SelfDestruct2</SubtypeId>
 			</Id>
 			<Description>
 				[RivalAI Action]
@@ -180,7 +180,7 @@
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
-				<SubtypeId>GaalsienFortress-Action-SelfDestruct3</SubtypeId>
+				<SubtypeId>GVK-PlanetaryInstallations-GaalsienFortress-Action-SelfDestruct3</SubtypeId>
 			</Id>
 			<Description>
 				[RivalAI Action]
@@ -194,7 +194,7 @@
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
-				<SubtypeId>GaalsienFortress-Action-SelfDestruct4</SubtypeId>
+				<SubtypeId>GVK-PlanetaryInstallations-GaalsienFortress-Action-SelfDestruct4</SubtypeId>
 			</Id>
 			<Description>
 				[RivalAI Action]
@@ -208,7 +208,7 @@
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
-				<SubtypeId>GaalsienFortress-Chat-Compromised</SubtypeId>
+				<SubtypeId>GVK-PlanetaryInstallations-GaalsienFortress-Chat-Compromised</SubtypeId>
 			</Id>
 			<Description>
 				[RivalAI Chat]
