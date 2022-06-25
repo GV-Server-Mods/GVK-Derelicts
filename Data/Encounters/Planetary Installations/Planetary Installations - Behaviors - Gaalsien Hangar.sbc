@@ -16,13 +16,17 @@
 				[UsePlayerDistanceTimer:false]
 				[UseRetreatTimer:false]
 				[UseNoTargetTimer:false]
-				[TargetData:GVK-Generic-TargetProfile-EnemyGrids-LongRange]
 				[Triggers:GVK-PlanetaryInstallations-GaalsienHangar-Trigger-OnSpawn]
 				[Triggers:GVK-PlanetaryInstallations-GaalsienHangar-Trigger-SpawnDefenses]
 				[Triggers:GVK-PlanetaryInstallations-GaalsienHangar-Trigger-SpawnProductionCruiser]
 				[Triggers:GVK-PlanetaryInstallations-GaalsienHangar-Trigger-SpawnCruisers]
 				[Triggers:GVK-Generic-Trigger-SPRTTargetAcquiredChatter]
+				[Triggers:GVK-PlanetaryInstallations-GaalsienHangar-Trigger-Despawn]
+				[Triggers:GVK-PlanetaryInstallations-GaalsienHangar-Trigger-DespawnMES]
 				[Triggers:GVK-PlanetaryInstallations-GaalsienHangar-Trigger-Compromised]
+				[Triggers:GVK-PlanetaryInstallations-GaalsienHangar-Trigger-BeaconDisabled]
+				[TargetData:GVK-Generic-TargetProfile-EnemyGrids-LongRange]
+				[RemoteControlCode:GVK-LargeDerelict]
 			</Description>
 		</EntityComponent>
 		<!-- Trigger sequence when Carrier Spawns -->
@@ -49,12 +53,15 @@
 			<Description>
 				[RivalAI Action]
 				[Chance:100]
+				[SetSandboxBooleansTrue:LargeWreckActive]
 				[SetWeaponsToMaxRange:true]
 				[UseJetpackInhibitorEffect:true]
 				[CreateKnownPlayerArea:true]
 				[KnownPlayerAreaRadius:5000]
 				[KnownPlayerAreaTimer:999]
 				[KnownPlayerAreaMaxSpawns:999]
+				[UseChatBroadcast:true]
+				[ChatData:GVK-PlanetaryInstallations-Chat-Spawned-Large]
 			</Description>
 		</EntityComponent>
 		<!-- need to run jetpack inhibitor on restart as well -->
@@ -65,15 +72,15 @@
 				<SubtypeId>GVK-PlanetaryInstallations-GaalsienHangar-Trigger-SpawnProductionCruiser</SubtypeId>
 			</Id>
 			<Description>
-			[RivalAI Trigger]
-			[Type:PlayerNear]
-			[UseTrigger:true]
-			[TargetDistance:5000]
-			[StartsReady:true]
-			[MaxActions:1]
-			[MinCooldownMs:5000]
-			[MaxCooldownMs:5000]
-			[Actions:GVK-PlanetaryInstallations-GaalsienHangar-Action-SpawnProductionCruiser]
+				[RivalAI Trigger]
+				[Type:PlayerNear]
+				[UseTrigger:true]
+				[TargetDistance:5000]
+				[StartsReady:true]
+				[MaxActions:1]
+				[MinCooldownMs:5000]
+				[MaxCooldownMs:5000]
+				[Actions:GVK-PlanetaryInstallations-GaalsienHangar-Action-SpawnProductionCruiser]
 			</Description>
 		</EntityComponent>
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
@@ -82,10 +89,10 @@
 				<SubtypeId>GVK-PlanetaryInstallations-GaalsienHangar-Action-SpawnProductionCruiser</SubtypeId>
 			</Id>
 			<Description>
-			[RivalAI Action]
-			[Chance:100]
-			[SpawnEncounter:true]
-			[Spawner:GVK-PlanetaryInstallations-GaalsienHangar-Spawner-SpawnProductionCruiser]
+				[RivalAI Action]
+				[Chance:100]
+				[SpawnEncounter:true]
+				[Spawner:GVK-PlanetaryInstallations-GaalsienHangar-Spawner-SpawnProductionCruiser]
 			</Description>
 		</EntityComponent>
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
@@ -94,19 +101,19 @@
 				<SubtypeId>GVK-PlanetaryInstallations-GaalsienHangar-Spawner-SpawnProductionCruiser</SubtypeId>
 			</Id>
 			<Description>
-			[RivalAI Spawn]
-			[UseSpawn:true]
-			[SpawningType:CustomSpawn]
-			[StartsReady:true]
-			[MinDistance:1000]
-			[MaxDistance:2000]
-			[MinAltitude:10]
-			[MaxAltitude:20]
-			[MaxSpawns:1]
-			[InheritNpcAltitude:true]
-			[SpawnGroups:GVK-CustomSpawn-DefenseDrone-SpawnGroup-GAALSIEN-ProductionCruiser]
-			[ProcessAsAdminSpawn:false]
-			[IgnoreSafetyChecks:true]
+				[RivalAI Spawn]
+				[UseSpawn:true]
+				[SpawningType:CustomSpawn]
+				[StartsReady:true]
+				[MinDistance:1000]
+				[MaxDistance:2000]
+				[MinAltitude:10]
+				[MaxAltitude:20]
+				[MaxSpawns:1]
+				[InheritNpcAltitude:true]
+				[SpawnGroups:GVK-CustomSpawn-DefenseDrone-SpawnGroup-GAALSIEN-ProductionCruiser]
+				[ProcessAsAdminSpawn:false]
+				[IgnoreSafetyChecks:true]
 			</Description>
 		</EntityComponent>
 		<!-- Trigger sequence for GaalsienHangar to spawn initial defenses -->
@@ -116,15 +123,15 @@
 				<SubtypeId>GVK-PlanetaryInstallations-GaalsienHangar-Trigger-SpawnDefenses</SubtypeId>
 			</Id>
 			<Description>
-			[RivalAI Trigger]
-			[Type:PlayerNear]
-			[UseTrigger:true]
-			[TargetDistance:5000]
-			[StartsReady:true]
-			[MaxActions:4]
-			[MinCooldownMs:5000]
-			[MaxCooldownMs:5000]
-			[Actions:GVK-PlanetaryInstallations-GaalsienHangar-Action-SpawnDefenses]
+				[RivalAI Trigger]
+				[Type:PlayerNear]
+				[UseTrigger:true]
+				[TargetDistance:5000]
+				[StartsReady:true]
+				[MaxActions:4]
+				[MinCooldownMs:5000]
+				[MaxCooldownMs:5000]
+				[Actions:GVK-PlanetaryInstallations-GaalsienHangar-Action-SpawnDefenses]
 			</Description>
 		</EntityComponent>
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
@@ -133,12 +140,12 @@
 				<SubtypeId>GVK-PlanetaryInstallations-GaalsienHangar-Action-SpawnDefenses</SubtypeId>
 			</Id>
 			<Description>
-			[RivalAI Action]
-			[Chance:100]
-			[SpawnEncounter:true]
-			[Spawner:GVK-PlanetaryInstallations-GaalsienHangar-Spawner-SpawnDefenses]
-			[UseChatBroadcast:true]
-			[ChatData:GVK-PlanetaryInstallations-GaalsienHangar-Chat-SpawnDefenses]
+				[RivalAI Action]
+				[Chance:100]
+				[SpawnEncounter:true]
+				[Spawner:GVK-PlanetaryInstallations-GaalsienHangar-Spawner-SpawnDefenses]
+				[UseChatBroadcast:true]
+				[ChatData:GVK-PlanetaryInstallations-GaalsienHangar-Chat-SpawnDefenses]
 			</Description>
 		</EntityComponent>
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
@@ -147,24 +154,24 @@
 				<SubtypeId>GVK-PlanetaryInstallations-GaalsienHangar-Spawner-SpawnDefenses</SubtypeId>
 			</Id>
 			<Description>
-			[RivalAI Spawn]
-			[UseSpawn:true]
-			[SpawningType:CustomSpawn]
-			[StartsReady:true]
-			[MinDistance:1000]
-			[MaxDistance:2000]
-			[MinAltitude:10]
-			[MaxAltitude:20]
-			[MaxSpawns:4]
-			[InheritNpcAltitude:true]
-			[SpawnGroups:GVK-CustomSpawn-DefenseDrone-SpawnGroup-GAALSIEN-AssaultShip]
-			[SpawnGroups:GVK-CustomSpawn-DefenseDrone-SpawnGroup-GAALSIEN-Honorguard]
-			[SpawnGroups:GVK-CustomSpawn-DefenseDrone-SpawnGroup-GAALSIEN-ArtilleryCruiser]
-			[SpawnGroups:GVK-CustomSpawn-DefenseDrone-SpawnGroup-GAALSIEN-MissileCruiser]
-			[SpawnGroups:GVK-CustomSpawn-DefenseDrone-SpawnGroup-GAALSIEN-RailgunCruiser]
-			[SpawnGroups:GVK-CustomSpawn-DefenseDrone-SpawnGroup-GAALSIEN-TorpedoCruiser]
-			[ProcessAsAdminSpawn:false]
-			[IgnoreSafetyChecks:true]
+				[RivalAI Spawn]
+				[UseSpawn:true]
+				[SpawningType:CustomSpawn]
+				[StartsReady:true]
+				[MinDistance:1000]
+				[MaxDistance:2000]
+				[MinAltitude:10]
+				[MaxAltitude:20]
+				[MaxSpawns:4]
+				[InheritNpcAltitude:true]
+				[SpawnGroups:GVK-CustomSpawn-DefenseDrone-SpawnGroup-GAALSIEN-AssaultShip]
+				[SpawnGroups:GVK-CustomSpawn-DefenseDrone-SpawnGroup-GAALSIEN-Honorguard]
+				[SpawnGroups:GVK-CustomSpawn-DefenseDrone-SpawnGroup-GAALSIEN-ArtilleryCruiser]
+				[SpawnGroups:GVK-CustomSpawn-DefenseDrone-SpawnGroup-GAALSIEN-MissileCruiser]
+				[SpawnGroups:GVK-CustomSpawn-DefenseDrone-SpawnGroup-GAALSIEN-RailgunCruiser]
+				[SpawnGroups:GVK-CustomSpawn-DefenseDrone-SpawnGroup-GAALSIEN-TorpedoCruiser]
+				[ProcessAsAdminSpawn:false]
+				[IgnoreSafetyChecks:true]
 			</Description>
 		</EntityComponent>
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
@@ -173,18 +180,18 @@
 				<SubtypeId>GVK-PlanetaryInstallations-GaalsienHangar-Chat-SpawnDefenses</SubtypeId>
 			</Id>
 			<Description>
-			[RivalAI Chat]
-			[UseChat:true]
-			[StartsReady:true]
-			[Chance:100]
-			[MaxChats:1]
-			[BroadcastRandomly:false]
-			[Author:Gaalsien Hangar]
-			[Color:Red]
-			[ChatMessages:Enemies in-bound.]
-			[ChatAudio:GreetingSoundId-A]
-			[BroadcastChatType:Chat]
-			[SendToAllOnlinePlayers:true]
+				[RivalAI Chat]
+				[UseChat:true]
+				[StartsReady:true]
+				[Chance:100]
+				[MaxChats:1]
+				[BroadcastRandomly:false]
+				[Author:Gaalsien Hangar]
+				[Color:Red]
+				[ChatMessages:Enemies in-bound.]
+				[ChatAudio:GreetingSoundId-A]
+				[BroadcastChatType:Chat]
+				[SendToAllOnlinePlayers:true]
 			</Description>
 		</EntityComponent>
 		<!-- Trigger sequence for GaalsienHangar to spawn Cruisers -->
@@ -194,15 +201,15 @@
 				<SubtypeId>GVK-PlanetaryInstallations-GaalsienHangar-Trigger-SpawnCruisers</SubtypeId>
 			</Id>
 			<Description>
-			[RivalAI Trigger]
-			[Type:PlayerNear]
-			[UseTrigger:true]
-			[TargetDistance:3000]
-			[StartsReady:true]
-			[MaxActions:-1]
-			[MinCooldownMs:120000]
-			[MaxCooldownMs:180000]
-			[Actions:GVK-PlanetaryInstallations-GaalsienHangar-Action-SpawnCruisers]
+				[RivalAI Trigger]
+				[Type:PlayerNear]
+				[UseTrigger:true]
+				[TargetDistance:3000]
+				[StartsReady:true]
+				[MaxActions:-1]
+				[MinCooldownMs:120000]
+				[MaxCooldownMs:180000]
+				[Actions:GVK-PlanetaryInstallations-GaalsienHangar-Action-SpawnCruisers]
 			</Description>
 		</EntityComponent>
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
@@ -211,12 +218,12 @@
 				<SubtypeId>GVK-PlanetaryInstallations-GaalsienHangar-Action-SpawnCruisers</SubtypeId>
 			</Id>
 			<Description>
-			[RivalAI Action]
-			[Chance:100]
-			[SpawnEncounter:true]
-			[Spawner:GVK-PlanetaryInstallations-GaalsienHangar-Spawner-SpawnCruisers]
-			[UseChatBroadcast:true]
-			[ChatData:GVK-PlanetaryInstallations-GaalsienHangar-Chat-SpawnCruisers]
+				[RivalAI Action]
+				[Chance:100]
+				[SpawnEncounter:true]
+				[Spawner:GVK-PlanetaryInstallations-GaalsienHangar-Spawner-SpawnCruisers]
+				[UseChatBroadcast:true]
+				[ChatData:GVK-PlanetaryInstallations-GaalsienHangar-Chat-SpawnCruisers]
 			</Description>
 		</EntityComponent>
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
@@ -225,24 +232,24 @@
 				<SubtypeId>GVK-PlanetaryInstallations-GaalsienHangar-Spawner-SpawnCruisers</SubtypeId>
 			</Id>
 			<Description>
-			[RivalAI Spawn]
-			[UseSpawn:true]
-			[SpawningType:CustomSpawn]
-			[StartsReady:true]
-			[MinDistance:1000]
-			[MaxDistance:2000]
-			[MinAltitude:10]
-			[MaxAltitude:20]
-			[InheritNpcAltitude:true]
-			[SpawnGroups:GVK-CustomSpawn-DefenseDrone-SpawnGroup-GAALSIEN-AssaultShip]
-			[SpawnGroups:GVK-CustomSpawn-DefenseDrone-SpawnGroup-GAALSIEN-Honorguard]
-			[SpawnGroups:GVK-CustomSpawn-DefenseDrone-SpawnGroup-GAALSIEN-ArtilleryCruiser]
-			[SpawnGroups:GVK-CustomSpawn-DefenseDrone-SpawnGroup-GAALSIEN-MissileCruiser]
-			[SpawnGroups:GVK-CustomSpawn-DefenseDrone-SpawnGroup-GAALSIEN-ProductionCruiser]
-			[SpawnGroups:GVK-CustomSpawn-DefenseDrone-SpawnGroup-GAALSIEN-RailgunCruiser]
-			[SpawnGroups:GVK-CustomSpawn-DefenseDrone-SpawnGroup-GAALSIEN-TorpedoCruiser]
-			[ProcessAsAdminSpawn:false]
-			[IgnoreSafetyChecks:true]
+				[RivalAI Spawn]
+				[UseSpawn:true]
+				[SpawningType:CustomSpawn]
+				[StartsReady:true]
+				[MinDistance:1000]
+				[MaxDistance:2000]
+				[MinAltitude:10]
+				[MaxAltitude:20]
+				[InheritNpcAltitude:true]
+				[SpawnGroups:GVK-CustomSpawn-DefenseDrone-SpawnGroup-GAALSIEN-AssaultShip]
+				[SpawnGroups:GVK-CustomSpawn-DefenseDrone-SpawnGroup-GAALSIEN-Honorguard]
+				[SpawnGroups:GVK-CustomSpawn-DefenseDrone-SpawnGroup-GAALSIEN-ArtilleryCruiser]
+				[SpawnGroups:GVK-CustomSpawn-DefenseDrone-SpawnGroup-GAALSIEN-MissileCruiser]
+				[SpawnGroups:GVK-CustomSpawn-DefenseDrone-SpawnGroup-GAALSIEN-ProductionCruiser]
+				[SpawnGroups:GVK-CustomSpawn-DefenseDrone-SpawnGroup-GAALSIEN-RailgunCruiser]
+				[SpawnGroups:GVK-CustomSpawn-DefenseDrone-SpawnGroup-GAALSIEN-TorpedoCruiser]
+				[ProcessAsAdminSpawn:false]
+				[IgnoreSafetyChecks:true]
 			</Description>
 		</EntityComponent>
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
@@ -251,20 +258,42 @@
 				<SubtypeId>GVK-PlanetaryInstallations-GaalsienHangar-Chat-SpawnCruisers</SubtypeId>
 			</Id>
 			<Description>
-			[RivalAI Chat]
-			[UseChat:true]
-			[StartsReady:true]
-			[Chance:100]
-			[BroadcastRandomly:false]
-			[Author:Gaalsien Hangar]
-			[Color:Red]
-			[ChatMessages:Cruiser ready for action.]
-			[ChatAudio:GreetingSoundId-A]
-			[BroadcastChatType:Chat]
-			[SendToAllOnlinePlayers:true]
+				[RivalAI Chat]
+				[UseChat:true]
+				[StartsReady:true]
+				[Chance:100]
+				[BroadcastRandomly:false]
+				[Author:Gaalsien Hangar]
+				[Color:Red]
+				[ChatMessages:Cruiser ready for action.]
+				[ChatAudio:GreetingSoundId-A]
+				[BroadcastChatType:Chat]
+				[SendToAllOnlinePlayers:true]
 			</Description>
 		</EntityComponent>
-		<!-- Trigger sequence for Hangar to die -->
+		<!-- Trigger sequences for Hangar to die -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-PlanetaryInstallations-GaalsienHangar-Trigger-BeaconDisabled</SubtypeId>
+			</Id>
+			<Description>
+
+				[RivalAI Trigger]
+
+				[Type:Timer]
+				[UseTrigger:true]
+				[MinCooldownMs:10000]
+				[MaxCooldownMs:10000]
+				[StartsReady:false]
+
+				[Conditions:GVK-PlanetaryInstallations-Condition-BeaconDisabled]
+				  
+				[Actions:GVK-PlanetaryInstallations-GaalsienHangar-Action-Compromised]
+				[Actions:GVK-PlanetaryInstallations-Action-LargeWreckActiveSandboxBoolean]
+
+			</Description>      
+		</EntityComponent>
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
@@ -277,6 +306,7 @@
 				[StartsReady:true]
 				[MaxActions:1]
 				[Actions:GVK-PlanetaryInstallations-GaalsienHangar-Action-Compromised]
+			    [Actions:GVK-PlanetaryInstallations-Action-LargeWreckActiveSandboxBoolean]
 			</Description>
 		</EntityComponent>
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
@@ -291,6 +321,7 @@
 				[StartsReady:true]
 				[MaxActions:1]
 				[Actions:GVK-PlanetaryInstallations-GaalsienHangar-Action-Compromised]
+			    [Actions:GVK-PlanetaryInstallations-Action-LargeWreckActiveSandboxBoolean]
 			</Description>
 		</EntityComponent>
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
@@ -305,6 +336,7 @@
 				[StartsReady:true]
 				[MaxActions:1]
 				[Actions:GVK-PlanetaryInstallations-GaalsienHangar-Action-Compromised]
+			    [Actions:GVK-PlanetaryInstallations-Action-LargeWreckActiveSandboxBoolean]
 			</Description>
 		</EntityComponent>
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
@@ -316,15 +348,30 @@
 				[RivalAI Action]
 				[UseChatBroadcast:true]
 				[ChatData:GVK-PlanetaryInstallations-GaalsienHangar-Chat-Compromised]
+				[RazeBlocksWithNames:true]
+				[RazeBlocksNames:Remote Control]
+				[RazeBlocksNames:NPC Remote Control]
+				[RazeBlocksNames:Small Crash Site]
+				[RazeBlocksNames:Medium Crash Site]
+				[RazeBlocksNames:Large Crash Site]
+				[RazeBlocksNames:Disposable Beacon]
+				[RazeBlocksNames:Proprietary Beacon]
+				[RazeBlocksNames:Planet Derelict]
+				[RazeBlocksNames:Large Abandoned Building]
+				[RazeBlocksNames:Small Drill Rig]
+				[RazeBlocksNames:Outpost]
+				[RazeBlocksNames:Fortress]
+				[RazeBlocksNames:Hangar]
+				[ToggleBlocksOfType:true]
+				[BlockTypesToToggle:MyObjectBuilder_Beacon/ZoneBlock]
+				[BlockTypeToggles:Off]
 				[RemoveAllKnownPlayerAreas:true]
 				[GenerateExplosion:true]
 				[ExplosionOffsetFromRemote:{X:0 Y:45 Z:0}]
 				[ExplosionRange:50]
 				[ExplosionDamage:10000]
 				[ExplosionIgnoresVoxels:true]
-				[EnableBlocks:true]
-				[EnableBlockNames:NPC Beacon]
-				[EnableBlockStates:Off]
+				[TerminateBehavior:true]
 			</Description>
 		</EntityComponent>
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">

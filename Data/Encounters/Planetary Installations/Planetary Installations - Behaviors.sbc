@@ -1,785 +1,713 @@
 <?xml version="1.0"?>
 <Definitions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
-  <EntityComponents>
+	<EntityComponents>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-PlanetaryInstallations-Behavior-Small</SubtypeId>
+			</Id>
+			<Description>
 
-	<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
-      <Id>
-          <TypeId>Inventory</TypeId>
-          <SubtypeId>GVK-PlanetaryInstallations-Behavior-Small</SubtypeId>
-      </Id>
-      <Description>
+				[RivalAI Behavior]
 
-      [RivalAI Behavior]
+				[BehaviorName:Passive]
+
+				[UseRetreatTimer:false]
+				[UseNoTargetTimer:false]
+				[UsePlayerDistanceTimer:false]
+				[PlayerDistanceTimerTrigger:1800]
+				[PlayerDistanceTrigger:15000]
+				  
+				[Triggers:GVK-PlanetaryInstallations-Trigger-Spawned-Small]
+				[Triggers:GVK-PlanetaryInstallations-Trigger-Despawn]
+				[Triggers:GVK-PlanetaryInstallations-Trigger-DespawnMES]
+				[Triggers:GVK-PlanetaryInstallations-Trigger-Compromised]
+				[Triggers:GVK-PlanetaryInstallations-Trigger-BeaconDisabled]
+
+				[TargetData:GVK-Generic-TargetProfile-EnemyPlayers]
+
+				[RemoteControlCode:GVK-Derelict]
 	  
-      [BehaviorName:Passive]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-PlanetaryInstallations-Behavior-Medium</SubtypeId>
+			</Id>
+			<Description>
 
-	  [UseRetreatTimer:false]
-	  [UseNoTargetTimer:false]
-	  [UsePlayerDistanceTimer:false]
-	  [PlayerDistanceTimerTrigger:1800]
-	  [PlayerDistanceTrigger:15000]
+				[RivalAI Behavior]
+
+				[BehaviorName:Passive]
+
+				[UseRetreatTimer:false]
+				[UseNoTargetTimer:false]
+				[UsePlayerDistanceTimer:false]
+				[PlayerDistanceTimerTrigger:1800]
+				[PlayerDistanceTrigger:15000]
+				  
+				[Triggers:GVK-PlanetaryInstallations-Trigger-Spawned-Medium]
+				[Triggers:GVK-PlanetaryInstallations-Trigger-Despawn]
+				[Triggers:GVK-PlanetaryInstallations-Trigger-DespawnMES]
+				[Triggers:GVK-PlanetaryInstallations-Trigger-Compromised]
+				[Triggers:GVK-PlanetaryInstallations-Trigger-BeaconDisabled]
+				[Triggers:GVK-PlanetaryInstallations-Trigger-Defenses-Medium]
+
+				[TargetData:GVK-Generic-TargetProfile-EnemyPlayers]
+
+				[RemoteControlCode:GVK-Derelict]
+	  
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-PlanetaryInstallations-Behavior-Large</SubtypeId>
+			</Id>
+			<Description>
+
+				[RivalAI Behavior]
+
+				[BehaviorName:Passive]
+
+				[UseRetreatTimer:false]
+				[UseNoTargetTimer:false]
+				[UsePlayerDistanceTimer:false]
+				[PlayerDistanceTimerTrigger:1800]
+				[PlayerDistanceTrigger:15000]
+				  
+				[Triggers:GVK-PlanetaryInstallations-Trigger-Spawned-Large]
+				[Triggers:GVK-PlanetaryInstallations-Trigger-Despawn]
+				[Triggers:GVK-PlanetaryInstallations-Trigger-DespawnMES]
+				[Triggers:GVK-PlanetaryInstallations-Trigger-Compromised-Large]
+				[Triggers:GVK-PlanetaryInstallations-Trigger-BeaconDisabled-Large]
+				[Triggers:GVK-PlanetaryInstallations-Trigger-Defenses-Large]
+
+				[TargetData:GVK-Generic-TargetProfile-EnemyPlayers]
+
+				[RemoteControlCode:GVK-LargeDerelict]
+	  
+			</Description>
+		</EntityComponent>
+		<!-- Chat for small spawns -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-PlanetaryInstallations-Trigger-Spawned-Small</SubtypeId>
+			</Id>
+			<Description>
+
+				[RivalAI Trigger]
+
+				[Type:Timer]
+				[MinCooldownMs:5000]
+				[MaxCooldownMs:5000]
+				[UseTrigger:true]
+				[StartsReady:false]
+				[MaxActions:2]
+				  
+				[Actions:GVK-PlanetaryInstallations-Action-Spawned-Small]
+	  
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-PlanetaryInstallations-Action-Spawned-Small</SubtypeId>
+			</Id>
+			<Description>
+
+				[RivalAI Action]
+				  
+				[UseChatBroadcast:true]
+				[ChatData:GVK-PlanetaryInstallations-Chat-Spawned-Small]
 	  	  
-	  [Triggers:GVK-PlanetaryInstallations-Trigger-Spawned-Small]
-	  [Triggers:GVK-PlanetaryInstallations-Trigger-Despawn]
-	  [Triggers:GVK-PlanetaryInstallations-Trigger-DespawnMES]
-	  [Triggers:GVK-PlanetaryInstallations-Trigger-Compromised]
-	  [Triggers:GVK-PlanetaryInstallations-Trigger-BeaconDisabled]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-PlanetaryInstallations-Chat-Spawned-Small</SubtypeId>
+			</Id>
+			<Description>
 
-	  [TargetData:GVK-Generic-TargetProfile-EnemyPlayers]
+				[RivalAI Chat]
+
+				[UseChat:true]
+				[StartsReady:true]
+				[Chance:100]
+				[MaxChats:2]
+				[BroadcastRandomly:false]
+				[IgnoreAntennaRequirement:true]
+				[IgnoredAntennaRangeOverride:6000]
+				[Author:COALITION]
+				[Color:White]
+				[GPSLabel:Derelict]
+
+				[ChatMessages:A Small Derelict has been detected at `{GPS}`]
+				[ChatAudio:ArcHudGPSNotification2]
+				[BroadcastChatType:Chat]
+				[ChatMessages:A Small Derelict has been detected]
+				[BroadcastChatType:Notify]
+				[SendToAllOnlinePlayers:false]
+
+			</Description>
+		</EntityComponent>
+		<!-- Chat for medium spawns -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-PlanetaryInstallations-Trigger-Spawned-Medium</SubtypeId>
+			</Id>
+			<Description>
+
+				[RivalAI Trigger]
+
+				[Type:Timer]
+				[MinCooldownMs:5000]
+				[MaxCooldownMs:5000]
+				[UseTrigger:true]
+				[StartsReady:false]
+				[MaxActions:2]
+				  
+				[Actions:GVK-PlanetaryInstallations-Action-Spawned-Medium]
 	  
-	  [RemoteControlCode:GVK-Derelict]
-	  
-      </Description>
-    </EntityComponent>
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-PlanetaryInstallations-Action-Spawned-Medium</SubtypeId>
+			</Id>
+			<Description>
 
-	<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
-      <Id>
-          <TypeId>Inventory</TypeId>
-          <SubtypeId>GVK-PlanetaryInstallations-Behavior-Medium</SubtypeId>
-      </Id>
-      <Description>
-
-      [RivalAI Behavior]
-	  
-      [BehaviorName:Passive]
-
-	  [UseRetreatTimer:false]
-	  [UseNoTargetTimer:false]
-	  [UsePlayerDistanceTimer:false]
-	  [PlayerDistanceTimerTrigger:1800]
-	  [PlayerDistanceTrigger:15000]
+				[RivalAI Action]
+				  
+				[UseChatBroadcast:true]
+				[ChatData:GVK-PlanetaryInstallations-Chat-Spawned-Medium]
 	  	  
-	  [Triggers:GVK-PlanetaryInstallations-Trigger-Spawned-Medium]
-	  [Triggers:GVK-PlanetaryInstallations-Trigger-Despawn]
-	  [Triggers:GVK-PlanetaryInstallations-Trigger-DespawnMES]
-	  [Triggers:GVK-PlanetaryInstallations-Trigger-Compromised]
-	  [Triggers:GVK-PlanetaryInstallations-Trigger-BeaconDisabled]
-	  [Triggers:GVK-PlanetaryInstallations-Trigger-Defenses-Medium]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-PlanetaryInstallations-Chat-Spawned-Medium</SubtypeId>
+			</Id>
+			<Description>
 
-	  [TargetData:GVK-Generic-TargetProfile-EnemyPlayers]
+				[RivalAI Chat]
+
+				[UseChat:true]
+				[StartsReady:true]
+				[Chance:100]
+				[MaxChats:2]
+				[BroadcastRandomly:false]
+				[Author:COALITION]
+				[Color:White]
+				[GPSLabel:Derelict]
+
+				[ChatMessages:A Medium Derelict has been detected at `{GPS}`]
+				[ChatAudio:ArcHudGPSNotification2]
+				[BroadcastChatType:Chat]
+				[ChatMessages:A Medium Derelict has been detected]
+				[BroadcastChatType:Notify]
+				[SendToAllOnlinePlayers:true]
+
+			</Description>
+		</EntityComponent>
+		<!-- Chat for large spawns -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-PlanetaryInstallations-Trigger-Spawned-Large</SubtypeId>
+			</Id>
+			<Description>
+
+				[RivalAI Trigger]
+
+				[Type:Timer]
+				[MinCooldownMs:5000]
+				[MaxCooldownMs:5000]
+				[UseTrigger:true]
+				[StartsReady:false]
+				[MaxActions:2]
+				  
+				[Actions:GVK-PlanetaryInstallations-Action-Spawned-Large]
 	  
-	  [RemoteControlCode:GVK-Derelict]
-	  
-      </Description>
-    </EntityComponent>
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-PlanetaryInstallations-Action-Spawned-Large</SubtypeId>
+			</Id>
+			<Description>
 
-	<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
-      <Id>
-          <TypeId>Inventory</TypeId>
-          <SubtypeId>GVK-PlanetaryInstallations-Behavior-Large</SubtypeId>
-      </Id>
-      <Description>
+				[RivalAI Action]
 
-      [RivalAI Behavior]
-	  
-      [BehaviorName:Passive]
-
-	  [UseRetreatTimer:false]
-	  [UseNoTargetTimer:false]
-	  [UsePlayerDistanceTimer:false]
-	  [PlayerDistanceTimerTrigger:1800]
-	  [PlayerDistanceTrigger:15000]
+				[SetSandboxBooleansTrue:LargeWreckActive]
+				[UseChatBroadcast:true]
+				[ChatData:GVK-PlanetaryInstallations-Chat-Spawned-Large]
 	  	  
-	  [Triggers:GVK-PlanetaryInstallations-Trigger-Spawned-Large]
-	  [Triggers:GVK-PlanetaryInstallations-Trigger-Despawn]
-	  [Triggers:GVK-PlanetaryInstallations-Trigger-DespawnMES]
-	  [Triggers:GVK-PlanetaryInstallations-Trigger-Compromised-Large]
-	  [Triggers:GVK-PlanetaryInstallations-Trigger-BeaconDisabled-Large]
-	  [Triggers:GVK-PlanetaryInstallations-Trigger-Defenses-Large]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-PlanetaryInstallations-Chat-Spawned-Large</SubtypeId>
+			</Id>
+			<Description>
 
-	  [TargetData:GVK-Generic-TargetProfile-EnemyPlayers]
+				[RivalAI Chat]
+
+				[UseChat:true]
+				[StartsReady:true]
+				[Chance:100]
+				[MaxChats:2]
+				[BroadcastRandomly:false]
+				[Author:COALITION]
+				[Color:White]
+				[GPSLabel:Derelict]
+
+				[ChatMessages:A Large Derelict has been detected at `{GPS}`]
+				[ChatAudio:ArcHudGPSNotification2]
+				[BroadcastChatType:Chat]
+				[ChatMessages:A Large Derelict has been detected]
+				[BroadcastChatType:Notify]
+				[SendToAllOnlinePlayers:true]
+
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-PlanetaryInstallations-Trigger-Despawn</SubtypeId>
+			</Id>
+			<Description>
+
+				[RivalAI Trigger]
+
+				[Type:Despawn]
+				[UseTrigger:true]
+				[MaxActions:1]
+
+				[Actions:GVK-PlanetaryInstallations-Action-Despawned]
 	  
-	  [RemoteControlCode:GVK-LargeDerelict]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-PlanetaryInstallations-Trigger-DespawnMES</SubtypeId>
+			</Id>
+			<Description>
+
+				[RivalAI Trigger]
+
+				[Type:DespawnMES]
+				[UseTrigger:true]
+				[MaxActions:1]
+
+				[Actions:GVK-PlanetaryInstallations-Action-Despawned]
 	  
-      </Description>
-    </EntityComponent>
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-PlanetaryInstallations-Action-Despawned</SubtypeId>
+			</Id>
+			<Description>
 
-	<!-- Chat for small spawns -->
-	<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
-      <Id>
-          <TypeId>Inventory</TypeId>
-          <SubtypeId>GVK-PlanetaryInstallations-Trigger-Spawned-Small</SubtypeId>
-      </Id>
-      <Description>
+				[RivalAI Action]
 
-      [RivalAI Trigger]
+				[DisableTriggers:false]
+				[DisableTriggerNames:GVK-PlanetaryInstallations-Trigger-Compromised]
+				[DisableTriggerNames:GVK-PlanetaryInstallations-Trigger-Despawn]
+				[DisableTriggerNames:GVK-PlanetaryInstallations-Trigger-DespawnMES]
+				  
+				[UseChatBroadcast:true]
+				[ChatData:GVK-PlanetaryInstallations-Chat-Despawned]
+
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-PlanetaryInstallations-Chat-Despawned</SubtypeId>
+			</Id>
+			<Description>
+
+				[RivalAI Chat]
+
+				[UseChat:true]
+				[StartsReady:true]
+				[Chance:100]
+				[MaxChats:1]
+				[BroadcastRandomly:false]
+				[Author:COALITION]
+				[Color:White]
+
+				[ChatMessages:A Derelict has disappeared]
+				[ChatAudio:ArcHudGPSNotification2]
+				[BroadcastChatType:Both]
+				[SendToAllOnlinePlayers:true]
+
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-PlanetaryInstallations-Trigger-Compromised</SubtypeId>
+			</Id>
+			<Description>
+
+				[RivalAI Trigger]
+
+				[Type:Compromised]
+				[UseTrigger:true]
+				[MaxActions:1]
+
+				[Actions:GVK-PlanetaryInstallations-Action-Compromised]
 	  
-      [Type:Timer]
-	  [MinCooldownMs:5000]
-	  [MaxCooldownMs:5000]
-	  [UseTrigger:true]
-	  [StartsReady:false]
-	  [MaxActions:2]
-	  	  
-	  [Actions:GVK-PlanetaryInstallations-Action-Spawned-Small]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-PlanetaryInstallations-Trigger-Compromised-Large</SubtypeId>
+			</Id>
+			<Description>
+
+				[RivalAI Trigger]
+
+				[Type:Compromised]
+				[UseTrigger:true]
+				[MaxActions:1]
+
+				[Actions:GVK-PlanetaryInstallations-Action-Compromised]
+				[Actions:GVK-PlanetaryInstallations-Action-LargeWreckActiveSandboxBoolean]
 	  
-      </Description>      
-    </EntityComponent>
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-PlanetaryInstallations-Action-Compromised</SubtypeId>
+			</Id>
+			<Description>
 
-	<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
-      <Id>
-          <TypeId>Inventory</TypeId>
-          <SubtypeId>GVK-PlanetaryInstallations-Action-Spawned-Small</SubtypeId>
-      </Id>
-      <Description>
+				[RivalAI Action]
+				  
+				[UseChatBroadcast:true]
+				[ChatData:GVK-PlanetaryInstallations-Chat-Compromised]
 
-      [RivalAI Action]
-	  	  
-      [UseChatBroadcast:true]
-      [ChatData:GVK-PlanetaryInstallations-Chat-Spawned-Small]
-	  	  
-      </Description>
-    </EntityComponent>
-	
-	<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
-      <Id>
-          <TypeId>Inventory</TypeId>
-          <SubtypeId>GVK-PlanetaryInstallations-Chat-Spawned-Small</SubtypeId>
-      </Id>
-      <Description>
+				[RazeBlocksWithNames:true]
+				[RazeBlocksNames:Remote Control]
+				[RazeBlocksNames:NPC Remote Control]
+				[RazeBlocksNames:Small Crash Site]
+				[RazeBlocksNames:Medium Crash Site]
+				[RazeBlocksNames:Large Crash Site]
+				[RazeBlocksNames:Disposable Beacon]
+				[RazeBlocksNames:Proprietary Beacon]
+				[RazeBlocksNames:Planet Derelict]
+				[RazeBlocksNames:Large Abandoned Building]
+				[RazeBlocksNames:Small Drill Rig]
+				[RazeBlocksNames:Outpost]
+				[RazeBlocksNames:Fortress]
+				[RazeBlocksNames:Hangar]
+				[ToggleBlocksOfType:true]
+				[BlockTypesToToggle:MyObjectBuilder_Beacon/ZoneBlock]
+				[BlockTypeToggles:Off]
+				[TerminateBehavior:true]
 
-      [RivalAI Chat]
-      
-      [UseChat:true]
-      [StartsReady:true]
-      [Chance:100]
-      [MaxChats:2]
-      [BroadcastRandomly:false]
-	  [IgnoreAntennaRequirement:true]
-	  [IgnoredAntennaRangeOverride:6000]
-      [Author:COALITION]
-      [Color:White]
-	  [GPSLabel:Derelict]
-      
-      [ChatMessages:A Small Derelict has been detected at `{GPS}`]
-      [ChatAudio:ArcHudGPSNotification2]
-      [BroadcastChatType:Chat]
-      [ChatMessages:A Small Derelict has been detected]
-      [BroadcastChatType:Notify]
-	  [SendToAllOnlinePlayers:false]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-PlanetaryInstallations-Action-LargeWreckActiveSandboxBoolean</SubtypeId>
+			</Id>
+			<Description>
 
-      </Description>      
-    </EntityComponent>
+				[RivalAI Action]
 
-	<!-- Chat for medium spawns -->
-	<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
-      <Id>
-          <TypeId>Inventory</TypeId>
-          <SubtypeId>GVK-PlanetaryInstallations-Trigger-Spawned-Medium</SubtypeId>
-      </Id>
-      <Description>
+				[SetSandboxBooleansFalse:LargeWreckActive]	  	  
 
-      [RivalAI Trigger]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-PlanetaryInstallations-Chat-Compromised</SubtypeId>
+			</Id>
+			<Description>
+
+				[RivalAI Chat]
+
+				[UseChat:true]
+				[StartsReady:true]
+				[Chance:100]
+				[MaxChats:1]
+				[BroadcastRandomly:false]
+				[Author:COALITION]
+				[Color:White]
+
+				[ChatMessages:A Derelict has been disabled.]
+				[ChatAudio:ArcHudGPSNotification2]
+				[BroadcastChatType:Both]
+				[SendToAllOnlinePlayers:true]
+
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-PlanetaryInstallations-Trigger-BeaconDisabled</SubtypeId>
+			</Id>
+			<Description>
+
+				[RivalAI Trigger]
+
+				[Type:Timer]
+				[UseTrigger:true]
+				[MinCooldownMs:10000]
+				[MaxCooldownMs:10000]
+				[StartsReady:false]
+
+				[Conditions:GVK-PlanetaryInstallations-Condition-BeaconDisabled]
+				  
+				[Actions:GVK-PlanetaryInstallations-Action-Compromised]
 	  
-      [Type:Timer]
-	  [MinCooldownMs:5000]
-	  [MaxCooldownMs:5000]
-	  [UseTrigger:true]
-	  [StartsReady:false]
-	  [MaxActions:2]
-	  	  
-	  [Actions:GVK-PlanetaryInstallations-Action-Spawned-Medium]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-PlanetaryInstallations-Trigger-BeaconDisabled-Large</SubtypeId>
+			</Id>
+			<Description>
+
+				[RivalAI Trigger]
+
+				[Type:Timer]
+				[UseTrigger:true]
+				[MinCooldownMs:10000]
+				[MaxCooldownMs:10000]
+				[StartsReady:false]
+
+				[Conditions:GVK-PlanetaryInstallations-Condition-BeaconDisabled]
+				  
+				[Actions:GVK-PlanetaryInstallations-Action-Compromised]
+				[Actions:GVK-PlanetaryInstallations-Action-LargeWreckActiveSandboxBoolean]
 	  
-      </Description>      
-    </EntityComponent>
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-PlanetaryInstallations-Condition-BeaconDisabled</SubtypeId>
+			</Id>
+			<Description>
 
-	<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
-      <Id>
-          <TypeId>Inventory</TypeId>
-          <SubtypeId>GVK-PlanetaryInstallations-Action-Spawned-Medium</SubtypeId>
-      </Id>
-      <Description>
+				[RivalAI Condition]
 
-      [RivalAI Action]
-	  	  
-      [UseChatBroadcast:true]
-      [ChatData:GVK-PlanetaryInstallations-Chat-Spawned-Medium]
-	  	  
-      </Description>
-    </EntityComponent>
-	
-	<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
-      <Id>
-          <TypeId>Inventory</TypeId>
-          <SubtypeId>GVK-PlanetaryInstallations-Chat-Spawned-Medium</SubtypeId>
-      </Id>
-      <Description>
+				[UseConditions:true]
+				[MatchAnyCondition:false]
 
-      [RivalAI Chat]
-      
-      [UseChat:true]
-      [StartsReady:true]
-      [Chance:100]
-      [MaxChats:2]
-      [BroadcastRandomly:false]
-      [Author:COALITION]
-      [Color:White]
-	  [GPSLabel:Derelict]
-      
-      [ChatMessages:A Medium Derelict has been detected at `{GPS}`]
-      [ChatAudio:ArcHudGPSNotification2]
-      [BroadcastChatType:Chat]
-      [ChatMessages:A Medium Derelict has been detected]
-      [BroadcastChatType:Notify]
-	  [SendToAllOnlinePlayers:true]
+				[UseRequiredFunctionalBlocks:true]
+				[RequiredNoneFunctionalBlockNames:Proprietary Beacon]
+				[RequiredNoneFunctionalBlockNames:Small Crash Site]
+				[RequiredNoneFunctionalBlockNames:Medium Crash Site]
+				[RequiredNoneFunctionalBlockNames:Large Crash Site]
+				[RequiredNoneFunctionalBlockNames:Planet Derelict]
+				[RequiredNoneFunctionalBlockNames:Disposable Beacon]
+				[RequiredNoneFunctionalBlockNames:Large Abandoned Building]
+				[RequiredNoneFunctionalBlockNames:Small Drill Rig]
+				[RequiredNoneFunctionalBlockNames:Fortress]
+				[RequiredNoneFunctionalBlockNames:Hangar]
+				[RequiredNoneFunctionalBlockNames:Outpost]
 
-      </Description>      
-    </EntityComponent>
-			
-	<!-- Chat for large spawns -->
-	<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
-      <Id>
-          <TypeId>Inventory</TypeId>
-          <SubtypeId>GVK-PlanetaryInstallations-Trigger-Spawned-Large</SubtypeId>
-      </Id>
-      <Description>
+			</Description>
+		</EntityComponent>
+		<!-- Trigger Sequence for Small Defenses currently unused -->
+		<!-- Trigger Sequence for Medium Defenses -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-PlanetaryInstallations-Trigger-Defenses-Medium</SubtypeId>
+			</Id>
+			<Description>
 
-      [RivalAI Trigger]
+				[RivalAI Trigger]
+
+				[UseTrigger:true]
+				[Type:PlayerNear]
+				[TargetDistance:500]
+				[StartsReady:true]
+				[MinCooldownMs:5000]
+				[MaxCooldownMs:10000]
+
+				[MaxActions:3]
+				[Actions:GVK-PlanetaryInstallations-Action-Defenses-Medium]
+
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-PlanetaryInstallations-Action-Defenses-Medium</SubtypeId>
+			</Id>
+			<Description>
+
+				[RivalAI Action]
+
+				[Chance:60]
+
+				[SpawnEncounter:true]
+				[Spawner:GVK-PlanetaryInstallations-Spawner-DefenseDrones-Medium]
+
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-PlanetaryInstallations-Spawner-DefenseDrones-Medium</SubtypeId>
+			</Id>
+			<Description>
 	  
-      [Type:Timer]
-	  [MinCooldownMs:5000]
-	  [MaxCooldownMs:5000]
-	  [UseTrigger:true]
-	  [StartsReady:false]
-	  [MaxActions:2]
-	  	  
-	  [Actions:GVK-PlanetaryInstallations-Action-Spawned-Large]
+				[RivalAI Spawn]
+
+				[UseSpawn:true]
+				[SpawningType:CustomSpawn]
+				[StartsReady:true]
+				[ProcessAsAdminSpawn:false]
+				[MaxSpawns:3]
+
+				[SpawnGroups:GVK-CustomSpawn-DefenseDrone-SpawnGroup-GAALSIEN-Defiant]
+				[SpawnGroups:GVK-CustomSpawn-DefenseDrone-SpawnGroup-GAALSIEN-Hawk]
+				[SpawnGroups:GVK-CustomSpawn-DefenseDrone-SpawnGroup-GAALSIEN-Reaper]
+				[SpawnGroups:GVK-CustomSpawn-DefenseDrone-SpawnGroup-GAALSIEN-Revenant]
+				[SpawnGroups:GVK-CustomSpawn-DefenseDrone-SpawnGroup-GAALSIEN-Wasp]
+				[SpawnGroups:GVK-CustomSpawn-DefenseDrone-SpawnGroup-GAALSIEN-Hornet]
+				[SpawnGroups:GVK-CustomSpawn-DefenseDrone-SpawnGroup-GAALSIEN-Slicer]
+				[SpawnGroups:GVK-CustomSpawn-DefenseDrone-SpawnGroup-GAALSIEN-Dragoon]
+				[SpawnGroups:GVK-CustomSpawn-DefenseDrone-SpawnGroup-GAALSIEN-Stryker]
+				[SpawnGroups:GVK-CustomSpawn-DefenseDrone-SpawnGroup-GAALSIEN-StrykerICV]
+				[SpawnGroups:GVK-CustomSpawn-DefenseDrone-SpawnGroup-GAALSIEN-Pollux]
+
+				[MinDistance:500]
+				[MaxDistance:1500]
+				[MinAltitude:50]
+				[MaxAltitude:200]
+				[InheritNpcAltitude:true]
+				[IgnoreSafetyChecks:true]
 	  
-      </Description>      
-    </EntityComponent>
+			</Description>
+		</EntityComponent>
+		<!-- Trigger Sequence for Large Defenses -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-PlanetaryInstallations-Trigger-Defenses-Large</SubtypeId>
+			</Id>
+			<Description>
 
-	<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
-      <Id>
-          <TypeId>Inventory</TypeId>
-          <SubtypeId>GVK-PlanetaryInstallations-Action-Spawned-Large</SubtypeId>
-      </Id>
-      <Description>
+				[RivalAI Trigger]
 
-      [RivalAI Action]
+				[UseTrigger:true]
+				[Type:PlayerNear]
+				[TargetDistance:500]
+				[StartsReady:true]
+				[MinCooldownMs:5000]
+				[MaxCooldownMs:10000]
+
+				[MaxActions:4]
+				[Actions:GVK-PlanetaryInstallations-Action-Defenses-Large]
+
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-PlanetaryInstallations-Action-Defenses-Large</SubtypeId>
+			</Id>
+			<Description>
+
+				[RivalAI Action]
+
+				[Chance:60]
+
+				[SpawnEncounter:true]
+				[Spawner:GVK-PlanetaryInstallations-Spawner-DefenseDrones-Large]
+
+			</Description>
+		</EntityComponent>
+		<!-- <EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-PlanetaryInstallations-Spawner-DefenseBots-Large</SubtypeId>
+			</Id>
+			<Description>
+
+				[RivalAI Spawn]
+
+				[UseSpawn:true]
+				[SpawningType:Creature]
+				[SpawnMinCooldown:1]
+				[SpawnMaxCooldown:2]
+				[MaxSpawns:3]
+
+				[SpawnGroups:GVK-NPC-Derelict-GAALSIEN-DefenseBots]
+				[ProcessAsAdminSpawn:true]
+
+				[MinDistance:50]
+				[MaxDistance:100]
+				[InheritNpcAltitude:false]
+				[IgnoreSafetyChecks:true]
+
+			</Description>
+		</EntityComponent> -->
+		<!-- NOTE: add threat check to some defenses -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-PlanetaryInstallations-Spawner-DefenseDrones-Large</SubtypeId>
+			</Id>
+			<Description>
 	  
-	  [SetSandboxBooleansTrue:LargeWreckActive]
-      [UseChatBroadcast:true]
-      [ChatData:GVK-PlanetaryInstallations-Chat-Spawned-Large]
-	  	  
-      </Description>
-    </EntityComponent>
-	
-	<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
-      <Id>
-          <TypeId>Inventory</TypeId>
-          <SubtypeId>GVK-PlanetaryInstallations-Chat-Spawned-Large</SubtypeId>
-      </Id>
-      <Description>
+				[RivalAI Spawn]
 
-      [RivalAI Chat]
-      
-      [UseChat:true]
-      [StartsReady:true]
-      [Chance:100]
-      [MaxChats:2]
-      [BroadcastRandomly:false]
-      [Author:COALITION]
-      [Color:White]
-	  [GPSLabel:Derelict]
-      
-      [ChatMessages:A Large Derelict has been detected at `{GPS}`]
-      [ChatAudio:ArcHudGPSNotification2]
-      [BroadcastChatType:Chat]
-      [ChatMessages:A Large Derelict has been detected]
-      [BroadcastChatType:Notify]
-	  [SendToAllOnlinePlayers:true]
+				[UseSpawn:true]
+				[SpawningType:CustomSpawn]
+				[StartsReady:true]
+				[ProcessAsAdminSpawn:false]
+				[MaxSpawns:4]
 
-      </Description>      
-    </EntityComponent>
-			
-	<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
-      <Id>
-          <TypeId>Inventory</TypeId>
-          <SubtypeId>GVK-PlanetaryInstallations-Trigger-Despawn</SubtypeId>
-      </Id>
-      <Description>
+				[SpawnGroups:GVK-CustomSpawn-DefenseDrone-SpawnGroup-GAALSIEN-ReaperSquad]
+				[SpawnGroups:GVK-CustomSpawn-DefenseDrone-SpawnGroup-GAALSIEN-HornetSquad]
+				[SpawnGroups:GVK-CustomSpawn-DefenseDrone-SpawnGroup-GAALSIEN-SlicerSquad]
+				[SpawnGroups:GVK-CustomSpawn-DefenseDrone-SpawnGroup-GAALSIEN-DenizenHover]
+				[SpawnGroups:GVK-CustomSpawn-DefenseDrone-SpawnGroup-GAALSIEN-KerrimRailgun]
+				[SpawnGroups:GVK-CustomSpawn-DefenseDrone-SpawnGroup-GAALSIEN-KerrimCannon]
+				[SpawnGroups:GVK-CustomSpawn-DefenseDrone-SpawnGroup-GAALSIEN-KerrimMissile]
+				[SpawnGroups:GVK-CustomSpawn-DefenseDrone-SpawnGroup-GAALSIEN-AssaultShip]
+				[SpawnGroups:GVK-CustomSpawn-DefenseDrone-SpawnGroup-GAALSIEN-Honorguard]
+				[SpawnGroups:GVK-CustomSpawn-DefenseDrone-SpawnGroup-GAALSIEN-ArtilleryCruiser]
+				[SpawnGroups:GVK-CustomSpawn-DefenseDrone-SpawnGroup-GAALSIEN-MissileCruiser]
+				[SpawnGroups:GVK-CustomSpawn-DefenseDrone-SpawnGroup-GAALSIEN-ProductionCruiser]
+				[SpawnGroups:GVK-CustomSpawn-DefenseDrone-SpawnGroup-GAALSIEN-RailgunCruiser]
+				[SpawnGroups:GVK-CustomSpawn-DefenseDrone-SpawnGroup-GAALSIEN-TorpedoCruiser]
 
-      [RivalAI Trigger]
+				[MinDistance:500]
+				[MaxDistance:1000]
+				[MinAltitude:50]
+				[MaxAltitude:200]
+				[InheritNpcAltitude:true]
+				[IgnoreSafetyChecks:true]
 	  
-      [Type:Despawn]
-	  [UseTrigger:true]
-	  [MaxActions:1]
-	  
-	  [Actions:GVK-PlanetaryInstallations-Action-Despawned]
-	  
-      </Description>      
-    </EntityComponent>
-
-	<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
-      <Id>
-          <TypeId>Inventory</TypeId>
-          <SubtypeId>GVK-PlanetaryInstallations-Trigger-DespawnMES</SubtypeId>
-      </Id>
-      <Description>
-
-      [RivalAI Trigger]
-	  
-      [Type:DespawnMES]
-	  [UseTrigger:true]
-	  [MaxActions:1]
-	  
-	  [Actions:GVK-PlanetaryInstallations-Action-Despawned]
-	  
-      </Description>      
-    </EntityComponent>
-
-	<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
-      <Id>
-          <TypeId>Inventory</TypeId>
-          <SubtypeId>GVK-PlanetaryInstallations-Action-Despawned</SubtypeId>
-      </Id>
-      <Description>
-
-      [RivalAI Action]
-	  
-	  [DisableTriggers:false]
-	  [DisableTriggerNames:GVK-PlanetaryInstallations-Trigger-Compromised]
-	  [DisableTriggerNames:GVK-PlanetaryInstallations-Trigger-Despawn]
-	  [DisableTriggerNames:GVK-PlanetaryInstallations-Trigger-DespawnMES]
-	  	  
-      [UseChatBroadcast:true]
-      [ChatData:GVK-PlanetaryInstallations-Chat-Despawned]
-
-      </Description>
-    </EntityComponent>
-
-	<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
-      <Id>
-          <TypeId>Inventory</TypeId>
-          <SubtypeId>GVK-PlanetaryInstallations-Chat-Despawned</SubtypeId>
-      </Id>
-      <Description>
-
-      [RivalAI Chat]
-      
-      [UseChat:true]
-      [StartsReady:true]
-      [Chance:100]
-      [MaxChats:1]
-      [BroadcastRandomly:false]
-      [Author:COALITION]
-      [Color:White]
-      
-      [ChatMessages:A Derelict has disappeared]
-      [ChatAudio:ArcHudGPSNotification2]
-      [BroadcastChatType:Both]
-	  [SendToAllOnlinePlayers:true]
-
-      </Description>      
-    </EntityComponent>
-
-	<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
-      <Id>
-          <TypeId>Inventory</TypeId>
-          <SubtypeId>GVK-PlanetaryInstallations-Trigger-Compromised</SubtypeId>
-      </Id>
-      <Description>
-
-      [RivalAI Trigger]
-	  
-      [Type:Compromised]
-	  [UseTrigger:true]
-	  [MaxActions:1]
-	  
-	  [Actions:GVK-PlanetaryInstallations-Action-Compromised]
-	  
-      </Description>      
-    </EntityComponent>
-
-	<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
-      <Id>
-          <TypeId>Inventory</TypeId>
-          <SubtypeId>GVK-PlanetaryInstallations-Trigger-Compromised-Large</SubtypeId>
-      </Id>
-      <Description>
-
-      [RivalAI Trigger]
-	  
-      [Type:Compromised]
-	  [UseTrigger:true]
-	  [MaxActions:1]
-	  
-	  [Actions:GVK-PlanetaryInstallations-Action-Compromised]
-	  [Actions:GVK-PlanetaryInstallations-Action-LargeWreckActiveSandboxBoolean]
-	  
-      </Description>      
-    </EntityComponent>
-
-	<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
-      <Id>
-          <TypeId>Inventory</TypeId>
-          <SubtypeId>GVK-PlanetaryInstallations-Action-Compromised</SubtypeId>
-      </Id>
-      <Description>
-
-      [RivalAI Action]
-	  	  
-      [UseChatBroadcast:true]
-      [ChatData:GVK-PlanetaryInstallations-Chat-Compromised]
-	  
-	  [RazeBlocksWithNames:true]
-	  [RazeBlocksNames:Small Crash Site]
-	  [RazeBlocksNames:Medium Crash Site]
-	  [RazeBlocksNames:Large Crash Site]
-	  [RazeBlocksNames:Disposable Beacon]
-	  [RazeBlocksNames:Proprietary Beacon]
-	  [RazeBlocksNames:Planet Derelict]
-	  [RazeBlocksNames:Large Abandoned Building]
-	  [RazeBlocksNames:Small Drill Rig]
-	  [RazeBlocksNames:Outpost]
-	  [RazeBlocksNames:Fortress]
-	  [RazeBlocksNames:Hangar]
-	  [ToggleBlocksOfType:true]
-	  [BlockTypesToToggle:MyObjectBuilder_Beacon/ZoneBlock]
-	  [BlockTypeToggles:Off]
-
-      </Description>
-    </EntityComponent>
-
-	<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
-      <Id>
-          <TypeId>Inventory</TypeId>
-          <SubtypeId>GVK-PlanetaryInstallations-Action-LargeWreckActiveSandboxBoolean</SubtypeId>
-      </Id>
-      <Description>
-
-      [RivalAI Action]
-
-	  [SetSandboxBooleansFalse:LargeWreckActive]	  	  
-
-      </Description>
-    </EntityComponent>
-
-	
-
-	<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
-      <Id>
-          <TypeId>Inventory</TypeId>
-          <SubtypeId>GVK-PlanetaryInstallations-Chat-Compromised</SubtypeId>
-      </Id>
-      <Description>
-
-      [RivalAI Chat]
-      
-      [UseChat:true]
-      [StartsReady:true]
-      [Chance:100]
-      [MaxChats:1]
-      [BroadcastRandomly:false]
-      [Author:COALITION]
-      [Color:White]
-      
-      [ChatMessages:A Derelict has been disabled.]
-      [ChatAudio:ArcHudGPSNotification2]
-      [BroadcastChatType:Both]
-	  [SendToAllOnlinePlayers:true]
-
-      </Description>      
-    </EntityComponent>
-
-	<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
-      <Id>
-          <TypeId>Inventory</TypeId>
-          <SubtypeId>GVK-PlanetaryInstallations-Trigger-BeaconDisabled</SubtypeId>
-      </Id>
-      <Description>
-
-      [RivalAI Trigger]
-	  
-      [Type:Timer]
-	  [UseTrigger:true]
-	  [MinCooldownMs:10000]
-	  [MaxCooldownMs:10000]
-	  [StartsReady:false]
-	  
-	  [Conditions:GVK-PlanetaryInstallations-Condition-BeaconDisabled]
-	  	  
-	  [Actions:GVK-PlanetaryInstallations-Action-BeaconDisabled]
-	  
-      </Description>      
-    </EntityComponent>
-	<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
-      <Id>
-          <TypeId>Inventory</TypeId>
-          <SubtypeId>GVK-PlanetaryInstallations-Trigger-BeaconDisabled-Large</SubtypeId>
-      </Id>
-      <Description>
-
-      [RivalAI Trigger]
-	  
-      [Type:Timer]
-	  [UseTrigger:true]
-	  [MinCooldownMs:10000]
-	  [MaxCooldownMs:10000]
-	  [StartsReady:false]
-	  
-	  [Conditions:GVK-PlanetaryInstallations-Condition-BeaconDisabled]
-	  	  
-	  [Actions:GVK-PlanetaryInstallations-Action-BeaconDisabled]
-	  [Actions:GVK-PlanetaryInstallations-Action-LargeWreckActiveSandboxBoolean]
-	  
-      </Description>      
-    </EntityComponent>
-
-    <EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
-      <Id>
-          <TypeId>Inventory</TypeId>
-          <SubtypeId>GVK-PlanetaryInstallations-Condition-BeaconDisabled</SubtypeId>
-      </Id>
-      <Description>
-
-      [RivalAI Condition]
-	  
-      [UseConditions:true]
-      [MatchAnyCondition:false]
-
-	  [UseRequiredFunctionalBlocks:true]
-	  [RequiredNoneFunctionalBlockNames:Proprietary Beacon]
-	  [RequiredNoneFunctionalBlockNames:Small Crash Site]
-	  [RequiredNoneFunctionalBlockNames:Medium Crash Site]
-	  [RequiredNoneFunctionalBlockNames:Large Crash Site]
-	  [RequiredNoneFunctionalBlockNames:Planet Derelict]
-	  [RequiredNoneFunctionalBlockNames:Disposable Beacon]
-	  [RequiredNoneFunctionalBlockNames:Large Abandoned Building]
-	  [RequiredNoneFunctionalBlockNames:Small Drill Rig]
-	  [RequiredNoneFunctionalBlockNames:Outpost]
-            
-      </Description>
-      
-    </EntityComponent>
-
-	<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
-      <Id>
-          <TypeId>Inventory</TypeId>
-          <SubtypeId>GVK-PlanetaryInstallations-Action-BeaconDisabled</SubtypeId>
-      </Id>
-      <Description>
-
-      [RivalAI Action]
-	  
-	  [DisableTriggers:false]
-	  [DisableTriggerNames:GVK-PlanetaryInstallations-Trigger-Compromised]
-	  [DisableTriggerNames:GVK-PlanetaryInstallations-Trigger-Despawn]
-	  [DisableTriggerNames:GVK-PlanetaryInstallations-Trigger-DespawnMES]
-
-      [UseChatBroadcast:true]
-      [ChatData:GVK-PlanetaryInstallations-Chat-Compromised]
-	  
-	  [RazeBlocksWithNames:true]
-	  [RazeBlocksNames:Small Crash Site]
-	  [RazeBlocksNames:Medium Crash Site]
-	  [RazeBlocksNames:Large Crash Site]
-	  [RazeBlocksNames:Disposable Beacon]
-	  [RazeBlocksNames:Proprietary Beacon]
-	  [RazeBlocksNames:Planet Derelict]
-	  [RazeBlocksNames:Large Abandoned Building]
-	  [ToggleBlocksOfType:true]
-	  [BlockTypesToToggle:MyObjectBuilder_Beacon/ZoneBlock]
-	  [BlockTypeToggles:Off]
-	   
-	  [GenerateExplosion:true]
-	  [ExplosionRange:1]
-	  [ExplosionDamage:100]
-	  [ExplosionIgnoresVoxels:true]
-	  
-	  [TerminateBehavior:true]
-	  	  
-      </Description>
-    </EntityComponent>
-
-	<!-- Trigger Sequence for Small Defenses currently unused -->
-	
-	<!-- Trigger Sequence for Medium Defenses -->
-	
-    <EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
-      <Id>
-        <TypeId>Inventory</TypeId>
-        <SubtypeId>GVK-PlanetaryInstallations-Trigger-Defenses-Medium</SubtypeId>
-      </Id>
-      <Description>
-
-        [RivalAI Trigger]
-
-		[UseTrigger:true]
-		[Type:PlayerNear]
-		[TargetDistance:500]
-		[StartsReady:true]
-		[MinCooldownMs:5000]
-		[MaxCooldownMs:10000]
-
-        [MaxActions:3]
-        [Actions:GVK-PlanetaryInstallations-Action-Defenses-Medium]
-
-      </Description>
-    </EntityComponent>
-
-    <EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
-      <Id>
-        <TypeId>Inventory</TypeId>
-        <SubtypeId>GVK-PlanetaryInstallations-Action-Defenses-Medium</SubtypeId>
-      </Id>
-      <Description>
-
-        [RivalAI Action]
-		
-		[Chance:60]
-
-        [SpawnEncounter:true]
-        [Spawner:GVK-PlanetaryInstallations-Spawner-DefenseDrones-Medium]
-
-      </Description>
-    </EntityComponent>
-	
-	<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
-      <Id>
-          <TypeId>Inventory</TypeId>
-          <SubtypeId>GVK-PlanetaryInstallations-Spawner-DefenseDrones-Medium</SubtypeId>
-      </Id>
-      <Description>
-	  
-      [RivalAI Spawn]
-	  
-      [UseSpawn:true]
-	  [SpawningType:CustomSpawn]
-      [StartsReady:true]
-	  [ProcessAsAdminSpawn:false]
-      [MaxSpawns:3]
-	  
-	  [SpawnGroups:GVK-CustomSpawn-DefenseDrone-SpawnGroup-GAALSIEN-Defiant]
-	  [SpawnGroups:GVK-CustomSpawn-DefenseDrone-SpawnGroup-GAALSIEN-Hawk]
-	  [SpawnGroups:GVK-CustomSpawn-DefenseDrone-SpawnGroup-GAALSIEN-Reaper]
-	  [SpawnGroups:GVK-CustomSpawn-DefenseDrone-SpawnGroup-GAALSIEN-Revenant]
-	  [SpawnGroups:GVK-CustomSpawn-DefenseDrone-SpawnGroup-GAALSIEN-Wasp]
-	  [SpawnGroups:GVK-CustomSpawn-DefenseDrone-SpawnGroup-GAALSIEN-Hornet]
-	  [SpawnGroups:GVK-CustomSpawn-DefenseDrone-SpawnGroup-GAALSIEN-Slicer]
-	  [SpawnGroups:GVK-CustomSpawn-DefenseDrone-SpawnGroup-GAALSIEN-Dragoon]
-	  [SpawnGroups:GVK-CustomSpawn-DefenseDrone-SpawnGroup-GAALSIEN-Stryker]
-	  [SpawnGroups:GVK-CustomSpawn-DefenseDrone-SpawnGroup-GAALSIEN-StrykerICV]
-	  [SpawnGroups:GVK-CustomSpawn-DefenseDrone-SpawnGroup-GAALSIEN-Pollux]
-
-      [MinDistance:500]
-      [MaxDistance:1500]
-	  [MinAltitude:50]
-	  [MaxAltitude:200]
-	  [InheritNpcAltitude:true]
-      [IgnoreSafetyChecks:true]
-	  
-      </Description>
-    </EntityComponent>
-
-	<!-- Trigger Sequence for Large Defenses -->
-	
-    <EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
-      <Id>
-        <TypeId>Inventory</TypeId>
-        <SubtypeId>GVK-PlanetaryInstallations-Trigger-Defenses-Large</SubtypeId>
-      </Id>
-      <Description>
-
-        [RivalAI Trigger]
-
-		[UseTrigger:true]
-		[Type:PlayerNear]
-		[TargetDistance:500]
-		[StartsReady:true]
-		[MinCooldownMs:5000]
-		[MaxCooldownMs:10000]
-
-        [MaxActions:4]
-        [Actions:GVK-PlanetaryInstallations-Action-Defenses-Large]
-
-      </Description>
-    </EntityComponent>
-
-    <EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
-      <Id>
-        <TypeId>Inventory</TypeId>
-        <SubtypeId>GVK-PlanetaryInstallations-Action-Defenses-Large</SubtypeId>
-      </Id>
-      <Description>
-
-        [RivalAI Action]
-		
-		[Chance:60]
-
-        [SpawnEncounter:true]
-        [Spawner:GVK-PlanetaryInstallations-Spawner-DefenseDrones-Large]
-
-      </Description>
-    </EntityComponent>
-
-    <!-- <EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
-      <Id>
-        <TypeId>Inventory</TypeId>
-        <SubtypeId>GVK-PlanetaryInstallations-Spawner-DefenseBots-Large</SubtypeId>
-      </Id>
-      <Description>
-
-        [RivalAI Spawn]
-
-        [UseSpawn:true]
-        [SpawningType:Creature]
-        [SpawnMinCooldown:1]
-        [SpawnMaxCooldown:2]
-        [MaxSpawns:3]
-
-        [SpawnGroups:GVK-NPC-Derelict-GAALSIEN-DefenseBots]
-        [ProcessAsAdminSpawn:true]
-
-        [MinDistance:50]
-        [MaxDistance:100]
-	    [InheritNpcAltitude:false]
-        [IgnoreSafetyChecks:true]
-
-      </Description>
-    </EntityComponent> -->
-		
-	<!-- NOTE: add threat check to some defenses -->
-
-	<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
-      <Id>
-          <TypeId>Inventory</TypeId>
-          <SubtypeId>GVK-PlanetaryInstallations-Spawner-DefenseDrones-Large</SubtypeId>
-      </Id>
-      <Description>
-	  
-      [RivalAI Spawn]
-	  
-      [UseSpawn:true]
-	  [SpawningType:CustomSpawn]
-      [StartsReady:true]
-	  [ProcessAsAdminSpawn:false]
-      [MaxSpawns:4]
-	  
-	  [SpawnGroups:GVK-CustomSpawn-DefenseDrone-SpawnGroup-GAALSIEN-ReaperSquad]
-	  [SpawnGroups:GVK-CustomSpawn-DefenseDrone-SpawnGroup-GAALSIEN-HornetSquad]
-	  [SpawnGroups:GVK-CustomSpawn-DefenseDrone-SpawnGroup-GAALSIEN-SlicerSquad]
-	  [SpawnGroups:GVK-CustomSpawn-DefenseDrone-SpawnGroup-GAALSIEN-DenizenHover]
-	  [SpawnGroups:GVK-CustomSpawn-DefenseDrone-SpawnGroup-GAALSIEN-KerrimRailgun]
-	  [SpawnGroups:GVK-CustomSpawn-DefenseDrone-SpawnGroup-GAALSIEN-KerrimCannon]
-	  [SpawnGroups:GVK-CustomSpawn-DefenseDrone-SpawnGroup-GAALSIEN-KerrimMissile]
-	  [SpawnGroups:GVK-CustomSpawn-DefenseDrone-SpawnGroup-GAALSIEN-AssaultShip]
-	  [SpawnGroups:GVK-CustomSpawn-DefenseDrone-SpawnGroup-GAALSIEN-Honorguard]
-	  [SpawnGroups:GVK-CustomSpawn-DefenseDrone-SpawnGroup-GAALSIEN-ArtilleryCruiser]
-	  [SpawnGroups:GVK-CustomSpawn-DefenseDrone-SpawnGroup-GAALSIEN-MissileCruiser]
-	  [SpawnGroups:GVK-CustomSpawn-DefenseDrone-SpawnGroup-GAALSIEN-ProductionCruiser]
-	  [SpawnGroups:GVK-CustomSpawn-DefenseDrone-SpawnGroup-GAALSIEN-RailgunCruiser]
-	  [SpawnGroups:GVK-CustomSpawn-DefenseDrone-SpawnGroup-GAALSIEN-TorpedoCruiser]
-
-      [MinDistance:500]
-      [MaxDistance:1000]
-	  [MinAltitude:50]
-	  [MaxAltitude:200]
-	  [InheritNpcAltitude:true]
-      [IgnoreSafetyChecks:true]
-	  
-      </Description>
-    </EntityComponent>
-			
-  </EntityComponents>
+			</Description>
+		</EntityComponent>
+	</EntityComponents>
 </Definitions>

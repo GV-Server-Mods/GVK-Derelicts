@@ -16,11 +16,16 @@
 				[UsePlayerDistanceTimer:false]
 				[UseRetreatTimer:false]
 				[UseNoTargetTimer:false]
-				[TargetData:GVK-Generic-TargetProfile-EnemyGrids-LongRange]
 				[Triggers:GVK-PlanetaryInstallations-GaalsienFortress-Trigger-OnSpawn]
+				[Triggers:GVK-PlanetaryInstallations-Trigger-Defenses-Large]
 				[Triggers:DefenseDrone-Trigger-FireArchersTimers]
 				[Triggers:GVK-Generic-Trigger-SPRTTargetAcquiredChatter]
 				[Triggers:GVK-PlanetaryInstallations-GaalsienFortress-Trigger-Compromised]
+				[Triggers:GVK-PlanetaryInstallations-GaalsienFortress-Trigger-BeaconDisabled]
+				[Triggers:GVK-PlanetaryInstallations-GaalsienFortress-Trigger-Despawn]
+				[Triggers:GVK-PlanetaryInstallations-GaalsienFortress-Trigger-DespawnMES]
+				[TargetData:GVK-Generic-TargetProfile-EnemyGrids-LongRange]
+				[RemoteControlCode:GVK-LargeDerelict]
 			</Description>
 		</EntityComponent>
 		<!-- Trigger sequence when Carrier Spawns -->
@@ -47,6 +52,7 @@
 			<Description>
 				[RivalAI Action]
 				[Chance:100]
+				[SetSandboxBooleansTrue:LargeWreckActive]
 				[SetWeaponsToMaxRange:true]
 				[UseChatBroadcast:true]
 				[ChatData:GVK-PlanetaryInstallations-GaalsienFortress-Chat-Announce]
@@ -81,7 +87,29 @@
 
 		  </Description>      
 		</EntityComponent>
-		<!-- Trigger sequence for Carrier to die -->
+		<!-- Trigger sequences for Fortress to die -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-PlanetaryInstallations-GaalsienFortress-Trigger-BeaconDisabled</SubtypeId>
+			</Id>
+			<Description>
+
+				[RivalAI Trigger]
+
+				[Type:Timer]
+				[UseTrigger:true]
+				[MinCooldownMs:10000]
+				[MaxCooldownMs:10000]
+				[StartsReady:false]
+
+				[Conditions:GVK-PlanetaryInstallations-Condition-BeaconDisabled]
+				  
+				[Actions:GVK-PlanetaryInstallations-GaalsienFortress-Action-Compromised]
+				[Actions:GVK-PlanetaryInstallations-Action-LargeWreckActiveSandboxBoolean]
+
+			</Description>      
+		</EntityComponent>
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
@@ -94,6 +122,7 @@
 				[StartsReady:true]
 				[MaxActions:1]
 				[Actions:GVK-PlanetaryInstallations-GaalsienFortress-Action-Compromised]
+			    [Actions:GVK-PlanetaryInstallations-Action-LargeWreckActiveSandboxBoolean]
 			</Description>
 		</EntityComponent>
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
@@ -108,6 +137,7 @@
 				[StartsReady:true]
 				[MaxActions:1]
 				[Actions:GVK-PlanetaryInstallations-GaalsienFortress-Action-Compromised]
+			    [Actions:GVK-PlanetaryInstallations-Action-LargeWreckActiveSandboxBoolean]
 			</Description>
 		</EntityComponent>
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
@@ -122,10 +152,7 @@
 				[StartsReady:true]
 				[MaxActions:1]
 				[Actions:GVK-PlanetaryInstallations-GaalsienFortress-Action-Compromised]
-				[Actions:GVK-PlanetaryInstallations-GaalsienFortress-Action-SelfDestruct1]
-				[Actions:GVK-PlanetaryInstallations-GaalsienFortress-Action-SelfDestruct2]
-				[Actions:GVK-PlanetaryInstallations-GaalsienFortress-Action-SelfDestruct3]
-				[Actions:GVK-PlanetaryInstallations-GaalsienFortress-Action-SelfDestruct4]
+			    [Actions:GVK-PlanetaryInstallations-Action-LargeWreckActiveSandboxBoolean]
 			</Description>
 		</EntityComponent>
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
@@ -137,7 +164,24 @@
 				[RivalAI Action]
 				[UseChatBroadcast:true]
 				[ChatData:GVK-PlanetaryInstallations-GaalsienFortress-Chat-Compromised]
+				[RazeBlocksWithNames:true]
+				[RazeBlocksNames:Remote Control]
+				[RazeBlocksNames:NPC Remote Control]
+				[RazeBlocksNames:Small Crash Site]
+				[RazeBlocksNames:Medium Crash Site]
+				[RazeBlocksNames:Large Crash Site]
+				[RazeBlocksNames:Disposable Beacon]
+				[RazeBlocksNames:Proprietary Beacon]
+				[RazeBlocksNames:Planet Derelict]
+				[RazeBlocksNames:Large Abandoned Building]
+				[RazeBlocksNames:Small Drill Rig]
+				[RazeBlocksNames:Outpost]
+				[RazeBlocksNames:Fortress]
+				[RazeBlocksNames:Hangar]
 				[GenerateExplosion:true]
+				[ToggleBlocksOfType:true]
+				[BlockTypesToToggle:MyObjectBuilder_Beacon/ZoneBlock]
+				[BlockTypeToggles:Off]
 				[ExplosionOffsetFromRemote:{X:0 Y:60 Z:0}]
 				[ExplosionRange:100]
 				[ExplosionDamage:50000]
@@ -147,62 +191,7 @@
 				[EnableBlockStates:Off]
 				[TriggerTimerBlocks:True]
 				[TimerBlockNames:Timer Block Warheads]
-			</Description>
-		</EntityComponent>
-		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
-			<Id>
-				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-PlanetaryInstallations-GaalsienFortress-Action-SelfDestruct1</SubtypeId>
-			</Id>
-			<Description>
-				[RivalAI Action]
-				[GenerateExplosion:true]
-				[ExplosionOffsetFromRemote:{X:50 Y:60 Z:50}]
-				[ExplosionRange:50]
-				[ExplosionDamage:50000]
-				[ExplosionIgnoresVoxels:true]
-			</Description>
-		</EntityComponent>
-		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
-			<Id>
-				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-PlanetaryInstallations-GaalsienFortress-Action-SelfDestruct2</SubtypeId>
-			</Id>
-			<Description>
-				[RivalAI Action]
-				[GenerateExplosion:true]
-				[ExplosionOffsetFromRemote:{X:-50 Y:60 Z:-50}]
-				[ExplosionRange:50]
-				[ExplosionDamage:50000]
-				[ExplosionIgnoresVoxels:true]
-			</Description>
-		</EntityComponent>
-		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
-			<Id>
-				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-PlanetaryInstallations-GaalsienFortress-Action-SelfDestruct3</SubtypeId>
-			</Id>
-			<Description>
-				[RivalAI Action]
-				[GenerateExplosion:true]
-				[ExplosionOffsetFromRemote:{X:50 Y:60 Z:-50}]
-				[ExplosionRange:50]
-				[ExplosionDamage:50000]
-				[ExplosionIgnoresVoxels:true]
-			</Description>
-		</EntityComponent>
-		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
-			<Id>
-				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-PlanetaryInstallations-GaalsienFortress-Action-SelfDestruct4</SubtypeId>
-			</Id>
-			<Description>
-				[RivalAI Action]
-				[GenerateExplosion:true]
-				[ExplosionOffsetFromRemote:{X:-50 Y:60 Z:50}]
-				[ExplosionRange:50]
-				[ExplosionDamage:50000]
-				[ExplosionIgnoresVoxels:true]
+				[TerminateBehavior:true]
 			</Description>
 		</EntityComponent>
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
