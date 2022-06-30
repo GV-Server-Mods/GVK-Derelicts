@@ -1,0 +1,72 @@
+<?xml version="1.0"?>
+<Definitions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+	<EntityComponents>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-SpawnConditions-Mothership-H2Hover</SubtypeId>
+			</Id>
+			<Description>
+				[MES Spawn Conditions]
+				[AdminSpawnOnly:true]
+				[RivalAiAnySpawn:true]
+				[PlanetaryInstallation:true]
+				[SkipAirDensityCheck:true]
+				[FactionOwner:GAALSIEN]
+				[ReactorsOn:true]
+				[ForceStaticGrid:false]
+				[SandboxVariables:CarrierEnabled]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-SpawnConditions-Mothership-Admin</SubtypeId>
+			</Id>
+			<Description>
+				[MES Spawn Conditions]
+				[RivalAiAnySpawn:false]
+				[AdminSpawnOnly:true]
+				[DroneEncounter:true]
+				[PlanetaryInstallation:true]
+				[BossEncounterAtmo:false]
+				[BossEncounterAtmo:false]
+				[BossEncounterAny:false]
+				[BossCustomAnnounceEnable:true]
+				[BossCustomAnnounceAuthor:Coalition]
+				[BossCustomAnnounceMessage:Gaalsien convoy has been spotted]
+				[BossCustomGPSLabel:Convoy last known location]
+				[MinimumPlayerTime:0]
+				[MaximumPlayerTime:60]
+				[MinDroneDistance:1000]
+				[MaxDroneDistance:5000]
+				[MinDroneAltitude:25]
+				[MaxDroneAltitude:50]
+				[SkipAirDensityCheck:true]
+				[FactionOwner:GAALSIEN]
+				[ReactorsOn:true]
+				[ForceStaticGrid:false]
+				[MinGravity:0.5]
+				[MaxGravity:1.5]
+				[MinSpawnFromPlanetSurface:-1]
+				[MaxSpawnFromPlanetSurface:2000]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-SpawnConditions-EscortDrones-H2Hover</SubtypeId>
+			</Id>
+			<Description>
+				[MES Spawn Conditions]
+				[RivalAiAtmosphericSpawn:true]
+				[FactionOwner:GAALSIEN]
+				[ReactorsOn:true]
+				[ForceStaticGrid:false]
+				[MinGravity:0.5]
+				[MaxGravity:1.5]
+				[SkipAirDensityCheck:true]
+			</Description>
+		</EntityComponent>
+	</EntityComponents>
+</Definitions>

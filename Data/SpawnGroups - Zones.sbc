@@ -1,11 +1,11 @@
 <?xml version="1.0"?>
 <Definitions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
 	<EntityComponents>
-		<!-- Zone for Convoy Spawns -->
+		<!-- Zone for Convoy Spawns (need to fix)-->
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Convoy-GAALSIEN-Zone</SubtypeId>
+				<SubtypeId>GVK-Convoy-GAALSIEN-ZoneNew</SubtypeId>
 			</Id>
 			<Description>
 				[MES Zone]
@@ -17,17 +17,17 @@
 				[Radius:15000]
 				[UseAllowedSpawnGroups:true]
 				[AllowedSpawnGroups:GVK-Mothership-GAALSIEN-Convoy1]
-				[AllowedSpawnGroups:GVK-NPC-StaticEncounter-ConvoyOutpost]
+				[AllowedSpawnGroups:GVK-StaticEncounter-SpawnGroup-ConvoyOutpost]
 				[UseZoneAnnounce:true]
 				[ZoneEnterAnnounce:Entering Convoy Zone]
 				[ZoneLeaveAnnounce:Leaving Convoy Zone]
 			</Description>
 		</EntityComponent>
-		<!-- Large Wreck Zone -->
+		<!-- Large Wreck Zone, 52km from Z0 -->
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-WreckZone3-GAALSIEN-Zone</SubtypeId>
+				<SubtypeId>GVK-WreckZone3-GAALSIEN-ZoneNew</SubtypeId>
 			</Id>
 			<Description>
 				[MES Zone]
@@ -35,19 +35,19 @@
 				[Active:true]
 				[Persistent:true]
 				[Strict:false]
-				[Coordinates:{X:64287 Y:62051 Z:99792}]
-				[NoSpawnZone:true]
-				[Radius:25810]
+				[Coordinates:{X:3524.27 Y:37455.28 Z:28406.15}]
+				[NoSpawnZone:false]
+				[Radius:30000]
 				[UseZoneAnnounce:true]
 				[ZoneEnterAnnounce:Entering Zone 3]
-				[ZoneLeaveAnnounce:Entering Zone 2]
+				[ZoneLeaveAnnounce:Leaving Zone 3]
 			</Description>
 		</EntityComponent>
-		<!-- Medium Wrecks Zone -->
+		<!-- Medium Wrecks Zone, 35km to 56km from Z0 -->
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-WreckZone2-GAALSIEN-Zone</SubtypeId>
+				<SubtypeId>GVK-WreckZone2-GAALSIEN-ZoneNew</SubtypeId>
 			</Id>
 			<Description>
 				[MES Zone]
@@ -55,18 +55,18 @@
 				[Active:true]
 				[Persistent:true]
 				[Strict:false]
-				[Coordinates:{X:64287 Y:62051 Z:99792}]
-				[Radius:47390]
+				[Coordinates:{X:3524.27 Y:37455.28 Z:28406.15}]
+				[Radius:48980]
 				[UseZoneAnnounce:true]
 				[ZoneEnterAnnounce:Entering Zone 2]
-				[ZoneLeaveAnnounce:Entering Zone 1]
+				[ZoneLeaveAnnounce:Leaving Zone 2]
 			</Description>
 		</EntityComponent>
-		<!-- Small Wrecks Zone -->
+		<!-- Small Wrecks Zone, 20km from Z0-->
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-WreckZone1-GAALSIEN-Zone</SubtypeId>
+				<SubtypeId>GVK-WreckZone1-GAALSIEN-ZoneNew</SubtypeId>
 			</Id>
 			<Description>
 				[MES Zone]
@@ -74,16 +74,18 @@
 				[Active:true]
 				[Persistent:true]
 				[Strict:false]
-				[Coordinates:{X:64287 Y:62051 Z:99792}]
-				[Radius:63030]
-				[UseZoneAnnounce:false]
+				[Coordinates:{X:3524.27 Y:37455.28 Z:28406.15}]
+				[Radius:56530]
+				[UseZoneAnnounce:true]
+				[ZoneEnterAnnounce:Entering Zone 1]
+				[ZoneLeaveAnnounce:Leaving Zone 1]
 			</Description>
 		</EntityComponent>
 		<!-- West Oasis Zone -->
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-WreckZone0-GAALSIEN-Zone</SubtypeId>
+				<SubtypeId>GVK-WreckZone0-GAALSIEN-ZoneNew</SubtypeId>
 			</Id>
 			<Description>
 				[MES Zone]
@@ -106,11 +108,11 @@
 				[RestrictedSpawnGroups:GVK-Drone-GAALSIEN-KerrimRailgun]
 				[RestrictedSpawnGroups:GVK-Drone-GAALSIEN-KerrimCannon]
 				[RestrictedSpawnGroups:GVK-Drone-GAALSIEN-KerrimMissile]
-				[Coordinates:{X:60420.83 Y:63825.71 Z:31504.06}]
-				[Radius:30000]
+				[Coordinates:{X:62495.55 Y:28019.04 Z:37195.71}]
+				[Radius:20000]
 				[UseZoneAnnounce:true]
 				[ZoneEnterAnnounce:Entering Zone 0]
-				[ZoneLeaveAnnounce:Entering Zone 1]
+				[ZoneLeaveAnnounce:Leaving Zone 0]
 			</Description>
 		</EntityComponent>
 	</EntityComponents>
