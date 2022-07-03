@@ -400,6 +400,9 @@
 			[Triggers:GVK-Generic-Trigger-SPRTTargetAcquiredChatter]
 			[Triggers:DefenseDrone-Trigger-Compromised]
 			[Triggers:GVK-Generic-Trigger-SPRTNoWeapon]
+			[Triggers:DefenseDrone-Trigger-JetpackInhibitorOnSpawn]
+			[Triggers:DefenseDrone-Trigger-JetpackInhibitorOnRestart]
+			[Triggers:DefenseDrone-Trigger-Crashed]
 
 			</Description>
 		</EntityComponent>
@@ -487,6 +490,51 @@
 			[AngleAllowedForForwardThrust:180]
 			[MaxVelocityAngleForSpeedControl:180]
 
+			</Description>
+		</EntityComponent>
+		<!-- Trigger when upon spawn -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>DefenseDrone-Trigger-JetpackInhibitorOnSpawn</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Trigger]
+				[Type:Timer]
+				[UseTrigger:true]
+				[StartsReady:false]
+				[MaxActions:1]
+				[MinCooldownMs:1000]
+				[MaxCooldownMs:1000]
+				[Actions:DefenseDrone-Action-OnSpawn]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>DefenseDrone-Trigger-JetpackInhibitorOnRestart</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Trigger]
+				[Type:Session]
+				[UseTrigger:true]
+				[StartsReady:false]
+				[MaxActions:-1]
+				[MinCooldownMs:10000]
+				[MaxCooldownMs:10000]
+				[Actions:DefenseDrone-Action-OnSpawn]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>DefenseDrone-Action-JetpackInhibitor</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Action]
+				[Chance:100]
+				[SetWeaponsToMaxRange:true]
+				[UseJetpackInhibitorEffect:true]
 			</Description>
 		</EntityComponent>
 		<!-- Action group to set turrets to max range because of a bug in MES right now -->
