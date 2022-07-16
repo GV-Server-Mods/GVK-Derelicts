@@ -21,8 +21,8 @@
 				[Triggers:GVK-PlanetaryInstallations-Trigger-Spawned-Small]
 				[Triggers:GVK-PlanetaryInstallations-Trigger-Despawn]
 				[Triggers:GVK-PlanetaryInstallations-Trigger-DespawnMES]
-				[Triggers:GVK-PlanetaryInstallations-Trigger-Compromised]
-				[Triggers:GVK-PlanetaryInstallations-Trigger-BeaconDisabled]
+				[Triggers:GVK-PlanetaryInstallations-Trigger-Compromised-Small]
+				[Triggers:GVK-PlanetaryInstallations-Trigger-BeaconDisabled-Small]
 
 				[TargetData:GVK-Generic-TargetProfile-EnemyPlayers]
 
@@ -50,8 +50,8 @@
 				[Triggers:GVK-PlanetaryInstallations-Trigger-Spawned-Medium]
 				[Triggers:GVK-PlanetaryInstallations-Trigger-Despawn]
 				[Triggers:GVK-PlanetaryInstallations-Trigger-DespawnMES]
-				[Triggers:GVK-PlanetaryInstallations-Trigger-Compromised]
-				[Triggers:GVK-PlanetaryInstallations-Trigger-BeaconDisabled]
+				[Triggers:GVK-PlanetaryInstallations-Trigger-Compromised-Medium]
+				[Triggers:GVK-PlanetaryInstallations-Trigger-BeaconDisabled-Medium]
 				[Triggers:GVK-PlanetaryInstallations-Trigger-Defenses-Medium]
 
 				[TargetData:GVK-Generic-TargetProfile-EnemyPlayers]
@@ -323,7 +323,8 @@
 				[RivalAI Action]
 
 				[DisableTriggers:false]
-				[DisableTriggerNames:GVK-PlanetaryInstallations-Trigger-Compromised]
+				[DisableTriggerNames:GVK-PlanetaryInstallations-Trigger-Compromised-Small]
+				[DisableTriggerNames:GVK-PlanetaryInstallations-Trigger-Compromised-Medium]
 				[DisableTriggerNames:GVK-PlanetaryInstallations-Trigger-Despawn]
 				[DisableTriggerNames:GVK-PlanetaryInstallations-Trigger-DespawnMES]
 				  
@@ -359,7 +360,7 @@
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-PlanetaryInstallations-Trigger-Compromised</SubtypeId>
+				<SubtypeId>GVK-PlanetaryInstallations-Trigger-Compromised-Small</SubtypeId>
 			</Id>
 			<Description>
 
@@ -369,7 +370,26 @@
 				[UseTrigger:true]
 				[MaxActions:1]
 
-				[Actions:GVK-PlanetaryInstallations-Action-Compromised]
+				[Actions:GVK-PlanetaryInstallations-Action-Compromised-All]
+				[Actions:GVK-PlanetaryInstallations-Action-Compromised-Small]
+	  
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-PlanetaryInstallations-Trigger-Compromised-Medium</SubtypeId>
+			</Id>
+			<Description>
+
+				[RivalAI Trigger]
+
+				[Type:Compromised]
+				[UseTrigger:true]
+				[MaxActions:1]
+
+				[Actions:GVK-PlanetaryInstallations-Action-Compromised-All]
+				[Actions:GVK-PlanetaryInstallations-Action-Compromised-Medium]
 	  
 			</Description>
 		</EntityComponent>
@@ -386,7 +406,8 @@
 				[UseTrigger:true]
 				[MaxActions:1]
 
-				[Actions:GVK-PlanetaryInstallations-Action-Compromised]
+				[Actions:GVK-PlanetaryInstallations-Action-Compromised-All]
+				[Actions:GVK-PlanetaryInstallations-Action-Compromised-Large]
 				[Actions:GVK-PlanetaryInstallations-Action-LargeWreckActiveSandboxBoolean]
 	  
 			</Description>
@@ -394,15 +415,12 @@
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-PlanetaryInstallations-Action-Compromised</SubtypeId>
+				<SubtypeId>GVK-PlanetaryInstallations-Action-Compromised-All</SubtypeId>
 			</Id>
 			<Description>
 
 				[RivalAI Action]
 				  
-				[UseChatBroadcast:true]
-				[ChatData:GVK-PlanetaryInstallations-Chat-Compromised]
-
 				[RazeBlocksWithNames:true]
 				[RazeBlocksNames:Remote Control]
 				[RazeBlocksNames:AI Control Module]
@@ -428,20 +446,51 @@
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-PlanetaryInstallations-Action-LargeWreckActiveSandboxBoolean</SubtypeId>
+				<SubtypeId>GVK-PlanetaryInstallations-Action-Compromised-Small</SubtypeId>
 			</Id>
 			<Description>
 
 				[RivalAI Action]
-
-				[SetSandboxBooleansFalse:LargeWreckActive]	  	  
+				  
+				[UseChatBroadcast:true]
+				[ChatData:GVK-PlanetaryInstallations-Chat-Compromised-Small]
 
 			</Description>
 		</EntityComponent>
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-PlanetaryInstallations-Chat-Compromised</SubtypeId>
+				<SubtypeId>GVK-PlanetaryInstallations-Action-Compromised-Medium</SubtypeId>
+			</Id>
+			<Description>
+
+				[RivalAI Action]
+				  
+				[UseChatBroadcast:true]
+				[ChatData:GVK-PlanetaryInstallations-Chat-Compromised-Medium]
+
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-PlanetaryInstallations-Action-Compromised-Large</SubtypeId>
+			</Id>
+			<Description>
+
+				[RivalAI Action]
+				 
+				[SetSandboxBooleansFalse:LargeWreckActive]	  	  
+
+				[UseChatBroadcast:true]
+				[ChatData:GVK-PlanetaryInstallations-Chat-Compromised-Large]
+
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-PlanetaryInstallations-Chat-Compromised-Small</SubtypeId>
 			</Id>
 			<Description>
 
@@ -455,7 +504,7 @@
 				[Author:COALITION]
 				[Color:White]
 
-				[ChatMessages:A Derelict has been disabled.]
+				[ChatMessages:A Small Derelict has been disabled.]
 				[ChatAudio:ArcHudGPSNotification2]
 				[BroadcastChatType:Both]
 				[SendToAllOnlinePlayers:true]
@@ -465,7 +514,55 @@
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-PlanetaryInstallations-Trigger-BeaconDisabled</SubtypeId>
+				<SubtypeId>GVK-PlanetaryInstallations-Chat-Compromised-Medium</SubtypeId>
+			</Id>
+			<Description>
+
+				[RivalAI Chat]
+
+				[UseChat:true]
+				[StartsReady:true]
+				[Chance:100]
+				[MaxChats:1]
+				[BroadcastRandomly:false]
+				[Author:COALITION]
+				[Color:White]
+
+				[ChatMessages:A Medium Derelict has been disabled.]
+				[ChatAudio:ArcHudGPSNotification2]
+				[BroadcastChatType:Both]
+				[SendToAllOnlinePlayers:true]
+
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-PlanetaryInstallations-Chat-Compromised-Large</SubtypeId>
+			</Id>
+			<Description>
+
+				[RivalAI Chat]
+
+				[UseChat:true]
+				[StartsReady:true]
+				[Chance:100]
+				[MaxChats:1]
+				[BroadcastRandomly:false]
+				[Author:COALITION]
+				[Color:White]
+
+				[ChatMessages:A Large Derelict has been disabled.]
+				[ChatAudio:ArcHudGPSNotification2]
+				[BroadcastChatType:Both]
+				[SendToAllOnlinePlayers:true]
+
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-PlanetaryInstallations-Trigger-BeaconDisabled-Small</SubtypeId>
 			</Id>
 			<Description>
 
@@ -479,7 +576,30 @@
 
 				[Conditions:GVK-PlanetaryInstallations-Condition-BeaconDisabled]
 				  
-				[Actions:GVK-PlanetaryInstallations-Action-Compromised]
+				[Actions:GVK-PlanetaryInstallations-Action-Compromised-All]
+				[Actions:GVK-PlanetaryInstallations-Action-Compromised-Small]
+	  
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-PlanetaryInstallations-Trigger-BeaconDisabled-Medium</SubtypeId>
+			</Id>
+			<Description>
+
+				[RivalAI Trigger]
+
+				[Type:Timer]
+				[UseTrigger:true]
+				[MinCooldownMs:10000]
+				[MaxCooldownMs:10000]
+				[StartsReady:false]
+
+				[Conditions:GVK-PlanetaryInstallations-Condition-BeaconDisabled]
+				  
+				[Actions:GVK-PlanetaryInstallations-Action-Compromised-All]
+				[Actions:GVK-PlanetaryInstallations-Action-Compromised-Medium]
 	  
 			</Description>
 		</EntityComponent>
@@ -500,8 +620,8 @@
 
 				[Conditions:GVK-PlanetaryInstallations-Condition-BeaconDisabled]
 				  
-				[Actions:GVK-PlanetaryInstallations-Action-Compromised]
-				[Actions:GVK-PlanetaryInstallations-Action-LargeWreckActiveSandboxBoolean]
+				[Actions:GVK-PlanetaryInstallations-Action-Compromised-All]
+				[Actions:GVK-PlanetaryInstallations-Action-Compromised-Large]
 	  
 			</Description>
 		</EntityComponent>

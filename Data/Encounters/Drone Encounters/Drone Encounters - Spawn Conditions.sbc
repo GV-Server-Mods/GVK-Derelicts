@@ -1,6 +1,7 @@
 <?xml version="1.0"?>
 <Definitions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
 	<EntityComponents>
+		<!-- This spawns 1 medium flyer in Z2 and Z3 -->
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
@@ -10,9 +11,9 @@
 				[MES Spawn Conditions]
 				[DroneEncounter:true]
 				[FailedDroneSpawnResetsPlayerTime:false]
-				[MinDroneDistance:3000]
-				[MaxDroneDistance:4000]
-				[MinDroneAltitude:0]
+				[MinDroneDistance:3500]
+				[MaxDroneDistance:5000]
+				[MinDroneAltitude:50]
 				[MaxDroneAltitude:500]
 				[FactionOwner:GAALSIEN]
 				[ReactorsOn:true]
@@ -24,8 +25,10 @@
 				[PCUCheckRadius:6000]
 				[PCUMinimum:30000]
 				[PCUMaximum:99999999]
+ 				[PrefabSpawningMode:Random]
 			</Description>
 		</EntityComponent>
+		<!-- This spawns 1 small flyer ONLY in Z2 -->
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
@@ -35,9 +38,9 @@
 				[MES Spawn Conditions]
 				[DroneEncounter:true]
 				[FailedDroneSpawnResetsPlayerTime:false]
-				[MinDroneDistance:3000]
-				[MaxDroneDistance:4000]
-				[MinDroneAltitude:0]
+				[MinDroneDistance:3500]
+				[MaxDroneDistance:5000]
+				[MinDroneAltitude:50]
 				[MaxDroneAltitude:500]
 				[FactionOwner:GAALSIEN]
 				[ReactorsOn:true]
@@ -49,8 +52,59 @@
 				[PCUCheckRadius:6000]
 				[PCUMinimum:30000]
 				[PCUMaximum:99999999]
+ 				[PrefabSpawningMode:RandomSelectedIndexes]
+				[AllowPrefabIndexReuse:false]
+				[PrefabIndexGroupNames:First]
+				[PrefabIndexGroupValues:0]
+				[PrefabIndexGroupNames:First]
+				[PrefabIndexGroupValues:1]
+				[PrefabIndexGroupNames:First]
+				[PrefabIndexGroupValues:2]
+				[PrefabIndexGroupNames:First]
+				[PrefabIndexGroupValues:3]
+				[PrefabIndexGroupNames:First]
+				[PrefabIndexGroupValues:4]
+				[PrefabIndexGroupNames:First]
+				[PrefabIndexGroupValues:5]
 			</Description>
 		</EntityComponent>
+		<!-- This spawns 1 small Hover ONLY in Z2 -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-DroneEncounters-SpawnConditions-Zone2Exclusive-H2Hover</SubtypeId>
+			</Id>
+			<Description>
+				[MES Spawn Conditions]
+				[DroneEncounter:true]
+				[FailedDroneSpawnResetsPlayerTime:false]
+				[MinDroneDistance:3500]
+				[MaxDroneDistance:5000]
+				[MinDroneAltitude:10]
+				[MaxDroneAltitude:40]
+				[FactionOwner:GAALSIEN]
+				[ReactorsOn:true]
+				[ForceStaticGrid:false]
+				[SkipVoxelSpawnChecks:true]
+				[SkipGridSpawnChecks:false]
+				[ZoneConditions:GVK-ZoneConditions-WreckZone2-DroneEncounters]
+				[UsePCUCheck:true]
+				[PCUCheckRadius:6000]
+				[PCUMinimum:30000]
+				[PCUMaximum:99999999]
+ 				[PrefabSpawningMode:RandomSelectedIndexes]
+				[AllowPrefabIndexReuse:false]
+				[PrefabIndexGroupNames:First]
+				[PrefabIndexGroupValues:0]
+				[PrefabIndexGroupNames:First]
+				[PrefabIndexGroupValues:1]
+				[PrefabIndexGroupNames:First]
+				[PrefabIndexGroupValues:2]
+				[PrefabIndexGroupNames:First]
+				[PrefabIndexGroupValues:3]
+			</Description>
+		</EntityComponent>
+		<!-- This spawns 1 medium Hover in Z2 and Z3-->
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
@@ -60,9 +114,9 @@
 				[MES Spawn Conditions]
 				[DroneEncounter:true]
 				[FailedDroneSpawnResetsPlayerTime:false]
-				[MinDroneDistance:3000]
-				[MaxDroneDistance:4000]
-				[MinDroneAltitude:0]
+				[MinDroneDistance:3500]
+				[MaxDroneDistance:5000]
+				[MinDroneAltitude:10]
 				[MaxDroneAltitude:40]
 				[FactionOwner:GAALSIEN]
 				[ReactorsOn:true]
@@ -74,20 +128,37 @@
 				[PCUCheckRadius:6000]
 				[PCUMinimum:30000]
 				[PCUMaximum:99999999]
+ 				[PrefabSpawningMode:RandomSelectedIndexes]
+				[AllowPrefabIndexReuse:false]
+				[PrefabIndexGroupNames:First]
+				[PrefabIndexGroupValues:0]
+				[PrefabIndexGroupNames:First]
+				[PrefabIndexGroupValues:1]
+				[PrefabIndexGroupNames:First]
+				[PrefabIndexGroupValues:2]
+				[PrefabIndexGroupNames:First]
+				[PrefabIndexGroupValues:3]
+				[PrefabIndexGroupNames:First]
+				[PrefabIndexGroupValues:4]
+				[PrefabIndexGroupNames:First]
+				[PrefabIndexGroupValues:5]
+				[PrefabIndexGroupNames:First]
+				[PrefabIndexGroupValues:6]
 			</Description>
 		</EntityComponent>
+		<!-- This spawns 2 small flyers ONLY in Z3 -->
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-DroneEncounters-SpawnConditions-Zone3-H2Flyer</SubtypeId>
+				<SubtypeId>GVK-DroneEncounters-SpawnConditions-Zone3-H2Flyer-SmallSquad</SubtypeId>
 			</Id>
 			<Description>
 				[MES Spawn Conditions]
 				[DroneEncounter:true]
 				[FailedDroneSpawnResetsPlayerTime:false]
-				[MinDroneDistance:4000]
+				[MinDroneDistance:3500]
 				[MaxDroneDistance:5000]
-				[MinDroneAltitude:0]
+				[MinDroneAltitude:50]
 				[MaxDroneAltitude:500]
 				[FactionOwner:GAALSIEN]
 				[ReactorsOn:true]
@@ -99,20 +170,53 @@
 				[PCUCheckRadius:6000]
 				[PCUMinimum:30000]
 				[PCUMaximum:99999999]
+ 				[PrefabSpawningMode:RandomSelectedIndexes]
+				[AllowPrefabIndexReuse:false]
+				[PrefabIndexGroupNames:First]
+				[PrefabIndexGroupValues:0]
+				[PrefabIndexGroupNames:First]
+				[PrefabIndexGroupValues:1]
+				[PrefabIndexGroupNames:First]
+				[PrefabIndexGroupValues:2]
+				[PrefabIndexGroupNames:First]
+				[PrefabIndexGroupValues:3]
+				[PrefabIndexGroupNames:First]
+				[PrefabIndexGroupValues:4]
+				[PrefabIndexGroupNames:First]
+				[PrefabIndexGroupValues:5]
+				[PrefabIndexGroupNames:First]
+				[PrefabIndexGroupValues:6]
+				[PrefabIndexGroupNames:Second]
+				[PrefabIndexGroupValues:0]
+				[PrefabIndexGroupNames:Second]
+				[PrefabIndexGroupValues:1]
+				[PrefabIndexGroupNames:Second]
+				[PrefabIndexGroupValues:2]
+				[PrefabIndexGroupNames:Second]
+				[PrefabIndexGroupValues:3]
+				[PrefabIndexGroupNames:Second]
+				[PrefabIndexGroupValues:4]
+				[PrefabIndexGroupNames:Second]
+				[PrefabIndexGroupValues:5]
+				[PrefabIndexGroupNames:Second]
+				[PrefabIndexGroupValues:6]
+				[PrefabOffsetOverrides:{X:25 Y:0 Z:0}]
+				[PrefabOffsetOverrides:{X:-25 Y:0 Z:0}]
 			</Description>
 		</EntityComponent>
+		<!-- This spawns 1 large hover ONLY in Z3 -->
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-DroneEncounters-SpawnConditions-Zone3-H2Hover</SubtypeId>
+				<SubtypeId>GVK-DroneEncounters-SpawnConditions-Zone3-H2Hover-Large</SubtypeId>
 			</Id>
 			<Description>
 				[MES Spawn Conditions]
 				[DroneEncounter:true]
 				[FailedDroneSpawnResetsPlayerTime:false]
-				[MinDroneDistance:4000]
+				[MinDroneDistance:3500]
 				[MaxDroneDistance:5000]
-				[MinDroneAltitude:0]
+				[MinDroneAltitude:10]
 				[MaxDroneAltitude:40]
 				[FactionOwner:GAALSIEN]
 				[ReactorsOn:true]
@@ -124,6 +228,53 @@
 				[PCUCheckRadius:6000]
 				[PCUMinimum:30000]
 				[PCUMaximum:99999999]
+ 				[PrefabSpawningMode:Random]
+			</Description>
+		</EntityComponent>
+		<!-- This spawns 2 small hovers ONLY in Z3 -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-DroneEncounters-SpawnConditions-Zone3-H2Hover-SmallSquad</SubtypeId>
+			</Id>
+			<Description>
+				[MES Spawn Conditions]
+				[DroneEncounter:true]
+				[FailedDroneSpawnResetsPlayerTime:false]
+				[MinDroneDistance:3500]
+				[MaxDroneDistance:5000]
+				[MinDroneAltitude:10]
+				[MaxDroneAltitude:40]
+				[FactionOwner:GAALSIEN]
+				[ReactorsOn:true]
+				[ForceStaticGrid:false]
+				[SkipVoxelSpawnChecks:true]
+				[SkipGridSpawnChecks:false]
+				[ZoneConditions:GVK-ZoneConditions-WreckZone3]
+				[UsePCUCheck:true]
+				[PCUCheckRadius:6000]
+				[PCUMinimum:30000]
+				[PCUMaximum:99999999]
+ 				[PrefabSpawningMode:RandomSelectedIndexes]
+				[AllowPrefabIndexReuse:false]
+				[PrefabIndexGroupNames:First]
+				[PrefabIndexGroupValues:0]
+				[PrefabIndexGroupNames:First]
+				[PrefabIndexGroupValues:1]
+				[PrefabIndexGroupNames:First]
+				[PrefabIndexGroupValues:2]
+				[PrefabIndexGroupNames:First]
+				[PrefabIndexGroupValues:3]
+				[PrefabIndexGroupNames:Second]
+				[PrefabIndexGroupValues:0]
+				[PrefabIndexGroupNames:Second]
+				[PrefabIndexGroupValues:1]
+				[PrefabIndexGroupNames:Second]
+				[PrefabIndexGroupValues:2]
+				[PrefabIndexGroupNames:Second]
+				[PrefabIndexGroupValues:3]
+				[PrefabOffsetOverrides:{X:25 Y:0 Z:0}]
+				[PrefabOffsetOverrides:{X:-25 Y:0 Z:0}]
 			</Description>
 		</EntityComponent>
 	</EntityComponents>

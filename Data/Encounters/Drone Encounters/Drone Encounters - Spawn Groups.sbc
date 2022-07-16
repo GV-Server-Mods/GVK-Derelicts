@@ -1,12 +1,11 @@
 <?xml version="1.0"?>
 <Definitions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
 	<SpawnGroups>
-		<!-- [NPC Drone] Reaper -->
+		<!-- [NPC Drone] Small Flyers -->
 		<SpawnGroup>
 			<Id>
 				<TypeId>SpawnGroupDefinition</TypeId>
-				<!--Do Not Edit-->
-				<SubtypeId>GVK-DroneEncounter-SpawnGroup-GAALSIEN-Reaper</SubtypeId>
+				<SubtypeId>GVK-DroneEncounter-SpawnGroup-GAALSIEN-SmallFlyers</SubtypeId>
 			</Id>
 			<Description>
 				[Modular Encounters SpawnGroup]
@@ -14,10 +13,10 @@
 				[ReplenishSystems:true]
 				[ManipulationProfiles:MES-Manipulation-RivalAi] 
 				[ManipulationProfiles:GVK-CustomSpawns-DefenseDrones-Manipulation-H2Flyer]
+				[SpawnConditionsProfiles:GVK-DroneEncounters-SpawnConditions-Zone3-H2Flyer-SmallSquad]
 				[SpawnConditionsProfiles:GVK-DroneEncounters-SpawnConditions-Zone2Exclusive-H2Flyer]
 			</Description>
 			<IsPirate>true</IsPirate>
-			<!--Do not edit-->
 			<Frequency>0.1</Frequency>
 			<Prefabs>
 				<Prefab SubtypeId="[NPC Drone] Reaper V2">
@@ -30,27 +29,6 @@
 					<BeaconText>Reaper</BeaconText>
 					<Behaviour>GVK-DroneEnconuter-HorseFighter-Behavior</Behaviour>
 				</Prefab>
-			</Prefabs>
-		</SpawnGroup>
-		<!-- [NPC Drone] Defiant -->
-		<SpawnGroup>
-			<Id>
-				<TypeId>SpawnGroupDefinition</TypeId>
-				<!--Do Not Edit-->
-				<SubtypeId>GVK-DroneEncounter-SpawnGroup-GAALSIEN-Defiant</SubtypeId>
-			</Id>
-			<Description>
-				[Modular Encounters SpawnGroup]
-				[IgnoreCleanupRules:true]
-				[ReplenishSystems:true]
-				[ManipulationProfiles:MES-Manipulation-RivalAi] 
-				[ManipulationProfiles:GVK-CustomSpawns-DefenseDrones-Manipulation-H2Flyer]
-				[SpawnConditionsProfiles:GVK-DroneEncounters-SpawnConditions-Zone2-H2Flyer]
-			</Description>
-			<IsPirate>true</IsPirate>
-			<!--Do not edit-->
-			<Frequency>0.1</Frequency>
-			<Prefabs>
 				<Prefab SubtypeId="[NPC Drone] Defiant V2">
 					<Position>
 						<X>0.0</X>
@@ -61,27 +39,6 @@
 					<BeaconText>Defiant</BeaconText>
 					<Behaviour>GVK-DroneEnconuter-HorseFighter-Behavior</Behaviour>
 				</Prefab>
-			</Prefabs>
-		</SpawnGroup>
-		<!-- [NPC Drone] Hawk -->
-		<SpawnGroup>
-			<Id>
-				<TypeId>SpawnGroupDefinition</TypeId>
-				<!--Do Not Edit-->
-				<SubtypeId>GVK-DroneEncounter-SpawnGroup-GAALSIEN-Hawk</SubtypeId>
-			</Id>
-			<Description>
-				[Modular Encounters SpawnGroup]
-				[IgnoreCleanupRules:true]
-				[ReplenishSystems:true]
-				[ManipulationProfiles:MES-Manipulation-RivalAi] 
-				[ManipulationProfiles:GVK-CustomSpawns-DefenseDrones-Manipulation-H2Flyer]
-				[SpawnConditionsProfiles:GVK-DroneEncounters-SpawnConditions-Zone2-H2Flyer]
-			</Description>
-			<IsPirate>true</IsPirate>
-			<!--Do not edit-->
-			<Frequency>0.1</Frequency>
-			<Prefabs>
 				<Prefab SubtypeId="[NPC Drone] Hawk V2">
 					<Position>
 						<X>0.0</X>
@@ -92,27 +49,6 @@
 					<BeaconText>Hawk</BeaconText>
 					<Behaviour>GVK-DroneEnconuter-Horsefly-Behavior</Behaviour>
 				</Prefab>
-			</Prefabs>
-		</SpawnGroup>
-		<!-- [NPC Drone] Slicer -->
-		<SpawnGroup>
-			<Id>
-				<TypeId>SpawnGroupDefinition</TypeId>
-				<!--Do Not Edit-->
-				<SubtypeId>GVK-DroneEncounter-SpawnGroup-GAALSIEN-Slicer</SubtypeId>
-			</Id>
-			<Description>
-				[Modular Encounters SpawnGroup]
-				[IgnoreCleanupRules:true]
-				[ReplenishSystems:true]
-				[ManipulationProfiles:MES-Manipulation-RivalAi] 
-				[ManipulationProfiles:GVK-CustomSpawns-DefenseDrones-Manipulation-H2Flyer]
-				[SpawnConditionsProfiles:GVK-DroneEncounters-SpawnConditions-Zone2Exclusive-H2Flyer]
-			</Description>
-			<IsPirate>true</IsPirate>
-			<!--Do not edit-->
-			<Frequency>0.1</Frequency>
-			<Prefabs>
 				<Prefab SubtypeId="[NPC Drone] Slicer V2">
 					<Position>
 						<X>0.0</X>
@@ -123,27 +59,6 @@
 					<BeaconText>Slicer</BeaconText>
 					<Behaviour>GVK-DroneEnconuter-Horsefly-Behavior</Behaviour>
 				</Prefab>
-			</Prefabs>
-		</SpawnGroup>
-		<!-- [NPC Drone] Wasp -->
-		<SpawnGroup>
-			<Id>
-				<TypeId>SpawnGroupDefinition</TypeId>
-				<!--Do Not Edit-->
-				<SubtypeId>GVK-DroneEncounter-SpawnGroup-GAALSIEN-Wasp</SubtypeId>
-			</Id>
-			<Description>
-				[Modular Encounters SpawnGroup]
-				[IgnoreCleanupRules:true]
-				[ReplenishSystems:true]
-				[ManipulationProfiles:MES-Manipulation-RivalAi] 
-				[ManipulationProfiles:GVK-CustomSpawns-DefenseDrones-Manipulation-H2Flyer]
-				[SpawnConditionsProfiles:GVK-DroneEncounters-SpawnConditions-Zone2-H2Flyer]
-			</Description>
-			<IsPirate>true</IsPirate>
-			<!--Do not edit-->
-			<Frequency>0.1</Frequency>
-			<Prefabs>
 				<Prefab SubtypeId="[NPC Drone] Wasp V2">
 					<Position>
 						<X>0.0</X>
@@ -154,27 +69,6 @@
 					<BeaconText>Wasp</BeaconText>
 					<Behaviour>GVK-DroneEnconuter-HorseFighter-Behavior</Behaviour>
 				</Prefab>
-			</Prefabs>
-		</SpawnGroup>
-		<!-- [NPC Drone] Hornet -->
-		<SpawnGroup>
-			<Id>
-				<TypeId>SpawnGroupDefinition</TypeId>
-				<!--Do Not Edit-->
-				<SubtypeId>GVK-DroneEncounter-SpawnGroup-GAALSIEN-Hornet</SubtypeId>
-			</Id>
-			<Description>
-				[Modular Encounters SpawnGroup]
-				[IgnoreCleanupRules:true]
-				[ReplenishSystems:true]
-				[ManipulationProfiles:MES-Manipulation-RivalAi] 
-				[ManipulationProfiles:GVK-CustomSpawns-DefenseDrones-Manipulation-H2Flyer]
-				[SpawnConditionsProfiles:GVK-DroneEncounters-SpawnConditions-Zone2Exclusive-H2Flyer]
-			</Description>
-			<IsPirate>true</IsPirate>
-			<!--Do not edit-->
-			<Frequency>0.1</Frequency>
-			<Prefabs>
 				<Prefab SubtypeId="[NPC Drone] Hornet V2">
 					<Position>
 						<X>0.0</X>
@@ -185,150 +79,6 @@
 					<BeaconText>Hornet</BeaconText>
 					<Behaviour>GVK-DroneEnconuter-Horsefly-Behavior</Behaviour>
 				</Prefab>
-			</Prefabs>
-		</SpawnGroup>
-		<!-- [NPC Drone] Reaper Ion -->
-		<SpawnGroup>
-			<Id>
-				<TypeId>SpawnGroupDefinition</TypeId>
-				<!--Do Not Edit-->
-				<SubtypeId>GVK-DroneEncounter-SpawnGroup-GAALSIEN-ReaperSquad</SubtypeId>
-			</Id>
-			<Description>
-				[Modular Encounters SpawnGroup]
-				[IgnoreCleanupRules:true]
-				[ReplenishSystems:true]
-				[ManipulationProfiles:MES-Manipulation-RivalAi] 
-				[ManipulationProfiles:GVK-CustomSpawns-DefenseDrones-Manipulation-H2Flyer]
-				[SpawnConditionsProfiles:GVK-DroneEncounters-SpawnConditions-Zone3-H2Flyer]
-			</Description>
-			<IsPirate>true</IsPirate>
-			<!--Do not edit-->
-			<Frequency>0.1</Frequency>
-			<Prefabs>
-				<Prefab SubtypeId="[NPC Drone] Reaper V2">
-					<Position>
-						<X>-25</X>
-						<Y>0.0</Y>
-						<Z>0.0</Z>
-					</Position>
-					<Speed>0</Speed>
-					<BeaconText>Reaper</BeaconText>
-					<Behaviour>GVK-DroneEnconuter-HorseFighter-Behavior</Behaviour>
-				</Prefab>
-				<Prefab SubtypeId="[NPC Drone] Reaper V2">
-					<Position>
-						<X>25</X>
-						<Y>0.0</Y>
-						<Z>0.0</Z>
-					</Position>
-					<Speed>0</Speed>
-					<BeaconText>Reaper</BeaconText>
-					<Behaviour>GVK-DroneEnconuter-HorseFighter-Behavior</Behaviour>
-				</Prefab>
-			</Prefabs>
-		</SpawnGroup>
-		<!-- [NPC Drone] Hornet Ion -->
-		<SpawnGroup>
-			<Id>
-				<TypeId>SpawnGroupDefinition</TypeId>
-				<!--Do Not Edit-->
-				<SubtypeId>GVK-DroneEncounter-SpawnGroup-GAALSIEN-HornetSquad</SubtypeId>
-			</Id>
-			<Description>
-				[Modular Encounters SpawnGroup]
-				[IgnoreCleanupRules:true]
-				[ReplenishSystems:true]
-				[ManipulationProfiles:MES-Manipulation-RivalAi] 
-				[ManipulationProfiles:GVK-CustomSpawns-DefenseDrones-Manipulation-H2Flyer]
-				[SpawnConditionsProfiles:GVK-DroneEncounters-SpawnConditions-Zone3-H2Flyer]
-			</Description>
-			<IsPirate>true</IsPirate>
-			<!--Do not edit-->
-			<Frequency>0.1</Frequency>
-			<Prefabs>
-				<Prefab SubtypeId="[NPC Drone] Hornet V2">
-					<Position>
-						<X>-25</X>
-						<Y>0.0</Y>
-						<Z>0.0</Z>
-					</Position>
-					<Speed>0</Speed>
-					<BeaconText>Hornet</BeaconText>
-					<Behaviour>GVK-DroneEnconuter-Horsefly-Behavior</Behaviour>
-				</Prefab>
-				<Prefab SubtypeId="[NPC Drone] Hornet V2">
-					<Position>
-						<X>25</X>
-						<Y>0.0</Y>
-						<Z>0.0</Z>
-					</Position>
-					<Speed>0</Speed>
-					<BeaconText>Hornet</BeaconText>
-					<Behaviour>GVK-DroneEnconuter-Horsefly-Behavior</Behaviour>
-				</Prefab>
-			</Prefabs>
-		</SpawnGroup>
-		<!-- [NPC Drone] Slicer Ion -->
-		<SpawnGroup>
-			<Id>
-				<TypeId>SpawnGroupDefinition</TypeId>
-				<!--Do Not Edit-->
-				<SubtypeId>GVK-DroneEncounter-SpawnGroup-GAALSIEN-SlicerSquad</SubtypeId>
-			</Id>
-			<Description>
-				[Modular Encounters SpawnGroup]
-				[IgnoreCleanupRules:true]
-				[ReplenishSystems:true]
-				[ManipulationProfiles:MES-Manipulation-RivalAi] 
-				[ManipulationProfiles:GVK-CustomSpawns-DefenseDrones-Manipulation-H2Flyer]
-				[SpawnConditionsProfiles:GVK-DroneEncounters-SpawnConditions-Zone3-H2Flyer]
-			</Description>
-			<IsPirate>true</IsPirate>
-			<!--Do not edit-->
-			<Frequency>0.1</Frequency>
-			<Prefabs>
-				<Prefab SubtypeId="[NPC Drone] Slicer V2">
-					<Position>
-						<X>-25</X>
-						<Y>0.0</Y>
-						<Z>0.0</Z>
-					</Position>
-					<Speed>0</Speed>
-					<BeaconText>Slicer</BeaconText>
-					<Behaviour>GVK-DroneEnconuter-Horsefly-Behavior</Behaviour>
-				</Prefab>
-				<Prefab SubtypeId="[NPC Drone] Slicer V2">
-					<Position>
-						<X>25</X>
-						<Y>0.0</Y>
-						<Z>0.0</Z>
-					</Position>
-					<Speed>0</Speed>
-					<BeaconText>Slicer</BeaconText>
-					<Behaviour>GVK-DroneEnconuter-Horsefly-Behavior</Behaviour>
-				</Prefab>
-			</Prefabs>
-		</SpawnGroup>
-		<!-- [NPC Drone] Foxhound -->
-		<SpawnGroup>
-			<Id>
-				<TypeId>SpawnGroupDefinition</TypeId>
-				<!--Do Not Edit-->
-				<SubtypeId>GVK-DroneEncounter-SpawnGroup-GAALSIEN-Foxhound</SubtypeId>
-			</Id>
-			<Description>
-				[Modular Encounters SpawnGroup]
-				[IgnoreCleanupRules:true]
-				[ReplenishSystems:true]
-				[ManipulationProfiles:MES-Manipulation-RivalAi] 
-				[ManipulationProfiles:GVK-CustomSpawns-DefenseDrones-Manipulation-H2Flyer]
-				[SpawnConditionsProfiles:GVK-DroneEncounters-SpawnConditions-Zone2-H2Flyer]
-			</Description>
-			<IsPirate>true</IsPirate>
-			<!--Do not edit-->
-			<Frequency>0.1</Frequency>
-			<Prefabs>
 				<Prefab SubtypeId="[NPC Drone] Foxhound">
 					<Position>
 						<X>0.0</X>
@@ -341,136 +91,12 @@
 				</Prefab>
 			</Prefabs>
 		</SpawnGroup>
-		<!-- [NPC Drone] Dragoon -->
+		<!-- [NPC Drone] Medium Flyer -->
 		<SpawnGroup>
 			<Id>
 				<TypeId>SpawnGroupDefinition</TypeId>
 				<!--Do Not Edit-->
-				<SubtypeId>GVK-DroneEncounter-SpawnGroup-GAALSIEN-Dragoon</SubtypeId>
-			</Id>
-			<Description>
-				[Modular Encounters SpawnGroup]
-				[IgnoreCleanupRules:true]
-				[ReplenishSystems:true]
-				[ManipulationProfiles:MES-Manipulation-RivalAi] 
-				[ManipulationProfiles:GVK-CustomSpawns-DefenseDrones-Manipulation-H2Hover]
-				[SpawnConditionsProfiles:GVK-DroneEncounters-SpawnConditions-Zone2-H2Hover]
-			</Description>
-			<IsPirate>true</IsPirate>
-			<!--Do not edit-->
-			<Frequency>0.1</Frequency>
-			<Prefabs>
-				<Prefab SubtypeId="[NPC Drone] Dragoon Hover">
-					<Position>
-						<X>0.0</X>
-						<Y>0.0</Y>
-						<Z>0.0</Z>
-					</Position>
-					<Speed>0</Speed>
-					<BeaconText>Dragoon</BeaconText>
-					<Behaviour>GVK-DroneEnconuter-Rover-Behavior</Behaviour>
-				</Prefab>
-			</Prefabs>
-		</SpawnGroup>
-		<!-- [NPC Drone] Pollux -->
-		<SpawnGroup>
-			<Id>
-				<TypeId>SpawnGroupDefinition</TypeId>
-				<!--Do Not Edit-->
-				<SubtypeId>GVK-DroneEncounter-SpawnGroup-GAALSIEN-Pollux</SubtypeId>
-			</Id>
-			<Description>
-				[Modular Encounters SpawnGroup]
-				[IgnoreCleanupRules:true]
-				[ReplenishSystems:true]
-				[ManipulationProfiles:MES-Manipulation-RivalAi] 
-				[ManipulationProfiles:GVK-CustomSpawns-DefenseDrones-Manipulation-H2Hover]
-				[SpawnConditionsProfiles:GVK-DroneEncounters-SpawnConditions-Zone2-H2Hover]
-			</Description>
-			<IsPirate>true</IsPirate>
-			<!--Do not edit-->
-			<Frequency>0.1</Frequency>
-			<Prefabs>
-				<Prefab SubtypeId="[NPC Drone] Pollux Hover">
-					<Position>
-						<X>0.0</X>
-						<Y>0.0</Y>
-						<Z>0.0</Z>
-					</Position>
-					<Speed>0</Speed>
-					<BeaconText>Pollux</BeaconText>
-					<Behaviour>GVK-DroneEnconuter-Rover-Behavior</Behaviour>
-				</Prefab>
-			</Prefabs>
-		</SpawnGroup>
-		<!-- [NPC Drone] Stryker -->
-		<SpawnGroup>
-			<Id>
-				<TypeId>SpawnGroupDefinition</TypeId>
-				<!--Do Not Edit-->
-				<SubtypeId>GVK-DroneEncounter-SpawnGroup-GAALSIEN-Stryker</SubtypeId>
-			</Id>
-			<Description>
-				[Modular Encounters SpawnGroup]
-				[IgnoreCleanupRules:true]
-				[ReplenishSystems:true]
-				[ManipulationProfiles:MES-Manipulation-RivalAi] 
-				[ManipulationProfiles:GVK-CustomSpawns-DefenseDrones-Manipulation-H2Hover]
-				[SpawnConditionsProfiles:GVK-DroneEncounters-SpawnConditions-Zone2-H2Hover]
-			</Description>
-			<IsPirate>true</IsPirate>
-			<!--Do not edit-->
-			<Frequency>0.1</Frequency>
-			<Prefabs>
-				<Prefab SubtypeId="[NPC Drone] Stryker Hover">
-					<Position>
-						<X>0.0</X>
-						<Y>0.0</Y>
-						<Z>0.0</Z>
-					</Position>
-					<Speed>0</Speed>
-					<BeaconText>Stryker</BeaconText>
-					<Behaviour>GVK-DroneEnconuter-Rover-Behavior</Behaviour>
-				</Prefab>
-			</Prefabs>
-		</SpawnGroup>
-		<!-- [NPC Drone] Stryker ICV -->
-		<SpawnGroup>
-			<Id>
-				<TypeId>SpawnGroupDefinition</TypeId>
-				<!--Do Not Edit-->
-				<SubtypeId>GVK-DroneEncounter-SpawnGroup-GAALSIEN-StrykerICV</SubtypeId>
-			</Id>
-			<Description>
-				[Modular Encounters SpawnGroup]
-				[IgnoreCleanupRules:true]
-				[ReplenishSystems:true]
-				[ManipulationProfiles:MES-Manipulation-RivalAi] 
-				[ManipulationProfiles:GVK-CustomSpawns-DefenseDrones-Manipulation-H2Hover]
-				[SpawnConditionsProfiles:GVK-DroneEncounters-SpawnConditions-Zone2-H2Hover]
-			</Description>
-			<IsPirate>true</IsPirate>
-			<!--Do not edit-->
-			<Frequency>0.1</Frequency>
-			<Prefabs>
-				<Prefab SubtypeId="[NPC Drone] Stryker ICV Hover">
-					<Position>
-						<X>0.0</X>
-						<Y>0.0</Y>
-						<Z>0.0</Z>
-					</Position>
-					<Speed>0</Speed>
-					<BeaconText>Stryker ICV</BeaconText>
-					<Behaviour>GVK-DroneEnconuter-Rover-Behavior</Behaviour>
-				</Prefab>
-			</Prefabs>
-		</SpawnGroup>
-		<!-- [NPC Drone] Shuttle -->
-		<SpawnGroup>
-			<Id>
-				<TypeId>SpawnGroupDefinition</TypeId>
-				<!--Do Not Edit-->
-				<SubtypeId>GVK-DroneEncounter-SpawnGroup-GAALSIEN-Shuttle</SubtypeId>
+				<SubtypeId>GVK-DroneEncounter-SpawnGroup-GAALSIEN-MediumFlyers</SubtypeId>
 			</Id>
 			<Description>
 				[Modular Encounters SpawnGroup]
@@ -494,27 +120,6 @@
 					<BeaconText>Chad Shuttle</BeaconText>
 					<Behaviour>GVK-DroneEnconuter-LargeHorseFighter-Behavior</Behaviour>
 				</Prefab>
-			</Prefabs>
-		</SpawnGroup>
-		<!-- [NPC Drone] Denizen -->
-		<SpawnGroup>
-			<Id>
-				<TypeId>SpawnGroupDefinition</TypeId>
-				<!--Do Not Edit-->
-				<SubtypeId>GVK-DroneEncounter-SpawnGroup-GAALSIEN-Denizen</SubtypeId>
-			</Id>
-			<Description>
-				[Modular Encounters SpawnGroup]
-				[IgnoreCleanupRules:true]
-				[ReplenishSystems:true]
-				[ManipulationProfiles:MES-Manipulation-RivalAi] 
-				[ManipulationProfiles:GVK-CustomSpawns-DefenseDrones-Manipulation-H2Flyer]
-				[SpawnConditionsProfiles:GVK-DroneEncounters-SpawnConditions-Zone2-H2Flyer]
-			</Description>
-			<IsPirate>true</IsPirate>
-			<!--Do not edit-->
-			<Frequency>0.1</Frequency>
-			<Prefabs>
 				<Prefab SubtypeId="[NPC Drone] Denizen">
 					<Position>
 						<X>0.0</X>
@@ -527,12 +132,71 @@
 				</Prefab>
 			</Prefabs>
 		</SpawnGroup>
-		<!-- [NPC Drone] Kerrim Railgun Hover -->
+		<!-- [NPC Drone] Small Hovers -->
 		<SpawnGroup>
 			<Id>
 				<TypeId>SpawnGroupDefinition</TypeId>
-				<!--Do Not Edit-->
-				<SubtypeId>GVK-DroneEncounter-SpawnGroup-GAALSIEN-KerrimRailgun</SubtypeId>
+				<SubtypeId>GVK-DroneEncounter-SpawnGroup-GAALSIEN-SmallHovers</SubtypeId>
+			</Id>
+			<Description>
+				[Modular Encounters SpawnGroup]
+				[IgnoreCleanupRules:true]
+				[ReplenishSystems:true]
+				[ManipulationProfiles:MES-Manipulation-RivalAi] 
+				[ManipulationProfiles:GVK-CustomSpawns-DefenseDrones-Manipulation-H2Hover]
+				[SpawnConditionsProfiles:GVK-DroneEncounters-SpawnConditions-Zone2Exclusive-H2Hover]
+				[SpawnConditionsProfiles:GVK-DroneEncounters-SpawnConditions-Zone3-H2Hover-SmallSquad]
+			</Description>
+			<IsPirate>true</IsPirate>
+			<Frequency>0.1</Frequency>
+			<Prefabs>
+				<Prefab SubtypeId="[NPC Drone] Dragoon Hover">
+					<Position>
+						<X>0.0</X>
+						<Y>0.0</Y>
+						<Z>0.0</Z>
+					</Position>
+					<Speed>0</Speed>
+					<BeaconText>Dragoon</BeaconText>
+					<Behaviour>GVK-DroneEnconuter-Rover-Behavior</Behaviour>
+				</Prefab>
+				<Prefab SubtypeId="[NPC Drone] Pollux Hover">
+					<Position>
+						<X>0.0</X>
+						<Y>0.0</Y>
+						<Z>0.0</Z>
+					</Position>
+					<Speed>0</Speed>
+					<BeaconText>Pollux</BeaconText>
+					<Behaviour>GVK-DroneEnconuter-Rover-Behavior</Behaviour>
+				</Prefab>
+				<Prefab SubtypeId="[NPC Drone] Stryker Hover">
+					<Position>
+						<X>0.0</X>
+						<Y>0.0</Y>
+						<Z>0.0</Z>
+					</Position>
+					<Speed>0</Speed>
+					<BeaconText>Stryker</BeaconText>
+					<Behaviour>GVK-DroneEnconuter-Rover-Behavior</Behaviour>
+				</Prefab>
+				<Prefab SubtypeId="[NPC Drone] Stryker ICV Hover">
+					<Position>
+						<X>0.0</X>
+						<Y>0.0</Y>
+						<Z>0.0</Z>
+					</Position>
+					<Speed>0</Speed>
+					<BeaconText>Stryker ICV</BeaconText>
+					<Behaviour>GVK-DroneEnconuter-Rover-Behavior</Behaviour>
+				</Prefab>
+			</Prefabs>
+		</SpawnGroup>		
+		<!-- [NPC Drone] Medium Hovers -->
+		<SpawnGroup>
+			<Id>
+				<TypeId>SpawnGroupDefinition</TypeId>
+				<SubtypeId>GVK-DroneEncounter-SpawnGroup-GAALSIEN-MediumHover</SubtypeId>
 			</Id>
 			<Description>
 				[Modular Encounters SpawnGroup]
@@ -543,8 +207,7 @@
 				[SpawnConditionsProfiles:GVK-DroneEncounters-SpawnConditions-Zone2-H2Hover]
 			</Description>
 			<IsPirate>true</IsPirate>
-			<!--Do not edit-->
-			<Frequency>0.1</Frequency>
+			<Frequency>0.2</Frequency>
 			<Prefabs>
 				<Prefab SubtypeId="[NPC Drone] Kerrim Railgun">
 					<Position>
@@ -556,27 +219,16 @@
 					<BeaconText>Kerrim Railgun</BeaconText>
 					<Behaviour>GVK-DroneEnconuter-Rover-Behavior</Behaviour>
 				</Prefab>
-			</Prefabs>
-		</SpawnGroup>
-		<!-- [NPC Drone] Kerrim Cannon Hover -->
-		<SpawnGroup>
-			<Id>
-				<TypeId>SpawnGroupDefinition</TypeId>
-				<!--Do Not Edit-->
-				<SubtypeId>GVK-DroneEncounter-SpawnGroup-GAALSIEN-KerrimCannon</SubtypeId>
-			</Id>
-			<Description>
-				[Modular Encounters SpawnGroup]
-				[IgnoreCleanupRules:true]
-				[ReplenishSystems:true]
-				[ManipulationProfiles:MES-Manipulation-RivalAi] 
-				[ManipulationProfiles:GVK-CustomSpawns-DefenseDrones-Manipulation-H2Hover]
-				[SpawnConditionsProfiles:GVK-DroneEncounters-SpawnConditions-Zone2-H2Hover]
-			</Description>
-			<IsPirate>true</IsPirate>
-			<!--Do not edit-->
-			<Frequency>0.1</Frequency>
-			<Prefabs>
+				<Prefab SubtypeId="[NPC Drone] Kerrim Railgun">
+					<Position>
+						<X>0.0</X>
+						<Y>0.0</Y>
+						<Z>0.0</Z>
+					</Position>
+					<Speed>0</Speed>
+					<BeaconText>Kerrim Railgun</BeaconText>
+					<Behaviour>GVK-DroneEnconuter-Rover-Behavior</Behaviour>
+				</Prefab>
 				<Prefab SubtypeId="[NPC Drone] Kerrim Cannon">
 					<Position>
 						<X>0.0</X>
@@ -587,27 +239,6 @@
 					<BeaconText>Kerrim Cannon</BeaconText>
 					<Behaviour>GVK-DroneEnconuter-Rover-Behavior</Behaviour>
 				</Prefab>
-			</Prefabs>
-		</SpawnGroup>
-		<!-- [NPC Drone] Kerrim Missile Hover -->
-		<SpawnGroup>
-			<Id>
-				<TypeId>SpawnGroupDefinition</TypeId>
-				<!--Do Not Edit-->
-				<SubtypeId>GVK-DroneEncounter-SpawnGroup-GAALSIEN-KerrimMissile</SubtypeId>
-			</Id>
-			<Description>
-				[Modular Encounters SpawnGroup]
-				[IgnoreCleanupRules:true]
-				[ReplenishSystems:true]
-				[ManipulationProfiles:MES-Manipulation-RivalAi] 
-				[ManipulationProfiles:GVK-CustomSpawns-DefenseDrones-Manipulation-H2Hover]
-				[SpawnConditionsProfiles:GVK-DroneEncounters-SpawnConditions-Zone2-H2Hover]
-			</Description>
-			<IsPirate>true</IsPirate>
-			<!--Do not edit-->
-			<Frequency>0.1</Frequency>
-			<Prefabs>
 				<Prefab SubtypeId="[NPC Drone] Kerrim Missile">
 					<Position>
 						<X>0.0</X>
@@ -618,27 +249,6 @@
 					<BeaconText>Kerrim Missile</BeaconText>
 					<Behaviour>GVK-DroneEnconuter-Rover-Behavior</Behaviour>
 				</Prefab>
-			</Prefabs>
-		</SpawnGroup>
-		<!-- [NPC Drone] Kerrim Flak Hover -->
-		<SpawnGroup>
-			<Id>
-				<TypeId>SpawnGroupDefinition</TypeId>
-				<!--Do Not Edit-->
-				<SubtypeId>GVK-DroneEncounter-SpawnGroup-GAALSIEN-KerrimFlak</SubtypeId>
-			</Id>
-			<Description>
-				[Modular Encounters SpawnGroup]
-				[IgnoreCleanupRules:true]
-				[ReplenishSystems:true]
-				[ManipulationProfiles:MES-Manipulation-RivalAi] 
-				[ManipulationProfiles:GVK-CustomSpawns-DefenseDrones-Manipulation-H2Hover]
-				[SpawnConditionsProfiles:GVK-DroneEncounters-SpawnConditions-Zone2-H2Hover]
-			</Description>
-			<IsPirate>true</IsPirate>
-			<!--Do not edit-->
-			<Frequency>0.1</Frequency>
-			<Prefabs>
 				<Prefab SubtypeId="[NPC Drone] Kerrim Flak">
 					<Position>
 						<X>0.0</X>
@@ -649,27 +259,6 @@
 					<BeaconText>Kerrim Flak</BeaconText>
 					<Behaviour>GVK-DroneEnconuter-Rover-Behavior</Behaviour>
 				</Prefab>
-			</Prefabs>
-		</SpawnGroup>
-		<!-- [NPC Drone] Kerrim Laser Hover -->
-		<SpawnGroup>
-			<Id>
-				<TypeId>SpawnGroupDefinition</TypeId>
-				<!--Do Not Edit-->
-				<SubtypeId>GVK-DroneEncounter-SpawnGroup-GAALSIEN-KerrimLaser</SubtypeId>
-			</Id>
-			<Description>
-				[Modular Encounters SpawnGroup]
-				[IgnoreCleanupRules:true]
-				[ReplenishSystems:true]
-				[ManipulationProfiles:MES-Manipulation-RivalAi] 
-				[ManipulationProfiles:GVK-CustomSpawns-DefenseDrones-Manipulation-H2Hover]
-				[SpawnConditionsProfiles:GVK-DroneEncounters-SpawnConditions-Zone2-H2Hover]
-			</Description>
-			<IsPirate>true</IsPirate>
-			<!--Do not edit-->
-			<Frequency>0.1</Frequency>
-			<Prefabs>
 				<Prefab SubtypeId="[NPC Drone] Kerrim Laser">
 					<Position>
 						<X>0.0</X>
@@ -680,25 +269,6 @@
 					<BeaconText>Kerrim Laser</BeaconText>
 					<Behaviour>GVK-DroneEnconuter-Rover-Behavior</Behaviour>
 				</Prefab>
-			</Prefabs>
-		</SpawnGroup>
-		<!-- [NPC Drone] Assault Ship Railgun Hover -->
-		<SpawnGroup>
-			<Id>
-				<TypeId>SpawnGroupDefinition</TypeId>
-				<SubtypeId>GVK-DroneEncounter-SpawnGroup-GAALSIEN-AssaultShip</SubtypeId>
-			</Id>
-			<Description>
-				[Modular Encounters SpawnGroup]
-				[IgnoreCleanupRules:true]
-				[ReplenishSystems:true]
-				[ManipulationProfiles:MES-Manipulation-RivalAi] 
-				[ManipulationProfiles:GVK-CustomSpawns-DefenseDrones-Manipulation-H2Hover]
-				[SpawnConditionsProfiles:GVK-DroneEncounters-SpawnConditions-Zone2-H2Hover]
-			</Description>
-			<IsPirate>true</IsPirate>
-			<Frequency>0.1</Frequency>
-			<Prefabs>
 				<Prefab SubtypeId="[NPC Drone] Assault Ship">
 					<Position>
 						<X>0.0</X>
@@ -711,11 +281,11 @@
 				</Prefab>
 			</Prefabs>
 		</SpawnGroup>
-		<!-- [NPC Drone] Honorguard Cruiser MAC Hover -->
+		<!-- [NPC Drone] Large Hovers -->
 		<SpawnGroup>
 			<Id>
 				<TypeId>SpawnGroupDefinition</TypeId>
-				<SubtypeId>GVK-DroneEncounter-SpawnGroup-GAALSIEN-Honorguard</SubtypeId>
+				<SubtypeId>GVK-DroneEncounter-SpawnGroup-GAALSIEN-LargeHovers</SubtypeId>
 			</Id>
 			<Description>
 				[Modular Encounters SpawnGroup]
@@ -723,7 +293,7 @@
 				[ReplenishSystems:true]
 				[ManipulationProfiles:MES-Manipulation-RivalAi] 
 				[ManipulationProfiles:GVK-CustomSpawns-DefenseDrones-Manipulation-H2Hover]
-				[SpawnConditionsProfiles:GVK-DroneEncounters-SpawnConditions-Zone3-H2Hover]
+				[SpawnConditionsProfiles:GVK-DroneEncounters-SpawnConditions-Zone3-H2Hover-Large]
 			</Description>
 			<IsPirate>true</IsPirate>
 			<Frequency>0.1</Frequency>
@@ -738,25 +308,6 @@
 					<BeaconText>Honorguard</BeaconText>
 					<Behaviour>GVK-DroneEnconuter-HonorguardCruiser-Behavior</Behaviour>
 				</Prefab>
-			</Prefabs>
-		</SpawnGroup>
-		<!-- [NPC Drone] Artillery Cruiser Hover -->
-		<SpawnGroup>
-			<Id>
-				<TypeId>SpawnGroupDefinition</TypeId>
-				<SubtypeId>GVK-DroneEncounter-SpawnGroup-GAALSIEN-ArtilleryCruiser</SubtypeId>
-			</Id>
-			<Description>
-				[Modular Encounters SpawnGroup]
-				[IgnoreCleanupRules:true]
-				[ReplenishSystems:true]
-				[ManipulationProfiles:MES-Manipulation-RivalAi] 
-				[ManipulationProfiles:GVK-CustomSpawns-DefenseDrones-Manipulation-H2Hover]
-				[SpawnConditionsProfiles:GVK-DroneEncounters-SpawnConditions-Zone3-H2Hover]
-			</Description>
-			<IsPirate>true</IsPirate>
-			<Frequency>0.1</Frequency>
-			<Prefabs>
 				<Prefab SubtypeId="[NPC Drone] Artillery Cruiser">
 					<Position>
 						<X>0.0</X>
@@ -767,25 +318,6 @@
 					<BeaconText>Artillery Cruiser</BeaconText>
 					<Behaviour>GVK-DroneEnconuter-HoverCruiserHorsefly-Behavior</Behaviour>
 				</Prefab>
-			</Prefabs>
-		</SpawnGroup>
-		<!-- [NPC Drone] Missile Cruiser Hover -->
-		<SpawnGroup>
-			<Id>
-				<TypeId>SpawnGroupDefinition</TypeId>
-				<SubtypeId>GVK-DroneEncounter-SpawnGroup-GAALSIEN-MissileCruiser</SubtypeId>
-			</Id>
-			<Description>
-				[Modular Encounters SpawnGroup]
-				[IgnoreCleanupRules:true]
-				[ReplenishSystems:true]
-				[ManipulationProfiles:MES-Manipulation-RivalAi] 
-				[ManipulationProfiles:GVK-CustomSpawns-DefenseDrones-Manipulation-H2Hover]
-				[SpawnConditionsProfiles:GVK-DroneEncounters-SpawnConditions-Zone3-H2Hover]
-			</Description>
-			<IsPirate>true</IsPirate>
-			<Frequency>0.1</Frequency>
-			<Prefabs>
 				<Prefab SubtypeId="[NPC Drone] Missile Cruiser">
 					<Position>
 						<X>0.0</X>
@@ -796,25 +328,6 @@
 					<BeaconText>Missile Cruiser</BeaconText>
 					<Behaviour>GVK-DroneEnconuter-HoverCruiserHorsefly-Behavior</Behaviour>
 				</Prefab>
-			</Prefabs>
-		</SpawnGroup>
-		<!-- [NPC Drone] Production Cruiser Hover -->
-		<SpawnGroup>
-			<Id>
-				<TypeId>SpawnGroupDefinition</TypeId>
-				<SubtypeId>GVK-DroneEncounter-SpawnGroup-GAALSIEN-ProductionCruiser</SubtypeId>
-			</Id>
-			<Description>
-				[Modular Encounters SpawnGroup]
-				[IgnoreCleanupRules:true]
-				[ReplenishSystems:true]
-				[ManipulationProfiles:MES-Manipulation-RivalAi] 
-				[ManipulationProfiles:GVK-CustomSpawns-DefenseDrones-Manipulation-H2Hover]
-				[SpawnConditionsProfiles:GVK-DroneEncounters-SpawnConditions-Zone3-H2Hover]
-			</Description>
-			<IsPirate>true</IsPirate>
-			<Frequency>0.1</Frequency>
-			<Prefabs>
 				<Prefab SubtypeId="[NPC Drone] Production Cruiser">
 					<Position>
 						<X>0.0</X>
@@ -825,25 +338,6 @@
 					<BeaconText>Production Cruiser</BeaconText>
 					<Behaviour>GVK-DroneEnconuter-ProductionCruiser-Behavior</Behaviour>
 				</Prefab>
-			</Prefabs>
-		</SpawnGroup>
-		<!-- [NPC Drone] Railgun Cruiser Hover -->
-		<SpawnGroup>
-			<Id>
-				<TypeId>SpawnGroupDefinition</TypeId>
-				<SubtypeId>GVK-DroneEncounter-SpawnGroup-GAALSIEN-RailgunCruiser</SubtypeId>
-			</Id>
-			<Description>
-				[Modular Encounters SpawnGroup]
-				[IgnoreCleanupRules:true]
-				[ReplenishSystems:true]
-				[ManipulationProfiles:MES-Manipulation-RivalAi] 
-				[ManipulationProfiles:GVK-CustomSpawns-DefenseDrones-Manipulation-H2Hover]
-				[SpawnConditionsProfiles:GVK-DroneEncounters-SpawnConditions-Zone3-H2Hover]
-			</Description>
-			<IsPirate>true</IsPirate>
-			<Frequency>0.1</Frequency>
-			<Prefabs>
 				<Prefab SubtypeId="[NPC Drone] Railgun Cruiser">
 					<Position>
 						<X>0.0</X>
@@ -854,25 +348,6 @@
 					<BeaconText>Railgun Cruiser</BeaconText>
 					<Behaviour>GVK-DroneEnconuter-HoverCruiserHorsefly-Behavior</Behaviour>
 				</Prefab>
-			</Prefabs>
-		</SpawnGroup>
-		<!-- [NPC Drone] Torpedo Cruiser Hover -->
-		<SpawnGroup>
-			<Id>
-				<TypeId>SpawnGroupDefinition</TypeId>
-				<SubtypeId>GVK-DroneEncounter-SpawnGroup-GAALSIEN-TorpedoCruiser</SubtypeId>
-			</Id>
-			<Description>
-				[Modular Encounters SpawnGroup]
-				[IgnoreCleanupRules:true]
-				[ReplenishSystems:true]
-				[ManipulationProfiles:MES-Manipulation-RivalAi] 
-				[ManipulationProfiles:GVK-CustomSpawns-DefenseDrones-Manipulation-H2Hover]
-				[SpawnConditionsProfiles:GVK-DroneEncounters-SpawnConditions-Zone3-H2Hover]
-			</Description>
-			<IsPirate>true</IsPirate>
-			<Frequency>0.1</Frequency>
-			<Prefabs>
 				<Prefab SubtypeId="[NPC Drone] Torpedo Cruiser">
 					<Position>
 						<X>0.0</X>

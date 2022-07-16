@@ -349,7 +349,7 @@
 		<SpawnGroup>
 			<Id>
 				<TypeId>SpawnGroupDefinition</TypeId>
-				<SubtypeId>GVK-PlanetaryInstallations-SpawnGroups-Medium-Raptor</SubtypeId>
+				<SubtypeId>GVK-PlanetaryInstallations-SpawnGroups-Medium-RaptorFrigate</SubtypeId>
 			</Id>
 			<Description>
 				[Modular Encounters SpawnGroup]
@@ -364,7 +364,37 @@
 			<IsPirate>true</IsPirate>
 			<Frequency>5.0</Frequency>
 			<Prefabs>
-				<Prefab SubtypeId="[NPC Med Wreck] Raptor">
+				<Prefab SubtypeId="[NPC Med Wreck] Raptor Frigate">
+					<Position>
+						<X>0.0</X>
+						<Y>10.0</Y>
+						<Z>0.0</Z>
+					</Position>
+					<Speed>0</Speed>
+					<BeaconText>Medium Crash Site</BeaconText>
+					<Behaviour>GVK-PlanetaryInstallations-Behavior-Medium</Behaviour>
+				</Prefab>
+			</Prefabs>
+		</SpawnGroup>
+		<SpawnGroup>
+			<Id>
+				<TypeId>SpawnGroupDefinition</TypeId>
+				<SubtypeId>GVK-PlanetaryInstallations-SpawnGroups-Medium-Loki</SubtypeId>
+			</Id>
+			<Description>
+				[Modular Encounters SpawnGroup]
+				[IgnoreCleanupRules:true]
+				[ReplenishSystems:true]
+				[SpawnConditionsProfiles:GVK-PlanetaryInstallations-SpawnConditions-MediumDerelict]
+				[ManipulationProfiles:MES-Manipulation-RivalAi]
+				[ManipulationProfiles:GVK-PlanetaryInstallations-Manipulations-Medium]
+				[CutVoxelsAtAirtightCells:true]
+				[CutVoxelSize:7]
+			</Description>
+			<IsPirate>true</IsPirate>
+			<Frequency>5.0</Frequency>
+			<Prefabs>
+				<Prefab SubtypeId="[NPC Med Wreck] Loki">
 					<Position>
 						<X>0.0</X>
 						<Y>10.0</Y>
