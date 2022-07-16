@@ -5,7 +5,7 @@
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
-				<SubtypeId>DefenseDrone-HonorguardCruiser-Behavior</SubtypeId>
+				<SubtypeId>GVK-CustomSpawns-DefenseDrone-HonorguardCruiser-Behavior</SubtypeId>
 			</Id>
 			<Description>
 	
@@ -21,13 +21,13 @@
 			[UseAmmoReplenish:true]
 			[AmmoReplenishClipAmount:10]
 			[MaxAmmoReplenishments:99999999]
-			[UsePlayerDistanceTimer:true]
+			[UsePlayerDistanceTimer:false]
 			[PlayerDistanceTimerTrigger:0]
 			[PlayerDistanceTrigger:15000]
-			[UseNoTargetTimer:true]
+			[UseNoTargetTimer:false]
 			[NoTargetTimerTrigger:1800]
 			[UseRetreatTimer:true]
-			[RetreatTimerTrigger:3600]
+			[RetreatTimerTrigger:86400]
 			[RetreatDespawnDistance:1500]
 			
 			[HorseFighterTimeApproaching:30]
@@ -35,21 +35,21 @@
 
 			[TargetData:GVK-Generic-TargetProfile-EnemyPlayers]
 
-			[AutopilotData:DefenseDrone-HonorguardCruiser-Autopilot-Primary]
-			[SecondaryAutopilotData:DefenseDrone-HonorguardCruiser-Autopilot-Secondary]
+			[AutopilotData:GVK-CustomSpawns-DefenseDrone-HonorguardCruiser-Autopilot-Primary]
+			[SecondaryAutopilotData:GVK-CustomSpawns-DefenseDrone-HonorguardCruiser-Autopilot-Secondary]
 
-			[Triggers:DefenseDrone-Trigger-WeaponsToMaxRange]
-			[Triggers:DefenseDrone-Trigger-FireRailgunsTimers]
-			[Triggers:DefenseDrone-Trigger-FireMissilesTimers]
-			[Triggers:DefenseDrone-Trigger-FireRailgunsTimers]
+			[Triggers:GVK-CustomSpawns-DefenseDrone-Trigger-WeaponsToMaxRange]
+			[Triggers:GVK-CustomSpawns-DefenseDrone-Trigger-FireRailgunsTimers]
+			[Triggers:GVK-CustomSpawns-DefenseDrone-Trigger-FireMissilesTimers]
+			[Triggers:GVK-CustomSpawns-DefenseDrone-Trigger-FireRailgunsTimers]
 			[Triggers:GVK-Generic-Trigger-SPRTTargetAcquiredChatter]
-			[Triggers:DefenseDrone-Trigger-Compromised]
+			[Triggers:GVK-CustomSpawns-DefenseDrone-Trigger-Compromised]
 			[Triggers:GVK-Generic-Trigger-SPRTNoWeapon]
-			[Triggers:DefenseDrone-Trigger-StrafeingAutopilot]
-			[Triggers:DefenseDrone-Trigger-ApproachingAutopilot]
-			[Triggers:DefenseDrone-Trigger-JetpackInhibitorOnSpawn]
-			[Triggers:DefenseDrone-Trigger-JetpackInhibitorOnRestart]
-			[Triggers:DefenseDrone-Trigger-Crashed]
+			[Triggers:GVK-CustomSpawns-DefenseDrone-Trigger-StrafeingAutopilot]
+			[Triggers:GVK-CustomSpawns-DefenseDrone-Trigger-ApproachingAutopilot]
+			[Triggers:GVK-CustomSpawns-DefenseDrone-Trigger-JetpackInhibitorOnSpawn]
+			[Triggers:GVK-CustomSpawns-DefenseDrone-Trigger-JetpackInhibitorOnRestart]
+			[Triggers:GVK-CustomSpawns-DefenseDrone-Trigger-Crashed]
 
 			</Description>
 		</EntityComponent>
@@ -57,7 +57,7 @@
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
-				<SubtypeId>DefenseDrone-HonorguardCruiser-Autopilot-Primary</SubtypeId>
+				<SubtypeId>GVK-CustomSpawns-DefenseDrone-HonorguardCruiser-Autopilot-Primary</SubtypeId>
 			</Id>
 			<Description>
 
@@ -115,7 +115,7 @@
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
-				<SubtypeId>DefenseDrone-HonorguardCruiser-Autopilot-Secondary</SubtypeId>
+				<SubtypeId>GVK-CustomSpawns-DefenseDrone-HonorguardCruiser-Autopilot-Secondary</SubtypeId>
 			</Id>
 			<Description>
 
@@ -174,7 +174,7 @@
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
-				<SubtypeId>DefenseDrone-Trigger-StrafeingAutopilot</SubtypeId>
+				<SubtypeId>GVK-CustomSpawns-DefenseDrone-Trigger-StrafeingAutopilot</SubtypeId>
 			</Id>
 			<Description>
 	
@@ -186,14 +186,14 @@
 			[MinCooldownMs:3000]
 			[MaxCooldownMs:3000]
 				
-			[Actions:DefenseDrone-Action-StrafeingAutopilot]
+			[Actions:GVK-CustomSpawns-DefenseDrone-Action-StrafeingAutopilot]
 	
 			</Description>
 		</EntityComponent>
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
-				<SubtypeId>DefenseDrone-Action-StrafeingAutopilot</SubtypeId>
+				<SubtypeId>GVK-CustomSpawns-DefenseDrone-Action-StrafeingAutopilot</SubtypeId>
 			</Id>
 			<Description>
 	
@@ -206,7 +206,7 @@
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
-				<SubtypeId>DefenseDrone-Trigger-ApproachingAutopilot</SubtypeId>
+				<SubtypeId>GVK-CustomSpawns-DefenseDrone-Trigger-ApproachingAutopilot</SubtypeId>
 			</Id>
 			<Description>
 	
@@ -218,14 +218,14 @@
 			[MinCooldownMs:1000]
 			[MaxCooldownMs:1000]
 				
-			[Actions:DefenseDrone-Action-ApproachingAutopilot]
+			[Actions:GVK-CustomSpawns-DefenseDrone-Action-ApproachingAutopilot]
 	
 			</Description>
 		</EntityComponent>
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
-				<SubtypeId>DefenseDrone-Action-ApproachingAutopilot</SubtypeId>
+				<SubtypeId>GVK-CustomSpawns-DefenseDrone-Action-ApproachingAutopilot</SubtypeId>
 			</Id>
 			<Description>
 	

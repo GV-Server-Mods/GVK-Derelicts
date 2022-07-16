@@ -5,7 +5,7 @@
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
-				<SubtypeId>DefenseDrone-ProductionCruiser-Behavior</SubtypeId>
+				<SubtypeId>GVK-CustomSpawns-DefenseDrone-ProductionCruiser-Behavior</SubtypeId>
 			</Id>
 			<Description>
 			[RivalAI Behavior]
@@ -17,31 +17,31 @@
 			[UseAmmoReplenish:true]
 			[AmmoReplenishClipAmount:10]
 			[MaxAmmoReplenishments:99999999]
-			[UsePlayerDistanceTimer:true]
+			[UsePlayerDistanceTimer:false]
 			[PlayerDistanceTimerTrigger:0]
 			[PlayerDistanceTrigger:15000]
-			[UseNoTargetTimer:true]
+			[UseNoTargetTimer:false]
 			[NoTargetTimerTrigger:1800]
 			[UseRetreatTimer:true]
-			[RetreatTimerTrigger:3600]
+			[RetreatTimerTrigger:86400]
 			[RetreatDespawnDistance:1500]
-			[AutopilotData:DefenseDrone-HoverCruiserHorsefly-Autopilot]
+			[AutopilotData:GVK-CustomSpawns-DefenseDrone-HoverCruiserHorsefly-Autopilot]
 			[TargetData:GVK-Generic-TargetProfile-EnemyPlayers]
-			[Triggers:DefenseDrone-Trigger-WeaponsToMaxRange]
-			[Triggers:ProductionCruiser-Trigger-SpawnFighters]
+			[Triggers:GVK-CustomSpawns-DefenseDrone-Trigger-WeaponsToMaxRange]
+			[Triggers:GVK-CustomSpawns-DefenseDrone-ProductionCruiser-Trigger-SpawnFighters]
 			[Triggers:GVK-Generic-Trigger-SPRTTargetAcquiredChatter]
-			[Triggers:DefenseDrone-Trigger-Compromised]
+			[Triggers:GVK-CustomSpawns-DefenseDrone-Trigger-Compromised]
 			[Triggers:GVK-Generic-Trigger-SPRTNoWeapon]
-			[Triggers:DefenseDrone-Trigger-JetpackInhibitorOnSpawn]
-			[Triggers:DefenseDrone-Trigger-JetpackInhibitorOnRestart]
-			[Triggers:DefenseDrone-Trigger-Crashed]
+			[Triggers:GVK-CustomSpawns-DefenseDrone-Trigger-JetpackInhibitorOnSpawn]
+			[Triggers:GVK-CustomSpawns-DefenseDrone-Trigger-JetpackInhibitorOnRestart]
+			[Triggers:GVK-CustomSpawns-DefenseDrone-Trigger-Crashed]
 			</Description>
 		</EntityComponent>
 		<!-- Trigger sequence for ProductionCruiser to spawn fighters -->
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
-				<SubtypeId>ProductionCruiser-Trigger-SpawnFighters</SubtypeId>
+				<SubtypeId>GVK-CustomSpawns-DefenseDrone-ProductionCruiser-Trigger-SpawnFighters</SubtypeId>
 			</Id>
 			<Description>
 			[RivalAI Trigger]
@@ -52,27 +52,27 @@
 			[MaxActions:3]
 			[MinCooldownMs:120000]
 			[MaxCooldownMs:180000]
-			[Actions:ProductionCruiser-Action-SpawnFighters]
+			[Actions:GVK-CustomSpawns-DefenseDrone-ProductionCruiser-Action-SpawnFighters]
 			</Description>
 		</EntityComponent>
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
-				<SubtypeId>ProductionCruiser-Action-SpawnFighters</SubtypeId>
+				<SubtypeId>GVK-CustomSpawns-DefenseDrone-ProductionCruiser-Action-SpawnFighters</SubtypeId>
 			</Id>
 			<Description>
 			[RivalAI Action]
 			[Chance:100]
 			[SpawnEncounter:true]
-			[Spawner:ProductionCruiser-Spawner-SpawnFighters]
+			[Spawner:GVK-CustomSpawns-DefenseDrone-ProductionCruiser-Spawner-SpawnFighters]
 			[UseChatBroadcast:true]
-			[ChatData:ProductionCruiser-Chat-SpawnFighters]
+			[ChatData:GVK-CustomSpawns-DefenseDrone-ProductionCruiser-Chat-SpawnFighters]
 			</Description>
 		</EntityComponent>
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
-				<SubtypeId>ProductionCruiser-Spawner-SpawnFighters</SubtypeId>
+				<SubtypeId>GVK-CustomSpawns-DefenseDrone-ProductionCruiser-Spawner-SpawnFighters</SubtypeId>
 			</Id>
 			<Description>
 			[RivalAI Spawn]
@@ -84,9 +84,9 @@
 			[MinAltitude:100]
 			[MaxAltitude:400]
 			[InheritNpcAltitude:true]
-			[SpawnGroups:GVK-CustomSpawn-DefenseDrone-SpawnGroup-GAALSIEN-ReaperSquad]
-			[SpawnGroups:GVK-CustomSpawn-DefenseDrone-SpawnGroup-GAALSIEN-HornetSquad]
-			[SpawnGroups:GVK-CustomSpawn-DefenseDrone-SpawnGroup-GAALSIEN-SlicerSquad]
+			[SpawnGroups:GVK-CustomSpawns-DefenseDrone-SpawnGroup-GAALSIEN-ReaperSquad]
+			[SpawnGroups:GVK-CustomSpawns-DefenseDrone-SpawnGroup-GAALSIEN-HornetSquad]
+			[SpawnGroups:GVK-CustomSpawns-DefenseDrone-SpawnGroup-GAALSIEN-SlicerSquad]
 			[ProcessAsAdminSpawn:false]
 			[IgnoreSafetyChecks:true]
 			</Description>
@@ -94,7 +94,7 @@
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
-				<SubtypeId>ProductionCruiser-Chat-SpawnFighters</SubtypeId>
+				<SubtypeId>GVK-CustomSpawns-DefenseDrone-ProductionCruiser-Chat-SpawnFighters</SubtypeId>
 			</Id>
 			<Description>
 			[RivalAI Chat]
