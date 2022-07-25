@@ -319,12 +319,6 @@
 
 				[RivalAI Action]
 
-				[DisableTriggers:false]
-				[DisableTriggerNames:GVK-PlanetaryInstallations-Trigger-Compromised-Small]
-				[DisableTriggerNames:GVK-PlanetaryInstallations-Trigger-Compromised-Medium]
-				[DisableTriggerNames:GVK-PlanetaryInstallations-Trigger-Despawn]
-				[DisableTriggerNames:GVK-PlanetaryInstallations-Trigger-DespawnMES]
-				  
 				[UseChatBroadcast:true]
 				[ChatData:GVK-PlanetaryInstallations-Chat-Despawned]
 
@@ -416,24 +410,37 @@
 			<Description>
 
 				[RivalAI Action]
-				  
-				[RazeBlocksWithNames:true]
-				[RazeBlocksNames:Remote Control]
-				[RazeBlocksNames:AI Control Module]
-				[RazeBlocksNames:NPC Remote Control]
-				[RazeBlocksNames:Small Crash Site]
-				[RazeBlocksNames:Medium Crash Site]
-				[RazeBlocksNames:Large Crash Site]
-				[RazeBlocksNames:Disposable Beacon]
-				[RazeBlocksNames:Proprietary Beacon]
-				[RazeBlocksNames:Planet Derelict]
-				[RazeBlocksNames:Large Abandoned Building]
-				[RazeBlocksNames:Small Drill Rig]
-				[RazeBlocksNames:Outpost]
-				[RazeBlocksNames:Fortress]
-				[RazeBlocksNames:Hangar]
+				
+				[DisableTriggers:true]
+				[DisableTriggerNames:GVK-PlanetaryInstallations-Trigger-Compromised-Small]
+				[DisableTriggerNames:GVK-PlanetaryInstallations-Trigger-Compromised-Medium]
+				[DisableTriggerNames:GVK-PlanetaryInstallations-Trigger-Compromised-Large]
+				[DisableTriggerNames:GVK-PlanetaryInstallations-Trigger-BeaconDisabled-Small]
+				[DisableTriggerNames:GVK-PlanetaryInstallations-Trigger-BeaconDisabled-Medium]
+				[DisableTriggerNames:GVK-PlanetaryInstallations-Trigger-BeaconDisabled-Large]
+				[DisableTriggerNames:GVK-PlanetaryInstallations-Trigger-Despawn]
+				[DisableTriggerNames:GVK-PlanetaryInstallations-Trigger-DespawnMES]
+				
+				[GenerateExplosion:true]
+				[ExplosionOffsetFromRemote:{X:0 Y:0 Z:0}]
+				[ExplosionRange:10]
+				[ExplosionDamage:100]
+				[ExplosionIgnoresVoxels:true]
+
 				[ToggleBlocksOfType:true]
 				[BlockTypesToToggle:MyObjectBuilder_Beacon/ZoneBlock]
+				[BlockTypeToggles:Off]
+				[BlockTypesToToggle:MyObjectBuilder_Beacon/DisposableNpcBeaconSmall]
+				[BlockTypeToggles:Off]
+				[BlockTypesToToggle:MyObjectBuilder_Beacon/DisposableNpcBeaconLarge]
+				[BlockTypeToggles:Off]
+				[BlockTypesToToggle:MyObjectBuilder_Beacon/SmallBlockBeacon]
+				[BlockTypeToggles:Off]
+				[BlockTypesToToggle:MyObjectBuilder_Beacon/LargeBlockBeacon]
+				[BlockTypeToggles:Off]
+				[BlockTypesToToggle:MyObjectBuilder_Beacon/RivalAIRemoteControlLarge]
+				[BlockTypeToggles:Off]
+				[BlockTypesToToggle:MyObjectBuilder_Beacon/RivalAIRemoteControlSmall]
 				[BlockTypeToggles:Off]
 				[TerminateBehavior:true]
 
