@@ -9,6 +9,8 @@
 			<Description>
 				[MES Loot]
 				[ContainerBlockTypes:MyObjectBuilder_CargoContainer/LargeBlockSmallContainer]
+				[ContainerBlockTypes:MyObjectBuilder_CargoContainer/LargeBlockLargeContainer]
+				[ContainerBlockTypes:MyObjectBuilder_CargoContainer/LargeBlockLargeIndustrialContainer]
 				[ContainerTypes:Kharak_Loot_Small]
 				[MinBlocks:4]
 				[MaxBlocks:6]
@@ -26,6 +28,7 @@
 				[MES Loot]
 				[ContainerBlockTypes:MyObjectBuilder_CargoContainer/LargeBlockSmallContainer]
 				[ContainerBlockTypes:MyObjectBuilder_CargoContainer/LargeBlockLargeContainer]
+				[ContainerBlockTypes:MyObjectBuilder_CargoContainer/LargeBlockLargeIndustrialContainer]
 				[ContainerTypes:Kharak_Loot_Medium]
 				[MinBlocks:8]
 				[MaxBlocks:12]
@@ -43,6 +46,7 @@
 				[MES Loot]
 				[ContainerBlockTypes:MyObjectBuilder_CargoContainer/LargeBlockSmallContainer]
 				[ContainerBlockTypes:MyObjectBuilder_CargoContainer/LargeBlockLargeContainer]
+				[ContainerBlockTypes:MyObjectBuilder_CargoContainer/LargeBlockLargeIndustrialContainer]
 				[ContainerTypes:Kharak_Loot_Large]
 				[MinBlocks:16]
 				[MaxBlocks:20]
@@ -60,24 +64,13 @@
 				[MES Loot]
 				[ContainerBlockTypes:MyObjectBuilder_CargoContainer/LargeBlockSmallContainer]
 				[ContainerBlockTypes:MyObjectBuilder_CargoContainer/LargeBlockLargeContainer]
+				[ContainerBlockTypes:MyObjectBuilder_CargoContainer/LargeBlockLargeIndustrialContainer]
 				[ContainerTypes:Kharak_Loot_Large]
 				[MinBlocks:20]
 				[MaxBlocks:24]
 				[AppendNameToBlock:true]
 				[AppendedName: (Loot)]
 				[Chance:100]
-			</Description>
-		</EntityComponent>
-	
-		<!-- only using the loot groups because there is a bug with loot profiles used directly -->
-		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
-			<Id>
-				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Derelict-Loot-Group</SubtypeId>
-			</Id>
-			<Description>
-				[MES Loot Group]
-				[LootProfiles:GVK-Derelict-Loot-Small]
 			</Description>
 		</EntityComponent>
 	</EntityComponents>
