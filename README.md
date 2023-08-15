@@ -11,3 +11,6 @@ https://github.com/MeridiusIX/Modular-Encounters-Systems/wiki/Admin-&-Configurat
 `/MES.Info.GetGridBehavior` or `/MES.Info.GetGridData` are not currently on the admin debug command wiki
 
 `/MES.Debug.ChangeBool.LargeWreckActive.false`
+
+## Thanks Yous:
+Nekron910 https://steamcommunity.com/sharedfiles/filedetails/?id=2650194963&tscn=1643638039
