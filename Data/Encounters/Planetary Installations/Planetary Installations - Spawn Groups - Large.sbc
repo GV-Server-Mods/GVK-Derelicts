@@ -613,5 +613,43 @@
 				</Prefab>
 			</Prefabs>
 		</SpawnGroup>
+		<SpawnGroup>
+			<Id>
+				<TypeId>SpawnGroupDefinition</TypeId>
+				<SubtypeId>GVK-PlanetaryInstallations-SpawnGroups-Large-Land_Carrier</SubtypeId>
+			</Id>
+			<Description>
+				[Modular Encounters SpawnGroup]
+				[IgnoreCleanupRules:true]
+				[ReplenishSystems:true]
+				[SpawnConditionsProfiles:GVK-SpawnConditions-PlanetaryInstallations-LargeDerelict]
+				[ManipulationProfiles:MES-Manipulation-RivalAi]
+				[ManipulationProfiles:GVK-PlanetaryInstallations-Manipulations-Large-NoReducedArmor]
+				[CutVoxelsAtAirtightCells:true]
+				[CutVoxelSize:9]
+			</Description>
+			<IsPirate>true</IsPirate>
+			<Frequency>5.0</Frequency>
+			<Prefabs>
+				<Prefab SubtypeId="[NPC Large Wreck] Land Carrier Front">
+					<Position>
+						<X>0</X>
+						<Y>-2.5</Y>
+						<Z>80.0</Z>
+					</Position>
+					<Speed>0</Speed>
+				</Prefab>
+				<Prefab SubtypeId="[NPC Large Wreck] Land Carrier Back">
+					<Position>
+						<X>0</X>
+						<Y>-5</Y>
+						<Z>-80.0</Z>
+					</Position>
+					<Speed>0</Speed>
+					<BeaconText>Large Crash Site</BeaconText>
+					<Behaviour>GVK-PlanetaryInstallations-Behavior-Large</Behaviour>
+				</Prefab>
+			</Prefabs>
+		</SpawnGroup>
 	</SpawnGroups>
 </Definitions>
