@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <Definitions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
 	<EntityComponents>
-		<!-- Horsefly Drone Behavior -->
+		<!-- Flyer Horsefly Drone Behavior -->
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
@@ -32,6 +32,50 @@
 			[TargetData:GVK-Generic-TargetProfile-EnemyPlayers]
 			
 			[AutopilotData:GVK-CustomSpawns-DefenseDrone-Horsefly-Autopilot]
+
+			[Triggers:GVK-CustomSpawns-DefenseDrone-Trigger-TargetAttacker]
+			[Triggers:GVK-CustomSpawns-DefenseDrone-Trigger-WeaponsToMaxRange]
+			[Triggers:GVK-CustomSpawns-DefenseDrone-Trigger-FireMissilesTimers]
+			[Triggers:GVK-CustomSpawns-DefenseDrone-Trigger-FireRocketsTimers]
+			[Triggers:GVK-Generic-Trigger-SPRTTargetAcquiredChatter]
+			[Triggers:GVK-CustomSpawns-DefenseDrone-Trigger-Crashed]
+			[Triggers:GVK-CustomSpawns-DefenseDrone-Trigger-Compromised]
+			[Triggers:GVK-Generic-Trigger-SPRTNoWeapon]
+			[WeaponSystem:GVK-NPC-Weapons-GAALSIEN-Carrier]
+
+			</Description>
+		</EntityComponent>
+		<!-- Large Flyer Horsefly Drone Behavior -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-DroneEnconuter-LargeHorsefly-Behavior</SubtypeId>
+			</Id>
+			<Description>
+		
+			[RivalAI Behavior]
+				
+			[BehaviorName:Horsefly]
+
+			[UseStaticGuns:true]
+			[UseTurrets:true]
+			[MaxStaticWeaponRange:-1]
+			[WeaponMaxAngleFromTarget:180]
+			[UseAmmoReplenish:true]
+			[AmmoReplenishClipAmount:10]
+			[MaxAmmoReplenishments:99999999]
+			[UsePlayerDistanceTimer:true]
+			[PlayerDistanceTimerTrigger:0]
+			[PlayerDistanceTrigger:15000]
+			[UseNoTargetTimer:true]
+			[NoTargetTimerTrigger:1800]
+			[UseRetreatTimer:true]
+			[RetreatTimerTrigger:86400]
+			[RetreatDespawnDistance:1500]
+
+			[TargetData:GVK-Generic-TargetProfile-EnemyPlayers]
+			
+			[AutopilotData:GVK-CustomSpawns-DefenseDrone-LargeHorsefly-Autopilot]
 
 			[Triggers:GVK-CustomSpawns-DefenseDrone-Trigger-TargetAttacker]
 			[Triggers:GVK-CustomSpawns-DefenseDrone-Trigger-WeaponsToMaxRange]
@@ -170,6 +214,88 @@
 			[RetreatDespawnDistance:1500]
 			
 			[AutopilotData:GVK-CustomSpawns-DefenseDrone-Rover-Autopilot]
+			
+			[TargetData:GVK-Generic-TargetProfile-EnemyPlayers]
+
+			[Triggers:GVK-CustomSpawns-DefenseDrone-Trigger-TargetAttacker]
+			[Triggers:GVK-CustomSpawns-DefenseDrone-Trigger-WeaponsToMaxRange]
+			[Triggers:GVK-CustomSpawns-DefenseDrone-Trigger-FireMissilesTimers]
+			[Triggers:GVK-Generic-Trigger-SPRTTargetAcquiredChatter]
+			[Triggers:GVK-CustomSpawns-DefenseDrone-Trigger-Compromised]
+			[Triggers:GVK-Generic-Trigger-SPRTNoWeapon]
+
+			</Description>
+		</EntityComponent>
+		<!-- Horsefly Rover Drone Behavior -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-DroneEnconuter-Rover-HorseFighter-Behavior</SubtypeId>
+			</Id>
+			<Description>
+	
+			[RivalAI Behavior]
+				
+			[BehaviorName:HorseFighter]
+
+			[UseStaticGuns:true]
+			[UseTurrets:true]
+			[MaxStaticWeaponRange:-1]
+			[WeaponMaxAngleFromTarget:180]
+			[UseAmmoReplenish:true]
+			[AmmoReplenishClipAmount:10]
+			[MaxAmmoReplenishments:99999999]
+			[UsePlayerDistanceTimer:true]
+			[PlayerDistanceTimerTrigger:0]
+			[PlayerDistanceTrigger:15000]
+			[UseNoTargetTimer:true]
+			[NoTargetTimerTrigger:1800]
+			[UseRetreatTimer:true]
+			[RetreatTimerTrigger:86400]
+			[RetreatDespawnDistance:1500]
+			
+			[AutopilotData:GVK-CustomSpawns-DefenseDrone-Rover-HorseFighter-Autopilot]
+			
+			[TargetData:GVK-Generic-TargetProfile-EnemyPlayers]
+
+			[Triggers:GVK-CustomSpawns-DefenseDrone-Trigger-TargetAttacker]
+			[Triggers:GVK-CustomSpawns-DefenseDrone-Trigger-WeaponsToMaxRange]
+			[Triggers:GVK-CustomSpawns-DefenseDrone-Trigger-FireMissilesTimers]
+			[Triggers:GVK-Generic-Trigger-SPRTTargetAcquiredChatter]
+			[Triggers:GVK-CustomSpawns-DefenseDrone-Trigger-Compromised]
+			[Triggers:GVK-Generic-Trigger-SPRTNoWeapon]
+
+			</Description>
+		</EntityComponent>
+		<!-- Horsefly Medium Rover Drone Behavior -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-DroneEnconuter-MediumRover-Behavior</SubtypeId>
+			</Id>
+			<Description>
+	
+			[RivalAI Behavior]
+				
+			[BehaviorName:Horsefly]
+
+			[UseStaticGuns:true]
+			[UseTurrets:true]
+			[MaxStaticWeaponRange:-1]
+			[WeaponMaxAngleFromTarget:180]
+			[UseAmmoReplenish:true]
+			[AmmoReplenishClipAmount:10]
+			[MaxAmmoReplenishments:99999999]
+			[UsePlayerDistanceTimer:true]
+			[PlayerDistanceTimerTrigger:0]
+			[PlayerDistanceTrigger:15000]
+			[UseNoTargetTimer:true]
+			[NoTargetTimerTrigger:1800]
+			[UseRetreatTimer:true]
+			[RetreatTimerTrigger:86400]
+			[RetreatDespawnDistance:1500]
+			
+			[AutopilotData:GVK-CustomSpawns-DefenseDrone-MediumRover-Autopilot]
 			
 			[TargetData:GVK-Generic-TargetProfile-EnemyPlayers]
 

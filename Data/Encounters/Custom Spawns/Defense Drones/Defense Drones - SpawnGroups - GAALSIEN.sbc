@@ -193,7 +193,7 @@
 				</Prefab>
 			</Prefabs>
 		</SpawnGroup>
-		<!-- [NPC Drone] Reaper Ion -->
+		<!-- [NPC Drone] Reaper Squad -->
 		<SpawnGroup>
 			<Id>
 				<TypeId>SpawnGroupDefinition</TypeId>
@@ -235,7 +235,7 @@
 				</Prefab>
 			</Prefabs>
 		</SpawnGroup>
-		<!-- [NPC Drone] Hornet Ion -->
+		<!-- [NPC Drone] Hornet Squad -->
 		<SpawnGroup>
 			<Id>
 				<TypeId>SpawnGroupDefinition</TypeId>
@@ -277,7 +277,7 @@
 				</Prefab>
 			</Prefabs>
 		</SpawnGroup>
-		<!-- [NPC Drone] Slicer Ion -->
+		<!-- [NPC Drone] Slicer Squad -->
 		<SpawnGroup>
 			<Id>
 				<TypeId>SpawnGroupDefinition</TypeId>
@@ -316,6 +316,38 @@
 					<Speed>0</Speed>
 					<BeaconText>Slicer</BeaconText>
 					<Behaviour>GVK-CustomSpawns-DefenseDrone-Horsefly-Behavior-Start</Behaviour>
+				</Prefab>
+			</Prefabs>
+		</SpawnGroup>
+		<!-- [NPC Drone] Gaalsien Bomber -->
+		<SpawnGroup>
+			<Id>
+				<TypeId>SpawnGroupDefinition</TypeId>
+				<!--Do Not Edit-->
+				<SubtypeId>GVK-CustomSpawns-DefenseDrone-SpawnGroup-GAALSIEN-Bomber</SubtypeId>
+			</Id>
+			<Description>
+				[Modular Encounters SpawnGroup]
+				[IgnoreCleanupRules:true]
+				[ReplenishSystems:true]
+				[ManipulationProfiles:MES-Manipulation-RivalAi] 
+				[ManipulationProfiles:GVK-CustomSpawns-DefenseDrones-Manipulation-H2Flyer]
+				[SpawnConditionsProfiles:GVK-SpawnConditions-CustomSpawns-DefenseDrones-H2Flyer]
+				[FactionOverride:GAALSIEN]
+			</Description>
+			<IsPirate>true</IsPirate>
+			<!--Do not edit-->
+			<Frequency>0.1</Frequency>
+			<Prefabs>
+				<Prefab SubtypeId="[NPC Drone] Gaalsien Bomber">
+					<Position>
+						<X>-25</X>
+						<Y>0.0</Y>
+						<Z>0.0</Z>
+					</Position>
+					<Speed>0</Speed>
+					<BeaconText>Bomber</BeaconText>
+					<Behaviour>GVK-CustomSpawns-DefenseDrone-LargeHorsefly-Behavior</Behaviour>
 				</Prefab>
 			</Prefabs>
 		</SpawnGroup>
@@ -476,6 +508,38 @@
 					<Speed>0</Speed>
 					<BeaconText>Stryker ICV</BeaconText>
 					<Behaviour>GVK-CustomSpawns-DefenseDrone-Rover-Behavior-Start</Behaviour>
+				</Prefab>
+			</Prefabs>
+		</SpawnGroup>
+		<!-- [NPC Drone] Sandskimmer -->
+		<SpawnGroup>
+			<Id>
+				<TypeId>SpawnGroupDefinition</TypeId>
+				<!--Do Not Edit-->
+				<SubtypeId>GVK-CustomSpawns-DefenseDrone-SpawnGroup-GAALSIEN-Sandskimmer</SubtypeId>
+			</Id>
+			<Description>
+				[Modular Encounters SpawnGroup]
+				[IgnoreCleanupRules:true]
+				[ReplenishSystems:true]
+				[ManipulationProfiles:MES-Manipulation-RivalAi] 
+				[ManipulationProfiles:GVK-CustomSpawns-DefenseDrones-Manipulation-H2Hover]
+				[SpawnConditionsProfiles:GVK-SpawnConditions-CustomSpawns-DefenseDrones-H2Hover]
+				[FactionOverride:GAALSIEN]
+			</Description>
+			<IsPirate>true</IsPirate>
+			<!--Do not edit-->
+			<Frequency>0.1</Frequency>
+			<Prefabs>
+				<Prefab SubtypeId="[NPC Drone] Sandskimmer">
+					<Position>
+						<X>0.0</X>
+						<Y>30</Y>
+						<Z>0.0</Z>
+					</Position>
+					<Speed>0</Speed>
+					<BeaconText>Sandskimmer</BeaconText>
+					<Behaviour>GVK-CustomSpawns-DefenseDrone-Rover-HorseFighter-Behavior</Behaviour>
 				</Prefab>
 			</Prefabs>
 		</SpawnGroup>
@@ -799,7 +863,7 @@
 				</Prefab>
 			</Prefabs>
 		</SpawnGroup>
-		<!--[NPC Drone] Tuukka Cruiser Hover -->
+		<!-- [NPC Drone] Tuukka Cruiser Hover -->
 		<SpawnGroup>
 			<Id>
 				<TypeId>SpawnGroupDefinition</TypeId>
@@ -956,6 +1020,262 @@
 					<Speed>0</Speed>
 					<BeaconText>Torpedo Cruiser</BeaconText>
 					<Behaviour>GVK-CustomSpawns-DefenseDrone-HoverCruiserHorsefly-Behavior</Behaviour>
+				</Prefab>
+			</Prefabs>
+		</SpawnGroup>
+		<!-- [NPC Drone] Gaalsien Baserunner -->
+		<SpawnGroup>
+			<Id>
+				<TypeId>SpawnGroupDefinition</TypeId>
+				<!--Do Not Edit-->
+				<SubtypeId>GVK-CustomSpawns-DefenseDrone-SpawnGroup-GAALSIEN-Baserunner</SubtypeId>
+			</Id>
+			<Description>
+				[Modular Encounters SpawnGroup]
+				[IgnoreCleanupRules:true]
+				[ReplenishSystems:true]
+				[ManipulationProfiles:MES-Manipulation-RivalAi] 
+				[ManipulationProfiles:GVK-CustomSpawns-DefenseDrones-Manipulation-H2Hover]
+				[SpawnConditionsProfiles:GVK-SpawnConditions-CustomSpawns-DefenseDrones-H2Hover]
+				[FactionOverride:GAALSIEN]
+			</Description>
+			<IsPirate>true</IsPirate>
+			<!--Do not edit-->
+			<Frequency>0.1</Frequency>
+			<Prefabs>
+				<Prefab SubtypeId="[NPC Drone] Gaalsien Baserunner">
+					<Position>
+						<X>0.0</X>
+						<Y>15.0</Y>
+						<Z>0.0</Z>
+					</Position>
+					<Speed>0</Speed>
+					<BeaconText>Baserunner</BeaconText>
+					<Behaviour>GVK-CustomSpawns-DefenseDrone-MediumRover-Behavior</Behaviour>
+				</Prefab>
+			</Prefabs>
+		</SpawnGroup>
+		<!-- [NPC Drone] Gaalsien Baserunner Artillery -->
+		<SpawnGroup>
+			<Id>
+				<TypeId>SpawnGroupDefinition</TypeId>
+				<!--Do Not Edit-->
+				<SubtypeId>GVK-CustomSpawns-DefenseDrone-SpawnGroup-GAALSIEN-BaserunnerArtillery</SubtypeId>
+			</Id>
+			<Description>
+				[Modular Encounters SpawnGroup]
+				[IgnoreCleanupRules:true]
+				[ReplenishSystems:true]
+				[ManipulationProfiles:MES-Manipulation-RivalAi] 
+				[ManipulationProfiles:GVK-CustomSpawns-DefenseDrones-Manipulation-H2Hover]
+				[SpawnConditionsProfiles:GVK-SpawnConditions-CustomSpawns-DefenseDrones-H2Hover]
+				[FactionOverride:GAALSIEN]
+			</Description>
+			<IsPirate>true</IsPirate>
+			<!--Do not edit-->
+			<Frequency>0.1</Frequency>
+			<Prefabs>
+				<Prefab SubtypeId="[NPC Drone] Gaalsien Baserunner Artillery">
+					<Position>
+						<X>0.0</X>
+						<Y>15.0</Y>
+						<Z>0.0</Z>
+					</Position>
+					<Speed>0</Speed>
+					<BeaconText>Artillery Baserunner</BeaconText>
+					<Behaviour>GVK-CustomSpawns-DefenseDrone-MediumRover-Behavior</Behaviour>
+				</Prefab>
+			</Prefabs>
+		</SpawnGroup>
+		<!-- [NPC Drone] Gaalsien Baserunner Flak -->
+		<SpawnGroup>
+			<Id>
+				<TypeId>SpawnGroupDefinition</TypeId>
+				<!--Do Not Edit-->
+				<SubtypeId>GVK-CustomSpawns-DefenseDrone-SpawnGroup-GAALSIEN-BaserunnerFlak</SubtypeId>
+			</Id>
+			<Description>
+				[Modular Encounters SpawnGroup]
+				[IgnoreCleanupRules:true]
+				[ReplenishSystems:true]
+				[ManipulationProfiles:MES-Manipulation-RivalAi] 
+				[ManipulationProfiles:GVK-CustomSpawns-DefenseDrones-Manipulation-H2Hover]
+				[SpawnConditionsProfiles:GVK-SpawnConditions-CustomSpawns-DefenseDrones-H2Hover]
+				[FactionOverride:GAALSIEN]
+			</Description>
+			<IsPirate>true</IsPirate>
+			<!--Do not edit-->
+			<Frequency>0.1</Frequency>
+			<Prefabs>
+				<Prefab SubtypeId="[NPC Drone] Gaalsien Baserunner Flak">
+					<Position>
+						<X>0.0</X>
+						<Y>15.0</Y>
+						<Z>0.0</Z>
+					</Position>
+					<Speed>0</Speed>
+					<BeaconText>Flak Baserunner</BeaconText>
+					<Behaviour>GVK-CustomSpawns-DefenseDrone-MediumRover-Behavior</Behaviour>
+				</Prefab>
+			</Prefabs>
+		</SpawnGroup>
+		<!-- [NPC Drone] Gaalsien Baserunner Hurricane -->
+		<SpawnGroup>
+			<Id>
+				<TypeId>SpawnGroupDefinition</TypeId>
+				<!--Do Not Edit-->
+				<SubtypeId>GVK-CustomSpawns-DefenseDrone-SpawnGroup-GAALSIEN-BaserunnerHurricane</SubtypeId>
+			</Id>
+			<Description>
+				[Modular Encounters SpawnGroup]
+				[IgnoreCleanupRules:true]
+				[ReplenishSystems:true]
+				[ManipulationProfiles:MES-Manipulation-RivalAi] 
+				[ManipulationProfiles:GVK-CustomSpawns-DefenseDrones-Manipulation-H2Hover]
+				[SpawnConditionsProfiles:GVK-SpawnConditions-CustomSpawns-DefenseDrones-H2Hover]
+				[FactionOverride:GAALSIEN]
+			</Description>
+			<IsPirate>true</IsPirate>
+			<!--Do not edit-->
+			<Frequency>0.1</Frequency>
+			<Prefabs>
+				<Prefab SubtypeId="[NPC Drone] Gaalsien Baserunner Hurricane">
+					<Position>
+						<X>0.0</X>
+						<Y>15.0</Y>
+						<Z>0.0</Z>
+					</Position>
+					<Speed>0</Speed>
+					<BeaconText>Hurricane Baserunner</BeaconText>
+					<Behaviour>GVK-CustomSpawns-DefenseDrone-MediumRover-Behavior</Behaviour>
+				</Prefab>
+			</Prefabs>
+		</SpawnGroup>
+		<!-- [NPC Drone] Gaalsien Baserunner Loki -->
+		<SpawnGroup>
+			<Id>
+				<TypeId>SpawnGroupDefinition</TypeId>
+				<!--Do Not Edit-->
+				<SubtypeId>GVK-CustomSpawns-DefenseDrone-SpawnGroup-GAALSIEN-BaserunnerLoki</SubtypeId>
+			</Id>
+			<Description>
+				[Modular Encounters SpawnGroup]
+				[IgnoreCleanupRules:true]
+				[ReplenishSystems:true]
+				[ManipulationProfiles:MES-Manipulation-RivalAi] 
+				[ManipulationProfiles:GVK-CustomSpawns-DefenseDrones-Manipulation-H2Hover]
+				[SpawnConditionsProfiles:GVK-SpawnConditions-CustomSpawns-DefenseDrones-H2Hover]
+				[FactionOverride:GAALSIEN]
+			</Description>
+			<IsPirate>true</IsPirate>
+			<!--Do not edit-->
+			<Frequency>0.1</Frequency>
+			<Prefabs>
+				<Prefab SubtypeId="[NPC Drone] Gaalsien Baserunner Loki">
+					<Position>
+						<X>0.0</X>
+						<Y>15.0</Y>
+						<Z>0.0</Z>
+					</Position>
+					<Speed>0</Speed>
+					<BeaconText>Loki Baserunner</BeaconText>
+					<Behaviour>GVK-CustomSpawns-DefenseDrone-MediumRover-Behavior</Behaviour>
+				</Prefab>
+			</Prefabs>
+		</SpawnGroup>
+		<!-- [NPC Drone] Gaalsien Baserunner Spartan -->
+		<SpawnGroup>
+			<Id>
+				<TypeId>SpawnGroupDefinition</TypeId>
+				<!--Do Not Edit-->
+				<SubtypeId>GVK-CustomSpawns-DefenseDrone-SpawnGroup-GAALSIEN-BaserunnerSpartan</SubtypeId>
+			</Id>
+			<Description>
+				[Modular Encounters SpawnGroup]
+				[IgnoreCleanupRules:true]
+				[ReplenishSystems:true]
+				[ManipulationProfiles:MES-Manipulation-RivalAi] 
+				[ManipulationProfiles:GVK-CustomSpawns-DefenseDrones-Manipulation-H2Hover]
+				[SpawnConditionsProfiles:GVK-SpawnConditions-CustomSpawns-DefenseDrones-H2Hover]
+				[FactionOverride:GAALSIEN]
+			</Description>
+			<IsPirate>true</IsPirate>
+			<!--Do not edit-->
+			<Frequency>0.1</Frequency>
+			<Prefabs>
+				<Prefab SubtypeId="[NPC Drone] Gaalsien Baserunner Spartan">
+					<Position>
+						<X>0.0</X>
+						<Y>15.0</Y>
+						<Z>0.0</Z>
+					</Position>
+					<Speed>0</Speed>
+					<BeaconText>Spartan Baserunner</BeaconText>
+					<Behaviour>GVK-CustomSpawns-DefenseDrone-MediumRover-Behavior</Behaviour>
+				</Prefab>
+			</Prefabs>
+		</SpawnGroup>
+		<!-- [NPC Drone] Gaalsien Baserunner Thrasher -->
+		<SpawnGroup>
+			<Id>
+				<TypeId>SpawnGroupDefinition</TypeId>
+				<!--Do Not Edit-->
+				<SubtypeId>GVK-CustomSpawns-DefenseDrone-SpawnGroup-GAALSIEN-BaserunnerThrasher</SubtypeId>
+			</Id>
+			<Description>
+				[Modular Encounters SpawnGroup]
+				[IgnoreCleanupRules:true]
+				[ReplenishSystems:true]
+				[ManipulationProfiles:MES-Manipulation-RivalAi] 
+				[ManipulationProfiles:GVK-CustomSpawns-DefenseDrones-Manipulation-H2Hover]
+				[SpawnConditionsProfiles:GVK-SpawnConditions-CustomSpawns-DefenseDrones-H2Hover]
+				[FactionOverride:GAALSIEN]
+			</Description>
+			<IsPirate>true</IsPirate>
+			<!--Do not edit-->
+			<Frequency>0.1</Frequency>
+			<Prefabs>
+				<Prefab SubtypeId="[NPC Drone] Gaalsien Baserunner Thrasher">
+					<Position>
+						<X>0.0</X>
+						<Y>15.0</Y>
+						<Z>0.0</Z>
+					</Position>
+					<Speed>0</Speed>
+					<BeaconText>Thrasher Baserunner</BeaconText>
+					<Behaviour>GVK-CustomSpawns-DefenseDrone-MediumRover-Behavior</Behaviour>
+				</Prefab>
+			</Prefabs>
+		</SpawnGroup>
+		<!-- [NPC Drone] Gaalsien Baserunner Vulcan -->
+		<SpawnGroup>
+			<Id>
+				<TypeId>SpawnGroupDefinition</TypeId>
+				<!--Do Not Edit-->
+				<SubtypeId>GVK-CustomSpawns-DefenseDrone-SpawnGroup-GAALSIEN-BaserunnerVulcan</SubtypeId>
+			</Id>
+			<Description>
+				[Modular Encounters SpawnGroup]
+				[IgnoreCleanupRules:true]
+				[ReplenishSystems:true]
+				[ManipulationProfiles:MES-Manipulation-RivalAi] 
+				[ManipulationProfiles:GVK-CustomSpawns-DefenseDrones-Manipulation-H2Hover]
+				[SpawnConditionsProfiles:GVK-SpawnConditions-CustomSpawns-DefenseDrones-H2Hover]
+				[FactionOverride:GAALSIEN]
+			</Description>
+			<IsPirate>true</IsPirate>
+			<!--Do not edit-->
+			<Frequency>0.1</Frequency>
+			<Prefabs>
+				<Prefab SubtypeId="[NPC Drone] Gaalsien Baserunner Vulcan">
+					<Position>
+						<X>0.0</X>
+						<Y>15.0</Y>
+						<Z>0.0</Z>
+					</Position>
+					<Speed>0</Speed>
+					<BeaconText>Vulcan Baserunner</BeaconText>
+					<Behaviour>GVK-CustomSpawns-DefenseDrone-MediumRover-Behavior</Behaviour>
 				</Prefab>
 			</Prefabs>
 		</SpawnGroup>

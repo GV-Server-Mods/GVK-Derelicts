@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <Definitions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
 	<EntityComponents>
-		<!-- Horsefly Drone Behavior -->
+		<!-- Flyer Horsefly Drone Behavior -->
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
@@ -45,7 +45,7 @@
 
 			</Description>
 		</EntityComponent>
-		<!-- Horsefly Autopilot -->
+		<!-- Flyer Horsefly Autopilot -->
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
@@ -67,7 +67,7 @@
 			[MinimumPlanetAltitude:150]
 			[AltitudeTolerance:50]
 			[CollisionEvasionWaypointCalculatedAwayFromEntity:true]
-			[WaypointTolerance:100]
+			[WaypointTolerance:150]
 			[IdealMinSpeed:50]
 			[IdealMaxSpeed:75]
 
@@ -77,12 +77,100 @@
 			[OffsetPlanetMaxDistFromTarget:1200]
 			[OffsetPlanetMinTargetAltitude:15]
 			[OffsetPlanetMaxTargetAltitude:100]
+			[WaypointWaitTimeTrigger:0]
 			
 			[MaxVerticalSpeed:20]
 
 			[ReverseOffsetDistAltAboveHeight:false]
 			[ReverseOffsetHeight:0]
-			[AngleAllowedForForwardThrust:90]
+			[AngleAllowedForForwardThrust:120]
+
+			</Description>
+		</EntityComponent>
+		<!-- Large Flyer Horsefly Drone Behavior -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-CustomSpawns-DefenseDrone-LargeHorsefly-Behavior</SubtypeId>
+			</Id>
+			<Description>
+		
+			[RivalAI Behavior]
+				
+			[BehaviorName:Horsefly]
+
+			[UseStaticGuns:true]
+			[UseTurrets:true]
+			[MaxStaticWeaponRange:-1]
+			[WeaponMaxAngleFromTarget:180]
+			[UseAmmoReplenish:true]
+			[AmmoReplenishClipAmount:10]
+			[MaxAmmoReplenishments:99999999]
+			[UsePlayerDistanceTimer:false]
+			[PlayerDistanceTimerTrigger:0]
+			[PlayerDistanceTrigger:15000]
+			[UseNoTargetTimer:false]
+			[NoTargetTimerTrigger:1800]
+			[UseRetreatTimer:true]
+			[RetreatTimerTrigger:86400]
+			[RetreatDespawnDistance:1500]
+
+			[TargetData:GVK-Generic-TargetProfile-EnemyPlayers]
+			
+			[AutopilotData:GVK-CustomSpawns-DefenseDrone-LargeHorsefly-Autopilot]
+
+			[Triggers:GVK-CustomSpawns-DefenseDrone-Trigger-TargetAttacker]
+			[Triggers:GVK-CustomSpawns-DefenseDrone-Trigger-WeaponsToMaxRange]
+			[Triggers:GVK-CustomSpawns-DefenseDrone-Trigger-FireMissilesTimers]
+			[Triggers:GVK-CustomSpawns-DefenseDrone-Trigger-FireRocketsTimers]
+			[Triggers:GVK-Generic-Trigger-SPRTTargetAcquiredChatter]
+			[Triggers:GVK-CustomSpawns-DefenseDrone-Trigger-Crashed]
+			[Triggers:GVK-CustomSpawns-DefenseDrone-Trigger-Compromised]
+			[Triggers:GVK-Generic-Trigger-SPRTNoWeapon]
+			[WeaponSystem:GVK-NPC-Weapons-GAALSIEN-Carrier]
+
+			</Description>
+		</EntityComponent>
+		<!-- Large Flyer Horsefly Autopilot -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-CustomSpawns-DefenseDrone-LargeHorsefly-Autopilot</SubtypeId>
+			</Id>
+			<Description>
+
+			[RivalAI Autopilot]
+
+			[UseVelocityCollisionEvasion:true]
+
+			[RotationMultiplier:0.5]
+			[LimitRotationSpeed:true]
+			[MaxRotationMagnitude:0.75]
+			[DisableInertiaDampeners:false]
+			[FlyLevelWithGravity:false]
+			[LevelWithGravityWhenIdle:true]
+			[IdealPlanetAltitude:300]
+			[MinimumPlanetAltitude:250]
+			[AltitudeTolerance:50]
+			[CollisionEvasionWaypointCalculatedAwayFromEntity:true]
+			[WaypointTolerance:250]
+			[IdealMinSpeed:50]
+			[IdealMaxSpeed:100]
+			[WaypointWaitTimeTrigger:0]
+			[WaypointAbandonTimeTrigger:60]
+
+			[OffsetSpaceMinDistFromTarget:900]
+			[OffsetSpaceMaxDistFromTarget:1200]
+			[OffsetPlanetMinDistFromTarget:1200]
+			[OffsetPlanetMaxDistFromTarget:1700]
+			[OffsetPlanetMinTargetAltitude:250]
+			[OffsetPlanetMaxTargetAltitude:500]
+			
+			[MaxVerticalSpeed:20]
+
+			[ReverseOffsetDistAltAboveHeight:false]
+			[ReverseOffsetHeight:300]
+			[AngleAllowedForForwardThrust:180]
 
 			</Description>
 		</EntityComponent>
@@ -134,7 +222,7 @@
 
 			</Description>
 		</EntityComponent>
-		<!-- HorseFighter Autopilot -->
+		<!-- Flyer HorseFighter Autopilot -->
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
@@ -148,8 +236,6 @@
 			[CollisionEvasionWaypointDistance:50]
 			[CollisionFallEvasionWaypointDistance:35]
 
-			[UseProjectileLeadPrediction:true]
-
 			[RotationMultiplier:0.5]
 			[DisableInertiaDampeners:false]
 			[FlyLevelWithGravity:false]
@@ -159,11 +245,9 @@
 			[MinimumPlanetAltitude:150]
 			[AltitudeTolerance:50]
 			[CollisionEvasionWaypointCalculatedAwayFromEntity:true]
-			[WaypointTolerance:100]
+			[WaypointTolerance:150]
 			[IdealMinSpeed:50]
 			[IdealMaxSpeed:100]
-			[SlowDownOnWaypointApproach:true]
-			[ExtraSlowDownDistance:25]
 
 			[OffsetSpaceMinDistFromTarget:250]
 			[OffsetSpaceMaxDistFromTarget:500]
@@ -182,7 +266,89 @@
 
 			[ReverseOffsetDistAltAboveHeight:false]
 			[ReverseOffsetHeight:0]
-			[AngleAllowedForForwardThrust:90]
+			[AngleAllowedForForwardThrust:120]
+
+			</Description>
+		</EntityComponent>
+		<!-- Horsefly Rover Drone Behavior -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-CustomSpawns-DefenseDrone-Rover-HorseFighter-Behavior</SubtypeId>
+			</Id>
+			<Description>
+	
+			[RivalAI Behavior]
+				
+			[BehaviorName:HorseFighter]
+
+			[UseStaticGuns:true]
+			[UseTurrets:true]
+			[MaxStaticWeaponRange:-1]
+			[WeaponMaxAngleFromTarget:180]
+			[UseAmmoReplenish:true]
+			[AmmoReplenishClipAmount:10]
+			[MaxAmmoReplenishments:99999999]
+			[UsePlayerDistanceTimer:false]
+			[PlayerDistanceTimerTrigger:0]
+			[PlayerDistanceTrigger:15000]
+			[UseNoTargetTimer:false]
+			[NoTargetTimerTrigger:1800]
+			[UseRetreatTimer:true]
+			[RetreatTimerTrigger:86400]
+			[RetreatDespawnDistance:1500]
+			
+			[AutopilotData:GVK-CustomSpawns-DefenseDrone-Rover-HorseFighter-Autopilot]
+			
+			[TargetData:GVK-Generic-TargetProfile-EnemyPlayers]
+
+			[Triggers:GVK-CustomSpawns-DefenseDrone-Trigger-TargetAttacker]
+			[Triggers:GVK-CustomSpawns-DefenseDrone-Trigger-WeaponsToMaxRange]
+			[Triggers:GVK-CustomSpawns-DefenseDrone-Trigger-FireMissilesTimers]
+			[Triggers:GVK-Generic-Trigger-SPRTTargetAcquiredChatter]
+			[Triggers:GVK-CustomSpawns-DefenseDrone-Trigger-Compromised]
+			[Triggers:GVK-Generic-Trigger-SPRTNoWeapon]
+
+			</Description>
+		</EntityComponent>
+		<!-- Rover HorseFighter Autopilot -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-CustomSpawns-DefenseDrone-Rover-HorseFighter-Autopilot</SubtypeId>
+			</Id>
+			<Description>
+
+			[RivalAI Autopilot]
+
+			[RotationMultiplier:0.75]
+			[DisableInertiaDampeners:false]
+			[FlyLevelWithGravity:true]
+			[LevelWithGravityWhenIdle:true]
+			[IdealPlanetAltitude:5]
+			[MinimumPlanetAltitude:3]
+			[AltitudeTolerance:50]
+			[WaypointTolerance:50]
+			[IdealMinSpeed:50]
+			[IdealMaxSpeed:100]
+			[SlowDownOnWaypointApproach:true]
+			[ExtraSlowDownDistance:200]
+
+			[OffsetPlanetMinDistFromTarget:400]
+			[OffsetPlanetMaxDistFromTarget:700]
+			[OffsetPlanetMinTargetAltitude:3]
+			[OffsetPlanetMaxTargetAltitude:4]
+			[WaypointWaitTimeTrigger:0]
+			[WaypointAbandonTimeTrigger:60]
+			[AllowStrafing:true]
+			[StrafeMinDurationMs:1500]
+			[StrafeMaxDurationMs:5000]
+			[StrafeMinCooldownMs:0]
+			[StrafeMaxCooldownMs:1]
+			[StrafeSpeedCutOff:75]	
+			[StrafeMinimumTargetDistance:500]
+			[StrafeMinimumSafeAngleFromTarget:25]
+			[AngleAllowedForForwardThrust:120]
 
 			</Description>
 		</EntityComponent>
@@ -338,31 +504,91 @@
 			[RivalAI Autopilot]
 
 			[UseVelocityCollisionEvasion:true]
-
+			[CollisionEvasionWaypointCalculatedAwayFromEntity:true]
 			[RotationMultiplier:1]
-			[DisableInertiaDampeners:false]
 			[FlyLevelWithGravity:true]
 			[LevelWithGravityWhenIdle:true]
-			[IdealPlanetAltitude:3]
-			[MinimumPlanetAltitude:0]
 			[AltitudeTolerance:5000]
-			[CollisionEvasionWaypointCalculatedAwayFromEntity:true]
 			[WaypointAbandonTimeTrigger:20]
 			[WaypointTolerance:100]
 			[IdealMinSpeed:35]
 			[IdealMaxSpeed:75]
-			[UseSurfaceHoverThrustMode:false]
-			[HoverPathStepDistance:150]
 
 			[OffsetPlanetMinDistFromTarget:500]
 			[OffsetPlanetMaxDistFromTarget:800]
-			[OffsetPlanetMinTargetAltitude:-50]
+			[OffsetPlanetMinTargetAltitude:0]
 			[OffsetPlanetMaxTargetAltitude:50]
-				
-			[ReverseOffsetDistAltAboveHeight:false]
-			[ReverseOffsetHeight:0]
 			[AngleAllowedForForwardThrust:120]
-			[MaxVelocityAngleForSpeedControl:180]
+
+			</Description>
+		</EntityComponent>
+		<!-- Horsefly Medium Rover Drone Behavior -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-CustomSpawns-DefenseDrone-MediumRover-Behavior</SubtypeId>
+			</Id>
+			<Description>
+	
+			[RivalAI Behavior]
+				
+			[BehaviorName:Horsefly]
+
+			[UseStaticGuns:true]
+			[UseTurrets:true]
+			[MaxStaticWeaponRange:-1]
+			[WeaponMaxAngleFromTarget:180]
+			[UseAmmoReplenish:true]
+			[AmmoReplenishClipAmount:10]
+			[MaxAmmoReplenishments:99999999]
+			[UsePlayerDistanceTimer:false]
+			[PlayerDistanceTimerTrigger:0]
+			[PlayerDistanceTrigger:15000]
+			[UseNoTargetTimer:false]
+			[NoTargetTimerTrigger:1800]
+			[UseRetreatTimer:true]
+			[RetreatTimerTrigger:86400]
+			[RetreatDespawnDistance:1500]
+			
+			[AutopilotData:GVK-CustomSpawns-DefenseDrone-MediumRover-Autopilot]
+			
+			[TargetData:GVK-Generic-TargetProfile-EnemyPlayers]
+
+			[Triggers:GVK-CustomSpawns-DefenseDrone-Trigger-TargetAttacker]
+			[Triggers:GVK-CustomSpawns-DefenseDrone-Trigger-WeaponsToMaxRange]
+			[Triggers:GVK-CustomSpawns-DefenseDrone-Trigger-FireMissilesTimers]
+			[Triggers:GVK-Generic-Trigger-SPRTTargetAcquiredChatter]
+			[Triggers:GVK-CustomSpawns-DefenseDrone-Trigger-Compromised]
+			[Triggers:GVK-Generic-Trigger-SPRTNoWeapon]
+
+			</Description>
+		</EntityComponent>
+		<!-- Horsefly Rover Autopilot -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-CustomSpawns-DefenseDrone-MediumRover-Autopilot</SubtypeId>
+			</Id>
+			<Description>
+
+			[RivalAI Autopilot]
+
+			[UseVelocityCollisionEvasion:true]
+			[CollisionEvasionWaypointCalculatedAwayFromEntity:true]
+			[RotationMultiplier:0.5]
+			[FlyLevelWithGravity:true]
+			[LevelWithGravityWhenIdle:true]
+			[AltitudeTolerance:5000]
+			[WaypointAbandonTimeTrigger:20]
+			[WaypointTolerance:100]
+			[IdealMinSpeed:35]
+			[IdealMaxSpeed:75]
+
+			[OffsetPlanetMinDistFromTarget:800]
+			[OffsetPlanetMaxDistFromTarget:1500]
+			[OffsetPlanetMinTargetAltitude:0]
+			[OffsetPlanetMaxTargetAltitude:50]
+			[AngleAllowedForForwardThrust:120]
 
 			</Description>
 		</EntityComponent>
