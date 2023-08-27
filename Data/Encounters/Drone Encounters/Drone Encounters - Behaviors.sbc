@@ -1,6 +1,210 @@
 <?xml version="1.0"?>
 <Definitions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
 	<EntityComponents>
+		<!-- Salvager Hover Drone Behavior -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-DroneEnconuter-Salvager-Behavior</SubtypeId>
+			</Id>
+			<Description>
+	
+			[RivalAI Behavior]
+				
+			[BehaviorName:Patrol]
+
+			[UsePlayerDistanceTimer:true]
+			[PlayerDistanceTimerTrigger:0]
+			[PlayerDistanceTrigger:15000]
+			[UseNoTargetTimer:true]
+			[NoTargetTimerTrigger:1800]
+			[UseRetreatTimer:true]
+			[RetreatTimerTrigger:86400]
+			[RetreatDespawnDistance:1500]
+			
+			[AutopilotData:GVK-DroneEnconuter-Salvager-Autopilot]
+			
+			[TargetData:GVK-Generic-TargetProfile-EnemyPlayers]
+
+			[Triggers:GVK-CustomSpawns-DefenseDrone-Trigger-TargetAttacker]
+			[Triggers:GVK-DroneEnconuter-Salvager-Trigger-Retreat]
+			[Triggers:GVK-DroneEnconuter-Salvager-Trigger-Compromised]
+
+			</Description>
+		</EntityComponent>
+		<!-- Salvager Patrol Autopilot -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-DroneEnconuter-Salvager-Autopilot</SubtypeId>
+			</Id>
+			<Description>
+
+			[RivalAI Autopilot]
+
+			[UseVelocityCollisionEvasion:true]
+			[CollisionEvasionWaypointCalculatedAwayFromEntity:true]
+			[RotationMultiplier:0.5]
+			[FlyLevelWithGravity:true]
+			[LevelWithGravityWhenIdle:true]
+			[AltitudeTolerance:5000]
+			[WaypointAbandonTimeTrigger:60]
+			[WaypointTolerance:100]
+			[IdealMinSpeed:25]
+			[IdealMaxSpeed:50]
+			[WaypointWaitTimeTrigger:10]
+			[OffsetPlanetMinDistFromTarget:200]
+			[OffsetPlanetMaxDistFromTarget:500]
+			[OffsetPlanetMinTargetAltitude:0]
+			[OffsetPlanetMaxTargetAltitude:10]
+			[AngleAllowedForForwardThrust:120]
+
+			</Description>
+		</EntityComponent>
+		<!-- Trigger sequence for Salvager to run away when player is near -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-DroneEnconuter-Salvager-Trigger-Retreat</SubtypeId>
+			</Id>
+			<Description>
+
+			[RivalAI Trigger]
+	
+			[Type:PlayerNear]
+			[UseTrigger:true]
+			[StartsReady:true]
+			[TargetDistance:500]
+			[MaxActions:1]
+			[ActionExecution:All]
+				
+			[Actions:GVK-DroneEnconuter-Salvager-Action-Retreat]
+
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-DroneEnconuter-Salvager-Action-Retreat</SubtypeId>
+			</Id>
+			<Description>
+
+			[RivalAI Action]
+			
+			[Retreat:true]
+			[UseChatBroadcast:true]
+			[ChatData:GVK-DroneEnconuter-Salvager-Chat-Retreat]
+
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-DroneEnconuter-Salvager-Chat-Retreat</SubtypeId>
+			</Id>
+			<Description>
+
+			[RivalAI Chat]
+
+			[UseChat:true]
+			[StartsReady:true]
+			[Chance:100]
+			[MaxChats:1]
+			[BroadcastRandomly:true]
+
+			[Author:{GridName}]
+			[Color:Red]
+
+			[ChatMessages:Enemy Detected, retreating immediately.]
+			[ChatAudio:GreetingSoundId-A]
+			[BroadcastChatType:Chat]
+			[SendToAllOnlinePlayers:true]
+			
+			</Description>
+		</EntityComponent>
+		<!-- Trigger sequence when small NPC RAI Remote is disabled (instant delete) -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-DroneEnconuter-Salvager-Trigger-Compromised</SubtypeId>
+			</Id>
+			<Description>
+
+			[RivalAI Trigger]
+	
+			[Type:Compromised]
+			[UseTrigger:true]
+			[StartsReady:true]
+			[MaxActions:1]
+			[ActionExecution:All]
+				
+			[Actions:GVK-DroneEnconuter-Salvager-Action-Compromised]
+
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-DroneEnconuter-Salvager-Action-Compromised</SubtypeId>
+			</Id>
+			<Description>
+
+			[RivalAI Action]
+				
+			[GenerateExplosion:true]
+			[ExplosionOffsetFromRemote:{X:0 Y:0 Z:0}]
+			[ExplosionRange:25]
+			[ExplosionDamage:1]
+			[ExplosionIgnoresVoxels:true]
+
+			[UseChatBroadcast:true]
+			[ChatData:GVK-DroneEnconuter-Salvager-Chat-Compromised]
+			[ToggleBlocksOfType:true]
+			[BlockTypesToToggle:MyObjectBuilder_Beacon/ZoneBlock]
+			[BlockTypeToggles:Off]
+			[BlockTypesToToggle:MyObjectBuilder_Beacon/DisposableNpcBeaconSmall]
+			[BlockTypeToggles:Off]
+			[BlockTypesToToggle:MyObjectBuilder_Beacon/DisposableNpcBeaconLarge]
+			[BlockTypeToggles:Off]
+			[BlockTypesToToggle:MyObjectBuilder_Beacon/SmallBlockBeacon]
+			[BlockTypeToggles:Off]
+			[BlockTypesToToggle:MyObjectBuilder_Beacon/LargeBlockBeacon]
+			[BlockTypeToggles:Off]
+			[BlockTypesToToggle:MyObjectBuilder_Beacon/RivalAIRemoteControlLarge]
+			[BlockTypeToggles:Off]
+			[BlockTypesToToggle:MyObjectBuilder_Beacon/RivalAIRemoteControlSmall]
+			[BlockTypeToggles:Off]
+			[ForceDespawn:false]
+			[ChangeInertiaDampeners:true]
+			[InertiaDampenersEnable:false]
+			[TerminateBehavior:true]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-DroneEnconuter-Salvager-Chat-Compromised</SubtypeId>
+			</Id>
+			<Description>
+
+			[RivalAI Chat]
+
+			[UseChat:true]
+			[StartsReady:true]
+			[Chance:100]
+			[MaxChats:1]
+			[BroadcastRandomly:true]
+
+			[Author:COALITION]
+			[Color:White]
+
+			[ChatMessages:A Salvager has been disabled.]
+			[ChatAudio:GreetingSoundId-A]
+			[BroadcastChatType:Notify]
+			[SendToAllOnlinePlayers:true]
+
+			</Description>
+		</EntityComponent>
 		<!-- Flyer Horsefly Drone Behavior -->
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>

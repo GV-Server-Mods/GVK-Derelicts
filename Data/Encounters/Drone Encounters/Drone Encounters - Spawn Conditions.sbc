@@ -1,6 +1,29 @@
 <?xml version="1.0"?>
 <Definitions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
 	<EntityComponents>
+		<!-- This spawns 1 Hover Salvager in Z1 thru Z3-->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-SpawnConditions-DroneEncounters-Zone1-Salvager</SubtypeId>
+			</Id>
+			<Description>
+				[MES Spawn Conditions]
+				[DroneEncounter:true]
+				[FailedDroneSpawnResetsPlayerTime:false]
+				[MinDroneDistance:2000]
+				[MaxDroneDistance:4500]
+				[MinDroneAltitude:30]
+				[MaxDroneAltitude:40]
+				[FactionOwner:GAALSIEN]
+				[ReactorsOn:true]
+				[ForceStaticGrid:false]
+				[SkipVoxelSpawnChecks:true]
+				[SkipGridSpawnChecks:false]
+				[ZoneConditions:GVK-ZoneConditions-WreckZone1]
+ 				[PrefabSpawningMode:Random]
+			</Description>
+		</EntityComponent>
 		<!-- This spawns 1 medium flyer in Z2 and Z3 -->
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>

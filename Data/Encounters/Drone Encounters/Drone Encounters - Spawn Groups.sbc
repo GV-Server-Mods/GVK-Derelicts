@@ -1,6 +1,35 @@
 <?xml version="1.0"?>
 <Definitions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
 	<SpawnGroups>
+		<!-- [NPC Drone] Salvager -->
+		<SpawnGroup>
+			<Id>
+				<TypeId>SpawnGroupDefinition</TypeId>
+				<SubtypeId>GVK-DroneEncounter-SpawnGroup-GAALSIEN-Salvager</SubtypeId>
+			</Id>
+			<Description>
+				[Modular Encounters SpawnGroup]
+				[IgnoreCleanupRules:true]
+				[ReplenishSystems:true]
+				[ManipulationProfiles:MES-Manipulation-RivalAi] 
+				[ManipulationProfiles:GVK-CustomSpawns-DefenseDrones-Manipulation-H2Hover]
+				[SpawnConditionsProfiles:GVK-SpawnConditions-DroneEncounters-Zone1-Salvager]
+			</Description>
+			<IsPirate>true</IsPirate>
+			<Frequency>0.1</Frequency>
+			<Prefabs>
+				<Prefab SubtypeId="[NPC Drone] Gaalsien Salvager">
+					<Position>
+						<X>0.0</X>
+						<Y>0.0</Y>
+						<Z>0.0</Z>
+					</Position>
+					<Speed>0</Speed>
+					<BeaconText>Salvager</BeaconText>
+					<Behaviour>GVK-DroneEnconuter-Salvager-Behavior</Behaviour>
+				</Prefab>
+			</Prefabs>
+		</SpawnGroup>		
 		<!-- [NPC Drone] Small Flyers -->
 		<SpawnGroup>
 			<Id>
