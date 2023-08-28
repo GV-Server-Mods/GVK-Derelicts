@@ -52,7 +52,7 @@
 				[Triggers:GVK-PlanetaryInstallations-Trigger-DespawnMES]
 				[Triggers:GVK-PlanetaryInstallations-Trigger-Compromised-Medium]
 				[Triggers:GVK-PlanetaryInstallations-Trigger-BeaconDisabled-Medium]
-				[Triggers:GVK-PlanetaryInstallations-Trigger-Defenses-Medium]
+				[Triggers:GVK-PlanetaryInstallations-TriggerGroup-Defenses-Medium]
 
 				[TargetData:GVK-Generic-TargetProfile-EnemyPlayers]
 
@@ -82,7 +82,7 @@
 				[Triggers:GVK-PlanetaryInstallations-Trigger-DespawnMES]
 				[Triggers:GVK-PlanetaryInstallations-Trigger-Compromised-Large]
 				[Triggers:GVK-PlanetaryInstallations-Trigger-BeaconDisabled-Large]
-				[Triggers:GVK-PlanetaryInstallations-Trigger-Defenses-Large]
+				[Triggers:GVK-PlanetaryInstallations-TriggerGroup-Defenses-Large]
 
 				[TargetData:GVK-Generic-TargetProfile-EnemyPlayers]
 
@@ -660,7 +660,21 @@
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-PlanetaryInstallations-Trigger-Defenses-Medium</SubtypeId>
+				<SubtypeId>GVK-PlanetaryInstallations-TriggerGroup-Defenses-Medium</SubtypeId>
+			</Id>
+			<Description>
+
+				[RivalAI TriggerGroup]
+
+				[Triggers:GVK-PlanetaryInstallations-Trigger-Defenses-Medium-PlayerNear]
+				[Triggers:GVK-PlanetaryInstallations-Trigger-Defenses-Medium-Damage]
+
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-PlanetaryInstallations-Trigger-Defenses-Medium-PlayerNear</SubtypeId>
 			</Id>
 			<Description>
 
@@ -668,7 +682,28 @@
 
 				[UseTrigger:true]
 				[Type:PlayerNear]
-				[TargetDistance:500]
+				[TargetDistance:750]
+				[StartsReady:true]
+				[MinCooldownMs:5000]
+				[MaxCooldownMs:10000]
+
+				[MaxActions:3]
+				[Actions:GVK-PlanetaryInstallations-Action-Defenses-Medium]
+
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-PlanetaryInstallations-Trigger-Defenses-Medium-Damage</SubtypeId>
+			</Id>
+			<Description>
+
+				[RivalAI Trigger]
+
+				[UseTrigger:true]
+				[Type:Damage]
+				[DamageTypes:Any]
 				[StartsReady:true]
 				[MinCooldownMs:5000]
 				[MaxCooldownMs:10000]
@@ -687,7 +722,7 @@
 
 				[RivalAI Action]
 
-				[Chance:60]
+				[Chance:75]
 
 				[SpawnEncounter:true]
 				[Spawner:GVK-PlanetaryInstallations-Spawner-DefenseDrones-Medium]
@@ -720,9 +755,18 @@
 				[SpawnGroups:GVK-CustomSpawns-DefenseDrone-SpawnGroup-GAALSIEN-Stryker]
 				[SpawnGroups:GVK-CustomSpawns-DefenseDrone-SpawnGroup-GAALSIEN-StrykerICV]
 				[SpawnGroups:GVK-CustomSpawns-DefenseDrone-SpawnGroup-GAALSIEN-Pollux]
+				[SpawnGroups:GVK-CustomSpawns-DefenseDrone-SpawnGroup-GAALSIEN-Sandskimmer]
+				[SpawnGroups:GVK-CustomSpawns-DefenseDrone-SpawnGroup-GAALSIEN-KerrimRailgun]
+				[SpawnGroups:GVK-CustomSpawns-DefenseDrone-SpawnGroup-GAALSIEN-KerrimCannon]
+				[SpawnGroups:GVK-CustomSpawns-DefenseDrone-SpawnGroup-GAALSIEN-KerrimMissile]
+				[SpawnGroups:GVK-CustomSpawns-DefenseDrone-SpawnGroup-GAALSIEN-KerrimLaser]
+				[SpawnGroups:GVK-CustomSpawns-DefenseDrone-SpawnGroup-GAALSIEN-AssaultShip]
+				[SpawnGroups:GVK-CustomSpawns-DefenseDrone-SpawnGroup-GAALSIEN-Baserunner]
+				[SpawnGroups:GVK-CustomSpawns-DefenseDrone-SpawnGroup-GAALSIEN-BaserunnerArtillery]
+				[SpawnGroups:GVK-CustomSpawns-DefenseDrone-SpawnGroup-GAALSIEN-BaserunnerFlak]
 
 				[MinDistance:500]
-				[MaxDistance:1500]
+				[MaxDistance:1000]
 				[MinAltitude:50]
 				[MaxAltitude:200]
 				[InheritNpcAltitude:true]
@@ -734,7 +778,21 @@
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-PlanetaryInstallations-Trigger-Defenses-Large</SubtypeId>
+				<SubtypeId>GVK-PlanetaryInstallations-TriggerGroup-Defenses-Large</SubtypeId>
+			</Id>
+			<Description>
+
+				[RivalAI TriggerGroup]
+
+				[Triggers:GVK-PlanetaryInstallations-Trigger-Defenses-Large-PlayerNear]
+				[Triggers:GVK-PlanetaryInstallations-Trigger-Defenses-Large-Damage]
+
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-PlanetaryInstallations-Trigger-Defenses-Large-PlayerNear</SubtypeId>
 			</Id>
 			<Description>
 
@@ -747,7 +805,28 @@
 				[MinCooldownMs:5000]
 				[MaxCooldownMs:10000]
 
-				[MaxActions:4]
+				[MaxActions:5]
+				[Actions:GVK-PlanetaryInstallations-Action-Defenses-Large]
+
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-PlanetaryInstallations-Trigger-Defenses-Large-Damage</SubtypeId>
+			</Id>
+			<Description>
+
+				[RivalAI Trigger]
+
+				[UseTrigger:true]
+				[Type:Damage]
+				[DamageTypes:Any]
+				[StartsReady:true]
+				[MinCooldownMs:5000]
+				[MaxCooldownMs:10000]
+
+				[MaxActions:5]
 				[Actions:GVK-PlanetaryInstallations-Action-Defenses-Large]
 
 			</Description>
@@ -812,10 +891,11 @@
 				[SpawnGroups:GVK-CustomSpawns-DefenseDrone-SpawnGroup-GAALSIEN-ReaperSquad]
 				[SpawnGroups:GVK-CustomSpawns-DefenseDrone-SpawnGroup-GAALSIEN-HornetSquad]
 				[SpawnGroups:GVK-CustomSpawns-DefenseDrone-SpawnGroup-GAALSIEN-SlicerSquad]
-				[SpawnGroups:GVK-CustomSpawns-DefenseDrone-SpawnGroup-GAALSIEN-DenizenHover]
+				[SpawnGroups:GVK-CustomSpawns-DefenseDrone-SpawnGroup-GAALSIEN-Denizen]
 				[SpawnGroups:GVK-CustomSpawns-DefenseDrone-SpawnGroup-GAALSIEN-KerrimRailgun]
 				[SpawnGroups:GVK-CustomSpawns-DefenseDrone-SpawnGroup-GAALSIEN-KerrimCannon]
 				[SpawnGroups:GVK-CustomSpawns-DefenseDrone-SpawnGroup-GAALSIEN-KerrimMissile]
+				[SpawnGroups:GVK-CustomSpawns-DefenseDrone-SpawnGroup-GAALSIEN-KerrimLaser]
 				[SpawnGroups:GVK-CustomSpawns-DefenseDrone-SpawnGroup-GAALSIEN-AssaultShip]
 				[SpawnGroups:GVK-CustomSpawns-DefenseDrone-SpawnGroup-GAALSIEN-Honorguard]
 				[SpawnGroups:GVK-CustomSpawns-DefenseDrone-SpawnGroup-GAALSIEN-ArtilleryCruiser]
@@ -823,6 +903,7 @@
 				[SpawnGroups:GVK-CustomSpawns-DefenseDrone-SpawnGroup-GAALSIEN-ProductionCruiser]
 				[SpawnGroups:GVK-CustomSpawns-DefenseDrone-SpawnGroup-GAALSIEN-RailgunCruiser]
 				[SpawnGroups:GVK-CustomSpawns-DefenseDrone-SpawnGroup-GAALSIEN-TorpedoCruiser]
+				[SpawnGroups:GVK-CustomSpawns-DefenseDrone-SpawnGroup-GAALSIEN-TuukkaCruiser]
 				[SpawnGroups:GVK-CustomSpawns-DefenseDrone-SpawnGroup-GAALSIEN-BaserunnerHurricane]
 				[SpawnGroups:GVK-CustomSpawns-DefenseDrone-SpawnGroup-GAALSIEN-BaserunnerLoki]
 				[SpawnGroups:GVK-CustomSpawns-DefenseDrone-SpawnGroup-GAALSIEN-BaserunnerSpartan]
