@@ -4,7 +4,7 @@
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-SpawnConditions-CustomSpawns-DefenseDrones-H2Flyer</SubtypeId>
+				<SubtypeId>GVK-SpawnConditions-CustomSpawns-DefenseDrones-SmallFlyerSingle</SubtypeId>
 			</Id>
 			<Description>
 				[MES Spawn Conditions]
@@ -14,12 +14,14 @@
 				[ForceStaticGrid:false]
 				[SkipVoxelSpawnChecks:true]
 				[SkipGridSpawnChecks:true]
+ 				[PrefabSpawningMode:Random]
+				[ZoneConditions:GVK-ZoneConditions-WreckZone2-DroneEncounters]
 			</Description>
 		</EntityComponent>
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-SpawnConditions-CustomSpawns-DefenseDrones-H2Hover</SubtypeId>
+				<SubtypeId>GVK-SpawnConditions-CustomSpawns-DefenseDrones-SmallFlyerSquad</SubtypeId>
 			</Id>
 			<Description>
 				[MES Spawn Conditions]
@@ -27,10 +29,107 @@
 				[FactionOwner:GAALSIEN]
 				[ReactorsOn:true]
 				[ForceStaticGrid:false]
-				[MinSpawnFromPlanetSurface:-1]
-				[MaxSpawnFromPlanetSurface:2000]
 				[SkipVoxelSpawnChecks:true]
 				[SkipGridSpawnChecks:true]
+ 				[PrefabSpawningMode:RandomFixedCount]
+				[PrefabFixedCount:2]
+				[PrefabOffsetOverrides:{X:25 Y:0 Z:0}]
+				[PrefabOffsetOverrides:{X:-25 Y:0 Z:0}]
+				[ZoneConditions:GVK-ZoneConditions-WreckZone3]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-SpawnConditions-CustomSpawns-DefenseDrones-SmallHoverSingle</SubtypeId>
+			</Id>
+			<Description>
+				[MES Spawn Conditions]
+				[RivalAiAtmosphericSpawn:true]
+				[FactionOwner:GAALSIEN]
+				[ReactorsOn:true]
+				[ForceStaticGrid:false]
+				[SkipVoxelSpawnChecks:true]
+				[SkipGridSpawnChecks:true]
+				[MinSpawnFromPlanetSurface:-1]
+				[MaxSpawnFromPlanetSurface:1500]
+ 				[PrefabSpawningMode:Random]
+				[ZoneConditions:GVK-ZoneConditions-WreckZone2-DroneEncounters]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-SpawnConditions-CustomSpawns-DefenseDrones-SmallHoverSquad</SubtypeId>
+			</Id>
+			<Description>
+				[MES Spawn Conditions]
+				[RivalAiAtmosphericSpawn:true]
+				[FactionOwner:GAALSIEN]
+				[ReactorsOn:true]
+				[ForceStaticGrid:false]
+				[SkipVoxelSpawnChecks:true]
+				[SkipGridSpawnChecks:true]
+				[MinSpawnFromPlanetSurface:-1]
+				[MaxSpawnFromPlanetSurface:1500]
+ 				[PrefabSpawningMode:RandomFixedCount]
+				[PrefabFixedCount:2]
+				[PrefabOffsetOverrides:{X:25 Y:0 Z:0}]
+				[PrefabOffsetOverrides:{X:-25 Y:0 Z:0}]
+				[ZoneConditions:GVK-ZoneConditions-WreckZone3]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-SpawnConditions-CustomSpawns-DefenseDrones-MediumFlyerSingle</SubtypeId>
+			</Id>
+			<Description>
+				[MES Spawn Conditions]
+				[RivalAiAtmosphericSpawn:true]
+				[FactionOwner:GAALSIEN]
+				[ReactorsOn:true]
+				[ForceStaticGrid:false]
+				[SkipVoxelSpawnChecks:true]
+				[SkipGridSpawnChecks:true]
+ 				[PrefabSpawningMode:Random]
+				[ZoneConditions:GVK-ZoneConditions-WreckZone3]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-SpawnConditions-CustomSpawns-DefenseDrones-MediumHoverSingle</SubtypeId>
+			</Id>
+			<Description>
+				[MES Spawn Conditions]
+				[RivalAiAtmosphericSpawn:true]
+				[FactionOwner:GAALSIEN]
+				[ReactorsOn:true]
+				[ForceStaticGrid:false]
+				[SkipVoxelSpawnChecks:true]
+				[SkipGridSpawnChecks:true]
+				[MinSpawnFromPlanetSurface:-1]
+				[MaxSpawnFromPlanetSurface:1500]
+ 				[PrefabSpawningMode:Random]
+				[ZoneConditions:GVK-ZoneConditions-WreckZone2]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-SpawnConditions-CustomSpawns-DefenseDrones-LargeHoverSingle</SubtypeId>
+			</Id>
+			<Description>
+				[MES Spawn Conditions]
+				[RivalAiAtmosphericSpawn:true]
+				[FactionOwner:GAALSIEN]
+				[ReactorsOn:true]
+				[ForceStaticGrid:false]
+				[SkipVoxelSpawnChecks:true]
+				[SkipGridSpawnChecks:true]
+ 				[PrefabSpawningMode:Random]
+				[ZoneConditions:GVK-ZoneConditions-WreckZone3]
 			</Description>
 		</EntityComponent>
 	</EntityComponents>
