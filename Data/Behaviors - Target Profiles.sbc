@@ -5,14 +5,14 @@
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Generic-TargetProfile-EnemyPlayers</SubtypeId>
+				<SubtypeId>GVK-Generic-Target-EnemyPlayers</SubtypeId>
 			</Id>
 			<Description>
 				[RivalAI Target]
 				[UseCustomTargeting:true]
 				[Target:PlayerAndGrid]
-				[UseTargetRefresh:true]
-				[TimeUntilNextRefresh:15]
+				[UseTargetRefresh:false]
+				[TimeUntilNextRefresh:60]
 				[TimeUntilNextEvaluation:10]
 				[MaxDistance:2000]
 				[MaxExistingTargetDistance:3000]
@@ -23,7 +23,6 @@
 				[MatchAllFilters:PlayerControlled]
 				[MatchAllFilters:Powered]
 				[Relations:Enemy]
-				[UsePartialNameMatching:true]
 				[MinTargetValue:10]
 				[MaxTargetValue:999999]
 				[PrioritizePlayerControlled:true]
@@ -32,16 +31,43 @@
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Generic-TargetProfile-EnemyGrids</SubtypeId>
+				<SubtypeId>GVK-Generic-Target-EnemiesInKPL</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Target]
+				[UseCustomTargeting:true]
+				[Target:PlayerAndGrid]
+				[UseTargetRefresh:false]
+				[TimeUntilNextRefresh:60]
+				[TimeUntilNextEvaluation:10]
+				[MaxDistance:3000]
+				[MaxExistingTargetDistance:3000]
+				[GetTargetBy:ClosestDistance]
+				[MatchAllFilters:Relation]
+				[MatchAllFilters:OutsideOfSafezone]
+				[MatchAllFilters:TargetValue]
+				[MatchAllFilters:PlayerControlled]
+				[MatchAllFilters:Powered]
+				[MatchAllFilters:PlayerKnownLocation]
+				[Relations:Enemy]
+				[MinTargetValue:10]
+				[MaxTargetValue:999999]
+				[PrioritizePlayerControlled:true]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Generic-Target-EnemyGrids</SubtypeId>
 			</Id>
 			<Description>
 				[RivalAI Target]
 				[UseCustomTargeting:true]
 				[Target:Grid]
-				[UseTargetRefresh:true]
-				[TimeUntilNextRefresh:15]
+				[UseTargetRefresh:false]
+				[TimeUntilNextRefresh:60]
 				[TimeUntilNextEvaluation:10]
-				[MaxDistance:1000]
+				[MaxDistance:3000]
 				[MaxExistingTargetDistance:2000]
 				[GetTargetBy:ClosestDistance]
 				[MatchAllFilters:Relation]
@@ -50,7 +76,6 @@
 				[MatchAllFilters:PlayerControlled]
 				[MatchAllFilters:Powered]
 				[Relations:Enemy]
-				[UsePartialNameMatching:true]
 				[MinTargetValue:100]
 				[MaxTargetValue:999999]
 				[PrioritizePlayerControlled:true]
@@ -59,7 +84,7 @@
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Generic-TargetProfile-EnemyGrids-LongRange</SubtypeId>
+				<SubtypeId>GVK-Generic-Target-EnemyGrids-LongRange</SubtypeId>
 			</Id>
 			<Description>
 				[RivalAI Target]
@@ -68,7 +93,7 @@
 				[UseTargetRefresh:true]
 				[TimeUntilNextRefresh:15]
 				[TimeUntilNextEvaluation:10]
-				[MaxDistance:2000]
+				[MaxDistance:3000]
 				[MaxExistingTargetDistance:3000]
 				[GetTargetBy:ClosestDistance]
 				[MatchAllFilters:Relation]
@@ -85,7 +110,7 @@
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Convoy-TargetProfile-TradeStation</SubtypeId>
+				<SubtypeId>GVK-Convoy-Target-TradeStation</SubtypeId>
 			</Id>
 			<Description>
 				[RivalAI Target]

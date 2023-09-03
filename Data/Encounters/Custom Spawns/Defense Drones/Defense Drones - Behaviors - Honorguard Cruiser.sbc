@@ -5,39 +5,25 @@
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-CustomSpawns-DefenseDrone-HonorguardCruiser-Behavior</SubtypeId>
+				<SubtypeId>GVK-CustomSpawns-DefenseDrone-Behavior-HonorguardCruiserFighter</SubtypeId>
 			</Id>
 			<Description>
-	
 			[RivalAI Behavior]
-			
 			[BehaviorName:Fighter]
-
-			[UseStaticGuns:true]
-			[UseTurrets:true]
 			[UseVelocityCollisionEvasion:true]
-			[MaxStaticWeaponRange:1000]
-			[WeaponMaxAngleFromTarget:10]
 			[UseAmmoReplenish:true]
 			[AmmoReplenishClipAmount:10]
 			[MaxAmmoReplenishments:99999999]
-			[UsePlayerDistanceTimer:false]
-			[PlayerDistanceTimerTrigger:0]
-			[PlayerDistanceTrigger:15000]
+			[UsePlayerDistanceTimer:true]
+			[PlayerDistanceTimerTrigger:1800]
+			[PlayerDistanceTrigger:5000]
 			[UseNoTargetTimer:false]
-			[NoTargetTimerTrigger:1800]
-			[UseRetreatTimer:true]
-			[RetreatTimerTrigger:86400]
-			[RetreatDespawnDistance:1500]
-			
+			[UseRetreatTimer:false]
 			[HorseFighterTimeApproaching:30]
 			[HorseFighterTimeEngaging:30]
-
-			[TargetData:GVK-Generic-TargetProfile-EnemyPlayers]
-
+			[TargetData:GVK-Generic-Target-EnemiesInKPL]
 			[AutopilotData:GVK-CustomSpawns-DefenseDrone-HonorguardCruiser-Autopilot-Primary]
 			[SecondaryAutopilotData:GVK-CustomSpawns-DefenseDrone-HonorguardCruiser-Autopilot-Secondary]
-
 			[Triggers:GVK-CustomSpawns-DefenseDrone-Trigger-WeaponsToMaxRange]
 			[Triggers:GVK-CustomSpawns-DefenseDrone-Trigger-FireRailgunsTimers]
 			[Triggers:GVK-CustomSpawns-DefenseDrone-Trigger-FireMissilesTimers]
@@ -51,7 +37,9 @@
 			[Triggers:GVK-CustomSpawns-DefenseDrone-Trigger-JetpackInhibitorOnSpawn]
 			[Triggers:GVK-CustomSpawns-DefenseDrone-Trigger-JetpackInhibitorOnRestart]
 			[Triggers:GVK-CustomSpawns-DefenseDrone-Trigger-Crashed]
-
+			[Triggers:GVK-Generic-Trigger-CreateKPL]
+			[Triggers:GVK-DroneEnconuter-Trigger-Retreat-NoTarget]
+			[Triggers:GVK-DroneEnconuter-Trigger-Retreat-Timer]
 			</Description>
 		</EntityComponent>
 		<!-- Honorguard Cruiser Fighter Autopilot Primary -->

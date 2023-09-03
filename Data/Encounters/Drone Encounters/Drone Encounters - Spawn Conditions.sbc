@@ -5,7 +5,7 @@
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-SpawnConditions-DroneEncounters-Zone1-Salvager</SubtypeId>
+				<SubtypeId>GVK-SpawnConditions-DroneEncounters-Salvager</SubtypeId>
 			</Id>
 			<Description>
 				[MES Spawn Conditions]
@@ -20,34 +20,7 @@
 				[ForceStaticGrid:false]
 				[SkipVoxelSpawnChecks:true]
 				[SkipGridSpawnChecks:false]
-				[ZoneConditions:GVK-ZoneConditions-WreckZone1]
- 				[PrefabSpawningMode:Random]
-			</Description>
-		</EntityComponent>
-		<!-- This spawns 1 medium flyer in Z2 and Z3 -->
-		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
-			<Id>
-				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-SpawnConditions-DroneEncounters-Zone2-H2Flyer</SubtypeId>
-			</Id>
-			<Description>
-				[MES Spawn Conditions]
-				[DroneEncounter:true]
-				[FailedDroneSpawnResetsPlayerTime:false]
-				[MinDroneDistance:3500]
-				[MaxDroneDistance:5000]
-				[MinDroneAltitude:50]
-				[MaxDroneAltitude:500]
-				[FactionOwner:GAALSIEN]
-				[ReactorsOn:true]
-				[ForceStaticGrid:false]
-				[SkipVoxelSpawnChecks:true]
-				[SkipGridSpawnChecks:false]
-				[ZoneConditions:GVK-ZoneConditions-WreckZone2]
-				[UsePCUCheck:true]
-				[PCUCheckRadius:6000]
-				[PCUMinimum:20000]
-				[PCUMaximum:99999999]
+				[ZoneConditions:GVK-ZoneConditions-WreckZone123]
  				[PrefabSpawningMode:Random]
 			</Description>
 		</EntityComponent>
@@ -55,7 +28,7 @@
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-SpawnConditions-DroneEncounters-Zone2Exclusive-H2Flyer</SubtypeId>
+				<SubtypeId>GVK-SpawnConditions-DroneEncounters-SmallFlyerSingle</SubtypeId>
 			</Id>
 			<Description>
 				[MES Spawn Conditions]
@@ -70,7 +43,7 @@
 				[ForceStaticGrid:false]
 				[SkipVoxelSpawnChecks:true]
 				[SkipGridSpawnChecks:false]
-				[ZoneConditions:GVK-ZoneConditions-WreckZone2-DroneEncounters]
+				[ZoneConditions:GVK-ZoneConditions-WreckZone2Only]
 				[UsePCUCheck:true]
 				[PCUCheckRadius:6000]
 				[PCUMinimum:20000]
@@ -82,7 +55,7 @@
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-SpawnConditions-DroneEncounters-Zone2Exclusive-H2Hover</SubtypeId>
+				<SubtypeId>GVK-SpawnConditions-DroneEncounters-SmallHoverSingle</SubtypeId>
 			</Id>
 			<Description>
 				[MES Spawn Conditions]
@@ -97,7 +70,7 @@
 				[ForceStaticGrid:false]
 				[SkipVoxelSpawnChecks:true]
 				[SkipGridSpawnChecks:false]
-				[ZoneConditions:GVK-ZoneConditions-WreckZone2-DroneEncounters]
+				[ZoneConditions:GVK-ZoneConditions-WreckZone2Only]
 				[UsePCUCheck:true]
 				[PCUCheckRadius:6000]
 				[PCUMinimum:20000]
@@ -109,7 +82,7 @@
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-SpawnConditions-DroneEncounters-Zone2-H2Hover</SubtypeId>
+				<SubtypeId>GVK-SpawnConditions-DroneEncounters-MediumHoverSingle</SubtypeId>
 			</Id>
 			<Description>
 				[MES Spawn Conditions]
@@ -124,7 +97,7 @@
 				[ForceStaticGrid:false]
 				[SkipVoxelSpawnChecks:true]
 				[SkipGridSpawnChecks:false]
-				[ZoneConditions:GVK-ZoneConditions-WreckZone2]
+				[ZoneConditions:GVK-ZoneConditions-WreckZone23]
 				[UsePCUCheck:true]
 				[PCUCheckRadius:6000]
 				[PCUMinimum:20000]
@@ -136,7 +109,7 @@
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-SpawnConditions-DroneEncounters-Zone3-H2Flyer-SmallSquad</SubtypeId>
+				<SubtypeId>GVK-SpawnConditions-DroneEncounters-SmallFlyerSquad</SubtypeId>
 			</Id>
 			<Description>
 				[MES Spawn Conditions]
@@ -151,7 +124,7 @@
 				[ForceStaticGrid:false]
 				[SkipVoxelSpawnChecks:true]
 				[SkipGridSpawnChecks:false]
-				[ZoneConditions:GVK-ZoneConditions-WreckZone3]
+				[ZoneConditions:GVK-ZoneConditions-WreckZone3Only]
 				[UsePCUCheck:true]
 				[PCUCheckRadius:6000]
 				[PCUMinimum:20000]
@@ -162,11 +135,38 @@
 				[PrefabOffsetOverrides:{X:-25 Y:0 Z:0}]
 			</Description>
 		</EntityComponent>
+		<!-- This spawns 1 Medium flyer in Z3 -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-SpawnConditions-DroneEncounters-MediumFlyerSingle</SubtypeId>
+			</Id>
+			<Description>
+				[MES Spawn Conditions]
+				[DroneEncounter:true]
+				[FailedDroneSpawnResetsPlayerTime:false]
+				[MinDroneDistance:3500]
+				[MaxDroneDistance:5000]
+				[MinDroneAltitude:50]
+				[MaxDroneAltitude:500]
+				[FactionOwner:GAALSIEN]
+				[ReactorsOn:true]
+				[ForceStaticGrid:false]
+				[SkipVoxelSpawnChecks:true]
+				[SkipGridSpawnChecks:false]
+				[ZoneConditions:GVK-ZoneConditions-WreckZone3Only]
+				[UsePCUCheck:true]
+				[PCUCheckRadius:6000]
+				[PCUMinimum:20000]
+				[PCUMaximum:99999999]
+ 				[PrefabSpawningMode:Random]
+			</Description>
+		</EntityComponent>
 		<!-- This spawns 1 large hover ONLY in Z3 -->
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-SpawnConditions-DroneEncounters-Zone3-H2Hover-Large</SubtypeId>
+				<SubtypeId>GVK-SpawnConditions-DroneEncounters-LargeHoverSingle</SubtypeId>
 			</Id>
 			<Description>
 				[MES Spawn Conditions]
@@ -181,7 +181,7 @@
 				[ForceStaticGrid:false]
 				[SkipVoxelSpawnChecks:true]
 				[SkipGridSpawnChecks:false]
-				[ZoneConditions:GVK-ZoneConditions-WreckZone3]
+				[ZoneConditions:GVK-ZoneConditions-WreckZone3Only]
 				[UsePCUCheck:true]
 				[PCUCheckRadius:6000]
 				[PCUMinimum:20000]
@@ -193,7 +193,7 @@
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-SpawnConditions-DroneEncounters-Zone3-H2Hover-SmallSquad</SubtypeId>
+				<SubtypeId>GVK-SpawnConditions-DroneEncounters-SmallHoverSquad</SubtypeId>
 			</Id>
 			<Description>
 				[MES Spawn Conditions]
@@ -208,7 +208,7 @@
 				[ForceStaticGrid:false]
 				[SkipVoxelSpawnChecks:true]
 				[SkipGridSpawnChecks:false]
-				[ZoneConditions:GVK-ZoneConditions-WreckZone3]
+				[ZoneConditions:GVK-ZoneConditions-WreckZone3Only]
 				[UsePCUCheck:true]
 				[PCUCheckRadius:6000]
 				[PCUMinimum:20000]

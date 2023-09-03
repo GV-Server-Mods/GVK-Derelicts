@@ -1,14 +1,13 @@
 <?xml version="1.0"?>
 <Definitions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
 	<EntityComponents>
-		<!-- Flyer Horsefly Drone Behavior -->
+		<!-- SmallFlyerHorsefly Behavior -->
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-CustomSpawns-DefenseDrone-Horsefly-Behavior</SubtypeId>
+				<SubtypeId>GVK-CustomSpawns-DefenseDrone-Behavior-SmallFlyerHorsefly</SubtypeId>
 			</Id>
 			<Description>
-		
 			[RivalAI Behavior]
 				
 			[BehaviorName:Horsefly]
@@ -20,18 +19,15 @@
 			[UseAmmoReplenish:true]
 			[AmmoReplenishClipAmount:10]
 			[MaxAmmoReplenishments:99999999]
-			[UsePlayerDistanceTimer:false]
-			[PlayerDistanceTimerTrigger:0]
-			[PlayerDistanceTrigger:15000]
+			[UsePlayerDistanceTimer:true]
+			[PlayerDistanceTimerTrigger:1800]
+			[PlayerDistanceTrigger:5000]
 			[UseNoTargetTimer:false]
-			[NoTargetTimerTrigger:1800]
-			[UseRetreatTimer:true]
-			[RetreatTimerTrigger:86400]
-			[RetreatDespawnDistance:1500]
+			[UseRetreatTimer:false]
 
-			[TargetData:GVK-Generic-TargetProfile-EnemyPlayers]
+			[TargetData:GVK-Generic-Target-EnemiesInKPL]
 			
-			[AutopilotData:GVK-CustomSpawns-DefenseDrone-Horsefly-Autopilot]
+			[AutopilotData:GVK-CustomSpawns-DefenseDrone-Autopilot-SmallFlyerHorsefly]
 
 			[Triggers:GVK-CustomSpawns-DefenseDrone-Trigger-TargetAttacker]
 			[Triggers:GVK-CustomSpawns-DefenseDrone-Trigger-WeaponsToMaxRange]
@@ -41,15 +37,16 @@
 			[Triggers:GVK-CustomSpawns-DefenseDrone-Trigger-Crashed]
 			[Triggers:GVK-CustomSpawns-DefenseDrone-Trigger-Compromised]
 			[Triggers:GVK-Generic-Trigger-SPRTNoWeapon]
-			[WeaponSystem:GVK-NPC-Weapons-GAALSIEN-Carrier]
-
+			[Triggers:GVK-Generic-Trigger-CreateKPL]
+			[Triggers:GVK-DroneEnconuter-Trigger-Retreat-NoTarget]
+			[Triggers:GVK-DroneEnconuter-Trigger-Retreat-Timer]
 			</Description>
 		</EntityComponent>
-		<!-- Flyer Horsefly Autopilot -->
+		<!-- SmallFlyerHorsefly Autopilot -->
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-CustomSpawns-DefenseDrone-Horsefly-Autopilot</SubtypeId>
+				<SubtypeId>GVK-CustomSpawns-DefenseDrone-Autopilot-SmallFlyerHorsefly</SubtypeId>
 			</Id>
 			<Description>
 
@@ -71,12 +68,10 @@
 			[IdealMinSpeed:50]
 			[IdealMaxSpeed:75]
 
-			[OffsetSpaceMinDistFromTarget:900]
-			[OffsetSpaceMaxDistFromTarget:1200]
 			[OffsetPlanetMinDistFromTarget:500]
 			[OffsetPlanetMaxDistFromTarget:1200]
-			[OffsetPlanetMinTargetAltitude:15]
-			[OffsetPlanetMaxTargetAltitude:100]
+			[OffsetPlanetMinTargetAltitude:150]
+			[OffsetPlanetMaxTargetAltitude:400]
 			[WaypointWaitTimeTrigger:0]
 			
 			[MaxVerticalSpeed:20]
@@ -87,11 +82,11 @@
 
 			</Description>
 		</EntityComponent>
-		<!-- Large Flyer Horsefly Drone Behavior -->
+		<!-- LargeFlyerHorsefly Behavior -->
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-CustomSpawns-DefenseDrone-LargeHorsefly-Behavior</SubtypeId>
+				<SubtypeId>GVK-CustomSpawns-DefenseDrone-Behavior-LargeFlyerHorsefly</SubtypeId>
 			</Id>
 			<Description>
 		
@@ -106,18 +101,15 @@
 			[UseAmmoReplenish:true]
 			[AmmoReplenishClipAmount:10]
 			[MaxAmmoReplenishments:99999999]
-			[UsePlayerDistanceTimer:false]
-			[PlayerDistanceTimerTrigger:0]
-			[PlayerDistanceTrigger:15000]
+			[UsePlayerDistanceTimer:true]
+			[PlayerDistanceTimerTrigger:1800]
+			[PlayerDistanceTrigger:5000]
 			[UseNoTargetTimer:false]
-			[NoTargetTimerTrigger:1800]
-			[UseRetreatTimer:true]
-			[RetreatTimerTrigger:86400]
-			[RetreatDespawnDistance:1500]
+			[UseRetreatTimer:false]
 
-			[TargetData:GVK-Generic-TargetProfile-EnemyPlayers]
+			[TargetData:GVK-Generic-Target-EnemiesInKPL]
 			
-			[AutopilotData:GVK-CustomSpawns-DefenseDrone-LargeHorsefly-Autopilot]
+			[AutopilotData:GVK-CustomSpawns-DefenseDrone-Autopilot-LargeFlyerHorsefly]
 
 			[Triggers:GVK-CustomSpawns-DefenseDrone-Trigger-TargetAttacker]
 			[Triggers:GVK-CustomSpawns-DefenseDrone-Trigger-WeaponsToMaxRange]
@@ -127,15 +119,16 @@
 			[Triggers:GVK-CustomSpawns-DefenseDrone-Trigger-Crashed]
 			[Triggers:GVK-CustomSpawns-DefenseDrone-Trigger-Compromised]
 			[Triggers:GVK-Generic-Trigger-SPRTNoWeapon]
-			[WeaponSystem:GVK-NPC-Weapons-GAALSIEN-Carrier]
-
+			[Triggers:GVK-Generic-Trigger-CreateKPL]
+			[Triggers:GVK-DroneEnconuter-Trigger-Retreat-NoTarget]
+			[Triggers:GVK-DroneEnconuter-Trigger-Retreat-Timer]
 			</Description>
 		</EntityComponent>
-		<!-- Large Flyer Horsefly Autopilot -->
+		<!-- LargeFlyerHorsefly Autopilot -->
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-CustomSpawns-DefenseDrone-LargeHorsefly-Autopilot</SubtypeId>
+				<SubtypeId>GVK-CustomSpawns-DefenseDrone-Autopilot-LargeFlyerHorsefly</SubtypeId>
 			</Id>
 			<Description>
 
@@ -174,11 +167,11 @@
 
 			</Description>
 		</EntityComponent>
-		<!-- HorseFighter Drone Behavior -->
+		<!-- SmallFlyerHorseFighter Behavior -->
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-CustomSpawns-DefenseDrone-HorseFighter-Behavior</SubtypeId>
+				<SubtypeId>GVK-CustomSpawns-DefenseDrone-Behavior-SmallFlyerHorseFighter</SubtypeId>
 			</Id>
 			<Description>
 	
@@ -193,21 +186,18 @@
 			[UseAmmoReplenish:true]
 			[AmmoReplenishClipAmount:10]
 			[MaxAmmoReplenishments:99999999]
-			[UsePlayerDistanceTimer:false]
-			[PlayerDistanceTimerTrigger:0]
-			[PlayerDistanceTrigger:15000]
+			[UsePlayerDistanceTimer:true]
+			[PlayerDistanceTimerTrigger:1800]
+			[PlayerDistanceTrigger:5000]
 			[UseNoTargetTimer:false]
-			[NoTargetTimerTrigger:1800]
-			[UseRetreatTimer:true]
-			[RetreatTimerTrigger:86400]
-			[RetreatDespawnDistance:1500]
+			[UseRetreatTimer:false]
 			
 			[HorseFighterTimeApproaching:10]
 			[HorseFighterTimeEngaging:10]
 
-			[TargetData:GVK-Generic-TargetProfile-EnemyPlayers]
+			[TargetData:GVK-Generic-Target-EnemiesInKPL]
 
-			[AutopilotData:GVK-CustomSpawns-DefenseDrone-HorseFighter-Autopilot]
+			[AutopilotData:GVK-CustomSpawns-DefenseDrone-Autopilot-SmallFlyerHorseFighter]
 
 			[Triggers:GVK-CustomSpawns-DefenseDrone-Trigger-TargetAttacker]
 			[Triggers:GVK-CustomSpawns-DefenseDrone-Trigger-WeaponsToMaxRange]
@@ -218,15 +208,16 @@
 			[Triggers:GVK-CustomSpawns-DefenseDrone-Trigger-Crashed]
 			[Triggers:GVK-CustomSpawns-DefenseDrone-Trigger-Compromised]
 			[Triggers:GVK-Generic-Trigger-SPRTNoWeapon]
-			[WeaponSystem:GVK-NPC-Weapons-GAALSIEN-Carrier]
-
+			[Triggers:GVK-Generic-Trigger-CreateKPL]
+			[Triggers:GVK-DroneEnconuter-Trigger-Retreat-NoTarget]
+			[Triggers:GVK-DroneEnconuter-Trigger-Retreat-Timer]
 			</Description>
 		</EntityComponent>
-		<!-- Flyer HorseFighter Autopilot -->
+		<!-- SmallFlyerHorseFighter Autopilot -->
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-CustomSpawns-DefenseDrone-HorseFighter-Autopilot</SubtypeId>
+				<SubtypeId>GVK-CustomSpawns-DefenseDrone-Autopilot-SmallFlyerHorseFighter</SubtypeId>
 			</Id>
 			<Description>
 
@@ -249,12 +240,10 @@
 			[IdealMinSpeed:50]
 			[IdealMaxSpeed:100]
 
-			[OffsetSpaceMinDistFromTarget:250]
-			[OffsetSpaceMaxDistFromTarget:500]
 			[OffsetPlanetMinDistFromTarget:250]
 			[OffsetPlanetMaxDistFromTarget:500]
-			[OffsetPlanetMinTargetAltitude:100]
-			[OffsetPlanetMaxTargetAltitude:300]
+			[OffsetPlanetMinTargetAltitude:150]
+			[OffsetPlanetMaxTargetAltitude:400]
 			[AllowStrafing:true]
 			[StrafeMinDurationMs:1500]
 			[StrafeMaxDurationMs:5000]
@@ -270,11 +259,11 @@
 
 			</Description>
 		</EntityComponent>
-		<!-- Horsefly Rover Drone Behavior -->
+		<!-- SmallHoverHorseFighter Behavior -->
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-CustomSpawns-DefenseDrone-Rover-HorseFighter-Behavior</SubtypeId>
+				<SubtypeId>GVK-CustomSpawns-DefenseDrone-Behavior-SmallHoverHorseFighter</SubtypeId>
 			</Id>
 			<Description>
 	
@@ -289,33 +278,35 @@
 			[UseAmmoReplenish:true]
 			[AmmoReplenishClipAmount:10]
 			[MaxAmmoReplenishments:99999999]
-			[UsePlayerDistanceTimer:false]
-			[PlayerDistanceTimerTrigger:0]
-			[PlayerDistanceTrigger:15000]
+			[UsePlayerDistanceTimer:true]
+			[PlayerDistanceTimerTrigger:1800]
+			[PlayerDistanceTrigger:5000]
 			[UseNoTargetTimer:false]
-			[NoTargetTimerTrigger:1800]
-			[UseRetreatTimer:true]
-			[RetreatTimerTrigger:86400]
-			[RetreatDespawnDistance:1500]
-			
-			[AutopilotData:GVK-CustomSpawns-DefenseDrone-Rover-HorseFighter-Autopilot]
-			
-			[TargetData:GVK-Generic-TargetProfile-EnemyPlayers]
+			[UseRetreatTimer:false]
 
+			[HorseFighterTimeApproaching:10]
+			[HorseFighterTimeEngaging:10]
+			
+			[TargetData:GVK-Generic-Target-EnemiesInKPL]
+
+			[AutopilotData:GVK-CustomSpawns-DefenseDrone-Autopilot-SmallHoverHorseFighter]
+			
 			[Triggers:GVK-CustomSpawns-DefenseDrone-Trigger-TargetAttacker]
 			[Triggers:GVK-CustomSpawns-DefenseDrone-Trigger-WeaponsToMaxRange]
 			[Triggers:GVK-CustomSpawns-DefenseDrone-Trigger-FireMissilesTimers]
 			[Triggers:GVK-Generic-Trigger-SPRTTargetAcquiredChatter]
 			[Triggers:GVK-CustomSpawns-DefenseDrone-Trigger-Compromised]
 			[Triggers:GVK-Generic-Trigger-SPRTNoWeapon]
-
+			[Triggers:GVK-Generic-Trigger-CreateKPL]
+			[Triggers:GVK-DroneEnconuter-Trigger-Retreat-NoTarget]
+			[Triggers:GVK-DroneEnconuter-Trigger-Retreat-Timer]
 			</Description>
 		</EntityComponent>
-		<!-- Rover HorseFighter Autopilot -->
+		<!-- SmallHoverHorseFighter Autopilot -->
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-CustomSpawns-DefenseDrone-Rover-HorseFighter-Autopilot</SubtypeId>
+				<SubtypeId>GVK-CustomSpawns-DefenseDrone-Autopilot-SmallHoverHorseFighter</SubtypeId>
 			</Id>
 			<Description>
 
@@ -352,11 +343,11 @@
 
 			</Description>
 		</EntityComponent>
-		<!-- Large Ship HorseFighter Drone Behavior -->
+		<!-- LargeFlyerHorseFighter Behavior -->
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-CustomSpawns-DefenseDrone-LargeHorseFighter-Behavior</SubtypeId>
+				<SubtypeId>GVK-CustomSpawns-DefenseDrone-Behavior-LargeFlyerHorseFighter</SubtypeId>
 			</Id>
 			<Description>
 	
@@ -371,21 +362,18 @@
 			[UseAmmoReplenish:true]
 			[AmmoReplenishClipAmount:10]
 			[MaxAmmoReplenishments:99999999]
-			[UsePlayerDistanceTimer:false]
-			[PlayerDistanceTimerTrigger:0]
-			[PlayerDistanceTrigger:15000]
+			[UsePlayerDistanceTimer:true]
+			[PlayerDistanceTimerTrigger:1800]
+			[PlayerDistanceTrigger:5000]
 			[UseNoTargetTimer:false]
-			[NoTargetTimerTrigger:1800]
-			[UseRetreatTimer:true]
-			[RetreatTimerTrigger:86400]
-			[RetreatDespawnDistance:1500]
+			[UseRetreatTimer:false]
 			
 			[HorseFighterTimeApproaching:10]
 			[HorseFighterTimeEngaging:10]
 
-			[TargetData:GVK-Generic-TargetProfile-EnemyPlayers]
+			[TargetData:GVK-Generic-Target-EnemiesInKPL]
 
-			[AutopilotData:GVK-CustomSpawns-DefenseDrone-LargeHorseFighter-Autopilot]
+			[AutopilotData:GVK-CustomSpawns-DefenseDrone-Autopilot-LargeFlyerHorseFighter]
 
 			[Triggers:GVK-CustomSpawns-DefenseDrone-Trigger-TargetAttacker]
 			[Triggers:GVK-CustomSpawns-DefenseDrone-Trigger-WeaponsToMaxRange]
@@ -396,15 +384,16 @@
 			[Triggers:GVK-CustomSpawns-DefenseDrone-Trigger-Large-Crashed]
 			[Triggers:GVK-CustomSpawns-DefenseDrone-Trigger-Large-Compromised]
 			[Triggers:GVK-Generic-Trigger-SPRTNoWeapon]
-			[WeaponSystem:GVK-NPC-Weapons-GAALSIEN-Carrier]
-
+			[Triggers:GVK-Generic-Trigger-CreateKPL]
+			[Triggers:GVK-DroneEnconuter-Trigger-Retreat-NoTarget]
+			[Triggers:GVK-DroneEnconuter-Trigger-Retreat-Timer]
 			</Description>
 		</EntityComponent>
-		<!-- Large Ship HorseFighter Autopilot -->
+		<!-- LargeFlyerHorseFighter Autopilot -->
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-CustomSpawns-DefenseDrone-LargeHorseFighter-Autopilot</SubtypeId>
+				<SubtypeId>GVK-CustomSpawns-DefenseDrone-Autopilot-LargeFlyerHorseFighter</SubtypeId>
 			</Id>
 			<Description>
 
@@ -421,7 +410,7 @@
 			[FlyLevelWithGravity:false]
 			[LevelWithGravityWhenIdle:true]
 			[MaxVerticalSpeed:20]
-			[IdealPlanetAltitude:250]
+			[IdealPlanetAltitude:300]
 			[MinimumPlanetAltitude:250]
 			[AltitudeTolerance:50]
 			[CollisionEvasionWaypointCalculatedAwayFromEntity:true]
@@ -435,8 +424,8 @@
 			[OffsetSpaceMaxDistFromTarget:1200]
 			[OffsetPlanetMinDistFromTarget:600]
 			[OffsetPlanetMaxDistFromTarget:1200]
-			[OffsetPlanetMinTargetAltitude:-200]
-			[OffsetPlanetMaxTargetAltitude:300]
+			[OffsetPlanetMinTargetAltitude:250]
+			[OffsetPlanetMaxTargetAltitude:500]
 			[AllowStrafing:true]
 			[StrafeMinDurationMs:2000]
 			[StrafeMaxDurationMs:10000]
@@ -452,11 +441,11 @@
 
 			</Description>
 		</EntityComponent>
-		<!-- Horsefly Rover Drone Behavior -->
+		<!-- SmallHoverHorsefly Behavior -->
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-CustomSpawns-DefenseDrone-Rover-Behavior</SubtypeId>
+				<SubtypeId>GVK-CustomSpawns-DefenseDrone-Behavior-SmallHoverHorsefly</SubtypeId>
 			</Id>
 			<Description>
 	
@@ -471,18 +460,15 @@
 			[UseAmmoReplenish:true]
 			[AmmoReplenishClipAmount:10]
 			[MaxAmmoReplenishments:99999999]
-			[UsePlayerDistanceTimer:false]
-			[PlayerDistanceTimerTrigger:0]
-			[PlayerDistanceTrigger:15000]
+			[UsePlayerDistanceTimer:true]
+			[PlayerDistanceTimerTrigger:1800]
+			[PlayerDistanceTrigger:5000]
 			[UseNoTargetTimer:false]
-			[NoTargetTimerTrigger:1800]
-			[UseRetreatTimer:true]
-			[RetreatTimerTrigger:86400]
-			[RetreatDespawnDistance:1500]
+			[UseRetreatTimer:false]
 			
-			[AutopilotData:GVK-CustomSpawns-DefenseDrone-Rover-Autopilot]
+			[TargetData:GVK-Generic-Target-EnemiesInKPL]
 			
-			[TargetData:GVK-Generic-TargetProfile-EnemyPlayers]
+			[AutopilotData:GVK-CustomSpawns-DefenseDrone-Autopilot-SmallHoverHorsefly]
 
 			[Triggers:GVK-CustomSpawns-DefenseDrone-Trigger-TargetAttacker]
 			[Triggers:GVK-CustomSpawns-DefenseDrone-Trigger-WeaponsToMaxRange]
@@ -490,14 +476,16 @@
 			[Triggers:GVK-Generic-Trigger-SPRTTargetAcquiredChatter]
 			[Triggers:GVK-CustomSpawns-DefenseDrone-Trigger-Compromised]
 			[Triggers:GVK-Generic-Trigger-SPRTNoWeapon]
-
+			[Triggers:GVK-Generic-Trigger-CreateKPL]
+			[Triggers:GVK-DroneEnconuter-Trigger-Retreat-NoTarget]
+			[Triggers:GVK-DroneEnconuter-Trigger-Retreat-Timer]
 			</Description>
 		</EntityComponent>
-		<!-- Horsefly Rover Autopilot -->
+		<!-- SmallHoverHorsefly Autopilot -->
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-CustomSpawns-DefenseDrone-Rover-Autopilot</SubtypeId>
+				<SubtypeId>GVK-CustomSpawns-DefenseDrone-Autopilot-SmallHoverHorsefly</SubtypeId>
 			</Id>
 			<Description>
 
@@ -516,17 +504,17 @@
 
 			[OffsetPlanetMinDistFromTarget:500]
 			[OffsetPlanetMaxDistFromTarget:800]
-			[OffsetPlanetMinTargetAltitude:0]
-			[OffsetPlanetMaxTargetAltitude:50]
+			[OffsetPlanetMinTargetAltitude:3]
+			[OffsetPlanetMaxTargetAltitude:5]
 			[AngleAllowedForForwardThrust:120]
 
 			</Description>
 		</EntityComponent>
-		<!-- Horsefly Medium Rover Drone Behavior -->
+		<!-- MediumHoverHorsefly Behavior -->
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-CustomSpawns-DefenseDrone-MediumRover-Behavior</SubtypeId>
+				<SubtypeId>GVK-CustomSpawns-DefenseDrone-Behavior-MediumHoverHorsefly</SubtypeId>
 			</Id>
 			<Description>
 	
@@ -541,18 +529,15 @@
 			[UseAmmoReplenish:true]
 			[AmmoReplenishClipAmount:10]
 			[MaxAmmoReplenishments:99999999]
-			[UsePlayerDistanceTimer:false]
-			[PlayerDistanceTimerTrigger:0]
-			[PlayerDistanceTrigger:15000]
+			[UsePlayerDistanceTimer:true]
+			[PlayerDistanceTimerTrigger:1800]
+			[PlayerDistanceTrigger:5000]
 			[UseNoTargetTimer:false]
-			[NoTargetTimerTrigger:1800]
-			[UseRetreatTimer:true]
-			[RetreatTimerTrigger:86400]
-			[RetreatDespawnDistance:1500]
+			[UseRetreatTimer:false]
 			
-			[AutopilotData:GVK-CustomSpawns-DefenseDrone-MediumRover-Autopilot]
+			[TargetData:GVK-Generic-Target-EnemiesInKPL]
 			
-			[TargetData:GVK-Generic-TargetProfile-EnemyPlayers]
+			[AutopilotData:GVK-CustomSpawns-DefenseDrone-Autopilot-MediumHoverHorsefly]
 
 			[Triggers:GVK-CustomSpawns-DefenseDrone-Trigger-TargetAttacker]
 			[Triggers:GVK-CustomSpawns-DefenseDrone-Trigger-WeaponsToMaxRange]
@@ -560,14 +545,16 @@
 			[Triggers:GVK-Generic-Trigger-SPRTTargetAcquiredChatter]
 			[Triggers:GVK-CustomSpawns-DefenseDrone-Trigger-Compromised]
 			[Triggers:GVK-Generic-Trigger-SPRTNoWeapon]
-
+			[Triggers:GVK-Generic-Trigger-CreateKPL]
+			[Triggers:GVK-DroneEnconuter-Trigger-Retreat-NoTarget]
+			[Triggers:GVK-DroneEnconuter-Trigger-Retreat-Timer]
 			</Description>
 		</EntityComponent>
-		<!-- Horsefly Rover Autopilot -->
+		<!-- MediumHoverHorsefly Autopilot -->
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-CustomSpawns-DefenseDrone-MediumRover-Autopilot</SubtypeId>
+				<SubtypeId>GVK-CustomSpawns-DefenseDrone-Autopilot-MediumHoverHorsefly</SubtypeId>
 			</Id>
 			<Description>
 
@@ -586,17 +573,17 @@
 
 			[OffsetPlanetMinDistFromTarget:800]
 			[OffsetPlanetMaxDistFromTarget:1500]
-			[OffsetPlanetMinTargetAltitude:0]
-			[OffsetPlanetMaxTargetAltitude:50]
+			[OffsetPlanetMinTargetAltitude:10]
+			[OffsetPlanetMaxTargetAltitude:15]
 			[AngleAllowedForForwardThrust:120]
 
 			</Description>
 		</EntityComponent>
-		<!-- Hover Cruiser Drone Horsefly Behavior -->
+		<!-- HoverCruiserHorsefly Behavior -->
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-CustomSpawns-DefenseDrone-HoverCruiserHorsefly-Behavior</SubtypeId>
+				<SubtypeId>GVK-CustomSpawns-DefenseDrone-Behavior-HoverCruiserHorsefly</SubtypeId>
 			</Id>
 			<Description>
 	
@@ -611,18 +598,15 @@
 			[UseAmmoReplenish:true]
 			[AmmoReplenishClipAmount:10]
 			[MaxAmmoReplenishments:99999999]
-			[UsePlayerDistanceTimer:false]
-			[PlayerDistanceTimerTrigger:0]
-			[PlayerDistanceTrigger:15000]
+			[UsePlayerDistanceTimer:true]
+			[PlayerDistanceTimerTrigger:1800]
+			[PlayerDistanceTrigger:5000]
 			[UseNoTargetTimer:false]
-			[NoTargetTimerTrigger:1800]
-			[UseRetreatTimer:true]
-			[RetreatTimerTrigger:86400]
-			[RetreatDespawnDistance:1500]
+			[UseRetreatTimer:false]
 			
-			[AutopilotData:GVK-CustomSpawns-DefenseDrone-HoverCruiserHorsefly-Autopilot]
+			[TargetData:GVK-Generic-Target-EnemiesInKPL]
 			
-			[TargetData:GVK-Generic-TargetProfile-EnemyPlayers]
+			[AutopilotData:GVK-CustomSpawns-DefenseDrone-Autopilot-HoverCruiserHorsefly]
 
 			[Triggers:GVK-CustomSpawns-DefenseDrone-Trigger-TargetAttacker]
 			[Triggers:GVK-CustomSpawns-DefenseDrone-Trigger-WeaponsToMaxRange]
@@ -634,14 +618,16 @@
 			[Triggers:GVK-CustomSpawns-DefenseDrone-Trigger-JetpackInhibitorOnSpawn]
 			[Triggers:GVK-CustomSpawns-DefenseDrone-Trigger-JetpackInhibitorOnRestart]
 			[Triggers:GVK-CustomSpawns-DefenseDrone-Trigger-Crashed]
-
+			[Triggers:GVK-Generic-Trigger-CreateKPL]
+			[Triggers:GVK-DroneEnconuter-Trigger-Retreat-NoTarget]
+			[Triggers:GVK-DroneEnconuter-Trigger-Retreat-Timer]
 			</Description>
 		</EntityComponent>
-		<!-- Hover Cruiser Drone Horsefly Autopilot -->
+		<!-- HoverCruiserHorsefly Autopilot -->
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-CustomSpawns-DefenseDrone-HoverCruiserHorsefly-Autopilot</SubtypeId>
+				<SubtypeId>GVK-CustomSpawns-DefenseDrone-Autopilot-HoverCruiserHorsefly</SubtypeId>
 			</Id>
 			<Description>
 
@@ -670,8 +656,8 @@
 
 			[OffsetPlanetMinDistFromTarget:1200]
 			[OffsetPlanetMaxDistFromTarget:2000]
-			[OffsetPlanetMinTargetAltitude:-50]
-			[OffsetPlanetMaxTargetAltitude:50]
+			[OffsetPlanetMinTargetAltitude:10]
+			[OffsetPlanetMaxTargetAltitude:15]
 				
 			[ReverseOffsetDistAltAboveHeight:false]
 			[ReverseOffsetHeight:0]
@@ -879,104 +865,6 @@
 	
 			</Description>
 		</EntityComponent>
-		<!-- Action group to fire Fixed Rockets because of a bug in WC2 right now -->
-		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
-			<Id>
-				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-CustomSpawns-DefenseDrone-Trigger-FireRockets</SubtypeId>
-			</Id>
-			<Description>
-	
-			[RivalAI Trigger]
-			
-			[UseTrigger:true]
-			[Type:TargetNear]
-			
-			[TargetDistance:1000]
-			
-			[Conditions:GVK-CustomSpawns-DefenseDrone-Condition-FireRockets]
-			
-			[Actions:GVK-CustomSpawns-DefenseDrone-Action-FireRockets]
-	
-			</Description>
-		</EntityComponent>
-		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
-			<Id>
-				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-CustomSpawns-DefenseDrone-Condition-FireRockets</SubtypeId>
-			</Id>
-			<Description>
-
-			[RivalAI Condition]
-
-			[UseConditions:true]
-			[MatchAnyCondition:true]
-			
-			[CheckTargetAngleFromForward:true]
-			[MinTargetAngle:0]
-			[MaxTargetAngle:15]
-
-			</Description>
-		</EntityComponent>
-		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
-			<Id>
-				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-CustomSpawns-DefenseDrone-Action-FireRockets</SubtypeId>
-			</Id>
-			<Description>
-	
-			[RivalAI Action]
-				
-			[ToggleBlocksOfType:true]
-			[BlockTypesToToggle:MyObjectBuilder_SmallMissileLauncher/]
-			[BlockTypeToggles:On]
-			[BlockTypesToToggle:MyObjectBuilder_SmallMissileLauncher/null]
-			[BlockTypeToggles:On]
-			[BlockTypesToToggle:MyObjectBuilder_SmallMissileLauncher/LargeMissileLauncher]
-			[BlockTypeToggles:On]
-			
-			[ResetCooldownTimeOfTriggers:true]
-			[ResetTriggerCooldownNames:GVK-CustomSpawns-DefenseDrone-Trigger-StopRockets]
-	
-			</Description>
-		</EntityComponent>
-		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
-			<Id>
-				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-CustomSpawns-DefenseDrone-Trigger-StopRockets</SubtypeId>
-			</Id>
-			<Description>
-			
-			[RivalAI Trigger]
-			
-			[UseTrigger:true]
-			[Type:Timer]
-			[MinCooldownMs:1000]
-			[MaxCooldownMs:1000]
-				
-			[Actions:GVK-CustomSpawns-DefenseDrone-Action-StopRockets]
-	
-			</Description>
-		</EntityComponent>
-		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
-			<Id>
-				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-CustomSpawns-DefenseDrone-Action-StopRockets</SubtypeId>
-			</Id>
-			<Description>
-	
-			[RivalAI Action]
-			
-			[ToggleBlocksOfType:true]
-			[BlockTypesToToggle:MyObjectBuilder_SmallMissileLauncher/]
-			[BlockTypeToggles:Off]
-			[BlockTypesToToggle:MyObjectBuilder_SmallMissileLauncher/null]
-			[BlockTypeToggles:Off]
-			[BlockTypesToToggle:MyObjectBuilder_SmallMissileLauncher/LargeMissileLauncher]
-			[BlockTypeToggles:Off]
-	
-			</Description>
-		</EntityComponent>
 		<!-- Action group to fire Archer Pods via Timer because of a bug in WC2 right now -->
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
@@ -995,9 +883,29 @@
 			[StartsReady:false]
 			
 			[TargetDistance:2500]
+			
+			[Conditions:GVK-CustomSpawns-DefenseDrone-Condition-FireMissilesTimers]
 				
 			[Actions:GVK-CustomSpawns-DefenseDrone-Action-FireMissilesTimers]
 	
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-CustomSpawns-DefenseDrone-Condition-FireMissilesTimers</SubtypeId>
+			</Id>
+			<Description>
+
+			[RivalAI Condition]
+
+			[UseConditions:true]
+			[MatchAnyCondition:true]
+			
+			[CheckTargetAngleFromForward:true]
+			[MinTargetAngle:0]
+			[MaxTargetAngle:100]
+
 			</Description>
 		</EntityComponent>
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
@@ -1072,6 +980,40 @@
 	
 			</Description>
 		</EntityComponent>
+		<!-- Action for all drones when defeated to disable stuff -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-CustomSpawns-DefenseDrone-Action-Disabled</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Action]
+			[GenerateExplosion:true]
+			[ExplosionOffsetFromRemote:{X:0 Y:0 Z:0}]
+			[ExplosionRange:25]
+			[ExplosionDamage:1]
+			[ExplosionIgnoresVoxels:true]
+			[ToggleBlocksOfType:true]
+			[BlockTypesToToggle:MyObjectBuilder_Beacon/ZoneBlock]
+			[BlockTypeToggles:Off]
+			[BlockTypesToToggle:MyObjectBuilder_Beacon/DisposableNpcBeaconSmall]
+			[BlockTypeToggles:Off]
+			[BlockTypesToToggle:MyObjectBuilder_Beacon/DisposableNpcBeaconLarge]
+			[BlockTypeToggles:Off]
+			[BlockTypesToToggle:MyObjectBuilder_Beacon/SmallBlockBeacon]
+			[BlockTypeToggles:Off]
+			[BlockTypesToToggle:MyObjectBuilder_Beacon/LargeBlockBeacon]
+			[BlockTypeToggles:Off]
+			[BlockTypesToToggle:MyObjectBuilder_Beacon/RivalAIRemoteControlLarge]
+			[BlockTypeToggles:Off]
+			[BlockTypesToToggle:MyObjectBuilder_Beacon/RivalAIRemoteControlSmall]
+			[BlockTypeToggles:Off]
+			[ForceDespawn:false]
+			[ChangeInertiaDampeners:true]
+			[InertiaDampenersEnable:false]
+			[TerminateBehavior:true]
+			</Description>
+		</EntityComponent>
 		<!-- Trigger sequence when small NPC crashes into the ground (instant delete) -->
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
@@ -1093,6 +1035,7 @@
 			[Conditions:GVK-CustomSpawns-DefenseDrone-Condition-Crashed]
 			
 			[Actions:GVK-CustomSpawns-DefenseDrone-Action-Crashed]
+			[Actions:GVK-CustomSpawns-DefenseDrone-Action-Disabled]
 
 			</Description>
 		</EntityComponent>
@@ -1129,34 +1072,9 @@
 			
 			[DisableTriggers:true]
 			[DisableTriggerNames:GVK-CustomSpawns-DefenseDrone-Trigger-Compromised]
-			
-			[GenerateExplosion:true]
-			[ExplosionOffsetFromRemote:{X:0 Y:0 Z:0}]
-			[ExplosionRange:25]
-			[ExplosionDamage:1]
-			[ExplosionIgnoresVoxels:true]
 
 			[UseChatBroadcast:true]
 			[ChatData:GVK-CustomSpawns-DefenseDrone-Chat-Crashed]
-			[ToggleBlocksOfType:true]
-			[BlockTypesToToggle:MyObjectBuilder_Beacon/ZoneBlock]
-			[BlockTypeToggles:Off]
-			[BlockTypesToToggle:MyObjectBuilder_Beacon/DisposableNpcBeaconSmall]
-			[BlockTypeToggles:Off]
-			[BlockTypesToToggle:MyObjectBuilder_Beacon/DisposableNpcBeaconLarge]
-			[BlockTypeToggles:Off]
-			[BlockTypesToToggle:MyObjectBuilder_Beacon/SmallBlockBeacon]
-			[BlockTypeToggles:Off]
-			[BlockTypesToToggle:MyObjectBuilder_Beacon/LargeBlockBeacon]
-			[BlockTypeToggles:Off]
-			[BlockTypesToToggle:MyObjectBuilder_Beacon/RivalAIRemoteControlLarge]
-			[BlockTypeToggles:Off]
-			[BlockTypesToToggle:MyObjectBuilder_Beacon/RivalAIRemoteControlSmall]
-			[BlockTypeToggles:Off]
-			[ForceDespawn:false]
-			[ChangeInertiaDampeners:true]
-			[InertiaDampenersEnable:false]
-			[TerminateBehavior:true]
 			</Description>
 		</EntityComponent>
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
@@ -1201,7 +1119,7 @@
 			[ActionExecution:All]
 				
 			[Actions:GVK-CustomSpawns-DefenseDrone-Action-Compromised]
-
+			[Actions:GVK-CustomSpawns-DefenseDrone-Action-Disabled]
 			</Description>
 		</EntityComponent>
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
@@ -1214,35 +1132,10 @@
 			[RivalAI Action]
 			
 			[DisableTriggers:true]
-			[DisableTriggerNames:GVK-CustomSpawns-DefenseDrone-Trigger-Crashed]
-			
-			[GenerateExplosion:true]
-			[ExplosionOffsetFromRemote:{X:0 Y:0 Z:0}]
-			[ExplosionRange:25]
-			[ExplosionDamage:1]
-			[ExplosionIgnoresVoxels:true]
+			[DisableTriggerNames:GVK-CustomSpawns-DefenseDrone-Trigger-Crashed]			
 
 			[UseChatBroadcast:true]
 			[ChatData:GVK-CustomSpawns-DefenseDrone-Chat-Compromised]
-			[ToggleBlocksOfType:true]
-			[BlockTypesToToggle:MyObjectBuilder_Beacon/ZoneBlock]
-			[BlockTypeToggles:Off]
-			[BlockTypesToToggle:MyObjectBuilder_Beacon/DisposableNpcBeaconSmall]
-			[BlockTypeToggles:Off]
-			[BlockTypesToToggle:MyObjectBuilder_Beacon/DisposableNpcBeaconLarge]
-			[BlockTypeToggles:Off]
-			[BlockTypesToToggle:MyObjectBuilder_Beacon/SmallBlockBeacon]
-			[BlockTypeToggles:Off]
-			[BlockTypesToToggle:MyObjectBuilder_Beacon/LargeBlockBeacon]
-			[BlockTypeToggles:Off]
-			[BlockTypesToToggle:MyObjectBuilder_Beacon/RivalAIRemoteControlLarge]
-			[BlockTypeToggles:Off]
-			[BlockTypesToToggle:MyObjectBuilder_Beacon/RivalAIRemoteControlSmall]
-			[BlockTypeToggles:Off]
-			[ForceDespawn:false]
-			[ChangeInertiaDampeners:true]
-			[InertiaDampenersEnable:false]
-			[TerminateBehavior:true]
 			</Description>
 		</EntityComponent>
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
@@ -1291,7 +1184,7 @@
 			[Conditions:GVK-CustomSpawns-DefenseDrone-Condition-Crashed]
 			
 			[Actions:GVK-CustomSpawns-DefenseDrone-Action-Large-Crashed]
-
+			[Actions:GVK-CustomSpawns-DefenseDrone-Action-Disabled]
 			</Description>
 		</EntityComponent>
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
@@ -1305,34 +1198,9 @@
 			
 			[DisableTriggers:true]
 			[DisableTriggerNames:GVK-CustomSpawns-DefenseDrone-Trigger-Large-Compromised]
-			
-			[GenerateExplosion:true]
-			[ExplosionOffsetFromRemote:{X:0 Y:0 Z:0}]
-			[ExplosionRange:25]
-			[ExplosionDamage:1]
-			[ExplosionIgnoresVoxels:true]
 
 			[UseChatBroadcast:true]
 			[ChatData:GVK-CustomSpawns-DefenseDrone-Chat-Large-Crashed]
-			[ToggleBlocksOfType:true]
-			[BlockTypesToToggle:MyObjectBuilder_Beacon/ZoneBlock]
-			[BlockTypeToggles:Off]
-			[BlockTypesToToggle:MyObjectBuilder_Beacon/DisposableNpcBeaconSmall]
-			[BlockTypeToggles:Off]
-			[BlockTypesToToggle:MyObjectBuilder_Beacon/DisposableNpcBeaconLarge]
-			[BlockTypeToggles:Off]
-			[BlockTypesToToggle:MyObjectBuilder_Beacon/SmallBlockBeacon]
-			[BlockTypeToggles:Off]
-			[BlockTypesToToggle:MyObjectBuilder_Beacon/LargeBlockBeacon]
-			[BlockTypeToggles:Off]
-			[BlockTypesToToggle:MyObjectBuilder_Beacon/RivalAIRemoteControlLarge]
-			[BlockTypeToggles:Off]
-			[BlockTypesToToggle:MyObjectBuilder_Beacon/RivalAIRemoteControlSmall]
-			[BlockTypeToggles:Off]
-			[ForceDespawn:false]
-			[ChangeInertiaDampeners:true]
-			[InertiaDampenersEnable:false]
-			[TerminateBehavior:true]
 			</Description>
 		</EntityComponent>
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
@@ -1377,7 +1245,7 @@
 			[ActionExecution:All]
 				
 			[Actions:GVK-CustomSpawns-DefenseDrone-Action-Large-Compromised]
-
+			[Actions:GVK-CustomSpawns-DefenseDrone-Action-Disabled]
 			</Description>
 		</EntityComponent>
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
@@ -1391,34 +1259,9 @@
 			
 			[DisableTriggers:true]
 			[DisableTriggerNames:GVK-CustomSpawns-DefenseDrone-Trigger-Large-Crashed]
-			
-			[GenerateExplosion:true]
-			[ExplosionOffsetFromRemote:{X:0 Y:0 Z:0}]
-			[ExplosionRange:25]
-			[ExplosionDamage:1]
-			[ExplosionIgnoresVoxels:true]
 
 			[UseChatBroadcast:true]
 			[ChatData:GVK-CustomSpawns-DefenseDrone-Chat-Compromised]
-			[ToggleBlocksOfType:true]
-			[BlockTypesToToggle:MyObjectBuilder_Beacon/ZoneBlock]
-			[BlockTypeToggles:Off]
-			[BlockTypesToToggle:MyObjectBuilder_Beacon/DisposableNpcBeaconSmall]
-			[BlockTypeToggles:Off]
-			[BlockTypesToToggle:MyObjectBuilder_Beacon/DisposableNpcBeaconLarge]
-			[BlockTypeToggles:Off]
-			[BlockTypesToToggle:MyObjectBuilder_Beacon/SmallBlockBeacon]
-			[BlockTypeToggles:Off]
-			[BlockTypesToToggle:MyObjectBuilder_Beacon/LargeBlockBeacon]
-			[BlockTypeToggles:Off]
-			[BlockTypesToToggle:MyObjectBuilder_Beacon/RivalAIRemoteControlLarge]
-			[BlockTypeToggles:Off]
-			[BlockTypesToToggle:MyObjectBuilder_Beacon/RivalAIRemoteControlSmall]
-			[BlockTypeToggles:Off]
-			[ForceDespawn:false]
-			[ChangeInertiaDampeners:true]
-			[InertiaDampenersEnable:false]
-			[TerminateBehavior:true]
 			</Description>
 		</EntityComponent>
 		<!-- Trigger sequence when a Cruiser crashes into the ground -->
@@ -1442,7 +1285,7 @@
 			[Conditions:GVK-CustomSpawns-DefenseDrone-Condition-Crashed]
 			
 			[Actions:GVK-CustomSpawns-DefenseDrone-Action-Cruiser-Crashed]
-
+			[Actions:GVK-CustomSpawns-DefenseDrone-Action-Disabled]
 			</Description>
 		</EntityComponent>
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
@@ -1456,34 +1299,9 @@
 			
 			[DisableTriggers:true]
 			[DisableTriggerNames:GVK-CustomSpawns-DefenseDrone-Trigger-Cruiser-Compromised]
-			
-			[GenerateExplosion:true]
-			[ExplosionOffsetFromRemote:{X:0 Y:0 Z:0}]
-			[ExplosionRange:25]
-			[ExplosionDamage:1]
-			[ExplosionIgnoresVoxels:true]
 
 			[UseChatBroadcast:true]
 			[ChatData:GVK-CustomSpawns-DefenseDrone-Chat-Cruiser-Crashed]
-			[ToggleBlocksOfType:true]
-			[BlockTypesToToggle:MyObjectBuilder_Beacon/ZoneBlock]
-			[BlockTypeToggles:Off]
-			[BlockTypesToToggle:MyObjectBuilder_Beacon/DisposableNpcBeaconSmall]
-			[BlockTypeToggles:Off]
-			[BlockTypesToToggle:MyObjectBuilder_Beacon/DisposableNpcBeaconLarge]
-			[BlockTypeToggles:Off]
-			[BlockTypesToToggle:MyObjectBuilder_Beacon/SmallBlockBeacon]
-			[BlockTypeToggles:Off]
-			[BlockTypesToToggle:MyObjectBuilder_Beacon/LargeBlockBeacon]
-			[BlockTypeToggles:Off]
-			[BlockTypesToToggle:MyObjectBuilder_Beacon/RivalAIRemoteControlLarge]
-			[BlockTypeToggles:Off]
-			[BlockTypesToToggle:MyObjectBuilder_Beacon/RivalAIRemoteControlSmall]
-			[BlockTypeToggles:Off]
-			[ForceDespawn:false]
-			[ChangeInertiaDampeners:true]
-			[InertiaDampenersEnable:false]
-			[TerminateBehavior:true]
 			</Description>
 		</EntityComponent>
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
@@ -1528,7 +1346,7 @@
 			[ActionExecution:All]
 				
 			[Actions:GVK-CustomSpawns-DefenseDrone-Action-Cruiser-Compromised]
-
+			[Actions:GVK-CustomSpawns-DefenseDrone-Action-Disabled]
 			</Description>
 		</EntityComponent>
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
@@ -1542,34 +1360,9 @@
 			
 			[DisableTriggers:true]
 			[DisableTriggerNames:GVK-CustomSpawns-DefenseDrone-Trigger-Cruiser-Crashed]
-			
-			[GenerateExplosion:true]
-			[ExplosionOffsetFromRemote:{X:0 Y:0 Z:0}]
-			[ExplosionRange:25]
-			[ExplosionDamage:1]
-			[ExplosionIgnoresVoxels:true]
 
 			[UseChatBroadcast:true]
 			[ChatData:GVK-CustomSpawns-DefenseDrone-Chat-Cruiser-Compromised]
-			[ToggleBlocksOfType:true]
-			[BlockTypesToToggle:MyObjectBuilder_Beacon/ZoneBlock]
-			[BlockTypeToggles:Off]
-			[BlockTypesToToggle:MyObjectBuilder_Beacon/DisposableNpcBeaconSmall]
-			[BlockTypeToggles:Off]
-			[BlockTypesToToggle:MyObjectBuilder_Beacon/DisposableNpcBeaconLarge]
-			[BlockTypeToggles:Off]
-			[BlockTypesToToggle:MyObjectBuilder_Beacon/SmallBlockBeacon]
-			[BlockTypeToggles:Off]
-			[BlockTypesToToggle:MyObjectBuilder_Beacon/LargeBlockBeacon]
-			[BlockTypeToggles:Off]
-			[BlockTypesToToggle:MyObjectBuilder_Beacon/RivalAIRemoteControlLarge]
-			[BlockTypeToggles:Off]
-			[BlockTypesToToggle:MyObjectBuilder_Beacon/RivalAIRemoteControlSmall]
-			[BlockTypeToggles:Off]
-			[ForceDespawn:false]
-			[ChangeInertiaDampeners:true]
-			[InertiaDampenersEnable:false]
-			[TerminateBehavior:true]
 			</Description>
 		</EntityComponent>
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
@@ -1595,6 +1388,73 @@
 			[BroadcastChatType:Notify]
 			[SendToAllOnlinePlayers:true]
 
+			</Description>
+		</EntityComponent>
+		<!-- Trigger Sequence for Random Drone Encounter to retreat after a while-->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-DroneEnconuter-Trigger-Retreat-NoTarget</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Trigger]
+			[Type:NoTarget]
+			[UseTrigger:true]
+			[StartsReady:false]
+			[MaxActions:1]
+			[ActionExecution:All]
+			[MinCooldownMs:1800000]
+			[MaxCooldownMs:1800001]
+			[Conditions:GVK-DroneEnconuter-Condition-IsDroneEncounter]
+			[Actions:GVK-DroneEnconuter-Action-Retreat]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-DroneEnconuter-Trigger-Retreat-Timer</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Trigger]
+			[Type:Timer]
+			[UseTrigger:true]
+			[StartsReady:false]
+			[MaxActions:1]
+			[ActionExecution:All]
+			[MinCooldownMs:21600000]
+			[MaxCooldownMs:21600001]
+			[Conditions:GVK-DroneEnconuter-Condition-IsDroneEncounter]
+			[Actions:GVK-DroneEnconuter-Action-Retreat]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-DroneEnconuter-Condition-IsDroneEncounter</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Condition]
+			[UseConditions:true]
+			[MatchAnyCondition:true]
+			[CheckForSpawnConditions:true]
+			[RequiredSpawnConditions:GVK-SpawnConditions-DroneEncounters-Salvager]
+			[RequiredSpawnConditions:GVK-SpawnConditions-DroneEncounters-SmallFlyerSingle]
+			[RequiredSpawnConditions:GVK-SpawnConditions-DroneEncounters-SmallHoverSingle]
+			[RequiredSpawnConditions:GVK-SpawnConditions-DroneEncounters-MediumHoverSingle]
+			[RequiredSpawnConditions:GVK-SpawnConditions-DroneEncounters-SmallFlyerSquad]
+			[RequiredSpawnConditions:GVK-SpawnConditions-DroneEncounters-MediumFlyerSingle]
+			[RequiredSpawnConditions:GVK-SpawnConditions-DroneEncounters-LargeHoverSingle]
+			[RequiredSpawnConditions:GVK-SpawnConditions-DroneEncounters-SmallHoverSquad]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-DroneEnconuter-Action-Retreat</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Action]
+			[Retreat:true]
 			</Description>
 		</EntityComponent>
 	</EntityComponents>
