@@ -1,0 +1,202 @@
+<?xml version="1.0"?>
+<Definitions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+	<SpawnGroups>
+		<!-- [NPC Drone] Gaalsien Carrier -->
+		<SpawnGroup>
+			<Id>
+				<TypeId>SpawnGroupDefinition</TypeId>
+				<SubtypeId>GVK-Convoy-SpawnGroup-Lead-GaalsienCarrier</SubtypeId>
+			</Id>
+			<Description>
+			[Modular Encounters SpawnGroup]
+			[IgnoreCleanupRules:true]
+			[ReplenishSystems:true]
+			[ManipulationProfiles:MES-Manipulation-RivalAi]
+			[SpawnConditionsProfiles:GVK-Convoy-SpawnCondition-Lead-GaalsienCarrier]
+			[ManipulationProfiles:GVK-Convoy-Manipulation-Lead-GaalsienCarrier]
+			</Description>
+			<IsPirate>true</IsPirate>
+			<Frequency>0.1</Frequency>
+			<Prefabs>
+				<Prefab SubtypeId="[NPC Convoy] Gaalsien Carrier">
+					<Position>
+						<X>0.0</X>
+						<Y>20</Y>
+						<Z>0.0</Z>
+					</Position>
+					<Speed>0</Speed>
+					<BeaconText>Carrier</BeaconText>
+					<Behaviour>GVK-Convoy-Behavior-Lead-GaalsienCarrier</Behaviour>
+				</Prefab>
+			</Prefabs>
+		</SpawnGroup>
+		<!-- [NPC Drone] Medium Hovers -->
+		<SpawnGroup>
+			<Id>
+				<TypeId>SpawnGroupDefinition</TypeId>
+				<SubtypeId>GVK-Convoy-SpawnGroup-Escort-MediumHovers</SubtypeId>
+			</Id>
+			<Description>
+			[Modular Encounters SpawnGroup]
+			[IgnoreCleanupRules:true]
+			[ReplenishSystems:true]
+			[ManipulationProfiles:MES-Manipulation-RivalAi] 
+			[ManipulationProfiles:GVK-CustomSpawns-DefenseDrone-Manipulation-Hover]
+			[SpawnConditionsProfiles:GVK-Convoy-SpawnCondition-Escort-LargeHoverDrones]
+			</Description>
+			<IsPirate>true</IsPirate>
+			<Frequency>0.2</Frequency>
+			<Prefabs>
+				<Prefab SubtypeId="[NPC Drone] Gaalsien Baserunner">
+					<Position>
+						<X>0.0</X>
+						<Y>10.0</Y>
+						<Z>0.0</Z>
+					</Position>
+					<Speed>0</Speed>
+					<BeaconText>Gaalsien Baserunner</BeaconText>
+					<Behaviour>EscortDrone-Rover-Behavior</Behaviour>
+				</Prefab>
+				<Prefab SubtypeId="[NPC Drone] Gaalsien Baserunner Artillery">
+					<Position>
+						<X>0.0</X>
+						<Y>10.0</Y>
+						<Z>0.0</Z>
+					</Position>
+					<Speed>0</Speed>
+					<BeaconText>Artillery Baserunner</BeaconText>
+					<Behaviour>EscortDrone-Rover-Behavior</Behaviour>
+				</Prefab>
+				<Prefab SubtypeId="[NPC Drone] Gaalsien Baserunner Flak">
+					<Position>
+						<X>0.0</X>
+						<Y>10.0</Y>
+						<Z>0.0</Z>
+					</Position>
+					<Speed>0</Speed>
+					<BeaconText>Flak Baserunner</BeaconText>
+					<Behaviour>EscortDrone-Rover-Behavior</Behaviour>
+				</Prefab>
+				<Prefab SubtypeId="[NPC Drone] Gaalsien Baserunner Hurricane">
+					<Position>
+						<X>0.0</X>
+						<Y>15.0</Y>
+						<Z>0.0</Z>
+					</Position>
+					<Speed>0</Speed>
+					<BeaconText>Hurricane Baserunner</BeaconText>
+					<Behaviour>EscortDrone-Rover-Behavior</Behaviour>
+				</Prefab>
+				<Prefab SubtypeId="[NPC Drone] Gaalsien Baserunner Loki">
+					<Position>
+						<X>0.0</X>
+						<Y>15.0</Y>
+						<Z>0.0</Z>
+					</Position>
+					<Speed>0</Speed>
+					<BeaconText>Loki Baserunner</BeaconText>
+					<Behaviour>EscortDrone-Rover-Behavior</Behaviour>
+				</Prefab>
+				<Prefab SubtypeId="[NPC Drone] Gaalsien Baserunner Spartan">
+					<Position>
+						<X>0.0</X>
+						<Y>15.0</Y>
+						<Z>0.0</Z>
+					</Position>
+					<Speed>0</Speed>
+					<BeaconText>Spartan Baserunner</BeaconText>
+					<Behaviour>EscortDrone-Rover-Behavior</Behaviour>
+				</Prefab>
+				<Prefab SubtypeId="[NPC Drone] Gaalsien Baserunner Thrasher">
+					<Position>
+						<X>0.0</X>
+						<Y>15.0</Y>
+						<Z>0.0</Z>
+					</Position>
+					<Speed>0</Speed>
+					<BeaconText>Thrasher Baserunner</BeaconText>
+					<Behaviour>EscortDrone-Rover-Behavior</Behaviour>
+				</Prefab>
+				<Prefab SubtypeId="[NPC Drone] Gaalsien Baserunner Vulcan">
+					<Position>
+						<X>0.0</X>
+						<Y>15.0</Y>
+						<Z>0.0</Z>
+					</Position>
+					<Speed>0</Speed>
+					<BeaconText>Vulcan Baserunner</BeaconText>
+					<Behaviour>EscortDrone-Rover-Behavior</Behaviour>
+				</Prefab>
+			</Prefabs>
+		</SpawnGroup>
+		<!-- [NPC Drone] Large Hovers -->
+		<SpawnGroup>
+			<Id>
+				<TypeId>SpawnGroupDefinition</TypeId>
+				<SubtypeId>GVK-Convoy-SpawnGroup-Escort-LargeHovers</SubtypeId>
+			</Id>
+			<Description>
+			[Modular Encounters SpawnGroup]
+			[IgnoreCleanupRules:true]
+			[ReplenishSystems:true]
+			[ManipulationProfiles:MES-Manipulation-RivalAi] 
+			[ManipulationProfiles:GVK-CustomSpawns-DefenseDrone-Manipulation-Hover]
+			[SpawnConditionsProfiles:GVK-Convoy-SpawnCondition-Escort-LargeHoverDrones]
+			</Description>
+			<IsPirate>true</IsPirate>
+			<Frequency>0.1</Frequency>
+			<Prefabs>
+				<Prefab SubtypeId="[NPC Drone] Artillery Cruiser">
+					<Position>
+						<X>0.0</X>
+						<Y>15.0</Y>
+						<Z>0.0</Z>
+					</Position>
+					<Speed>0</Speed>
+					<BeaconText>Artillery Cruiser</BeaconText>
+					<Behaviour>EscortDrone-Rover-Behavior</Behaviour>
+				</Prefab>
+				<Prefab SubtypeId="[NPC Drone] Missile Cruiser">
+					<Position>
+						<X>0.0</X>
+						<Y>15.0</Y>
+						<Z>0.0</Z>
+					</Position>
+					<Speed>0</Speed>
+					<BeaconText>Missile Cruiser</BeaconText>
+					<Behaviour>EscortDrone-Rover-Behavior</Behaviour>
+				</Prefab>
+				<Prefab SubtypeId="[NPC Drone] Railgun Cruiser">
+					<Position>
+						<X>0.0</X>
+						<Y>15.0</Y>
+						<Z>0.0</Z>
+					</Position>
+					<Speed>0</Speed>
+					<BeaconText>Railgun Cruiser</BeaconText>
+					<Behaviour>EscortDrone-Rover-Behavior</Behaviour>
+				</Prefab>
+				<Prefab SubtypeId="[NPC Drone] Torpedo Cruiser">
+					<Position>
+						<X>0.0</X>
+						<Y>15.0</Y>
+						<Z>0.0</Z>
+					</Position>
+					<Speed>0</Speed>
+					<BeaconText>Torpedo Cruiser</BeaconText>
+					<Behaviour>EscortDrone-Rover-Behavior</Behaviour>
+				</Prefab>
+				<Prefab SubtypeId="[NPC Drone] Tuukka Cruiser">
+					<Position>
+						<X>0.0</X>
+						<Y>15.0</Y>
+						<Z>0.0</Z>
+					</Position>
+					<Speed>0</Speed>
+					<BeaconText>Siege Cruiser</BeaconText>
+					<Behaviour>EscortDrone-Rover-Behavior</Behaviour>
+				</Prefab>
+			</Prefabs>
+		</SpawnGroup>
+	</SpawnGroups>
+</Definitions>

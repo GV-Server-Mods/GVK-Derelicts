@@ -24,6 +24,7 @@
 				[Triggers:GVK-PlanetaryInstallations-GaalsienHangar-Trigger-DespawnMES]
 				[Triggers:GVK-PlanetaryInstallations-GaalsienHangar-Trigger-Compromised]
 				[Triggers:GVK-PlanetaryInstallations-GaalsienHangar-Trigger-BeaconDisabled]
+				[Triggers:GVK-Generic-Trigger-CreateKPL]
 				[TargetData:GVK-Generic-Target-EnemyGrids-LongRange]
 				[RemoteControlCode:GVK-LargeDerelict]
 			</Description>
@@ -57,13 +58,13 @@
 				[SetWeaponsToMaxRange:true]
 				[UseJetpackInhibitorEffect:true]
 				[UseChatBroadcast:true]
-				[ChatData:GVK-PlanetaryInstallations-Chat-Spawned-Large]
+				[ChatData:GVK-PlanetaryInstallations-GaalsienHangar-Chat-Spawned-Large]
 			</Description>
 		</EntityComponent>
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 		  <Id>
 			  <TypeId>Inventory</TypeId>
-			  <SubtypeId>GVK-PlanetaryInstallations-Chat-Spawned-Large</SubtypeId>
+			  <SubtypeId>GVK-PlanetaryInstallations-GaalsienHangar-Chat-Spawned-Large</SubtypeId>
 		  </Id>
 		  <Description>
 
@@ -133,15 +134,10 @@
 				[MaxDistance:1500]
 				[MinAltitude:10]
 				[MaxAltitude:20]
-				[MaxSpawns:4]
+				[MaxSpawns:5]
 				[InheritNpcAltitude:true]
-				[SpawnGroups:GVK-CustomSpawns-DefenseDrone-SpawnGroup-GAALSIEN-AssaultShip]
-				[SpawnGroups:GVK-CustomSpawns-DefenseDrone-SpawnGroup-GAALSIEN-Honorguard]
-				[SpawnGroups:GVK-CustomSpawns-DefenseDrone-SpawnGroup-GAALSIEN-ArtilleryCruiser]
-				[SpawnGroups:GVK-CustomSpawns-DefenseDrone-SpawnGroup-GAALSIEN-MissileCruiser]
-				[SpawnGroups:GVK-CustomSpawns-DefenseDrone-SpawnGroup-GAALSIEN-ProductionCruiser]
-				[SpawnGroups:GVK-CustomSpawns-DefenseDrone-SpawnGroup-GAALSIEN-RailgunCruiser]
-				[SpawnGroups:GVK-CustomSpawns-DefenseDrone-SpawnGroup-GAALSIEN-TorpedoCruiser]
+				[SpawnGroups:GVK-DroneEncounter-SpawnGroup-GAALSIEN-MediumHovers]
+				[SpawnGroups:GVK-DroneEncounter-SpawnGroup-GAALSIEN-LargeHovers]
 				[ProcessAsAdminSpawn:false]
 				[IgnoreSafetyChecks:true]
 			</Description>
@@ -212,23 +208,10 @@
 				[MaxDistance:1500]
 				[MinAltitude:10]
 				[MaxAltitude:20]
-				[MaxSpawns:4]
+				[MaxSpawns:5]
 				[InheritNpcAltitude:true]
-				[SpawnGroups:GVK-CustomSpawns-DefenseDrone-SpawnGroup-GAALSIEN-AssaultShip]
-				[SpawnGroups:GVK-CustomSpawns-DefenseDrone-SpawnGroup-GAALSIEN-Honorguard]
-				[SpawnGroups:GVK-CustomSpawns-DefenseDrone-SpawnGroup-GAALSIEN-ArtilleryCruiser]
-				[SpawnGroups:GVK-CustomSpawns-DefenseDrone-SpawnGroup-GAALSIEN-MissileCruiser]
-				[SpawnGroups:GVK-CustomSpawns-DefenseDrone-SpawnGroup-GAALSIEN-ProductionCruiser]
-				[SpawnGroups:GVK-CustomSpawns-DefenseDrone-SpawnGroup-GAALSIEN-RailgunCruiser]
-				[SpawnGroups:GVK-CustomSpawns-DefenseDrone-SpawnGroup-GAALSIEN-TorpedoCruiser]
-				[SpawnGroups:GVK-CustomSpawns-DefenseDrone-SpawnGroup-GAALSIEN-Baserunner]
-				[SpawnGroups:GVK-CustomSpawns-DefenseDrone-SpawnGroup-GAALSIEN-BaserunnerArtillery]
-				[SpawnGroups:GVK-CustomSpawns-DefenseDrone-SpawnGroup-GAALSIEN-BaserunnerFlak]
-				[SpawnGroups:GVK-CustomSpawns-DefenseDrone-SpawnGroup-GAALSIEN-BaserunnerHurricane]
-				[SpawnGroups:GVK-CustomSpawns-DefenseDrone-SpawnGroup-GAALSIEN-BaserunnerLoki]
-				[SpawnGroups:GVK-CustomSpawns-DefenseDrone-SpawnGroup-GAALSIEN-BaserunnerSpartan]
-				[SpawnGroups:GVK-CustomSpawns-DefenseDrone-SpawnGroup-GAALSIEN-BaserunnerThrasher]
-				[SpawnGroups:GVK-CustomSpawns-DefenseDrone-SpawnGroup-GAALSIEN-BaserunnerVulcan]
+				[SpawnGroups:GVK-DroneEncounter-SpawnGroup-GAALSIEN-MediumHovers]
+				[SpawnGroups:GVK-DroneEncounter-SpawnGroup-GAALSIEN-LargeHovers]
 				[ProcessAsAdminSpawn:false]
 				[IgnoreSafetyChecks:true]
 			</Description>
@@ -338,8 +321,8 @@
 				[BlockTypeToggles:Off]
 				[GenerateExplosion:true]
 				[ExplosionOffsetFromRemote:{X:0 Y:45 Z:0}]
-				[ExplosionRange:50]
-				[ExplosionDamage:10000]
+				[ExplosionRange:100]
+				[ExplosionDamage:1]
 				[ExplosionIgnoresVoxels:true]
 				[SetSandboxBooleansFalse:LargeWreckActive]	
 				[TerminateBehavior:true]

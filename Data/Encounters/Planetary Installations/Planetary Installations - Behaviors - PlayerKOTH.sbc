@@ -1,63 +1,54 @@
 <?xml version="1.0"?>
 <Definitions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
 	<EntityComponents>
-		<!-- Horsefly Rover Carrier Behavior for Season 2 Event-->
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-PlanetaryInstallations-GaalsienFortress-Behavior</SubtypeId>
+				<SubtypeId>GVK-PlanetaryInstallations-PlayerKOTH-Behavior</SubtypeId>
 			</Id>
 			<Description>
 				[RivalAI Behavior]
 				[BehaviorName:Passive]
-				[UseAmmoReplenish:true]
-				[AmmoReplenishClipAmount:10]
-				[MaxAmmoReplenishments:99999999]
-				[UsePlayerDistanceTimer:false]
-				[UseRetreatTimer:false]
+				[PlayerDistanceTimerTrigger:3600]
+				[PlayerDistanceTrigger:1]
 				[UseNoTargetTimer:false]
-				[Triggers:GVK-PlanetaryInstallations-GaalsienFortress-Trigger-OnSpawn]
-				[Triggers:GVK-PlanetaryInstallations-Trigger-Defenses-Large]
-				[Triggers:GVK-CustomSpawns-DefenseDrone-Trigger-FireMissilesTimers]
-				[Triggers:GVK-Generic-Trigger-SPRTTargetAcquiredChatter]
-				[Triggers:GVK-PlanetaryInstallations-GaalsienFortress-Trigger-Compromised]
-				[Triggers:GVK-PlanetaryInstallations-GaalsienFortress-Trigger-BeaconDisabled]
-				[Triggers:GVK-PlanetaryInstallations-GaalsienFortress-Trigger-Despawn]
-				[Triggers:GVK-PlanetaryInstallations-GaalsienFortress-Trigger-DespawnMES]
+				[UseRetreatTimer:false]
+				[Triggers:GVK-PlanetaryInstallations-PlayerKOTH-Trigger-OnSpawn]
+				[Triggers:GVK-PlanetaryInstallations-Trigger-Defenses-Medium]
+				[Triggers:GVK-PlanetaryInstallations-PlayerKOTH-Trigger-Timer]
+				[Triggers:GVK-PlanetaryInstallations-PlayerKOTH-Trigger-Compromised]
+				[Triggers:GVK-PlanetaryInstallations-PlayerKOTH-Trigger-BeaconDisabled]
+				[Triggers:GVK-PlanetaryInstallations-PlayerKOTH-Trigger-Despawn]
+				[Triggers:GVK-PlanetaryInstallations-PlayerKOTH-Trigger-DespawnMES]
 				[Triggers:GVK-Generic-Trigger-CreateKPL]
 				[TargetData:GVK-Generic-Target-EnemyGrids-LongRange]
 				[RemoteControlCode:GVK-LargeDerelict]
 			</Description>
 		</EntityComponent>
-		<!-- Trigger sequence when Carrier Spawns -->
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-PlanetaryInstallations-GaalsienFortress-Trigger-OnSpawn</SubtypeId>
+				<SubtypeId>GVK-PlanetaryInstallations-PlayerKOTH-Trigger-OnSpawn</SubtypeId>
 			</Id>
 			<Description>
 				[RivalAI Trigger]
-				[Type:Timer]
+				[Type:Session]
 				[UseTrigger:true]
 				[StartsReady:true]
-				[MaxActions:1]
-				[MinCooldownMs:900000]
-				[MaxCooldownMs:900000]
-				[Actions:GVK-PlanetaryInstallations-GaalsienFortress-Action-OnSpawn]
+				[Actions:GVK-PlanetaryInstallations-PlayerKOTH-Action-OnSpawn]
 			</Description>
 		</EntityComponent>
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-PlanetaryInstallations-GaalsienFortress-Action-OnSpawn</SubtypeId>
+				<SubtypeId>GVK-PlanetaryInstallations-PlayerKOTH-Action-OnSpawn</SubtypeId>
 			</Id>
 			<Description>
 				[RivalAI Action]
 				[Chance:100]
 				[SetSandboxBooleansTrue:LargeWreckActive]
-				[SetWeaponsToMaxRange:true]
 				[UseChatBroadcast:true]
-				[ChatData:GVK-PlanetaryInstallations-GaalsienFortress-Chat-Announce]
+				[ChatData:GVK-PlanetaryInstallations-PlayerKOTH-Chat-Announce]
 				[UseJetpackInhibitorEffect:true]
 			</Description>
 		</EntityComponent>
@@ -65,7 +56,7 @@
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 		  <Id>
 			  <TypeId>Inventory</TypeId>
-			  <SubtypeId>GVK-PlanetaryInstallations-GaalsienFortress-Chat-Announce</SubtypeId>
+			  <SubtypeId>GVK-PlanetaryInstallations-PlayerKOTH-Chat-Announce</SubtypeId>
 		  </Id>
 		  <Description>
 
@@ -79,20 +70,35 @@
 			  [Author:COALITION]
 			  [Color:White]
 			  
-			  [ChatMessages:A Gaalsien Fortress has been spotted.]
+			  [ChatMessages:The Player King Of the Hill Event is now active for 1 hour.]
 			  [ChatAudio:ArcHudGPSNotification2]
 			  [BroadcastChatType:Chat]
-			  [ChatMessages:A Gaalsien Fortress has been spotted.]
+			  [ChatMessages:The Player King Of the Hill Event is now active for 1 hour.]
 			  [BroadcastChatType:Notify]
 			  [SendToAllOnlinePlayers:true]
 
 		  </Description>      
 		</EntityComponent>
-		<!-- Trigger sequences for Fortress to die -->
+		<!-- Trigger sequences for PlayerKOTH to die -->
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-PlanetaryInstallations-GaalsienFortress-Trigger-BeaconDisabled</SubtypeId>
+				<SubtypeId>GVK-PlanetaryInstallations-PlayerKOTH-Trigger-Timer</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Trigger]
+				[Type:Timer]
+				[UseTrigger:true]
+				[MinCooldownMs:3600000]
+				[MaxCooldownMs:3600001]
+				[StartsReady:false]
+				[Actions:GVK-PlanetaryInstallations-PlayerKOTH-Action-Compromised]
+			</Description>      
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-PlanetaryInstallations-PlayerKOTH-Trigger-BeaconDisabled</SubtypeId>
 			</Id>
 			<Description>
 				[RivalAI Trigger]
@@ -102,13 +108,13 @@
 				[MaxCooldownMs:10000]
 				[StartsReady:false]
 				[Conditions:GVK-PlanetaryInstallations-Condition-BeaconDisabled]				  
-				[Actions:GVK-PlanetaryInstallations-GaalsienFortress-Action-Compromised]
+				[Actions:GVK-PlanetaryInstallations-PlayerKOTH-Action-Compromised]
 			</Description>      
 		</EntityComponent>
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-PlanetaryInstallations-GaalsienFortress-Trigger-Compromised</SubtypeId>
+				<SubtypeId>GVK-PlanetaryInstallations-PlayerKOTH-Trigger-Compromised</SubtypeId>
 			</Id>
 			<Description>
 				[RivalAI Trigger]
@@ -116,13 +122,13 @@
 				[UseTrigger:true]
 				[StartsReady:true]
 				[MaxActions:1]
-				[Actions:GVK-PlanetaryInstallations-GaalsienFortress-Action-Compromised]
+				[Actions:GVK-PlanetaryInstallations-PlayerKOTH-Action-Compromised]
 			</Description>
 		</EntityComponent>
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-PlanetaryInstallations-GaalsienFortress-Trigger-Despawn</SubtypeId>
+				<SubtypeId>GVK-PlanetaryInstallations-PlayerKOTH-Trigger-Despawn</SubtypeId>
 			</Id>
 			<Description>
 				[RivalAI Trigger]
@@ -130,13 +136,13 @@
 				[UseTrigger:true]
 				[StartsReady:true]
 				[MaxActions:1]
-				[Actions:GVK-PlanetaryInstallations-GaalsienFortress-Action-Compromised]
+				[Actions:GVK-PlanetaryInstallations-PlayerKOTH-Action-Compromised]
 			</Description>
 		</EntityComponent>
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-PlanetaryInstallations-GaalsienFortress-Trigger-DespawnMES</SubtypeId>
+				<SubtypeId>GVK-PlanetaryInstallations-PlayerKOTH-Trigger-DespawnMES</SubtypeId>
 			</Id>
 			<Description>
 				[RivalAI Trigger]
@@ -144,19 +150,22 @@
 				[UseTrigger:true]
 				[StartsReady:true]
 				[MaxActions:1]
-				[Actions:GVK-PlanetaryInstallations-GaalsienFortress-Action-Compromised]
+				[Actions:GVK-PlanetaryInstallations-PlayerKOTH-Action-Compromised]
 			</Description>
 		</EntityComponent>
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-PlanetaryInstallations-GaalsienFortress-Action-Compromised</SubtypeId>
+				<SubtypeId>GVK-PlanetaryInstallations-PlayerKOTH-Action-Compromised</SubtypeId>
 			</Id>
 			<Description>
 				[RivalAI Action]
-				[RemoveKnownPlayerArea:true]
+				[GridEditable:true]
+				[SubGridsEditable:true]
+				[GridDestructible:true]
+				[SubGridsDestructible:true]
 				[UseChatBroadcast:true]
-				[ChatData:GVK-PlanetaryInstallations-GaalsienFortress-Chat-Compromised]
+				[ChatData:GVK-PlanetaryInstallations-PlayerKOTH-Chat-Compromised]
 				[ToggleBlocksOfType:true]
 				[BlockTypesToToggle:MyObjectBuilder_Beacon/ZoneBlock]
 				[BlockTypeToggles:Off]
@@ -173,23 +182,22 @@
 				[BlockTypesToToggle:MyObjectBuilder_Beacon/RivalAIRemoteControlSmall]
 				[BlockTypeToggles:Off]
 				[GenerateExplosion:true]
-				[ExplosionOffsetFromRemote:{X:0 Y:60 Z:0}]
-				[ExplosionRange:100]
+				[ExplosionOffsetFromRemote:{X:0 Y:0 Z:0}]
+				[ExplosionRange:200]
 				[ExplosionDamage:1]
 				[ExplosionIgnoresVoxels:true]
 				[EnableBlocks:true]
 				[EnableBlockNames:NPC Beacon]
 				[EnableBlockStates:Off]
-				[TriggerTimerBlocks:True]
-				[TimerBlockNames:Timer Block Warheads]
 				[SetSandboxBooleansFalse:LargeWreckActive]	
+				[UseJetpackInhibitorEffect:false]
 				[TerminateBehavior:true]
 			</Description>
 		</EntityComponent>
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-PlanetaryInstallations-GaalsienFortress-Chat-Compromised</SubtypeId>
+				<SubtypeId>GVK-PlanetaryInstallations-PlayerKOTH-Chat-Compromised</SubtypeId>
 			</Id>
 			<Description>
 				[RivalAI Chat]
@@ -200,7 +208,7 @@
 				[BroadcastRandomly:false]
 				[Author:Coalition]
 				[Color:White]
-				[ChatMessages:The Gaalsien Fortress has been defeated!]
+				[ChatMessages:The Player King Of the Hill Event has Ended.]
 				[ChatAudio:GreetingSoundId-A]
 				[BroadcastChatType:Chat]
 				[SendToAllOnlinePlayers:true]

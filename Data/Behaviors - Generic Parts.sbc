@@ -41,6 +41,39 @@
 			[BlocksOfType:MyObjectBuilder_Thrust]
 			</Description>
 		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Generic-Action-SPRTDefeated</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Action]
+			[GenerateExplosion:true]
+			[ExplosionOffsetFromRemote:{X:0 Y:0 Z:0}]
+			[ExplosionRange:25]
+			[ExplosionDamage:1]
+			[ExplosionIgnoresVoxels:true]
+			[ToggleBlocksOfType:true]
+			[BlockTypesToToggle:MyObjectBuilder_Beacon/ZoneBlock]
+			[BlockTypeToggles:Off]
+			[BlockTypesToToggle:MyObjectBuilder_Beacon/DisposableNpcBeaconSmall]
+			[BlockTypeToggles:Off]
+			[BlockTypesToToggle:MyObjectBuilder_Beacon/DisposableNpcBeaconLarge]
+			[BlockTypeToggles:Off]
+			[BlockTypesToToggle:MyObjectBuilder_Beacon/SmallBlockBeacon]
+			[BlockTypeToggles:Off]
+			[BlockTypesToToggle:MyObjectBuilder_Beacon/LargeBlockBeacon]
+			[BlockTypeToggles:Off]
+			[BlockTypesToToggle:MyObjectBuilder_Beacon/RivalAIRemoteControlLarge]
+			[BlockTypeToggles:Off]
+			[BlockTypesToToggle:MyObjectBuilder_Beacon/RivalAIRemoteControlSmall]
+			[BlockTypeToggles:Off]
+			[ForceDespawn:false]
+			[ChangeInertiaDampeners:true]
+			[InertiaDampenersEnable:false]
+			[TerminateBehavior:true]
+			</Description>
+		</EntityComponent>
 		<!--NPC Chat when target is acquired-->
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
@@ -222,9 +255,11 @@
 			[RivalAI Trigger]
 
 			[Type:Session]
-			[UseTrigger:true]
-			[StartsReady:true]
-			[Conditions:
+			[UseTrigger:false]
+			[StartsReady:false]
+			[MinCooldownMs:5000]
+			[MaxCooldownMs:5001]
+			[Conditions:GVK-Generic-Condition-CreateKPL]
 			[Actions:GVK-Generic-Action-CreateKPL]
 			</Description>
 		</EntityComponent>
@@ -235,23 +270,23 @@
 			</Id>
 			<Description>
 			[RivalAI Condition]
-			[UseConditions:true]
+			[UseConditions:false]
 			[MatchAnyCondition:true]
 			[CheckForSpawnConditions:true]
-			[RequiredSpawnConditions:GVK-SpawnConditions-DroneEncounters-Salvager]
-			[RequiredSpawnConditions:GVK-SpawnConditions-DroneEncounters-SmallFlyerSingle]
-			[RequiredSpawnConditions:GVK-SpawnConditions-DroneEncounters-SmallHoverSingle]
-			[RequiredSpawnConditions:GVK-SpawnConditions-DroneEncounters-MediumHoverSingle]
-			[RequiredSpawnConditions:GVK-SpawnConditions-DroneEncounters-SmallFlyerSquad]
-			[RequiredSpawnConditions:GVK-SpawnConditions-DroneEncounters-MediumFlyerSingle]
-			[RequiredSpawnConditions:GVK-SpawnConditions-DroneEncounters-LargeHoverSingle]
-			[RequiredSpawnConditions:GVK-SpawnConditions-DroneEncounters-SmallHoverSquad]
-			[RequiredSpawnConditions:GVK-SpawnConditions-PlanetaryInstallations-SmallDerelict]
-			[RequiredSpawnConditions:GVK-SpawnConditions-PlanetaryInstallations-MediumDerelict]
-			[RequiredSpawnConditions:GVK-SpawnConditions-PlanetaryInstallations-LargeDerelict]
-			[RequiredSpawnConditions:GVK-SpawnConditions-PlanetaryInstallations-SmallBuilding]
-			[RequiredSpawnConditions:GVK-SpawnConditions-PlanetaryInstallations-MediumBuilding]
-			[RequiredSpawnConditions:GVK-SpawnConditions-PlanetaryInstallations-LargeBuilding]
+			[RequiredSpawnConditions:GVK-SpawnCondition-DroneEncounters-Salvager]
+			[RequiredSpawnConditions:GVK-SpawnCondition-DroneEncounters-SmallFlyerSingle]
+			[RequiredSpawnConditions:GVK-SpawnCondition-DroneEncounters-SmallHoverSingle]
+			[RequiredSpawnConditions:GVK-SpawnCondition-DroneEncounters-MediumHoverSingle]
+			[RequiredSpawnConditions:GVK-SpawnCondition-DroneEncounters-SmallFlyerSquad]
+			[RequiredSpawnConditions:GVK-SpawnCondition-DroneEncounters-MediumFlyerSingle]
+			[RequiredSpawnConditions:GVK-SpawnCondition-DroneEncounters-LargeHoverSingle]
+			[RequiredSpawnConditions:GVK-SpawnCondition-DroneEncounters-SmallHoverSquad]
+			[RequiredSpawnConditions:GVK-SpawnCondition-DefenseDrone-SOBAN-SmallFlyerSingle]
+			[RequiredSpawnConditions:GVK-SpawnCondition-DefenseDrone-SOBAN-SmallFlyerSquad]
+			[RequiredSpawnConditions:GVK-SpawnCondition-DefenseDrone-SOBAN-MediumFlyerSingle]
+			[RequiredSpawnConditions:GVK-SpawnCondition-DefenseDrone-KHAANEPH-SmallFlyerSingle]
+			[RequiredSpawnConditions:GVK-SpawnCondition-DefenseDrone-KHAANEPH-SmallFlyerSquad]
+			[RequiredSpawnConditions:GVK-SpawnCondition-DefenseDrone-KHAANEPH-MediumFlyerSingle]
 			</Description>
 		</EntityComponent>
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
@@ -264,7 +299,7 @@
 				
 			[CreateKnownPlayerArea:true]
 			[KnownPlayerAreaRadius:2000]
-			[KnownPlayerAreaTimer:21600]
+			[KnownPlayerAreaTimer:360]
 			[UseChatBroadcast:true]
 			[ChatData:GVK-Generic-Chat-CreateKPL]
 			</Description>
@@ -285,6 +320,85 @@
 			[Color:White]
 
 			[ChatMessages:Creating KPL]
+			[ChatAudio:ArcHudGPSNotification2]
+			[BroadcastChatType:Both]
+			[SendToAllOnlinePlayers:true]
+			</Description>
+		</EntityComponent>
+		<!-- Prevent creating KPL if already inside one -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Generic-Trigger-DontCreateKPL</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Trigger]
+
+			[Type:PlayerKnownLocation]
+			[UseTrigger:true]
+			[StartsReady:true]
+			[Actions:GVK-Generic-Action-DontCreateKPL]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Generic-Action-DontCreateKPL</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Action]
+				
+			[DisableTriggers:true]
+			[DisableTriggerNames:GVK-Generic-Trigger-CreateKPL]
+			</Description>
+		</EntityComponent>
+		<!-- Create KPL upon Spawn -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Generic-Trigger-CreateKPL</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Trigger]
+			[Type:PlayerNear]
+			[UseTrigger:true]
+			[StartsReady:true]
+			[TargetDistance:2000]
+			[MinCooldownMs:120000]
+			[MaxCooldownMs:120001]
+			[Actions:GVK-Generic-Action-CreateKPL]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Generic-Action-CreateKPL</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Action]
+			[CreateKnownPlayerArea:true]
+			[KnownPlayerAreaRadius:2000]
+			[KnownPlayerAreaTimer:30]
+			[UseChatBroadcast:true]
+			[ChatData:GVK-Generic-Chat-CreateKPL]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Generic-Chat-CreateKPL</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Chat]
+
+			[UseChat:false]
+			[StartsReady:true]
+			[Chance:100]
+			[MaxChats:1]
+			[Author:COALITION]
+			[Color:White]
+
+			[ChatMessages:Creating Installation KPL]
 			[ChatAudio:ArcHudGPSNotification2]
 			[BroadcastChatType:Both]
 			[SendToAllOnlinePlayers:true]

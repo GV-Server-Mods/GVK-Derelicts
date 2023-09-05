@@ -3,23 +3,18 @@
 	<EntityComponents>
 		<!-- Behavior for Trade Stations -->
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
-		  <Id>
-			  <TypeId>Inventory</TypeId>
-			  <SubtypeId>GVK-TradeStation-Behavior</SubtypeId>
-		  </Id>
-		  <Description>
-
-		  [RivalAI Behavior]
-		  
-		  [BehaviorName:Passive]
-
-		  [UseRetreatTimer:false]
-		  [UseNoTargetTimer:false]
-		  [UsePlayerDistanceTimer:false]
-			  
-		  [Triggers:GVK-TradeStation-Trigger-SendWaypoint]
-			  
-		  </Description>
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-TradeStation-Behavior</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Behavior]
+			[BehaviorName:Passive]
+			[UseRetreatTimer:false]
+			[UseNoTargetTimer:false]
+			[UsePlayerDistanceTimer:false]
+			[Triggers:GVK-TradeStation-Trigger-SendWaypoint]
+			</Description>
 		</EntityComponent>
 		<!-- Trigger sequence for Trade Station to send relative waypoint to listening Cargo Ship -->
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
@@ -28,15 +23,15 @@
 				<SubtypeId>GVK-TradeStation-Trigger-SendWaypoint</SubtypeId>
 			</Id>
 			<Description>
-				[RivalAI Trigger]
-				[Type:CommandReceived] 
-				[UseTrigger:true]
-				[StartsReady:true]
-				[MinCooldownMs:10000]
-				[MaxCooldownMs:10000]
-				[MaxActions:-1]
-				[CommandReceiveCode:CargoShip_RequestWaypoint]
-				[Actions:GVK-TradeStation-Action-SendWaypoint]
+			[RivalAI Trigger]
+			[Type:CommandReceived] 
+			[UseTrigger:true]
+			[StartsReady:true]
+			[MinCooldownMs:10000]
+			[MaxCooldownMs:10000]
+			[MaxActions:-1]
+			[CommandReceiveCode:CargoShip_RequestWaypoint]
+			[Actions:GVK-TradeStation-Action-SendWaypoint]
 			</Description>
 		</EntityComponent>
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
@@ -45,11 +40,11 @@
 				<SubtypeId>GVK-TradeStation-Action-SendWaypoint</SubtypeId>
 			</Id>
 			<Description>
-				[RivalAI Action]
-				[BroadcastCommandProfiles:true]
-				[CommandProfileIds:GVK-TradeStation-Command-SendWaypoint]
-				[UseChatBroadcast:false]
-				[ChatData:GVK-TradeStation-Chat-SendWaypoint]
+			[RivalAI Action]
+			[BroadcastCommandProfiles:true]
+			[CommandProfileIds:GVK-TradeStation-Command-SendWaypoint]
+			[UseChatBroadcast:false]
+			[ChatData:GVK-TradeStation-Chat-SendWaypoint]
 			</Description>
 		</EntityComponent>
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
@@ -58,15 +53,15 @@
 				<SubtypeId>GVK-TradeStation-Command-SendWaypoint</SubtypeId>
 			</Id>
 			<Description>
-				[RivalAI Command]
-				[CommandCode:CargoShip_ReceiveWaypoint]
-				[SingleRecipient:false]
-				[MatchSenderReceiverOwners:false]
-				[IgnoreAntennaRequirement:true]
-				[IgnoreReceiverAntennaRequirement:true]
-				[Radius:75000]
-				[SendWaypoint:true]
-				[Waypoint:GVK-Waypoint-TradeStation-RelativeRandom]
+			[RivalAI Command]
+			[CommandCode:CargoShip_ReceiveWaypoint]
+			[SingleRecipient:false]
+			[MatchSenderReceiverOwners:false]
+			[IgnoreAntennaRequirement:true]
+			[IgnoreReceiverAntennaRequirement:true]
+			[Radius:75000]
+			[SendWaypoint:true]
+			[Waypoint:GVK-Waypoint-TradeStation-RelativeRandom]
 			</Description>
 		</EntityComponent>
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
@@ -75,18 +70,18 @@
 				<SubtypeId>GVK-TradeStation-Chat-SendWaypoint</SubtypeId>
 			</Id>
 			<Description>
-				[RivalAI Chat]
-				[UseChat:true]
-				[StartsReady:true]
-				[Chance:100]
-				[MaxChats:-1]
-				[BroadcastRandomly:false]
-				[Author:Trade Station]
-				[Color:White]
-				[ChatMessages:Sending Waypoint {GridName}]
-				[ChatAudio:GreetingSoundId-A]
-				[BroadcastChatType:Chat]
-				[SendToAllOnlinePlayers:true]
+			[RivalAI Chat]
+			[UseChat:true]
+			[StartsReady:true]
+			[Chance:100]
+			[MaxChats:-1]
+			[BroadcastRandomly:false]
+			[Author:Trade Station]
+			[Color:White]
+			[ChatMessages:Sending Waypoint {GridName}]
+			[ChatAudio:GreetingSoundId-A]
+			[BroadcastChatType:Chat]
+			[SendToAllOnlinePlayers:true]
 			</Description>
 		</EntityComponent>
 	</EntityComponents>

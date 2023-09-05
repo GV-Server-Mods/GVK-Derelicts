@@ -25,7 +25,6 @@
 			[Triggers:GVK-PlanetaryInstallations-Trigger-DespawnMES]
 			[Triggers:GVK-PlanetaryInstallations-Trigger-Compromised-Small]
 			[Triggers:GVK-PlanetaryInstallations-Trigger-BeaconDisabled-Small]
-			[Triggers:GVK-Generic-Trigger-CreateKPL]
 
 			[TargetData:GVK-Generic-Target-EnemyPlayers]
 
@@ -108,18 +107,14 @@
 				<SubtypeId>GVK-PlanetaryInstallations-Trigger-Spawned-Small</SubtypeId>
 			</Id>
 			<Description>
-
-				[RivalAI Trigger]
-
-				[Type:Timer]
-				[MinCooldownMs:5000]
-				[MaxCooldownMs:5000]
-				[UseTrigger:true]
-				[StartsReady:false]
-				[MaxActions:2]
-				  
-				[Actions:GVK-PlanetaryInstallations-Action-Spawned-Small]
-	  
+			[RivalAI Trigger]
+			[Type:Timer]
+			[MinCooldownMs:5000]
+			[MaxCooldownMs:5000]
+			[UseTrigger:true]
+			[StartsReady:false]
+			[MaxActions:2]
+			[Actions:GVK-PlanetaryInstallations-Action-Spawned-Small]
 			</Description>
 		</EntityComponent>
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
@@ -128,12 +123,9 @@
 				<SubtypeId>GVK-PlanetaryInstallations-Action-Spawned-Small</SubtypeId>
 			</Id>
 			<Description>
-
-				[RivalAI Action]
-				  
-				[UseChatBroadcast:true]
-				[ChatData:GVK-PlanetaryInstallations-Chat-Spawned-Small]
-	  	  
+			[RivalAI Action]
+			[UseChatBroadcast:true]
+			[ChatData:GVK-PlanetaryInstallations-Chat-Spawned-Small]
 			</Description>
 		</EntityComponent>
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
@@ -142,26 +134,22 @@
 				<SubtypeId>GVK-PlanetaryInstallations-Chat-Spawned-Small</SubtypeId>
 			</Id>
 			<Description>
-
-				[RivalAI Chat]
-
-				[UseChat:true]
-				[StartsReady:true]
-				[Chance:100]
-				[MaxChats:2]
-				[BroadcastRandomly:false]
-				[IgnoreAntennaRequirement:true]
-				[IgnoredAntennaRangeOverride:6000]
-				[Author:COALITION]
-				[Color:White]
-
-				[ChatMessages:A Small Derelict has been detected.]
-				[ChatAudio:ArcHudGPSNotification2]
-				[BroadcastChatType:Chat]
-				[ChatMessages:A Small Derelict has been detected]
-				[BroadcastChatType:Notify]
-				[SendToAllOnlinePlayers:false]
-
+			[RivalAI Chat]
+			[UseChat:true]
+			[StartsReady:true]
+			[Chance:100]
+			[MaxChats:2]
+			[BroadcastRandomly:false]
+			[IgnoreAntennaRequirement:true]
+			[IgnoredAntennaRangeOverride:6000]
+			[Author:COALITION]
+			[Color:White]
+			[ChatMessages:A Small Derelict has been detected.]
+			[ChatAudio:ArcHudGPSNotification2]
+			[BroadcastChatType:Chat]
+			[ChatMessages:A Small Derelict has been detected]
+			[BroadcastChatType:Notify]
+			[SendToAllOnlinePlayers:false]
 			</Description>
 		</EntityComponent>
 		<!-- Chat for medium spawns -->
@@ -171,18 +159,14 @@
 				<SubtypeId>GVK-PlanetaryInstallations-Trigger-Spawned-Medium</SubtypeId>
 			</Id>
 			<Description>
-
-				[RivalAI Trigger]
-
-				[Type:Timer]
-				[MinCooldownMs:5000]
-				[MaxCooldownMs:5000]
-				[UseTrigger:true]
-				[StartsReady:false]
-				[MaxActions:2]
-				  
-				[Actions:GVK-PlanetaryInstallations-Action-Spawned-Medium]
-	  
+			[RivalAI Trigger]
+			[Type:Timer]
+			[MinCooldownMs:5000]
+			[MaxCooldownMs:5000]
+			[UseTrigger:true]
+			[StartsReady:false]
+			[MaxActions:2]
+			[Actions:GVK-PlanetaryInstallations-Action-Spawned-Medium]
 			</Description>
 		</EntityComponent>
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
@@ -191,12 +175,9 @@
 				<SubtypeId>GVK-PlanetaryInstallations-Action-Spawned-Medium</SubtypeId>
 			</Id>
 			<Description>
-
-				[RivalAI Action]
-				  
-				[UseChatBroadcast:true]
-				[ChatData:GVK-PlanetaryInstallations-Chat-Spawned-Medium]
-	  	  
+			[RivalAI Action]
+			[UseChatBroadcast:true]
+			[ChatData:GVK-PlanetaryInstallations-Chat-Spawned-Medium]
 			</Description>
 		</EntityComponent>
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
@@ -715,7 +696,7 @@
 				[Chance:75]
 
 				[SpawnEncounter:true]
-				[Spawner:GVK-PlanetaryInstallations-Spawner-DefenseDrones-Medium]
+				[Spawner:GVK-PlanetaryInstallations-Spawner-DefenseDrone-Medium]
 
 				[UseChatBroadcast:true]
 				[ChatData:GVK-PlanetaryInstallations-Chat-Defenses]
@@ -724,7 +705,7 @@
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-PlanetaryInstallations-Spawner-DefenseDrones-Medium</SubtypeId>
+				<SubtypeId>GVK-PlanetaryInstallations-Spawner-DefenseDrone-Medium</SubtypeId>
 			</Id>
 			<Description>
 	  
@@ -804,7 +785,7 @@
 				[Chance:60]
 
 				[SpawnEncounter:true]
-				[Spawner:GVK-PlanetaryInstallations-Spawner-DefenseDrones-Large]
+				[Spawner:GVK-PlanetaryInstallations-Spawner-DefenseDrone-Large]
 
 				[UseChatBroadcast:true]
 				[ChatData:GVK-PlanetaryInstallations-Chat-Defenses]
@@ -839,7 +820,7 @@
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-PlanetaryInstallations-Spawner-DefenseDrones-Large</SubtypeId>
+				<SubtypeId>GVK-PlanetaryInstallations-Spawner-DefenseDrone-Large</SubtypeId>
 			</Id>
 			<Description>
 	  
