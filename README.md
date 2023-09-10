@@ -14,5 +14,9 @@ To get large grids to spawn: `/MES.Debug.ChangeBool.LargeWreckActive.false`
 
 To get Convoy to spawn: `/MES.Debug.ChangeBool.ConvoyInactive.true`
 
+### Profile Naming Convention:
+`GVK-SpawnType-SubType-ProfileType-UniqueTag`
+
+Example: `GVK-Drone-Encounter-Behavior-ProductionCruiserHorsefly`
 ## Thanks Yous:
 Nekron910 https://steamcommunity.com/sharedfiles/filedetails/?id=2650194963&tscn=1643638039
