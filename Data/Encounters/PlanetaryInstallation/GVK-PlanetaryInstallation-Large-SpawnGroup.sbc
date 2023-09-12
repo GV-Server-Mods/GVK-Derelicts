@@ -1,0 +1,710 @@
+<?xml version="1.0"?>
+<Definitions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+	<SpawnGroups>
+		<!-- Large wrecks -->
+		<SpawnGroup>
+			<Id>
+				<TypeId>SpawnGroupDefinition</TypeId>
+				<SubtypeId>GVK-PlanetaryInstallation-SpawnGroups-Large-Liberty</SubtypeId>
+			</Id>
+			<Description>
+			[Modular Encounters SpawnGroup]
+			[IgnoreCleanupRules:true]
+			[ReplenishSystems:true]
+			[SpawnConditionsProfiles:GVK-PlanetaryInstallation-Large-SpawnCondition-Derelict]
+			[ManipulationProfiles:MES-Manipulation-RivalAi]
+			[ManipulationProfiles:GVK-PlanetaryInstallation-Large-Manipulation]
+			[CutVoxelsAtAirtightCells:true]
+			[CutVoxelSize:9]
+			</Description>
+			<IsPirate>true</IsPirate>
+			<Frequency>5.0</Frequency>
+			<Prefabs>
+				<Prefab SubtypeId="[NPC Large Wreck] Liberty">
+					<Position>
+						<X>0.0</X>
+						<Y>-20</Y>
+						<Z>0.0</Z>
+					</Position>
+					<Speed>0</Speed>
+					<BeaconText>Large Crash Site</BeaconText>
+					<Behaviour>GVK-PlanetaryInstallation-Large-Behavior</Behaviour>
+				</Prefab>
+			</Prefabs>
+		</SpawnGroup>
+		<SpawnGroup>
+			<Id>
+				<TypeId>SpawnGroupDefinition</TypeId>
+				<SubtypeId>GVK-PlanetaryInstallation-SpawnGroups-Large-Mammoth</SubtypeId>
+			</Id>
+			<Description>
+			[Modular Encounters SpawnGroup]
+			[IgnoreCleanupRules:true]
+			[ReplenishSystems:true]
+			[SpawnConditionsProfiles:GVK-PlanetaryInstallation-Large-SpawnCondition-Derelict]
+			[ManipulationProfiles:GVK-PlanetaryInstallation-Large-Manipulation]
+			[ManipulationProfiles:MES-Manipulation-RivalAi]
+			[CutVoxelsAtAirtightCells:true]
+			[CutVoxelSize:9]
+			</Description>
+			<IsPirate>true</IsPirate>
+			<Frequency>5.0</Frequency>
+			<Prefabs>
+				<Prefab SubtypeId="[NPC Large Wreck] Mammoth">
+					<Position>
+						<X>0.0</X>
+						<Y>0</Y>
+						<Z>0.0</Z>
+					</Position>
+					<Speed>0</Speed>
+					<BeaconText>Large Crash Site</BeaconText>
+					<Behaviour>GVK-PlanetaryInstallation-Large-Behavior</Behaviour>
+				</Prefab>
+			</Prefabs>
+		</SpawnGroup>
+		<SpawnGroup>
+			<Id>
+				<TypeId>SpawnGroupDefinition</TypeId>
+				<SubtypeId>GVK-PlanetaryInstallation-SpawnGroups-Large-Skimmer</SubtypeId>
+			</Id>
+			<Description>
+			[Modular Encounters SpawnGroup]
+			[IgnoreCleanupRules:true]
+			[ReplenishSystems:true]
+			[SpawnConditionsProfiles:GVK-PlanetaryInstallation-Large-SpawnCondition-Derelict]
+			[ManipulationProfiles:MES-Manipulation-RivalAi]
+			[ManipulationProfiles:GVK-PlanetaryInstallation-Large-Manipulation-NoReducedArmor]
+			[CutVoxelsAtAirtightCells:true]
+			[CutVoxelSize:9]
+			</Description>
+			<IsPirate>true</IsPirate>
+			<Frequency>5.0</Frequency>
+			<Prefabs>
+				<Prefab SubtypeId="[NPC Large Wreck] Skimmer">
+					<Position>
+						<X>0.0</X>
+						<Y>12.5</Y>
+						<Z>0.0</Z>
+					</Position>
+					<Speed>0</Speed>
+					<BeaconText>Large Crash Site</BeaconText>
+					<Behaviour>GVK-PlanetaryInstallation-Large-Behavior</Behaviour>
+				</Prefab>
+			</Prefabs>
+		</SpawnGroup>
+		<SpawnGroup>
+			<Id>
+				<TypeId>SpawnGroupDefinition</TypeId>
+				<SubtypeId>GVK-PlanetaryInstallation-SpawnGroups-Large-Helios</SubtypeId>
+			</Id>
+			<Description>
+			[Modular Encounters SpawnGroup]
+			[IgnoreCleanupRules:true]
+			[ReplenishSystems:true]
+			[SpawnConditionsProfiles:GVK-PlanetaryInstallation-Large-SpawnCondition-Derelict]
+			[ManipulationProfiles:MES-Manipulation-RivalAi]
+			[ManipulationProfiles:GVK-PlanetaryInstallation-Large-Manipulation-NoReducedArmor]
+			[CutVoxelsAtAirtightCells:true]
+			[CutVoxelSize:9]
+			</Description>
+			<IsPirate>true</IsPirate>
+			<Frequency>5.0</Frequency>
+			<Prefabs>
+				<Prefab SubtypeId="[NPC Large Wreck] Helios Frigate">
+					<Position>
+						<X>0.0</X>
+						<Y>20.0</Y>
+						<Z>0.0</Z>
+					</Position>
+					<Speed>0</Speed>
+					<BeaconText>Large Crash Site</BeaconText>
+					<Behaviour>GVK-PlanetaryInstallation-Large-Behavior</Behaviour>
+				</Prefab>
+			</Prefabs>
+		</SpawnGroup>
+		<SpawnGroup>
+			<Id>
+				<TypeId>SpawnGroupDefinition</TypeId>
+				<SubtypeId>GVK-PlanetaryInstallation-SpawnGroups-Large-Skywarden</SubtypeId>
+			</Id>
+			<Description>
+			[Modular Encounters SpawnGroup]
+			[IgnoreCleanupRules:true]
+			[ReplenishSystems:true]
+			[SpawnConditionsProfiles:GVK-PlanetaryInstallation-Large-SpawnCondition-Derelict]
+			[ManipulationProfiles:MES-Manipulation-RivalAi]
+			[ManipulationProfiles:GVK-PlanetaryInstallation-Large-Manipulation-NoReducedArmor]
+			[CutVoxelsAtAirtightCells:true]
+			[CutVoxelSize:9]
+			</Description>
+			<IsPirate>true</IsPirate>
+			<Frequency>5.0</Frequency>
+			<Prefabs>
+				<Prefab SubtypeId="[NPC Large Wreck] Skywarden Back">
+					<Position>
+						<X>-10.0</X>
+						<Y>-5</Y>
+						<Z>80.0</Z>
+					</Position>
+					<Speed>0</Speed>
+				</Prefab>
+				<Prefab SubtypeId="[NPC Large Wreck] Skywarden Front">
+					<Position>
+						<X>40.0</X>
+						<Y>-5</Y>
+						<Z>-80.0</Z>
+					</Position>
+					<Speed>0</Speed>
+					<BeaconText>Large Crash Site</BeaconText>
+					<Behaviour>GVK-PlanetaryInstallation-Large-Behavior</Behaviour>
+				</Prefab>
+			</Prefabs>
+		</SpawnGroup>
+		<SpawnGroup>
+			<Id>
+				<TypeId>SpawnGroupDefinition</TypeId>
+				<SubtypeId>GVK-PlanetaryInstallation-SpawnGroups-Large-Odin</SubtypeId>
+			</Id>
+			<Description>
+			[Modular Encounters SpawnGroup]
+			[IgnoreCleanupRules:true]
+			[ReplenishSystems:true]
+			[SpawnConditionsProfiles:GVK-PlanetaryInstallation-Large-SpawnCondition-Derelict]
+			[ManipulationProfiles:MES-Manipulation-RivalAi]
+			[ManipulationProfiles:GVK-PlanetaryInstallation-Large-Manipulation-NoReducedArmor]
+			[CutVoxelsAtAirtightCells:true]
+			[CutVoxelSize:9]
+			</Description>
+			<IsPirate>true</IsPirate>
+			<Frequency>5.0</Frequency>
+			<Prefabs>
+				<Prefab SubtypeId="[NPC Large Wreck] Odin Mid">
+					<Position>
+						<X>-10.0</X>
+						<Y>0</Y>
+						<Z>85.0</Z>
+					</Position>
+					<Speed>0</Speed>
+					<BeaconText>Large Crash Site</BeaconText>
+					<Behaviour>GVK-PlanetaryInstallation-Large-Behavior</Behaviour>
+				</Prefab>
+				<Prefab SubtypeId="[NPC Large Wreck] Odin Front">
+					<Position>
+						<X>40.0</X>
+						<Y>0</Y>
+						<Z>-85.0</Z>
+					</Position>
+					<Speed>0</Speed>
+				</Prefab>
+				<Prefab SubtypeId="[NPC Large Wreck] Odin Port Wing">
+					<Position>
+						<X>-90</X>
+						<Y>20</Y>
+						<Z>85.0</Z>
+					</Position>
+					<Speed>0</Speed>
+				</Prefab>
+			</Prefabs>
+		</SpawnGroup>
+		<SpawnGroup>
+			<Id>
+				<TypeId>SpawnGroupDefinition</TypeId>
+				<SubtypeId>GVK-PlanetaryInstallation-SpawnGroups-Large-Kratos</SubtypeId>
+			</Id>
+			<Description>
+			[Modular Encounters SpawnGroup]
+			[IgnoreCleanupRules:true]
+			[ReplenishSystems:true]
+			[SpawnConditionsProfiles:GVK-PlanetaryInstallation-Large-SpawnCondition-Derelict]
+			[ManipulationProfiles:MES-Manipulation-RivalAi]
+			[ManipulationProfiles:GVK-PlanetaryInstallation-Large-Manipulation-NoReducedArmor]
+			[CutVoxelsAtAirtightCells:true]
+			[CutVoxelSize:9]
+			</Description>
+			<IsPirate>true</IsPirate>
+			<Frequency>5.0</Frequency>
+			<Prefabs>
+				<Prefab SubtypeId="[NPC Large Wreck] Kratos">
+					<Position>
+						<X>0</X>
+						<Y>5</Y>
+						<Z>0</Z>
+					</Position>
+					<Speed>0</Speed>
+					<BeaconText>Large Crash Site</BeaconText>
+					<Behaviour>GVK-PlanetaryInstallation-Large-Behavior</Behaviour>
+				</Prefab>
+			</Prefabs>
+		</SpawnGroup>
+		<SpawnGroup>
+			<Id>
+				<TypeId>SpawnGroupDefinition</TypeId>
+				<SubtypeId>GVK-PlanetaryInstallation-SpawnGroups-Large-Prowler</SubtypeId>
+			</Id>
+			<Description>
+			[Modular Encounters SpawnGroup]
+			[IgnoreCleanupRules:true]
+			[ReplenishSystems:true]
+			[SpawnConditionsProfiles:GVK-PlanetaryInstallation-Large-SpawnCondition-Derelict]
+			[ManipulationProfiles:MES-Manipulation-RivalAi]
+			[ManipulationProfiles:GVK-PlanetaryInstallation-Large-Manipulation-NoReducedArmor]
+			[CutVoxelsAtAirtightCells:true]
+			[CutVoxelSize:9]
+			</Description>
+			<IsPirate>true</IsPirate>
+			<Frequency>5.0</Frequency>
+			<Prefabs>
+				<Prefab SubtypeId="[NPC Large Wreck] Prowler">
+					<Position>
+						<X>0.0</X>
+						<Y>5.0</Y>
+						<Z>0.0</Z>
+					</Position>
+					<Speed>0</Speed>
+					<BeaconText>Large Crash Site</BeaconText>
+					<Behaviour>GVK-PlanetaryInstallation-Large-Behavior</Behaviour>
+				</Prefab>
+			</Prefabs>
+		</SpawnGroup>
+		<SpawnGroup>
+			<Id>
+				<TypeId>SpawnGroupDefinition</TypeId>
+				<SubtypeId>GVK-PlanetaryInstallation-SpawnGroups-Large-Vanguard</SubtypeId>
+			</Id>
+			<Description>
+			[Modular Encounters SpawnGroup]
+			[IgnoreCleanupRules:true]
+			[ReplenishSystems:true]
+			[SpawnConditionsProfiles:GVK-PlanetaryInstallation-Large-SpawnCondition-Derelict]
+			[ManipulationProfiles:MES-Manipulation-RivalAi]
+			[ManipulationProfiles:GVK-PlanetaryInstallation-Large-Manipulation-NoReducedArmor]
+			[CutVoxelsAtAirtightCells:true]
+			[CutVoxelSize:9]
+			</Description>
+			<IsPirate>true</IsPirate>
+			<Frequency>5.0</Frequency>
+			<Prefabs>
+				<Prefab SubtypeId="[NPC Large Wreck] Vanguard">
+					<Position>
+						<X>0.0</X>
+						<Y>25.0</Y>
+						<Z>0.0</Z>
+					</Position>
+					<Speed>0</Speed>
+					<BeaconText>Large Crash Site</BeaconText>
+					<Behaviour>GVK-PlanetaryInstallation-Large-Behavior</Behaviour>
+				</Prefab>
+			</Prefabs>
+		</SpawnGroup>
+		<SpawnGroup>
+			<Id>
+				<TypeId>SpawnGroupDefinition</TypeId>
+				<SubtypeId>GVK-PlanetaryInstallation-SpawnGroups-Large-Guardia</SubtypeId>
+			</Id>
+			<Description>
+			[Modular Encounters SpawnGroup]
+			[IgnoreCleanupRules:true]
+			[ReplenishSystems:true]
+			[SpawnConditionsProfiles:GVK-PlanetaryInstallation-Large-SpawnCondition-Derelict]
+			[ManipulationProfiles:MES-Manipulation-RivalAi]
+			[ManipulationProfiles:GVK-PlanetaryInstallation-Large-Manipulation-NoReducedArmor]
+			[CutVoxelsAtAirtightCells:true]
+			[CutVoxelSize:9]
+			</Description>
+			<IsPirate>true</IsPirate>
+			<Frequency>5.0</Frequency>
+			<Prefabs>
+				<Prefab SubtypeId="[NPC Large Wreck] Guardia">
+					<Position>
+						<X>0.0</X>
+						<Y>-8</Y>
+						<Z>0.0</Z>
+					</Position>
+					<Speed>0</Speed>
+					<BeaconText>Large Crash Site</BeaconText>
+					<Behaviour>GVK-PlanetaryInstallation-Large-Behavior</Behaviour>
+				</Prefab>
+			</Prefabs>
+		</SpawnGroup>
+		<SpawnGroup>
+			<Id>
+				<TypeId>SpawnGroupDefinition</TypeId>
+				<SubtypeId>GVK-PlanetaryInstallation-SpawnGroups-Large-Land Lord</SubtypeId>
+			</Id>
+			<Description>
+			[Modular Encounters SpawnGroup]
+			[IgnoreCleanupRules:true]
+			[ReplenishSystems:true]
+			[SpawnConditionsProfiles:GVK-PlanetaryInstallation-Large-SpawnCondition-Derelict]
+			[ManipulationProfiles:MES-Manipulation-RivalAi]
+			[ManipulationProfiles:GVK-PlanetaryInstallation-Large-Manipulation-NoReducedArmor]
+			[CutVoxelsAtAirtightCells:true]
+			[CutVoxelSize:9]
+			</Description>
+			<IsPirate>true</IsPirate>
+			<Frequency>5.0</Frequency>
+			<Prefabs>
+				<Prefab SubtypeId="[NPC Large Wreck] Land Lord">
+					<Position>
+						<X>0.0</X>
+						<Y>-10</Y>
+						<Z>0.0</Z>
+					</Position>
+					<Speed>0</Speed>
+					<BeaconText>Large Crash Site</BeaconText>
+					<Behaviour>GVK-PlanetaryInstallation-Large-Behavior</Behaviour>
+				</Prefab>
+			</Prefabs>
+		</SpawnGroup>
+		<SpawnGroup>
+			<Id>
+				<TypeId>SpawnGroupDefinition</TypeId>
+				<SubtypeId>GVK-PlanetaryInstallation-SpawnGroups-Large-Crusader</SubtypeId>
+			</Id>
+			<Description>
+			[Modular Encounters SpawnGroup]
+			[IgnoreCleanupRules:true]
+			[ReplenishSystems:true]
+			[SpawnConditionsProfiles:GVK-PlanetaryInstallation-Large-SpawnCondition-Derelict]
+			[ManipulationProfiles:MES-Manipulation-RivalAi]
+			[ManipulationProfiles:GVK-PlanetaryInstallation-Large-Manipulation-NoReducedArmor]
+			[CutVoxelsAtAirtightCells:true]
+			[CutVoxelSize:9]
+			</Description>
+			<IsPirate>true</IsPirate>
+			<Frequency>5.0</Frequency>
+			<Prefabs>
+				<Prefab SubtypeId="[NPC Large Wreck] Crusader back">
+					<Position>
+						<X>-10.0</X>
+						<Y>10</Y>
+						<Z>80.0</Z>
+					</Position>
+					<Speed>0</Speed>
+					<BeaconText>Large Crash Site</BeaconText>
+					<Behaviour>GVK-PlanetaryInstallation-Large-Behavior</Behaviour>
+				</Prefab>
+				<Prefab SubtypeId="[NPC Large Wreck] Crusader front">
+					<Position>
+						<X>40.0</X>
+						<Y>-15</Y>
+						<Z>-80.0</Z>
+					</Position>
+					<Speed>0</Speed>
+				</Prefab>
+			</Prefabs>
+		</SpawnGroup>
+		<SpawnGroup>
+			<Id>
+				<TypeId>SpawnGroupDefinition</TypeId>
+				<SubtypeId>GVK-PlanetaryInstallation-SpawnGroups-Large-EVE Tempest</SubtypeId>
+			</Id>
+			<Description>
+			[Modular Encounters SpawnGroup]
+			[IgnoreCleanupRules:true]
+			[ReplenishSystems:true]
+			[SpawnConditionsProfiles:GVK-PlanetaryInstallation-Large-SpawnCondition-Derelict]
+			[ManipulationProfiles:MES-Manipulation-RivalAi]
+			[ManipulationProfiles:GVK-PlanetaryInstallation-Large-Manipulation-NoReducedArmor]
+			[CutVoxelsAtAirtightCells:true]
+			[CutVoxelSize:9]
+			</Description>
+			<IsPirate>true</IsPirate>
+			<Frequency>5.0</Frequency>
+			<Prefabs>
+				<Prefab SubtypeId="[NPC Large Wreck] EVE Tempest 1">
+					<Position>
+						<X>-20</X>
+						<Y>-20</Y>
+						<Z>-30</Z>
+					</Position>
+					<Speed>0</Speed>
+					<BeaconText>Large Crash Site</BeaconText>
+					<Behaviour>GVK-PlanetaryInstallation-Large-Behavior</Behaviour>
+				</Prefab>
+				<Prefab SubtypeId="[NPC Large Wreck] EVE Tempest 2">
+					<Position>
+						<X>50</X>
+						<Y>25</Y>
+						<Z>30</Z>
+					</Position>
+					<Speed>0</Speed>
+				</Prefab>
+			</Prefabs>
+		</SpawnGroup>
+		<SpawnGroup>
+			<Id>
+				<TypeId>SpawnGroupDefinition</TypeId>
+				<SubtypeId>GVK-PlanetaryInstallation-SpawnGroups-Large-Tower</SubtypeId>
+			</Id>
+			<Description>
+			[Modular Encounters SpawnGroup]
+			[IgnoreCleanupRules:true]
+			[ReplenishSystems:true]
+			[SpawnConditionsProfiles:GVK-PlanetaryInstallation-Large-SpawnCondition-Building]
+			[ManipulationProfiles:MES-Manipulation-RivalAi]
+			[ManipulationProfiles:GVK-PlanetaryInstallation-Large-Manipulation-NoReducedArmor]
+			[CutVoxelsAtAirtightCells:true]
+			[CutVoxelSize:9]
+			</Description>
+			<IsPirate>true</IsPirate>
+			<Frequency>5.0</Frequency>
+			<Prefabs>
+				<Prefab SubtypeId="[NPC Large Wreck] Tower">
+					<Position>
+						<X>0.0</X>
+						<Y>-15.0</Y>
+						<Z>0.0</Z>
+					</Position>
+					<Speed>0</Speed>
+					<BeaconText>Large Abandoned Building</BeaconText>
+					<Behaviour>GVK-PlanetaryInstallation-Large-Behavior</Behaviour>
+				</Prefab>
+			</Prefabs>
+		</SpawnGroup>
+		<SpawnGroup>
+			<Id>
+				<TypeId>SpawnGroupDefinition</TypeId>
+				<SubtypeId>GVK-PlanetaryInstallation-SpawnGroups-Large-RoverShipyard</SubtypeId>
+			</Id>
+			<Description>
+			[Modular Encounters SpawnGroup]
+			[IgnoreCleanupRules:true]
+			[ReplenishSystems:true]
+			[SpawnConditionsProfiles:GVK-PlanetaryInstallation-Large-SpawnCondition-Building]
+			[ManipulationProfiles:MES-Manipulation-RivalAi]
+			[ManipulationProfiles:GVK-PlanetaryInstallation-Large-Manipulation-NoReducedArmor]
+			[CutVoxelsAtAirtightCells:false]
+			[CutVoxelSize:9]
+			</Description>
+			<IsPirate>true</IsPirate>
+			<Frequency>5.0</Frequency>
+			<Prefabs>
+				<Prefab SubtypeId="[NPC Large Wreck] Rover Shipyard">
+					<Position>
+						<X>0.0</X>
+						<Y>23</Y>
+						<Z>0.0</Z>
+					</Position>
+					<Speed>0</Speed>
+					<BeaconText>Large Abandoned Building</BeaconText>
+					<Behaviour>GVK-PlanetaryInstallation-Large-Behavior</Behaviour>
+				</Prefab>
+			</Prefabs>
+		</SpawnGroup>
+		<SpawnGroup>
+			<Id>
+				<TypeId>SpawnGroupDefinition</TypeId>
+				<SubtypeId>GVK-PlanetaryInstallation-SpawnGroups-Large-Office V1</SubtypeId>
+			</Id>
+			<Description>
+			[Modular Encounters SpawnGroup]
+			[IgnoreCleanupRules:true]
+			[ReplenishSystems:true]
+			[SpawnConditionsProfiles:GVK-PlanetaryInstallation-Large-SpawnCondition-Building]
+			[ManipulationProfiles:MES-Manipulation-RivalAi]
+			[ManipulationProfiles:GVK-PlanetaryInstallation-Large-Manipulation-NoReducedArmor]
+			[CutVoxelsAtAirtightCells:true]
+			[CutVoxelSize:9]
+			</Description>
+			<IsPirate>true</IsPirate>
+			<Frequency>5.0</Frequency>
+			<Prefabs>
+				<Prefab SubtypeId="[NPC Large Wreck] Office V1">
+					<Position>
+						<X>0.0</X>
+						<Y>0.0</Y>
+						<Z>0.0</Z>
+					</Position>
+					<Speed>0</Speed>
+					<BeaconText>Large Abandoned Building</BeaconText>
+					<Behaviour>GVK-PlanetaryInstallation-Large-Behavior</Behaviour>
+				</Prefab>
+			</Prefabs>
+		</SpawnGroup>
+		<SpawnGroup>
+			<Id>
+				<TypeId>SpawnGroupDefinition</TypeId>
+				<SubtypeId>GVK-PlanetaryInstallation-SpawnGroups-Large-Office V2</SubtypeId>
+			</Id>
+			<Description>
+			[Modular Encounters SpawnGroup]
+			[IgnoreCleanupRules:true]
+			[ReplenishSystems:true]
+			[SpawnConditionsProfiles:GVK-PlanetaryInstallation-Large-SpawnCondition-Building]
+			[ManipulationProfiles:MES-Manipulation-RivalAi]
+			[ManipulationProfiles:GVK-PlanetaryInstallation-Large-Manipulation-NoReducedArmor]
+			[CutVoxelsAtAirtightCells:true]
+			[CutVoxelSize:9]
+			</Description>
+			<IsPirate>true</IsPirate>
+			<Frequency>5.0</Frequency>
+			<Prefabs>
+				<Prefab SubtypeId="[NPC Large Wreck] Office V2">
+					<Position>
+						<X>0.0</X>
+						<Y>0.0</Y>
+						<Z>0.0</Z>
+					</Position>
+					<Speed>0</Speed>
+					<BeaconText>Large Abandoned Building</BeaconText>
+					<Behaviour>GVK-PlanetaryInstallation-Large-Behavior</Behaviour>
+				</Prefab>
+			</Prefabs>
+		</SpawnGroup>
+		<SpawnGroup>
+			<Id>
+				<TypeId>SpawnGroupDefinition</TypeId>
+				<SubtypeId>GVK-PlanetaryInstallation-SpawnGroups-Large-Hangar</SubtypeId>
+			</Id>
+			<Description>
+			[Modular Encounters SpawnGroup]
+			[IgnoreCleanupRules:true]
+			[ReplenishSystems:true]
+			[SpawnConditionsProfiles:GVK-PlanetaryInstallation-Large-SpawnCondition-Building]
+			[ManipulationProfiles:MES-Manipulation-RivalAi]
+			[ManipulationProfiles:GVK-PlanetaryInstallation-Large-Manipulation-GaalsienStructures]
+			</Description>
+			<IsPirate>true</IsPirate>
+			<Frequency>5.0</Frequency>
+			<Prefabs>
+				<Prefab SubtypeId="[NPC Large Wreck] Gaalsien Hangar">
+					<Position>
+						<X>0.0</X>
+						<Y>-15</Y>
+						<Z>0.0</Z>
+					</Position>
+					<Speed>0</Speed>
+					<BeaconText>Hangar</BeaconText>
+					<Behaviour>GVK-PlanetaryInstallation-Large-Behavior-GaalsienHangar</Behaviour>
+				</Prefab>
+			</Prefabs>
+		</SpawnGroup>
+		<SpawnGroup>
+			<Id>
+				<TypeId>SpawnGroupDefinition</TypeId>
+				<SubtypeId>GVK-PlanetaryInstallation-SpawnGroups-Large-Fortress</SubtypeId>
+			</Id>
+			<Description>
+			[Modular Encounters SpawnGroup]
+			[IgnoreCleanupRules:true]
+			[ReplenishSystems:true]
+			[SpawnConditionsProfiles:GVK-PlanetaryInstallation-Large-SpawnCondition-Building]
+			[ManipulationProfiles:MES-Manipulation-RivalAi]
+			[ManipulationProfiles:GVK-PlanetaryInstallation-Large-Manipulation-GaalsienStructures]
+			</Description>
+			<IsPirate>true</IsPirate>
+			<Frequency>5.0</Frequency>
+			<Prefabs>
+				<Prefab SubtypeId="[NPC Large Wreck] Gaalsien Fortress">
+					<Position>
+						<X>0.0</X>
+						<Y>10</Y>
+						<Z>0.0</Z>
+					</Position>
+					<Speed>0</Speed>
+					<BeaconText>Fortress</BeaconText>
+					<Behaviour>GVK-PlanetaryInstallation-Large-Behavior-GaalsienFortress</Behaviour>
+				</Prefab>
+			</Prefabs>
+		</SpawnGroup>
+		<SpawnGroup>
+			<Id>
+				<TypeId>SpawnGroupDefinition</TypeId>
+				<SubtypeId>GVK-PlanetaryInstallation-SpawnGroups-Large-Land_Carrier</SubtypeId>
+			</Id>
+			<Description>
+			[Modular Encounters SpawnGroup]
+			[IgnoreCleanupRules:true]
+			[ReplenishSystems:true]
+			[SpawnConditionsProfiles:GVK-PlanetaryInstallation-Large-SpawnCondition-Derelict]
+			[ManipulationProfiles:MES-Manipulation-RivalAi]
+			[ManipulationProfiles:GVK-PlanetaryInstallation-Large-Manipulation-NoReducedArmor]
+			[CutVoxelsAtAirtightCells:true]
+			[CutVoxelSize:9]
+			</Description>
+			<IsPirate>true</IsPirate>
+			<Frequency>5.0</Frequency>
+			<Prefabs>
+				<Prefab SubtypeId="[NPC Large Wreck] Land Carrier Front">
+					<Position>
+						<X>0</X>
+						<Y>-2.5</Y>
+						<Z>80.0</Z>
+					</Position>
+					<Speed>0</Speed>
+				</Prefab>
+				<Prefab SubtypeId="[NPC Large Wreck] Land Carrier Back">
+					<Position>
+						<X>0</X>
+						<Y>-5</Y>
+						<Z>-80.0</Z>
+					</Position>
+					<Speed>0</Speed>
+					<BeaconText>Large Crash Site</BeaconText>
+					<Behaviour>GVK-PlanetaryInstallation-Large-Behavior</Behaviour>
+				</Prefab>
+			</Prefabs>
+		</SpawnGroup>
+		<SpawnGroup>
+			<Id>
+				<TypeId>SpawnGroupDefinition</TypeId>
+				<SubtypeId>GVK-PlanetaryInstallation-SpawnGroups-Large-ReactorBunker</SubtypeId>
+			</Id>
+			<Description>
+			[Modular Encounters SpawnGroup]
+			[IgnoreCleanupRules:true]
+			[ReplenishSystems:true]
+			[SpawnConditionsProfiles:GVK-PlanetaryInstallation-Large-PlayerKOTH]
+			[ManipulationProfiles:MES-Manipulation-RivalAi]
+			[ManipulationProfiles:GVK-StaticEncounters-Manipulation]
+			[CutVoxelsAtAirtightCells:true]
+			[CutVoxelSize:9]
+			</Description>
+			<IsPirate>true</IsPirate>
+			<Frequency>5.0</Frequency>
+			<Prefabs>
+				<Prefab SubtypeId="[NPC Large Wreck] Reactor Bunker KOTH">
+					<Position>
+						<X>0.0</X>
+						<Y>35</Y>
+						<Z>0.0</Z>
+					</Position>
+					<Speed>0</Speed>
+					<BeaconText>Player King of the Hill</BeaconText>
+					<Behaviour>GVK-PlanetaryInstallation-PlayerKOTH-Behavior</Behaviour>
+				</Prefab>
+			</Prefabs>
+		</SpawnGroup>
+		<SpawnGroup>
+			<Id>
+				<TypeId>SpawnGroupDefinition</TypeId>
+				<SubtypeId>GVK-PlanetaryInstallation-SpawnGroups-Large-Pathfinder</SubtypeId>
+			</Id>
+			<Description>
+			[Modular Encounters SpawnGroup]
+			[IgnoreCleanupRules:true]
+			[ReplenishSystems:true]
+			[SpawnConditionsProfiles:GVK-PlanetaryInstallation-Large-SpawnCondition-Derelict]
+			[ManipulationProfiles:MES-Manipulation-RivalAi]
+			[ManipulationProfiles:GVK-PlanetaryInstallation-Large-Manipulation-NoReducedArmor]
+			[CutVoxelsAtAirtightCells:true]
+			[CutVoxelSize:9]
+			</Description>
+			<IsPirate>true</IsPirate>
+			<Frequency>5.0</Frequency>
+			<Prefabs>
+				<Prefab SubtypeId="[NPC Large Wreck] Pathfinder">
+					<Position>
+						<X>0.0</X>
+						<Y>-20</Y>
+						<Z>0.0</Z>
+					</Position>
+					<Speed>0</Speed>
+					<BeaconText>Large Crash Site</BeaconText>
+					<Behaviour>GVK-PlanetaryInstallation-Large-Behavior</Behaviour>
+				</Prefab>
+			</Prefabs>
+		</SpawnGroup>
+	</SpawnGroups>
+</Definitions>
