@@ -24,13 +24,14 @@
 			[UseRetreatTimer:false]
 			[TargetData:GVK-Universal-Target-EnemyPlayerAndGrid]
 			[AutopilotData:GVK-Drone-All-Autopilot-SmallFlyerHorsefly]
+			[Triggers:GVK-Drone-All-Trigger-BeaconDisabled]
 			[Triggers:GVK-Drone-All-Trigger-TargetAttacker]
 			[Triggers:GVK-Drone-All-Trigger-WeaponsToMaxRange]
 			[Triggers:GVK-Drone-All-Trigger-FireMissilesTimers]
 			[Triggers:GVK-Drone-All-Trigger-FireRocketsTimers]
-			[Triggers:GVK-Universal-Trigger-SPRTTargetAcquiredChatter]
 			[Triggers:GVK-Drone-All-Trigger-Crashed]
 			[Triggers:GVK-Drone-All-Trigger-Compromised]
+			[Triggers:GVK-Universal-Trigger-SPRTTargetAcquiredChatter]
 			[Triggers:GVK-Universal-Trigger-SPRTNoWeapon]
 			[Triggers:GVK-Drone-Encounter-Trigger-RetreatNoTarget]
 			[Triggers:GVK-Drone-Encounter-Trigger-RetreatTimer]
@@ -92,6 +93,7 @@
 			[UseRetreatTimer:false]
 			[TargetData:GVK-Universal-Target-EnemyPlayerAndGrid]
 			[AutopilotData:GVK-Drone-All-Autopilot-LargeFlyerHorsefly]
+			[Triggers:GVK-Drone-All-Trigger-BeaconDisabled]
 			[Triggers:GVK-Drone-All-Trigger-TargetAttacker]
 			[Triggers:GVK-Drone-All-Trigger-WeaponsToMaxRange]
 			[Triggers:GVK-Drone-All-Trigger-FireMissilesTimers]
@@ -165,6 +167,7 @@
 			[HorseFighterTimeEngaging:10]
 			[TargetData:GVK-Universal-Target-EnemyPlayerAndGrid]
 			[AutopilotData:GVK-Drone-All-Autopilot-SmallFlyerHorseFighter]
+			[Triggers:GVK-Drone-All-Trigger-BeaconDisabled]
 			[Triggers:GVK-Drone-All-Trigger-TargetAttacker]
 			[Triggers:GVK-Drone-All-Trigger-WeaponsToMaxRange]
 			[Triggers:GVK-Drone-All-Trigger-FireRocketsTimers]
@@ -243,6 +246,7 @@
 			[HorseFighterTimeEngaging:10]
 			[TargetData:GVK-Universal-Target-EnemyPlayerAndGrid]
 			[AutopilotData:GVK-Drone-All-Autopilot-SmallHoverHorseFighter]
+			[Triggers:GVK-Drone-All-Trigger-BeaconDisabled]
 			[Triggers:GVK-Drone-All-Trigger-TargetAttacker]
 			[Triggers:GVK-Drone-All-Trigger-WeaponsToMaxRange]
 			[Triggers:GVK-Drone-All-Trigger-FireMissilesTimers]
@@ -317,6 +321,7 @@
 			[HorseFighterTimeEngaging:10]
 			[TargetData:GVK-Universal-Target-EnemyPlayerAndGrid]
 			[AutopilotData:GVK-Drone-All-Autopilot-LargeFlyerHorseFighter]
+			[Triggers:GVK-Drone-All-Trigger-BeaconDisabled]
 			[Triggers:GVK-Drone-All-Trigger-TargetAttacker]
 			[Triggers:GVK-Drone-All-Trigger-WeaponsToMaxRange]
 			[Triggers:GVK-Drone-All-Trigger-FireRocketsTimers]
@@ -398,6 +403,7 @@
 			[UseRetreatTimer:false]
 			[TargetData:GVK-Universal-Target-EnemyPlayerAndGrid]
 			[AutopilotData:GVK-Drone-All-Autopilot-SmallHoverHorsefly]
+			[Triggers:GVK-Drone-All-Trigger-BeaconDisabled]
 			[Triggers:GVK-Drone-All-Trigger-TargetAttacker]
 			[Triggers:GVK-Drone-All-Trigger-WeaponsToMaxRange]
 			[Triggers:GVK-Drone-All-Trigger-FireMissilesTimers]
@@ -458,6 +464,7 @@
 			[UseRetreatTimer:false]
 			[TargetData:GVK-Universal-Target-EnemyPlayerAndGrid]
 			[AutopilotData:GVK-Drone-All-Autopilot-MediumHoverHorsefly]
+			[Triggers:GVK-Drone-All-Trigger-BeaconDisabled]
 			[Triggers:GVK-Drone-All-Trigger-TargetAttacker]
 			[Triggers:GVK-Drone-All-Trigger-WeaponsToMaxRange]
 			[Triggers:GVK-Drone-All-Trigger-FireMissilesTimers]
@@ -518,6 +525,7 @@
 			[UseRetreatTimer:false]
 			[TargetData:GVK-Universal-Target-EnemyPlayerAndGrid]
 			[AutopilotData:GVK-Drone-All-Autopilot-HoverCruiserHorsefly]
+			[Triggers:GVK-Drone-All-Trigger-BeaconDisabled]
 			[Triggers:GVK-Drone-All-Trigger-TargetAttacker]
 			[Triggers:GVK-Drone-All-Trigger-WeaponsToMaxRange]
 			[Triggers:GVK-Drone-All-Trigger-FireMissilesTimers]
@@ -806,6 +814,10 @@
 			[BlockTypeToggles:Off]
 			[BlockTypesToToggle:MyObjectBuilder_Beacon/RivalAIRemoteControlSmall]
 			[BlockTypeToggles:Off]
+			[DisableTriggers:true]
+			[DisableTriggerNames:GVK-Drone-All-Trigger-Crashed]			
+			[DisableTriggerNames:GVK-Drone-All-Trigger-Compromised]			
+			[DisableTriggerNames:GVK-Drone-All-Trigger-BeaconDisabled]
 			[ForceDespawn:false]
 			[ChangeInertiaDampeners:true]
 			[InertiaDampenersEnable:false]
@@ -1116,6 +1128,37 @@
 			[ChatAudio:GreetingSoundId-A]
 			[BroadcastChatType:Notify]
 			[SendToAllOnlinePlayers:true]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Drone-All-Trigger-BeaconDisabled</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Trigger]
+			[Type:Timer]
+			[UseTrigger:true]
+			[StartsReady:true]
+			[Conditions:GVK-Drone-All-Condition-BeaconDisabled]
+			[MaxActions:1]
+			[ActionExecution:All]
+			[Actions:GVK-Drone-All-Action-Compromised]
+			[Actions:GVK-Drone-All-Action-Disabled]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Drone-All-Condition-BeaconDisabled</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Condition]
+			[UseConditions:true]
+			[MatchAnyCondition:false]
+			[CheckForBlocksOfType:true]
+			[BlocksOfType:MyObjectBuilder_Beacon]
+			[UseFailCondition:true]
 			</Description>
 		</EntityComponent>
 		<!-- Trigger Sequence for Random Drone Encounter to retreat after a while-->
