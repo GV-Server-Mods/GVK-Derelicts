@@ -434,6 +434,7 @@
 			[SpawnConditionsProfiles:GVK-PlanetaryInstallation-Medium-SpawnCondition-Building]
 			[ManipulationProfiles:MES-Manipulation-RivalAi]
 			[ManipulationProfiles:GVK-PlanetaryInstallation-Medium-Manipulation-GaalsienStructures]
+			[ManipulationProfiles:GVK-Drone-All-Manipulation-Large3x3StandardTurrets]
 			</Description>
 			<IsPirate>true</IsPirate>
 			<Frequency>5.0</Frequency>
@@ -462,6 +463,7 @@
 			[SpawnConditionsProfiles:GVK-PlanetaryInstallation-Large-SpawnCondition-Building]
 			[ManipulationProfiles:MES-Manipulation-RivalAi]
 			[ManipulationProfiles:GVK-PlanetaryInstallation-Large-Manipulation-GaalsienStructures]
+			[ManipulationProfiles:GVK-Drone-All-Manipulation-Large3x3StandardTurrets]
 			</Description>
 			<IsPirate>true</IsPirate>
 			<Frequency>5.0</Frequency>
@@ -490,6 +492,7 @@
 			[SpawnConditionsProfiles:GVK-PlanetaryInstallation-Medium-SpawnCondition-Building]
 			[ManipulationProfiles:MES-Manipulation-RivalAi]
 			[ManipulationProfiles:GVK-PlanetaryInstallation-Medium-Manipulation-GaalsienStructures]
+			[ManipulationProfiles:GVK-Drone-All-Manipulation-Large3x3StandardTurrets]
 			</Description>
 			<IsPirate>true</IsPirate>
 			<Frequency>5.0</Frequency>
@@ -503,6 +506,130 @@
 					<Speed>0</Speed>
 					<BeaconText>Outpost</BeaconText>
 					<Behaviour>GVK-PlanetaryInstallation-Medium-Behavior</Behaviour>
+				</Prefab>
+			</Prefabs>
+		</SpawnGroup>
+		<SpawnGroup>
+			<Id>
+				<TypeId>SpawnGroupDefinition</TypeId>
+				<SubtypeId>GVK-PlanetaryInstallation-SpawnGroups-Medium-ArtilleryCruiser</SubtypeId>
+			</Id>
+			<Description>
+			[Modular Encounters SpawnGroup]
+			[IgnoreCleanupRules:true]
+			[ReplenishSystems:true]
+			[SpawnConditionsProfiles:GVK-PlanetaryInstallation-Medium-SpawnCondition-Derelict]
+			[ManipulationProfiles:MES-Manipulation-RivalAi]
+			[ManipulationProfiles:GVK-PlanetaryInstallation-Medium-Manipulation]
+			[ManipulationProfiles:GVK-Drone-All-Manipulation-Large3x3StandardTurrets]
+			[CutVoxelsAtAirtightCells:true]
+			[CutVoxelSize:9]
+			</Description>
+			<IsPirate>true</IsPirate>
+			<Frequency>5.0</Frequency>
+			<Prefabs>
+				<Prefab SubtypeId="[NPC Med Wreck] Artillery Cruiser">
+					<Position>
+						<X>0.0</X>
+						<Y>5</Y>
+						<Z>0.0</Z>
+					</Position>
+					<Speed>0</Speed>
+					<BeaconText>Medium Crash Site</BeaconText>
+					<Behaviour>GVK-PlanetaryInstallation-Medium-Behavior</Behaviour>
+				</Prefab>
+			</Prefabs>
+		</SpawnGroup>
+		<SpawnGroup>
+			<Id>
+				<TypeId>SpawnGroupDefinition</TypeId>
+				<SubtypeId>GVK-PlanetaryInstallation-SpawnGroups-Medium-CoalitionBaserunner</SubtypeId>
+			</Id>
+			<Description>
+			[Modular Encounters SpawnGroup]
+			[IgnoreCleanupRules:true]
+			[ReplenishSystems:true]
+			[SpawnConditionsProfiles:GVK-PlanetaryInstallation-Medium-SpawnCondition-CoalitionBuilding]
+			[ManipulationProfiles:GVK-Drone-All-Manipulation-Large3x3StandardTurrets]
+			[ManipulationProfiles:MES-Manipulation-RivalAi]
+			[ManipulationProfiles:GVK-PlanetaryInstallation-Medium-Manipulation]
+			[CutVoxelsAtAirtightCells:true]
+			[CutVoxelSize:9]
+			</Description>
+			<IsPirate>true</IsPirate>
+			<Frequency>5.0</Frequency>
+			<Prefabs>
+				<Prefab SubtypeId="[NPC Med Wreck] Coalition Baserunner">
+					<Position>
+						<X>0.0</X>
+						<Y>-1</Y>
+						<Z>0.0</Z>
+					</Position>
+					<Speed>0</Speed>
+					<BeaconText>Distress Signal</BeaconText>
+					<Behaviour>GVK-PlanetaryInstallation-Medium-Behavior-CoalitionWreck</Behaviour>
+				</Prefab>
+			</Prefabs>
+		</SpawnGroup>
+		<SpawnGroup>
+			<Id>
+				<TypeId>SpawnGroupDefinition</TypeId>
+				<SubtypeId>GVK-PlanetaryInstallation-SpawnGroups-Medium-CoalitionCruiser</SubtypeId>
+			</Id>
+			<Description>
+			[Modular Encounters SpawnGroup]
+			[IgnoreCleanupRules:true]
+			[ReplenishSystems:true]
+			[SpawnConditionsProfiles:GVK-PlanetaryInstallation-Medium-SpawnCondition-CoalitionBuilding]
+			[ManipulationProfiles:GVK-Drone-All-Manipulation-Large3x3StandardTurrets]
+			[ManipulationProfiles:MES-Manipulation-RivalAi]
+			[ManipulationProfiles:GVK-PlanetaryInstallation-Medium-Manipulation]
+			[CutVoxelsAtAirtightCells:true]
+			[CutVoxelSize:9]
+			</Description>
+			<IsPirate>true</IsPirate>
+			<Frequency>5.0</Frequency>
+			<Prefabs>
+				<Prefab SubtypeId="[NPC Med Wreck] Coalition Cruiser">
+					<Position>
+						<X>0.0</X>
+						<Y>-1</Y>
+						<Z>0.0</Z>
+					</Position>
+					<Speed>0</Speed>
+					<BeaconText>Distress Signal</BeaconText>
+					<Behaviour>GVK-PlanetaryInstallation-Medium-Behavior-CoalitionWreck</Behaviour>
+				</Prefab>
+			</Prefabs>
+		</SpawnGroup>
+		<SpawnGroup>
+			<Id>
+				<TypeId>SpawnGroupDefinition</TypeId>
+				<SubtypeId>GVK-PlanetaryInstallation-SpawnGroups-Medium-CoalitionCarrier</SubtypeId>
+			</Id>
+			<Description>
+			[Modular Encounters SpawnGroup]
+			[IgnoreCleanupRules:true]
+			[ReplenishSystems:true]
+			[SpawnConditionsProfiles:GVK-PlanetaryInstallation-Medium-SpawnCondition-CoalitionBuilding]
+			[ManipulationProfiles:GVK-Drone-All-Manipulation-Large3x3StandardTurrets]
+			[ManipulationProfiles:MES-Manipulation-RivalAi]
+			[ManipulationProfiles:GVK-PlanetaryInstallation-Medium-Manipulation]
+			[CutVoxelsAtAirtightCells:true]
+			[CutVoxelSize:9]
+			</Description>
+			<IsPirate>true</IsPirate>
+			<Frequency>5.0</Frequency>
+			<Prefabs>
+				<Prefab SubtypeId="[NPC Med Wreck] Coalition Carrier">
+					<Position>
+						<X>0.0</X>
+						<Y>-5</Y>
+						<Z>0.0</Z>
+					</Position>
+					<Speed>0</Speed>
+					<BeaconText>Distress Signal</BeaconText>
+					<Behaviour>GVK-PlanetaryInstallation-Medium-Behavior-CoalitionWreck</Behaviour>
 				</Prefab>
 			</Prefabs>
 		</SpawnGroup>

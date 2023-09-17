@@ -80,5 +80,27 @@
 			[PrioritizePlayerControlled:true]
 			</Description>
 		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Universal-Target-EnemyGaalsienBeacon</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Target]
+			[UseCustomTargeting:true]
+			[Target:Block]
+			[BlockTargets:Beacons]
+			[UseTargetRefresh:false]
+			[TimeUntilNextRefresh:60]
+			[TimeUntilNextEvaluation:15]
+			[MaxDistance:3000]
+			[MaxExistingTargetDistance:4000]
+			[GetTargetBy:ClosestDistance]
+			[MatchAllFilters:Faction]
+			[MatchAllFilters:Powered]
+			[FactionTargets:GAALSIEN]
+			[PrioritizeSpecifiedFactions:false]
+			</Description>
+		</EntityComponent>
 	</EntityComponents>
 </Definitions>

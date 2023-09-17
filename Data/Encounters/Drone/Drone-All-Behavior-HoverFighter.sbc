@@ -5,7 +5,7 @@
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Drone-All-Behavior-HonorguardCruiserFighter</SubtypeId>
+				<SubtypeId>GVK-Drone-All-Behavior-MediumHoverFighter</SubtypeId>
 			</Id>
 			<Description>
 			[RivalAI Behavior]
@@ -21,8 +21,8 @@
 			[HorseFighterTimeApproaching:30]
 			[HorseFighterTimeEngaging:30]
 			[TargetData:GVK-Universal-Target-EnemyGrids]
-			[AutopilotData:GVK-Drone-All-Autopilot-HonorguardCruiserPrimary]
-			[SecondaryAutopilotData:GVK-Drone-All-Autopilot-HonorguardCruiserSecondary]
+			[AutopilotData:GVK-Drone-All-Autopilot-MediumHoverFighterPrimary]
+			[SecondaryAutopilotData:GVK-Drone-All-Autopilot-MediumHoverFighterSecondary]
 			[Triggers:GVK-Drone-All-Trigger-WeaponsToMaxRange]
 			[Triggers:GVK-Drone-All-Trigger-FireRailgunsTimers]
 			[Triggers:GVK-Drone-All-Trigger-FireMissilesTimers]
@@ -30,9 +30,8 @@
 			[Triggers:GVK-Drone-All-Trigger-CruiserCrashed]
 			[Triggers:GVK-Drone-All-Trigger-CruiserCompromised]
 			[Triggers:GVK-Universal-Trigger-SPRTNoWeapon]
-			[Triggers:GVK-Drone-All-Trigger-HonorguardCruiserSecondaryAutopilot]
-			[Triggers:GVK-Drone-All-Trigger-HonorguardCruiserPrimaryAutopilot]
-			[Triggers:GVK-Universal-Trigger-JetpackInhibitor]
+			[Triggers:GVK-Drone-All-Trigger-MediumHoverFighterSecondaryAutopilot]
+			[Triggers:GVK-Drone-All-Trigger-MediumHoverFighterPrimaryAutopilot]
 			[Triggers:GVK-Drone-All-Trigger-Crashed]
 			[Triggers:GVK-Drone-Encounter-Trigger-RetreatNoTarget]
 			[Triggers:GVK-Drone-Encounter-Trigger-RetreatTimer]
@@ -43,7 +42,7 @@
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Drone-All-Autopilot-HonorguardCruiserPrimary</SubtypeId>
+				<SubtypeId>GVK-Drone-All-Autopilot-MediumHoverFighterPrimary</SubtypeId>
 			</Id>
 			<Description>
 			[RivalAI Autopilot]
@@ -76,7 +75,7 @@
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Drone-All-Autopilot-HonorguardCruiserSecondary</SubtypeId>
+				<SubtypeId>GVK-Drone-All-Autopilot-MediumHoverFighterSecondary</SubtypeId>
 			</Id>
 			<Description>
 			[RivalAI Autopilot]
@@ -109,7 +108,7 @@
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Drone-All-Trigger-HonorguardCruiserSecondaryAutopilot</SubtypeId>
+				<SubtypeId>GVK-Drone-All-Trigger-MediumHoverFighterSecondaryAutopilot</SubtypeId>
 			</Id>
 			<Description>
 			[RivalAI Trigger]
@@ -120,14 +119,14 @@
 			[MaxCooldownMs:5000]
 			[StartsReady:true]
 			[ConditionCheckResetsTimer:false]
-			[Conditions:GVK-Drone-All-Condition-HonorguardCruiserSecondaryAutopilot]
-			[Actions:GVK-Drone-All-Action-HonorguardCruiserSecondaryAutopilot]
+			[Conditions:GVK-Drone-All-Condition-MediumHoverFighterSecondaryAutopilot]
+			[Actions:GVK-Drone-All-Action-MediumHoverFighterSecondaryAutopilot]
 			</Description>
 		</EntityComponent>
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Drone-All-Condition-HonorguardCruiserSecondaryAutopilot</SubtypeId>
+				<SubtypeId>GVK-Drone-All-Condition-MediumHoverFighterSecondaryAutopilot</SubtypeId>
 			</Id>
 			<Description>
 			[RivalAI Condition]
@@ -141,7 +140,7 @@
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Drone-All-Action-HonorguardCruiserSecondaryAutopilot</SubtypeId>
+				<SubtypeId>GVK-Drone-All-Action-MediumHoverFighterSecondaryAutopilot</SubtypeId>
 			</Id>
 			<Description>
 			[RivalAI Action]
@@ -152,7 +151,7 @@
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Drone-All-Trigger-HonorguardCruiserPrimaryAutopilot</SubtypeId>
+				<SubtypeId>GVK-Drone-All-Trigger-MediumHoverFighterPrimaryAutopilot</SubtypeId>
 			</Id>
 			<Description>
 			[RivalAI Trigger]
@@ -161,14 +160,14 @@
 			[TargetDistance:2000]
 			[StartsReady:true]
 			[ConditionCheckResetsTimer:false]
-			[Conditions:GVK-Drone-All-Condition-HonorguardCruiserPrimaryAutopilot]
-			[Actions:GVK-Drone-All-Action-HonorguardCruiserPrimaryAutopilot]
+			[Conditions:GVK-Drone-All-Condition-MediumHoverFighterPrimaryAutopilot]
+			[Actions:GVK-Drone-All-Action-MediumHoverFighterPrimaryAutopilot]
 			</Description>
 		</EntityComponent>
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Drone-All-Condition-HonorguardCruiserPrimaryAutopilot</SubtypeId>
+				<SubtypeId>GVK-Drone-All-Condition-MediumHoverFighterPrimaryAutopilot</SubtypeId>
 			</Id>
 			<Description>
 			[RivalAI Condition]
@@ -182,7 +181,7 @@
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Drone-All-Action-HonorguardCruiserPrimaryAutopilot</SubtypeId>
+				<SubtypeId>GVK-Drone-All-Action-MediumHoverFighterPrimaryAutopilot</SubtypeId>
 			</Id>
 			<Description>
 			[RivalAI Action]

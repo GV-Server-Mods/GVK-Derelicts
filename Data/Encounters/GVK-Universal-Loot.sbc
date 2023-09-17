@@ -1,13 +1,16 @@
 <?xml version="1.0"?>
 <Definitions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
 	<EntityComponents>
+		<!-- Main Tech Loot -->
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Derelict-Loot-Small</SubtypeId>
+				<SubtypeId>GVK-Universal-Loot-Small</SubtypeId>
 			</Id>
 			<Description>
 			[MES Loot]
+			[ContainerBlockTypes:MyObjectBuilder_CargoContainer/SmallBlockSmallContainer]
+            [ContainerBlockTypes:MyObjectBuilder_CargoContainer/SmallBlockMediumContainer]
 			[ContainerBlockTypes:MyObjectBuilder_CargoContainer/LargeBlockSmallContainer]
 			[ContainerBlockTypes:MyObjectBuilder_CargoContainer/LargeBlockLargeContainer]
 			[ContainerBlockTypes:MyObjectBuilder_CargoContainer/LargeBlockLargeIndustrialContainer]
@@ -22,10 +25,12 @@
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Derelict-Loot-Medium</SubtypeId>
+				<SubtypeId>GVK-Universal-Loot-Medium</SubtypeId>
 			</Id>
 			<Description>
 			[MES Loot]
+			[ContainerBlockTypes:MyObjectBuilder_CargoContainer/SmallBlockSmallContainer]
+            [ContainerBlockTypes:MyObjectBuilder_CargoContainer/SmallBlockMediumContainer]
 			[ContainerBlockTypes:MyObjectBuilder_CargoContainer/LargeBlockSmallContainer]
 			[ContainerBlockTypes:MyObjectBuilder_CargoContainer/LargeBlockLargeContainer]
 			[ContainerBlockTypes:MyObjectBuilder_CargoContainer/LargeBlockLargeIndustrialContainer]
@@ -40,10 +45,12 @@
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Derelict-Loot-Large</SubtypeId>
+				<SubtypeId>GVK-Universal-Loot-Large</SubtypeId>
 			</Id>
 			<Description>
 			[MES Loot]
+			[ContainerBlockTypes:MyObjectBuilder_CargoContainer/SmallBlockSmallContainer]
+            [ContainerBlockTypes:MyObjectBuilder_CargoContainer/SmallBlockMediumContainer]
 			[ContainerBlockTypes:MyObjectBuilder_CargoContainer/LargeBlockSmallContainer]
 			[ContainerBlockTypes:MyObjectBuilder_CargoContainer/LargeBlockLargeContainer]
 			[ContainerBlockTypes:MyObjectBuilder_CargoContainer/LargeBlockLargeIndustrialContainer]
@@ -58,10 +65,12 @@
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Derelict-Loot-Huge</SubtypeId>
+				<SubtypeId>GVK-Universal-Loot-Huge</SubtypeId>
 			</Id>
 			<Description>
 			[MES Loot]
+			[ContainerBlockTypes:MyObjectBuilder_CargoContainer/SmallBlockSmallContainer]
+            [ContainerBlockTypes:MyObjectBuilder_CargoContainer/SmallBlockMediumContainer]
 			[ContainerBlockTypes:MyObjectBuilder_CargoContainer/LargeBlockSmallContainer]
 			[ContainerBlockTypes:MyObjectBuilder_CargoContainer/LargeBlockLargeContainer]
 			[ContainerBlockTypes:MyObjectBuilder_CargoContainer/LargeBlockLargeIndustrialContainer]
@@ -71,6 +80,138 @@
 			[AppendNameToBlock:true]
 			[AppendedName: (Loot)]
 			[Chance:100]
+			</Description>
+		</EntityComponent>
+		<!-- Regular loot for immersion -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Universal-Loot-Freight</SubtypeId>
+			</Id>
+			<Description>
+			[MES Loot]
+			[ContainerBlockTypes:MyObjectBuilder_CubeBlock/Freight1]
+			[ContainerBlockTypes:MyObjectBuilder_CubeBlock/Freight2]
+			[ContainerBlockTypes:MyObjectBuilder_CubeBlock/Freight3]
+			[ContainerBlockTypes:MyObjectBuilder_CubeBlock/LargeBarrel]
+			[ContainerBlockTypes:MyObjectBuilder_CubeBlock/SmallBarrel]
+			[ContainerBlockTypes:MyObjectBuilder_CubeBlock/LargeBarrelThree]
+			[ContainerBlockTypes:MyObjectBuilder_CubeBlock/LargeBarrelStack]
+			[ContainerBlockTypes:MyObjectBuilder_TerminalBlock/LargeCrate]
+			[ContainerTypes:GVK-ContainerTypes-Consumable]
+			[ContainerTypes:GVK-ContainerTypes-Mixed1]
+			[ContainerTypes:GVK-ContainerTypes-Mixed2]
+			[ContainerTypes:GVK-ContainerTypes-Mixed3]
+			[ContainerTypes:GVK-ContainerTypes-Mixed4]
+			[ContainerTypes:GVK-ContainerTypes-ComponentBasic]
+			[ContainerTypes:GVK-ContainerTypes-IngotBasic]
+			[MinBlocks:3]
+			[MaxBlocks:6]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Universal-Loot-H2Generator</SubtypeId>
+			</Id>
+			<Description>
+			[MES Loot]
+			[ContainerBlockTypes:MyObjectBuilder_OxygenGenerator/OxygenGeneratorSmall]
+			[ContainerBlockTypes:MyObjectBuilder_OxygenGenerator/OxygenGenerator]
+			[ContainerTypes:GVK-ContainerTypes-H2Generator]
+			[MinBlocks:1]
+			[MaxBlocks:4]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Universal-Loot-Assembler</SubtypeId>
+			</Id>
+			<Description>
+			[MES Loot]
+			[ContainerBlockTypes:MyObjectBuilder_Assembler/BasicAssembler]
+			[ContainerBlockTypes:MyObjectBuilder_Assembler/LargeAssembler]
+			[ContainerBlockTypes:MyObjectBuilder_Assembler/LargeAssemblerIndustrial]
+			[ContainerTypes:GVK-ContainerTypes-IngotBasic]
+			[ContainerTypes:GVK-ContainerTypes-IngotExotic]
+			[ContainerTypes:GVK-ContainerTypes-ComponentBasic]
+			[ContainerTypes:GVK-ContainerTypes-ComponentAdvanced]
+			[MinBlocks:1]
+			[MaxBlocks:4]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Universal-Loot-Refinery</SubtypeId>
+			</Id>
+			<Description>
+			[MES Loot]
+			[ContainerBlockTypes:MyObjectBuilder_Refinery/Blast Furnace]
+			[ContainerBlockTypes:MyObjectBuilder_Refinery/LargeRefinery]
+			[ContainerBlockTypes:MyObjectBuilder_Refinery/LargeRefineryIndustrial]
+			[ContainerTypes:GVK-ContainerTypes-OreBasic]
+			[ContainerTypes:GVK-ContainerTypes-OreExotic]
+			[ContainerTypes:GVK-ContainerTypes-IngotBasic]
+			[ContainerTypes:GVK-ContainerTypes-IngotExotic]
+			[MinBlocks:1]
+			[MaxBlocks:4]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Universal-Loot-Cockpit</SubtypeId>
+			</Id>
+			<Description>
+			[MES Loot]
+			[ContainerBlockTypes:MyObjectBuilder_Cockpit/SmallBlockCockpit]
+			[ContainerBlockTypes:MyObjectBuilder_Cockpit/LargeBlockCockpitSeat]
+			[ContainerBlockTypes:MyObjectBuilder_Cockpit/BuggyCockpit]
+			[ContainerTypes:GVK-ContainerTypes-PistolWeapon]
+			[ContainerTypes:GVK-ContainerTypes-RifleWeapon1]
+			[ContainerTypes:GVK-ContainerTypes-RifleWeapon2]
+			[ContainerTypes:GVK-ContainerTypes-Consumable]
+			[MinBlocks:1]
+			[MaxBlocks:3]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Universal-Loot-Armory</SubtypeId>
+			</Id>
+			<Description>
+			[MES Loot]
+			[ContainerBlockTypes:MyObjectBuilder_CargoContainer/LargeBlockLockerRoom]
+			[ContainerBlockTypes:MyObjectBuilder_CargoContainer/LargeBlockLockerRoomCorner]
+			[ContainerBlockTypes:MyObjectBuilder_CargoContainer/LargeBlockWeaponRack]
+			[ContainerBlockTypes:MyObjectBuilder_CargoContainer/SmallBlockWeaponRack]
+			[ContainerTypes:GVK-ContainerTypes-Tool]
+			[ContainerTypes:GVK-ContainerTypes-PistolWeapon]
+			[ContainerTypes:GVK-ContainerTypes-RifleWeapon1]
+			[ContainerTypes:GVK-ContainerTypes-RifleWeapon2]
+			[ContainerTypes:GVK-ContainerTypes-LauncherWeapon1]
+			[ContainerTypes:GVK-ContainerTypes-LauncherWeapon2]
+			[MinBlocks:1]
+			[MaxBlocks:3]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Universal-Loot-LivingArea</SubtypeId>
+			</Id>
+			<Description>
+			[MES Loot]
+			[ContainerBlockTypes:MyObjectBuilder_CargoContainer/LargeBlockLockers]
+			[ContainerBlockTypes:MyObjectBuilder_CargoContainer/LargeBlockInsetBookshelf]
+			[ContainerBlockTypes:MyObjectBuilder_InteriorLight/LargeBlockInsetKitchen]
+			[ContainerBlockTypes:MyObjectBuilder_InteriorLight/LargeBlockInsetKitchen]
+			[ContainerTypes:GVK-ContainerTypes-RifleWeapons-1]
+			[MinBlocks:1]
+			[MaxBlocks:3]
 			</Description>
 		</EntityComponent>
 	</EntityComponents>
