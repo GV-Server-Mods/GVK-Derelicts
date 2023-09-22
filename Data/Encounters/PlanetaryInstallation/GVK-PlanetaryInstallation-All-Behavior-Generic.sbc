@@ -48,6 +48,7 @@
 			[Triggers:GVK-PlanetaryInstallation-Medium-Trigger-BeaconDisabled]
 			[Triggers:GVK-PlanetaryInstallation-Medium-Trigger-DefensesPlayerNear]
 			[Triggers:GVK-PlanetaryInstallation-Medium-Trigger-DefensesDamage]
+			[Triggers:GVK-PlanetaryInstallation-Medium-Trigger-DefensesManual]
 			[RemoteControlCode:GVK-Derelict]
 			</Description>
 		</EntityComponent>
@@ -74,6 +75,7 @@
 			[Triggers:GVK-PlanetaryInstallation-Large-Trigger-BeaconDisabled]
 			[Triggers:GVK-PlanetaryInstallation-Large-Trigger-DefensesPlayerNear]
 			[Triggers:GVK-PlanetaryInstallation-Large-Trigger-DefensesDamage]
+			[Triggers:GVK-PlanetaryInstallation-Large-Trigger-DefensesManual]
 			[RemoteControlCode:GVK-LargeDerelict]
 			</Description>
 		</EntityComponent>
@@ -395,8 +397,8 @@
 			[RivalAI Action]
 			[UseChatBroadcast:true]
 			[ChatData:GVK-PlanetaryInstallation-Medium-Chat-Compromised]
-			[SpawnEncounter:true]
-			[Spawner:GVK-PlanetaryInstallation-Medium-Spawner-DefenseDrone]
+			[ManuallyActivateTrigger:true]
+			[ManuallyActivatedTriggerNames:GVK-PlanetaryInstallation-Medium-Trigger-DefensesManual]
 			</Description>
 		</EntityComponent>
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
@@ -409,8 +411,8 @@
 			[SetSandboxBooleansFalse:LargeWreckActive]	  	  
 			[UseChatBroadcast:true]
 			[ChatData:GVK-PlanetaryInstallation-Large-Chat-Compromised]
-			[SpawnEncounter:true]
-			[Spawner:GVK-PlanetaryInstallation-Large-Spawner-DefenseDrone]
+			[ManuallyActivateTrigger:true]
+			[ManuallyActivatedTriggerNames:GVK-PlanetaryInstallation-Large-Trigger-DefensesManual]
 			</Description>
 		</EntityComponent>
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
@@ -568,7 +570,7 @@
 			[MinCooldownMs:15000]
 			[MaxCooldownMs:15001]
 			[Conditions:GVK-PlanetaryInstallation-Medium-Condition-Defenses]
-			[MaxActions:4]
+			[MaxActions:2]
 			[ActionExecution:All]
 			[Actions:GVK-PlanetaryInstallation-Medium-Action-Defenses]
 			</Description>
@@ -587,7 +589,25 @@
 			[MinCooldownMs:15000]
 			[MaxCooldownMs:15001]
 			[Conditions:GVK-PlanetaryInstallation-Medium-Condition-Defenses]
-			[MaxActions:4]
+			[MaxActions:2]
+			[ActionExecution:All]
+			[Actions:GVK-PlanetaryInstallation-Medium-Action-Defenses]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-PlanetaryInstallation-Medium-Trigger-DefensesManual</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Trigger]
+			[UseTrigger:true]
+			[Type:Manual]
+			[StartsReady:true]
+			[MinCooldownMs:15000]
+			[MaxCooldownMs:15001]
+			[Conditions:GVK-PlanetaryInstallation-Medium-Condition-Defenses]
+			[MaxActions:2]
 			[ActionExecution:All]
 			[Actions:GVK-PlanetaryInstallation-Medium-Action-Defenses]
 			</Description>
@@ -603,7 +623,7 @@
 			[MatchAnyCondition:true]
 			[CheckCustomCounters:true]
 			[CustomCounters:MediumDefenseSpawns]
-			[CustomCountersTargets:4]
+			[CustomCountersTargets:2]
 			[CounterCompareTypes:Less]
 			</Description>
 		</EntityComponent>
@@ -616,7 +636,8 @@
 			[RivalAI Action]
 			[Chance:100]
 			[SpawnEncounter:true]
-			[Spawner:GVK-PlanetaryInstallation-Medium-Spawner-DefenseDrone]
+			[Spawner:GVK-PlanetaryInstallation-Medium-Spawner-DefenseDroneSmall]
+			[Spawner:GVK-PlanetaryInstallation-Medium-Spawner-DefenseDroneMedium]
 			[UseChatBroadcast:true]
 			[ChatData:GVK-PlanetaryInstallation-All-Chat-Defenses]
 			[IncreaseCounters:MediumDefenseSpawns]
@@ -625,7 +646,7 @@
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-PlanetaryInstallation-Medium-Spawner-DefenseDrone</SubtypeId>
+				<SubtypeId>GVK-PlanetaryInstallation-Medium-Spawner-DefenseDroneSmall</SubtypeId>
 			</Id>
 			<Description>
 			[RivalAI Spawn]
@@ -633,14 +654,34 @@
 			[SpawningType:CustomSpawn]
 			[StartsReady:true]
 			[ProcessAsAdminSpawn:false]
-			[MaxSpawns:4]
+			[MaxSpawns:2]
 			[SpawnGroups:GVK-Drone-Defense-SpawnGroup-GAALSIEN-SmallFlyerSingle]
 			[SpawnGroups:GVK-Drone-Defense-SpawnGroup-GAALSIEN-SmallHoverSingle]
+			[MinDistance:500]
+			[MaxDistance:1000]
+			[MinAltitude:50]
+			[MaxAltitude:51]
+			[InheritNpcAltitude:true]
+			[IgnoreSafetyChecks:true]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-PlanetaryInstallation-Medium-Spawner-DefenseDroneMedium</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Spawn]
+			[UseSpawn:true]
+			[SpawningType:CustomSpawn]
+			[StartsReady:true]
+			[ProcessAsAdminSpawn:false]
+			[MaxSpawns:1]
 			[SpawnGroups:GVK-Drone-Defense-SpawnGroup-GAALSIEN-MediumHoverLight]
 			[MinDistance:500]
 			[MaxDistance:1000]
 			[MinAltitude:50]
-			[MaxAltitude:200]
+			[MaxAltitude:51]
 			[InheritNpcAltitude:true]
 			[IgnoreSafetyChecks:true]
 			</Description>
@@ -660,7 +701,7 @@
 			[MinCooldownMs:15000]
 			[MaxCooldownMs:15001]
 			[Conditions:GVK-PlanetaryInstallation-Large-Condition-Defenses]
-			[MaxActions:6]
+			[MaxActions:3]
 			[ActionExecution:All]
 			[Actions:GVK-PlanetaryInstallation-Large-Action-Defenses]
 			</Description>
@@ -679,7 +720,25 @@
 			[MinCooldownMs:15000]
 			[MaxCooldownMs:15001]
 			[Conditions:GVK-PlanetaryInstallation-Large-Condition-Defenses]
-			[MaxActions:6]
+			[MaxActions:3]
+			[ActionExecution:All]
+			[Actions:GVK-PlanetaryInstallation-Large-Action-Defenses]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-PlanetaryInstallation-Large-Trigger-DefensesManual</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Trigger]
+			[UseTrigger:true]
+			[Type:Manual]
+			[StartsReady:true]
+			[MinCooldownMs:15000]
+			[MaxCooldownMs:15001]
+			[Conditions:GVK-PlanetaryInstallation-Large-Condition-Defenses]
+			[MaxActions:3]
 			[ActionExecution:All]
 			[Actions:GVK-PlanetaryInstallation-Large-Action-Defenses]
 			</Description>
@@ -695,7 +754,7 @@
 			[MatchAnyCondition:true]
 			[CheckCustomCounters:true]
 			[CustomCounters:LargeDefenseSpawns]
-			[CustomCountersTargets:6]
+			[CustomCountersTargets:3]
 			[CounterCompareTypes:Less]
 			</Description>
 		</EntityComponent>
@@ -708,7 +767,8 @@
 			[RivalAI Action]
 			[Chance:100]
 			[SpawnEncounter:true]
-			[Spawner:GVK-PlanetaryInstallation-Large-Spawner-DefenseDrone]
+			[Spawner:GVK-PlanetaryInstallation-Large-Spawner-DefenseDroneMedium]
+			[Spawner:GVK-PlanetaryInstallation-Large-Spawner-DefenseDroneLarge]
 			[UseChatBroadcast:true]
 			[ChatData:GVK-PlanetaryInstallation-All-Chat-Defenses]
 			[IncreaseCounters:LargeDefenseSpawns]
@@ -717,7 +777,7 @@
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-PlanetaryInstallation-Large-Spawner-DefenseDrone</SubtypeId>
+				<SubtypeId>GVK-PlanetaryInstallation-Large-Spawner-DefenseDroneMedium</SubtypeId>
 			</Id>
 			<Description>
 			[RivalAI Spawn]
@@ -725,11 +785,30 @@
 			[SpawningType:CustomSpawn]
 			[StartsReady:true]
 			[ProcessAsAdminSpawn:false]
-			[MaxSpawns:6]
+			[MaxSpawns:2]
 			[SpawnGroups:GVK-Drone-Defense-SpawnGroup-GAALSIEN-SmallFlyerSquad]
-			[SpawnGroups:GVK-Drone-Defense-SpawnGroup-GAALSIEN-MediumHoverLight]
 			[SpawnGroups:GVK-Drone-Defense-SpawnGroup-GAALSIEN-MediumHoverHeavy]
 			[SpawnGroups:GVK-Drone-Defense-SpawnGroup-GAALSIEN-MediumFlyer]
+			[MinDistance:500]
+			[MaxDistance:1000]
+			[MinAltitude:50]
+			[MaxAltitude:200]
+			[InheritNpcAltitude:true]
+			[IgnoreSafetyChecks:true]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-PlanetaryInstallation-Large-Spawner-DefenseDroneLarge</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Spawn]
+			[UseSpawn:true]
+			[SpawningType:CustomSpawn]
+			[StartsReady:true]
+			[ProcessAsAdminSpawn:false]
+			[MaxSpawns:2]
 			[SpawnGroups:GVK-Drone-Defense-SpawnGroup-GAALSIEN-LargeHover]
 			[MinDistance:500]
 			[MaxDistance:1000]

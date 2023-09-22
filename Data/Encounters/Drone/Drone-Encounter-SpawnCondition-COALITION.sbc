@@ -1,0 +1,32 @@
+<?xml version="1.0"?>
+<Definitions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+	<EntityComponents>
+		<!-- This spawns 1 large hover ONLY in Z3 -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Drone-Encounter-SpawnCondition-COALITION-LargeRoverSingle</SubtypeId>
+			</Id>
+			<Description>
+			[MES Spawn Conditions]
+			[DroneEncounter:true]
+			[FailedDroneSpawnResetsPlayerTime:false]
+			[MinDroneDistance:3500]
+			[MaxDroneDistance:5000]
+			[MinDroneAltitude:50]
+			[MaxDroneAltitude:51]
+			[FactionOwner:COALITION]
+			[ReactorsOn:true]
+			[ForceStaticGrid:false]
+			[SkipVoxelSpawnChecks:true]
+			[SkipGridSpawnChecks:false]
+			[ZoneConditions:GVK-Universal-ZoneConditions-WreckZone23]
+			[UsePCUCheck:true]
+			[PCUCheckRadius:6000]
+			[PCUMinimum:2000]
+			[PCUMaximum:99999999]
+ 			[PrefabSpawningMode:Random]
+			</Description>
+		</EntityComponent>
+	</EntityComponents>
+</Definitions>
