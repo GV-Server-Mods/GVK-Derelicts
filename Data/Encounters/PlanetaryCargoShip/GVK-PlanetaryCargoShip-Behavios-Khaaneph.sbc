@@ -20,6 +20,7 @@
 			[Triggers:GVK-Universal-Trigger-JetpackInhibitor]
 			[Triggers:GVK-Universal-Trigger-UneditableOnSpawn]
 			[Triggers:GVK-Universal-Trigger-EditableOnCompromised]
+			[Triggers:GVK-CargoShip-KHAANEPH-Trigger-Crashed]
 			[Triggers:GVK-CargoShip-KHAANEPH-Trigger-OnSpawn]
 			[Triggers:GVK-CargoShip-KHAANEPH-Trigger-RequestNearWaypoint]
 			[Triggers:GVK-CargoShip-KHAANEPH-Trigger-RequestFarWaypoint]
@@ -147,7 +148,7 @@
 			[BroadcastRandomly:false]
 			[Author:Coalition]
 			[Color:White]
-			[ChatMessages:A Khaaneph Cargo Ship has been spotted.]
+			[ChatMessages:A KHAANEPH Cargo Ship has been spotted.]
 			[ChatAudio:ArcHudGPSNotification2]
 			[BroadcastChatType:Both]
 			[SendToAllOnlinePlayers:true]
@@ -210,7 +211,7 @@
 			[Chance:100]
 			[MaxChats:-1]
 			[BroadcastRandomly:false]
-			[Author:Khaaneph Cargo Ship]
+			[Author:KHAANEPH Cargo Ship]
 			[Color:Red]
 			[ChatMessages:Requesting near waypoint]
 			[ChatAudio:GreetingSoundId-A]
@@ -275,7 +276,7 @@
 			[Chance:100]
 			[MaxChats:1]
 			[BroadcastRandomly:false]
-			[Author:Khaaneph Cargo Ship]
+			[Author:KHAANEPH Cargo Ship]
 			[Color:Red]
 			[ChatMessages:Requesting far waypoint]
 			[ChatAudio:GreetingSoundId-A]
@@ -325,11 +326,82 @@
 			[Chance:100]
 			[MaxChats:-1]
 			[BroadcastRandomly:false]
-			[Author:Khaaneph Cargo Ship]
+			[Author:KHAANEPH Cargo Ship]
 			[Color:Red]
 			[ChatMessages:Waypoint Received.]
 			[ChatAudio:GreetingSoundId-A]
 			[BroadcastChatType:Chat]
+			[SendToAllOnlinePlayers:true]
+			</Description>
+		</EntityComponent>
+		<!-- Trigger sequence NPC crashes into the ground is disabled -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-CargoShip-KHAANEPH-Trigger-Crashed</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Trigger]
+			[Type:Timer]
+			[UseTrigger:true]
+			[StartsReady:false]
+			[MinCooldownMs:5000]
+			[MaxCooldownMs:5000]
+			[MaxActions:1]
+			[Conditions:GVK-CargoShip-KHAANEPH-Condition-Crashed]
+			[ActionExecution:All]
+			[Actions:GVK-CargoShip-KHAANEPH-Action-Crashed]
+			[Actions:GVK-Drone-All-Action-Disabled]
+			[Actions:GVK-Universal-Action-EditableOnCompromised]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-CargoShip-KHAANEPH-Condition-Crashed</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Condition]
+			[UseConditions:true]
+			[MatchAnyCondition:false]
+			[CheckGridSpeed:true]
+			[MinGridSpeed:0]
+			[MaxGridSpeed:10]
+			[AltitudeCheck:true]
+			[MinAltitude:-999999]
+			[MaxAltitude:10]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-CargoShip-KHAANEPH-Action-Crashed</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Action]
+			[DisableTriggers:true]
+			[DisableTriggerNames:GVK-CargoShip-KHAANEPH-Trigger-Compromised]
+			[UseChatBroadcast:true]
+			[ChatData:GVK-CargoShip-KHAANEPH-Chat-Crashed]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-CargoShip-KHAANEPH-Chat-Crashed</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Chat]
+			[UseChat:true]
+			[StartsReady:true]
+			[Chance:100]
+			[MaxChats:1]
+			[BroadcastRandomly:true]
+			[Author:COALITION]
+			[Color:White]
+			[ChatMessages:A Cargo Ship has crashed.]
+			[ChatAudio:GreetingSoundId-A]
+			[BroadcastChatType:Notify]
 			[SendToAllOnlinePlayers:true]
 			</Description>
 		</EntityComponent>
@@ -430,7 +502,7 @@
 			[BroadcastRandomly:false]
 			[Author:Coalition]
 			[Color:White]
-			[ChatMessages:A Khaaneph Cargo Ship has been shot down!]
+			[ChatMessages:A KHAANEPH Cargo Ship has been shot down!]
 			[ChatAudio:GreetingSoundId-A]
 			[BroadcastChatType:Chat]
 			[SendToAllOnlinePlayers:true]
@@ -474,7 +546,7 @@
 			[Chance:100]
 			[MaxChats:-1]
 			[BroadcastRandomly:false]
-			[Author:Khaaneph Cargo Ship]
+			[Author:KHAANEPH Cargo Ship]
 			[Color:Red]
 			[ChatMessages:Arrived at waypoint]
 			[ChatAudio:GreetingSoundId-A]
@@ -520,7 +592,7 @@
 			[Chance:100]
 			[MaxChats:-1]
 			[BroadcastRandomly:false]
-			[Author:Khaaneph Cargo Ship]
+			[Author:KHAANEPH Cargo Ship]
 			[Color:Red]
 			[ChatMessages:Heading to next destination]
 			[ChatAudio:GreetingSoundId-A]
@@ -569,7 +641,7 @@
 			[Chance:100]
 			[MaxChats:-1]
 			[BroadcastRandomly:false]
-			[Author:Khaaneph Cargo Ship]
+			[Author:KHAANEPH Cargo Ship]
 			[Color:Red]
 			[ChatMessages:Trade route complete.]
 			[ChatAudio:GreetingSoundId-A]
@@ -608,7 +680,7 @@
 			[ChangeAttackerReputation:true]
 			[ChangeAttackerReputationFaction:KHAANEPH]
 			[ChangeAttackerReputationAmount:-1000]
-			[ChangeAttackerReputationFaction:SOBAN]
+			[ChangeAttackerReputationFaction:KHAANEPH]
 			[ChangeAttackerReputationAmount:1000]
 			[ReputationChangesForAllAttackPlayerFactionMembers:true]
 			[UseChatBroadcast:true]
@@ -629,7 +701,7 @@
 			[BroadcastRandomly:false]
 			[Author:Coalition]
 			[Color:White]
-			[ChatMessages:Khaaneph Cargo ship is under attack!]
+			[ChatMessages:KHAANEPH Cargo ship is under attack!]
 			[ChatAudio:GreetingSoundId-A]
 			[BroadcastChatType:Chat]
 			[SendToAllOnlinePlayers:true]

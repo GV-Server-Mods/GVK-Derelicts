@@ -20,6 +20,7 @@
 			[Triggers:GVK-Universal-Trigger-JetpackInhibitor]
 			[Triggers:GVK-Universal-Trigger-UneditableOnSpawn]
 			[Triggers:GVK-Universal-Trigger-EditableOnCompromised]
+			[Triggers:GVK-CargoShip-SOBAN-Trigger-Crashed]
 			[Triggers:GVK-CargoShip-SOBAN-Trigger-OnSpawn]
 			[Triggers:GVK-CargoShip-SOBAN-Trigger-RequestNearWaypoint]
 			[Triggers:GVK-CargoShip-SOBAN-Trigger-RequestFarWaypoint]
@@ -330,6 +331,77 @@
 			[ChatMessages:Waypoint Received.]
 			[ChatAudio:GreetingSoundId-A]
 			[BroadcastChatType:Chat]
+			[SendToAllOnlinePlayers:true]
+			</Description>
+		</EntityComponent>
+		<!-- Trigger sequence NPC crashes into the ground is disabled -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-CargoShip-SOBAN-Trigger-Crashed</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Trigger]
+			[Type:Timer]
+			[UseTrigger:true]
+			[StartsReady:false]
+			[MinCooldownMs:5000]
+			[MaxCooldownMs:5000]
+			[MaxActions:1]
+			[Conditions:GVK-CargoShip-SOBAN-Condition-Crashed]
+			[ActionExecution:All]
+			[Actions:GVK-CargoShip-SOBAN-Action-Crashed]
+			[Actions:GVK-Drone-All-Action-Disabled]
+			[Actions:GVK-Universal-Action-EditableOnCompromised]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-CargoShip-SOBAN-Condition-Crashed</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Condition]
+			[UseConditions:true]
+			[MatchAnyCondition:false]
+			[CheckGridSpeed:true]
+			[MinGridSpeed:0]
+			[MaxGridSpeed:10]
+			[AltitudeCheck:true]
+			[MinAltitude:-999999]
+			[MaxAltitude:10]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-CargoShip-SOBAN-Action-Crashed</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Action]
+			[DisableTriggers:true]
+			[DisableTriggerNames:GVK-CargoShip-SOBAN-Trigger-Compromised]
+			[UseChatBroadcast:true]
+			[ChatData:GVK-CargoShip-SOBAN-Chat-Crashed]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-CargoShip-SOBAN-Chat-Crashed</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Chat]
+			[UseChat:true]
+			[StartsReady:true]
+			[Chance:100]
+			[MaxChats:1]
+			[BroadcastRandomly:true]
+			[Author:COALITION]
+			[Color:White]
+			[ChatMessages:A Cargo Ship has crashed.]
+			[ChatAudio:GreetingSoundId-A]
+			[BroadcastChatType:Notify]
 			[SendToAllOnlinePlayers:true]
 			</Description>
 		</EntityComponent>
