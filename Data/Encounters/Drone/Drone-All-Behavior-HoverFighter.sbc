@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <Definitions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
 	<EntityComponents>
-		<!-- Honorguard Cruiser Fighter Behavior -->
+		<!-- Medium Hover Fighter Behavior -->
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
@@ -23,12 +23,13 @@
 			[TargetData:GVK-Universal-Target-EnemyGrids]
 			[AutopilotData:GVK-Drone-All-Autopilot-MediumHoverFighterPrimary]
 			[SecondaryAutopilotData:GVK-Drone-All-Autopilot-MediumHoverFighterSecondary]
+			[Triggers:GVK-Drone-All-Trigger-BeaconDisabled]
 			[Triggers:GVK-Drone-All-Trigger-WeaponsToMaxRange]
 			[Triggers:GVK-Drone-All-Trigger-FireRailgunsTimers]
 			[Triggers:GVK-Drone-All-Trigger-FireMissilesTimers]
 			[Triggers:GVK-Universal-Trigger-SPRTTargetAcquiredChatter]
-			[Triggers:GVK-Drone-All-Trigger-CruiserCrashed]
-			[Triggers:GVK-Drone-All-Trigger-CruiserCompromised]
+			[Triggers:GVK-Drone-All-Trigger-Crashed]
+			[Triggers:GVK-Drone-All-Trigger-Compromised]
 			[Triggers:GVK-Universal-Trigger-SPRTNoWeapon]
 			[Triggers:GVK-Drone-All-Trigger-MediumHoverFighterSecondaryAutopilot]
 			[Triggers:GVK-Drone-All-Trigger-MediumHoverFighterPrimaryAutopilot]
@@ -38,7 +39,7 @@
 			[WeaponSystem:GVK-Drone-All-Weapon-Fixed]
 			</Description>
 		</EntityComponent>
-		<!-- Honorguard Cruiser Fighter Autopilot Primary -->
+		<!-- Medium Hover Fighter Autopilot Primary -->
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
@@ -71,7 +72,7 @@
 			[MaxVelocityAngleForSpeedControl:180]
 			</Description>
 		</EntityComponent>
-		<!-- Honorguard Cruiser Fighter Autopilot Secondary -->
+		<!-- Medium Hover Fighter Autopilot Secondary -->
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
