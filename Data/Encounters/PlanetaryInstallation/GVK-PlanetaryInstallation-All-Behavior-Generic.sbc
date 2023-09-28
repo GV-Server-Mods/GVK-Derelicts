@@ -321,6 +321,7 @@
 			[ActionExecution:All]
 			[Actions:GVK-PlanetaryInstallation-All-Action-CompromisedGeneric]
 			[Actions:GVK-PlanetaryInstallation-Medium-Action-Compromised]
+			[Actions:GVK-PlanetaryInstallation-Medium-Action-DefensesTrigger]
 			</Description>
 		</EntityComponent>
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
@@ -336,6 +337,7 @@
 			[ActionExecution:All]
 			[Actions:GVK-PlanetaryInstallation-All-Action-CompromisedGeneric]
 			[Actions:GVK-PlanetaryInstallation-Large-Action-Compromised]
+			[Actions:GVK-PlanetaryInstallation-Large-Action-DefensesTrigger]
 			</Description>
 		</EntityComponent>
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
@@ -400,8 +402,6 @@
 			[RivalAI Action]
 			[UseChatBroadcast:true]
 			[ChatData:GVK-PlanetaryInstallation-Medium-Chat-Compromised]
-			[ManuallyActivateTrigger:true]
-			[ManuallyActivatedTriggerNames:GVK-PlanetaryInstallation-Medium-Trigger-DefensesManual]
 			</Description>
 		</EntityComponent>
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
@@ -414,8 +414,6 @@
 			[SetSandboxBooleansFalse:LargeWreckActive]	  	  
 			[UseChatBroadcast:true]
 			[ChatData:GVK-PlanetaryInstallation-Large-Chat-Compromised]
-			[ManuallyActivateTrigger:true]
-			[ManuallyActivatedTriggerNames:GVK-PlanetaryInstallation-Large-Trigger-DefensesManual]
 			</Description>
 		</EntityComponent>
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
@@ -512,6 +510,7 @@
 			[ActionExecution:All]
 			[Actions:GVK-PlanetaryInstallation-All-Action-CompromisedGeneric]
 			[Actions:GVK-PlanetaryInstallation-Medium-Action-Compromised]
+			[Actions:GVK-PlanetaryInstallation-Medium-Action-DefensesTrigger]
 			</Description>
 		</EntityComponent>
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
@@ -530,6 +529,7 @@
 			[ActionExecution:All]
 			[Actions:GVK-PlanetaryInstallation-All-Action-CompromisedGeneric]
 			[Actions:GVK-PlanetaryInstallation-Large-Action-Compromised]
+			[Actions:GVK-PlanetaryInstallation-Large-Action-DefensesTrigger]
 			</Description>
 		</EntityComponent>
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
@@ -572,10 +572,9 @@
 			[StartsReady:true]
 			[MinCooldownMs:15000]
 			[MaxCooldownMs:15001]
-			[Conditions:GVK-PlanetaryInstallation-Medium-Condition-Defenses]
 			[MaxActions:2]
 			[ActionExecution:All]
-			[Actions:GVK-PlanetaryInstallation-Medium-Action-Defenses]
+			[Actions:GVK-PlanetaryInstallation-Medium-Action-DefensesTrigger]
 			</Description>
 		</EntityComponent>
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
@@ -591,10 +590,21 @@
 			[StartsReady:true]
 			[MinCooldownMs:15000]
 			[MaxCooldownMs:15001]
-			[Conditions:GVK-PlanetaryInstallation-Medium-Condition-Defenses]
 			[MaxActions:2]
 			[ActionExecution:All]
-			[Actions:GVK-PlanetaryInstallation-Medium-Action-Defenses]
+			[Actions:GVK-PlanetaryInstallation-Medium-Action-DefensesTrigger]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-PlanetaryInstallation-Medium-Action-DefensesTrigger</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Action]
+			[Chance:100]
+			[ManuallyActivateTrigger:true]
+			[ManuallyActivatedTriggerNames:GVK-PlanetaryInstallation-Medium-Trigger-DefensesManual]
 			</Description>
 		</EntityComponent>
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
@@ -607,33 +617,15 @@
 			[UseTrigger:true]
 			[Type:Manual]
 			[StartsReady:true]
-			[MinCooldownMs:15000]
-			[MaxCooldownMs:15001]
-			[Conditions:GVK-PlanetaryInstallation-Medium-Condition-Defenses]
 			[MaxActions:2]
 			[ActionExecution:All]
-			[Actions:GVK-PlanetaryInstallation-Medium-Action-Defenses]
+			[Actions:GVK-PlanetaryInstallation-Medium-Action-DefensesManual]
 			</Description>
 		</EntityComponent>
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-PlanetaryInstallation-Medium-Condition-Defenses</SubtypeId>
-			</Id>
-			<Description>
-			[RivalAI Condition]
-			[UseConditions:true]
-			[MatchAnyCondition:true]
-			[CheckCustomCounters:true]
-			[CustomCounters:MediumDefenseSpawns]
-			[CustomCountersTargets:2]
-			[CounterCompareTypes:Less]
-			</Description>
-		</EntityComponent>
-		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
-			<Id>
-				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-PlanetaryInstallation-Medium-Action-Defenses</SubtypeId>
+				<SubtypeId>GVK-PlanetaryInstallation-Medium-Action-DefensesManual</SubtypeId>
 			</Id>
 			<Description>
 			[RivalAI Action]
@@ -643,7 +635,6 @@
 			[Spawner:GVK-PlanetaryInstallation-Medium-Spawner-DefenseDroneMedium]
 			[UseChatBroadcast:true]
 			[ChatData:GVK-PlanetaryInstallation-All-Chat-Defenses]
-			[IncreaseCounters:MediumDefenseSpawns]
 			</Description>
 		</EntityComponent>
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
@@ -703,10 +694,9 @@
 			[StartsReady:true]
 			[MinCooldownMs:15000]
 			[MaxCooldownMs:15001]
-			[Conditions:GVK-PlanetaryInstallation-Large-Condition-Defenses]
-			[MaxActions:3]
+			[MaxActions:2]
 			[ActionExecution:All]
-			[Actions:GVK-PlanetaryInstallation-Large-Action-Defenses]
+			[Actions:GVK-PlanetaryInstallation-Large-Action-DefensesTrigger]
 			</Description>
 		</EntityComponent>
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
@@ -722,10 +712,21 @@
 			[StartsReady:true]
 			[MinCooldownMs:15000]
 			[MaxCooldownMs:15001]
-			[Conditions:GVK-PlanetaryInstallation-Large-Condition-Defenses]
-			[MaxActions:3]
+			[MaxActions:2]
 			[ActionExecution:All]
-			[Actions:GVK-PlanetaryInstallation-Large-Action-Defenses]
+			[Actions:GVK-PlanetaryInstallation-Large-Action-DefensesTrigger]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-PlanetaryInstallation-Large-Action-DefensesTrigger</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Action]
+			[Chance:100]
+			[ManuallyActivateTrigger:true]
+			[ManuallyActivatedTriggerNames:GVK-PlanetaryInstallation-Large-Trigger-DefensesManual]
 			</Description>
 		</EntityComponent>
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
@@ -738,33 +739,15 @@
 			[UseTrigger:true]
 			[Type:Manual]
 			[StartsReady:true]
-			[MinCooldownMs:15000]
-			[MaxCooldownMs:15001]
-			[Conditions:GVK-PlanetaryInstallation-Large-Condition-Defenses]
-			[MaxActions:3]
+			[MaxActions:2]
 			[ActionExecution:All]
-			[Actions:GVK-PlanetaryInstallation-Large-Action-Defenses]
+			[Actions:GVK-PlanetaryInstallation-Large-Action-DefensesManual]
 			</Description>
 		</EntityComponent>
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-PlanetaryInstallation-Large-Condition-Defenses</SubtypeId>
-			</Id>
-			<Description>
-			[RivalAI Condition]
-			[UseConditions:true]
-			[MatchAnyCondition:true]
-			[CheckCustomCounters:true]
-			[CustomCounters:LargeDefenseSpawns]
-			[CustomCountersTargets:3]
-			[CounterCompareTypes:Less]
-			</Description>
-		</EntityComponent>
-		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
-			<Id>
-				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-PlanetaryInstallation-Large-Action-Defenses</SubtypeId>
+				<SubtypeId>GVK-PlanetaryInstallation-Large-Action-DefensesManual</SubtypeId>
 			</Id>
 			<Description>
 			[RivalAI Action]
@@ -774,7 +757,6 @@
 			[Spawner:GVK-PlanetaryInstallation-Large-Spawner-DefenseDroneLarge]
 			[UseChatBroadcast:true]
 			[ChatData:GVK-PlanetaryInstallation-All-Chat-Defenses]
-			[IncreaseCounters:LargeDefenseSpawns]
 			</Description>
 		</EntityComponent>
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
