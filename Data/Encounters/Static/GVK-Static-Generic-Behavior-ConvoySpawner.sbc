@@ -12,33 +12,7 @@
 			[UseRetreatTimer:false]
 			[UseNoTargetTimer:false]
 			[UsePlayerDistanceTimer:false]
-			[Triggers:GVK-Static-Trigger-ConvoySpawner-CreateSandboxVariable]
 			[Triggers:GVK-Static-Trigger-ConvoySpawner-SpawnConvoy]
-			</Description>
-		</EntityComponent>
-		<!-- this only needs to run once to create the sanbox variable -->
-		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
-			<Id>
-				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Static-Trigger-ConvoySpawner-CreateSandboxVariable</SubtypeId>
-			</Id>
-			<Description>
-			[RivalAI Trigger]
-			[Type:Session]
-			[UseTrigger:true]
-			[StartsReady:true]
-			[MaxActions:1]
-			[Actions:GVK-Static-Action-ConvoySpawner-CreateSandboxVariable]
-			</Description>
-		</EntityComponent>
-		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
-			<Id>
-				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Static-Action-ConvoySpawner-CreateSandboxVariable</SubtypeId>
-			</Id>
-			<Description>
-			[RivalAI Action]
-			[SetSandboxBooleansTrue:ConvoyInactive]
 			</Description>
 		</EntityComponent>
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
@@ -53,22 +27,8 @@
 			[MaxCooldownMs:60000000]
 			[UseTrigger:true]
 			[StartsReady:true]
-			[Conditions:GVK-Static-Condition-ConvoySpawner-SpawnConvoy]
 			[ConditionCheckResetsTimer:true]
 			[Actions:GVK-Static-Action-ConvoySpawner-SpawnConvoy]
-			</Description>
-		</EntityComponent>
-		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
-			<Id>
-				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Static-Condition-ConvoySpawner-SpawnConvoy</SubtypeId>
-			</Id>
-			<Description>
-			[RivalAI Condition]
-			[UseConditions:true]
-			[MatchAnyCondition:true]
-			[CheckTrueSandboxBooleans:true]
-			[TrueSandboxBooleans:ConvoyInactive]
 			</Description>
 		</EntityComponent>
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
@@ -80,7 +40,6 @@
 			[RivalAI Action]
 			[SpawnEncounter:true]
 			[Spawner:GVK-Static-Spawner-ConvoySpawner-SpawnConvoy]
-			[SetSandboxBooleansFalse:ConvoyInactive]
 			</Description>
 		</EntityComponent>
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">

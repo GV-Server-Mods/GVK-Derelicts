@@ -27,6 +27,7 @@
 			[EscortOffsets:{X:-300 Y:0 Z:300}]
 			[EscortOffsets:{X:400 Y:0 Z:0}]
 			[EscortOffsets:{X:-400 Y:0 Z:0}]
+			[Triggers:GVK-Convoy-Lead-Trigger-BeaconDisabled]
 			[Triggers:GVK-Convoy-Trigger-Lead-GaalsienCarrier-Session]
 			[Triggers:GVK-Convoy-Trigger-Lead-GaalsienCarrier-SpawnDefenses]
 			[Triggers:GVK-Drone-All-Trigger-FireMissilesTimers]
@@ -96,7 +97,6 @@
 			</Id>
 			<Description>
 			[RivalAI Action]
-			[SetSandboxBooleansFalse:ConvoyInactive]
 			[UseChatBroadcast:true]
 			[ChatData:GVK-Convoy-Chat-Lead-GaalsienCarrier-Session]
 			[GridEditable:No]
@@ -256,7 +256,6 @@
 			[ExplosionIgnoresVoxels:true]
 			[UseChatBroadcast:true]
 			[ChatData:GVK-Convoy-Chat-Lead-GaalsienCarrier-Despawn]
-			[SetSandboxBooleansTrue:ConvoyInactive]
 			[GridEditable:Yes]
 			[SubGridsEditable:Yes]
 			</Description>
@@ -306,21 +305,17 @@
 			[RivalAI Action]
 			[ChangeInertiaDampeners:true]
 			[InertiaDampenersEnable:false]
-			[EnableBlocks:true]
-			[EnableBlockNames:HoverEngine]
-			[EnableBlockStates:Off]
-			[EnableBlockNames:Thruster]
+			[StopAllRotation:true]
+			[StopAllThrust:true]
 			[EnableBlockStates:Off]
 			[EnableBlockNames:Magnetic Plate]
 			[EnableBlockStates:On]
-			[UseChatBroadcast:true]
 			[GenerateExplosion:true]
 			[ExplosionRange:25]
 			[ExplosionDamage:1]
 			[ExplosionIgnoresVoxels:true]
 			[UseChatBroadcast:true]
 			[ChatData:GVK-Convoy-Chat-Lead-GaalsienCarrier-Compromised]
-			[SetSandboxBooleansTrue:ConvoyInactive]
 			[GridEditable:Yes]
 			[SubGridsEditable:Yes]
 			</Description>
@@ -405,7 +400,6 @@
 			[CommandProfileIds:GVK-Convoy-Command-Lead-GaalsienCarrier-SendScatterCommand]
 			[UseChatBroadcast:true]
 			[ChatData:GVK-Convoy-Chat-Lead-GaalsienCarrier-SendScatterCommand]
-			[SetSandboxBooleansTrue:ConvoyInactive]
 			</Description>
 		</EntityComponent>
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
@@ -512,6 +506,35 @@
 			[ChatAudio:GreetingSoundId-A]
 			[BroadcastChatType:Chat]
 			[SendToAllOnlinePlayers:true]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Convoy-Lead-Trigger-BeaconDisabled</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Trigger]
+			[Type:Timer]
+			[UseTrigger:true]
+			[StartsReady:true]
+			[Conditions:GVK-Drone-All-Condition-BeaconDisabled]
+			[MaxActions:1]
+			[ActionExecution:All]
+			[Actions:GVK-Convoy-Action-Lead-GaalsienCarrier-Compromised]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Convoy-Lead-Condition-BeaconDisabled</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Condition]
+			[UseConditions:true]
+			[MatchAnyCondition:false]
+			[UseRequiredFunctionalBlocks:true]
+			[RequiredNoneFunctionalBlockNames:Carrier]
 			</Description>
 		</EntityComponent>
 	</EntityComponents>

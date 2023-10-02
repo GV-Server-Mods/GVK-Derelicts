@@ -25,9 +25,9 @@
 			[Triggers:GVK-PlanetaryInstallation-Medium-Trigger-CoalitionWreckCompromised]
 			[Triggers:GVK-PlanetaryInstallation-Medium-Trigger-CoalitionWreckHasTarget]
 			[Triggers:GVK-PlanetaryInstallation-Medium-Trigger-CoalitionWreckOnSuccess]
-			[Triggers:GVK-PlanetaryInstallation-Medium-Trigger-DefensesPlayerNear]
-			[Triggers:GVK-PlanetaryInstallation-Medium-Trigger-DefensesDamage]
-			[Triggers:GVK-PlanetaryInstallation-Medium-Trigger-DefensesManual]
+			[Triggers:GVK-PlanetaryInstallation-Medium-Trigger-CoalitionWreckDefensesPlayerNear]
+			[Triggers:GVK-PlanetaryInstallation-Medium-Trigger-CoalitionWreckCoalitionWreckDefensesDamage]
+			[Triggers:GVK-PlanetaryInstallation-Medium-Trigger-CoalitionWreckSpawnsManual]
 			</Description>
 		</EntityComponent>
 		<!-- Trigger sequence when Wreck Spawns -->
@@ -97,7 +97,7 @@
 			[ActionExecution:All]
 			[Actions:GVK-PlanetaryInstallation-Medium-Action-CoalitionWreckCompromised]
 			[Actions:GVK-PlanetaryInstallation-All-Action-CompromisedGeneric]
-			[Actions:GVK-PlanetaryInstallation-Medium-Action-DefensesTrigger]
+			[Actions:GVK-PlanetaryInstallation-Medium-Action-CoalitionWreckCoalitionWreck]
 			[Actions:GVK-Universal-Action-EditableOnCompromised]
 			</Description>
 		</EntityComponent>
@@ -149,7 +149,7 @@
 			[ActionExecution:All]
 			[Actions:GVK-PlanetaryInstallation-Medium-Action-CoalitionWreckCompromised]
 			[Actions:GVK-PlanetaryInstallation-All-Action-CompromisedGeneric]
-			[Actions:GVK-PlanetaryInstallation-Medium-Action-DefensesTrigger]
+			[Actions:GVK-PlanetaryInstallation-Medium-Action-CoalitionWreckCoalitionWreck]
 			[Actions:GVK-Universal-Action-EditableOnCompromised]
 			</Description>
 		</EntityComponent>
@@ -329,6 +329,162 @@
 			[MinAltitude:400]
 			[MaxAltitude:500]
 			[InheritNpcAltitude:true]
+			[IgnoreSafetyChecks:true]
+			</Description>
+		</EntityComponent>
+		<!-- Trigger Sequence for Medium Defenses -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-PlanetaryInstallation-Medium-Trigger-CoalitionWreckDefensesPlayerNear</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Trigger]
+			[UseTrigger:true]
+			[Type:PlayerNear]
+			[TargetDistance:750]
+			[StartsReady:true]
+			[MinCooldownMs:15000]
+			[MaxCooldownMs:15001]
+			[MaxActions:3]
+			[ActionExecution:All]
+			[Actions:GVK-PlanetaryInstallation-Medium-Action-CoalitionWreckCoalitionWreck]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-PlanetaryInstallation-Medium-Trigger-CoalitionWreckCoalitionWreckDefensesDamage</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Trigger]
+			[UseTrigger:true]
+			[Type:Damage]
+			[DamageTypes:Any]
+			[StartsReady:true]
+			[MinCooldownMs:15000]
+			[MaxCooldownMs:15001]
+			[MaxActions:3]
+			[ActionExecution:All]
+			[Actions:GVK-PlanetaryInstallation-Medium-Action-CoalitionWreckCoalitionWreck]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-PlanetaryInstallation-Medium-Action-CoalitionWreckCoalitionWreck</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Action]
+			[Chance:100]
+			[ManuallyActivateTrigger:true]
+			[ManuallyActivatedTriggerNames:GVK-PlanetaryInstallation-Medium-Trigger-CoalitionWreckSpawnsManual]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-PlanetaryInstallation-Medium-Trigger-CoalitionWreckSpawnsManual</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Trigger]
+			[UseTrigger:true]
+			[Type:Manual]
+			[StartsReady:true]
+			[MaxActions:3]
+			[ActionExecution:All]
+			[Actions:GVK-PlanetaryInstallation-Medium-Action-CoalitionWreckEnemiesManual]
+			[Actions:GVK-PlanetaryInstallation-Medium-Action-CoalitionWreckFriendlyManual]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-PlanetaryInstallation-Medium-Action-CoalitionWreckEnemiesManual</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Action]
+			[Chance:100]
+			[SpawnEncounter:true]
+			[Spawner:GVK-PlanetaryInstallation-Medium-Spawner-CoalitionWreckDefenseDroneSmall]
+			[Spawner:GVK-PlanetaryInstallation-Medium-Spawner-CoalitionWreckDefenseDroneMedium]
+			[UseChatBroadcast:true]
+			[ChatData:GVK-PlanetaryInstallation-All-Chat-Defenses]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-PlanetaryInstallation-Medium-Spawner-CoalitionWreckDefenseDroneSmall</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Spawn]
+			[UseSpawn:true]
+			[SpawningType:CustomSpawn]
+			[StartsReady:true]
+			[ProcessAsAdminSpawn:false]
+			[MaxSpawns:3]
+			[SpawnGroups:GVK-Drone-Defense-SpawnGroup-GAALSIEN-SmallFlyerSingle]
+			[SpawnGroups:GVK-Drone-Defense-SpawnGroup-GAALSIEN-SmallHoverSingle]
+			[MinDistance:500]
+			[MaxDistance:1000]
+			[MinAltitude:50]
+			[MaxAltitude:51]
+			[InheritNpcAltitude:true]
+			[IgnoreSafetyChecks:true]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-PlanetaryInstallation-Medium-Spawner-CoalitionWreckDefenseDroneMedium</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Spawn]
+			[UseSpawn:true]
+			[SpawningType:CustomSpawn]
+			[StartsReady:true]
+			[ProcessAsAdminSpawn:false]
+			[MaxSpawns:2]
+			[SpawnGroups:GVK-Drone-Defense-SpawnGroup-GAALSIEN-MediumHoverLight]
+			[MinDistance:500]
+			[MaxDistance:1000]
+			[MinAltitude:50]
+			[MaxAltitude:51]
+			[InheritNpcAltitude:true]
+			[IgnoreSafetyChecks:true]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-PlanetaryInstallation-Medium-Action-CoalitionWreckFriendlyManual</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Action]
+			[Chance:25]
+			[SpawnEncounter:true]
+			[Spawner:GVK-PlanetaryInstallation-Medium-Spawner-CoalitionWreckFriendlyDroneMedium]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-PlanetaryInstallation-Medium-Spawner-CoalitionWreckFriendlyDroneMedium</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Spawn]
+			[UseSpawn:true]
+			[SpawningType:CustomSpawn]
+			[StartsReady:true]
+			[ProcessAsAdminSpawn:false]
+			[MaxSpawns:1]
+			[SpawnGroups:GVK-Drone-Defense-SpawnGroup-COALITION-LargeRover]
+			[MinDistance:500]
+			[MaxDistance:1000]
+			[MinAltitude:50]
+			[MaxAltitude:51]
+			[InheritNpcAltitude:false]
 			[IgnoreSafetyChecks:true]
 			</Description>
 		</EntityComponent>
