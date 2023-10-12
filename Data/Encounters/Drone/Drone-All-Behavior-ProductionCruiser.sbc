@@ -1,0 +1,107 @@
+<?xml version="1.0"?>
+<Definitions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+	<EntityComponents>
+		<!-- Production Cruiser Horsefly Behavior -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Drone-All-Behavior-ProductionCruiserHorsefly</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Behavior]
+			[BehaviorName:Horsefly]
+			[UseAmmoReplenish:true]
+			[AmmoReplenishClipAmount:10]
+			[MaxAmmoReplenishments:99999999]
+			[UsePlayerDistanceTimer:true]
+			[PlayerDistanceTimerTrigger:1800]
+			[PlayerDistanceTrigger:5000]
+			[UseNoTargetTimer:false]
+			[UseRetreatTimer:false]
+			[AutopilotData:GVK-Drone-All-Autopilot-HoverCruiserHorsefly]
+			[TargetData:GVK-Universal-Target-EnemyPlayerAndGrid]
+			[Triggers:GVK-Drone-All-Trigger-WeaponsToMaxRange]
+			[Triggers:GVK-Drone-All-Trigger-ProductionCruiserSpawnFighters]
+			[Triggers:GVK-Universal-Trigger-SPRTTargetAcquiredChatter]
+			[Triggers:GVK-Drone-All-Trigger-CruiserCrashed]
+			[Triggers:GVK-Drone-All-Trigger-CruiserCompromised]
+			[Triggers:GVK-Universal-Trigger-SPRTNoWeapon]
+			[Triggers:GVK-Universal-Trigger-JetpackInhibitor]
+			[Triggers:GVK-Drone-All-Trigger-Crashed]
+			[Triggers:GVK-Drone-Encounter-Trigger-RetreatNoTarget]
+			[Triggers:GVK-Drone-Encounter-Trigger-RetreatTimer]
+			</Description>
+		</EntityComponent>
+		<!-- Trigger sequence for ProductionCruiser to spawn fighters -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Drone-All-Trigger-ProductionCruiserSpawnFighters</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Trigger]
+			[Type:PlayerNear]
+			[UseTrigger:true]
+			[TargetDistance:2000]
+			[StartsReady:true]
+			[MaxActions:3]
+			[MinCooldownMs:120000]
+			[MaxCooldownMs:180000]
+			[Actions:GVK-Drone-All-Action-ProductionCruiserSpawnFighters]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Drone-All-Action-ProductionCruiserSpawnFighters</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Action]
+			[Chance:100]
+			[SpawnEncounter:true]
+			[Spawner:GVK-Drone-All-Spawner-ProductionCruiserSpawnFighters]
+			[UseChatBroadcast:true]
+			[ChatData:GVK-Drone-All-Chat-ProductionCruiserSpawnFighters]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Drone-All-Spawner-ProductionCruiserSpawnFighters</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Spawn]
+			[UseSpawn:true]
+			[SpawningType:CustomSpawn]
+			[StartsReady:true]
+			[MinDistance:500]
+			[MaxDistance:1000]
+			[MinAltitude:100]
+			[MaxAltitude:400]
+			[InheritNpcAltitude:true]
+			[SpawnGroups:GVK-Drone-Defense-SpawnGroup-GAALSIEN-SmallFlyerSquad]
+			[ProcessAsAdminSpawn:false]
+			[IgnoreSafetyChecks:true]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Drone-All-Chat-ProductionCruiserSpawnFighters</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Chat]
+			[UseChat:true]
+			[StartsReady:true]
+			[Chance:100]
+			[BroadcastRandomly:false]
+			[Author:Production Cruiser]
+			[Color:Red]
+			[ChatMessages:Fighters Inbound.]
+			[ChatAudio:GreetingSoundId-A]
+			[BroadcastChatType:Chat]
+			[SendToAllOnlinePlayers:true]
+			</Description>
+		</EntityComponent>
+	</EntityComponents>
+</Definitions>

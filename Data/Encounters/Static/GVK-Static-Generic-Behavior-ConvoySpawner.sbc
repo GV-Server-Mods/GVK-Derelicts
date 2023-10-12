@@ -1,0 +1,65 @@
+<?xml version="1.0"?>
+<Definitions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+	<EntityComponents>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Static-Behavior-ConvoySpawner</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Behavior]
+			[BehaviorName:Passive]
+			[UseRetreatTimer:false]
+			[UseNoTargetTimer:false]
+			[UsePlayerDistanceTimer:false]
+			[Triggers:GVK-Static-Trigger-ConvoySpawner-SpawnConvoy]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Static-Trigger-ConvoySpawner-SpawnConvoy</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Trigger]
+			[Type:Timer]
+			[MinCooldownMs:30000000]
+			[MaxCooldownMs:60000000]
+			[UseTrigger:true]
+			[StartsReady:true]
+			[ConditionCheckResetsTimer:true]
+			[Actions:GVK-Static-Action-ConvoySpawner-SpawnConvoy]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Static-Action-ConvoySpawner-SpawnConvoy</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Action]
+			[SpawnEncounter:true]
+			[Spawner:GVK-Static-Spawner-ConvoySpawner-SpawnConvoy]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Static-Spawner-ConvoySpawner-SpawnConvoy</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Spawn]
+			[UseSpawn:true]
+			[SpawningType:CustomSpawn]
+			[StartsReady:true]
+			[SpawnGroups:GVK-Convoy-Lead-SpawnGroup-GaalsienCarrier]
+			[MinDistance:1000]
+			[MaxDistance:2000]
+			[MinAltitude:40]
+			[MaxAltitude:50]
+			[InheritNpcAltitude:false]
+			[IgnoreSafetyChecks:true]
+			</Description>
+		</EntityComponent>
+	</EntityComponents>
+</Definitions>

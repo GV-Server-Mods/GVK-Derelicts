@@ -1,0 +1,492 @@
+<?xml version="1.0"?>
+<Definitions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+	<EntityComponents>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-PlanetaryInstallation-Medium-Behavior-CoalitionWreck</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Behavior]
+			[BehaviorName:Passive]
+			[UseAmmoReplenish:true]
+			[AmmoReplenishClipAmount:10]
+			[MaxAmmoReplenishments:99999999]
+			[UsePlayerDistanceTimer:false]
+			[UseRetreatTimer:false]
+			[UseNoTargetTimer:false]
+			[TargetData:GVK-Universal-Target-EnemyGaalsienBeacon]
+			[Triggers:GVK-Universal-Trigger-UneditableOnSpawn]
+			[Triggers:GVK-Drone-All-Trigger-WeaponsToMaxRange]
+			[Triggers:GVK-PlanetaryInstallation-Medium-Trigger-CoalitionWreckOnSpawn]
+			[Triggers:GVK-PlanetaryInstallation-Medium-Trigger-CoalitionWreckBeaconDisabled]
+			[Triggers:GVK-PlanetaryInstallation-Medium-Trigger-CoalitionWreckDespawn]
+			[Triggers:GVK-PlanetaryInstallation-Medium-Trigger-CoalitionWreckDespawnMES]
+			[Triggers:GVK-PlanetaryInstallation-Medium-Trigger-CoalitionWreckCompromised]
+			[Triggers:GVK-PlanetaryInstallation-Medium-Trigger-CoalitionWreckHasTarget]
+			[Triggers:GVK-PlanetaryInstallation-Medium-Trigger-CoalitionWreckOnSuccess]
+			[Triggers:GVK-PlanetaryInstallation-Medium-Trigger-CoalitionWreckDefensesPlayerNear]
+			[Triggers:GVK-PlanetaryInstallation-Medium-Trigger-CoalitionWreckCoalitionWreckDefensesDamage]
+			[Triggers:GVK-PlanetaryInstallation-Medium-Trigger-CoalitionWreckSpawnsManual]
+			</Description>
+		</EntityComponent>
+		<!-- Trigger sequence when Wreck Spawns -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-PlanetaryInstallation-Medium-Trigger-CoalitionWreckOnSpawn</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Trigger]
+			[Type:Session]
+			[UseTrigger:true]
+			[StartsReady:true]
+			[MaxActions:1]
+			[Actions:GVK-PlanetaryInstallation-Medium-Action-CoalitionWreckOnSpawn]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-PlanetaryInstallation-Medium-Action-CoalitionWreckOnSpawn</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Action]
+			[Chance:100]
+			[SetWeaponsToMaxRange:true]
+			[UseChatBroadcast:true]
+			[ChatData:GVK-PlanetaryInstallation-Medium-Chat-CoalitionWreckOnSpawn]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-PlanetaryInstallation-Medium-Chat-CoalitionWreckOnSpawn</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Chat]
+			[UseChat:true]
+			[StartsReady:true]
+			[Chance:100]
+			[MaxChats:1]
+			[BroadcastRandomly:false]
+			[Author:COALITION]
+			[Color:White]
+			[ChatMessages:Coalition Forces are under attack near {GPS}]
+			[GPSLabel:Distress Signal]
+			[ChatAudio:ArcHudGPSNotification2]
+			[BroadcastChatType:Chat]
+			[SendToAllOnlinePlayers:true]
+		  </Description>
+		</EntityComponent>
+		<!-- Trigger sequences for Wreck to die -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-PlanetaryInstallation-Medium-Trigger-CoalitionWreckBeaconDisabled</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Trigger]
+			[Type:Timer]
+			[UseTrigger:true]
+			[MinCooldownMs:10000]
+			[MaxCooldownMs:10000]
+			[StartsReady:false]
+			[Conditions:GVK-PlanetaryInstallation-All-Condition-BeaconDisabled]				  
+			[MaxActions:1]
+			[ActionExecution:All]
+			[Actions:GVK-PlanetaryInstallation-Medium-Action-CoalitionWreckCompromised]
+			[Actions:GVK-PlanetaryInstallation-All-Action-CompromisedGeneric]
+			[Actions:GVK-PlanetaryInstallation-Medium-Action-CoalitionWreckCoalitionWreck]
+			[Actions:GVK-Universal-Action-EditableOnCompromised]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-PlanetaryInstallation-Medium-Trigger-CoalitionWreckCompromised</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Trigger]
+			[Type:Compromised]
+			[UseTrigger:true]
+			[StartsReady:true]
+			[MaxActions:1]
+			[ActionExecution:All]
+			[Actions:GVK-PlanetaryInstallation-Medium-Action-CoalitionWreckCompromised]
+			[Actions:GVK-PlanetaryInstallation-All-Action-CompromisedGeneric]
+			[Actions:GVK-Universal-Action-EditableOnCompromised]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-PlanetaryInstallation-Medium-Trigger-CoalitionWreckDespawn</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Trigger]
+			[Type:Despawn]
+			[UseTrigger:true]
+			[StartsReady:true]
+			[MaxActions:1]
+			[ActionExecution:All]
+			[Actions:GVK-PlanetaryInstallation-Medium-Action-CoalitionWreckCompromised]
+			[Actions:GVK-PlanetaryInstallation-All-Action-CompromisedGeneric]
+			[Actions:GVK-Universal-Action-EditableOnCompromised]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-PlanetaryInstallation-Medium-Trigger-CoalitionWreckDespawnMES</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Trigger]
+			[Type:DespawnMES]
+			[UseTrigger:true]
+			[StartsReady:true]
+			[MaxActions:1]
+			[ActionExecution:All]
+			[Actions:GVK-PlanetaryInstallation-Medium-Action-CoalitionWreckCompromised]
+			[Actions:GVK-PlanetaryInstallation-All-Action-CompromisedGeneric]
+			[Actions:GVK-PlanetaryInstallation-Medium-Action-CoalitionWreckCoalitionWreck]
+			[Actions:GVK-Universal-Action-EditableOnCompromised]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-PlanetaryInstallation-Medium-Action-CoalitionWreckCompromised</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Action]
+			[RemoveKnownPlayerArea:true]
+			[DisableTriggers:true]
+			[DisableTriggerNames:GVK-PlanetaryInstallation-Medium-Trigger-CoalitionWreckBeaconDisabled]
+			[DisableTriggerNames:GVK-PlanetaryInstallation-Medium-Trigger-CoalitionWreckDespawn]
+			[DisableTriggerNames:GVK-PlanetaryInstallation-Medium-Trigger-CoalitionWreckDespawnMES]
+			[DisableTriggerNames:GVK-PlanetaryInstallation-Medium-Trigger-CoalitionWreckCompromised]
+			[UseChatBroadcast:true]
+			[ChatData:GVK-PlanetaryInstallation-Medium-Chat-CoalitionWreckCompromised]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-PlanetaryInstallation-Medium-Chat-CoalitionWreckCompromised</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Chat]
+			[UseChat:true]
+			[StartsReady:true]
+			[Chance:100]
+			[MaxChats:1]
+			[BroadcastRandomly:false]
+			[Author:Coalition]
+			[Color:White]
+			[ChatMessages:The Gaalsien Forces has been Lost!]
+			[ChatAudio:GreetingSoundId-A]
+			[BroadcastChatType:Chat]
+			[SendToAllOnlinePlayers:true]
+			</Description>
+		</EntityComponent>
+		<!-- Trigger sequence while GAALSIEN beacons in target range -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-PlanetaryInstallation-Medium-Trigger-CoalitionWreckHasTarget</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Trigger]
+			[Type:HasTarget]
+			[UseTrigger:true]
+			[StartsReady:false]
+			[ActionExecution:All]
+			[MinCooldownMs:60000]
+			[MaxCooldownMs:120000]
+			[Actions:GVK-PlanetaryInstallation-Medium-Action-CoalitionWreckHasTarget]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-PlanetaryInstallation-Medium-Action-CoalitionWreckHasTarget</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Action]
+			[Chance:100]
+			[UseChatBroadcast:true]
+			[ChatData:GVK-PlanetaryInstallation-Medium-Chat-CoalitionWreckHasTarget]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-PlanetaryInstallation-Medium-Chat-CoalitionWreckHasTarget</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Chat]
+			[UseChat:true]
+			[StartsReady:true]
+			[Chance:100]
+			[BroadcastRandomly:false]
+			[IgnoreAntennaRequirement:true]
+			[IgnoredAntennaRangeOverride:5000]
+			[Author:COALITION]
+			[Color:White]
+			[ChatMessages:Enemy Gaalsien targets still in range.]
+			[ChatAudio:ArcHudGPSNotification2]
+			[BroadcastChatType:Both]
+		  </Description>
+		</EntityComponent>
+		<!-- Trigger sequence when Enemy Spawns are defeated -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-PlanetaryInstallation-Medium-Trigger-CoalitionWreckOnSuccess</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Trigger]
+			[Type:LostTarget]
+			[UseTrigger:true]
+			[StartsReady:false]
+			[MaxActions:1]
+			[ActionExecution:All]
+			[MinCooldownMs:120000]
+			[MaxCooldownMs:120001]
+			[Actions:GVK-PlanetaryInstallation-Medium-Action-CoalitionWreckOnSuccess]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-PlanetaryInstallation-Medium-Action-CoalitionWreckOnSuccess</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Action]
+			[Chance:100]
+			[DisableTriggers:true]
+			[DisableTriggerNames:GVK-PlanetaryInstallation-Medium-Trigger-CoalitionWreckHasTarget]
+			[DisableTriggerNames:GVK-PlanetaryInstallation-Medium-Trigger-CoalitionWreckBeaconDisabled]
+			[DisableTriggerNames:GVK-PlanetaryInstallation-Medium-Trigger-CoalitionWreckDespawn]
+			[DisableTriggerNames:GVK-PlanetaryInstallation-Medium-Trigger-CoalitionWreckDespawnMES]
+			[DisableTriggerNames:GVK-PlanetaryInstallation-Medium-Trigger-CoalitionWreckCompromised]
+			[UseChatBroadcast:true]
+			[ChatData:GVK-PlanetaryInstallation-Medium-Chat-CoalitionWreckOnSuccess]
+			[SpawnEncounter:true]
+			[Spawner:GVK-PlanetaryInstallation-Medium-Spawner-CoalitionWreckOnSuccess]
+			[ToggleBlocksOfType:true]
+			[BlockTypesToToggle:MyObjectBuilder_Beacon/DisposableNpcBeaconSmall]
+			[BlockTypeToggles:Off]
+			[BlockTypesToToggle:MyObjectBuilder_Beacon/DisposableNpcBeaconLarge]
+			[BlockTypeToggles:Off]
+			[BlockTypesToToggle:MyObjectBuilder_Beacon/SmallBlockBeacon]
+			[BlockTypeToggles:Off]
+			[BlockTypesToToggle:MyObjectBuilder_Beacon/LargeBlockBeacon]
+			[BlockTypeToggles:Off]
+			[BlockTypesToToggle:MyObjectBuilder_Beacon/RivalAIRemoteControlLarge]
+			[BlockTypeToggles:Off]
+			[BlockTypesToToggle:MyObjectBuilder_Beacon/RivalAIRemoteControlSmall]
+			[BlockTypeToggles:Off]
+			[TerminateBehavior:true]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-PlanetaryInstallation-Medium-Chat-CoalitionWreckOnSuccess</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Chat]
+			[UseChat:true]
+			[StartsReady:true]
+			[Chance:100]
+			[MaxChats:1]
+			[BroadcastRandomly:false]
+			[Author:COALITION]
+			[Color:White]
+			[ChatMessages:Coalition Forces have been saved!]
+			[ChatAudio:ArcHudGPSNotification2]
+			[BroadcastChatType:Both]
+			[SendToAllOnlinePlayers:true]
+		  </Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-PlanetaryInstallation-Medium-Spawner-CoalitionWreckOnSuccess</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Spawn]
+			[UseSpawn:true]
+			[SpawningType:CustomSpawn]
+			[StartsReady:true]
+			[ProcessAsAdminSpawn:false]
+			[MaxSpawns:1]
+			[SpawnGroups:GVK-Other-Loot-SpawnGroup-COALITION-CargoDrop]
+			[MinDistance:500]
+			[MaxDistance:1000]
+			[MinAltitude:400]
+			[MaxAltitude:500]
+			[InheritNpcAltitude:true]
+			[IgnoreSafetyChecks:true]
+			</Description>
+		</EntityComponent>
+		<!-- Trigger Sequence for Medium Defenses -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-PlanetaryInstallation-Medium-Trigger-CoalitionWreckDefensesPlayerNear</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Trigger]
+			[UseTrigger:true]
+			[Type:PlayerNear]
+			[TargetDistance:750]
+			[StartsReady:true]
+			[MinCooldownMs:15000]
+			[MaxCooldownMs:15001]
+			[MaxActions:3]
+			[ActionExecution:All]
+			[Actions:GVK-PlanetaryInstallation-Medium-Action-CoalitionWreckCoalitionWreck]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-PlanetaryInstallation-Medium-Trigger-CoalitionWreckCoalitionWreckDefensesDamage</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Trigger]
+			[UseTrigger:true]
+			[Type:Damage]
+			[DamageTypes:Any]
+			[StartsReady:true]
+			[MinCooldownMs:15000]
+			[MaxCooldownMs:15001]
+			[MaxActions:3]
+			[ActionExecution:All]
+			[Actions:GVK-PlanetaryInstallation-Medium-Action-CoalitionWreckCoalitionWreck]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-PlanetaryInstallation-Medium-Action-CoalitionWreckCoalitionWreck</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Action]
+			[Chance:100]
+			[ManuallyActivateTrigger:true]
+			[ManuallyActivatedTriggerNames:GVK-PlanetaryInstallation-Medium-Trigger-CoalitionWreckSpawnsManual]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-PlanetaryInstallation-Medium-Trigger-CoalitionWreckSpawnsManual</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Trigger]
+			[UseTrigger:true]
+			[Type:Manual]
+			[StartsReady:true]
+			[MaxActions:3]
+			[ActionExecution:All]
+			[Actions:GVK-PlanetaryInstallation-Medium-Action-CoalitionWreckEnemiesManual]
+			[Actions:GVK-PlanetaryInstallation-Medium-Action-CoalitionWreckFriendlyManual]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-PlanetaryInstallation-Medium-Action-CoalitionWreckEnemiesManual</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Action]
+			[Chance:100]
+			[SpawnEncounter:true]
+			[Spawner:GVK-PlanetaryInstallation-Medium-Spawner-CoalitionWreckDefenseDroneSmall]
+			[Spawner:GVK-PlanetaryInstallation-Medium-Spawner-CoalitionWreckDefenseDroneMedium]
+			[UseChatBroadcast:true]
+			[ChatData:GVK-PlanetaryInstallation-All-Chat-Defenses]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-PlanetaryInstallation-Medium-Spawner-CoalitionWreckDefenseDroneSmall</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Spawn]
+			[UseSpawn:true]
+			[SpawningType:CustomSpawn]
+			[StartsReady:true]
+			[ProcessAsAdminSpawn:false]
+			[MaxSpawns:3]
+			[SpawnGroups:GVK-Drone-Defense-SpawnGroup-GAALSIEN-SmallFlyerSingle]
+			[SpawnGroups:GVK-Drone-Defense-SpawnGroup-GAALSIEN-SmallHoverSingle]
+			[MinDistance:500]
+			[MaxDistance:1000]
+			[MinAltitude:50]
+			[MaxAltitude:51]
+			[InheritNpcAltitude:true]
+			[IgnoreSafetyChecks:true]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-PlanetaryInstallation-Medium-Spawner-CoalitionWreckDefenseDroneMedium</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Spawn]
+			[UseSpawn:true]
+			[SpawningType:CustomSpawn]
+			[StartsReady:true]
+			[ProcessAsAdminSpawn:false]
+			[MaxSpawns:2]
+			[SpawnGroups:GVK-Drone-Defense-SpawnGroup-GAALSIEN-MediumHoverLight]
+			[MinDistance:500]
+			[MaxDistance:1000]
+			[MinAltitude:50]
+			[MaxAltitude:51]
+			[InheritNpcAltitude:true]
+			[IgnoreSafetyChecks:true]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-PlanetaryInstallation-Medium-Action-CoalitionWreckFriendlyManual</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Action]
+			[Chance:25]
+			[SpawnEncounter:true]
+			[Spawner:GVK-PlanetaryInstallation-Medium-Spawner-CoalitionWreckFriendlyDroneMedium]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-PlanetaryInstallation-Medium-Spawner-CoalitionWreckFriendlyDroneMedium</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Spawn]
+			[UseSpawn:true]
+			[SpawningType:CustomSpawn]
+			[StartsReady:true]
+			[ProcessAsAdminSpawn:false]
+			[MaxSpawns:1]
+			[SpawnGroups:GVK-Drone-Defense-SpawnGroup-COALITION-LargeRover]
+			[MinDistance:500]
+			[MaxDistance:1000]
+			[MinAltitude:50]
+			[MaxAltitude:51]
+			[InheritNpcAltitude:false]
+			[IgnoreSafetyChecks:true]
+			</Description>
+		</EntityComponent>
+	</EntityComponents>
+</Definitions>

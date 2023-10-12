@@ -1,0 +1,103 @@
+<?xml version="1.0"?>
+<Definitions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+	<EntityComponents>
+		<!-- Behavior for Trade Stations -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Static-TradeStation-Behavior</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Behavior]
+			[BehaviorName:Passive]
+			[UseRetreatTimer:false]
+			[UseNoTargetTimer:false]
+			[UsePlayerDistanceTimer:false]
+			[Triggers:GVK-Static-TradeStation-Trigger-SendWaypoint]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Static-KOTHTown-Behavior</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Behavior]
+			[BehaviorName:Passive]
+			[UseRetreatTimer:false]
+			[UseNoTargetTimer:false]
+			[UsePlayerDistanceTimer:false]
+			[Triggers:GVK-Static-TradeStation-Trigger-SendWaypoint]
+			[Triggers:GVK-Universal-Trigger-JetpackInhibitor]
+			</Description>
+		</EntityComponent>
+		<!-- Trigger sequence for Trade Station to send relative waypoint to listening Cargo Ship -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Static-TradeStation-Trigger-SendWaypoint</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Trigger]
+			[Type:CommandReceived] 
+			[UseTrigger:true]
+			[StartsReady:true]
+			[MinCooldownMs:10000]
+			[MaxCooldownMs:10000]
+			[MaxActions:-1]
+			[CommandReceiveCode:CargoShip_RequestWaypoint]
+			[Actions:GVK-Static-TradeStation-Action-SendWaypoint]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Static-TradeStation-Action-SendWaypoint</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Action]
+			[BroadcastCommandProfiles:true]
+			[CommandProfileIds:GVK-Static-TradeStation-Command-SendWaypoint]
+			[UseChatBroadcast:false]
+			[ChatData:GVK-Static-TradeStation-Chat-SendWaypoint]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Static-TradeStation-Command-SendWaypoint</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Command]
+			[CommandCode:CargoShip_ReceiveWaypoint]
+			[SingleRecipient:false]
+			[MatchSenderReceiverOwners:false]
+			[IgnoreAntennaRequirement:true]
+			[IgnoreReceiverAntennaRequirement:true]
+			[Radius:75000]
+			[SendWaypoint:true]
+			[Waypoint:GVK-Static-TradeStation-Waypoint-RelativeRandom]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Static-TradeStation-Chat-SendWaypoint</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Chat]
+			[UseChat:true]
+			[StartsReady:true]
+			[Chance:100]
+			[MaxChats:-1]
+			[BroadcastRandomly:false]
+			[Author:Trade Station]
+			[Color:White]
+			[ChatMessages:Sending Waypoint {GridName}]
+			[ChatAudio:GreetingSoundId-A]
+			[BroadcastChatType:Chat]
+			[SendToAllOnlinePlayers:true]
+			</Description>
+		</EntityComponent>
+	</EntityComponents>
+</Definitions>
