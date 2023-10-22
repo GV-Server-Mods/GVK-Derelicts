@@ -32,6 +32,8 @@
 			[Triggers:GVK-Universal-Trigger-SPRTNoWeapon]
 			[Triggers:GVK-Drone-Encounter-Trigger-RetreatNoTarget]
 			[Triggers:GVK-Drone-Encounter-Trigger-RetreatTimer]
+			[Triggers:GVK-Drone-All-Trigger-CoalitionPlayerNear]
+			[Triggers:GVK-Drone-All-Trigger-CoalitionPlayerNotNear]
 			[Triggers:GVK-Drone-All-Trigger-CoalitionRoverHasTarget]
 			[Triggers:GVK-Drone-All-Trigger-CoalitionRoverNoTarget]
 			[Triggers:GVK-Drone-All-Trigger-CoalitionHorizonAngleSteep]
@@ -74,6 +76,79 @@
 			[ReverseOffsetHeight:0]
 			[AngleAllowedForForwardThrust:180]
 			[MaxVelocityAngleForSpeedControl:180]
+			</Description>
+		</EntityComponent>
+		<!-- Trigger Sequence to stop when player is near -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Drone-All-Trigger-CoalitionPlayerNear</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Trigger]
+			[UseTrigger:true]
+			[Type:PlayerNear]
+			[TargetDistance:750]
+			[MinCooldownMs:1000]
+			[MaxCooldownMs:1001]
+			[Actions:GVK-Drone-All-Action-CoalitionPlayerNear]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Drone-All-Action-CoalitionPlayerNear</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Action]
+			[ChangeBehaviorSubclass:true]
+			[NewBehaviorSubclass:Passive]
+			[EnableBlocks:true]
+			[EnableBlockNames:NPC Suspension]
+			[EnableBlockStates:Off]
+			[EnableTriggers:true]
+			[EnableTriggerNames:GVK-Drone-All-Trigger-CoalitionPlayerNotNear]
+			[DisableTriggers:true]
+			[DisableTriggerNames:GVK-Drone-All-Trigger-CoalitionRoverHasTarget]
+			[DisableTriggerNames:GVK-Drone-All-Trigger-CoalitionRoverNoTarget]
+			[DisableTriggerNames:GVK-Drone-All-Trigger-CoalitionHorizonAngleSteep]
+			[ResetCooldownTimeOfTriggers:true]
+			[ResetTriggerCooldownNames:GVK-Drone-All-Trigger-CoalitionPlayerNotNear]
+			</Description>
+		</EntityComponent>
+		<!-- Trigger Sequence to stop when player is no longer near -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Drone-All-Trigger-CoalitionPlayerNotNear</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Trigger]
+			[UseTrigger:false]
+			[Type:Timer]
+			[MinCooldownMs:10000]
+			[MaxCooldownMs:10001]
+			[Actions:GVK-Drone-All-Action-CoalitionPlayerNotNear]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Drone-All-Action-CoalitionPlayerNotNear</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Action]
+			[ChangeBehaviorSubclass:true]
+			[NewBehaviorSubclass:Horsefly]
+			[EnableBlocks:true]
+			[EnableBlockNames:NPC Suspension]
+			[EnableBlockStates:Off]
+			[EnableTriggers:true]
+			[EnableTriggerNames:GVK-Drone-All-Trigger-CoalitionRoverHasTarget]
+			[EnableTriggerNames:GVK-Drone-All-Trigger-CoalitionRoverNoTarget]
+			[EnableTriggerNames:GVK-Drone-All-Trigger-CoalitionHorizonAngleSteep]
+			[DisableTriggers:true]
+			[DisableTriggerNames:GVK-Drone-All-Trigger-CoalitionPlayerNotNear]
 			</Description>
 		</EntityComponent>
 		<!-- Trigger Sequence to turn on wheels when target near -->
