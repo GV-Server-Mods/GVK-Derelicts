@@ -143,6 +143,33 @@
 			[UseJetpackInhibitorEffect:true]
 			</Description>
 		</EntityComponent>
+		<!-- Trigger Make indestructable on spawn -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Universal-Trigger-IndestructibleOnSpawn</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Trigger]
+			[Type:Timer]
+			[UseTrigger:true]
+			[StartsReady:true]
+			[MaxActions:1]
+			[Actions:GVK-Universal-Action-IndestructibleOnSpawn]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Universal-Action-IndestructibleOnSpawn</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Action]
+			[Chance:100]
+			[GridDestructible:No]
+			[SubGridsDestructible:No]
+			</Description>
+		</EntityComponent>
 		<!-- Trigger Make non-editable on spawn -->
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>

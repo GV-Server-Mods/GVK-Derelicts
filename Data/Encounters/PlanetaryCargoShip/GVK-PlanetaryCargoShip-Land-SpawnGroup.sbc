@@ -1,0 +1,77 @@
+<?xml version="1.0"?>
+<Definitions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+	<SpawnGroups>
+		<!-- [NPC Drone] Coalition Trader -->
+		<SpawnGroup>
+			<Id>
+				<TypeId>SpawnGroupDefinition</TypeId>
+				<!--Do Not Edit-->
+				<SubtypeId>GVK-PlanetaryCargoShip-Land-Coalition-SpawnGroup-Trader</SubtypeId>
+			</Id>
+			<Description>
+			[Modular Encounters SpawnGroup]
+			[IgnoreCleanupRules:true]
+			[ReplenishSystems:true]
+			[ManipulationProfiles:MES-Manipulation-RivalAi] 
+			[SpawnConditionsProfiles:GVK-SpawnCondition-Land-CargoShip-Coalition]
+			[ManipulationProfiles:GVK-Manipulation-CargoShip]
+			</Description>
+			<IsPirate>true</IsPirate>
+			<!--Do not edit-->
+			<Frequency>0.1</Frequency>
+			<Prefabs>
+				<Prefab SubtypeId="[NPC Drone] Coalition Trader">
+					<Position>
+						<X>0.0</X>
+						<Y>0.0</Y>
+						<Z>0.0</Z>
+					</Position>
+					<Speed>50</Speed>
+					<BeaconText>Trader</BeaconText>
+					<Behaviour>GVK-CargoShip-Land-COALITION-Behavior-Trader</Behaviour>
+				</Prefab>
+			</Prefabs>
+		</SpawnGroup>
+		<!-- [NPC Drone] Coalition Cargo Cruiser -->
+		<SpawnGroup>
+			<Id>
+				<TypeId>SpawnGroupDefinition</TypeId>
+				<!--Do Not Edit-->
+				<SubtypeId>GVK-PlanetaryCargoShip-Land-Coalition-SpawnGroup-Escort</SubtypeId>
+			</Id>
+			<Description>
+			[Modular Encounters SpawnGroup]
+			[IgnoreCleanupRules:true]
+			[ReplenishSystems:true]
+			[ManipulationProfiles:MES-Manipulation-RivalAi] 
+			[SpawnConditionsProfiles:GVK-SpawnCondition-Land-CargoShip-Coalition]
+			[ManipulationProfiles:GVK-Manipulation-CargoShip]
+			</Description>
+			<IsPirate>true</IsPirate>
+			<!--Do not edit-->
+			<Frequency>0.1</Frequency>
+			<Prefabs>
+				<Prefab SubtypeId="[NPC Drone] Coalition Cargo Cruiser">
+					<Position>
+						<X>80</X>
+						<Y>0.0</Y>
+						<Z>0.0</Z>
+					</Position>
+					<Speed>50</Speed>
+					<BeaconText>Cargo Transport 1</BeaconText>
+					<Behaviour>GVK-CargoShip-Land-COALITION-Behavior-Escort</Behaviour>
+				</Prefab>
+				<Prefab SubtypeId="[NPC Drone] Coalition Cargo Cruiser">
+					<Position>
+						<X>-80</X>
+						<Y>0.0</Y>
+						<Z>0.0</Z>
+					</Position>
+					<Speed>50</Speed>
+					<BeaconText>Cargo Transport 2</BeaconText>
+					<Behaviour>GVK-CargoShip-Land-COALITION-Behavior-Escort</Behaviour>
+				</Prefab>
+			</Prefabs>
+		</SpawnGroup>
+	</SpawnGroups>
+</Definitions>

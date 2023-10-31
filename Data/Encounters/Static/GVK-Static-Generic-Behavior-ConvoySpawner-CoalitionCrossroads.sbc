@@ -1,0 +1,69 @@
+<?xml version="1.0"?>
+<Definitions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+	<EntityComponents>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Static-Behavior-ConvoySpawner-Coalition</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Behavior]
+			[BehaviorName:Passive]
+			[UseRetreatTimer:false]
+			[UseNoTargetTimer:false]
+			[UsePlayerDistanceTimer:false]
+			[Triggers:GVK-Static-Trigger-ConvoySpawner-Coalition-SpawnConvoy]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Static-Trigger-ConvoySpawner-Coalition-SpawnConvoy</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Trigger]
+			[Type:Timer]
+			[MinCooldownMs:3000]
+			[MaxCooldownMs:6000]
+			[UseTrigger:true]
+			[StartsReady:true]
+			[ConditionCheckResetsTimer:true]
+			[Actions:GVK-Static-Action-ConvoySpawner-Coalition-SpawnConvoy]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Static-Action-ConvoySpawner-Coalition-SpawnConvoy</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Action]
+			[SpawnEncounter:true]
+			[Spawner:GVK-Static-Spawner-ConvoySpawner-Coalition-SpawnConvoy]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Static-Spawner-ConvoySpawner-Coalition-SpawnConvoy</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Spawn]
+			[UseSpawn:true]
+			[SpawningType:CustomSpawn]
+			[StartsReady:true]
+			[SpawnGroups:GVK-PlanetaryCargoShip-Land-Coalition-SpawnGroup-Trader]
+			[SpawnGroups:GVK-PlanetaryCargoShip-Land-Coalition-SpawnGroup-Escort]
+			[UseRelativeSpawnPosition:true]
+			[RelativeSpawnOffset:{X:0 Y:40 Z:-180}]
+			[RelativeSpawnVelocity:{X:0 Y:0 Z:0}]
+			[MinDistance:200]
+			[MaxDistance:500]
+			[MinAltitude:40]
+			[MaxAltitude:50]
+			[InheritNpcAltitude:false]
+			[IgnoreSafetyChecks:true]
+			</Description>
+		</EntityComponent>
+	</EntityComponents>
+</Definitions>
