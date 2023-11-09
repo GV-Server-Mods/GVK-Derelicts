@@ -9,7 +9,7 @@
 			</Id>
 			<Description>
 			[RivalAI Behavior]
-			[BehaviorName:Patrol]
+			[BehaviorName:CargoShip]
 			[UseAmmoReplenish:true]
 			[AmmoReplenishClipAmount:10]
 			[MaxAmmoReplenishments:99999999]
@@ -20,14 +20,14 @@
 			[UseRetreatTimer:false]
 			[AutopilotData:GVK-Convoy-Autopilot-Lead-GaalsienCarrier]
 			[TargetData:GVK-Universal-Target-EnemyGridsLongRange]
-			[EscortOffsets:{X:300 Y:0 Z:300}]
-			[EscortOffsets:{X:-300 Y:0 Z:-300}]
-			[EscortOffsets:{X:0 Y:0 Z:400}]
-			[EscortOffsets:{X:300 Y:0 Z:-300}]
-			[EscortOffsets:{X:-300 Y:0 Z:300}]
-			[EscortOffsets:{X:400 Y:0 Z:0}]
-			[EscortOffsets:{X:-400 Y:0 Z:0}]
-			[Triggers:GVK-Convoy-Lead-Trigger-BeaconDisabled]
+			[EscortOffsets:{X:0 Y:0 Z:-450}]
+			[EscortOffsets:{X:0 Y:0 Z:300}]
+			[EscortOffsets:{X:0 Y:0 Z:-700}]
+			[EscortOffsets:{X:0 Y:0 Z:600}]
+			[EscortOffsets:{X:150 Y:0 Z:-100}]
+			[EscortOffsets:{X:-150 Y:0 Z:-100}]
+			[Triggers:GVK-Convoy-Trigger-Lead-GaalsienCarrier-AddWaypoints]
+			[Triggers:GVK-Convoy-Trigger-Lead-BeaconDisabled]
 			[Triggers:GVK-Convoy-Trigger-Lead-GaalsienCarrier-Session]
 			[Triggers:GVK-Convoy-Trigger-Lead-GaalsienCarrier-SpawnDefenses]
 			[Triggers:GVK-Drone-All-Trigger-FireMissilesTimers]
@@ -64,7 +64,7 @@
 			[IdealMinSpeed:20]
 			[IdealMaxSpeed:30]
 			[MaxSpeedTolerance:5]
-			[SlowDownOnWaypointApproach:true]
+			[SlowDownOnWaypointApproach:false]
 			[ExtraSlowDownDistance:500]
 			[WaypointWaitTimeTrigger:0]
 			[OffsetPlanetMinDistFromTarget:3000]
@@ -117,11 +117,133 @@
 			[BroadcastRandomly:false]
 			[Author:Coalition]
 			[Color:White]
-			[ChatMessages:A Gaalsien Convoy has been spotted near `{GPS}`]
+			[ChatMessages:A Gaalsien Convoy has been spotted in Zone 3.]
 			[ChatAudio:ArcHudGPSNotification2]
 			[BroadcastChatType:Chat]
 			[ChatMessages:A Gaalsien Convoy has been spotted.]
 			[BroadcastChatType:Notify]
+			[SendToAllOnlinePlayers:true]
+			</Description>
+		</EntityComponent>
+		<!-- Trigger to add waypoints after spawn -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Convoy-Trigger-Lead-GaalsienCarrier-AddWaypoints</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Trigger]
+			[Type:Timer]
+			[UseTrigger:true]
+			[StartsReady:false]
+			[MaxActions:2]
+			[MinCooldownMs:5000]
+			[MaxCooldownMs:5000]
+			[ActionExecution:All]
+			[Actions:GVK-Convoy-Action-Lead-GaalsienCarrier-AddWaypoints]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Convoy-Action-Lead-GaalsienCarrier-AddWaypoints</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Action]
+			[AddWaypoints:true]
+			[WaypointsToAdd:GVK-Convoy-StaticRandom-LandRouteC02]
+			[WaypointsToAdd:GVK-Convoy-StaticRandom-LandRouteC03]
+			[WaypointsToAdd:GVK-Convoy-StaticRandom-LandRouteC04]
+			[WaypointsToAdd:GVK-Convoy-StaticRandom-LandRouteC05]
+			[WaypointsToAdd:GVK-Convoy-StaticRandom-LandRouteC06]
+			[WaypointsToAdd:GVK-Convoy-StaticRandom-LandRouteC07]
+			[WaypointsToAdd:GVK-Convoy-StaticRandom-LandRouteC08]
+			[WaypointsToAdd:GVK-Convoy-StaticRandom-LandRouteC09]
+			[WaypointsToAdd:GVK-Convoy-StaticRandom-LandRouteC10]
+			[WaypointsToAdd:GVK-Convoy-StaticRandom-LandRouteC11]
+			[WaypointsToAdd:GVK-Convoy-StaticRandom-LandRouteC12]
+			[WaypointsToAdd:GVK-Convoy-StaticRandom-LandRouteC13]
+			[WaypointsToAdd:GVK-Convoy-StaticRandom-LandRouteC14]
+			[WaypointsToAdd:GVK-Convoy-StaticRandom-LandRouteC15]
+			[WaypointsToAdd:GVK-Convoy-StaticRandom-LandRouteC16]
+			[WaypointsToAdd:GVK-Convoy-StaticRandom-LandRouteC17]
+			[WaypointsToAdd:GVK-Convoy-StaticRandom-LandRouteC18]
+			[WaypointsToAdd:GVK-Convoy-StaticRandom-LandRouteC19]
+			[WaypointsToAdd:GVK-Convoy-StaticRandom-LandRouteC20]
+			[WaypointsToAdd:GVK-Convoy-StaticRandom-LandRouteC21]
+			[WaypointsToAdd:GVK-Convoy-StaticRandom-LandRouteC22]
+			[WaypointsToAdd:GVK-Convoy-StaticRandom-LandRouteC23]
+			[WaypointsToAdd:GVK-Convoy-StaticRandom-LandRouteC24]
+			[WaypointsToAdd:GVK-Convoy-StaticRandom-LandRouteC25]
+			[WaypointsToAdd:GVK-Convoy-StaticRandom-LandRouteC26]
+			[WaypointsToAdd:GVK-Convoy-StaticRandom-LandRouteC27]
+			[WaypointsToAdd:GVK-Convoy-StaticRandom-LandRouteC28]
+			[WaypointsToAdd:GVK-Convoy-StaticRandom-LandRouteC29]
+			[WaypointsToAdd:GVK-Convoy-StaticRandom-LandRouteC30]
+			[WaypointsToAdd:GVK-Convoy-StaticRandom-LandRouteC31]
+			[WaypointsToAdd:GVK-Convoy-StaticRandom-LandRouteC32]
+			[WaypointsToAdd:GVK-Convoy-StaticRandom-LandRouteC33]
+			[WaypointsToAdd:GVK-Convoy-StaticRandom-LandRouteC34]
+			[WaypointsToAdd:GVK-Convoy-StaticRandom-LandRouteC35]
+			[WaypointsToAdd:GVK-Convoy-StaticRandom-LandRouteC36]
+			[WaypointsToAdd:GVK-Convoy-StaticRandom-LandRouteC37]
+			[WaypointsToAdd:GVK-Convoy-StaticRandom-LandRouteC38]
+			[WaypointsToAdd:GVK-Convoy-StaticRandom-LandRouteC39]
+			[WaypointsToAdd:GVK-Convoy-StaticRandom-LandRouteC40]
+			[WaypointsToAdd:GVK-Convoy-StaticRandom-LandRouteC41]
+			[WaypointsToAdd:GVK-Convoy-StaticRandom-LandRouteC42]
+			[WaypointsToAdd:GVK-Convoy-StaticRandom-LandRouteC43]
+			[WaypointsToAdd:GVK-Convoy-StaticRandom-LandRouteC44]
+			[WaypointsToAdd:GVK-Convoy-StaticRandom-LandRouteC45]
+			[WaypointsToAdd:GVK-Convoy-StaticRandom-LandRouteC46]
+			[WaypointsToAdd:GVK-Convoy-StaticRandom-LandRouteC47]
+			[WaypointsToAdd:GVK-Convoy-StaticRandom-LandRouteC48]
+			[WaypointsToAdd:GVK-Convoy-StaticRandom-LandRouteC49]
+			[WaypointsToAdd:GVK-Convoy-StaticRandom-LandRouteC50]
+			[WaypointsToAdd:GVK-Convoy-StaticRandom-LandRouteC51]
+			[WaypointsToAdd:GVK-Convoy-StaticRandom-LandRouteC52]
+			[WaypointsToAdd:GVK-Convoy-StaticRandom-LandRouteC53]
+			[WaypointsToAdd:GVK-Convoy-StaticRandom-LandRouteC54]
+			[WaypointsToAdd:GVK-Convoy-StaticRandom-LandRouteC55]
+			[WaypointsToAdd:GVK-Convoy-StaticRandom-LandRouteC56]
+			[WaypointsToAdd:GVK-Convoy-StaticRandom-LandRouteC57]
+			[WaypointsToAdd:GVK-Convoy-StaticRandom-LandRouteC58]
+			[WaypointsToAdd:GVK-Convoy-StaticRandom-LandRouteC59]
+			[WaypointsToAdd:GVK-Convoy-StaticRandom-LandRouteC60]
+			[WaypointsToAdd:GVK-Convoy-StaticRandom-LandRouteC61]
+			[WaypointsToAdd:GVK-Convoy-StaticRandom-LandRouteC62]
+			[WaypointsToAdd:GVK-Convoy-StaticRandom-LandRouteC63]
+			[WaypointsToAdd:GVK-Convoy-StaticRandom-LandRouteC64]
+			[WaypointsToAdd:GVK-Convoy-StaticRandom-LandRouteC65]
+			[WaypointsToAdd:GVK-Convoy-StaticRandom-LandRouteC66]
+			[WaypointsToAdd:GVK-Convoy-StaticRandom-LandRouteC67]
+			[WaypointsToAdd:GVK-Convoy-StaticRandom-LandRouteC68]
+			[WaypointsToAdd:GVK-Convoy-StaticRandom-LandRouteC69]
+			[WaypointsToAdd:GVK-Convoy-StaticRandom-LandRouteC70]
+			[WaypointsToAdd:GVK-Convoy-StaticRandom-LandRouteC71]
+			[WaypointsToAdd:GVK-Convoy-StaticRandom-LandRouteC72]
+			[WaypointsToAdd:GVK-Convoy-StaticRandom-LandRouteC73]
+			[UseChatBroadcast:false]
+			[ChatData:GVK-Convoy-Chat-Lead-GaalsienCarrier-AddWaypoints]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Convoy-Chat-Lead-GaalsienCarrier-AddWaypoints</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Chat]
+			[UseChat:true]
+			[StartsReady:true]
+			[Chance:100]
+			[MaxChats:-1]
+			[BroadcastRandomly:false]
+			[Author:Land Cargo Ship]
+			[Color:White]
+			[ChatMessages:Adding waypoints.]
+			[ChatAudio:GreetingSoundId-A]
+			[BroadcastChatType:Chat]
 			[SendToAllOnlinePlayers:true]
 			</Description>
 		</EntityComponent>
@@ -479,10 +601,10 @@
 			[UseSpawn:true]
 			[SpawningType:CustomSpawn]
 			[StartsReady:true]
-			[MinDistance:500]
-			[MaxDistance:1000]
-			[MinAltitude:100]
-			[MaxAltitude:400]
+			[MinDistance:0]
+			[MaxDistance:100]
+			[MinAltitude:50]
+			[MaxAltitude:100]
 			[InheritNpcAltitude:true]
 			[SpawnGroups:GVK-Drone-Defense-SpawnGroup-GAALSIEN-SmallFlyerSquad]
 			[ProcessAsAdminSpawn:false]
@@ -502,7 +624,7 @@
 			[BroadcastRandomly:false]
 			[Author:Gaalsien Carrier]
 			[Color:Red]
-			[ChatMessages:Fighters Inbound.]
+			[ChatMessages:Strike craft ready.]
 			[ChatAudio:GreetingSoundId-A]
 			[BroadcastChatType:Chat]
 			[SendToAllOnlinePlayers:true]
@@ -511,14 +633,14 @@
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Convoy-Lead-Trigger-BeaconDisabled</SubtypeId>
+				<SubtypeId>GVK-Convoy-Trigger-Lead-BeaconDisabled</SubtypeId>
 			</Id>
 			<Description>
 			[RivalAI Trigger]
 			[Type:Timer]
 			[UseTrigger:true]
 			[StartsReady:true]
-			[Conditions:GVK-Drone-All-Condition-BeaconDisabled]
+			[Conditions:GVK-Convoy-Condition-Lead-BeaconDisabled]
 			[MaxActions:1]
 			[ActionExecution:All]
 			[Actions:GVK-Convoy-Action-Lead-GaalsienCarrier-Compromised]
@@ -527,7 +649,7 @@
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Convoy-Lead-Condition-BeaconDisabled</SubtypeId>
+				<SubtypeId>GVK-Convoy-Condition-Lead-BeaconDisabled</SubtypeId>
 			</Id>
 			<Description>
 			[RivalAI Condition]

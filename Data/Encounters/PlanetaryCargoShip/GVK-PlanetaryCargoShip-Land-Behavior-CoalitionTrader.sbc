@@ -18,7 +18,8 @@
 			[RetreatTimerTrigger:3600]
 			[UseNoTargetTimer:false]
 			[RetreatDespawnDistance:4000]
-			[AutopilotData:GVK-CargoShip-Land-COALITION-TraderAutopilot]
+			[AutopilotData:GVK-CargoShip-Land-COALITION-TraderPrimaryAutopilot]
+			[SecondaryAutopilotData:GVK-CargoShip-Land-COALITION-TraderSecondaryAutopilot]
 			[TargetData:GVK-Universal-Target-EnemyGaalsienBeacon]
 			[Triggers:GVK-Universal-Trigger-UneditableOnSpawn]
 			[Triggers:GVK-Universal-Trigger-IndestructibleOnSpawn]
@@ -44,7 +45,7 @@
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-CargoShip-Land-COALITION-TraderAutopilot</SubtypeId>
+				<SubtypeId>GVK-CargoShip-Land-COALITION-TraderPrimaryAutopilot</SubtypeId>
 			</Id>
 			<Description>
 			[RivalAI Autopilot]
@@ -79,6 +80,19 @@
 			[MaxVelocityAngleForSpeedControl:180]
 			</Description>
 		</EntityComponent>
+		<!-- Escort Transport Ship Secondary Autopilot-->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-CargoShip-Land-COALITION-TraderSecondaryAutopilot</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Autopilot]
+			[RotationMultiplier:0]
+			[IdealPlanetAltitude:17.5]
+			[WaypointTolerance:95]
+			</Description>
+		</EntityComponent>
 		<!-- Trigger when Cargo Ship Spawns -->
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
@@ -104,6 +118,8 @@
 			<Description>
 			[RivalAI Action]
 			[Chance:100]
+			[ChangeAutopilotProfile:true]
+			[AutopilotProfile:Primary]
 			[SetWeaponsToMaxRange:true]
 			[UseChatBroadcast:true]
 			[ChatData:GVK-CargoShip-Land-COALITION-Chat-TraderOnSpawn]
@@ -153,6 +169,8 @@
 			</Id>
 			<Description>
 			[RivalAI Action]
+			[ChangeAutopilotProfile:true]
+			[AutopilotProfile:Secondary]
 			[EnableBlocks:true]
 			[EnableBlockNames:NPC Suspension]
 			[EnableBlockStates:On]
@@ -241,8 +259,8 @@
 			</Id>
 			<Description>
 			[RivalAI Action]
-			[ChangeBehaviorSubclass:false]
-			[NewBehaviorSubclass:Passive]
+			[ChangeAutopilotProfile:true]
+			[AutopilotProfile:Primary]
 			[EnableBlocks:true]
 			[EnableBlockNames:NPC Suspension]
 			[EnableBlockStates:Off]

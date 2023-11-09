@@ -18,7 +18,8 @@
 			[RetreatTimerTrigger:3600]
 			[UseNoTargetTimer:false]
 			[RetreatDespawnDistance:4000]
-			[AutopilotData:GVK-CargoShip-Land-COALITION-EscortAutopilot]
+			[AutopilotData:GVK-CargoShip-Land-COALITION-EscortPrimaryAutopilot]
+			[SecondaryAutopilotData:GVK-CargoShip-Land-COALITION-EscortSecondaryAutopilot]
 			[TargetData:GVK-Universal-Target-EnemyGaalsienBeacon]
 			[Triggers:GVK-Universal-Trigger-UneditableOnSpawn]
 			[Triggers:GVK-Universal-Trigger-EditableOnCompromised]
@@ -42,11 +43,11 @@
 			[RemoteControlCode:CoalitionRouteA]
 			</Description>
 		</EntityComponent>
-		<!-- Escort Transport Ship Autopilot-->
+		<!-- Escort Transport Ship Primary Autopilot-->
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-CargoShip-Land-COALITION-EscortAutopilot</SubtypeId>
+				<SubtypeId>GVK-CargoShip-Land-COALITION-EscortPrimaryAutopilot</SubtypeId>
 			</Id>
 			<Description>
 			[RivalAI Autopilot]
@@ -75,10 +76,21 @@
 			[SlowDownOnWaypointApproach:true]
 			[WaypointWaitTimeTrigger:120]
 			[ExtraSlowDownDistance:300]
-			[ReverseOffsetDistAltAboveHeight:false]
-			[ReverseOffsetHeight:0]
 			[AngleAllowedForForwardThrust:90]
 			[MaxVelocityAngleForSpeedControl:180]
+			</Description>
+		</EntityComponent>
+		<!-- Escort Transport Ship Secondary Autopilot-->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-CargoShip-Land-COALITION-EscortSecondaryAutopilot</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Autopilot]
+			[RotationMultiplier:0]
+			[IdealPlanetAltitude:22.5]
+			[WaypointTolerance:95]
 			</Description>
 		</EntityComponent>
 		<!-- Trigger when Cargo Ship Spawns -->
@@ -95,6 +107,7 @@
 			[MaxActions:1]
 			[MinCooldownMs:1000]
 			[MaxCooldownMs:1000]
+			[ActionExecution:All]
 			[Actions:GVK-CargoShip-Land-COALITION-Action-EscortOnSpawn]
 			</Description>
 		</EntityComponent>
@@ -106,6 +119,8 @@
 			<Description>
 			[RivalAI Action]
 			[Chance:100]
+			[ChangeAutopilotProfile:true]
+			[AutopilotProfile:Secondary]
 			[SetWeaponsToMaxRange:true]
 			[UseChatBroadcast:true]
 			[ChatData:GVK-CargoShip-Land-COALITION-Chat-EscortOnSpawn]
@@ -131,7 +146,7 @@
 			[SendToAllOnlinePlayers:true]
 			</Description>
 		</EntityComponent>
-		<!-- Trigger sequence when Cargo Ship Spawns to request near waypoint -->
+		<!-- Trigger to add waypoints after spawn -->
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
@@ -145,6 +160,7 @@
 			[MaxActions:1]
 			[MinCooldownMs:5000]
 			[MaxCooldownMs:5000]
+			[ActionExecution:All]
 			[Actions:GVK-CargoShip-Land-COALITION-Action-EscortAddWaypoints]
 			</Description>
 		</EntityComponent>
@@ -244,7 +260,6 @@
 			[WaypointsToAdd:GVK-Convoy-StaticRandom-LandRouteA86]
 			[WaypointsToAdd:GVK-Convoy-StaticRandom-LandRouteA87]
 			[WaypointsToAdd:GVK-Convoy-StaticRandom-LandRouteA88]
-			[BroadcastCommandProfiles:true]
 			[UseChatBroadcast:true]
 			[ChatData:GVK-CargoShip-Land-COALITION-Chat-AddWaypoints]
 			</Description>
@@ -319,15 +334,11 @@
 			</Id>
 			<Description>
 			[RivalAI Action]
-			[ChangeInertiaDampeners:true]
-			[InertiaDampenersEnable:false]
+			[TriggerTimerBlocks:true]
+			[TimerBlockNames:NPC Timer E-brake]
 			[EnableBlocks:true]
-			[EnableBlockNames:HoverEngine]
+			[EnableBlockNames:NPC Suspension]
 			[EnableBlockStates:Off]
-			[EnableBlockNames:Thruster]
-			[EnableBlockStates:Off]
-			[EnableBlockNames:Magnetic Plate]
-			[EnableBlockStates:On]
 			[BlockTypesToToggle:MyObjectBuilder_Beacon/ZoneBlock]
 			[BlockTypeToggles:Off]
 			[BlockTypesToToggle:MyObjectBuilder_Beacon/DisposableNpcBeaconSmall]
@@ -348,7 +359,7 @@
 			[ExplosionDamage:1]
 			[ExplosionIgnoresVoxels:true]
 			[UseChatBroadcast:true]
-			[ChatData:GVK-CargoShip-Land-COALITION-Chat-Compromised]
+			[ChatData:GVK-CargoShip-Land-COALITION-Chat-EscortCompromised]
 			[TerminateBehavior:true]
 			</Description>
 		</EntityComponent>
@@ -366,7 +377,7 @@
 			[BroadcastRandomly:false]
 			[Author:Coalition]
 			[Color:White]
-			[ChatMessages:A Coalition Transport has been killed!]
+			[ChatMessages:A Coalition Transport has been Lost!]
 			[ChatAudio:GreetingSoundId-A]
 			[BroadcastChatType:Chat]
 			[SendToAllOnlinePlayers:true]
@@ -491,9 +502,9 @@
 			</Id>
 			<Description>
 			[RivalAI Action]
+			[ChangeAutopilotProfile:true]
+			[AutopilotProfile:Secondary]
 			[RecalculateDespawnCoords:true]
-			[ChangeBehaviorSubclass:true]
-			[NewBehaviorSubclass:Passive]
 			[EnableBlocks:true]
 			[EnableBlockNames:NPC Suspension]
 			[EnableBlockStates:Off]
@@ -591,8 +602,8 @@
 			[Type:PlayerNear]
 			[TargetDistance:2000]
 			[StartsReady:true]
-			[MinCooldownMs:180000]
-			[MaxCooldownMs:180001]
+			[MinCooldownMs:120000]
+			[MaxCooldownMs:120001]
 			[MaxActions:-1]
 			[Actions:GVK-CargoShip-Land-COALITION-Action-EscortEnemySpawns]
 			</Description>
@@ -682,6 +693,8 @@
 			</Id>
 			<Description>
 			[RivalAI Action]
+			[ChangeAutopilotProfile:true]
+			[AutopilotProfile:Primary]
 			[EnableBlocks:true]
 			[EnableBlockNames:NPC Suspension]
 			[EnableBlockStates:On]
@@ -770,8 +783,8 @@
 			</Id>
 			<Description>
 			[RivalAI Action]
-			[ChangeBehaviorSubclass:false]
-			[NewBehaviorSubclass:Passive]
+			[ChangeAutopilotProfile:true]
+			[AutopilotProfile:Secondary]
 			[EnableBlocks:true]
 			[EnableBlockNames:NPC Suspension]
 			[EnableBlockStates:Off]
