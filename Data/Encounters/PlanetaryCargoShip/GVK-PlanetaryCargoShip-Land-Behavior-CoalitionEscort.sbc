@@ -20,6 +20,7 @@
 			[RetreatDespawnDistance:4000]
 			[AutopilotData:GVK-CargoShip-Land-COALITION-EscortPrimaryAutopilot]
 			[SecondaryAutopilotData:GVK-CargoShip-Land-COALITION-EscortSecondaryAutopilot]
+			[TertiaryAutopilotData:GVK-CargoShip-Land-COALITION-EscortTertiaryAutopilot]
 			[TargetData:GVK-Universal-Target-EnemyGaalsienBeacon]
 			[Triggers:GVK-Universal-Trigger-UneditableOnSpawn]
 			[Triggers:GVK-Universal-Trigger-EditableOnCompromised]
@@ -29,6 +30,7 @@
 			[Triggers:GVK-Drone-All-Trigger-WeaponsToMaxRange]
 			[Triggers:GVK-CargoShip-Land-COALITION-Trigger-EscortOnSpawn]
 			[Triggers:GVK-CargoShip-Land-COALITION-Trigger-EscortAddWaypoints]
+			[Triggers:GVK-CargoShip-Land-COALITION-Trigger-EscortHorizonAngleHigh]
 			[Triggers:GVK-CargoShip-Land-COALITION-Trigger-EscortArriveAtWaypoint]
 			[Triggers:GVK-CargoShip-Land-COALITION-Trigger-EscortLeaveWaypoint]
 			[Triggers:GVK-CargoShip-Land-COALITION-Trigger-EscortHeadToDespawn]
@@ -93,7 +95,43 @@
 			[WaypointTolerance:95]
 			</Description>
 		</EntityComponent>
-		<!-- Trigger when Cargo Ship Spawns -->
+		<!-- Escort Transport Ship Tertiary Autopilot-->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-CargoShip-Land-COALITION-EscortTertiaryAutopilot</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Autopilot]
+			[RotationMultiplier:1.25]
+			[LimitRotationSpeed:true]
+			[MaxRotationMagnitude:0.20]
+			[DisableInertiaDampeners:true]
+			[FlyLevelWithGravity:true]
+			[LevelWithGravityWhenIdle:false]
+			[IdealPlanetAltitude:22.5]
+			[MinimumPlanetAltitude:0]
+			[AltitudeTolerance:40]
+			[UseSurfaceHoverThrustMode:true]
+			[HoverPathStepDistance:100]
+			[UseVelocityCollisionEvasion:false]
+			[CollisionEvasionWaypointDistance:200]
+			[CollisionEvasionResumeDistance:100]
+			[CollisionEvasionResumeTime:10]
+			[CollisionEvasionWaypointCalculatedAwayFromEntity:true]
+			[CollisionEvasionWaypointFromEntityMaxAngle:90]
+			[WaypointAbandonTimeTrigger:9999999]
+			[WaypointTolerance:95]
+			[IdealMinSpeed:35]
+			[IdealMaxSpeed:50]
+			[MaxSpeedTolerance:10]
+			[SlowDownOnWaypointApproach:true]
+			[WaypointWaitTimeTrigger:120]
+			[ExtraSlowDownDistance:300]
+			[AngleAllowedForForwardThrust:90]
+			[MaxVelocityAngleForSpeedControl:180]
+			</Description>
+		</EntityComponent>		<!-- Trigger when Cargo Ship Spawns -->
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
@@ -122,6 +160,8 @@
 			[ChangeAutopilotProfile:true]
 			[AutopilotProfile:Secondary]
 			[SetWeaponsToMaxRange:true]
+			[DisableTriggers:true]
+			[DisableTriggerNames:GVK-CargoShip-Land-COALITION-Trigger-EscortHorizonAngleHigh]
 			[UseChatBroadcast:true]
 			[ChatData:GVK-CargoShip-Land-COALITION-Chat-EscortOnSpawn]
 			</Description>
@@ -282,6 +322,66 @@
 			[ChatAudio:GreetingSoundId-A]
 			[BroadcastChatType:Chat]
 			[SendToAllOnlinePlayers:true]
+			</Description>
+		</EntityComponent>
+		<!-- Trigger to fly level with gravity when horizon angle is high -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-CargoShip-Land-COALITION-Trigger-EscortHorizonAngleHigh</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Trigger]
+			[Type:Timer]
+			[UseTrigger:true]
+			[StartsReady:false]
+			[MaxActions:1]
+			[ActionExecution:All]
+			[MinCooldownMs:1000]
+			[MaxCooldownMs:1001]
+			[Conditions:GVK-CargoShip-Land-COALITION-Condition-EscortHorizonAngleHigh]
+			[ConditionCheckResetsTimer:true]
+			[Actions:GVK-CargoShip-Land-COALITION-Action-EscortHorizonAngleHigh]
+			[UseElseActions:true]
+			[ElseActions:GVK-CargoShip-Land-COALITION-Action-EscortHorizonAngleLow]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-CargoShip-Land-COALITION-Condition-EscortHorizonAngleHigh</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Condition]
+			[UseConditions:true]
+			[MatchAnyCondition:true]
+			[CheckHorizonAngle:true]
+			[MinHorizonAngle:16]
+			[MaxHorizonAngle:90]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-CargoShip-Land-COALITION-Action-EscortHorizonAngleHigh</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Action]
+			[Chance:100]
+			[ChangeAutopilotProfile:true]
+			[AutopilotProfile:Tertiary]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-CargoShip-Land-COALITION-Action-EscortHorizonAngleLow</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Action]
+			[Chance:100]
+			[ChangeAutopilotProfile:true]
+			[AutopilotProfile:Primary]
 			</Description>
 		</EntityComponent>
 		<!-- Trigger sequence for Cargo Ship to die -->
@@ -514,10 +614,11 @@
 			[ChatData:GVK-CargoShip-Land-COALITION-Chat-EscortHeadToDespawn]
 			[StopAllRotation:true]
 			[DisableTriggers:true]
-			[DisableTriggerNames:GVK-CargoShip-Land-COALITION-Trigger-PlayerNear]
-			[DisableTriggerNames:GVK-CargoShip-Land-COALITION-Trigger-PlayerNotNear]
-			[DisableTriggerNames:GVK-CargoShip-Land-COALITION-Trigger-EnemySpawns]
-			[DisableTriggerNames:GVK-CargoShip-Land-COALITION-Trigger-Attacked]
+			[DisableTriggerNames:GVK-CargoShip-Land-COALITION-Trigger-EscortHorizonAngleHigh]
+			[DisableTriggerNames:GVK-CargoShip-Land-COALITION-Trigger-EscortPlayerNear]
+			[DisableTriggerNames:GVK-CargoShip-Land-COALITION-Trigger-EscortPlayerNotNear]
+			[DisableTriggerNames:GVK-CargoShip-Land-COALITION-Trigger-EscortEnemySpawns]
+			[DisableTriggerNames:GVK-CargoShip-Land-COALITION-Trigger-EscortAttacked]
 			</Description>
 		</EntityComponent>
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
@@ -701,6 +802,7 @@
 			[TriggerTimerBlocks:true]
 			[TimerBlockNames:NPC Timer Resume Cruise]
 			[EnableTriggers:true]
+			[EnableTriggerNames:GVK-CargoShip-Land-COALITION-Trigger-EscortHorizonAngleHigh]
 			[EnableTriggerNames:GVK-CargoShip-Land-COALITION-Trigger-EscortPlayerNotNear]
 			[DisableTriggers:true]
 			[DisableTriggerNames:GVK-CargoShip-Land-COALITION-Trigger-EscortPlayerNear]
@@ -793,6 +895,7 @@
 			[EnableTriggers:true]
 			[EnableTriggerNames:GVK-CargoShip-Land-COALITION-Trigger-EscortPlayerNear]
 			[DisableTriggers:true]
+			[DisableTriggerNames:GVK-CargoShip-Land-COALITION-Trigger-EscortHorizonAngleHigh]
 			[DisableTriggerNames:GVK-CargoShip-Land-COALITION-Trigger-EscortPlayerNotNear]
 			[UseChatBroadcast:true]
 			[ChatData:GVK-CargoShip-Land-COALITION-Chat-EscortPlayerNotNear]
