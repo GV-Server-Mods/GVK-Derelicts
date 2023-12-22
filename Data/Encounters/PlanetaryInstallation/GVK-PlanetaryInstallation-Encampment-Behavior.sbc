@@ -15,6 +15,7 @@
 			[RemoteControlCode:Encampment]
 			[Triggers:GVK-Universal-Trigger-JetpackInhibitor]
 			[Triggers:GVK-PlanetaryInstallation-Encampment-Trigger-OnSpawn]
+			[Triggers:GVK-PlanetaryInstallation-Encampment-Trigger-Timer]
 			[Triggers:GVK-PlanetaryInstallation-Encampment-Trigger-Compromised]
 			[Triggers:GVK-PlanetaryInstallation-Encampment-Trigger-Despawn]
 			[Triggers:GVK-PlanetaryInstallation-Encampment-Trigger-MESDespawn]
@@ -66,7 +67,7 @@
 			[SendToAllOnlinePlayers:true]
 		  </Description>
 		</EntityComponent>
-		<!-- Trigger sequences for PlayerKOTH to die -->
+		<!-- Trigger sequences for PlayerKOTH to die (172,800,000 = 2 days in ms)-->
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
@@ -76,8 +77,8 @@
 			[RivalAI Trigger]
 			[Type:Timer]
 			[UseTrigger:true]
-			[MinCooldownMs:3600]
-			[MaxCooldownMs:3601]
+			[MinCooldownMs:172800000]
+			[MaxCooldownMs:172800001]
 			[StartsReady:false]
 			[Actions:GVK-PlanetaryInstallation-Encampment-Action-Compromised]
 			</Description>
@@ -131,10 +132,10 @@
 			</Id>
 			<Description>
 			[RivalAI Action]
-			[GridEditable:Yes]
-			[SubGridsEditable:Yes]
-			[GridDestructible:Yes]
-			[SubGridsDestructible:Yes]
+			[GridEditable:No]
+			[SubGridsEditable:No]
+			[GridDestructible:No]
+			[SubGridsDestructible:No]
 			[UseChatBroadcast:true]
 			[ChatData:GVK-PlanetaryInstallation-Encampment-Chat-Compromised]
 			[ToggleBlocksOfType:true]
@@ -154,14 +155,18 @@
 			[BlockTypeToggles:Off]
 			[GenerateExplosion:true]
 			[ExplosionOffsetFromRemote:{X:0 Y:0 Z:0}]
-			[ExplosionRange:200]
+			[ExplosionRange:300]
 			[ExplosionDamage:1]
 			[ExplosionIgnoresVoxels:true]
 			[EnableBlocks:true]
 			[EnableBlockNames:NPC Beacon]
 			[EnableBlockStates:Off]
-			[SetSandboxBooleansFalse:LargeWreckActive]	
 			[UseJetpackInhibitorEffect:false]
+			[DisableTriggers:true]
+			[DisableTriggerNames:GVK-PlanetaryInstallation-Encampment-Trigger-Timer]
+			[DisableTriggerNames:GVK-PlanetaryInstallation-Encampment-Trigger-Compromised]
+			[DisableTriggerNames:GVK-PlanetaryInstallation-Encampment-Trigger-Despawn]
+			[DisableTriggerNames:GVK-PlanetaryInstallation-Encampment-Trigger-MESDespawn]
 			[TerminateBehavior:true]
 			</Description>
 		</EntityComponent>
