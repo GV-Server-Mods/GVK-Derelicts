@@ -4,13 +4,13 @@
 		<SpawnGroup>
 			<Id>
 				<TypeId>SpawnGroupDefinition</TypeId>
-				<SubtypeId>GVK-PlanetaryInstallation-SpawnGroups-Large-Encampment</SubtypeId>
+				<SubtypeId>GVK-PlanetaryInstallation-SpawnGroups-Large-Encampment01</SubtypeId>
 			</Id>
 			<Description>
 			[Modular Encounters SpawnGroup]
 			[IgnoreCleanupRules:true]
 			[ReplenishSystems:true]
-			[SpawnConditionsProfiles:GVK-PlanetaryInstallation-Encampment-SpawnCondition]
+			[SpawnConditionsProfiles:GVK-PlanetaryInstallation-Encampment-SpawnCondition-Khar Toba]
 			[IgnoreGlobalBlockReplacer:true]
 			[ManipulationProfiles:MES-Manipulation-RivalAi]
 			[ManipulationProfiles:GVK-Static-TradeStation-Manipulation]
@@ -19,10 +19,40 @@
 			<IsPirate>true</IsPirate>
 			<Frequency>5.0</Frequency>
 			<Prefabs>
-				<Prefab SubtypeId="[NPC Static] Convoy Outpost">
+				<Prefab SubtypeId="[NPC KOTH] Khar Toba">
 					<Position>
 						<X>0.0</X>
-						<Y>-25</Y>
+						<Y>10</Y>
+						<Z>0.0</Z>
+					</Position>
+					<Speed>0</Speed>
+					<BeaconText>Unearthed Monument</BeaconText>
+					<Behaviour>GVK-PlanetaryInstallation-Encampment-Behavior</Behaviour>
+				</Prefab>
+			</Prefabs>
+		</SpawnGroup>
+		<SpawnGroup>
+			<Id>
+				<TypeId>SpawnGroupDefinition</TypeId>
+				<SubtypeId>GVK-PlanetaryInstallation-SpawnGroups-Large-Encampment02</SubtypeId>
+			</Id>
+			<Description>
+			[Modular Encounters SpawnGroup]
+			[IgnoreCleanupRules:true]
+			[ReplenishSystems:true]
+			[SpawnConditionsProfiles:GVK-PlanetaryInstallation-Encampment-SpawnCondition-Khalash Site]
+			[IgnoreGlobalBlockReplacer:true]
+			[ManipulationProfiles:MES-Manipulation-RivalAi]
+			[ManipulationProfiles:GVK-Static-TradeStation-Manipulation]
+			[UseRivalAi:true]
+			</Description>
+			<IsPirate>true</IsPirate>
+			<Frequency>5.0</Frequency>
+			<Prefabs>
+				<Prefab SubtypeId="[NPC KOTH] Kalash Site">
+					<Position>
+						<X>0.0</X>
+						<Y>50</Y>
 						<Z>0.0</Z>
 					</Position>
 					<Speed>0</Speed>
