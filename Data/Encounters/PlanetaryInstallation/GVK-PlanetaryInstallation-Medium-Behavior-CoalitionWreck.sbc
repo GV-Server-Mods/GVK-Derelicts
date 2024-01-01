@@ -26,7 +26,7 @@
 			[Triggers:GVK-PlanetaryInstallation-Medium-Trigger-CoalitionWreckHasTarget]
 			[Triggers:GVK-PlanetaryInstallation-Medium-Trigger-CoalitionWreckOnSuccess]
 			[Triggers:GVK-PlanetaryInstallation-Medium-Trigger-CoalitionWreckDefensesPlayerNear]
-			[Triggers:GVK-PlanetaryInstallation-Medium-Trigger-CoalitionWreckCoalitionWreckDefensesDamage]
+			[Triggers:GVK-PlanetaryInstallation-Medium-Trigger-CoalitionWreckDamage]
 			[Triggers:GVK-PlanetaryInstallation-Medium-Trigger-CoalitionWreckSpawnsManual]
 			</Description>
 		</EntityComponent>
@@ -72,7 +72,7 @@
 			[BroadcastRandomly:false]
 			[Author:COALITION]
 			[Color:White]
-			[ChatMessages:Coalition Forces are under attack near {GPS}]
+			[ChatMessages:Coalition Forces are under attack and need support.]
 			[GPSLabel:Distress Signal]
 			[ChatAudio:ArcHudGPSNotification2]
 			[BroadcastChatType:Chat]
@@ -97,7 +97,7 @@
 			[ActionExecution:All]
 			[Actions:GVK-PlanetaryInstallation-Medium-Action-CoalitionWreckCompromised]
 			[Actions:GVK-PlanetaryInstallation-All-Action-CompromisedGeneric]
-			[Actions:GVK-PlanetaryInstallation-Medium-Action-CoalitionWreckCoalitionWreck]
+			[Actions:GVK-PlanetaryInstallation-Medium-Action-CoalitionWreckSpawns]
 			[Actions:GVK-Universal-Action-EditableOnCompromised]
 			</Description>
 		</EntityComponent>
@@ -149,7 +149,7 @@
 			[ActionExecution:All]
 			[Actions:GVK-PlanetaryInstallation-Medium-Action-CoalitionWreckCompromised]
 			[Actions:GVK-PlanetaryInstallation-All-Action-CompromisedGeneric]
-			[Actions:GVK-PlanetaryInstallation-Medium-Action-CoalitionWreckCoalitionWreck]
+			[Actions:GVK-PlanetaryInstallation-Medium-Action-CoalitionWreckSpawns]
 			[Actions:GVK-Universal-Action-EditableOnCompromised]
 			</Description>
 		</EntityComponent>
@@ -166,6 +166,7 @@
 			[DisableTriggerNames:GVK-PlanetaryInstallation-Medium-Trigger-CoalitionWreckDespawn]
 			[DisableTriggerNames:GVK-PlanetaryInstallation-Medium-Trigger-CoalitionWreckDespawnMES]
 			[DisableTriggerNames:GVK-PlanetaryInstallation-Medium-Trigger-CoalitionWreckCompromised]
+			[DisableTriggerNames:GVK-PlanetaryInstallation-Medium-Trigger-CoalitionWreckOnSuccess]
 			[UseChatBroadcast:true]
 			[ChatData:GVK-PlanetaryInstallation-Medium-Chat-CoalitionWreckCompromised]
 			</Description>
@@ -184,7 +185,7 @@
 			[BroadcastRandomly:false]
 			[Author:Coalition]
 			[Color:White]
-			[ChatMessages:The Gaalsien Forces has been Lost!]
+			[ChatMessages:The Coalition Forces have been Lost!]
 			[ChatAudio:GreetingSoundId-A]
 			[BroadcastChatType:Chat]
 			[SendToAllOnlinePlayers:true]
@@ -202,8 +203,8 @@
 			[UseTrigger:true]
 			[StartsReady:false]
 			[ActionExecution:All]
-			[MinCooldownMs:60000]
-			[MaxCooldownMs:120000]
+			[MinCooldownMs:120000]
+			[MaxCooldownMs:120001]
 			[Actions:GVK-PlanetaryInstallation-Medium-Action-CoalitionWreckHasTarget]
 			</Description>
 		</EntityComponent>
@@ -217,6 +218,8 @@
 			[Chance:100]
 			[UseChatBroadcast:true]
 			[ChatData:GVK-PlanetaryInstallation-Medium-Chat-CoalitionWreckHasTarget]
+			[ResetCooldownTimeOfTriggers:true]
+			[ResetTriggerCooldownNames:GVK-PlanetaryInstallation-Medium-Trigger-CoalitionWreckOnSuccess]
 			</Description>
 		</EntityComponent>
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
@@ -247,13 +250,13 @@
 			</Id>
 			<Description>
 			[RivalAI Trigger]
-			[Type:LostTarget]
-			[UseTrigger:true]
+			[Type:Timer]
+			[UseTrigger:false]
 			[StartsReady:false]
 			[MaxActions:1]
 			[ActionExecution:All]
-			[MinCooldownMs:120000]
-			[MaxCooldownMs:120001]
+			[MinCooldownMs:121000]
+			[MaxCooldownMs:121001]
 			[Actions:GVK-PlanetaryInstallation-Medium-Action-CoalitionWreckOnSuccess]
 			</Description>
 		</EntityComponent>
@@ -348,13 +351,13 @@
 			[MaxCooldownMs:15001]
 			[MaxActions:3]
 			[ActionExecution:All]
-			[Actions:GVK-PlanetaryInstallation-Medium-Action-CoalitionWreckCoalitionWreck]
+			[Actions:GVK-PlanetaryInstallation-Medium-Action-CoalitionWreckSpawns]
 			</Description>
 		</EntityComponent>
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-PlanetaryInstallation-Medium-Trigger-CoalitionWreckCoalitionWreckDefensesDamage</SubtypeId>
+				<SubtypeId>GVK-PlanetaryInstallation-Medium-Trigger-CoalitionWreckDamage</SubtypeId>
 			</Id>
 			<Description>
 			[RivalAI Trigger]
@@ -366,19 +369,21 @@
 			[MaxCooldownMs:15001]
 			[MaxActions:3]
 			[ActionExecution:All]
-			[Actions:GVK-PlanetaryInstallation-Medium-Action-CoalitionWreckCoalitionWreck]
+			[Actions:GVK-PlanetaryInstallation-Medium-Action-CoalitionWreckSpawns]
 			</Description>
 		</EntityComponent>
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-PlanetaryInstallation-Medium-Action-CoalitionWreckCoalitionWreck</SubtypeId>
+				<SubtypeId>GVK-PlanetaryInstallation-Medium-Action-CoalitionWreckSpawns</SubtypeId>
 			</Id>
 			<Description>
 			[RivalAI Action]
 			[Chance:100]
 			[ManuallyActivateTrigger:true]
 			[ManuallyActivatedTriggerNames:GVK-PlanetaryInstallation-Medium-Trigger-CoalitionWreckSpawnsManual]
+			[EnableTriggers:true]
+			[EnableTriggerNames:GVK-PlanetaryInstallation-Medium-Trigger-CoalitionWreckOnSuccess]
 			</Description>
 		</EntityComponent>
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
@@ -406,8 +411,8 @@
 			[RivalAI Action]
 			[Chance:100]
 			[SpawnEncounter:true]
-			[Spawner:GVK-PlanetaryInstallation-Medium-Spawner-CoalitionWreckDefenseDroneSmall]
 			[Spawner:GVK-PlanetaryInstallation-Medium-Spawner-CoalitionWreckDefenseDroneMedium]
+			[Spawner:GVK-PlanetaryInstallation-Medium-Spawner-CoalitionWreckDefenseDroneSmall]
 			[UseChatBroadcast:true]
 			[ChatData:GVK-PlanetaryInstallation-All-Chat-Defenses]
 			</Description>
@@ -426,6 +431,8 @@
 			[MaxSpawns:3]
 			[SpawnGroups:GVK-Drone-Defense-SpawnGroup-GAALSIEN-SmallFlyerSingle]
 			[SpawnGroups:GVK-Drone-Defense-SpawnGroup-GAALSIEN-SmallHoverSingle]
+			[SpawnGroups:GVK-Drone-Defense-SpawnGroup-GAALSIEN-SmallFlyerSquad]
+			[SpawnGroups:GVK-Drone-Defense-SpawnGroup-GAALSIEN-SmallHoverSquad]
 			[MinDistance:500]
 			[MaxDistance:1000]
 			[MinAltitude:50]
@@ -447,6 +454,7 @@
 			[ProcessAsAdminSpawn:false]
 			[MaxSpawns:2]
 			[SpawnGroups:GVK-Drone-Defense-SpawnGroup-GAALSIEN-MediumHoverLight]
+			[SpawnGroups:GVK-Drone-Defense-SpawnGroup-GAALSIEN-MediumHoverHeavy]
 			[MinDistance:500]
 			[MaxDistance:1000]
 			[MinAltitude:50]
