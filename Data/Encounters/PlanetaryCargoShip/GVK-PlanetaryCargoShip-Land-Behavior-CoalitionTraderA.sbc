@@ -5,7 +5,7 @@
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-CargoShip-Land-COALITION-Behavior-Trader</SubtypeId>
+				<SubtypeId>GVK-CargoShip-Land-COALITION-Behavior-TraderA</SubtypeId>
 			</Id>
 			<Description>
 			[RivalAI Behavior]
@@ -27,8 +27,8 @@
 			[Triggers:GVK-Drone-All-Trigger-TargetAttacker]
 			[Triggers:GVK-Drone-All-Trigger-TurretTarget]
 			[Triggers:GVK-Drone-All-Trigger-WeaponsToMaxRange]
-			[Triggers:GVK-CargoShip-Land-COALITION-Trigger-TraderOnSpawn]
-			[Triggers:GVK-CargoShip-Land-COALITION-Trigger-EscortAddWaypoints]
+			[Triggers:GVK-CargoShip-Land-COALITION-Trigger-TraderOnSpawnA]
+			[Triggers:GVK-CargoShip-Land-COALITION-Trigger-EscortAddWaypointsA]
 			[Triggers:GVK-CargoShip-Land-COALITION-Trigger-EscortHorizonAngleHigh]
 			[Triggers:GVK-CargoShip-Land-COALITION-Trigger-EscortArriveAtWaypoint]
 			[Triggers:GVK-CargoShip-Land-COALITION-Trigger-EscortLeaveWaypoint]
@@ -50,9 +50,9 @@
 			</Id>
 			<Description>
 			[RivalAI Autopilot]
-			[RotationMultiplier:2.5]
+			[RotationMultiplier:1.25]
 			[LimitRotationSpeed:true]
-			[MaxRotationMagnitude:0.5]
+			[MaxRotationMagnitude:0.20]
 			[DisableInertiaDampeners:true]
 			[FlyLevelWithGravity:false]
 			[LevelWithGravityWhenIdle:false]
@@ -98,7 +98,7 @@
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-CargoShip-Land-COALITION-Trigger-TraderOnSpawn</SubtypeId>
+				<SubtypeId>GVK-CargoShip-Land-COALITION-Trigger-TraderOnSpawnA</SubtypeId>
 			</Id>
 			<Description>
 			[RivalAI Trigger]
@@ -108,13 +108,13 @@
 			[MaxActions:1]
 			[MinCooldownMs:1000]
 			[MaxCooldownMs:1000]
-			[Actions:GVK-CargoShip-Land-COALITION-Action-TraderOnSpawn]
+			[Actions:GVK-CargoShip-Land-COALITION-Action-TraderOnSpawnA]
 			</Description>
 		</EntityComponent>
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-CargoShip-Land-COALITION-Action-TraderOnSpawn</SubtypeId>
+				<SubtypeId>GVK-CargoShip-Land-COALITION-Action-TraderOnSpawnA</SubtypeId>
 			</Id>
 			<Description>
 			[RivalAI Action]
@@ -123,13 +123,13 @@
 			[AutopilotProfile:Primary]
 			[SetWeaponsToMaxRange:true]
 			[UseChatBroadcast:true]
-			[ChatData:GVK-CargoShip-Land-COALITION-Chat-TraderOnSpawn]
+			[ChatData:GVK-CargoShip-Land-COALITION-Chat-TraderOnSpawnA]
 			</Description>
 		</EntityComponent>
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-CargoShip-Land-COALITION-Chat-TraderOnSpawn</SubtypeId>
+				<SubtypeId>GVK-CargoShip-Land-COALITION-Chat-TraderOnSpawnA</SubtypeId>
 			</Id>
 			<Description>
 			[RivalAI Chat]

@@ -5,7 +5,7 @@
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-CargoShip-Land-COALITION-Behavior-Escort</SubtypeId>
+				<SubtypeId>GVK-CargoShip-Land-COALITION-Behavior-EscortA</SubtypeId>
 			</Id>
 			<Description>
 			[RivalAI Behavior]
@@ -29,7 +29,7 @@
 			[Triggers:GVK-Drone-All-Trigger-TurretTarget]
 			[Triggers:GVK-Drone-All-Trigger-WeaponsToMaxRange]
 			[Triggers:GVK-CargoShip-Land-COALITION-Trigger-EscortOnSpawn]
-			[Triggers:GVK-CargoShip-Land-COALITION-Trigger-EscortAddWaypoints]
+			[Triggers:GVK-CargoShip-Land-COALITION-Trigger-EscortAddWaypointsA]
 			[Triggers:GVK-CargoShip-Land-COALITION-Trigger-EscortHorizonAngleHigh]
 			[Triggers:GVK-CargoShip-Land-COALITION-Trigger-EscortArriveAtWaypoint]
 			[Triggers:GVK-CargoShip-Land-COALITION-Trigger-EscortLeaveWaypoint]
@@ -132,6 +132,7 @@
 			[MaxVelocityAngleForSpeedControl:180]
 			</Description>
 		</EntityComponent>		<!-- Trigger when Cargo Ship Spawns -->
+		<!-- Escort chat when spawned -->
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
@@ -190,7 +191,7 @@
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-CargoShip-Land-COALITION-Trigger-EscortAddWaypoints</SubtypeId>
+				<SubtypeId>GVK-CargoShip-Land-COALITION-Trigger-EscortAddWaypointsA</SubtypeId>
 			</Id>
 			<Description>
 			[RivalAI Trigger]
@@ -201,13 +202,13 @@
 			[MinCooldownMs:5000]
 			[MaxCooldownMs:5000]
 			[ActionExecution:All]
-			[Actions:GVK-CargoShip-Land-COALITION-Action-EscortAddWaypoints]
+			[Actions:GVK-CargoShip-Land-COALITION-Action-EscortAddWaypointsA]
 			</Description>
 		</EntityComponent>
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-CargoShip-Land-COALITION-Action-EscortAddWaypoints</SubtypeId>
+				<SubtypeId>GVK-CargoShip-Land-COALITION-Action-EscortAddWaypointsA</SubtypeId>
 			</Id>
 			<Description>
 			[RivalAI Action]
@@ -301,13 +302,13 @@
 			[WaypointsToAdd:GVK-Convoy-StaticRandom-LandRouteA87]
 			[WaypointsToAdd:GVK-Convoy-StaticRandom-LandRouteA88]
 			[UseChatBroadcast:true]
-			[ChatData:GVK-CargoShip-Land-COALITION-Chat-EscortAddWaypoints]
+			[ChatData:GVK-CargoShip-Land-COALITION-Chat-EscortAddWaypointsA]
 			</Description>
 		</EntityComponent>
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-CargoShip-Land-COALITION-Chat-EscortAddWaypoints</SubtypeId>
+				<SubtypeId>GVK-CargoShip-Land-COALITION-Chat-EscortAddWaypointsA</SubtypeId>
 			</Id>
 			<Description>
 			[RivalAI Chat]

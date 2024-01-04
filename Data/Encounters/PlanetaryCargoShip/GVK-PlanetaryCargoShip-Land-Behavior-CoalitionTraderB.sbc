@@ -1,0 +1,98 @@
+<?xml version="1.0"?>
+<Definitions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+	<EntityComponents>
+		<!-- Cargo Ship Behavior for land rover following roads -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-CargoShip-Land-COALITION-Behavior-TraderB</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Behavior]
+			[BehaviorName:CargoShip]
+			[UseAmmoReplenish:true]
+			[AmmoReplenishClipAmount:10]
+			[MaxAmmoReplenishments:99999999]
+			[UsePlayerDistanceTimer:false]
+			[UseRetreatTimer:true]
+			[RetreatTimerTrigger:3600]
+			[UseNoTargetTimer:false]
+			[RetreatDespawnDistance:4000]
+			[AutopilotData:GVK-CargoShip-Land-COALITION-TraderPrimaryAutopilot]
+			[SecondaryAutopilotData:GVK-CargoShip-Land-COALITION-TraderSecondaryAutopilot]
+			[TargetData:GVK-Universal-Target-EnemyGaalsienBeacon]
+			[Triggers:GVK-Universal-Trigger-UneditableOnSpawn]
+			[Triggers:GVK-Universal-Trigger-IndestructibleOnSpawn]
+			[Triggers:GVK-Drone-All-Trigger-BeaconDisabled]
+			[Triggers:GVK-Drone-All-Trigger-TargetAttacker]
+			[Triggers:GVK-Drone-All-Trigger-TurretTarget]
+			[Triggers:GVK-Drone-All-Trigger-WeaponsToMaxRange]
+			[Triggers:GVK-CargoShip-Land-COALITION-Trigger-TraderOnSpawnB]
+			[Triggers:GVK-CargoShip-Land-COALITION-Trigger-EscortAddWaypointsB]
+			[Triggers:GVK-CargoShip-Land-COALITION-Trigger-EscortHorizonAngleHigh]
+			[Triggers:GVK-CargoShip-Land-COALITION-Trigger-EscortArriveAtWaypoint]
+			[Triggers:GVK-CargoShip-Land-COALITION-Trigger-EscortLeaveWaypoint]
+			[Triggers:GVK-CargoShip-Land-COALITION-Trigger-EscortHeadToDespawn]
+			[Triggers:GVK-CargoShip-Land-COALITION-Trigger-EscortCompromised]
+			[Triggers:GVK-CargoShip-Land-COALITION-Trigger-EscortAttacked]
+			[Triggers:GVK-CargoShip-Land-COALITION-Trigger-TraderPlayerNear]
+			[Triggers:GVK-CargoShip-Land-COALITION-Trigger-TraderPlayerStillNear]
+			[Triggers:GVK-CargoShip-Land-COALITION-Trigger-TraderPlayerNotNear]
+			[Triggers:GVK-CargoShip-Land-COALITION-Trigger-EscortOutsizeZone0]
+			[RemoteControlCode:CoalitionRouteB]
+			</Description>
+		</EntityComponent>
+		<!-- Trigger when Cargo Ship Spawns -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-CargoShip-Land-COALITION-Trigger-TraderOnSpawnB</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Trigger]
+			[Type:Timer]
+			[UseTrigger:true]
+			[StartsReady:false]
+			[MaxActions:1]
+			[MinCooldownMs:1000]
+			[MaxCooldownMs:1000]
+			[Actions:GVK-CargoShip-Land-COALITION-Action-TraderOnSpawnB]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-CargoShip-Land-COALITION-Action-TraderOnSpawnB</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Action]
+			[Chance:100]
+			[ChangeAutopilotProfile:true]
+			[AutopilotProfile:Primary]
+			[SetWeaponsToMaxRange:true]
+			[UseChatBroadcast:true]
+			[ChatData:GVK-CargoShip-Land-COALITION-Chat-TraderOnSpawnB]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-CargoShip-Land-COALITION-Chat-TraderOnSpawnB</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Chat]
+			[UseChat:true]
+			[StartsReady:true]
+			[Chance:100]
+			[MaxChats:1]
+			[BroadcastRandomly:false]
+			[Author:Coalition]
+			[Color:White]
+			[ChatMessages:A Trader is en route to Mastodon.]
+			[ChatAudio:ArcHudGPSNotification2]
+			[BroadcastChatType:Both]
+			[SendToAllOnlinePlayers:true]
+			</Description>
+		</EntityComponent>
+	</EntityComponents>
+</Definitions>

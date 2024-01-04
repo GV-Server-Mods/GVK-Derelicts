@@ -6,14 +6,14 @@
 			<Id>
 				<TypeId>SpawnGroupDefinition</TypeId>
 				<!--Do Not Edit-->
-				<SubtypeId>GVK-PlanetaryCargoShip-Land-Coalition-SpawnGroup-Trader</SubtypeId>
+				<SubtypeId>GVK-PlanetaryCargoShip-Land-Coalition-SpawnGroup-TraderA</SubtypeId>
 			</Id>
 			<Description>
 			[Modular Encounters SpawnGroup]
 			[IgnoreCleanupRules:true]
 			[ReplenishSystems:true]
 			[ManipulationProfiles:MES-Manipulation-RivalAi] 
-			[SpawnConditionsProfiles:GVK-SpawnCondition-Land-CargoShip-Coalition]
+			[SpawnConditionsProfiles:GVK-SpawnCondition-Land-CargoShip-CoalitionA]
 			[ManipulationProfiles:GVK-Manipulation-CargoShip]
 			</Description>
 			<IsPirate>true</IsPirate>
@@ -28,23 +28,54 @@
 					</Position>
 					<Speed>50</Speed>
 					<BeaconText>Trader</BeaconText>
-					<Behaviour>GVK-CargoShip-Land-COALITION-Behavior-Trader</Behaviour>
+					<Behaviour>GVK-CargoShip-Land-COALITION-Behavior-TraderA</Behaviour>
 				</Prefab>
 			</Prefabs>
 		</SpawnGroup>
-		<!-- [NPC Drone] Coalition Cargo Cruiser -->
+		<!-- [NPC Drone] Coalition Trader -->
 		<SpawnGroup>
 			<Id>
 				<TypeId>SpawnGroupDefinition</TypeId>
 				<!--Do Not Edit-->
-				<SubtypeId>GVK-PlanetaryCargoShip-Land-Coalition-SpawnGroup-Escort</SubtypeId>
+				<SubtypeId>GVK-PlanetaryCargoShip-Land-Coalition-SpawnGroup-TraderB</SubtypeId>
 			</Id>
 			<Description>
 			[Modular Encounters SpawnGroup]
 			[IgnoreCleanupRules:true]
 			[ReplenishSystems:true]
 			[ManipulationProfiles:MES-Manipulation-RivalAi] 
-			[SpawnConditionsProfiles:GVK-SpawnCondition-Land-CargoShip-Coalition]
+			[SpawnConditionsProfiles:GVK-SpawnCondition-Land-CargoShip-CoalitionB]
+			[ManipulationProfiles:GVK-Manipulation-CargoShip]
+			</Description>
+			<IsPirate>true</IsPirate>
+			<!--Do not edit-->
+			<Frequency>0.1</Frequency>
+			<Prefabs>
+				<Prefab SubtypeId="[NPC CargoShip] Coalition Trader">
+					<Position>
+						<X>0.0</X>
+						<Y>0.0</Y>
+						<Z>0.0</Z>
+					</Position>
+					<Speed>50</Speed>
+					<BeaconText>Trader</BeaconText>
+					<Behaviour>GVK-CargoShip-Land-COALITION-Behavior-TraderB</Behaviour>
+				</Prefab>
+			</Prefabs>
+		</SpawnGroup>
+		<!-- [NPC Drone] Coalition Cargo Cruiser East Crossroads-Sevastopol-->
+		<SpawnGroup>
+			<Id>
+				<TypeId>SpawnGroupDefinition</TypeId>
+				<!--Do Not Edit-->
+				<SubtypeId>GVK-PlanetaryCargoShip-Land-Coalition-SpawnGroup-EscortA</SubtypeId>
+			</Id>
+			<Description>
+			[Modular Encounters SpawnGroup]
+			[IgnoreCleanupRules:true]
+			[ReplenishSystems:true]
+			[ManipulationProfiles:MES-Manipulation-RivalAi] 
+			[SpawnConditionsProfiles:GVK-SpawnCondition-Land-CargoShip-CoalitionA]
 			[ManipulationProfiles:GVK-Manipulation-CargoShip]
 			</Description>
 			<IsPirate>true</IsPirate>
@@ -59,7 +90,38 @@
 					</Position>
 					<Speed>50</Speed>
 					<BeaconText>Cargo Transport</BeaconText>
-					<Behaviour>GVK-CargoShip-Land-COALITION-Behavior-Escort</Behaviour>
+					<Behaviour>GVK-CargoShip-Land-COALITION-Behavior-EscortA</Behaviour>
+				</Prefab>
+			</Prefabs>
+		</SpawnGroup>
+		<!-- [NPC Drone] Coalition Cargo Cruiser East Crossroads-Sevastopol-->
+		<SpawnGroup>
+			<Id>
+				<TypeId>SpawnGroupDefinition</TypeId>
+				<!--Do Not Edit-->
+				<SubtypeId>GVK-PlanetaryCargoShip-Land-Coalition-SpawnGroup-EscortB</SubtypeId>
+			</Id>
+			<Description>
+			[Modular Encounters SpawnGroup]
+			[IgnoreCleanupRules:true]
+			[ReplenishSystems:true]
+			[ManipulationProfiles:MES-Manipulation-RivalAi] 
+			[SpawnConditionsProfiles:GVK-SpawnCondition-Land-CargoShip-CoalitionB]
+			[ManipulationProfiles:GVK-Manipulation-CargoShip]
+			</Description>
+			<IsPirate>true</IsPirate>
+			<!--Do not edit-->
+			<Frequency>0.1</Frequency>
+			<Prefabs>
+				<Prefab SubtypeId="[NPC CargoShip] Coalition Cargo Cruiser">
+					<Position>
+						<X>80</X>
+						<Y>0.0</Y>
+						<Z>0.0</Z>
+					</Position>
+					<Speed>50</Speed>
+					<BeaconText>Cargo Transport</BeaconText>
+					<Behaviour>GVK-CargoShip-Land-COALITION-Behavior-EscortB</Behaviour>
 				</Prefab>
 			</Prefabs>
 		</SpawnGroup>
