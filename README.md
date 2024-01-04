@@ -1,6 +1,5 @@
 # GVK-Derelicts
 Global Bools
-`LargeWreckActive`
 `LargeWrecksEnabled`
 `SpawnStaticTown`
 Run command: `/MES.Debug.ChangeBool.Value1.true/false` to change bools. LargeWrecksEnabled should be turned on about 1 to 2 weeks in.
