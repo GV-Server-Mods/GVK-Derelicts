@@ -15,6 +15,7 @@
 			[Triggers:GVK-Static-Trigger-ConvoySpawner-Coalition-SpawnConvoyB]
 			</Description>
 		</EntityComponent>
+		<!-- wait timer until next spawn 3600000-7200000 = 1-2 hours -->
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
@@ -23,8 +24,8 @@
 			<Description>
 			[RivalAI Trigger]
 			[Type:Timer]
-			[MinCooldownMs:3000]
-			[MaxCooldownMs:6000]
+			[MinCooldownMs:3600000]
+			[MaxCooldownMs:7200000]
 			[UseTrigger:true]
 			[StartsReady:true]
 			[ConditionCheckResetsTimer:true]

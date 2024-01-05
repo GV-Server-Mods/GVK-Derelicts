@@ -29,5 +29,43 @@
 				</Prefab>
 			</Prefabs>
 		</SpawnGroup>
+		<SpawnGroup>
+			<Id>
+				<TypeId>SpawnGroupDefinition</TypeId>
+				<SubtypeId>GVK-Other-Loot-SpawnGroup-COALITION-CargoDrop2x</SubtypeId>
+			</Id>
+			<Description>
+			[Modular Encounters SpawnGroup]
+			[IgnoreCleanupRules:true]
+			[ReplenishSystems:true]
+			[ManipulationProfiles:MES-Manipulation-RivalAi] 
+			[ManipulationProfiles:Other-Loot-Manipulation-Coalition-CargoDrop]
+			[SpawnConditionsProfiles:Other-Loot-SpawnCondition-Coalition-CargoDrop]
+			</Description>
+			<IsPirate>true</IsPirate>
+			<Frequency>0.1</Frequency>
+			<Prefabs>
+				<Prefab SubtypeId="[NPC Loot] Cargo Drop">
+					<Position>
+						<X>-50</X>
+						<Y>0.0</Y>
+						<Z>0.0</Z>
+					</Position>
+					<Speed>0</Speed>
+					<BeaconText>Cargo Drop 1</BeaconText>
+					<Behaviour></Behaviour>
+				</Prefab>
+				<Prefab SubtypeId="[NPC Loot] Cargo Drop">
+					<Position>
+						<X>50</X>
+						<Y>0.0</Y>
+						<Z>0.0</Z>
+					</Position>
+					<Speed>0</Speed>
+					<BeaconText>Cargo Drop 2</BeaconText>
+					<Behaviour></Behaviour>
+				</Prefab>
+			</Prefabs>
+		</SpawnGroup>
 	</SpawnGroups>
 </Definitions>
