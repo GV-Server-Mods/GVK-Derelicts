@@ -72,11 +72,13 @@
 			[BroadcastRandomly:false]
 			[Author:COALITION]
 			[Color:White]
-			[ChatMessages:Coalition Forces are under attack and need support.]
+			[ChatMessages:Friendly forces requesting assistance!]
 			[GPSLabel:Distress Signal]
 			[ChatAudio:ArcHudGPSNotification2]
 			[BroadcastChatType:Chat]
-			[SendToAllOnlinePlayers:true]
+			[SendToAllOnlinePlayers:false]
+			[IgnoreAntennaRequirement:true]
+			[IgnoredAntennaRangeOverride:40000]
 		  </Description>
 		</EntityComponent>
 		<!-- Trigger sequences for Wreck to die -->
@@ -183,12 +185,14 @@
 			[Chance:100]
 			[MaxChats:1]
 			[BroadcastRandomly:false]
-			[Author:Coalition]
-			[Color:White]
-			[ChatMessages:The Coalition Forces have been Lost!]
+			[Author:Sensors]
+			[Color:Blue]
+			[ChatMessages:Coalition distress signal lost.]
 			[ChatAudio:GreetingSoundId-A]
 			[BroadcastChatType:Chat]
-			[SendToAllOnlinePlayers:true]
+			[SendToAllOnlinePlayers:false]
+			[IgnoreAntennaRequirement:true]
+			[IgnoredAntennaRangeOverride:40000]
 			</Description>
 		</EntityComponent>
 		<!-- Trigger sequence while GAALSIEN beacons in target range -->
@@ -237,7 +241,7 @@
 			[IgnoredAntennaRangeOverride:5000]
 			[Author:COALITION]
 			[Color:White]
-			[ChatMessages:Enemy Gaalsien targets still in range.]
+			[ChatMessages:Enemy Gaalsien forces still in range.]
 			[ChatAudio:ArcHudGPSNotification2]
 			[BroadcastChatType:Both]
 		  </Description>
@@ -308,10 +312,12 @@
 			[BroadcastRandomly:false]
 			[Author:COALITION]
 			[Color:White]
-			[ChatMessages:Coalition Forces have been saved!]
+			[ChatMessages:Thanks for the assistance, reward drop in-bound.]
 			[ChatAudio:ArcHudGPSNotification2]
 			[BroadcastChatType:Both]
-			[SendToAllOnlinePlayers:true]
+			[SendToAllOnlinePlayers:false]
+			[IgnoreAntennaRequirement:true]
+			[IgnoredAntennaRangeOverride:40000]
 		  </Description>
 		</EntityComponent>
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">

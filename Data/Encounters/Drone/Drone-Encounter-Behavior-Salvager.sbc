@@ -115,7 +115,9 @@
 			[ChatMessages:Enemy Detected, retreating immediately.]
 			[ChatAudio:GreetingSoundId-A]
 			[BroadcastChatType:Chat]
-			[SendToAllOnlinePlayers:true]
+			[SendToAllOnlinePlayers:false]
+			[IgnoreAntennaRequirement:true]
+			[IgnoredAntennaRangeOverride:9999999]
 			</Description>
 		</EntityComponent>
 		<!-- Trigger sequence when Salvager is disabled -->
@@ -158,12 +160,14 @@
 			[Chance:100]
 			[MaxChats:1]
 			[BroadcastRandomly:true]
-			[Author:COALITION]
-			[Color:White]
-			[ChatMessages:A Salvager has been disabled.]
+			[Author:Sensors]
+			[Color:Blue]
+			[ChatMessages:Gaalsien salvager disabled.]
 			[ChatAudio:GreetingSoundId-A]
 			[BroadcastChatType:Notify]
-			[SendToAllOnlinePlayers:true]
+			[SendToAllOnlinePlayers:false]
+			[IgnoreAntennaRequirement:true]
+			[IgnoredAntennaRangeOverride:9999999]
 			</Description>
 		</EntityComponent>
 		<!-- Trigger sequence when small NPC crashes into the ground (instant delete) -->
@@ -212,12 +216,14 @@
 			[Chance:100]
 			[MaxChats:1]
 			[BroadcastRandomly:true]
-			[Author:COALITION]
-			[Color:White]
-			[ChatMessages:A Salvager has crashed.]
+			[Author:Sensors]
+			[Color:Blue]
+			[ChatMessages:Gaalsien salvager crashed.]
 			[ChatAudio:GreetingSoundId-A]
 			[BroadcastChatType:Notify]
-			[SendToAllOnlinePlayers:true]
+			[SendToAllOnlinePlayers:false]
+			[IgnoreAntennaRequirement:true]
+			[IgnoredAntennaRangeOverride:9999999]
 			</Description>
 		</EntityComponent>
 	</EntityComponents>

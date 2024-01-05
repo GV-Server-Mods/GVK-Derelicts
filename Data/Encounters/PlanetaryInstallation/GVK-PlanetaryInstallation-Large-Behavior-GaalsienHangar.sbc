@@ -76,13 +76,11 @@
 			[Chance:100]
 			[MaxChats:2]
 			[BroadcastRandomly:false]
-			[Author:COALITION]
-			[Color:White]
-			[ChatMessages:A Gaalsien Hangar has been spotted.]
+			[Author:Sensors]
+			[Color:Blue]
+			[ChatMessages:Gaalsien base detected.]
 			[ChatAudio:ArcHudGPSNotification2]
-			[BroadcastChatType:Chat]
-			[ChatMessages:A Gaalsien Hangar has been spotted.]
-			[BroadcastChatType:Notify]
+			[BroadcastChatType:Both]
 			[SendToAllOnlinePlayers:true]
 		  </Description>
 		</EntityComponent>
@@ -157,7 +155,9 @@
 			[ChatMessages:Cruiser ready for action.]
 			[ChatAudio:GreetingSoundId-A]
 			[BroadcastChatType:Chat]
-			[SendToAllOnlinePlayers:true]
+			[SendToAllOnlinePlayers:false]
+			[IgnoreAntennaRequirement:true]
+			[IgnoredAntennaRangeOverride:9999999]
 			</Description>
 		</EntityComponent>
 		<!-- Trigger sequences for Hangar to die -->
@@ -271,11 +271,11 @@
 			[Chance:100]
 			[MaxChats:1]
 			[BroadcastRandomly:false]
-			[Author:Coalition]
-			[Color:White]
-			[ChatMessages:The Gaalsien Hangar has been defeated!]
+			[Author:Sensors]
+			[Color:Blue]
+			[ChatMessages:Gaalsien base destroyed.]
 			[ChatAudio:GreetingSoundId-A]
-			[BroadcastChatType:Chat]
+			[BroadcastChatType:Both]
 			[SendToAllOnlinePlayers:true]
 			</Description>
 		</EntityComponent>
