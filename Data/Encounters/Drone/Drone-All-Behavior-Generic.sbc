@@ -430,7 +430,7 @@
 			</Id>
 			<Description>
 			[RivalAI Autopilot]
-			[UseVelocityCollisionEvasion:true]
+			[UseVelocityCollisionEvasion:false]
 			[CollisionEvasionWaypointCalculatedAwayFromEntity:true]
 			[RotationMultiplier:1]
 			[FlyLevelWithGravity:true]
@@ -493,7 +493,7 @@
 			</Id>
 			<Description>
 			[RivalAI Autopilot]
-			[UseVelocityCollisionEvasion:true]
+			[UseVelocityCollisionEvasion:false]
 			[CollisionEvasionWaypointCalculatedAwayFromEntity:true]
 			[RotationMultiplier:0.5]
 			[FlyLevelWithGravity:true]
@@ -557,7 +557,7 @@
 			</Id>
 			<Description>
 			[RivalAI Autopilot]
-			[UseVelocityCollisionEvasion:true]
+			[UseVelocityCollisionEvasion:false]
 			[RotationMultiplier:1]
 			[LimitRotationSpeed:true]
 			[MaxRotationMagnitude:0.25]
@@ -567,7 +567,6 @@
 			[IdealPlanetAltitude:10]
 			[MinimumPlanetAltitude:0]
 			[AltitudeTolerance:5000]
-			[UseVelocityCollisionEvasion:true]
 			[CollisionEvasionWaypointDistance:300]
 			[CollisionEvasionResumeDistance:150]
 			[CollisionEvasionResumeTime:10]
@@ -904,12 +903,14 @@
 			[Chance:100]
 			[MaxChats:1]
 			[BroadcastRandomly:true]
-			[Author:COALITION]
-			[Color:White]
-			[ChatMessages:A defense drone has crashed.]
+			[Author:Sensors]
+			[Color:Blue]
+			[ChatMessages:Gaalsien craft crashed.]
 			[ChatAudio:GreetingSoundId-A]
 			[BroadcastChatType:Notify]
-			[SendToAllOnlinePlayers:true]
+			[SendToAllOnlinePlayers:false]
+			[IgnoreAntennaRequirement:true]
+			[IgnoredAntennaRangeOverride:10000]
 			</Description>
 		</EntityComponent>
 		<!-- Trigger sequence when small NPC RAI Remote is disabled (instant delete) -->
@@ -955,12 +956,14 @@
 			[Chance:100]
 			[MaxChats:1]
 			[BroadcastRandomly:true]
-			[Author:COALITION]
-			[Color:White]
-			[ChatMessages:A defense drone has been shot down.]
+			[Author:Sensors]
+			[Color:Blue]
+			[ChatMessages:Gaalsien craft destroyed.]
 			[ChatAudio:GreetingSoundId-A]
 			[BroadcastChatType:Notify]
-			[SendToAllOnlinePlayers:true]
+			[SendToAllOnlinePlayers:false]
+			[IgnoreAntennaRequirement:true]
+			[IgnoredAntennaRangeOverride:10000]
 			</Description>
 		</EntityComponent>
 		<!-- Trigger sequence when large NPC crashes into the ground -->
@@ -1009,12 +1012,14 @@
 			[Chance:100]
 			[MaxChats:1]
 			[BroadcastRandomly:true]
-			[Author:COALITION]
-			[Color:White]
-			[ChatMessages:A defense drone has crashed.]
+			[Author:Sensors]
+			[Color:Blue]
+			[ChatMessages:Gaalsien ship crashed.]
 			[ChatAudio:GreetingSoundId-A]
 			[BroadcastChatType:Notify]
-			[SendToAllOnlinePlayers:true]
+			[SendToAllOnlinePlayers:false]
+			[IgnoreAntennaRequirement:true]
+			[IgnoredAntennaRangeOverride:40000]
 			</Description>
 		</EntityComponent>
 		<!-- Trigger sequence when large NPC RAI Remote is disabled -->
@@ -1045,7 +1050,29 @@
 			[DisableTriggers:true]
 			[DisableTriggerNames:GVK-Drone-All-Trigger-LargeCrashed]
 			[UseChatBroadcast:true]
-			[ChatData:GVK-Drone-All-Chat-Compromised]
+			[ChatData:GVK-Drone-All-Chat-LargeCrashed]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Drone-All-Chat-LargeCrashed</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Chat]
+			[UseChat:true]
+			[StartsReady:true]
+			[Chance:100]
+			[MaxChats:1]
+			[BroadcastRandomly:true]
+			[Author:Sensors]
+			[Color:Blue]
+			[ChatMessages:Gaalsien ship destroyed.]
+			[ChatAudio:GreetingSoundId-A]
+			[BroadcastChatType:Notify]
+			[SendToAllOnlinePlayers:false]
+			[IgnoreAntennaRequirement:true]
+			[IgnoredAntennaRangeOverride:40000]
 			</Description>
 		</EntityComponent>
 		<!-- Trigger sequence when a Cruiser crashes into the ground -->
@@ -1094,12 +1121,14 @@
 			[Chance:100]
 			[MaxChats:1]
 			[BroadcastRandomly:true]
-			[Author:COALITION]
-			[Color:White]
-			[ChatMessages:A Cruiser has crashed.]
+			[Author:Sensors]
+			[Color:Blue]
+			[ChatMessages:Gaalsien cruiser crashed.]
 			[ChatAudio:GreetingSoundId-A]
 			[BroadcastChatType:Notify]
-			[SendToAllOnlinePlayers:true]
+			[SendToAllOnlinePlayers:false]
+			[IgnoreAntennaRequirement:true]
+			[IgnoredAntennaRangeOverride:9999999]
 			</Description>
 		</EntityComponent>
 		<!-- Trigger sequence when a Cruiser RAI Remote is disabled -->
@@ -1145,12 +1174,14 @@
 			[Chance:100]
 			[MaxChats:1]
 			[BroadcastRandomly:true]
-			[Author:COALITION]
-			[Color:White]
-			[ChatMessages:A Cruiser has been shot down.]
+			[Author:Sensors]
+			[Color:Blue]
+			[ChatMessages:Gaalsien cruiser destroyed.]
 			[ChatAudio:GreetingSoundId-A]
 			[BroadcastChatType:Notify]
-			[SendToAllOnlinePlayers:true]
+			[SendToAllOnlinePlayers:false]
+			[IgnoreAntennaRequirement:true]
+			[IgnoredAntennaRangeOverride:9999999]
 			</Description>
 		</EntityComponent>
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
