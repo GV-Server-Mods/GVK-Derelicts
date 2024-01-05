@@ -10,7 +10,7 @@
 			[MES Spawn Conditions]
 			[PlanetaryInstallation:true]
 			[PlanetaryInstallationType:Small]
-			[FactionOwner:GAALSIEN]
+			[FactionOwner:DERELICT]
 			[ForceStaticGrid:true]
 			[RotateInstallations:{X:100 Y:100 Z:100},{X:100 Y:100 Z:100},{X:100 Y:100 Z:100}]
 			[ZoneConditions:GVK-Universal-ZoneConditions-WreckZone123]
@@ -27,7 +27,7 @@
 			[MES Spawn Conditions]
 			[PlanetaryInstallation:true]
 			[PlanetaryInstallationType:Medium]
-			[FactionOwner:GAALSIEN]
+			[FactionOwner:DERELICT]
 			[ForceStaticGrid:true]
 			[RotateInstallations:{X:100 Y:100 Z:100},{X:100 Y:100 Z:100},{X:100 Y:100 Z:100}]
 			[ZoneConditions:GVK-Universal-ZoneConditions-WreckZone23]
@@ -43,7 +43,7 @@
 			[MES Spawn Conditions]
 			[PlanetaryInstallation:true]
 			[PlanetaryInstallationType:Large]
-			[FactionOwner:GAALSIEN]
+			[FactionOwner:DERELICT]
 			[ForceStaticGrid:true]
 			[RotateInstallations:{X:100 Y:100 Z:100},{X:100 Y:100 Z:100},{X:100 Y:100 Z:100}]
 			[ZoneConditions:GVK-Universal-ZoneConditions-WreckZone3Only]
@@ -51,9 +51,10 @@
 			[RemoteControlCode:GVK-LargeDerelict]
 			[RemoteControlCodeMinDistance:900000]
 			[RemoteControlCodeMaxDistance:-1]
-			[SandboxVariables:LargeWrecksActive]
+			[SandboxVariables:LargeWrecksEnabled]
 			</Description>
 		</EntityComponent>
+		<!-- Buildings do not use the random rotation -->
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
@@ -63,7 +64,7 @@
 			[MES Spawn Conditions]
 			[PlanetaryInstallation:true]
 			[PlanetaryInstallationType:Small]
-			[FactionOwner:GAALSIEN]
+			[FactionOwner:DERELICT]
 			[ForceStaticGrid:true]
 			[ZoneConditions:GVK-Universal-ZoneConditions-WreckZone123]
 			[ZoneConditions:GVK-Universal-ZoneConditions-WreckZone23]
@@ -88,7 +89,7 @@
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-PlanetaryInstallation-Medium-SpawnCondition-Building</SubtypeId>
+				<SubtypeId>GVK-PlanetaryInstallation-Medium-SpawnCondition-GaalsienBuilding</SubtypeId>
 			</Id>
 			<Description>
 			[MES Spawn Conditions]
@@ -104,6 +105,25 @@
 			<Id>
 				<TypeId>Inventory</TypeId>
 				<SubtypeId>GVK-PlanetaryInstallation-Large-SpawnCondition-Building</SubtypeId>
+			</Id>
+			<Description>
+			[MES Spawn Conditions]
+			[PlanetaryInstallation:true]
+			[PlanetaryInstallationType:Large]
+			[FactionOwner:DERELICT]
+			[ForceStaticGrid:true]
+			[ZoneConditions:GVK-Universal-ZoneConditions-WreckZone3Only]
+			[UseRemoteControlCodeRestrictions:true]
+			[RemoteControlCode:GVK-LargeDerelict]
+			[RemoteControlCodeMinDistance:900000]
+			[RemoteControlCodeMaxDistance:-1]
+			[SandboxVariables:LargeWrecksEnabled]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-PlanetaryInstallation-Large-SpawnCondition-GaalsienBuilding</SubtypeId>
 			</Id>
 			<Description>
 			[MES Spawn Conditions]
