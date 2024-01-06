@@ -120,6 +120,38 @@
 				</Prefab>
 			</Prefabs>
 		</SpawnGroup>
+		<!-- [NPC Drone] Interceptor Flyer -->
+		<SpawnGroup>
+			<Id>
+				<TypeId>SpawnGroupDefinition</TypeId>
+				<!--Do Not Edit-->
+				<SubtypeId>GVK-Drone-Encounter-SpawnGroup-GAALSIEN-Interceptor</SubtypeId>
+			</Id>
+			<Description>
+			[Modular Encounters SpawnGroup]
+			[IgnoreCleanupRules:true]
+			[ReplenishSystems:true]
+			[ManipulationProfiles:MES-Manipulation-RivalAi] 
+			[ManipulationProfiles:GVK-Drone-All-Manipulation-Flyer]
+			[SpawnConditionsProfiles:GVK-Drone-Encounter-SpawnCondition-GAALSIEN-SmallFlyerSingle]
+			[SpawnConditionsProfiles:GVK-Drone-Encounter-SpawnCondition-GAALSIEN-SmallFlyerSquad]
+			</Description>
+			<IsPirate>true</IsPirate>
+			<!--Do not edit-->
+			<Frequency>0.1</Frequency>
+			<Prefabs>
+				<Prefab SubtypeId="[NPC Drone] Interceptor">
+					<Position>
+						<X>0.0</X>
+						<Y>0.0</Y>
+						<Z>100</Z>
+					</Position>
+					<Speed>0</Speed>
+					<BeaconText>Interceptor</BeaconText>
+					<Behaviour>GVK-Drone-All-Behavior-SmallFlyer-Interceptor</Behaviour>
+				</Prefab>
+			</Prefabs>
+		</SpawnGroup>
 		<!-- [NPC Drone] Medium Flyer -->
 		<SpawnGroup>
 			<Id>
