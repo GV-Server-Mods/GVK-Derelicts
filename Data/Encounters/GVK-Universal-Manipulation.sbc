@@ -40,46 +40,19 @@
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Drone-All-Manipulation-UpgradeBlocks1</SubtypeId>
+				<SubtypeId>GVK-Drone-All-Manipulation-Small5x5StandardTurrets</SubtypeId>
 			</Id>
 			<Description>
 			[MES Manipulation]
-			[ManipulationChance:33]
-			[UseBlockReplacer:true]
-			[ReplaceBlockOld:MyObjectBuilder_Decoy/GVUpgrade_CombatMobility]
-			[ReplaceBlockNew:MyObjectBuilder_Decoy/GVUpgrade_Resistance]
-			[ReplaceBlockOld:MyObjectBuilder_Decoy/GVUpgrade_CombatMobility_Small]
-			[ReplaceBlockNew:MyObjectBuilder_Decoy/GVUpgrade_Resistance_Small]
-			</Description>
-		</EntityComponent>
-		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
-			<Id>
-				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Drone-All-Manipulation-UpgradeBlocks2</SubtypeId>
-			</Id>
-			<Description>
-			[MES Manipulation]
-			[ManipulationChance:33]
-			[UseBlockReplacer:true]
-			[ReplaceBlockOld:MyObjectBuilder_Decoy/GVUpgrade_CombatMobility]
-			[ReplaceBlockNew:MyObjectBuilder_Decoy/GVUpgrade_Production]
-			[ReplaceBlockOld:MyObjectBuilder_Decoy/GVUpgrade_CombatMobility_Small]
-			[ReplaceBlockNew:MyObjectBuilder_Decoy/GVUpgrade_Production_Small]
-			</Description>
-		</EntityComponent>
-		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
-			<Id>
-				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Drone-All-Manipulation-UpgradeBlocks3</SubtypeId>
-			</Id>
-			<Description>
-			[MES Manipulation]
-			[ManipulationChance:33]
-			[UseBlockReplacer:true]
-			[ReplaceBlockOld:MyObjectBuilder_Decoy/GVUpgrade_CombatMobility]
-			[ReplaceBlockNew:MyObjectBuilder_Decoy/GVUpgrade_Engineering]
-			[ReplaceBlockOld:MyObjectBuilder_Decoy/GVUpgrade_CombatMobility_Small]
-			[ReplaceBlockNew:MyObjectBuilder_Decoy/GVUpgrade_Engineering_Small]
+			[ManipulationChance:100]
+			[ChangeTurretSettings:true]
+			[TurretRange:3000]
+			[TurretTargetNeutrals:false]
+			[RandomizeWeapons:true]
+			[IgnoreWeaponRandomizerTargetGlobalBlacklist:true]
+			[IgnoreWeaponRandomizerTargetGlobalWhitelist:true]
+			[WeaponRandomizerWhitelist:MyObjectBuilder_LargeGatlingTurret/SmallGatlingTurret,MyObjectBuilder_LargeMissileTurret/ReceptorTurret,MyObjectBuilder_LargeMissileTurret/SmallMissileTurret]
+			[WeaponRandomizerTargetWhitelist:MyObjectBuilder_LargeGatlingTurret/SmallGatlingTurret,MyObjectBuilder_LargeMissileTurret/ReceptorTurret,MyObjectBuilder_LargeMissileTurret/SmallMissileTurret]
 			</Description>
 		</EntityComponent>
 	</EntityComponents>

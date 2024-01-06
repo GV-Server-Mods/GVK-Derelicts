@@ -133,6 +133,7 @@
 			[ReplenishSystems:true]
 			[ManipulationProfiles:MES-Manipulation-RivalAi] 
 			[ManipulationProfiles:GVK-Drone-All-Manipulation-Flyer]
+			[ManipulationProfiles:GVK-Drone-All-Manipulation-Small5x5StandardTurrets]
 			[SpawnConditionsProfiles:GVK-Drone-Encounter-SpawnCondition-GAALSIEN-SmallFlyerSingle]
 			[SpawnConditionsProfiles:GVK-Drone-Encounter-SpawnCondition-GAALSIEN-SmallFlyerSquad]
 			</Description>
@@ -147,17 +148,27 @@
 						<Z>0</Z>
 					</Position>
 					<Speed>0</Speed>
-					<BeaconText>Interceptor 1</BeaconText>
+					<BeaconText>Interceptor</BeaconText>
 					<Behaviour>GVK-Drone-All-Behavior-SmallFlyer-Interceptor</Behaviour>
 				</Prefab>
-				<Prefab SubtypeId="[NPC Drone] Interceptor">
+				<Prefab SubtypeId="[NPC Drone] Assault Interceptor">
 					<Position>
 						<X>0</X>
 						<Y>0.0</Y>
 						<Z>0</Z>
 					</Position>
 					<Speed>0</Speed>
-					<BeaconText>Interceptor 2</BeaconText>
+					<BeaconText>Interceptor-A</BeaconText>
+					<Behaviour>GVK-Drone-All-Behavior-SmallFlyer-Interceptor</Behaviour>
+				</Prefab>
+				<Prefab SubtypeId="[NPC Drone] Gunship Interceptor">
+					<Position>
+						<X>0</X>
+						<Y>0.0</Y>
+						<Z>0</Z>
+					</Position>
+					<Speed>0</Speed>
+					<BeaconText>Interceptor-G</BeaconText>
 					<Behaviour>GVK-Drone-All-Behavior-SmallFlyer-Interceptor</Behaviour>
 				</Prefab>
 			</Prefabs>
@@ -420,10 +431,8 @@
 			[Modular Encounters SpawnGroup]
 			[IgnoreCleanupRules:true]
 			[ReplenishSystems:true]
-			[ManipulationProfiles:GVK-Drone-All-Manipulation-UpgradeBlocks1]
-			[ManipulationProfiles:GVK-Drone-All-Manipulation-UpgradeBlocks2]
-			[ManipulationProfiles:GVK-Drone-All-Manipulation-UpgradeBlocks3]
 			[ManipulationProfiles:MES-Manipulation-RivalAi] 
+			[ManipulationProfiles:GVK-Drone-All-Manipulation-Large3x3HeavyTurrets]
 			[ManipulationProfiles:GVK-Drone-All-Manipulation-Hover]
 			[SpawnConditionsProfiles:GVK-Drone-Encounter-SpawnCondition-GAALSIEN-LargeHoverSingle]
 			</Description>
@@ -488,16 +497,6 @@
 					</Position>
 					<Speed>0</Speed>
 					<BeaconText>Torpedo Cruiser</BeaconText>
-					<Behaviour>GVK-Drone-All-Behavior-HoverCruiserHorsefly</Behaviour>
-				</Prefab>
-				<Prefab SubtypeId="[NPC Drone] Tuukka Cruiser">
-					<Position>
-						<X>0.0</X>
-						<Y>15.0</Y>
-						<Z>0.0</Z>
-					</Position>
-					<Speed>0</Speed>
-					<BeaconText>Siege Cruiser</BeaconText>
 					<Behaviour>GVK-Drone-All-Behavior-HoverCruiserHorsefly</Behaviour>
 				</Prefab>
 				<Prefab SubtypeId="[NPC Drone] Loki Cruiser">
