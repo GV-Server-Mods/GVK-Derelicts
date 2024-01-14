@@ -39,7 +39,7 @@
 			[Triggers:GVK-CargoShip-Land-COALITION-Trigger-EscortPlayerNear]
 			[Triggers:GVK-CargoShip-Land-COALITION-Trigger-EscortPlayerStillNear]
 			[Triggers:GVK-CargoShip-Land-COALITION-Trigger-EscortPlayerNotNear]
-			[Triggers:GVK-CargoShip-Land-COALITION-Trigger-EscortOutsizeZone0]
+			[Triggers:GVK-CargoShip-Land-COALITION-Trigger-EscortOutsideZone0]
 			[Triggers:GVK-CargoShip-Land-COALITION-Trigger-EscortSuccessA]
 			[RemoteControlCode:CoalitionRouteA]
 			</Description>
@@ -874,7 +874,7 @@
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-CargoShip-Land-COALITION-Trigger-EscortOutsizeZone0</SubtypeId>
+				<SubtypeId>GVK-CargoShip-Land-COALITION-Trigger-EscortOutsideZone0</SubtypeId>
 			</Id>
 			<Description>
 			[RivalAI Trigger]
@@ -885,13 +885,13 @@
 			[MinCooldownMs:10000]
 			[MaxCooldownMs:10001]
 			[MaxActions:2]
-			[Actions:GVK-CargoShip-Land-COALITION-Action-EscortOutsizeZone0]
+			[Actions:GVK-CargoShip-Land-COALITION-Action-EscortOutsideZone0]
 			</Description>
 		</EntityComponent>
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-CargoShip-Land-COALITION-Action-EscortOutsizeZone0</SubtypeId>
+				<SubtypeId>GVK-CargoShip-Land-COALITION-Action-EscortOutsideZone0</SubtypeId>
 			</Id>
 			<Description>
 			[RivalAI Action]
@@ -961,7 +961,7 @@
 			[DisableTriggerNames:GVK-CargoShip-Land-COALITION-Trigger-EscortEnemySpawns]
 			[DisableTriggerNames:GVK-CargoShip-Land-COALITION-Trigger-EscortAttacked]
 			[DisableTriggerNames:GVK-CargoShip-Land-COALITION-Trigger-EscortCompromised]
-			[RazeBlocksOfType:true]
+			[RazeBlocksOfType:false]
 			[RazeBlocksTypes:MyObjectBuilder_Beacon/ZoneBlock]
 			[RazeBlocksTypes:MyObjectBuilder_RemoteControl/RivalAIRemoteControlLarge]
 			[RazeBlocksTypes:MyObjectBuilder_RemoteControl/RivalAIRemoteControlSmall]
