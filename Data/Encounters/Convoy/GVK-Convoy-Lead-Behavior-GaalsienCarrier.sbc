@@ -27,7 +27,7 @@
 			[EscortOffsets:{X:150 Y:0 Z:-100}]
 			[EscortOffsets:{X:-150 Y:0 Z:-100}]
 			[Triggers:GVK-Convoy-Trigger-Lead-GaalsienCarrier-AddWaypoints]
-			[Triggers:GVK-Convoy-Trigger-Lead-BeaconDisabled]
+			[Triggers:GVK-Convoy-Trigger-Lead-GaalsienCarrier-BeaconDisabled]
 			[Triggers:GVK-Convoy-Trigger-Lead-GaalsienCarrier-Session]
 			[Triggers:GVK-Convoy-Trigger-Lead-GaalsienCarrier-SpawnDefenses]
 			[Triggers:GVK-Drone-All-Trigger-FireMissilesTimers]
@@ -340,8 +340,8 @@
 			[StartsReady:true]
 			[MaxActions:1]
 			[ActionExecution:All]
-			[Actions:GVK-Convoy-Action-Lead-GaalsienCarrier-Despawn]
 			[Actions:GVK-Convoy-Action-Lead-GaalsienCarrier-SendScatterCommand]
+			[Actions:GVK-Convoy-Action-Lead-GaalsienCarrier-Despawn]
 			</Description>
 		</EntityComponent>
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
@@ -356,8 +356,8 @@
 			[StartsReady:true]
 			[MaxActions:1]
 			[ActionExecution:All]
-			[Actions:GVK-Convoy-Action-Lead-GaalsienCarrier-Despawn]
 			[Actions:GVK-Convoy-Action-Lead-GaalsienCarrier-SendScatterCommand]
+			[Actions:GVK-Convoy-Action-Lead-GaalsienCarrier-Despawn]
 			</Description>
 		</EntityComponent>
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
@@ -367,24 +367,8 @@
 			</Id>
 			<Description>
 			[RivalAI Action]
-			[ChangeInertiaDampeners:true]
-			[InertiaDampenersEnable:false]
-			[EnableBlocks:true]
-			[EnableBlockNames:HoverEngine]
-			[EnableBlockStates:Off]
-			[EnableBlockNames:Thruster]
-			[EnableBlockStates:Off]
-			[EnableBlockNames:Magnetic Plate]
-			[EnableBlockStates:On]
-			[UseChatBroadcast:true]
-			[GenerateExplosion:true]
-			[ExplosionRange:25]
-			[ExplosionDamage:1]
-			[ExplosionIgnoresVoxels:true]
 			[UseChatBroadcast:true]
 			[ChatData:GVK-Convoy-Chat-Lead-GaalsienCarrier-Despawn]
-			[GridEditable:Yes]
-			[SubGridsEditable:Yes]
 			</Description>
 		</EntityComponent>
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
@@ -421,8 +405,9 @@
 			[StartsReady:true]
 			[MaxActions:1]
 			[ActionExecution:All]
-			[Actions:GVK-Convoy-Action-Lead-GaalsienCarrier-Compromised]
 			[Actions:GVK-Convoy-Action-Lead-GaalsienCarrier-SendScatterCommand]
+			[Actions:GVK-Convoy-Action-Lead-GaalsienCarrier-Compromised]
+			[Actions:GVK-Convoy-Action-Lead-GaalsienCarrier-Disabled]
 			</Description>
 		</EntityComponent>
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
@@ -432,21 +417,51 @@
 			</Id>
 			<Description>
 			[RivalAI Action]
-			[ChangeInertiaDampeners:true]
-			[InertiaDampenersEnable:false]
+			[UseChatBroadcast:true]
+			[ChatData:GVK-Convoy-Chat-Lead-GaalsienCarrier-Compromised]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Convoy-Action-Lead-GaalsienCarrier-Disabled</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Action]
 			[StopAllRotation:true]
 			[StopAllThrust:true]
-			[EnableBlockStates:Off]
 			[EnableBlockNames:Magnetic Plate]
 			[EnableBlockStates:On]
 			[GenerateExplosion:true]
-			[ExplosionRange:25]
+			[ExplosionRange:31]
 			[ExplosionDamage:1]
 			[ExplosionIgnoresVoxels:true]
-			[UseChatBroadcast:true]
-			[ChatData:GVK-Convoy-Chat-Lead-GaalsienCarrier-Compromised]
+			[ToggleBlocksOfType:true]
+			[BlockTypesToToggle:MyObjectBuilder_Beacon/ZoneBlock]
+			[BlockTypeToggles:Off]
+			[BlockTypesToToggle:MyObjectBuilder_Beacon/DisposableNpcBeaconSmall]
+			[BlockTypeToggles:Off]
+			[BlockTypesToToggle:MyObjectBuilder_Beacon/DisposableNpcBeaconLarge]
+			[BlockTypeToggles:Off]
+			[BlockTypesToToggle:MyObjectBuilder_Beacon/SmallBlockBeacon]
+			[BlockTypeToggles:Off]
+			[BlockTypesToToggle:MyObjectBuilder_Beacon/LargeBlockBeacon]
+			[BlockTypeToggles:Off]
+			[BlockTypesToToggle:MyObjectBuilder_Beacon/RivalAIRemoteControlLarge]
+			[BlockTypeToggles:Off]
+			[BlockTypesToToggle:MyObjectBuilder_Beacon/RivalAIRemoteControlSmall]
+			[BlockTypeToggles:Off]
+			[DisableTriggers:true]
+			[DisableTriggerNames:GVK-Convoy-Trigger-Lead-GaalsienCarrier-Compromised]			
+			[DisableTriggerNames:GVK-Convoy-Trigger-Lead-GaalsienCarrier-BeaconDisabled]
+			[DisableTriggerNames:GVK-Convoy-Trigger-Lead-GaalsienCarrier-Despawn]
+			[DisableTriggerNames:GVK-Convoy-Trigger-Lead-GaalsienCarrier-DespawnMES]
 			[GridEditable:Yes]
 			[SubGridsEditable:Yes]
+			[ForceDespawn:false]
+			[ChangeInertiaDampeners:true]
+			[InertiaDampenersEnable:false]
+			[TerminateBehavior:true]
 			</Description>
 		</EntityComponent>
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
@@ -646,7 +661,7 @@
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Convoy-Trigger-Lead-BeaconDisabled</SubtypeId>
+				<SubtypeId>GVK-Convoy-Trigger-Lead-GaalsienCarrier-BeaconDisabled</SubtypeId>
 			</Id>
 			<Description>
 			[RivalAI Trigger]
@@ -656,7 +671,9 @@
 			[Conditions:GVK-Convoy-Condition-Lead-BeaconDisabled]
 			[MaxActions:1]
 			[ActionExecution:All]
+			[Actions:GVK-Convoy-Action-Lead-GaalsienCarrier-SendScatterCommand]
 			[Actions:GVK-Convoy-Action-Lead-GaalsienCarrier-Compromised]
+			[Actions:GVK-Convoy-Action-Lead-GaalsienCarrier-Disabled]
 			</Description>
 		</EntityComponent>
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
