@@ -24,6 +24,7 @@
 			[Triggers:GVK-Drone-Encounter-Salvager-Trigger-Retreat-Damage]
 			[Triggers:GVK-Drone-Encounter-Salvager-Trigger-Compromised]
 			[Triggers:GVK-Drone-Encounter-Salvager-Trigger-Crashed]
+			[Triggers:GVK-Drone-Encounter-Salvager-Trigger-BeaconDisabled]
 			[Triggers:GVK-Drone-Encounter-Trigger-RetreatNoTarget]
 			[Triggers:GVK-Drone-Encounter-Trigger-RetreatTimer]
 			BountyOnKill=500000;
@@ -136,7 +137,8 @@
 			[MaxActions:1]
 			[ActionExecution:All]
 			[Actions:GVK-Drone-Encounter-Salvager-Action-Compromised]
-			[Actions:GVK-Drone-All-Action-Disabled]
+			[Actions:GVK-Drone-Encounter-Salvager-Action-Disabled]
+			[Actions:GVK-Universal-Action-EditableOnCompromised]
 			</Description>
 		</EntityComponent>
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
@@ -186,10 +188,10 @@
 			[MinCooldownMs:5000]
 			[MaxCooldownMs:5000]
 			[MaxActions:1]
-			[Conditions:GVK-Drone-All-Condition-Crashed]
+			[Conditions:GVK-Drone-All-Condition-LargeCrashed]
 			[ActionExecution:All]
 			[Actions:GVK-Drone-Encounter-Salvager-Action-Crashed]
-			[Actions:GVK-Drone-All-Action-Disabled]
+			[Actions:GVK-Drone-Encounter-Salvager-Action-Disabled]
 			[Actions:GVK-Universal-Action-EditableOnCompromised]
 			</Description>
 		</EntityComponent>
@@ -226,6 +228,82 @@
 			[SendToAllOnlinePlayers:false]
 			[IgnoreAntennaRequirement:true]
 			[IgnoredAntennaRangeOverride:9999999]
+			</Description>
+		</EntityComponent>
+		<!-- Trigger sequence when large NPC Beacon is disabled -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Drone-Encounter-Salvager-Trigger-BeaconDisabled</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Trigger]
+			[Type:Timer]
+			[UseTrigger:true]
+			[StartsReady:true]
+			[Conditions:GVK-Drone-Encounter-Salvager-Condition-BeaconDisabled]
+			[MaxActions:1]
+			[ActionExecution:All]
+			[Actions:GVK-Drone-Encounter-Salvager-Action-Compromised]
+			[Actions:GVK-Drone-Encounter-Salvager-Action-Disabled]
+			[Actions:GVK-Universal-Action-EditableOnCompromised]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Drone-Encounter-Salvager-Condition-BeaconDisabled</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Condition]
+			[UseConditions:true]
+			[MatchAnyCondition:false]
+			[CheckForBlocksOfType:true]
+			[BlocksOfType:MyObjectBuilder_Beacon]
+			[UseFailCondition:true]
+			</Description>
+		</EntityComponent>
+		<!-- Action for Large drones when defeated to disable stuff -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Drone-Encounter-Salvager-Action-Disabled</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Action]
+			[EnableBlockStates:Off]
+			[EnableBlockNames:Magnetic Plate]
+			[EnableBlockStates:On]
+			[StopAllRotation:true]
+			[StopAllThrust:true]
+			[GenerateExplosion:true]
+			[ExplosionOffsetFromRemote:{X:0 Y:0 Z:0}]
+			[ExplosionRange:5]
+			[ExplosionDamage:1]
+			[ExplosionIgnoresVoxels:true]
+			[ToggleBlocksOfType:true]
+			[BlockTypesToToggle:MyObjectBuilder_Beacon/ZoneBlock]
+			[BlockTypeToggles:Off]
+			[BlockTypesToToggle:MyObjectBuilder_Beacon/DisposableNpcBeaconSmall]
+			[BlockTypeToggles:Off]
+			[BlockTypesToToggle:MyObjectBuilder_Beacon/DisposableNpcBeaconLarge]
+			[BlockTypeToggles:Off]
+			[BlockTypesToToggle:MyObjectBuilder_Beacon/SmallBlockBeacon]
+			[BlockTypeToggles:Off]
+			[BlockTypesToToggle:MyObjectBuilder_Beacon/LargeBlockBeacon]
+			[BlockTypeToggles:Off]
+			[BlockTypesToToggle:MyObjectBuilder_Beacon/RivalAIRemoteControlLarge]
+			[BlockTypeToggles:Off]
+			[BlockTypesToToggle:MyObjectBuilder_Beacon/RivalAIRemoteControlSmall]
+			[BlockTypeToggles:Off]
+			[DisableTriggers:true]
+			[DisableTriggerNames:GVK-Drone-Encounter-Salvager-Trigger-Crashed]			
+			[DisableTriggerNames:GVK-Drone-Encounter-Salvager-Trigger-Compromised]			
+			[DisableTriggerNames:GVK-Drone-Encounter-Salvager-Trigger-BeaconDisabled]
+			[ChangeInertiaDampeners:true]
+			[InertiaDampenersEnable:false]
+			[TerminateBehavior:true]
+			[ForceDespawn:false]
 			</Description>
 		</EntityComponent>
 	</EntityComponents>
