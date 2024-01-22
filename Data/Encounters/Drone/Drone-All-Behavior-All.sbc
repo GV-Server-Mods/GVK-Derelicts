@@ -1,0 +1,336 @@
+<?xml version="1.0"?>
+<Definitions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+	<EntityComponents>
+		<!-- Action group to do a barrel roll -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Drone-All-Trigger-BarrelRoll</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Trigger]
+			[UseTrigger:true]
+			[Type:Timer]
+			[DamageTypes:Any]
+			[MinCooldownMs:15000]
+			[MaxCooldownMs:30000]
+			[StartsReady:true]
+			[MaxActions:-1]
+			[Actions:GVK-Drone-All-Action-BarrelRoll]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Drone-All-Action-BarrelRoll</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Action]
+			[BarrelRoll:true]
+			</Description>
+		</EntityComponent>
+		<!-- Action group to engage enemy upon taking damage -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Drone-All-Trigger-TargetAttacker</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Trigger]
+			[UseTrigger:true]
+			[Type:Damage]
+			[StartsReady:true]
+			[MinCooldownMs:30000]
+			[MaxCooldownMs:30000]
+			[DamageTypes:Any]
+			[Actions:GVK-Drone-All-Action-TargetAttacker]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Drone-All-Action-TargetAttacker</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Action]
+			[SwitchToReceivedTarget:true]
+			</Description>
+		</EntityComponent>
+		<!-- Action group to engage enemy when turret has a target -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Drone-All-Trigger-TurretTarget</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Trigger]
+			[UseTrigger:true]
+			[Type:TurretTarget]
+			[StartsReady:true]
+			[MinCooldownMs:30000]
+			[MaxCooldownMs:30000]
+			[DamageTypes:Any]
+			[Actions:GVK-Drone-All-Action-TurretTarget]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Drone-All-Action-TurretTarget</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Action]
+			[SwitchToReceivedTarget:true]
+			</Description>
+		</EntityComponent>
+		<!-- Action group to set turrets to max range because of a bug in MES right now -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Drone-All-Trigger-WeaponsToMaxRange</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Trigger]
+			[UseTrigger:true]
+			[Type:Session]
+			[StartsReady:false]
+			[MinCooldownMs:5000]
+			[MaxCooldownMs:5000]
+			[Actions:GVK-Drone-All-Action-WeaponsToMaxRange]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Drone-All-Action-WeaponsToMaxRange</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Action]
+			[SetWeaponsToMaxRange:true]
+			</Description>
+		</EntityComponent>
+		<!-- Action group to fire Fixed Rocket Timer Blocks because of a bug in WC2 right now -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Drone-All-Trigger-FireRocketsTimers</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Trigger]
+			[UseTrigger:true]
+			[Type:TargetNear]
+			[TargetDistance:1000]
+			[Conditions:GVK-Drone-All-Condition-FireRocketsTimers]
+			[Actions:GVK-Drone-All-Action-FireRocketsTimers]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Drone-All-Condition-FireRocketsTimers</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Condition]
+			[UseConditions:true]
+			[MatchAnyCondition:true]
+			[CheckTargetAngleFromForward:true]
+			[MinTargetAngle:0]
+			[MaxTargetAngle:15]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Drone-All-Action-FireRocketsTimers</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Action]
+			[TriggerTimerBlocks:True]
+			[TimerBlockNames:Timer Block Rockets]
+			</Description>
+		</EntityComponent>
+		<!-- Action group to fire Archer Pods via Timer because of a bug in WC2 right now -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Drone-All-Trigger-FireMissilesTimers</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Trigger]
+			[UseTrigger:true]
+			[Type:TargetNear]
+			[MinCooldownMs:2000]
+			[MaxCooldownMs:2000]
+			[StartsReady:false]
+			[TargetDistance:2500]
+			[Conditions:GVK-Drone-All-Condition-FireMissilesTimers]
+			[Actions:GVK-Drone-All-Action-FireMissilesTimers]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Drone-All-Condition-FireMissilesTimers</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Condition]
+			[UseConditions:true]
+			[MatchAnyCondition:true]
+			[CheckTargetAngleFromForward:true]
+			[MinTargetAngle:0]
+			[MaxTargetAngle:100]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Drone-All-Action-FireMissilesTimers</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Action]
+			[TriggerTimerBlocks:True]
+			[TimerBlockNames:Timer Block Missiles]
+			[TimerBlockNames:Timer Block Torpedoes]
+			</Description>
+		</EntityComponent>
+		<!-- Action group to fire Flares when taking damage -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Drone-All-Trigger-FireFlaresTimers</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Trigger]
+			[UseTrigger:true]
+			[Type:Damage]
+			[DamageTypes:Any]
+			[MinCooldownMs:30000]
+			[MaxCooldownMs:60000]
+			[StartsReady:true]
+			[Actions:GVK-Drone-All-Action-FireFlaresTimers]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Drone-All-Action-FireFlaresTimers</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Action]
+			[TriggerTimerBlocks:True]
+			[TimerBlockNames:Timer Block Flares]
+			</Description>
+		</EntityComponent>
+		<!-- Action group to fire Fixed Railguns because of a bug in WC2 right now -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Drone-All-Trigger-FireRailgunsTimers</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Trigger]
+			[UseTrigger:true]
+			[Type:TargetNear]
+			[TargetDistance:2000]
+			[MinCooldownMs:5000]
+			[MaxCooldownMs:5000]
+			[ConditionCheckResetsTimer:true]
+			[Conditions:GVK-Drone-All-Condition-FireRailgunsTimers]
+			[Actions:GVK-Drone-All-Action-FireRailgunsTimers]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Drone-All-Condition-FireRailgunsTimers</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Condition]
+			[UseConditions:true]
+			[MatchAnyCondition:true]
+			[CheckTargetAngleFromForward:true]
+			[MinTargetAngle:0]
+			[MaxTargetAngle:5]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Drone-All-Action-FireRailgunsTimers</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Action]
+			[TriggerTimerBlocks:True]
+			[TimerBlockNames:Timer Block Railguns]
+			[TimerBlockNames:Timer Block MAC]
+			</Description>
+		</EntityComponent>
+		<!-- Trigger Sequence for Random Drone Encounter to retreat after a while-->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Drone-Encounter-Trigger-RetreatNoTarget</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Trigger]
+			[Type:NoTarget]
+			[UseTrigger:true]
+			[StartsReady:false]
+			[MaxActions:1]
+			[ActionExecution:All]
+			[MinCooldownMs:1800000]
+			[MaxCooldownMs:1800001]
+			[Conditions:GVK-Drone-Encounter-Condition-IsDroneEncounter]
+			[Actions:GVK-Drone-Encounter-Action-Retreat]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Drone-Encounter-Trigger-RetreatTimer</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Trigger]
+			[Type:Timer]
+			[UseTrigger:true]
+			[StartsReady:false]
+			[MaxActions:1]
+			[ActionExecution:All]
+			[MinCooldownMs:21600000]
+			[MaxCooldownMs:21600001]
+			[Conditions:GVK-Drone-Encounter-Condition-IsDroneEncounter]
+			[Actions:GVK-Drone-Encounter-Action-Retreat]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Drone-Encounter-Condition-IsDroneEncounter</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Condition]
+			[UseConditions:true]
+			[MatchAnyCondition:true]
+			[CheckForSpawnConditions:true]
+			[RequiredSpawnConditions:GVK-Drone-Encounter-SpawnCondition-GAALSIEN-Salvager]
+			[RequiredSpawnConditions:GVK-Drone-Encounter-SpawnCondition-GAALSIEN-SmallFlyerSingle]
+			[RequiredSpawnConditions:GVK-Drone-Encounter-SpawnConditionSmallHoverSingle]
+			[RequiredSpawnConditions:GVK-Drone-Encounter-SpawnConditionMediumHoverSingle]
+			[RequiredSpawnConditions:GVK-Drone-Encounter-SpawnCondition-GAALSIEN-SmallFlyerSquad]
+			[RequiredSpawnConditions:GVK-Drone-Encounter-SpawnCondition-GAALSIEN-MediumFlyerSingle]
+			[RequiredSpawnConditions:GVK-Drone-Encounter-SpawnConditionLargeHoverSingle]
+			[RequiredSpawnConditions:GVK-Drone-Encounter-SpawnConditionSmallHoverSquad]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Drone-Encounter-Action-Retreat</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Action]
+			[Retreat:true]
+			</Description>
+		</EntityComponent>
+	</EntityComponents>
+</Definitions>
