@@ -42,9 +42,31 @@
 			<Description>
 			[RivalAI Action]
 			[Chance:100]
-			[SetSandboxBooleansTrue:LargeWreckActive]
+			[SpawnEncounter:true]
+			[Spawner:GVK-PlanetaryInstallation-Encampment-Spawner-OnSpawn]
 			[UseChatBroadcast:true]
 			[ChatData:GVK-PlanetaryInstallation-Encampment-Chat-Announce]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-PlanetaryInstallation-Encampment-Spawner-OnSpawn</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Spawn]
+			[UseSpawn:true]
+			[SpawningType:CustomSpawn]
+			[StartsReady:true]
+			[ProcessAsAdminSpawn:false]
+			[MaxSpawns:1]
+			[SpawnGroups:GVK-Other-KOTH-SpawnGroup-Outpost]
+			[MinDistance:1200]
+			[MaxDistance:1201]
+			[MinAltitude:0]
+			[MaxAltitude:0]
+			[InheritNpcAltitude:false]
+			[IgnoreSafetyChecks:true]
 			</Description>
 		</EntityComponent>
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
