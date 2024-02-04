@@ -14,6 +14,56 @@
 			[UsePlayerDistanceTimer:false]
 			[RemoteControlCode:EncampmentOutpost]
 			[Triggers:GVK-Other-KOTH-Trigger-Timer]
+			[Triggers:GVK-Other-KOTH-Trigger-CreateSafeZone]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Other-KOTH-Trigger-CreateSafeZone</SubtypeId>
+			</Id>
+			<Description>
+			[MES AI Trigger]
+			[UseTrigger:true]
+			[Type:Session]
+			[StartsReady:true]
+			[MaxActions:-1]
+			[Actions:GVK-Other-KOTH-Action-CreateSafeZone]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Other-KOTH-Action-CreateSafeZone</SubtypeId>
+			</Id>
+			<Description>
+			[MES AI Action]
+			[CreateSafeZone:true]
+			[SafeZoneProfile:GVK-Other-KOTH-SafeZone-StoreSafeZone]
+			[LinkSafeZoneToRemoteControl:true]
+			[SafeZonePositionGridCenter:true]
+			[SafeZonePositionTerrainSurface:true]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Other-KOTH-SafeZone-StoreSafeZone</SubtypeId>
+			</Id>
+			<Description>
+			[MES SafeZone]
+			[Shape:Sphere]
+			[Radius:20]
+			[RadiusFromParentEntity:false]
+			[Enabled:true]
+			[LinkToParentEntity:true]
+			[IsVisible:true]
+			[Color:{X:0 Y:0 Z:0}]
+			[Texture:SafeZone_Texture_Rain]
+			[FactionAccess:Whitelist]
+			[GridAccess:Whitelist]
+			[PlayerAccess:Whitelist]
+			[AllowedActions:None]
 			</Description>
 		</EntityComponent>
 		<!-- Trigger sequences for PlayerKOTH to die (172,800,000 = 2 days in ms)-->
