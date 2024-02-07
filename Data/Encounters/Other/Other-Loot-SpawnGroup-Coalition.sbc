@@ -25,7 +25,7 @@
 					</Position>
 					<Speed>0</Speed>
 					<BeaconText>Cargo Drop</BeaconText>
-					<Behaviour></Behaviour>
+					<Behaviour>GVK-Other-Loot-Behavior-Coalition</Behaviour>
 				</Prefab>
 			</Prefabs>
 		</SpawnGroup>
@@ -53,7 +53,7 @@
 					</Position>
 					<Speed>0</Speed>
 					<BeaconText>Cargo Drop 1</BeaconText>
-					<Behaviour></Behaviour>
+					<Behaviour>GVK-Other-Loot-Behavior-Coalition</Behaviour>
 				</Prefab>
 				<Prefab SubtypeId="[NPC Loot] Cargo Drop">
 					<Position>
@@ -63,7 +63,65 @@
 					</Position>
 					<Speed>0</Speed>
 					<BeaconText>Cargo Drop 2</BeaconText>
-					<Behaviour></Behaviour>
+					<Behaviour>GVK-Other-Loot-Behavior-Coalition</Behaviour>
+				</Prefab>
+			</Prefabs>
+		</SpawnGroup>
+		<SpawnGroup>
+			<Id>
+				<TypeId>SpawnGroupDefinition</TypeId>
+				<SubtypeId>GVK-Other-Loot-SpawnGroup-COALITION-CargoDrop4x</SubtypeId>
+			</Id>
+			<Description>
+			[Modular Encounters SpawnGroup]
+			[IgnoreCleanupRules:true]
+			[ReplenishSystems:true]
+			[ManipulationProfiles:MES-Manipulation-RivalAi] 
+			[ManipulationProfiles:Other-Loot-Manipulation-Coalition-CargoDrop]
+			[SpawnConditionsProfiles:Other-Loot-SpawnCondition-Coalition-CargoDrop2x]
+			</Description>
+			<IsPirate>true</IsPirate>
+			<Frequency>0.1</Frequency>
+			<Prefabs>
+				<Prefab SubtypeId="[NPC Loot] Cargo Drop">
+					<Position>
+						<X>-50</X>
+						<Y>0.0</Y>
+						<Z>0.0</Z>
+					</Position>
+					<Speed>0</Speed>
+					<BeaconText>Cargo Drop 1</BeaconText>
+					<Behaviour>GVK-Other-Loot-Behavior-Coalition</Behaviour>
+				</Prefab>
+				<Prefab SubtypeId="[NPC Loot] Cargo Drop">
+					<Position>
+						<X>50</X>
+						<Y>0.0</Y>
+						<Z>0.0</Z>
+					</Position>
+					<Speed>0</Speed>
+					<BeaconText>Cargo Drop 2</BeaconText>
+					<Behaviour>GVK-Other-Loot-Behavior-Coalition</Behaviour>
+				</Prefab>
+				<Prefab SubtypeId="[NPC Loot] Cargo Drop">
+					<Position>
+						<X>0</X>
+						<Y>0.0</Y>
+						<Z>-50</Z>
+					</Position>
+					<Speed>0</Speed>
+					<BeaconText>Cargo Drop 3</BeaconText>
+					<Behaviour>GVK-Other-Loot-Behavior-Coalition</Behaviour>
+				</Prefab>
+				<Prefab SubtypeId="[NPC Loot] Cargo Drop">
+					<Position>
+						<X>0</X>
+						<Y>0.0</Y>
+						<Z>50</Z>
+					</Position>
+					<Speed>0</Speed>
+					<BeaconText>Cargo Drop 4</BeaconText>
+					<Behaviour>GVK-Other-Loot-Behavior-Coalition</Behaviour>
 				</Prefab>
 			</Prefabs>
 		</SpawnGroup>
