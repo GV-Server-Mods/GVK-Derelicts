@@ -1,42 +1,26 @@
 <?xml version="1.0"?>
 <Definitions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
 	<EntityComponents>
+		<!-- TargetWhitlist blocks must be Public -->
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Drone-All-Manipulation-Large3x3StandardTurrets</SubtypeId>
+				<SubtypeId>GVK-Universal-Manipulation-Large3x3StandardTurrets</SubtypeId>
 			</Id>
 			<Description>
 			[MES Manipulation]
-			[ManipulationChance:100]
+			[ManipulationChance:75]
 			[ChangeTurretSettings:true]
 			[TurretRange:3000]
 			[TurretTargetNeutrals:false]
 			[RandomizeWeapons:true]
 			[IgnoreWeaponRandomizerTargetGlobalBlacklist:true]
 			[IgnoreWeaponRandomizerTargetGlobalWhitelist:true]
-			[WeaponRandomizerWhitelist:MyObjectBuilder_LargeMissileTurret/LargeCalibreTurret,MyObjectBuilder_LargeMissileTurret/KhopeshTurret,MyObjectBuilder_LargeMissileTurret/LargeBlockMediumCalibreTurret,MyObjectBuilder_LargeMissileTurret/SentinelTurret,MyObjectBuilder_LargeMissileTurret/(null)]
-			[WeaponRandomizerTargetWhitelist:MyObjectBuilder_LargeGatlingTurret/(null),MyObjectBuilder_LargeMissileTurret/LargeCalibreTurret,MyObjectBuilder_LargeMissileTurret/KhopeshTurret,MyObjectBuilder_LargeMissileTurret/LargeBlockMediumCalibreTurret,MyObjectBuilder_LargeMissileTurret/SentinelTurret,MyObjectBuilder_LargeMissileTurret/(null)]
+			[WeaponRandomizerWhitelist:MyObjectBuilder_LargeGatlingTurret/LargeGatlingTurret_NPC,MyObjectBuilder_LargeMissileTurret/LargeCalibreTurret_NPC,MyObjectBuilder_LargeMissileTurret/KhopeshTurret_NPC,MyObjectBuilder_LargeMissileTurret/LargeBlockMediumCalibreTurret_NPC,MyObjectBuilder_LargeMissileTurret/SentinelTurret_NPC,MyObjectBuilder_LargeMissileTurret/LargeMissileTurret_NPC]
+			[WeaponRandomizerTargetWhitelist:MyObjectBuilder_LargeGatlingTurret/LargeGatlingTurret_NPC,MyObjectBuilder_LargeMissileTurret/LargeCalibreTurret_NPC,MyObjectBuilder_LargeMissileTurret/KhopeshTurret_NPC,MyObjectBuilder_LargeMissileTurret/LargeBlockMediumCalibreTurret_NPC,MyObjectBuilder_LargeMissileTurret/SentinelTurret_NPC,MyObjectBuilder_LargeMissileTurret/LargeMissileTurret_NPC]
 			</Description>
 		</EntityComponent>
-		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
-			<Id>
-				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-PlanetaryInstallation-All-Manipulation-Large3x3StandardTurrets</SubtypeId>
-			</Id>
-			<Description>
-			[MES Manipulation]
-			[ManipulationChance:30]
-			[ChangeTurretSettings:true]
-			[TurretRange:3000]
-			[TurretTargetNeutrals:false]
-			[RandomizeWeapons:true]
-			[IgnoreWeaponRandomizerTargetGlobalBlacklist:true]
-			[IgnoreWeaponRandomizerTargetGlobalWhitelist:true]
-			[WeaponRandomizerWhitelist:MyObjectBuilder_LargeMissileTurret/LargeCalibreTurret,MyObjectBuilder_LargeMissileTurret/KhopeshTurret,MyObjectBuilder_LargeMissileTurret/LargeBlockMediumCalibreTurret,MyObjectBuilder_LargeMissileTurret/SentinelTurret,MyObjectBuilder_LargeMissileTurret/(null)]
-			[WeaponRandomizerTargetWhitelist:MyObjectBuilder_LargeGatlingTurret/(null),MyObjectBuilder_LargeMissileTurret/LargeCalibreTurret,MyObjectBuilder_LargeMissileTurret/KhopeshTurret,MyObjectBuilder_LargeMissileTurret/LargeBlockMediumCalibreTurret,MyObjectBuilder_LargeMissileTurret/SentinelTurret,MyObjectBuilder_LargeMissileTurret/(null)]
-			</Description>
-		</EntityComponent>
+		<!-- TargetWhitlist blocks must be Public -->
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
@@ -47,14 +31,15 @@
 			[ChangeTurretSettings:true]
 			[TurretRange:3000]
 			[TurretTargetNeutrals:false]
-			[ManipulationChance:100]
+			[ManipulationChance:75]
 			[RandomizeWeapons:true]
 			[IgnoreWeaponRandomizerTargetGlobalBlacklist:true]
 			[IgnoreWeaponRandomizerTargetGlobalWhitelist:true]
-			[WeaponRandomizerWhitelist:MyObjectBuilder_LargeMissileTurret/ARYXSpartanTurret,MyObjectBuilder_LargeMissileTurret/ARYXVulcanTurret,MyObjectBuilder_LargeMissileTurret/ARYXHeavyFlakTurret,MyObjectBuilder_ConveyorSorter/missileBattery01]
-			[WeaponRandomizerTargetWhitelist:MyObjectBuilder_LargeMissileTurret/ARYXSpartanTurret,MyObjectBuilder_LargeMissileTurret/ARYXVulcanTurret,MyObjectBuilder_LargeMissileTurret/ARYXHeavyFlakTurret,MyObjectBuilder_ConveyorSorter/missileBattery01]
+			[WeaponRandomizerWhitelist:MyObjectBuilder_LargeMissileTurret/ARYXSpartanTurret_NPC,MyObjectBuilder_LargeMissileTurret/ARYXVulcanTurret_NPC,MyObjectBuilder_LargeMissileTurret/ARYXHeavyFlakTurret_NPC,MyObjectBuilder_ConveyorSorter/missileBattery01_NPC,MyObjectBuilder_LargeMissileTurret/GVK_CycloneCannonTurret_NPC]
+			[WeaponRandomizerTargetWhitelist:MyObjectBuilder_LargeMissileTurret/ARYXSpartanTurret_NPC,MyObjectBuilder_LargeMissileTurret/ARYXVulcanTurret_NPC,MyObjectBuilder_LargeMissileTurret/ARYXHeavyFlakTurret_NPC,MyObjectBuilder_ConveyorSorter/missileBattery01_NPC,MyObjectBuilder_LargeMissileTurret/GVK_CycloneCannonTurret_NPC,MyObjectBuilder_ConveyorSorter/GVK_GriffinMissileTurret]
 			</Description>
 		</EntityComponent>
+		<!-- TargetWhitlist blocks must be Public -->
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
@@ -69,8 +54,8 @@
 			[RandomizeWeapons:true]
 			[IgnoreWeaponRandomizerTargetGlobalBlacklist:true]
 			[IgnoreWeaponRandomizerTargetGlobalWhitelist:true]
-			[WeaponRandomizerWhitelist:MyObjectBuilder_LargeGatlingTurret/SmallGatlingTurret,MyObjectBuilder_LargeMissileTurret/ReceptorTurret,MyObjectBuilder_LargeMissileTurret/SmallMissileTurret]
-			[WeaponRandomizerTargetWhitelist:MyObjectBuilder_LargeGatlingTurret/SmallGatlingTurret,MyObjectBuilder_LargeMissileTurret/ReceptorTurret,MyObjectBuilder_LargeMissileTurret/SmallMissileTurret]
+			[WeaponRandomizerWhitelist:MyObjectBuilder_LargeGatlingTurret/SmallGatlingTurret_NPC,MyObjectBuilder_LargeMissileTurret/ReceptorTurret_NPC,MyObjectBuilder_LargeMissileTurret/SmallMissileTurret_NPC]
+			[WeaponRandomizerTargetWhitelist:MyObjectBuilder_LargeGatlingTurret/SmallGatlingTurret_NPC,MyObjectBuilder_LargeMissileTurret/ReceptorTurret_NPC,MyObjectBuilder_LargeMissileTurret/SmallMissileTurret_NPC]
 			</Description>
 		</EntityComponent>
 	</EntityComponents>
