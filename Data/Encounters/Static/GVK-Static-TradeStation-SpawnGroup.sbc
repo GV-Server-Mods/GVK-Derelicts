@@ -43,7 +43,7 @@
 		<SpawnGroup>
 			<Id>
 				<TypeId>SpawnGroupDefinition</TypeId>
-				<SubtypeId>GVK-StaticEncounters-TradeStations-SpawnGroup-RoverSales2</SubtypeId>
+				<SubtypeId>GVK-StaticEncounters-TradeStations-SpawnGroup-RoverSales</SubtypeId>
 			</Id>
 			<Description>
 			[Modular Encounters SpawnGroup]
@@ -81,7 +81,7 @@
 		<SpawnGroup>
 			<Id>
 				<TypeId>SpawnGroupDefinition</TypeId>
-				<SubtypeId>GVK-StaticEncounters-TradeStations-SpawnGroup-Sevastapol_2</SubtypeId>
+				<SubtypeId>GVK-StaticEncounters-TradeStations-SpawnGroup-Sevastapol</SubtypeId>
 			</Id>
 			<Description>
 			[Modular Encounters SpawnGroup]
@@ -119,7 +119,7 @@
 		<SpawnGroup>
 			<Id>
 				<TypeId>SpawnGroupDefinition</TypeId>
-				<SubtypeId>GVK-StaticEncounters-TradeStations-SpawnGroup-Rustys_2</SubtypeId>
+				<SubtypeId>GVK-StaticEncounters-TradeStations-SpawnGroup-Rustys</SubtypeId>
 			</Id>
 			<Description>
 			[Modular Encounters SpawnGroup]
@@ -150,14 +150,14 @@
 					</Position>
 					<Speed>0</Speed>
 					<BeaconText>Rusty's Trade Station</BeaconText>
-					<Behaviour></Behaviour>
+					<Behaviour>GVK-Static-TradeStation-Behavior</Behaviour>
 				</Prefab>
 			</Prefabs>
 		</SpawnGroup>
 		<SpawnGroup>
 			<Id>
 				<TypeId>SpawnGroupDefinition</TypeId>
-				<SubtypeId>GVK-StaticEncounters-TradeStations-SpawnGroup-Skyport_3</SubtypeId>
+				<SubtypeId>GVK-StaticEncounters-TradeStations-SpawnGroup-Skyport</SubtypeId>
 			</Id>
 			<Description>
 			[Modular Encounters SpawnGroup]
@@ -195,7 +195,7 @@
 		<SpawnGroup>
 			<Id>
 				<TypeId>SpawnGroupDefinition</TypeId>
-				<SubtypeId>GVK-StaticEncounters-TradeStations-SpawnGroup-Mastodon4</SubtypeId>
+				<SubtypeId>GVK-StaticEncounters-TradeStations-SpawnGroup-Mastodon</SubtypeId>
 			</Id>
 			<Description>
 			[Modular Encounters SpawnGroup]
@@ -226,6 +226,44 @@
 					</Position>
 					<Speed>0</Speed>
 					<BeaconText>Mastodon Trade Station</BeaconText>
+					<Behaviour>GVK-Static-TradeStation-Behavior</Behaviour>
+				</Prefab>
+			</Prefabs>
+		</SpawnGroup>
+		<SpawnGroup>
+			<Id>
+				<TypeId>SpawnGroupDefinition</TypeId>
+				<SubtypeId>GVK-StaticEncounter-TradeStations-SpawnGroup-CoalitionBase</SubtypeId>
+			</Id>
+			<Description>
+			[Modular Encounters SpawnGroup]
+			[StaticEncounter:true]
+			[FactionOwner:COALITION]
+			[InitializeStoreBlocks:false]
+			[ReactorsOn:true]
+			[ForceStaticGrid:true]
+			[TriggerCoords:{X:61803.1483007997 Y:28033.1485828211 Z:38450.128470714}]
+			[TriggerRadius:999999]
+			[IgnoreCleanupRules:true]
+			[ReplenishSystems:true]
+			[ForceExactPositionAndOrientation:true]
+			[StaticEncounterCoords:{X:61801.1796130431 Y:28033.2410220105 Z:38449.430004107}]
+			[StaticEncounterForward:{X:0.187065197794373 Y:-0.0305530408262209 Z:-0.981872254150418}]
+			[StaticEncounterUp:{X:0.969032268664348 Y:-0.158270609266698 Z:0.189543864394432}]
+			[ManipulationProfiles:GVK-Static-TradeStation-Manipulation]
+			[UseRivalAi:true]
+			</Description>
+			<IsPirate>true</IsPirate>
+			<Frequency>5.0</Frequency>
+			<Prefabs>
+				<Prefab SubtypeId="[NPC Trade Station] Coalition Base">
+					<Position>
+						<X>0.0</X>
+						<Y>0.0</Y>
+						<Z>0.0</Z>
+					</Position>
+					<Speed>0</Speed>
+					<BeaconText>Coalition Base</BeaconText>
 					<Behaviour>GVK-Static-TradeStation-Behavior</Behaviour>
 				</Prefab>
 			</Prefabs>
