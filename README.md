@@ -1,7 +1,11 @@
 # GVK-Derelicts
 Global Bools
-`LargeWrecksEnabled`
-`SpawnStaticTown`
+- `LargeWrecksEnabled`
+- `SpawnStaticTown`
+- `MassiveSignalEligible`
+- `LargeWreckActive`
+- `ConvoyInactive`
+
 Run command: `/MES.Debug.ChangeBool.Value1.true/false` to change bools. LargeWrecksEnabled should be turned on about 1 to 2 weeks in.
 SpawnStaticTown needs to be false when clearing all static grids so they don't spawn too many at once. Then set to true after the trade stations spawn in.
 
