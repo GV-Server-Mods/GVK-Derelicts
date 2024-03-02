@@ -115,5 +115,39 @@
 				</Prefab>
 			</Prefabs>
 		</SpawnGroup>
+		<SpawnGroup>
+			<Id>
+				<TypeId>SpawnGroupDefinition</TypeId>
+				<SubtypeId>GVK-StaticEncounter-SpawnGroup-ConvoyOutpost-CoalitionB-Admin</SubtypeId>
+			</Id>
+			<Description>
+			[Modular Encounters SpawnGroup]
+			[PlanetaryInstallation:true]
+			[AdminSpawnOnly:true]
+			[FactionOwner:COALITION]
+			[IgnoreCleanupRules:true]
+			[ReactorsOn:true]
+			[ForceStaticGrid:true]
+			[ReplenishSystems:true]
+			[SkipVoxelSpawnChecks:true]
+			[SkipGridSpawnChecks:true]
+			[ManipulationProfiles:GVK-StaticEncounters-Manipulation-ConvoySpawner]
+			[ZoneConditions:GVK-Universal-ZoneConditions-WreckZone0]
+			</Description>
+			<IsPirate>true</IsPirate>
+			<Frequency>5.0</Frequency>
+			<Prefabs>
+				<Prefab SubtypeId="[NPC Static] Encounter Spawner">
+					<Position>
+						<X>0.0</X>
+						<Y>0</Y>
+						<Z>0.0</Z>
+					</Position>
+					<Speed>0</Speed>
+					<BeaconText>Abandoned Outpost</BeaconText>
+					<Behaviour>GVK-Static-Behavior-ConvoySpawner-CoalitionB</Behaviour>
+				</Prefab>
+			</Prefabs>
+		</SpawnGroup>
 	</SpawnGroups>
 </Definitions>
