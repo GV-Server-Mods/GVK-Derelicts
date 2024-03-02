@@ -1,0 +1,165 @@
+<?xml version="1.0"?>
+<Definitions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+	<EntityComponents>
+		<!-- Reset Bool for massive signals to spawn after 4 days -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Universal-Event-MassiveSignalRespawn</SubtypeId>
+			</Id>
+			<Description>
+			[MES Event]
+			[UseEvent:true]
+			[UniqueEvent:false]
+			[Tags:MassiveSignalRespawn]
+			[MinCooldownMs:345600000]
+			[MaxCooldownMs:345600001]
+			[ActionExecution:All]
+			[ActionIds:GVK-Universal-EventAction-MassiveSignalRespawn]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Universal-EventAction-MassiveSignalRespawn</SubtypeId>
+			</Id>
+			<Description>
+			[MES Event Action]
+			[ChangeBooleans:true]
+			[SetBooleansTrue:MassiveSignalEligible]	
+			[UseChatBroadcast:true]
+			[ChatData:GVK-Universal-EventChat-MassiveSignalRespawn]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Universal-EventChat-MassiveSignalRespawn</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Chat]
+			[UseChat:true]
+			[StartsReady:true]
+			[Chance:100]
+			[MaxChats:-1]
+			[BroadcastRandomly:false]
+			[Author:Coalition]
+			[Color:White]
+			[ChatMessages:Massive Signal will be revealed soon.]
+			[ChatAudio:ArcHudGPSNotification2]
+			[BroadcastChatType:Both]
+			[SendToAllOnlinePlayers:true]
+			[IgnoreAntennaRequirement:true]
+			[IgnoredAntennaRangeOverride:999999]
+			</Description>
+		</EntityComponent>
+		<!-- Spawn Escort and Traders CoalitionA -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Universal-Event-CoalitionA</SubtypeId>
+			</Id>
+			<Description>
+			[MES Event]
+			[UseEvent:true]
+			[UniqueEvent:false]
+			[Tags:CoalitionA]
+			[MinCooldownMs:4800000]
+			[MaxCooldownMs:7200000]
+			[ActionExecution:All]
+			[ActionIds:GVK-Universal-EventAction-CoalitionA]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Universal-EventAction-CoalitionA</SubtypeId>
+			</Id>
+			<Description>
+			[MES Event Action]
+			[SpawnEncounter:true]
+			[SpawnCoords:{X:60487.1180668017 Y:32965.0642252912 Z:44090.2929086085}]
+			[SpawnFactionTags:COALITION]
+			[Spawner:GVK-Static-Spawner-ConvoySpawner-Coalition-SpawnConvoyA]
+			[UseChatBroadcast:true]
+			[ChatData:GVK-Universal-EventChat-CoalitionA]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Universal-EventChat-CoalitionA</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Chat]
+			[UseChat:true]
+			[StartsReady:true]
+			[Chance:100]
+			[MaxChats:-1]
+			[BroadcastRandomly:false]
+			[Author:Coalition]
+			[Color:White]
+			[ChatMessages:CoalitionA]
+			[ChatAudio:ArcHudGPSNotification2]
+			[BroadcastChatType:Both]
+			[SendToAllOnlinePlayers:true]
+			[IgnoreAntennaRequirement:true]
+			[IgnoredAntennaRangeOverride:999999]
+			</Description>
+		</EntityComponent>
+		<!-- Spawn Escort and Traders CoalitionB -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Universal-Event-CoalitionB</SubtypeId>
+			</Id>
+			<Description>
+			[MES Event]
+			[UseEvent:true]
+			[UniqueEvent:false]
+			[Tags:CoalitionB]
+			[MinCooldownMs:4800000]
+			[MaxCooldownMs:7200000]
+			[ActionExecution:All]
+			[ActionIds:GVK-Universal-EventAction-CoalitionB]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Universal-EventAction-CoalitionB</SubtypeId>
+			</Id>
+			<Description>
+			[MES Event Action]
+			[SpawnEncounter:true]
+			[SpawnVector3Ds:{X:61272.4981949369 Y:23606.8090237343 Z:32536.2033243986}]
+			[SpawnFactionTags:COALITION]
+			[Spawner:GVK-Static-Spawner-ConvoySpawner-Coalition-SpawnConvoyB]
+			[UseChatBroadcast:true]
+			[ChatData:GVK-Universal-EventChat-CoalitionB]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Universal-EventChat-CoalitionB</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Chat]
+			[UseChat:true]
+			[StartsReady:true]
+			[Chance:100]
+			[MaxChats:-1]
+			[BroadcastRandomly:false]
+			[Author:Coalition]
+			[Color:White]
+			[ChatMessages:CoalitionB]
+			[ChatAudio:ArcHudGPSNotification2]
+			[BroadcastChatType:Both]
+			[SendToAllOnlinePlayers:true]
+			[IgnoreAntennaRequirement:true]
+			[IgnoredAntennaRangeOverride:999999]
+			</Description>
+		</EntityComponent>
+	</EntityComponents>
+</Definitions>
