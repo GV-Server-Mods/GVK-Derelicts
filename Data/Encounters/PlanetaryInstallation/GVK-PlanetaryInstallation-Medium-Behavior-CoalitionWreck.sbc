@@ -54,6 +54,7 @@
 			[RivalAI Action]
 			[Chance:100]
 			[SetWeaponsToMaxRange:true]
+			[ResetCounters:DistressSpawns]
 			[UseChatBroadcast:true]
 			[ChatData:GVK-PlanetaryInstallation-Medium-Chat-CoalitionWreckOnSpawn]
 			</Description>
@@ -151,7 +152,6 @@
 			[ActionExecution:All]
 			[Actions:GVK-PlanetaryInstallation-Medium-Action-CoalitionWreckCompromised]
 			[Actions:GVK-PlanetaryInstallation-All-Action-CompromisedGeneric]
-			[Actions:GVK-PlanetaryInstallation-Medium-Action-CoalitionWreckSpawns]
 			[Actions:GVK-Universal-Action-EditableOnCompromised]
 			</Description>
 		</EntityComponent>
@@ -206,9 +206,10 @@
 			[Type:HasTarget]
 			[UseTrigger:true]
 			[StartsReady:false]
+			[TargetDistance:3000]
 			[ActionExecution:All]
-			[MinCooldownMs:30000]
-			[MaxCooldownMs:30001]
+			[MinCooldownMs:9998]
+			[MaxCooldownMs:9999]
 			[Actions:GVK-PlanetaryInstallation-Medium-Action-CoalitionWreckHasTarget]
 			</Description>
 		</EntityComponent>
@@ -257,13 +258,29 @@
 			<Description>
 			[RivalAI Trigger]
 			[Type:Timer]
-			[UseTrigger:false]
+			[UseTrigger:true]
 			[StartsReady:false]
 			[MaxActions:1]
 			[ActionExecution:All]
-			[MinCooldownMs:60000]
-			[MaxCooldownMs:60001]
+			[MinCooldownMs:30000]
+			[MaxCooldownMs:30001]
+			[Conditions:GVK-PlanetaryInstallation-Medium-Condition-CoalitionWreckOnSuccess]
+			[ConditionCheckResetsTimer:true]
 			[Actions:GVK-PlanetaryInstallation-Medium-Action-CoalitionWreckOnSuccess]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-PlanetaryInstallation-Medium-Condition-CoalitionWreckOnSuccess</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Condition]
+			[UseConditions:true]
+			[CheckCustomCounters:true]
+			[CustomCounters:DistressSpawns]
+			[CustomCountersTargets:3]
+			[CounterCompareTypes:GreaterOrEqual]
 			</Description>
 		</EntityComponent>
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
@@ -288,7 +305,12 @@
 			[RazeBlocksTypes:MyObjectBuilder_Beacon/ZoneBlock]
 			[RazeBlocksTypes:MyObjectBuilder_RemoteControl/RivalAIRemoteControlLarge]
 			[RazeBlocksTypes:MyObjectBuilder_RemoteControl/RivalAIRemoteControlSmall]
-			[ToggleBlocksOfType:true]
+			[RazeBlocksTypes:MyObjectBuilder_Beacon/ZoneBlock]
+			[RazeBlocksTypes:MyObjectBuilder_Beacon/SmallBlockBeacon]
+			[RazeBlocksTypes:MyObjectBuilder_Beacon/LargeBlockBeacon]
+			[RazeBlocksTypes:MyObjectBuilder_Beacon/SmallBlockBeacon_NPCNoConceal]
+			[RazeBlocksTypes:MyObjectBuilder_Beacon/LargeBlockBeacon_NPCNoConceal]
+			[ToggleBlocksOfType:false]
 			[BlockTypesToToggle:MyObjectBuilder_Beacon/DisposableNpcBeaconSmall]
 			[BlockTypeToggles:Off]
 			[BlockTypesToToggle:MyObjectBuilder_Beacon/DisposableNpcBeaconLarge]
@@ -297,9 +319,9 @@
 			[BlockTypeToggles:Off]
 			[BlockTypesToToggle:MyObjectBuilder_Beacon/LargeBlockBeacon]
 			[BlockTypeToggles:Off]
-			[BlockTypesToToggle:MyObjectBuilder_Beacon/RivalAIRemoteControlLarge]
+			[BlockTypesToToggle:MyObjectBuilder_Beacon/LargeBlockBeacon_NPCNoConceal]
 			[BlockTypeToggles:Off]
-			[BlockTypesToToggle:MyObjectBuilder_Beacon/RivalAIRemoteControlSmall]
+			[BlockTypesToToggle:MyObjectBuilder_Beacon/SmallBlockBeacon_NPCNoConceal]
 			[BlockTypeToggles:Off]
 			[TerminateBehavior:true]
 			</Description>
@@ -361,7 +383,7 @@
 			[StartsReady:true]
 			[MinCooldownMs:15000]
 			[MaxCooldownMs:15001]
-			[MaxActions:3]
+			[MaxActions:-1]
 			[ActionExecution:All]
 			[Actions:GVK-PlanetaryInstallation-Medium-Action-CoalitionWreckSpawns]
 			</Description>
@@ -379,7 +401,7 @@
 			[StartsReady:true]
 			[MinCooldownMs:15000]
 			[MaxCooldownMs:15001]
-			[MaxActions:3]
+			[MaxActions:-1]
 			[ActionExecution:All]
 			[Actions:GVK-PlanetaryInstallation-Medium-Action-CoalitionWreckSpawns]
 			</Description>
@@ -394,10 +416,6 @@
 			[Chance:100]
 			[ManuallyActivateTrigger:true]
 			[ManuallyActivatedTriggerNames:GVK-PlanetaryInstallation-Medium-Trigger-CoalitionWreckSpawnsManual]
-			[ResetCooldownTimeOfTriggers:true]
-			[ResetTriggerCooldownNames:GVK-PlanetaryInstallation-Medium-Trigger-CoalitionWreckOnSuccess]
-			[EnableTriggers:true]
-			[EnableTriggerNames:GVK-PlanetaryInstallation-Medium-Trigger-CoalitionWreckOnSuccess]
 			</Description>
 		</EntityComponent>
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
@@ -427,6 +445,7 @@
 			[SpawnEncounter:true]
 			[Spawner:GVK-PlanetaryInstallation-Medium-Spawner-CoalitionWreckDefenseDroneMedium]
 			[Spawner:GVK-PlanetaryInstallation-Medium-Spawner-CoalitionWreckDefenseDroneSmall]
+			[IncreaseCounters:DistressSpawns]
 			[UseChatBroadcast:true]
 			[ChatData:GVK-PlanetaryInstallation-All-Chat-Defenses]
 			</Description>
@@ -442,10 +461,9 @@
 			[SpawningType:CustomSpawn]
 			[StartsReady:true]
 			[ProcessAsAdminSpawn:false]
-			[MaxSpawns:3]
+			[MaxSpawns:1]
 			[SpawnGroups:GVK-Drone-Defense-SpawnGroup-GAALSIEN-SmallFlyerSquad]
 			[SpawnGroups:GVK-Drone-Defense-SpawnGroup-GAALSIEN-InterceptorSquad]
-			[SpawnGroups:GVK-Drone-Defense-SpawnGroup-GAALSIEN-SmallHoverSquad]
 			[MinDistance:1500]
 			[MaxDistance:1750]
 			[MinAltitude:50]
@@ -465,7 +483,7 @@
 			[SpawningType:CustomSpawn]
 			[StartsReady:true]
 			[ProcessAsAdminSpawn:false]
-			[MaxSpawns:2]
+			[MaxSpawns:3]
 			[SpawnGroups:GVK-Drone-Defense-SpawnGroup-GAALSIEN-MediumHoverLight]
 			[SpawnGroups:GVK-Drone-Defense-SpawnGroup-GAALSIEN-MediumHoverHeavy]
 			[MinDistance:1500]

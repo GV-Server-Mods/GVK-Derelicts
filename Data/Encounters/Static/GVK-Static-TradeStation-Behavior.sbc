@@ -13,6 +13,7 @@
 			[UseRetreatTimer:false]
 			[UseNoTargetTimer:false]
 			[UsePlayerDistanceTimer:false]
+			[Triggers:GVK-Static-TradeStation-Trigger-CreateSafeZone]
 			[Triggers:GVK-Static-TradeStation-Trigger-SendWaypoint]
 			</Description>
 		</EntityComponent>
@@ -29,6 +30,57 @@
 			[UsePlayerDistanceTimer:false]
 			[Triggers:GVK-Static-TradeStation-Trigger-SendWaypoint]
 			[Triggers:GVK-Universal-Trigger-JetpackInhibitor]
+			</Description>
+		</EntityComponent>
+		<!-- Trigger sequence to create a safezone on trade station spawn -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Static-TradeStation-Trigger-CreateSafeZone</SubtypeId>
+			</Id>
+			<Description>
+			[MES AI Trigger]
+			[UseTrigger:true]
+			[Type:Session]
+			[StartsReady:true]
+			[MaxActions:-1]
+			[Actions:GVK-Static-TradeStation-Action-CreateSafeZone]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Static-TradeStation-Action-CreateSafeZone</SubtypeId>
+			</Id>
+			<Description>
+			[MES AI Action]
+			[CreateSafeZone:true]
+			[SafeZoneProfile:GVK-Static-TradeStation-SafeZone-StoreSafeZone]
+			[LinkSafeZoneToRemoteControl:true]
+			[SafeZonePositionGridCenter:true]
+			[SafeZonePositionTerrainSurface:true]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Static-TradeStation-SafeZone-StoreSafeZone</SubtypeId>
+			</Id>
+			<Description>
+			[MES SafeZone]
+			[Shape:Sphere]
+			[Radius:0]
+			[RadiusFromParentEntity:true]
+			[ParentEntityRadiusMultiplier:3]
+			[Enabled:true]
+			[LinkToParentEntity:true]
+			[IsVisible:false]
+			[Color:{X:0 Y:0 Z:0}]
+			[Texture:SafeZone_Texture_Rain]
+			[FactionAccess:Blacklist]
+			[GridAccess:Blacklist]
+			[PlayerAccess:Blacklist]
+			[AllowedActions:LandingGearLock]
 			</Description>
 		</EntityComponent>
 		<!-- Trigger sequence for Trade Station to send relative waypoint to listening Cargo Ship -->

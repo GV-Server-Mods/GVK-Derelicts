@@ -25,6 +25,7 @@
 			[UseRetreatTimer:false]
 			[TargetData:GVK-Universal-Target-EnemyPlayerAndGrid]
 			[AutopilotData:GVK-Drone-All-Autopilot-SmallFlyerHorsefly]
+			[Triggers:GVK-Universal-Trigger-SetEnemyReputation]
 			[Triggers:GVK-Drone-All-Trigger-SmallBeaconDisabled]
 			[Triggers:GVK-Drone-All-Trigger-SmallCrashed]
 			[Triggers:GVK-Drone-All-Trigger-SmallCompromised]
@@ -96,6 +97,7 @@
 			[UseRetreatTimer:false]
 			[TargetData:GVK-Universal-Target-EnemyGrids]
 			[AutopilotData:GVK-Drone-All-Autopilot-SmallFlyer-Interceptor]
+			[Triggers:GVK-Universal-Trigger-SetEnemyReputation]
 			[Triggers:GVK-Drone-All-Trigger-SmallBeaconDisabled]
 			[Triggers:GVK-Drone-All-Trigger-SmallCrashed]
 			[Triggers:GVK-Drone-All-Trigger-SmallCompromised]
@@ -174,6 +176,7 @@
 			[HorseFighterTimeEngaging:10]
 			[TargetData:GVK-Universal-Target-EnemyPlayerAndGrid]
 			[AutopilotData:GVK-Drone-All-Autopilot-SmallFlyerHorseFighter]
+			[Triggers:GVK-Universal-Trigger-SetEnemyReputation]
 			[Triggers:GVK-Drone-All-Trigger-SmallBeaconDisabled]
 			[Triggers:GVK-Drone-All-Trigger-SmallCrashed]
 			[Triggers:GVK-Drone-All-Trigger-SmallCompromised]
@@ -255,6 +258,7 @@
 			[HorseFighterTimeEngaging:10]
 			[TargetData:GVK-Universal-Target-EnemyPlayerAndGrid]
 			[AutopilotData:GVK-Drone-All-Autopilot-SmallHoverHorseFighter]
+			[Triggers:GVK-Universal-Trigger-SetEnemyReputation]
 			[Triggers:GVK-Drone-All-Trigger-SmallBeaconDisabled]
 			[Triggers:GVK-Drone-All-Trigger-SmallCompromised]
 			[Triggers:GVK-Drone-All-Trigger-TargetAttacker]
@@ -330,6 +334,7 @@
 			[UseRetreatTimer:false]
 			[TargetData:GVK-Universal-Target-EnemyPlayerAndGrid]
 			[AutopilotData:GVK-Drone-All-Autopilot-SmallHoverHorsefly]
+			[Triggers:GVK-Universal-Trigger-SetEnemyReputation]
 			[Triggers:GVK-Drone-All-Trigger-SmallBeaconDisabled]
 			[Triggers:GVK-Drone-All-Trigger-SmallCompromised]
 			[Triggers:GVK-Drone-All-Trigger-TargetAttacker]
@@ -537,6 +542,21 @@
 			</Id>
 			<Description>
 			[RivalAI Action]
+			[GenerateExplosion:false]
+			[ExplosionOffsetFromRemote:{X:0 Y:0 Z:0}]
+			[ExplosionRange:20]
+			[ExplosionDamage:1]
+			[ExplosionIgnoresVoxels:true]
+			[ForceDespawn:true]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Drone-All-Action-SmallDisabled-Old</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Action]
 			[EnableBlockStates:Off]
 			[EnableBlockNames:Magnetic Plate]
 			[EnableBlockStates:On]
@@ -547,7 +567,16 @@
 			[ExplosionRange:20]
 			[ExplosionDamage:1]
 			[ExplosionIgnoresVoxels:true]
-			[ToggleBlocksOfType:true]
+			[RazeBlocksOfType:false]
+			[RazeBlocksTypes:MyObjectBuilder_Beacon/ZoneBlock]
+			[RazeBlocksTypes:MyObjectBuilder_RemoteControl/RivalAIRemoteControlLarge]
+			[RazeBlocksTypes:MyObjectBuilder_RemoteControl/RivalAIRemoteControlSmall]
+			[RazeBlocksTypes:MyObjectBuilder_Beacon/ZoneBlock]
+			[RazeBlocksTypes:MyObjectBuilder_Beacon/SmallBlockBeacon]
+			[RazeBlocksTypes:MyObjectBuilder_Beacon/LargeBlockBeacon]
+			[RazeBlocksTypes:MyObjectBuilder_Beacon/SmallBlockBeacon_NPCNoConceal]
+			[RazeBlocksTypes:MyObjectBuilder_Beacon/LargeBlockBeacon_NPCNoConceal]
+			[ToggleBlocksOfType:false]
 			[BlockTypesToToggle:MyObjectBuilder_Beacon/ZoneBlock]
 			[BlockTypeToggles:Off]
 			[BlockTypesToToggle:MyObjectBuilder_Beacon/DisposableNpcBeaconSmall]
@@ -558,9 +587,9 @@
 			[BlockTypeToggles:Off]
 			[BlockTypesToToggle:MyObjectBuilder_Beacon/LargeBlockBeacon]
 			[BlockTypeToggles:Off]
-			[BlockTypesToToggle:MyObjectBuilder_Beacon/RivalAIRemoteControlLarge]
+			[BlockTypesToToggle:MyObjectBuilder_Beacon/LargeBlockBeacon_NPCNoConceal]
 			[BlockTypeToggles:Off]
-			[BlockTypesToToggle:MyObjectBuilder_Beacon/RivalAIRemoteControlSmall]
+			[BlockTypesToToggle:MyObjectBuilder_Beacon/SmallBlockBeacon_NPCNoConceal]
 			[BlockTypeToggles:Off]
 			[DisableTriggers:true]
 			[DisableTriggerNames:GVK-Drone-All-Trigger-SmallCrashed]			
