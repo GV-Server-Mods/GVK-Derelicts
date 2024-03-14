@@ -20,6 +20,7 @@
 			[Triggers:GVK-Universal-Trigger-SetEnemyReputation]
 			[Triggers:GVK-Drone-All-Trigger-WeaponsToMaxRange]
 			[Triggers:GVK-PlanetaryInstallation-Small-Trigger-Spawned]
+			[Triggers:GVK-PlanetaryInstallation-Small-Trigger-SalvagerPlayerNear]
 			[Triggers:GVK-PlanetaryInstallation-All-Trigger-Despawn]
 			[Triggers:GVK-PlanetaryInstallation-All-Trigger-DespawnMES]
 			[Triggers:GVK-PlanetaryInstallation-Small-Trigger-Compromised]
@@ -137,6 +138,59 @@
 			[ChatAudio:ArcHudSensors]
 			[BroadcastChatType:Both]
 			[SendToAllOnlinePlayers:false]
+			</Description>
+		</EntityComponent>
+		<!-- Trigger Sequence for Small Salvager Spawn -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-PlanetaryInstallation-Small-Trigger-SalvagerPlayerNear</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Trigger]
+			[UseTrigger:true]
+			[Type:PlayerNear]
+			[TargetDistance:2000]
+			[StartsReady:true]
+			[MinCooldownMs:15000]
+			[MaxCooldownMs:15001]
+			[MaxActions:1]
+			[ActionExecution:All]
+			[Actions:GVK-PlanetaryInstallation-Small-Action-SalvagerPlayerNear]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-PlanetaryInstallation-Small-Action-SalvagerPlayerNear</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Action]
+			[Chance:30]
+			[SpawnEncounter:true]
+			[Spawner:GVK-PlanetaryInstallation-Small-Spawner-SalvagerPlayerNear]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-PlanetaryInstallation-Small-Spawner-SalvagerPlayerNear</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Spawn]
+			[UseSpawn:true]
+			[SpawningType:CustomSpawn]
+			[StartsReady:true]
+			[ProcessAsAdminSpawn:false]
+			[MaxSpawns:1]
+			[SpawnGroups:GVK-Drone-Encounter-SpawnGroup-COALITION-Salvager-WreckSpawn]
+			[SpawnGroups:GVK-Drone-Encounter-SpawnGroup-GAALSIEN-Salvager-WreckSpawn]
+			[MinDistance:50]
+			[MaxDistance:100]
+			[MinAltitude:20]
+			[MaxAltitude:21]
+			[InheritNpcAltitude:true]
+			[IgnoreSafetyChecks:true]
 			</Description>
 		</EntityComponent>
 		<!-- Chat for medium spawns -->

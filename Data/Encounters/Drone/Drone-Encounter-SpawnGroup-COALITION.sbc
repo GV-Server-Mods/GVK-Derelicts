@@ -30,6 +30,34 @@
 				</Prefab>
 			</Prefabs>
 		</SpawnGroup>		
+		<SpawnGroup>
+			<Id>
+				<TypeId>SpawnGroupDefinition</TypeId>
+				<SubtypeId>GVK-Drone-Encounter-SpawnGroup-COALITION-Salvager-WreckSpawn</SubtypeId>
+			</Id>
+			<Description>
+			[Modular Encounters SpawnGroup]
+			[IgnoreCleanupRules:false]
+			[ReplenishSystems:true]
+			[ManipulationProfiles:GVK-Drone-All-Manipulation-Hover] 
+			[ManipulationProfiles:GVK-Universal-Manipulation-DamageModifier50]
+			[SpawnConditionsProfiles:GVK-Drone-Encounter-SpawnCondition-COALITION-Salvager-WreckSpawn]
+			</Description>
+			<IsPirate>true</IsPirate>
+			<Frequency>0.1</Frequency>
+			<Prefabs>
+				<Prefab SubtypeId="[NPC Drone] Coalition Salvager">
+					<Position>
+						<X>0.0</X>
+						<Y>0.0</Y>
+						<Z>0.0</Z>
+					</Position>
+					<Speed>0</Speed>
+					<BeaconText>Salvager</BeaconText>
+					<Behaviour>GVK-Drone-Encounter-Behavior-Salvager-COALITION-WreckSpawn</Behaviour>
+				</Prefab>
+			</Prefabs>
+		</SpawnGroup>		
 		<!-- [NPC Drone] Coalition Encounters -->
 		<SpawnGroup>
 			<Id>

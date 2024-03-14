@@ -28,6 +28,32 @@
 			[Triggers:GVK-Drone-Encounter-Trigger-RetreatTimer]
 			</Description>
 		</EntityComponent>
+		<!-- Salvager Hover Drone Behavior -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Drone-Encounter-Behavior-Salvager-COALITION-WreckSpawn</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Behavior]
+			[BehaviorName:Patrol]
+			[UsePlayerDistanceTimer:true]
+			[PlayerDistanceTimerTrigger:1800]
+			[PlayerDistanceTrigger:4000]
+			[UseNoTargetTimer:false]
+			[UseRetreatTimer:true]
+			[RetreatTimerTrigger:1800]
+			[RetreatDespawnDistance:2000]
+			[AutopilotData:GVK-Drone-Encounter-Autopilot-Salvager-COALITION]
+			[TargetData:TargetData:GVK-Universal-Target-EnemyPlayerAndGrid]
+			[Triggers:GVK-Universal-Trigger-SetEnemyReputation]
+			[Triggers:GVK-Universal-Trigger-UneditableOnSpawn]
+			[Triggers:GVK-Drone-Encounter-Salvager-COALITION-Trigger-Compromised]
+			[Triggers:GVK-Drone-Encounter-Salvager-COALITION-Trigger-BeaconDisabled]
+			[Triggers:GVK-Drone-Encounter-Trigger-RetreatNoTarget]
+			[Triggers:GVK-Drone-Encounter-Trigger-RetreatTimer]
+			</Description>
+		</EntityComponent>
 		<!-- Salvager Patrol Autopilot -->
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
