@@ -610,7 +610,7 @@
 			</Id>
 			<Description>
 			[RivalAI Action]
-			[EnableBlockStates:Off]
+			[EnableBlocks:true]
 			[EnableBlockNames:Magnetic Plate]
 			[EnableBlockStates:On]
 			[StopAllRotation:true]
@@ -624,7 +624,6 @@
 			[RazeBlocksTypes:MyObjectBuilder_Beacon/ZoneBlock]
 			[RazeBlocksTypes:MyObjectBuilder_RemoteControl/RivalAIRemoteControlLarge]
 			[RazeBlocksTypes:MyObjectBuilder_RemoteControl/RivalAIRemoteControlSmall]
-			[RazeBlocksTypes:MyObjectBuilder_Beacon/ZoneBlock]
 			[RazeBlocksTypes:MyObjectBuilder_Beacon/SmallBlockBeacon]
 			[RazeBlocksTypes:MyObjectBuilder_Beacon/LargeBlockBeacon]
 			[RazeBlocksTypes:MyObjectBuilder_Beacon/SmallBlockBeacon_NPCNoConceal]
@@ -821,7 +820,26 @@
 			</Id>
 			<Description>
 			[RivalAI Action]
-			[EnableBlockStates:Off]
+			[GenerateExplosion:true]
+			[ExplosionOffsetFromRemote:{X:0 Y:0 Z:0}]
+			[ExplosionRange:30]
+			[ExplosionDamage:1]
+			[ExplosionIgnoresVoxels:true]
+			[DisableTriggers:true]
+			[DisableTriggerNames:GVK-Drone-All-Trigger-LargeFlyerCrashed]
+			[DisableTriggerNames:GVK-Drone-All-Trigger-LargeFlyerCompromised]
+			[DisableTriggerNames:GVK-Drone-All-Trigger-LargeFlyerBeaconDisabled]
+			[ForceDespawn:true]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Drone-All-Action-LargeFlyerDisabled-Old</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Action]
+			[EnableBlocks:true]
 			[EnableBlockNames:Magnetic Plate]
 			[EnableBlockStates:On]
 			[StopAllRotation:true]
@@ -835,7 +853,6 @@
 			[RazeBlocksTypes:MyObjectBuilder_Beacon/ZoneBlock]
 			[RazeBlocksTypes:MyObjectBuilder_RemoteControl/RivalAIRemoteControlLarge]
 			[RazeBlocksTypes:MyObjectBuilder_RemoteControl/RivalAIRemoteControlSmall]
-			[RazeBlocksTypes:MyObjectBuilder_Beacon/ZoneBlock]
 			[RazeBlocksTypes:MyObjectBuilder_Beacon/SmallBlockBeacon]
 			[RazeBlocksTypes:MyObjectBuilder_Beacon/LargeBlockBeacon]
 			[RazeBlocksTypes:MyObjectBuilder_Beacon/SmallBlockBeacon_NPCNoConceal]
