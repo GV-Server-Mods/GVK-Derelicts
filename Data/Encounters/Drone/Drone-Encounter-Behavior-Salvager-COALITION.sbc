@@ -20,15 +20,12 @@
 			[AutopilotData:GVK-Drone-Encounter-Autopilot-Salvager-COALITION]
 			[TargetData:TargetData:GVK-Universal-Target-EnemyPlayerAndGrid]
 			[Triggers:GVK-Universal-Trigger-SetEnemyReputation]
-			[Triggers:GVK-Drone-All-Trigger-TargetAttacker]
-			[Triggers:GVK-Drone-Encounter-Salvager-COALITION-Trigger-Retreat-PlayerNear]
-			[Triggers:GVK-Drone-Encounter-Salvager-COALITION-Trigger-Retreat-Damage]
+			[Triggers:GVK-Universal-Trigger-UneditableOnSpawn]
+			[Triggers:GVK-Drone-Encounter-Salvager-COALITION-Trigger-PlayerNear]
 			[Triggers:GVK-Drone-Encounter-Salvager-COALITION-Trigger-Compromised]
-			[Triggers:GVK-Drone-Encounter-Salvager-COALITION-Trigger-Crashed]
 			[Triggers:GVK-Drone-Encounter-Salvager-COALITION-Trigger-BeaconDisabled]
 			[Triggers:GVK-Drone-Encounter-Trigger-RetreatNoTarget]
 			[Triggers:GVK-Drone-Encounter-Trigger-RetreatTimer]
-			BountyOnKill=500000;
 			</Description>
 		</EntityComponent>
 		<!-- Salvager Patrol Autopilot -->
@@ -41,7 +38,9 @@
 			[RivalAI Autopilot]
 			[UseVelocityCollisionEvasion:false]
 			[CollisionEvasionWaypointCalculatedAwayFromEntity:true]
-			[RotationMultiplier:0.5]
+			[RotationMultiplier:2]
+			[LimitRotationSpeed:true]
+			[MaxRotationMagnitude:0.5]
 			[FlyLevelWithGravity:true]
 			[LevelWithGravityWhenIdle:true]
 			[AltitudeTolerance:5000]
@@ -61,51 +60,38 @@
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Drone-Encounter-Salvager-COALITION-Trigger-Retreat-PlayerNear</SubtypeId>
+				<SubtypeId>GVK-Drone-Encounter-Salvager-COALITION-Trigger-PlayerNear</SubtypeId>
 			</Id>
 			<Description>
 			[RivalAI Trigger]
 			[Type:PlayerNear]
 			[UseTrigger:true]
 			[StartsReady:true]
-			[TargetDistance:500]
+			[TargetDistance:2500]
 			[MaxActions:1]
 			[ActionExecution:All]
-			[Actions:GVK-Drone-Encounter-Salvager-COALITION-Action-Retreat]
+			[Actions:GVK-Drone-Encounter-Salvager-COALITION-Action-PlayerNear]
 			</Description>
 		</EntityComponent>
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Drone-Encounter-Salvager-COALITION-Trigger-Retreat-Damage</SubtypeId>
-			</Id>
-			<Description>
-			[RivalAI Trigger]
-			[Type:Damage]
-			[UseTrigger:true]
-			[StartsReady:true]
-			[DamageTypes:Any]
-			[MaxActions:1]
-			[ActionExecution:All]
-			[Actions:GVK-Drone-Encounter-Salvager-COALITION-Action-Retreat]
-			</Description>
-		</EntityComponent>
-		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
-			<Id>
-				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Drone-Encounter-Salvager-COALITION-Action-Retreat</SubtypeId>
+				<SubtypeId>GVK-Drone-Encounter-Salvager-COALITION-Action-PlayerNear</SubtypeId>
 			</Id>
 			<Description>
 			[RivalAI Action]
-			[Retreat:true]
+			[TriggerTimerBlocks:true]
+			[TimerBlockNames:NPC Timer Resume Cruise]
+			[SpawnEncounter:true]
+			[Spawner:GVK-Drone-Encounter-Salvager-COALITION-CoalitionRelayDefenseDroneSmall]
 			[UseChatBroadcast:true]
-			[ChatData:GVK-Drone-Encounter-Salvager-COALITION-Chat-Retreat]
+			[ChatData:GVK-Drone-Encounter-Salvager-COALITION-Chat-PlayerNear]
 			</Description>
 		</EntityComponent>
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Drone-Encounter-Salvager-COALITION-Chat-Retreat</SubtypeId>
+				<SubtypeId>GVK-Drone-Encounter-Salvager-COALITION-Chat-PlayerNear</SubtypeId>
 			</Id>
 			<Description>
 			[RivalAI Chat]
@@ -114,14 +100,35 @@
 			[Chance:100]
 			[MaxChats:1]
 			[BroadcastRandomly:true]
-			[Author:Gaalsien Salvager]
-			[Color:Red]
-			[ChatMessages:Enemy Detected, retreating immediately.]
+			[Author:Coalition Salvager]
+			[Color:White]
+			[ChatMessages:Enemies detected, requesting assistance!]
 			[ChatAudio:ArcHudGPSNotification2]
 			[BroadcastChatType:Chat]
 			[SendToAllOnlinePlayers:false]
 			[IgnoreAntennaRequirement:true]
 			[IgnoredAntennaRangeOverride:9999999]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Drone-Encounter-Salvager-COALITION-CoalitionRelayDefenseDroneSmall</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Spawn]
+			[UseSpawn:true]
+			[SpawningType:CustomSpawn]
+			[StartsReady:true]
+			[ProcessAsAdminSpawn:false]
+			[MaxSpawns:1]
+			[SpawnGroups:GVK-Drone-Defense-SpawnGroup-GAALSIEN-LightSandskimmerSquad]
+			[MinDistance:500]
+			[MaxDistance:750]
+			[MinAltitude:20]
+			[MaxAltitude:21]
+			[InheritNpcAltitude:true]
+			[IgnoreSafetyChecks:true]
 			</Description>
 		</EntityComponent>
 		<!-- Trigger sequence when Salvager is disabled -->
@@ -142,6 +149,25 @@
 			[Actions:GVK-Universal-Action-EditableOnCompromised]
 			</Description>
 		</EntityComponent>
+		<!-- Trigger sequence when Beacon is disabled -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Drone-Encounter-Salvager-COALITION-Trigger-BeaconDisabled</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Trigger]
+			[Type:Timer]
+			[UseTrigger:true]
+			[StartsReady:true]
+			[Conditions:GVK-Drone-All-Condition-LargeFlyerBeaconDisabled]
+			[MaxActions:1]
+			[ActionExecution:All]
+			[Actions:GVK-Drone-Encounter-Salvager-COALITION-Action-Compromised]
+			[Actions:GVK-Drone-All-Action-LargeFlyerDisabled]
+			[Actions:GVK-Universal-Action-EditableOnCompromised]
+			</Description>
+		</EntityComponent>
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
@@ -149,6 +175,10 @@
 			</Id>
 			<Description>
 			[RivalAI Action]
+			[DisableTriggers:true]
+			[DisableTriggerNames:GVK-Drone-Encounter-Salvager-COALITION-Trigger-PlayerNear]
+			[DisableTriggerNames:GVK-Drone-Encounter-Salvager-COALITION-Trigger-Compromised]
+			[DisableTriggerNames:GVK-Drone-Encounter-Salvager-COALITION-Trigger-BeaconDisabled]
 			[UseChatBroadcast:true]
 			[ChatData:GVK-Drone-Encounter-Salvager-COALITION-Chat-Compromised]
 			</Description>
@@ -167,153 +197,12 @@
 			[BroadcastRandomly:true]
 			[Author:Sensors]
 			[Color:Blue]
-			[ChatMessages:Gaalsien salvager disabled.]
+			[ChatMessages:Coalition salvager disabled.]
 			[ChatAudio:ArcHudSensors]
 			[BroadcastChatType:Notify]
 			[SendToAllOnlinePlayers:false]
 			[IgnoreAntennaRequirement:true]
 			[IgnoredAntennaRangeOverride:9999999]
-			</Description>
-		</EntityComponent>
-		<!-- Trigger sequence when small NPC crashes into the ground (instant delete) -->
-		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
-			<Id>
-				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Drone-Encounter-Salvager-COALITION-Trigger-Crashed</SubtypeId>
-			</Id>
-			<Description>
-			[RivalAI Trigger]
-			[Type:Timer]
-			[UseTrigger:true]
-			[StartsReady:false]
-			[MinCooldownMs:5000]
-			[MaxCooldownMs:5000]
-			[MaxActions:1]
-			[Conditions:GVK-Drone-All-Condition-LargeCrashed]
-			[ActionExecution:All]
-			[Actions:GVK-Drone-Encounter-Salvager-COALITION-Action-Crashed]
-			[Actions:GVK-Drone-Encounter-Salvager-COALITION-Action-Disabled]
-			[Actions:GVK-Universal-Action-EditableOnCompromised]
-			</Description>
-		</EntityComponent>
-		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
-			<Id>
-				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Drone-Encounter-Salvager-COALITION-Action-Crashed</SubtypeId>
-			</Id>
-			<Description>
-			[RivalAI Action]
-			[DisableTriggers:true]
-			[DisableTriggerNames:GVK-Drone-Encounter-Salvager-COALITION-Trigger-Compromised]
-			[UseChatBroadcast:true]
-			[ChatData:GVK-Drone-Encounter-Salvager-COALITION-Chat-Crashed]
-			</Description>
-		</EntityComponent>
-		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
-			<Id>
-				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Drone-Encounter-Salvager-COALITION-Chat-Crashed</SubtypeId>
-			</Id>
-			<Description>
-			[RivalAI Chat]
-			[UseChat:true]
-			[StartsReady:true]
-			[Chance:100]
-			[MaxChats:1]
-			[BroadcastRandomly:true]
-			[Author:Sensors]
-			[Color:Blue]
-			[ChatMessages:Gaalsien salvager crashed.]
-			[ChatAudio:ArcHudSensors]
-			[BroadcastChatType:Notify]
-			[SendToAllOnlinePlayers:false]
-			[IgnoreAntennaRequirement:true]
-			[IgnoredAntennaRangeOverride:9999999]
-			</Description>
-		</EntityComponent>
-		<!-- Trigger sequence when large NPC Beacon is disabled -->
-		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
-			<Id>
-				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Drone-Encounter-Salvager-COALITION-Trigger-BeaconDisabled</SubtypeId>
-			</Id>
-			<Description>
-			[RivalAI Trigger]
-			[Type:Timer]
-			[UseTrigger:true]
-			[StartsReady:true]
-			[Conditions:GVK-Drone-Encounter-Salvager-COALITION-Condition-BeaconDisabled]
-			[MaxActions:1]
-			[ActionExecution:All]
-			[Actions:GVK-Drone-Encounter-Salvager-COALITION-Action-Compromised]
-			[Actions:GVK-Drone-Encounter-Salvager-COALITION-Action-Disabled]
-			[Actions:GVK-Universal-Action-EditableOnCompromised]
-			</Description>
-		</EntityComponent>
-		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
-			<Id>
-				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Drone-Encounter-Salvager-COALITION-Condition-BeaconDisabled</SubtypeId>
-			</Id>
-			<Description>
-			[RivalAI Condition]
-			[UseConditions:true]
-			[MatchAnyCondition:false]
-			[CheckForBlocksOfType:true]
-			[BlocksOfType:MyObjectBuilder_Beacon]
-			[UseFailCondition:true]
-			</Description>
-		</EntityComponent>
-		<!-- Action for Large drones when defeated to disable stuff -->
-		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
-			<Id>
-				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Drone-Encounter-Salvager-COALITION-Action-Disabled</SubtypeId>
-			</Id>
-			<Description>
-			[RivalAI Action]
-			[EnableBlocks:true]
-			[EnableBlockNames:Magnetic Plate]
-			[EnableBlockStates:On]
-			[StopAllRotation:true]
-			[StopAllThrust:true]
-			[GenerateExplosion:true]
-			[ExplosionOffsetFromRemote:{X:0 Y:0 Z:0}]
-			[ExplosionRange:5]
-			[ExplosionDamage:1]
-			[ExplosionIgnoresVoxels:true]
-			[RazeBlocksOfType:true]
-			[RazeBlocksTypes:MyObjectBuilder_Beacon/ZoneBlock]
-			[RazeBlocksTypes:MyObjectBuilder_RemoteControl/RivalAIRemoteControlLarge]
-			[RazeBlocksTypes:MyObjectBuilder_RemoteControl/RivalAIRemoteControlSmall]
-			[RazeBlocksTypes:MyObjectBuilder_Beacon/ZoneBlock]
-			[RazeBlocksTypes:MyObjectBuilder_Beacon/SmallBlockBeacon]
-			[RazeBlocksTypes:MyObjectBuilder_Beacon/LargeBlockBeacon]
-			[RazeBlocksTypes:MyObjectBuilder_Beacon/SmallBlockBeacon_NPCNoConceal]
-			[RazeBlocksTypes:MyObjectBuilder_Beacon/LargeBlockBeacon_NPCNoConceal]
-			[ToggleBlocksOfType:true]
-			[BlockTypesToToggle:MyObjectBuilder_Beacon/ZoneBlock]
-			[BlockTypeToggles:Off]
-			[BlockTypesToToggle:MyObjectBuilder_Beacon/DisposableNpcBeaconSmall]
-			[BlockTypeToggles:Off]
-			[BlockTypesToToggle:MyObjectBuilder_Beacon/DisposableNpcBeaconLarge]
-			[BlockTypeToggles:Off]
-			[BlockTypesToToggle:MyObjectBuilder_Beacon/SmallBlockBeacon]
-			[BlockTypeToggles:Off]
-			[BlockTypesToToggle:MyObjectBuilder_Beacon/LargeBlockBeacon]
-			[BlockTypeToggles:Off]
-			[BlockTypesToToggle:MyObjectBuilder_Beacon/LargeBlockBeacon_NPCNoConceal]
-			[BlockTypeToggles:Off]
-			[BlockTypesToToggle:MyObjectBuilder_Beacon/SmallBlockBeacon_NPCNoConceal]
-			[BlockTypeToggles:Off]
-			[DisableTriggers:true]
-			[DisableTriggerNames:GVK-Drone-Encounter-Salvager-COALITION-Trigger-Crashed]			
-			[DisableTriggerNames:GVK-Drone-Encounter-Salvager-COALITION-Trigger-Compromised]			
-			[DisableTriggerNames:GVK-Drone-Encounter-Salvager-COALITION-Trigger-BeaconDisabled]
-			[ChangeInertiaDampeners:true]
-			[InertiaDampenersEnable:false]
-			[TerminateBehavior:true]
-			[ForceDespawn:false]
 			</Description>
 		</EntityComponent>
 	</EntityComponents>
