@@ -120,5 +120,30 @@
 			[PrioritizeSpecifiedFactions:false]
 			</Description>
 		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Universal-Target-CoalitionSupportCruiser</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Target]
+			[UseCustomTargeting:true]
+			[Target:Grid]
+			[BlockTargets:RivalAi]
+			[UseTargetRefresh:false]
+			[TimeUntilNextRefresh:60]
+			[TimeUntilNextEvaluation:15]
+			[MaxDistance:300]
+			[MaxExistingTargetDistance:200]
+			[GetTargetBy:ClosestDistance]
+			[MatchAllFilters:Name]
+			[MatchAllFilters:Faction]
+			[MatchAllFilters:Powered]
+			[FactionTargets:COALITION]
+			[Names:[NPC Mission] Support Cruiser]
+			[GetTargetBy:ClosestDistance]
+			[PrioritizeSpecifiedFactions:false]
+			</Description>
+		</EntityComponent>
 	</EntityComponents>
 </Definitions>

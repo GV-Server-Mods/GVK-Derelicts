@@ -1,0 +1,715 @@
+<?xml version="1.0"?>
+<Definitions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+	<EntityComponents>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-PlanetaryInstallation-Medium-Behavior-RecoveryMission</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Behavior]
+			[BehaviorName:Passive]
+			[UseAmmoReplenish:true]
+			[AmmoReplenishClipAmount:10]
+			[MaxAmmoReplenishments:99999999]
+			[UsePlayerDistanceTimer:true]
+			[PlayerDistanceTimerTrigger:3600]
+			[PlayerDistanceTrigger:4000]
+			[UseRetreatTimer:false]
+			[RetreatTimerTrigger:3600]
+			[UseNoTargetTimer:false]
+			[RetreatDespawnDistance:3000]
+			[TargetData:GVK-Universal-Target-EnemyGrids]
+			[Triggers:GVK-Universal-Trigger-UneditableOnSpawn]
+			[Triggers:GVK-Universal-Trigger-IndestructibleOnSpawn]
+			[Triggers:GVK-Drone-All-Trigger-WeaponsToMaxRange]
+			[Triggers:GVK-PlanetaryInstallation-Medium-Trigger-RecoveryMissionOnSpawn]
+			[Triggers:GVK-PlanetaryInstallation-Medium-Trigger-RecoveryMissionPlayerNear]
+			[Triggers:GVK-PlanetaryInstallation-Medium-Trigger-RecoveryMissionDespawn]
+			[Triggers:GVK-PlanetaryInstallation-Medium-Trigger-RecoveryMissionDespawnMES]
+			[Triggers:GVK-PlanetaryInstallation-Medium-Trigger-RecoveryMissionGridReturned]
+			[Triggers:GVK-PlanetaryInstallation-Medium-Trigger-RecoveryMissionGridLost]
+			[Triggers:GVK-PlanetaryInstallation-Medium-Trigger-RecoveryMissionOnFullSuccess]
+			[Triggers:GVK-PlanetaryInstallation-Medium-Trigger-RecoveryMissionOnPartialSuccess]
+			[Triggers:GVK-PlanetaryInstallation-Medium-Trigger-RecoveryMissionOnFail]
+			[Triggers:GVK-PlanetaryInstallation-Medium-Trigger-RecoveryMissionSendWaypointRepeat]
+			</Description>
+		</EntityComponent>
+		<!-- Trigger when Mission spawns -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-PlanetaryInstallation-Medium-Trigger-RecoveryMissionOnSpawn</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Trigger]
+			[Type:Timer]
+			[UseTrigger:true]
+			[StartsReady:false]
+			[MaxActions:1]
+			[MinCooldownMs:1000]
+			[MaxCooldownMs:1000]
+			[Actions:GVK-PlanetaryInstallation-Medium-Action-RecoveryMissionOnSpawn]
+			</Description>
+		</EntityComponent>
+		<!-- Condition Counter checks don't work on 0 or less, so we need to add 1 -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-PlanetaryInstallation-Medium-Action-RecoveryMissionOnSpawn</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Action]
+			[Chance:100]
+			[SetWeaponsToMaxRange:true]
+			[TriggerTimerBlocks:true]
+			[TimerBlockNames:NPC Timer E-brake]
+			[SetBooleansFalse:MissionStarted]
+			[IncreaseCounters:RemainingGrids]
+			[IncreaseCounters:LostGrids]
+			[EnableBlocks:true]
+			[EnableBlockNames:Inset Button Panel]
+			[EnableBlockStates:Off]
+			[UseChatBroadcast:true]
+			[ChatData:GVK-PlanetaryInstallation-Medium-Chat-RecoveryMissionOnSpawn]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-PlanetaryInstallation-Medium-Chat-RecoveryMissionOnSpawn</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Chat]
+			[UseChat:true]
+			[StartsReady:true]
+			[Chance:100]
+			[MaxChats:1]
+			[BroadcastRandomly:false]
+			[Author:Support Cruiser]
+			[Color:White]
+			[ChatMessages:Assistance required in recovering downed salvagers!]
+			[ChatAudio:ArcHudGPSNotification2]
+			[SendToAllOnlinePlayers:false]
+			[IgnoreAntennaRequirement:true]
+			[IgnoredAntennaRangeOverride:30000]
+			</Description>
+		</EntityComponent>
+		<!-- Trigger Sequence to spawn downed Salvagers when player is near -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-PlanetaryInstallation-Medium-Trigger-RecoveryMissionPlayerNear</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Trigger]
+			[UseTrigger:true]
+			[Type:PlayerNear]
+			[TargetDistance:500]
+			[StartsReady:true]
+			[MaxActions:3]
+			[MinCooldownMs:1000]
+			[MaxCooldownMs:1000]
+			[Actions:GVK-PlanetaryInstallation-Medium-Action-RecoveryMissionPlayerNear]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-PlanetaryInstallation-Medium-Action-RecoveryMissionPlayerNear</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Action]
+			[SetBooleansTrue:MissionStarted]
+			[IncreaseCounters:RemainingGrids]
+			[IncreaseCounters:LostGrids]
+			[SpawnEncounter:true]
+			[Spawner:GVK-PlanetaryInstallation-Medium-Spawner-RecoveryMissionPlayerNear]
+			[UseChatBroadcast:true]
+			[ChatData:GVK-PlanetaryInstallation-Medium-Chat-RecoveryMissionPlayerNear]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-PlanetaryInstallation-Medium-Spawner-RecoveryMissionPlayerNear</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Spawn]
+			[UseSpawn:true]
+			[SpawningType:CustomSpawn]
+			[StartsReady:true]
+			[ProcessAsAdminSpawn:false]
+			[MaxSpawns:-1]
+			[SpawnGroups:GVK-Other-Recovery-SpawnGroup-COALITION]
+			[MinDistance:1500]
+			[MaxDistance:3500]
+			[MinAltitude:20]
+			[MaxAltitude:21]
+			[InheritNpcAltitude:false]
+			[IgnoreSafetyChecks:true]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-PlanetaryInstallation-Medium-Chat-RecoveryMissionPlayerNear</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Chat]
+			[UseChat:true]
+			[StartsReady:true]
+			[Chance:100]
+			[MaxChats:1]
+			[BroadcastRandomly:false]
+			[Author:Support Cruiser]
+			[Color:White]
+			[ChatMessages:Gaalsien forces have damaged our 3 salvagers. Please recover the salvagers and return them here.]
+			[ChatAudio:ArcHudGPSNotification2]
+			[BroadcastChatType:Chat]
+			[SendToAllOnlinePlayers:false]
+			[IgnoreAntennaRequirement:true]
+			[IgnoredAntennaRangeOverride:2000]
+			</Description>
+		</EntityComponent>
+		<!-- Trigger sequence When Salvager is lost -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-PlanetaryInstallation-Medium-Trigger-RecoveryMissionGridLost</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Trigger]
+			[Type:CommandReceived]
+			[UseTrigger:true]
+			[StartsReady:true]
+			[MaxActions:-1]
+			[CommandReceiveCode:GridLost]
+			[ActionExecution:All]
+			[Actions:GVK-PlanetaryInstallation-Medium-Action-RecoveryMissionGridLost]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-PlanetaryInstallation-Medium-Action-RecoveryMissionGridLost</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Action]
+			[Chance:100]
+			[DecreaseCounters:RemainingGrids]
+			[DecreaseCounters:LostGrids]
+			[DisableTriggers:true]
+			[DisableTriggerNames:GVK-PlanetaryInstallation-Medium-Trigger-RecoveryMissionOnFullSuccess]
+			[EnableTriggers:true]
+			[EnableTriggerNames:GVK-PlanetaryInstallation-Medium-Trigger-RecoveryMissionOnPartialSuccess]
+			[EnableTriggerNames:GVK-PlanetaryInstallation-Medium-Trigger-RecoveryMissionOnFail]
+			[UseChatBroadcast:false]
+			[ChatData:GVK-PlanetaryInstallation-Medium-Chat-RecoveryMissionGridLost]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-PlanetaryInstallation-Medium-Chat-RecoveryMissionGridLost</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Chat]
+			[UseChat:true]
+			[StartsReady:true]
+			[Chance:100]
+			[BroadcastRandomly:false]
+			[IgnoreAntennaRequirement:true]
+			[IgnoredAntennaRangeOverride:2000]
+			[Author:Support Cruiser]
+			[Color:White]
+			[ChatMessages:Salvager Lost.]
+			[ChatAudio:ArcHudGPSNotification2]
+			[BroadcastChatType:Both]
+		  </Description>
+		</EntityComponent>
+		<!-- Trigger sequence When Salvager grid is brought into range -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-PlanetaryInstallation-Medium-Trigger-RecoveryMissionGridReturned</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Trigger]
+			[Type:CommandReceived]
+			[UseTrigger:true]
+			[StartsReady:true]
+			[MaxActions:-1]
+			[CommandReceiveCode:GridRecovered]
+			[ActionExecution:All]
+			[Actions:GVK-PlanetaryInstallation-Medium-Action-RecoveryMissionGridReturned]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-PlanetaryInstallation-Medium-Action-RecoveryMissionGridReturned</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Action]
+			[Chance:100]
+			[ApplyContainerTypeToInventoryBlock:true]
+			[ContainerTypeBlockNames:Shared Cargo Container]
+			[ContainerTypeSubtypeIds:Kharak_Loot_Large]
+			[ContainerTypeSubtypeIds:Kharak_Loot_Large]
+			[DecreaseCounters:RemainingGrids]
+			[UseChatBroadcast:true]
+			[ChatData:GVK-PlanetaryInstallation-Medium-Chat-RecoveryMissionGridReturned]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-PlanetaryInstallation-Medium-Chat-RecoveryMissionGridReturned</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Chat]
+			[UseChat:true]
+			[StartsReady:true]
+			[Chance:100]
+			[BroadcastRandomly:false]
+			[IgnoreAntennaRequirement:true]
+			[IgnoredAntennaRangeOverride:2000]
+			[Author:COALITION]
+			[Color:White]
+			[ChatMessages:Salvager returned.]
+			[ChatAudio:ArcHudGPSNotification2]
+			[BroadcastChatType:Both]
+		  </Description>
+		</EntityComponent>
+		<!-- Trigger sequence when all salvagers returned, spawn reward, disable behavior -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-PlanetaryInstallation-Medium-Trigger-RecoveryMissionOnFullSuccess</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Trigger]
+			[Type:Timer]
+			[UseTrigger:true]
+			[StartsReady:false]
+			[MaxActions:1]
+			[ActionExecution:All]
+			[MinCooldownMs:5000]
+			[MaxCooldownMs:5001]
+			[Conditions:GVK-PlanetaryInstallation-Medium-Condition-RecoveryMissionOnFullSuccess]
+			[ConditionCheckResetsTimer:true]
+			[Actions:GVK-PlanetaryInstallation-Medium-Action-RecoveryMissionOnFullSuccess]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-PlanetaryInstallation-Medium-Condition-RecoveryMissionOnFullSuccess</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Condition]
+			[UseConditions:true]
+			[MatchAnyCondition:false]
+			[CheckTrueBooleans:true]
+			[TrueBooleans:MissionStarted]
+			[CheckCustomCounters:true]
+			[CustomCounters:RemainingGrids]
+			[CustomCountersTargets:1]
+			[CounterCompareTypes:LessOrEqual]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-PlanetaryInstallation-Medium-Action-RecoveryMissionOnFullSuccess</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Action]
+			[Chance:100]
+			[EnableBlocks:true]
+			[EnableBlockNames:Inset Button Panel]
+			[EnableBlockStates:On]
+			[ApplyContainerTypeToInventoryBlock:true]
+			[ContainerTypeBlockNames:Shared Cargo Container]
+			[ContainerTypeSubtypeIds:GVK-ContainerTypes-SpecialPackage]
+			[DisableTriggers:true]
+			[DisableTriggerNames:GVK-PlanetaryInstallation-Medium-Trigger-RecoveryMissionDespawn]
+			[DisableTriggerNames:GVK-PlanetaryInstallation-Medium-Trigger-RecoveryMissionDespawnMES]
+			[DisableTriggerNames:GVK-PlanetaryInstallation-Medium-Trigger-RecoveryMissionOnPartialSuccess]
+			[DisableTriggerNames:GVK-PlanetaryInstallation-Medium-Trigger-RecoveryMissionOnFail]
+			[UseChatBroadcast:true]
+			[ChatData:GVK-PlanetaryInstallation-Medium-Chat-RecoveryMissionOnFullSuccess]
+			[RazeBlocksOfType:true]
+			[RazeBlocksTypes:MyObjectBuilder_Beacon/SmallBlockBeacon]
+			[RazeBlocksTypes:MyObjectBuilder_Beacon/LargeBlockBeacon]
+			[RazeBlocksTypes:MyObjectBuilder_Beacon/SmallBlockBeacon_NPCNoConceal]
+			[RazeBlocksTypes:MyObjectBuilder_Beacon/LargeBlockBeacon_NPCNoConceal]
+			[ToggleBlocksOfType:true]
+			[BlockTypesToToggle:MyObjectBuilder_Beacon/DisposableNpcBeaconSmall]
+			[BlockTypeToggles:Off]
+			[BlockTypesToToggle:MyObjectBuilder_Beacon/DisposableNpcBeaconLarge]
+			[BlockTypeToggles:Off]
+			[TerminateBehavior:true]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-PlanetaryInstallation-Medium-Chat-RecoveryMissionOnFullSuccess</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Chat]
+			[UseChat:true]
+			[StartsReady:true]
+			[Chance:100]
+			[MaxChats:1]
+			[BroadcastRandomly:false]
+			[Author:COALITION]
+			[Color:White]
+			[ChatMessages:Thanks for the assistance, full payment provided in the Shared Cargo.]
+			[ChatAudio:ArcHudGPSNotification2]
+			[BroadcastChatType:Chat]
+			[SendToAllOnlinePlayers:false]
+			[IgnoreAntennaRequirement:true]
+			[IgnoredAntennaRangeOverride:5000]
+		  </Description>
+		</EntityComponent>
+		<!-- Trigger sequence when some salvagers returned, but some are lost -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-PlanetaryInstallation-Medium-Trigger-RecoveryMissionOnPartialSuccess</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Trigger]
+			[Type:Timer]
+			[UseTrigger:false]
+			[StartsReady:false]
+			[MaxActions:1]
+			[ActionExecution:All]
+			[MinCooldownMs:5000]
+			[MaxCooldownMs:5001]
+			[Conditions:GVK-PlanetaryInstallation-Medium-Condition-RecoveryMissionOnPartialSuccess]
+			[ConditionCheckResetsTimer:true]
+			[Actions:GVK-PlanetaryInstallation-Medium-Action-RecoveryMissionOnPartialSuccess]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-PlanetaryInstallation-Medium-Condition-RecoveryMissionOnPartialSuccess</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Condition]
+			[UseConditions:true]
+			[MatchAnyCondition:false]
+			[CheckTrueBooleans:true]
+			[TrueBooleans:MissionStarted]
+			[CheckCustomCounters:true]
+			[CustomCounters:RemainingGrids]
+			[CustomCountersTargets:1]
+			[CounterCompareTypes:LessOrEqual]
+			[CustomCounters:LostGrids]
+			[CustomCountersTargets:1]
+			[CounterCompareTypes:Greater]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-PlanetaryInstallation-Medium-Action-RecoveryMissionOnPartialSuccess</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Action]
+			[Chance:100]
+			[EnableBlocks:true]
+			[EnableBlockNames:Inset Button Panel]
+			[EnableBlockStates:On]
+			[DisableTriggers:true]
+			[DisableTriggerNames:GVK-PlanetaryInstallation-Medium-Trigger-RecoveryMissionDespawn]
+			[DisableTriggerNames:GVK-PlanetaryInstallation-Medium-Trigger-RecoveryMissionDespawnMES]
+			[DisableTriggerNames:GVK-PlanetaryInstallation-Medium-Trigger-RecoveryMissionOnFullSuccess]
+			[DisableTriggerNames:GVK-PlanetaryInstallation-Medium-Trigger-RecoveryMissionOnFail]
+			[UseChatBroadcast:true]
+			[ChatData:GVK-PlanetaryInstallation-Medium-Chat-RecoveryMissionOnPartialSuccess]
+			[RazeBlocksOfType:true]
+			[RazeBlocksTypes:MyObjectBuilder_Beacon/SmallBlockBeacon]
+			[RazeBlocksTypes:MyObjectBuilder_Beacon/LargeBlockBeacon]
+			[RazeBlocksTypes:MyObjectBuilder_Beacon/SmallBlockBeacon_NPCNoConceal]
+			[RazeBlocksTypes:MyObjectBuilder_Beacon/LargeBlockBeacon_NPCNoConceal]
+			[ToggleBlocksOfType:true]
+			[BlockTypesToToggle:MyObjectBuilder_Beacon/DisposableNpcBeaconSmall]
+			[BlockTypeToggles:Off]
+			[BlockTypesToToggle:MyObjectBuilder_Beacon/DisposableNpcBeaconLarge]
+			[BlockTypeToggles:Off]
+			[TerminateBehavior:true]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-PlanetaryInstallation-Medium-Chat-RecoveryMissionOnPartialSuccess</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Chat]
+			[UseChat:true]
+			[StartsReady:true]
+			[Chance:100]
+			[MaxChats:1]
+			[BroadcastRandomly:false]
+			[Author:COALITION]
+			[Color:White]
+			[ChatMessages:Some salvagers were unable to be recovered, partial payment provided in the Shared Cargo.]
+			[ChatAudio:ArcHudGPSNotification2]
+			[BroadcastChatType:Chat]
+			[SendToAllOnlinePlayers:false]
+			[IgnoreAntennaRequirement:true]
+			[IgnoredAntennaRangeOverride:5000]
+		  </Description>
+		</EntityComponent>
+		<!-- Trigger sequence when all salvagers are lost -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-PlanetaryInstallation-Medium-Trigger-RecoveryMissionOnFail</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Trigger]
+			[Type:Timer]
+			[UseTrigger:false]
+			[StartsReady:false]
+			[MaxActions:1]
+			[ActionExecution:All]
+			[MinCooldownMs:5000]
+			[MaxCooldownMs:5001]
+			[Conditions:GVK-PlanetaryInstallation-Medium-Condition-RecoveryMissionOnFail]
+			[ConditionCheckResetsTimer:true]
+			[Actions:GVK-PlanetaryInstallation-Medium-Action-RecoveryMissionOnFail]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-PlanetaryInstallation-Medium-Condition-RecoveryMissionOnFail</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Condition]
+			[UseConditions:true]
+			[MatchAnyCondition:false]
+			[CheckTrueBooleans:true]
+			[TrueBooleans:MissionStarted]
+			[CheckCustomCounters:true]
+			[CustomCounters:LostGrids]
+			[CustomCountersTargets:1]
+			[CounterCompareTypes:LessOrEqual]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-PlanetaryInstallation-Medium-Action-RecoveryMissionOnFail</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Action]
+			[Chance:100]
+			[DisableTriggers:true]
+			[DisableTriggerNames:GVK-PlanetaryInstallation-Medium-Trigger-RecoveryMissionDespawn]
+			[DisableTriggerNames:GVK-PlanetaryInstallation-Medium-Trigger-RecoveryMissionDespawnMES]
+			[DisableTriggerNames:GVK-PlanetaryInstallation-Medium-Trigger-RecoveryMissionOnFullSuccess]
+			[DisableTriggerNames:GVK-PlanetaryInstallation-Medium-Trigger-RecoveryMissionOnPartialSuccess]
+			[UseChatBroadcast:true]
+			[ChatData:GVK-PlanetaryInstallation-Medium-Chat-RecoveryMissionOnFail]
+			[RazeBlocksOfType:true]
+			[RazeBlocksTypes:MyObjectBuilder_Beacon/SmallBlockBeacon]
+			[RazeBlocksTypes:MyObjectBuilder_Beacon/LargeBlockBeacon]
+			[RazeBlocksTypes:MyObjectBuilder_Beacon/SmallBlockBeacon_NPCNoConceal]
+			[RazeBlocksTypes:MyObjectBuilder_Beacon/LargeBlockBeacon_NPCNoConceal]
+			[ToggleBlocksOfType:true]
+			[BlockTypesToToggle:MyObjectBuilder_Beacon/DisposableNpcBeaconSmall]
+			[BlockTypeToggles:Off]
+			[BlockTypesToToggle:MyObjectBuilder_Beacon/DisposableNpcBeaconLarge]
+			[BlockTypeToggles:Off]
+			[TerminateBehavior:true]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-PlanetaryInstallation-Medium-Chat-RecoveryMissionOnFail</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Chat]
+			[UseChat:true]
+			[StartsReady:true]
+			[Chance:100]
+			[MaxChats:1]
+			[BroadcastRandomly:false]
+			[Author:COALITION]
+			[Color:White]
+			[ChatMessages:Mission failed, all salvagers were lost.]
+			[ChatAudio:ArcHudGPSNotification2]
+			[BroadcastChatType:Both]
+			[SendToAllOnlinePlayers:false]
+			[IgnoreAntennaRequirement:true]
+			[IgnoredAntennaRangeOverride:30000]
+			</Description>
+		</EntityComponent>
+		<!-- Triggers for mission to despawn -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-PlanetaryInstallation-Medium-Trigger-RecoveryMissionDespawn</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Trigger]
+			[Type:Despawn]
+			[UseTrigger:true]
+			[StartsReady:true]
+			[MaxActions:1]
+			[ActionExecution:All]
+			[Actions:GVK-PlanetaryInstallation-Medium-Action-RecoveryMissionDespawn]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-PlanetaryInstallation-Medium-Trigger-RecoveryMissionDespawnMES</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Trigger]
+			[Type:DespawnMES]
+			[UseTrigger:true]
+			[StartsReady:true]
+			[MaxActions:1]
+			[ActionExecution:All]
+			[Actions:GVK-PlanetaryInstallation-Medium-Action-RecoveryMissionDespawn]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-PlanetaryInstallation-Medium-Action-RecoveryMissionDespawn</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Action]
+			[Chance:100]
+			[DisableTriggers:true]
+			[DisableTriggerNames:GVK-PlanetaryInstallation-Medium-Trigger-RecoveryMissionDespawn]
+			[DisableTriggerNames:GVK-PlanetaryInstallation-Medium-Trigger-RecoveryMissionDespawnMES]
+			[DisableTriggerNames:GVK-PlanetaryInstallation-Medium-Trigger-RecoveryMissionOnFullSuccess]
+			[DisableTriggerNames:GVK-PlanetaryInstallation-Medium-Trigger-RecoveryMissionOnPartialSuccess]
+			[DisableTriggerNames:GVK-PlanetaryInstallation-Medium-Trigger-RecoveryMissionOnFail]
+			[UseChatBroadcast:true]
+			[ChatData:GVK-PlanetaryInstallation-Medium-Chat-RecoveryMissionDespawn]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-PlanetaryInstallation-Medium-Chat-RecoveryMissionDespawn</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Chat]
+			[UseChat:true]
+			[StartsReady:true]
+			[Chance:100]
+			[MaxChats:1]
+			[BroadcastRandomly:false]
+			[Author:COALITION]
+			[Color:White]
+			[ChatMessages:Mission failed, salvagers were not saved in time.]
+			[ChatAudio:ArcHudGPSNotification2]
+			[BroadcastChatType:Both]
+			[SendToAllOnlinePlayers:false]
+			[IgnoreAntennaRequirement:true]
+			[IgnoredAntennaRangeOverride:30000]
+			</Description>
+		</EntityComponent>
+		<!-- Trigger sequence to send waypoints on reapeat -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-PlanetaryInstallation-Medium-Trigger-RecoveryMissionSendWaypointRepeat</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Trigger]
+			[Type:Timer]
+			[UseTrigger:true]
+			[StartsReady:true]
+			[MaxActions:-1]
+			[MinCooldownMs:10000]
+			[MaxCooldownMs:10001]
+			[ActionExecution:All]
+			[Actions:GVK-PlanetaryInstallation-Medium-Action-RecoveryMissionSendWaypoint]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-PlanetaryInstallation-Medium-Action-RecoveryMissionSendWaypoint</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Action]
+			[Chance:100]
+			[BroadcastCommandProfiles:true]
+			[CommandProfileIds:GVK-PlanetaryInstallation-Medium-Commnand-RecoveryMissionSendWaypoint]
+			[UseChatBroadcast:false]
+			[ChatData:GVK-PlanetaryInstallation-Medium-Chat-RecoveryMissionSendWaypoint]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-PlanetaryInstallation-Medium-Commnand-RecoveryMissionSendWaypoint</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Command]
+			[CommandCode:SendingWaypoint]
+			[SingleRecipient:false]
+			[MatchSenderReceiverOwners:true]
+			[IgnoreAntennaRequirement:true]
+			[IgnoreReceiverAntennaRequirement:true]
+			[Radius:5000]
+			[SendWaypoint:true]
+			[Waypoint:GVK-PlanetaryInstallation-Medium-Waypoint-RecoveryMissionSendWaypoint]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-PlanetaryInstallation-Medium-Waypoint-RecoveryMissionSendWaypoint</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Waypoint]
+			[Waypoint:RelativeRandom]
+			[RelativeEntity:Self]
+			[MinDistance:1]
+			[MaxDistance:2]
+			[MinAltitude:1]
+			[MaxAltitude:2]
+			[InheritRelativeAltitude:true]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-PlanetaryInstallation-Medium-Chat-RecoveryMissionSendWaypoint</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Chat]
+			[UseChat:true]
+			[StartsReady:true]
+			[Chance:100]
+			[BroadcastRandomly:false]
+			[IgnoreAntennaRequirement:true]
+			[IgnoredAntennaRangeOverride:5000]
+			[Author:Support Cruiser]
+			[Color:White]
+			[ChatMessages:Sending Waypoint.]
+			[ChatAudio:ArcHudGPSNotification2]
+			[BroadcastChatType:Both]
+		  </Description>
+		</EntityComponent>
+	</EntityComponents>
+</Definitions>

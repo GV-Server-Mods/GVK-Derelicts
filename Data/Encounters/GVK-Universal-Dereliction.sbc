@@ -24,8 +24,8 @@
 			[Blocks:MyObjectBuilder_OxygenTank/(null)]
 			[Blocks:MyObjectBuilder_Assembler/(null)]
 			[Blocks:MyObjectBuilder_Projector/(null)]
-			[Blocks:MyObjectBuilder_Gyro/(null)]
 			[Blocks:MyObjectBuilder_LargeTurretBase/(null)]
+			[Blocks:MyObjectBuilder_MotorSuspension/(null)]
 			[MatchOnlyTypeId:true]
 			[Chance:15]
 			[MinPercentage:10]
@@ -53,7 +53,7 @@
 			[Blocks:MyObjectBuilder_OxygenTank/(null)]
 			[Blocks:MyObjectBuilder_Assembler/(null)]
 			[Blocks:MyObjectBuilder_Projector/(null)]
-			[Blocks:MyObjectBuilder_Gyro/(null)]
+			[Blocks:MyObjectBuilder_MotorSuspension/(null)]
 			[MatchOnlyTypeId:true]
 			[Chance:25]
 			[UseSeparatePercentages:true]
@@ -61,6 +61,40 @@
 			[MaxIntegrityPercentage:70]
 			[MinBuildPercentage:100]
 			[MaxBuildPercentage:100]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Universal-Dereliction-Suspension-DamageOnly</SubtypeId>
+			</Id>
+			<Description>
+			[MES Dereliction]
+			[Blocks:MyObjectBuilder_MotorSuspension/(null)]
+			[MatchOnlyTypeId:true]
+			[Chance:100]
+			[UseSeparatePercentages:true]
+			[MinIntegrityPercentage:20]
+			[MaxIntegrityPercentage:50]
+			[MinBuildPercentage:100]
+			[MaxBuildPercentage:100]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Universal-Dereliction-Wheels-Missing</SubtypeId>
+			</Id>
+			<Description>
+			[MES Dereliction]
+			[Blocks:MyObjectBuilder_Wheel/(null)]
+			[MatchOnlyTypeId:true]
+			[Chance:100]
+			[UseSeparatePercentages:true]
+			[MinIntegrityPercentage:10]
+			[MaxIntegrityPercentage:40]
+			[MinBuildPercentage:20]
+			[MaxBuildPercentage:70]
 			</Description>
 		</EntityComponent>
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
@@ -76,8 +110,8 @@
 			[UseSeparatePercentages:true]
 			[MinIntegrityPercentage:40]
 			[MaxIntegrityPercentage:70]
-			[MinBuildPercentage:100]
-			[MaxBuildPercentage:100]
+			[MinBuildPercentage:20]
+			[MaxBuildPercentage:50]
 			</Description>
 		</EntityComponent>
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">

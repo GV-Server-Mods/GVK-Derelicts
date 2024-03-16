@@ -1,0 +1,553 @@
+<?xml version="1.0"?>
+<Definitions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+	<EntityComponents>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Other-Recovery-Behavior-Coalition</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Behavior]
+			[BehaviorName:Passive]
+			[UsePlayerDistanceTimer:true]
+			[PlayerDistanceTimerTrigger:900]
+			[PlayerDistanceTrigger:3000]
+			[UseNoTargetTimer:true]
+			[NoTargetTimerTrigger:900]
+			[UseRetreatTimer:false]
+			[AutopilotData:GVK-Other-Recovery-Autopilot-Coalition]
+			[TargetData:GVK-Universal-Target-CoalitionSupportCruiser]
+			[Triggers:GVK-Other-Recovery-Trigger-OnSpawn]
+			[Triggers:GVK-Other-Recovery-Trigger-PlayerNear]
+			[Triggers:GVK-Other-Recovery-Trigger-OnSuccess]
+			[Triggers:GVK-Other-Recovery-Trigger-BeaconDisabled]
+			[Triggers:GVK-Other-Recovery-Trigger-Despawn]
+			[Triggers:GVK-Other-Recovery-Trigger-DespawnMES]
+			[Triggers:GVK-Other-Recovery-Trigger-Compromised]
+			[Triggers:GVK-Other-Recovery-Trigger-Repaired]
+			[Triggers:GVK-Other-Recovery-Trigger-ReceivedWaypoint]
+			</Description>
+		</EntityComponent>
+		<!-- Salvager CargoShip Autopilot -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Other-Recovery-Autopilot-Coalition</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Autopilot]
+			[UseVelocityCollisionEvasion:false]
+			[RotationMultiplier:2]
+			[LimitRotationSpeed:true]
+			[MaxRotationMagnitude:0.5]
+			[FlyLevelWithGravity:false]
+			[LevelWithGravityWhenIdle:false]
+			[IdealPlanetAltitude:10]
+			[AltitudeTolerance:50]
+			[WaypointAbandonTimeTrigger:9999999]
+			[WaypointTolerance:45]
+			[IdealMinSpeed:25]
+			[IdealMaxSpeed:65]
+			[WaypointWaitTimeTrigger:120]
+			[OffsetPlanetMinDistFromTarget:200]
+			[OffsetPlanetMaxDistFromTarget:500]
+			[OffsetPlanetMinTargetAltitude:0]
+			[OffsetPlanetMaxTargetAltitude:10]
+			[AngleAllowedForForwardThrust:120]
+			[DisableInertiaDampeners:true]
+			[MinimumPlanetAltitude:0]
+			[UseSurfaceHoverThrustMode:true]
+			[HoverPathStepDistance:50]
+			[MaxVelocityAngleForSpeedControl:180]
+			</Description>
+		</EntityComponent>
+		<!-- Trigger sequence upon Spawning -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Other-Recovery-Trigger-OnSpawn</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Trigger]
+			[Type:Session]
+			[UseTrigger:true]
+			[StartsReady:true]
+			[MaxActions:1]
+			[ActionExecution:All]
+			[Actions:GVK-Other-Recovery-Action-OnSpawn]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Other-Recovery-Action-OnSpawn</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Action]
+			[Chance:100]
+			[EnableBlocks:true]
+			[EnableBlockNames:NPC Sensor]
+			[EnableBlockStates:Off]
+			[EnableBlockNames:NPC Suspension]
+			[EnableBlockStates:On]
+			[TriggerTimerBlocks:false]
+			[TimerBlockNames:NPC Timer E-brake]
+			[ChangeAntennaRanges:true]
+			[AntennaNamesForRangeChange:NPC Beacon]
+			[AntennaRangeChangeType:Set]
+			[AntennaRangeChangeAmount:2000]
+			</Description>
+		</EntityComponent>
+		<!-- Trigger sequence for Salvager to spawn enemies when player is near -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Other-Recovery-Trigger-PlayerNear</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Trigger]
+			[Type:PlayerNear]
+			[UseTrigger:true]
+			[StartsReady:true]
+			[TargetDistance:2000]
+			[MaxActions:1]
+			[ActionExecution:All]
+			[Actions:GVK-Other-Recovery-Action-PlayerNear]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Other-Recovery-Action-PlayerNear</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Action]
+			[Chance:30]
+			[TriggerTimerBlocks:true]
+			[TimerBlockNames:NPC Timer Resume Cruise]
+			[SpawnEncounter:true]
+			[Spawner:GVK-Other-Recovery-Spawner-PlayerNear]
+			[UseChatBroadcast:true]
+			[ChatData:GVK-Other-Recovery-Chat-PlayerNear]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Other-Recovery-Chat-PlayerNear</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Chat]
+			[UseChat:true]
+			[StartsReady:true]
+			[Chance:100]
+			[MaxChats:1]
+			[BroadcastRandomly:true]
+			[Author:Sensors]
+			[Color:Blue]
+			[ChatMessages:Enemies in-bound.]
+			[ChatAudio:ArcHudSensors]
+			[BroadcastChatType:Both]
+			[SendToAllOnlinePlayers:false]
+			[IgnoreAntennaRequirement:true]
+			[IgnoredAntennaRangeOverride:3000]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Other-Recovery-Spawner-PlayerNear</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Spawn]
+			[UseSpawn:true]
+			[SpawningType:CustomSpawn]
+			[StartsReady:true]
+			[ProcessAsAdminSpawn:false]
+			[MaxSpawns:1]
+			[SpawnGroups:GVK-Drone-Defense-SpawnGroup-GAALSIEN-LightSandskimmerSquad]
+			[MinDistance:500]
+			[MaxDistance:750]
+			[MinAltitude:20]
+			[MaxAltitude:21]
+			[InheritNpcAltitude:true]
+			[IgnoreSafetyChecks:true]
+			</Description>
+		</EntityComponent>
+		<!-- Trigger sequence when support cruiser beacon in target range -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Other-Recovery-Trigger-OnSuccess</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Trigger]
+			[Type:HasTarget]
+			[UseTrigger:true]
+			[StartsReady:false]
+			[TargetDistance:200]
+			[ActionExecution:All]
+			[MinCooldownMs:9998]
+			[MaxCooldownMs:9999]
+			[Actions:GVK-Other-Recovery-Action-OnSuccess]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Other-Recovery-Action-OnSuccess</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Action]
+			[Chance:100]
+			[DisableTriggers:true]
+			[DisableTriggerNames:GVK-Other-Recovery-Trigger-OnSuccess]
+			[DisableTriggerNames:GVK-Other-Recovery-Trigger-BeaconDisabled]
+			[DisableTriggerNames:GVK-Other-Recovery-Trigger-Despawn]
+			[DisableTriggerNames:GVK-Other-Recovery-Trigger-DespawnMES]
+			[DisableTriggerNames:GVK-Other-Recovery-Trigger-Compromised]
+			[EnableBlocks:true]
+			[EnableBlockNames:NPC Sensor]
+			[EnableBlockStates:Off]
+			[TriggerTimerBlocks:true]
+			[TimerBlockNames:NPC Timer E-brake]
+			[RazeBlocksOfType:true]
+			[RazeBlocksTypes:MyObjectBuilder_Beacon/DisposableNpcBeaconSmall]
+			[RazeBlocksTypes:MyObjectBuilder_Beacon/DisposableNpcBeaconLarge]
+			[RazeBlocksTypes:MyObjectBuilder_Beacon/SmallBlockBeacon]
+			[RazeBlocksTypes:MyObjectBuilder_Beacon/LargeBlockBeacon]
+			[RazeBlocksTypes:MyObjectBuilder_Beacon/SmallBlockBeacon_NPCNoConceal]
+			[RazeBlocksTypes:MyObjectBuilder_Beacon/LargeBlockBeacon_NPCNoConceal]
+			[BroadcastCommandProfiles:true]
+			[CommandProfileIds:GVK-Other-Recovery-Command-OnSuccess]
+			[UseChatBroadcast:true]
+			[ChatData:GVK-Other-Recovery-Chat-OnSuccess]
+			[TerminateBehavior:true]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Other-Recovery-Command-OnSuccess</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Command]
+			[CommandCode:GridRecovered]
+			[SingleRecipient:true]
+			[MatchSenderReceiverOwners:true]
+			[IgnoreAntennaRequirement:true]
+			[IgnoreReceiverAntennaRequirement:true]
+			[Radius:500]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Other-Recovery-Chat-OnSuccess</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Chat]
+			[UseChat:false]
+			[MinTime:120]
+			[MaxTime:121]
+			[StartsReady:true]
+			[Chance:100]
+			[BroadcastRandomly:false]
+			[IgnoreAntennaRequirement:true]
+			[IgnoredAntennaRangeOverride:5000]
+			[Author:COALITION]
+			[Color:White]
+			[ChatMessages:Salvager recovered successfully.]
+			[ChatAudio:ArcHudGPSNotification2]
+			[BroadcastChatType:Both]
+		  </Description>
+		</EntityComponent>
+		<!-- Trigger sequences when grid dies -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Other-Recovery-Trigger-BeaconDisabled</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Trigger]
+			[Type:Timer]
+			[UseTrigger:true]
+			[MinCooldownMs:10000]
+			[MaxCooldownMs:10000]
+			[StartsReady:false]
+			[Conditions:GVK-PlanetaryInstallation-All-Condition-BeaconDisabled]				  
+			[MaxActions:1]
+			[ActionExecution:All]
+			[Actions:GVK-Other-Recovery-Action-Compromised]
+			[Actions:GVK-PlanetaryInstallation-All-Action-CompromisedGeneric]
+			[Actions:GVK-Other-Recovery-Action-Spawns]
+			[Actions:GVK-Universal-Action-EditableOnCompromised]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Other-Recovery-Trigger-Compromised</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Trigger]
+			[Type:Compromised]
+			[UseTrigger:true]
+			[StartsReady:true]
+			[MaxActions:1]
+			[ActionExecution:All]
+			[Actions:GVK-Other-Recovery-Action-Compromised]
+			[Actions:GVK-PlanetaryInstallation-All-Action-CompromisedGeneric]
+			[Actions:GVK-Universal-Action-EditableOnCompromised]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Other-Recovery-Trigger-Despawn</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Trigger]
+			[Type:Despawn]
+			[UseTrigger:true]
+			[StartsReady:true]
+			[MaxActions:1]
+			[ActionExecution:All]
+			[Actions:GVK-Other-Recovery-Action-Compromised]
+			[Actions:GVK-PlanetaryInstallation-All-Action-CompromisedGeneric]
+			[Actions:GVK-Universal-Action-EditableOnCompromised]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Other-Recovery-Trigger-DespawnMES</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Trigger]
+			[Type:DespawnMES]
+			[UseTrigger:true]
+			[StartsReady:true]
+			[MaxActions:1]
+			[ActionExecution:All]
+			[Actions:GVK-Other-Recovery-Action-Compromised]
+			[Actions:GVK-PlanetaryInstallation-All-Action-CompromisedGeneric]
+			[Actions:GVK-Universal-Action-EditableOnCompromised]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Other-Recovery-Action-Compromised</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Action]
+			[RemoveKnownPlayerArea:true]
+			[DisableTriggers:true]
+			[DisableTriggerNames:GVK-Other-Recovery-Trigger-BeaconDisabled]
+			[DisableTriggerNames:GVK-Other-Recovery-Trigger-Despawn]
+			[DisableTriggerNames:GVK-Other-Recovery-Trigger-DespawnMES]
+			[DisableTriggerNames:GVK-Other-Recovery-Trigger-Compromised]
+			[BroadcastCommandProfiles:true]
+			[CommandProfileIds:GVK-Other-Recovery-Command-Compromised]
+			[UseChatBroadcast:true]
+			[ChatData:GVK-Other-Recovery-Chat-Compromised]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Other-Recovery-Command-Compromised</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Command]
+			[CommandCode:GridLost]
+			[SingleRecipient:true]
+			[MatchSenderReceiverOwners:true]
+			[IgnoreAntennaRequirement:true]
+			[IgnoreReceiverAntennaRequirement:true]
+			[Radius:5000]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Other-Recovery-Chat-Compromised</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Chat]
+			[UseChat:true]
+			[StartsReady:true]
+			[Chance:100]
+			[MaxChats:1]
+			[BroadcastRandomly:false]
+			[Author:Sensors]
+			[Color:Blue]
+			[ChatMessages:Coalition Salvager lost.]
+			[ChatAudio:ArcHudSensors]
+			[BroadcastChatType:Both]
+			[SendToAllOnlinePlayers:false]
+			[IgnoreAntennaRequirement:true]
+			[IgnoredAntennaRangeOverride:5000]
+			</Description>
+		</EntityComponent>
+		<!-- Trigger Sequence if grid suspension is repaired -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Other-Recovery-Trigger-Repaired</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Trigger]
+			[Type:ButtonPress]
+			[UseTrigger:true]
+			[StartsReady:true]
+			[ButtonPanelName:NPC Button]
+			[ButtonPanelIndex:0]
+			[Conditions:GVK-Other-Recovery-Condition-Repaired]
+			[ConditionCheckResetsTimer:true]			
+			[MaxActions:1]
+			[ActionExecution:All]
+			[Actions:GVK-Other-Recovery-Action-Repaired]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Other-Recovery-Condition-Repaired</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Condition]
+			[UseConditions:true]
+			[MatchAnyCondition:false]
+			[CheckForBlocksOfType:true]
+			[BlocksOfType:MyObjectBuilder_MotorSuspension]
+			[UseRequiredFunctionalBlocks:true]
+			[RequiredAllFunctionalBlockNames:NPC Suspension]
+			[UseFailCondition:false]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Other-Recovery-Condition-Repaired-Old</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Condition]
+			[UseConditions:true]
+			[MatchAnyCondition:false]
+			[CheckForBlocksOfType:true]
+			[BlocksOfType:MyObjectBuilder_MotorSuspension]
+			[BlocksOfType:MyObjectBuilder_BatteryBlock]
+			[BlocksOfType:MyObjectBuilder_Gyro]
+			[UseRequiredFunctionalBlocks:true]
+			[RequiredAllFunctionalBlockNames:NPC Suspension]
+			[UseFailCondition:false]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Other-Recovery-Action-Repaired</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Action]
+			[ChangeBehaviorSubclass:true]
+			[NewBehaviorSubclass:CargoShip]
+			[EnableBlocks:true]
+			[EnableBlockNames:NPC Sensor]
+			[EnableBlockStates:On]
+			[EnableBlockNames:NPC Button]
+			[EnableBlockStates:On]
+			[TriggerTimerBlocks:true]
+			[TimerBlockNames:NPC Timer Resume Cruise]
+			[UseChatBroadcast:true]
+			[ChatData:GVK-Other-Recovery-Chat-Repaired]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Other-Recovery-Command-Repaired</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Command]
+			[CommandCode:RequestWaypoint]
+			[SingleRecipient:true]
+			[MatchSenderReceiverOwners:true]
+			[IgnoreAntennaRequirement:true]
+			[IgnoreReceiverAntennaRequirement:true]
+			[Radius:5000]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Other-Recovery-Chat-Repaired</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Chat]
+			[UseChat:true]
+			[StartsReady:true]
+			[Chance:100]
+			[BroadcastRandomly:false]
+			[IgnoreAntennaRequirement:true]
+			[IgnoredAntennaRangeOverride:5000]
+			[Author:Salvager]
+			[Color:White]
+			[ChatMessages:Salvager Repaired.]
+			[ChatAudio:ArcHudGPSNotification2]
+			[BroadcastChatType:Both]
+		  </Description>
+		</EntityComponent>
+		<!-- Trigger sequence When Salvager receives a waypoint -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Other-Recovery-Trigger-ReceivedWaypoint</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Trigger]
+			[Type:CommandReceived]
+			[UseTrigger:true]
+			[StartsReady:true]
+			[MaxActions:-1]
+			[CommandReceiveCode:SendingWaypoint]
+			[ActionExecution:All]
+			[Actions:GVK-Other-Recovery-Action-ReceivedWaypoint]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Other-Recovery-Action-ReceivedWaypoint</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Action]
+			[Chance:100]
+			[AddWaypointFromCommand:true]
+			[ChatData:GVK-Other-Recovery-Chat-ReceivedWaypoint]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Other-Recovery-Chat-ReceivedWaypoint</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Chat]
+			[UseChat:true]
+			[StartsReady:true]
+			[Chance:100]
+			[BroadcastRandomly:false]
+			[IgnoreAntennaRequirement:true]
+			[IgnoredAntennaRangeOverride:5000]
+			[Author:Salvager]
+			[Color:White]
+			[ChatMessages:Heading to Waypoint.]
+			[ChatAudio:ArcHudGPSNotification2]
+			[BroadcastChatType:Both]
+		  </Description>
+		</EntityComponent>
+	</EntityComponents>
+</Definitions>

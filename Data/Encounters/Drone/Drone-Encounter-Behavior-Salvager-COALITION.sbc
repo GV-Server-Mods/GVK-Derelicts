@@ -82,7 +82,7 @@
 			[AngleAllowedForForwardThrust:120]
 			</Description>
 		</EntityComponent>
-		<!-- Trigger sequence for Salvager to run away when player is near -->
+		<!-- Trigger sequence for Salvager to spawn enemies when player is near -->
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
@@ -109,7 +109,7 @@
 			[TriggerTimerBlocks:true]
 			[TimerBlockNames:NPC Timer Resume Cruise]
 			[SpawnEncounter:true]
-			[Spawner:GVK-Drone-Encounter-Salvager-COALITION-CoalitionRelayDefenseDroneSmall]
+			[Spawner:GVK-Drone-Encounter-Salvager-COALITION-Spawner-PlayerNear]
 			[UseChatBroadcast:true]
 			[ChatData:GVK-Drone-Encounter-Salvager-COALITION-Chat-PlayerNear]
 			</Description>
@@ -139,7 +139,7 @@
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Drone-Encounter-Salvager-COALITION-CoalitionRelayDefenseDroneSmall</SubtypeId>
+				<SubtypeId>GVK-Drone-Encounter-Salvager-COALITION-Spawner-PlayerNear</SubtypeId>
 			</Id>
 			<Description>
 			[RivalAI Spawn]

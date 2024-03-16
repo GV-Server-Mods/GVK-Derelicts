@@ -5,6 +5,34 @@
 		<SpawnGroup>
 			<Id>
 				<TypeId>SpawnGroupDefinition</TypeId>
+				<SubtypeId>GVK-PlanetaryInstallation-SpawnGroups-Medium-RecoveryMission</SubtypeId>
+			</Id>
+			<Description>
+			[Modular Encounters SpawnGroup]
+			[IgnoreCleanupRules:true]
+			[ReplenishSystems:true]
+			[SpawnConditionsProfiles:GVK-PlanetaryInstallation-Medium-SpawnCondition-Building-COALITION]
+			[ManipulationProfiles:GVK-PlanetaryInstallation-Medium-Manipulation-MissionRover]
+			[ForceStaticGrid:false]
+			</Description>
+			<IsPirate>true</IsPirate>
+			<Frequency>0.1</Frequency>
+			<Prefabs>
+				<Prefab SubtypeId="[NPC Mission] Support Cruiser">
+					<Position>
+						<X>0.0</X>
+						<Y>33.5</Y>
+						<Z>0.0</Z>
+					</Position>
+					<Speed>0</Speed>
+					<BeaconText>Recovery Mission</BeaconText>
+					<Behaviour>GVK-PlanetaryInstallation-Medium-Behavior-RecoveryMission</Behaviour>
+				</Prefab>
+			</Prefabs>
+		</SpawnGroup>
+		<SpawnGroup>
+			<Id>
+				<TypeId>SpawnGroupDefinition</TypeId>
 				<SubtypeId>GVK-PlanetaryInstallation-SpawnGroups-Medium-Battlecruiser</SubtypeId>
 			</Id>
 			<Description>
@@ -708,7 +736,7 @@
 				</Prefab>
 			</Prefabs>
 		</SpawnGroup>
-		<SpawnGroup>
+		<!--<SpawnGroup>
 			<Id>
 				<TypeId>SpawnGroupDefinition</TypeId>
 				<SubtypeId>GVK-PlanetaryInstallation-SpawnGroups-Medium-CoalitionCarrier</SubtypeId>
@@ -734,6 +762,6 @@
 					<Behaviour>GVK-PlanetaryInstallation-Medium-Behavior-CoalitionWreck</Behaviour>
 				</Prefab>
 			</Prefabs>
-		</SpawnGroup>
+		</SpawnGroup>-->
 	</SpawnGroups>
 </Definitions>
