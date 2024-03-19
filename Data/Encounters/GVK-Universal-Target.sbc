@@ -145,5 +145,31 @@
 			[PrioritizeSpecifiedFactions:false]
 			</Description>
 		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Universal-Target-CoalitionTradeStation</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Target]
+			[UseCustomTargeting:true]
+			[Target:Grid]
+			[BlockTargets:RivalAi]
+			[UseTargetRefresh:false]
+			[TimeUntilNextRefresh:60]
+			[TimeUntilNextEvaluation:15]
+			[MaxDistance:500]
+			[MaxExistingTargetDistance:500]
+			[GetTargetBy:ClosestDistance]
+			[MatchAllFilters:Name]
+			[MatchAllFilters:Faction]
+			[MatchAllFilters:Powered]
+			[FactionTargets:COALITION]
+			[Names:[NPC Trade Station]]
+			[UsePartialNameMatching:true]
+			[GetTargetBy:ClosestDistance]
+			[PrioritizeSpecifiedFactions:false]
+			</Description>
+		</EntityComponent>
 	</EntityComponents>
 </Definitions>

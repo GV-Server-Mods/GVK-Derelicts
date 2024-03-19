@@ -23,7 +23,7 @@
 			[AutopilotData:GVK-CargoShip-Land-COALITION-EscortPrimaryAutopilot]
 			[SecondaryAutopilotData:GVK-CargoShip-Land-COALITION-EscortSecondaryAutopilot]
 			[TertiaryAutopilotData:GVK-CargoShip-Land-COALITION-EscortTertiaryAutopilot]
-			[TargetData:GVK-Universal-Target-EnemyGaalsienBeacon]
+			[TargetData:GVK-Universal-Target-CoalitionTradeStation]
 			[Triggers:GVK-Universal-Trigger-UneditableOnSpawn]
 			[Triggers:GVK-Universal-Trigger-EditableOnCompromised]
 			[Triggers:GVK-Drone-All-Trigger-BeaconDisabled]
@@ -42,7 +42,8 @@
 			[Triggers:GVK-CargoShip-Land-COALITION-Trigger-EscortPlayerStillNear]
 			[Triggers:GVK-CargoShip-Land-COALITION-Trigger-EscortPlayerNotNear]
 			[Triggers:GVK-CargoShip-Land-COALITION-Trigger-EscortOutsideZone0]
-			[Triggers:GVK-CargoShip-Land-COALITION-Trigger-EscortSuccessA]
+			[Triggers:GVK-CargoShip-Land-COALITION-Trigger-EscortSuccessTargetA]
+			[Triggers:GVK-CargoShip-Land-COALITION-Trigger-EscortSuccessCounterA]
 			[RemoteControlCode:CoalitionRouteA]
 			</Description>
 		</EntityComponent>
@@ -341,7 +342,7 @@
 			[Type:Timer]
 			[UseTrigger:true]
 			[StartsReady:false]
-			[MaxActions:1]
+			[MaxActions:-1]
 			[ActionExecution:All]
 			[MinCooldownMs:1000]
 			[MaxCooldownMs:1001]
@@ -908,7 +909,24 @@
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-CargoShip-Land-COALITION-Trigger-EscortSuccessA</SubtypeId>
+				<SubtypeId>GVK-CargoShip-Land-COALITION-Trigger-EscortSuccessTargetA</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Trigger]
+			[Type:TargetNear]
+			[UseTrigger:true]
+			[StartsReady:false]
+			[TargetDistance:700]
+			[ActionExecution:All]
+			[MinCooldownMs:9998]
+			[MaxCooldownMs:9999]
+			[Actions:GVK-CargoShip-Land-COALITION-Action-EscortSuccessA]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-CargoShip-Land-COALITION-Trigger-EscortSuccessCounterA</SubtypeId>
 			</Id>
 			<Description>
 			[RivalAI Trigger]
@@ -959,6 +977,8 @@
 			[TimerBlockNames:NPC Timer E-brake]
 			[StopAllRotation:true]
 			[DisableTriggers:true]
+			[DisableTriggerNames:GVK-CargoShip-Land-COALITION-Trigger-EscortSuccessTargetA]
+			[DisableTriggerNames:GVK-CargoShip-Land-COALITION-Trigger-EscortSuccessCounterA]
 			[DisableTriggerNames:GVK-CargoShip-Land-COALITION-Trigger-EscortHorizonAngleHigh]
 			[DisableTriggerNames:GVK-CargoShip-Land-COALITION-Trigger-EscortPlayerNear]
 			[DisableTriggerNames:GVK-CargoShip-Land-COALITION-Trigger-EscortPlayerNotNear]
@@ -967,9 +987,8 @@
 			[DisableTriggerNames:GVK-CargoShip-Land-COALITION-Trigger-EscortCompromised]
 			[RazeBlocksOfType:true]
 			[RazeBlocksTypes:MyObjectBuilder_Beacon/ZoneBlock]
-			[RazeBlocksTypes:MyObjectBuilder_RemoteControl/RivalAIRemoteControlLarge]
-			[RazeBlocksTypes:MyObjectBuilder_RemoteControl/RivalAIRemoteControlSmall]
-			[RazeBlocksTypes:MyObjectBuilder_Beacon/ZoneBlock]
+			[RazeBlocksTypes:MyObjectBuilder_Beacon/DisposableNpcBeaconSmall]
+			[RazeBlocksTypes:MyObjectBuilder_Beacon/DisposableNpcBeaconLarge]
 			[RazeBlocksTypes:MyObjectBuilder_Beacon/SmallBlockBeacon]
 			[RazeBlocksTypes:MyObjectBuilder_Beacon/LargeBlockBeacon]
 			[RazeBlocksTypes:MyObjectBuilder_Beacon/SmallBlockBeacon_NPCNoConceal]
@@ -978,20 +997,6 @@
 			[BlockTypesToToggle:MyObjectBuilder_RemoteControl/RivalAIRemoteControlLarge]
 			[BlockTypeToggles:Off]
 			[BlockTypesToToggle:MyObjectBuilder_RemoteControl/RivalAIRemoteControlSmall]
-			[BlockTypeToggles:Off]
-			[BlockTypesToToggle:MyObjectBuilder_Beacon/ZoneBlock]
-			[BlockTypeToggles:Off]
-			[BlockTypesToToggle:MyObjectBuilder_Beacon/DisposableNpcBeaconSmall]
-			[BlockTypeToggles:Off]
-			[BlockTypesToToggle:MyObjectBuilder_Beacon/DisposableNpcBeaconLarge]
-			[BlockTypeToggles:Off]
-			[BlockTypesToToggle:MyObjectBuilder_Beacon/SmallBlockBeacon]
-			[BlockTypeToggles:Off]
-			[BlockTypesToToggle:MyObjectBuilder_Beacon/LargeBlockBeacon]
-			[BlockTypeToggles:Off]
-			[BlockTypesToToggle:MyObjectBuilder_Beacon/LargeBlockBeacon_NPCNoConceal]
-			[BlockTypeToggles:Off]
-			[BlockTypesToToggle:MyObjectBuilder_Beacon/SmallBlockBeacon_NPCNoConceal]
 			[BlockTypeToggles:Off]
 			[TerminateBehavior:true]
 			</Description>
