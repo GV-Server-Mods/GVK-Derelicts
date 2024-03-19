@@ -198,7 +198,7 @@
 			<Description>
 			[RivalAI Trigger]
 			[UseTrigger:true]
-			[Type:PlayerNear]
+			[Type:Timer]
 			[TargetDistance:3000]
 			[StartsReady:true]
 			[MinCooldownMs:1800000]
@@ -245,28 +245,6 @@
 			[Chance:100]
 			[SpawnEncounter:true]
 			[Spawner:GVK-PlanetaryInstallation-Encampment-Spawner-CoalitionWreckDefenseDroneMedium]
-			[Spawner:GVK-PlanetaryInstallation-Encampment-Spawner-CoalitionWreckDefenseDroneSmall]
-			</Description>
-		</EntityComponent>
-		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
-			<Id>
-				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-PlanetaryInstallation-Encampment-Spawner-CoalitionWreckDefenseDroneSmall</SubtypeId>
-			</Id>
-			<Description>
-			[RivalAI Spawn]
-			[UseSpawn:true]
-			[SpawningType:CustomSpawn]
-			[StartsReady:true]
-			[ProcessAsAdminSpawn:false]
-			[MaxSpawns:-1]
-			[SpawnGroups:GVK-Drone-Defense-SpawnGroup-GAALSIEN-InterceptorSquad]
-			[MinDistance:1500]
-			[MaxDistance:1750]
-			[MinAltitude:80]
-			[MaxAltitude:81]
-			[InheritNpcAltitude:true]
-			[IgnoreSafetyChecks:true]
 			</Description>
 		</EntityComponent>
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
@@ -281,8 +259,8 @@
 			[StartsReady:true]
 			[ProcessAsAdminSpawn:false]
 			[MaxSpawns:-1]
-			[SpawnGroups:GVK-Drone-Defense-SpawnGroup-GAALSIEN-MediumHoverLight]
 			[SpawnGroups:GVK-Drone-Defense-SpawnGroup-GAALSIEN-MediumHoverHeavy]
+			[SpawnGroups:GVK-Drone-Defense-SpawnGroup-GAALSIEN-LargeHover]
 			[MinDistance:1500]
 			[MaxDistance:1750]
 			[MinAltitude:40]
