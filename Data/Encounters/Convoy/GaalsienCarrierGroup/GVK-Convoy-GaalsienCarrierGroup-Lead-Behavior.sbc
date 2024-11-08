@@ -5,7 +5,7 @@
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Convoy-Lead-Behavior-GaalsienCarrier</SubtypeId>
+				<SubtypeId>GVK-Convoy-GaalsienCarrier-Lead-Behavior</SubtypeId>
 			</Id>
 			<Description>
 			[RivalAI Behavior]
@@ -18,7 +18,7 @@
 			[PlayerDistanceTrigger:5000]
 			[UseNoTargetTimer:false]
 			[UseRetreatTimer:false]
-			[AutopilotData:GVK-Convoy-Autopilot-Lead-GaalsienCarrier]
+			[AutopilotData:GVK-Convoy-GaalsienCarrier-Lead-Autopilot]
 			[TargetData:GVK-Universal-Target-EnemyGridsLongRange]
 			[EscortOffsets:{X:0 Y:0 Z:-450}]
 			[EscortOffsets:{X:0 Y:0 Z:300}]
@@ -27,28 +27,28 @@
 			[EscortOffsets:{X:150 Y:0 Z:-100}]
 			[EscortOffsets:{X:-150 Y:0 Z:-100}]
 			[Triggers:GVK-Universal-Trigger-SetEnemyReputation]
-			[Triggers:GVK-Convoy-Trigger-Lead-GaalsienCarrier-AddWaypoints]
-			[Triggers:GVK-Convoy-Trigger-Lead-GaalsienCarrier-BeaconDisabled]
-			[Triggers:GVK-Convoy-Trigger-Lead-GaalsienCarrier-Session]
-			[Triggers:GVK-Convoy-Trigger-Lead-GaalsienCarrier-SpawnDefenses]
+			[Triggers:GVK-Convoy-GaalsienCarrier-Lead-Trigger-AddWaypoints]
+			[Triggers:GVK-Convoy-GaalsienCarrier-Lead-Trigger-BeaconDisabled]
+			[Triggers:GVK-Convoy-GaalsienCarrier-Lead-Trigger-Session]
+			[Triggers:GVK-Convoy-GaalsienCarrier-Lead-Trigger-SpawnDefenses]
 			[Triggers:GVK-Drone-All-Trigger-FireMissilesTimers]
 			[Triggers:GVK-Drone-All-Trigger-WeaponsToMaxRange]
 			[Triggers:GVK-Universal-Trigger-SPRTTargetAcquiredChatter]
-			[Triggers:GVK-Convoy-Trigger-Lead-GaalsienCarrier-AssignEscortSlot]
+			[Triggers:GVK-Convoy-GaalsienCarrier-Lead-Trigger-AssignEscortSlot]
 			[Triggers:GVK-Universal-Trigger-JetpackInhibitor]
-			[Triggers:GVK-Convoy-Trigger-Lead-GaalsienCarrier-Despawn]
-			[Triggers:GVK-Convoy-Trigger-Lead-GaalsienCarrier-DespawnMES]
-			[Triggers:GVK-Convoy-Trigger-Lead-GaalsienCarrier-Compromised]
-			[Triggers:GVK-Convoy-Trigger-Lead-SpawnFighters]
+			[Triggers:GVK-Convoy-GaalsienCarrier-Lead-Trigger-Despawn]
+			[Triggers:GVK-Convoy-GaalsienCarrier-Lead-Trigger-DespawnMES]
+			[Triggers:GVK-Convoy-GaalsienCarrier-Lead-Trigger-Compromised]
+			[Triggers:GVK-Convoy-GaalsienCarrier-Lead-Trigger-SpawnFighters]
 			[RemoteControlCode:ConvoyEncounter]
-			BountyOnKill=10000000;
+			BountyOnKill=20000000;
 			</Description>
 		</EntityComponent>
 		<!-- Convoy Patrol Autopilot -->
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Convoy-Autopilot-Lead-GaalsienCarrier</SubtypeId>
+				<SubtypeId>GVK-Convoy-GaalsienCarrier-Lead-Autopilot</SubtypeId>
 			</Id>
 			<Description>
 			[RivalAI Autopilot]
@@ -82,25 +82,25 @@
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Convoy-Trigger-Lead-GaalsienCarrier-Session</SubtypeId>
+				<SubtypeId>GVK-Convoy-GaalsienCarrier-Lead-Trigger-Session</SubtypeId>
 			</Id>
 			<Description>
 			[RivalAI Trigger]
 			[Type:Session]
 			[UseTrigger:true]
 			[StartsReady:true]
-			[Actions:GVK-Convoy-Action-Lead-GaalsienCarrier-Session]
+			[Actions:GVK-Convoy-GaalsienCarrier-Lead-Action-Session]
 			</Description>
 		</EntityComponent>
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Convoy-Action-Lead-GaalsienCarrier-Session</SubtypeId>
+				<SubtypeId>GVK-Convoy-GaalsienCarrier-Lead-Action-Session</SubtypeId>
 			</Id>
 			<Description>
 			[RivalAI Action]
 			[UseChatBroadcast:true]
-			[ChatData:GVK-Convoy-Chat-Lead-GaalsienCarrier-Session]
+			[ChatData:GVK-Convoy-GaalsienCarrier-Lead-Chat-Session]
 			[GridEditable:No]
 			[SubGridsEditable:No]
 			</Description>
@@ -108,7 +108,7 @@
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Convoy-Chat-Lead-GaalsienCarrier-Session</SubtypeId>
+				<SubtypeId>GVK-Convoy-GaalsienCarrier-Lead-Chat-Session</SubtypeId>
 			</Id>
 			<Description>
 			[RivalAI Chat]
@@ -119,7 +119,7 @@
 			[BroadcastRandomly:false]
 			[Author:Coalition]
 			[Color:White]
-			[ChatMessages:A Gaalsien Convoy has been spotted in Zone 3.]
+			[ChatMessages:A Gaalsien Carrier Group has been spotted in Zone 3.]
 			[ChatAudio:ArcHudGPSNotification2]
 			[BroadcastChatType:Chat]
 			[ChatMessages:A Gaalsien Convoy has been spotted.]
@@ -131,7 +131,7 @@
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Convoy-Trigger-Lead-GaalsienCarrier-AddWaypoints</SubtypeId>
+				<SubtypeId>GVK-Convoy-GaalsienCarrier-Lead-Trigger-AddWaypoints</SubtypeId>
 			</Id>
 			<Description>
 			[RivalAI Trigger]
@@ -142,13 +142,13 @@
 			[MinCooldownMs:5000]
 			[MaxCooldownMs:5000]
 			[ActionExecution:All]
-			[Actions:GVK-Convoy-Action-Lead-GaalsienCarrier-AddWaypoints]
+			[Actions:GVK-Convoy-GaalsienCarrier-Lead-Action-AddWaypoints]
 			</Description>
 		</EntityComponent>
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Convoy-Action-Lead-GaalsienCarrier-AddWaypoints</SubtypeId>
+				<SubtypeId>GVK-Convoy-GaalsienCarrier-Lead-Action-AddWaypoints</SubtypeId>
 			</Id>
 			<Description>
 			[RivalAI Action]
@@ -226,13 +226,13 @@
 			[WaypointsToAdd:GVK-Convoy-StaticRandom-LandRouteC72]
 			[WaypointsToAdd:GVK-Convoy-StaticRandom-LandRouteC73]
 			[UseChatBroadcast:false]
-			[ChatData:GVK-Convoy-Chat-Lead-GaalsienCarrier-AddWaypoints]
+			[ChatData:GVK-Convoy-GaalsienCarrier-Lead-Chat-AddWaypoints]
 			</Description>
 		</EntityComponent>
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Convoy-Chat-Lead-GaalsienCarrier-AddWaypoints</SubtypeId>
+				<SubtypeId>GVK-Convoy-GaalsienCarrier-Lead-Chat-AddWaypoints</SubtypeId>
 			</Id>
 			<Description>
 			[RivalAI Chat]
@@ -255,7 +255,7 @@
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Convoy-Trigger-Lead-GaalsienCarrier-SpawnDefenses</SubtypeId>
+				<SubtypeId>GVK-Convoy-GaalsienCarrier-Lead-Trigger-SpawnDefenses</SubtypeId>
 			</Id>
 			<Description>
 			[RivalAI Trigger]
@@ -266,27 +266,27 @@
 			[MinCooldownMs:10000]
 			[MaxCooldownMs:10000]
 			[ActionExecution:All]
-			[Actions:GVK-Convoy-Action-Lead-GaalsienCarrier-SpawnDefenses]
+			[Actions:GVK-Convoy-GaalsienCarrier-Lead-Action-SpawnDefenses]
 			</Description>
 		</EntityComponent>
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Convoy-Action-Lead-GaalsienCarrier-SpawnDefenses</SubtypeId>
+				<SubtypeId>GVK-Convoy-GaalsienCarrier-Lead-Action-SpawnDefenses</SubtypeId>
 			</Id>
 			<Description>
 			[RivalAI Action]
 			[Chance:100]
 			[SpawnEncounter:true]
-			[Spawner:GVK-Convoy-Spawner-Lead-GaalsienCarrier-SpawnDefenses]
+			[Spawner:GVK-Convoy-GaalsienCarrier-Lead-Spawner-SpawnDefenses]
 			[UseChatBroadcast:false]
-			[ChatData:GVK-Convoy-Chat-Lead-GaalsienCarrier-SpawnDefenses]
+			[ChatData:GVK-Convoy-GaalsienCarrier-Lead-Chat-SpawnDefenses]
 			</Description>
 		</EntityComponent>
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Convoy-Spawner-Lead-GaalsienCarrier-SpawnDefenses</SubtypeId>
+				<SubtypeId>GVK-Convoy-GaalsienCarrier-Lead-Spawner-SpawnDefenses</SubtypeId>
 			</Id>
 			<Description>
 			[RivalAI Spawn]
@@ -309,7 +309,7 @@
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Convoy-Chat-Lead-GaalsienCarrier-SpawnDefenses</SubtypeId>
+				<SubtypeId>GVK-Convoy-GaalsienCarrier-Lead-Chat-SpawnDefenses</SubtypeId>
 			</Id>
 			<Description>
 			[RivalAI Chat]
@@ -332,7 +332,7 @@
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Convoy-Trigger-Lead-GaalsienCarrier-Despawn</SubtypeId>
+				<SubtypeId>GVK-Convoy-GaalsienCarrier-Lead-Trigger-Despawn</SubtypeId>
 			</Id>
 			<Description>
 			[RivalAI Trigger]
@@ -341,14 +341,14 @@
 			[StartsReady:true]
 			[MaxActions:1]
 			[ActionExecution:All]
-			[Actions:GVK-Convoy-Action-Lead-GaalsienCarrier-SendScatterCommand]
-			[Actions:GVK-Convoy-Action-Lead-GaalsienCarrier-Despawn]
+			[Actions:GVK-Convoy-GaalsienCarrier-Lead-Action-SendScatterCommand]
+			[Actions:GVK-Convoy-GaalsienCarrier-Lead-Action-Despawn]
 			</Description>
 		</EntityComponent>
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Convoy-Trigger-Lead-GaalsienCarrier-DespawnMES</SubtypeId>
+				<SubtypeId>GVK-Convoy-GaalsienCarrier-Lead-Trigger-DespawnMES</SubtypeId>
 			</Id>
 			<Description>
 			[RivalAI Trigger]
@@ -357,25 +357,25 @@
 			[StartsReady:true]
 			[MaxActions:1]
 			[ActionExecution:All]
-			[Actions:GVK-Convoy-Action-Lead-GaalsienCarrier-SendScatterCommand]
-			[Actions:GVK-Convoy-Action-Lead-GaalsienCarrier-Despawn]
+			[Actions:GVK-Convoy-GaalsienCarrier-Lead-Action-SendScatterCommand]
+			[Actions:GVK-Convoy-GaalsienCarrier-Lead-Action-Despawn]
 			</Description>
 		</EntityComponent>
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Convoy-Action-Lead-GaalsienCarrier-Despawn</SubtypeId>
+				<SubtypeId>GVK-Convoy-GaalsienCarrier-Lead-Action-Despawn</SubtypeId>
 			</Id>
 			<Description>
 			[RivalAI Action]
 			[UseChatBroadcast:true]
-			[ChatData:GVK-Convoy-Chat-Lead-GaalsienCarrier-Despawn]
+			[ChatData:GVK-Convoy-GaalsienCarrier-Lead-Chat-Despawn]
 			</Description>
 		</EntityComponent>
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Convoy-Chat-Lead-GaalsienCarrier-Despawn</SubtypeId>
+				<SubtypeId>GVK-Convoy-GaalsienCarrier-Lead-Chat-Despawn</SubtypeId>
 			</Id>
 			<Description>
 			[RivalAI Chat]
@@ -397,7 +397,7 @@
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Convoy-Trigger-Lead-GaalsienCarrier-Compromised</SubtypeId>
+				<SubtypeId>GVK-Convoy-GaalsienCarrier-Lead-Trigger-Compromised</SubtypeId>
 			</Id>
 			<Description>
 			[RivalAI Trigger]
@@ -406,26 +406,26 @@
 			[StartsReady:true]
 			[MaxActions:1]
 			[ActionExecution:All]
-			[Actions:GVK-Convoy-Action-Lead-GaalsienCarrier-SendScatterCommand]
-			[Actions:GVK-Convoy-Action-Lead-GaalsienCarrier-Compromised]
-			[Actions:GVK-Convoy-Action-Lead-GaalsienCarrier-Disabled]
+			[Actions:GVK-Convoy-GaalsienCarrier-Lead-Action-SendScatterCommand]
+			[Actions:GVK-Convoy-GaalsienCarrier-Lead-Action-Compromised]
+			[Actions:GVK-Convoy-GaalsienCarrier-Lead-Action-Disabled]
 			</Description>
 		</EntityComponent>
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Convoy-Action-Lead-GaalsienCarrier-Compromised</SubtypeId>
+				<SubtypeId>GVK-Convoy-GaalsienCarrier-Lead-Action-Compromised</SubtypeId>
 			</Id>
 			<Description>
 			[RivalAI Action]
 			[UseChatBroadcast:true]
-			[ChatData:GVK-Convoy-Chat-Lead-GaalsienCarrier-Compromised]
+			[ChatData:GVK-Convoy-GaalsienCarrier-Lead-Chat-Compromised]
 			</Description>
 		</EntityComponent>
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Convoy-Action-Lead-GaalsienCarrier-Disabled</SubtypeId>
+				<SubtypeId>GVK-Convoy-GaalsienCarrier-Lead-Action-Disabled</SubtypeId>
 			</Id>
 			<Description>
 			[RivalAI Action]
@@ -463,10 +463,10 @@
 			[BlockTypesToToggle:MyObjectBuilder_Beacon/SmallBlockBeacon_NPCNoConceal]
 			[BlockTypeToggles:Off]
 			[DisableTriggers:true]
-			[DisableTriggerNames:GVK-Convoy-Trigger-Lead-GaalsienCarrier-Compromised]			
-			[DisableTriggerNames:GVK-Convoy-Trigger-Lead-GaalsienCarrier-BeaconDisabled]
-			[DisableTriggerNames:GVK-Convoy-Trigger-Lead-GaalsienCarrier-Despawn]
-			[DisableTriggerNames:GVK-Convoy-Trigger-Lead-GaalsienCarrier-DespawnMES]
+			[DisableTriggerNames:GVK-Convoy-GaalsienCarrier-Lead-Trigger-Compromised]			
+			[DisableTriggerNames:GVK-Convoy-GaalsienCarrier-Lead-Trigger-BeaconDisabled]
+			[DisableTriggerNames:GVK-Convoy-GaalsienCarrier-Lead-Trigger-Despawn]
+			[DisableTriggerNames:GVK-Convoy-GaalsienCarrier-Lead-Trigger-DespawnMES]
 			[GridEditable:Yes]
 			[SubGridsEditable:Yes]
 			[ForceDespawn:false]
@@ -478,7 +478,7 @@
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Convoy-Chat-Lead-GaalsienCarrier-Compromised</SubtypeId>
+				<SubtypeId>GVK-Convoy-GaalsienCarrier-Lead-Chat-Compromised</SubtypeId>
 			</Id>
 			<Description>
 			[RivalAI Chat]
@@ -499,7 +499,7 @@
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Convoy-Trigger-Lead-GaalsienCarrier-AssignEscortSlot</SubtypeId>
+				<SubtypeId>GVK-Convoy-GaalsienCarrier-Lead-Trigger-AssignEscortSlot</SubtypeId>
 			</Id>
 			<Description>
 			[RivalAI Trigger]
@@ -508,25 +508,25 @@
 			[StartsReady:true]
 			[MaxActions:-1]
 			[CommandReceiveCode:GVK_Command_Lead_RequestEscortSlot]
-			[Actions:GVK-Convoy-Action-Lead-GaalsienCarrier-AssignEscortSlot]
+			[Actions:GVK-Convoy-GaalsienCarrier-Lead-Action-AssignEscortSlot]
 			</Description>
 		</EntityComponent>
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Convoy-Action-Lead-GaalsienCarrier-AssignEscortSlot</SubtypeId>
+				<SubtypeId>GVK-Convoy-GaalsienCarrier-Lead-Action-AssignEscortSlot</SubtypeId>
 			</Id>
 			<Description>
 			[RivalAI Action]
 			[AssignEscortFromCommand:true]
 			[UseChatBroadcast:false]
-			[ChatData:GVK-Convoy-Chat-Lead-GaalsienCarrier-AssignEscortSlot]
+			[ChatData:GVK-Convoy-GaalsienCarrier-Lead-Chat-AssignEscortSlot]
 			</Description>
 		</EntityComponent>
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Convoy-Chat-Lead-GaalsienCarrier-AssignEscortSlot</SubtypeId>
+				<SubtypeId>GVK-Convoy-GaalsienCarrier-Lead-Chat-AssignEscortSlot</SubtypeId>
 			</Id>
 			<Description>
 			[RivalAI Chat]
@@ -549,20 +549,20 @@
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Convoy-Action-Lead-GaalsienCarrier-SendScatterCommand</SubtypeId>
+				<SubtypeId>GVK-Convoy-GaalsienCarrier-Lead-Action-SendScatterCommand</SubtypeId>
 			</Id>
 			<Description>
 			[RivalAI Action]
 			[BroadcastCommandProfiles:true]
-			[CommandProfileIds:GVK-Convoy-Command-Lead-GaalsienCarrier-SendScatterCommand]
+			[CommandProfileIds:GVK-Convoy-GaalsienCarrier-Lead-Command-SendScatterCommand]
 			[UseChatBroadcast:true]
-			[ChatData:GVK-Convoy-Chat-Lead-GaalsienCarrier-SendScatterCommand]
+			[ChatData:GVK-Convoy-GaalsienCarrier-Lead-Chat-SendScatterCommand]
 			</Description>
 		</EntityComponent>
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Convoy-Command-Lead-GaalsienCarrier-SendScatterCommand</SubtypeId>
+				<SubtypeId>GVK-Convoy-GaalsienCarrier-Lead-Command-SendScatterCommand</SubtypeId>
 			</Id>
 			<Description>
 			[RivalAI Command]
@@ -577,7 +577,7 @@
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Convoy-Chat-Lead-GaalsienCarrier-SendScatterCommand</SubtypeId>
+				<SubtypeId>GVK-Convoy-GaalsienCarrier-Lead-Chat-SendScatterCommand</SubtypeId>
 			</Id>
 			<Description>
 			[RivalAI Chat]
@@ -600,7 +600,7 @@
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Convoy-Trigger-Lead-SpawnFighters</SubtypeId>
+				<SubtypeId>GVK-Convoy-GaalsienCarrier-Lead-Trigger-SpawnFighters</SubtypeId>
 			</Id>
 			<Description>
 			[RivalAI Trigger]
@@ -611,27 +611,27 @@
 			[MaxActions:5]
 			[MinCooldownMs:120000]
 			[MaxCooldownMs:180000]
-			[Actions:GVK-Convoy-Action-Lead-SpawnFighters]
+			[Actions:GVK-Convoy-GaalsienCarrier-Lead-Action-SpawnFighters]
 			</Description>
 		</EntityComponent>
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Convoy-Action-Lead-SpawnFighters</SubtypeId>
+				<SubtypeId>GVK-Convoy-GaalsienCarrier-Lead-Action-SpawnFighters</SubtypeId>
 			</Id>
 			<Description>
 			[RivalAI Action]
 			[Chance:100]
 			[SpawnEncounter:true]
-			[Spawner:GVK-Convoy-Spawner-Lead-SpawnFighters]
+			[Spawner:GVK-Convoy-GaalsienCarrier-Lead-Spawner-SpawnFighters]
 			[UseChatBroadcast:true]
-			[ChatData:GVK-Convoy-Chat-Lead-SpawnFighters]
+			[ChatData:GVK-Convoy-GaalsienCarrier-Lead-Chat-SpawnFighters]
 			</Description>
 		</EntityComponent>
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Convoy-Spawner-Lead-SpawnFighters</SubtypeId>
+				<SubtypeId>GVK-Convoy-GaalsienCarrier-Lead-Spawner-SpawnFighters</SubtypeId>
 			</Id>
 			<Description>
 			[RivalAI Spawn]
@@ -643,7 +643,7 @@
 			[MinAltitude:50]
 			[MaxAltitude:100]
 			[InheritNpcAltitude:true]
-			[SpawnGroups:GVK-Drone-Defense-SpawnGroup-GAALSIEN-SmallFlyerSquad]
+			[SpawnGroups:GVK-Drone-Defense-SpawnGroup-GAALSIEN-InterceptorSquad]
 			[ProcessAsAdminSpawn:false]
 			[IgnoreSafetyChecks:true]
 			</Description>
@@ -651,7 +651,7 @@
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Convoy-Chat-Lead-SpawnFighters</SubtypeId>
+				<SubtypeId>GVK-Convoy-GaalsienCarrier-Lead-Chat-SpawnFighters</SubtypeId>
 			</Id>
 			<Description>
 			[RivalAI Chat]
@@ -672,25 +672,25 @@
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Convoy-Trigger-Lead-GaalsienCarrier-BeaconDisabled</SubtypeId>
+				<SubtypeId>GVK-Convoy-GaalsienCarrier-Lead-Trigger-BeaconDisabled</SubtypeId>
 			</Id>
 			<Description>
 			[RivalAI Trigger]
 			[Type:Timer]
 			[UseTrigger:true]
 			[StartsReady:true]
-			[Conditions:GVK-Convoy-Condition-Lead-BeaconDisabled]
+			[Conditions:GVK-Convoy-GaalsienCarrier-Lead-Condition-BeaconDisabled]
 			[MaxActions:1]
 			[ActionExecution:All]
-			[Actions:GVK-Convoy-Action-Lead-GaalsienCarrier-SendScatterCommand]
-			[Actions:GVK-Convoy-Action-Lead-GaalsienCarrier-Compromised]
-			[Actions:GVK-Convoy-Action-Lead-GaalsienCarrier-Disabled]
+			[Actions:GVK-Convoy-GaalsienCarrier-Lead-Action-SendScatterCommand]
+			[Actions:GVK-Convoy-GaalsienCarrier-Lead-Action-Compromised]
+			[Actions:GVK-Convoy-GaalsienCarrier-Lead-Action-Disabled]
 			</Description>
 		</EntityComponent>
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Convoy-Condition-Lead-BeaconDisabled</SubtypeId>
+				<SubtypeId>GVK-Convoy-GaalsienCarrier-Lead-Condition-BeaconDisabled</SubtypeId>
 			</Id>
 			<Description>
 			[RivalAI Condition]

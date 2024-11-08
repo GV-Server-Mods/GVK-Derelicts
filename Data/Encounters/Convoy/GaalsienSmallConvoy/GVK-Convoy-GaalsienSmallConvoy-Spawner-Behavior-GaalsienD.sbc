@@ -4,7 +4,7 @@
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Static-Behavior-ConvoySpawner-GaalsienC</SubtypeId>
+				<SubtypeId>GVK-Static-Behavior-ConvoySpawner-GaalsienD</SubtypeId>
 			</Id>
 			<Description>
 			[RivalAI Behavior]
@@ -13,51 +13,51 @@
 			[UseNoTargetTimer:false]
 			[UsePlayerDistanceTimer:false]
 			[Triggers:GVK-Universal-Trigger-SetEnemyReputation]
-			[Triggers:GVK-Static-Trigger-ConvoySpawner-SpawnConvoyC]
+			[Triggers:GVK-Static-Trigger-ConvoySpawner-SpawnConvoyD]
 			</Description>
 		</EntityComponent>
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Static-Trigger-ConvoySpawner-SpawnConvoyC</SubtypeId>
+				<SubtypeId>GVK-Static-Trigger-ConvoySpawner-SpawnConvoyD</SubtypeId>
 			</Id>
 			<Description>
 			[RivalAI Trigger]
 			[Type:Timer]
-			[MinCooldownMs:30000000]
-			[MaxCooldownMs:60000000]
+			[MinCooldownMs:20000000]
+			[MaxCooldownMs:30000000]
 			[UseTrigger:true]
 			[StartsReady:true]
 			[ConditionCheckResetsTimer:true]
-			[Actions:GVK-Static-Action-ConvoySpawner-SpawnConvoyC]
+			[Actions:GVK-Static-Action-ConvoySpawner-SpawnConvoyD]
 			</Description>
 		</EntityComponent>
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Static-Action-ConvoySpawner-SpawnConvoyC</SubtypeId>
+				<SubtypeId>GVK-Static-Action-ConvoySpawner-SpawnConvoyD</SubtypeId>
 			</Id>
 			<Description>
 			[RivalAI Action]
 			[SpawnEncounter:true]
-			[Spawner:GVK-Static-Spawner-ConvoySpawner-SpawnConvoyC]
+			[Spawner:GVK-Static-Spawner-ConvoySpawner-SpawnConvoyD]
 			</Description>
 		</EntityComponent>
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Static-Spawner-ConvoySpawner-SpawnConvoyC</SubtypeId>
+				<SubtypeId>GVK-Static-Spawner-ConvoySpawner-SpawnConvoyD</SubtypeId>
 			</Id>
 			<Description>
 			[RivalAI Spawn]
 			[UseSpawn:true]
 			[SpawningType:CustomSpawn]
 			[StartsReady:true]
-			[SpawnGroups:GVK-Convoy-Lead-SpawnGroup-GaalsienCarrierC]
-			[MinDistance:500]
-			[MaxDistance:1000]
-			[MinAltitude:40]
-			[MaxAltitude:50]
+			[SpawnGroups:GVK-Convoy-GaalsienSmallConvoy-Lead-SpawnGroup]
+			[MinDistance:200]
+			[MaxDistance:500]
+			[MinAltitude:50]
+			[MaxAltitude:51]
 			[InheritNpcAltitude:false]
 			[IgnoreSafetyChecks:true]
 			</Description>

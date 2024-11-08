@@ -51,16 +51,6 @@
 					<BeaconText>Heavy Assault Ship</BeaconText>
 					<Behaviour>GVK-Convoy-Escort-Behavior-Hover</Behaviour>
 				</Prefab>
-				<Prefab SubtypeId="[NPC Drone] Heavy Assault Missile">
-					<Position>
-						<X>0.0</X>
-						<Y>0.0</Y>
-						<Z>0.0</Z>
-					</Position>
-					<Speed>0</Speed>
-					<BeaconText>Heavy Assault Missile</BeaconText>
-					<Behaviour>GVK-Convoy-Escort-Behavior-Hover</Behaviour>
-				</Prefab>
 			</Prefabs>
 		</SpawnGroup>
 		<!-- [NPC Drone] Large Hovers -->
@@ -138,6 +128,36 @@
 					</Position>
 					<Speed>0</Speed>
 					<BeaconText>Assault Cruiser</BeaconText>
+					<Behaviour>GVK-Convoy-Escort-Behavior-Hover</Behaviour>
+				</Prefab>
+			</Prefabs>
+		</SpawnGroup>
+		<!-- [NPC Drone] Salvagers -->
+		<SpawnGroup>
+			<Id>
+				<TypeId>SpawnGroupDefinition</TypeId>
+				<SubtypeId>GVK-Convoy-Escort-SpawnGroup-Salvagers</SubtypeId>
+			</Id>
+			<Description>
+			[Modular Encounters SpawnGroup]
+			[IgnoreCleanupRules:true]
+			[ReplenishSystems:true]
+			[ManipulationProfiles:MES-Manipulation-RivalAi] 
+			[ManipulationProfiles:GVK-Replacer-NPCHovers] 
+			[ManipulationProfiles:GVK-Drone-All-Manipulation-Hover]
+			[SpawnConditionsProfiles:GVK-Convoy-Escort-SpawnCondition-LargeHoverDrones]
+			</Description>
+			<IsPirate>true</IsPirate>
+			<Frequency>0.2</Frequency>
+			<Prefabs>
+				<Prefab SubtypeId="[NPC Drone] Gaalsien Salvager">
+					<Position>
+						<X>0.0</X>
+						<Y>10.0</Y>
+						<Z>0.0</Z>
+					</Position>
+					<Speed>0</Speed>
+					<BeaconText>Salvager</BeaconText>
 					<Behaviour>GVK-Convoy-Escort-Behavior-Hover</Behaviour>
 				</Prefab>
 			</Prefabs>

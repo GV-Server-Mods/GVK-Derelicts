@@ -5,6 +5,45 @@
 		<SpawnGroup>
 			<Id>
 				<TypeId>SpawnGroupDefinition</TypeId>
+				<SubtypeId>GVK-Drone-Encounter-SpawnGroup-COALITION-LAV</SubtypeId>
+			</Id>
+			<Description>
+			[Modular Encounters SpawnGroup]
+			[IgnoreCleanupRules:false]
+			[ReplenishSystems:true]
+			[ManipulationProfiles:GVK-Drone-All-Manipulation-Hover] 
+			[ManipulationProfiles:GVK-Universal-Manipulation-DamageModifier50]
+			[SpawnConditionsProfiles:GVK-Drone-Encounter-SpawnCondition-COALITION-LAV]
+			</Description>
+			<IsPirate>true</IsPirate>
+			<Frequency>0.1</Frequency>
+			<Prefabs>
+				<Prefab SubtypeId="[NPC Drone] Coalition LAV">
+					<Position>
+						<X>-50</X>
+						<Y>0.0</Y>
+						<Z>0.0</Z>
+					</Position>
+					<Speed>0</Speed>
+					<BeaconText>LAV</BeaconText>
+					<Behaviour>GVK-Drone-Encounter-Behavior-LAV-COALITION</Behaviour>
+				</Prefab>
+				<Prefab SubtypeId="[NPC Drone] Coalition LAV">
+					<Position>
+						<X>50</X>
+						<Y>0.0</Y>
+						<Z>0.0</Z>
+					</Position>
+					<Speed>0</Speed>
+					<BeaconText>LAV</BeaconText>
+					<Behaviour>GVK-Drone-Encounter-Behavior-LAV-COALITION</Behaviour>
+				</Prefab>
+			</Prefabs>
+		</SpawnGroup>		
+		<!-- [NPC Drone] Salvager -->
+		<SpawnGroup>
+			<Id>
+				<TypeId>SpawnGroupDefinition</TypeId>
 				<SubtypeId>GVK-Drone-Encounter-SpawnGroup-COALITION-Salvager</SubtypeId>
 			</Id>
 			<Description>
