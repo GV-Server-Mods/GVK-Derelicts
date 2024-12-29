@@ -1,6 +1,7 @@
 <?xml version="1.0"?>
 <Definitions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
 	<EntityComponents>
+		<!-- Route A, Crossroads to Sevastapol -->
 		<!-- Cargo Ship Behavior for land rover following roads -->
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
@@ -26,7 +27,6 @@
 			[TargetData:GVK-Universal-Target-CoalitionTradeStation]
 			[Triggers:GVK-Universal-Trigger-UneditableOnSpawn]
 			[Triggers:GVK-Universal-Trigger-EditableOnCompromised]
-			[Triggers:GVK-Drone-All-Trigger-BeaconDisabled]
 			[Triggers:GVK-Drone-All-Trigger-TargetAttacker]
 			[Triggers:GVK-Drone-All-Trigger-TurretTarget]
 			[Triggers:GVK-Drone-All-Trigger-WeaponsToMaxRange]
@@ -35,6 +35,7 @@
 			[Triggers:GVK-CargoShip-Land-COALITION-Trigger-EscortHorizonAngleHigh]
 			[Triggers:GVK-CargoShip-Land-COALITION-Trigger-EscortArriveAtWaypoint]
 			[Triggers:GVK-CargoShip-Land-COALITION-Trigger-EscortLeaveWaypoint]
+			[Triggers:GVK-CargoShip-Land-COALITION-Trigger-EscortBeaconDisabled]
 			[Triggers:GVK-CargoShip-Land-COALITION-Trigger-EscortCompromised]
 			[Triggers:GVK-CargoShip-Land-COALITION-Trigger-EscortAttacked]
 			[Triggers:GVK-CargoShip-Land-COALITION-Trigger-EscortEnemySpawns]
@@ -395,6 +396,23 @@
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-CargoShip-Land-COALITION-Trigger-EscortBeaconDisabled</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Trigger]
+			[Type:Timer]
+			[UseTrigger:true]
+			[StartsReady:true]
+			[Conditions:GVK-Drone-All-Condition-LargeBeaconDisabled]
+			[MaxActions:1]
+			[ActionExecution:All]
+			[Actions:GVK-CargoShip-Land-COALITION-Action-EscortCompromised]
+			[Actions:GVK-Universal-Action-EditableOnCompromised]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
 				<SubtypeId>GVK-CargoShip-Land-COALITION-Trigger-EscortCompromised</SubtypeId>
 			</Id>
 			<Description>
@@ -446,25 +464,34 @@
 			[EnableBlocks:true]
 			[EnableBlockNames:NPC Suspension]
 			[EnableBlockStates:Off]
-			[BlockTypesToToggle:MyObjectBuilder_Beacon/ZoneBlock]
+			[ToggleBlocksOfType:true]
+			[BlockTypesToToggle:MyObjectBuilder_RemoteControl/RivalAIRemoteControlLarge]
 			[BlockTypeToggles:Off]
-			[BlockTypesToToggle:MyObjectBuilder_Beacon/DisposableNpcBeaconSmall]
-			[BlockTypeToggles:Off]
-			[BlockTypesToToggle:MyObjectBuilder_Beacon/DisposableNpcBeaconLarge]
-			[BlockTypeToggles:Off]
-			[BlockTypesToToggle:MyObjectBuilder_Beacon/SmallBlockBeacon]
-			[BlockTypeToggles:Off]
-			[BlockTypesToToggle:MyObjectBuilder_Beacon/LargeBlockBeacon]
-			[BlockTypeToggles:Off]
-			[BlockTypesToToggle:MyObjectBuilder_Beacon/LargeBlockBeacon_NPCNoConceal]
-			[BlockTypeToggles:Off]
-			[BlockTypesToToggle:MyObjectBuilder_Beacon/SmallBlockBeacon_NPCNoConceal]
+			[BlockTypesToToggle:MyObjectBuilder_RemoteControl/RivalAIRemoteControlSmall]
 			[BlockTypeToggles:Off]
 			[GenerateExplosion:true]
 			[ExplosionOffsetFromRemote:{X:0 Y:0 Z:0}]
 			[ExplosionRange:25]
 			[ExplosionDamage:1]
 			[ExplosionIgnoresVoxels:true]
+			[RazeBlocksOfType:true]
+			[RazeBlocksTypes:MyObjectBuilder_Beacon/ZoneBlock]
+			[RazeBlocksTypes:MyObjectBuilder_Beacon/DisposableNpcBeaconSmall]
+			[RazeBlocksTypes:MyObjectBuilder_Beacon/DisposableNpcBeaconLarge]
+			[RazeBlocksTypes:MyObjectBuilder_Beacon/SmallBlockBeacon]
+			[RazeBlocksTypes:MyObjectBuilder_Beacon/LargeBlockBeacon]
+			[RazeBlocksTypes:MyObjectBuilder_Beacon/SmallBlockBeacon_NPCNoConceal]
+			[RazeBlocksTypes:MyObjectBuilder_Beacon/LargeBlockBeacon_NPCNoConceal]
+			[DisableTriggers:true]
+			[DisableTriggerNames:GVK-CargoShip-Land-COALITION-Trigger-EscortBeaconDisabled]
+			[DisableTriggerNames:GVK-CargoShip-Land-COALITION-Trigger-EscortCompromised]
+			[DisableTriggerNames:GVK-CargoShip-Land-COALITION-Trigger-EscortSuccessTargetA]
+			[DisableTriggerNames:GVK-CargoShip-Land-COALITION-Trigger-EscortSuccessCounterA]
+			[DisableTriggerNames:GVK-CargoShip-Land-COALITION-Trigger-EscortHorizonAngleHigh]
+			[DisableTriggerNames:GVK-CargoShip-Land-COALITION-Trigger-EscortPlayerNear]
+			[DisableTriggerNames:GVK-CargoShip-Land-COALITION-Trigger-EscortPlayerNotNear]
+			[DisableTriggerNames:GVK-CargoShip-Land-COALITION-Trigger-EscortEnemySpawns]
+			[DisableTriggerNames:GVK-CargoShip-Land-COALITION-Trigger-EscortAttacked]
 			[UseChatBroadcast:true]
 			[ChatData:GVK-CargoShip-Land-COALITION-Chat-EscortCompromised]
 			[TerminateBehavior:true]
@@ -984,6 +1011,7 @@
 			[DisableTriggerNames:GVK-CargoShip-Land-COALITION-Trigger-EscortPlayerNotNear]
 			[DisableTriggerNames:GVK-CargoShip-Land-COALITION-Trigger-EscortEnemySpawns]
 			[DisableTriggerNames:GVK-CargoShip-Land-COALITION-Trigger-EscortAttacked]
+			[DisableTriggerNames:GVK-CargoShip-Land-COALITION-Trigger-EscortBeaconDisabled]
 			[DisableTriggerNames:GVK-CargoShip-Land-COALITION-Trigger-EscortCompromised]
 			[RazeBlocksOfType:true]
 			[RazeBlocksTypes:MyObjectBuilder_Beacon/ZoneBlock]
