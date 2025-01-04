@@ -23,7 +23,7 @@
 			[UseNoTargetTimer:false]
 			[UseRetreatTimer:false]
 			[TargetData:GVK-Universal-Target-EnemyGrids]
-			[AutopilotData:GVK-Convoy-Escort-Trigger-Autopilot]
+			[AutopilotData:GVK-Convoy-Escort-PrimaryAutopilot]
 			[SecondaryAutopilotData:GVK-Drone-All-Autopilot-MediumHoverHorsefly]
 			[Triggers:GVK-Drone-All-Trigger-LargeBeaconDisabled]
 			[Triggers:GVK-Drone-All-Trigger-LargeCompromised]
@@ -43,7 +43,7 @@
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Convoy-Escort-Trigger-Autopilot</SubtypeId>
+				<SubtypeId>GVK-Convoy-Escort-PrimaryAutopilot</SubtypeId>
 			</Id>
 			<Description>
 			[RivalAI Autopilot]
@@ -53,8 +53,8 @@
 			[FlyLevelWithGravity:true]
 			[LevelWithGravityWhenIdle:true]
 			[IdealPlanetAltitude:30]
-			[MinimumPlanetAltitude:1]
-			[AltitudeTolerance:30]
+			[MinimumPlanetAltitude:0]
+			[AltitudeTolerance:60]
 			[WaypointAbandonTimeTrigger:30]
 			[WaypointWaitTimeTrigger:30]
 			[WaypointTolerance:10]
@@ -65,6 +65,10 @@
 			[MaxSpeedTolerance:5]
 			[AngleAllowedForForwardThrust:70]
 			[MaxVelocityAngleForSpeedControl:179]
+			[EscortUsesRelativeDampening:true]
+			[EscortSpeedMatchMinDistance:1]
+			[EscortSpeedMatchMaxDistance:50]
+
 			</Description>
 		</EntityComponent>
 		<!-- Trigger sequence for Drone to request an escort slot from Convoy Lead -->
