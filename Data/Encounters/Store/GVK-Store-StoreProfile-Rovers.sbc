@@ -1,5 +1,12 @@
 ﻿<?xml version="1.0"?>
 <Definitions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+<!-- To sell grids at an NPC store:
+1. Must have a StoreItem def with ItemType Prefab
+2. Must be added to a BUILDER FactionType def as a GridsForSale (PrefabName)
+3. Must be added to an MES Store as StoreIteme offer
+4. (Optional) add DisplayName Description Icon and TooltipImage tags into the prefab's .sbc
+5. (Optional) Icon and TooltipImage are difficult as DDS, just use a 256x256 PNG file. These load after the sbcB5 file is created.
+-->
 	<EntityComponents>
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
