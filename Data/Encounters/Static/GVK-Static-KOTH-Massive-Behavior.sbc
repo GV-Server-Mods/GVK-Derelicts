@@ -1,10 +1,11 @@
 <?xml version="1.0"?>
 <Definitions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
 	<EntityComponents>
+		<!-- Khar Toba, Z3 all grids permitted -->
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Static-KOTH-Massive-Behavior-SGRovers</SubtypeId>
+				<SubtypeId>GVK-Static-KOTH-Massive01-Behavior</SubtypeId>
 			</Id>
 			<Description>
 			[RivalAI Behavior]
@@ -12,47 +13,46 @@
 			[UseRetreatTimer:false]
 			[UseNoTargetTimer:false]
 			[UsePlayerDistanceTimer:false]
-			[RemoteControlCode:Encampment]
 			[Triggers:GVK-Universal-Trigger-JetpackInhibitor]
-			[Triggers:GVK-Static-KOTH-Massive-Trigger-CoalitionWreckDefensesPlayerNear]
-			[Triggers:GVK-Static-KOTH-Massive-Trigger-CoalitionWreckSpawnsManual]
+			[Triggers:GVK-Static-KOTH-Massive01-Trigger-PlayerNear]
+			[Triggers:GVK-Static-KOTH-Massive01-Trigger-DefensesManual]
 			</Description>
 		</EntityComponent>
 		<!-- Trigger Sequence for Medium Defenses every 15 mins while players are near -->
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Static-KOTH-Massive-Trigger-CoalitionWreckDefensesPlayerNear</SubtypeId>
+				<SubtypeId>GVK-Static-KOTH-Massive01-Trigger-PlayerNear</SubtypeId>
 			</Id>
 			<Description>
 			[RivalAI Trigger]
 			[UseTrigger:true]
 			[Type:Timer]
-			[TargetDistance:3000]
+			[TargetDistance:2000]
 			[StartsReady:true]
 			[MinCooldownMs:1800000]
 			[MaxCooldownMs:3600000]
 			[MaxActions:-1]
 			[ActionExecution:All]
-			[Actions:GVK-Static-KOTH-Massive-Action-CoalitionWreckSpawns]
+			[Actions:GVK-Static-KOTH-Massive01-Action-CoalitionWreckSpawns]
 			</Description>
 		</EntityComponent>
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Static-KOTH-Massive-Action-CoalitionWreckSpawns</SubtypeId>
+				<SubtypeId>GVK-Static-KOTH-Massive01-Action-CoalitionWreckSpawns</SubtypeId>
 			</Id>
 			<Description>
 			[RivalAI Action]
 			[Chance:100]
 			[ManuallyActivateTrigger:true]
-			[ManuallyActivatedTriggerNames:GVK-Static-KOTH-Massive-Trigger-CoalitionWreckSpawnsManual]
+			[ManuallyActivatedTriggerNames:GVK-Static-KOTH-Massive01-Trigger-DefensesManual]
 			</Description>
 		</EntityComponent>
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Static-KOTH-Massive-Trigger-CoalitionWreckSpawnsManual</SubtypeId>
+				<SubtypeId>GVK-Static-KOTH-Massive01-Trigger-DefensesManual</SubtypeId>
 			</Id>
 			<Description>
 			[RivalAI Trigger]
@@ -61,25 +61,25 @@
 			[StartsReady:true]
 			[MaxActions:-1]
 			[ActionExecution:All]
-			[Actions:GVK-Static-KOTH-Massive-Action-CoalitionWreckEnemiesManual]
+			[Actions:GVK-Static-KOTH-Massive01-Action-CoalitionWreckEnemiesManual]
 			</Description>
 		</EntityComponent>
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Static-KOTH-Massive-Action-CoalitionWreckEnemiesManual</SubtypeId>
+				<SubtypeId>GVK-Static-KOTH-Massive01-Action-CoalitionWreckEnemiesManual</SubtypeId>
 			</Id>
 			<Description>
 			[RivalAI Action]
 			[Chance:100]
 			[SpawnEncounter:true]
-			[Spawner:GVK-Static-KOTH-Massive-Spawner-CoalitionWreckDefenseDroneMedium]
+			[Spawner:GVK-Static-KOTH-Massive01-Spawner-Defenses]
 			</Description>
 		</EntityComponent>
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Static-KOTH-Massive-Spawner-CoalitionWreckDefenseDroneMedium</SubtypeId>
+				<SubtypeId>GVK-Static-KOTH-Massive01-Spawner-Defenses</SubtypeId>
 			</Id>
 			<Description>
 			[RivalAI Spawn]
@@ -94,7 +94,206 @@
 			[MaxDistance:1750]
 			[MinAltitude:40]
 			[MaxAltitude:41]
-			[InheritNpcAltitude:true]
+			[InheritNpcAltitude:false]
+			[IgnoreSafetyChecks:true]
+			</Description>
+		</EntityComponent>
+		<!-- Kalash Site, Z3 small grids only -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Static-KOTH-Massive02-Behavior</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Behavior]
+			[BehaviorName:Passive]
+			[UseRetreatTimer:false]
+			[UseNoTargetTimer:false]
+			[UsePlayerDistanceTimer:false]
+			[Triggers:GVK-Universal-Trigger-JetpackInhibitor]
+			[Triggers:GVK-Static-KOTH-Massive02-Trigger-PlayerNear]
+			[Triggers:GVK-Static-KOTH-Massive02-Trigger-DefensesManual]
+			</Description>
+		</EntityComponent>
+		<!-- Trigger Sequence for Medium Defenses every 15 mins while players are near -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Static-KOTH-Massive02-Trigger-PlayerNear</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Trigger]
+			[UseTrigger:true]
+			[Type:Timer]
+			[TargetDistance:2000]
+			[StartsReady:true]
+			[MinCooldownMs:1800000]
+			[MaxCooldownMs:3600000]
+			[MaxActions:-1]
+			[ActionExecution:All]
+			[Actions:GVK-Static-KOTH-Massive02-Action-CoalitionWreckSpawns]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Static-KOTH-Massive02-Action-CoalitionWreckSpawns</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Action]
+			[Chance:100]
+			[ManuallyActivateTrigger:true]
+			[ManuallyActivatedTriggerNames:GVK-Static-KOTH-Massive02-Trigger-DefensesManual]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Static-KOTH-Massive02-Trigger-DefensesManual</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Trigger]
+			[UseTrigger:true]
+			[Type:Manual]
+			[StartsReady:true]
+			[MaxActions:-1]
+			[ActionExecution:All]
+			[Actions:GVK-Static-KOTH-Massive02-Action-CoalitionWreckEnemiesManual]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Static-KOTH-Massive02-Action-CoalitionWreckEnemiesManual</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Action]
+			[Chance:100]
+			[SpawnEncounter:true]
+			[Spawner:GVK-Static-KOTH-Massive02-Spawner-Defenses]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Static-KOTH-Massive02-Spawner-Defenses</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Spawn]
+			[UseSpawn:true]
+			[SpawningType:CustomSpawn]
+			[StartsReady:true]
+			[ProcessAsAdminSpawn:false]
+			[MaxSpawns:-1]
+			[SpawnGroups:GVK-Drone-Defense-SpawnGroup-GAALSIEN-LightSandskimmerSquad]
+			[SpawnGroups:GVK-Drone-Defense-SpawnGroup-GAALSIEN-SmallFlyerSingle]
+			[SpawnGroups:GVK-Drone-Defense-SpawnGroup-GAALSIEN-SmallFlyerSquad]
+			[SpawnGroups:GVK-Drone-Defense-SpawnGroup-GAALSIEN-InterceptorSingle]
+			[SpawnGroups:GVK-Drone-Defense-SpawnGroup-GAALSIEN-MediumHoverLight]
+			[MinDistance:1500]
+			[MaxDistance:1750]
+			[MinAltitude:40]
+			[MaxAltitude:41]
+			[InheritNpcAltitude:false]
+			[IgnoreSafetyChecks:true]
+			</Description>
+		</EntityComponent>
+		<!-- Crashed Starship, Z2 small grid rovers only -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Static-KOTH-Massive03-Behavior</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Behavior]
+			[BehaviorName:Passive]
+			[UseRetreatTimer:false]
+			[UseNoTargetTimer:false]
+			[UsePlayerDistanceTimer:false]
+			[Triggers:GVK-Universal-Trigger-JetpackInhibitor]
+			[Triggers:GVK-Static-KOTH-Massive03-Trigger-PlayerNear]
+			[Triggers:GVK-Static-KOTH-Massive03-Trigger-DefensesManual]
+			</Description>
+		</EntityComponent>
+		<!-- Trigger Sequence for Medium Defenses every 15 mins while players are near -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Static-KOTH-Massive03-Trigger-PlayerNear</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Trigger]
+			[UseTrigger:true]
+			[Type:Timer]
+			[TargetDistance:2000]
+			[StartsReady:true]
+			[MinCooldownMs:1800000]
+			[MaxCooldownMs:3600000]
+			[MaxActions:-1]
+			[ActionExecution:All]
+			[Actions:GVK-Static-KOTH-Massive03-Action-CoalitionWreckSpawns]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Static-KOTH-Massive03-Action-CoalitionWreckSpawns</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Action]
+			[Chance:100]
+			[ManuallyActivateTrigger:true]
+			[ManuallyActivatedTriggerNames:GVK-Static-KOTH-Massive03-Trigger-DefensesManual]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Static-KOTH-Massive03-Trigger-DefensesManual</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Trigger]
+			[UseTrigger:true]
+			[Type:Manual]
+			[StartsReady:true]
+			[MaxActions:-1]
+			[ActionExecution:All]
+			[Actions:GVK-Static-KOTH-Massive03-Action-CoalitionWreckEnemiesManual]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Static-KOTH-Massive03-Action-CoalitionWreckEnemiesManual</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Action]
+			[Chance:100]
+			[SpawnEncounter:true]
+			[Spawner:GVK-Static-KOTH-Massive03-Spawner-Defenses]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Static-KOTH-Massive03-Spawner-Defenses</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Spawn]
+			[UseSpawn:true]
+			[SpawningType:CustomSpawn]
+			[StartsReady:true]
+			[ProcessAsAdminSpawn:false]
+			[MaxSpawns:-1]
+			[SpawnGroups:GVK-Drone-Defense-SpawnGroup-GAALSIEN-LightSandskimmerSquad]
+			[SpawnGroups:GVK-Drone-Defense-SpawnGroup-GAALSIEN-SmallFlyerSingle]
+			[SpawnGroups:GVK-Drone-Defense-SpawnGroup-GAALSIEN-InterceptorSingle]
+			[SpawnGroups:GVK-Drone-Defense-SpawnGroup-GAALSIEN-MediumHoverLight]
+			[MinDistance:1500]
+			[MaxDistance:1750]
+			[MinAltitude:40]
+			[MaxAltitude:41]
+			[InheritNpcAltitude:false]
 			[IgnoreSafetyChecks:true]
 			</Description>
 		</EntityComponent>
