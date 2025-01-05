@@ -350,6 +350,35 @@
 		<SpawnGroup>
 			<Id>
 				<TypeId>SpawnGroupDefinition</TypeId>
+				<SubtypeId>GVK-Drone-Encounter-SpawnGroup-GAALSIEN-HoverRailgun</SubtypeId>
+			</Id>
+			<Description>
+			[Modular Encounters SpawnGroup]
+			[AdminSpawnOnly:true]
+			[IgnoreCleanupRules:false]
+			[ReplenishSystems:true]
+			[ManipulationProfiles:GVK-Drone-All-Manipulation-Hover]
+			[ManipulationProfiles:GVK-Universal-Manipulation-Large3x3StandardTurrets]
+			[SpawnConditionsProfiles:GVK-Drone-Encounter-SpawnCondition-GAALSIEN-MediumHoverSingle]
+			</Description>
+			<IsPirate>true</IsPirate>
+			<Frequency>0.3</Frequency>
+			<Prefabs>
+				<Prefab SubtypeId="[NPC Drone] Heavy Assault Railgun">
+					<Position>
+						<X>0.0</X>
+						<Y>10.0</Y>
+						<Z>0.0</Z>
+					</Position>
+					<Speed>0</Speed>
+					<BeaconText>Heavy Assault Railgun</BeaconText>
+					<Behaviour>GVK-Drone-All-Behavior-MediumHoverFighter</Behaviour>
+				</Prefab>
+			</Prefabs>
+		</SpawnGroup>
+		<SpawnGroup>
+			<Id>
+				<TypeId>SpawnGroupDefinition</TypeId>
 				<SubtypeId>GVK-Drone-Encounter-SpawnGroup-GAALSIEN-MediumHoverLight</SubtypeId>
 			</Id>
 			<Description>
