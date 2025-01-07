@@ -42,10 +42,52 @@
 				</Prefab>
 			</Prefabs>
 		</SpawnGroup>-->
+		<!-- Rover store at Crossroads with light cores -->
 		<SpawnGroup>
 			<Id>
 				<TypeId>SpawnGroupDefinition</TypeId>
-				<SubtypeId>GVK-StaticEncounters-TradeStations-SpawnGroup-RoverSales</SubtypeId>
+				<SubtypeId>GVK-StaticEncounters-TradeStations-SpawnGroup-RoverSales01</SubtypeId>
+			</Id>
+			<Description>
+			[Modular Encounters SpawnGroup]
+			[StaticEncounter:true]
+			[FactionOwner:COALITION]
+			[InitializeStoreBlocks:false]
+			[ReactorsOn:true]
+			[ForceStaticGrid:true]
+			[TriggerCoords:{X:64290.2373847149 Y:62037.8993698961 Z:31283.5925882591}]
+			[TriggerRadius:999999]
+			[IgnoreCleanupRules:true]
+			[ReplenishSystems:true]
+			[SkipVoxelSpawnChecks:true]
+			[SkipGridSpawnChecks:true]
+			[ForceExactPositionAndOrientation:true]
+			[StaticEncounterCoords:{X:61677.2012712446 Y:28722.3704120986 Z:39501.872089325}]
+			[StaticEncounterForward:{X:-0.218568373805409 Y:0.030911334433045 Z:0.975331920617606}]
+			[StaticEncounterUp:{X:-0.965722821817997 Y:0.13657154461288 Z:-0.220743390890728}]
+			[ManipulationProfiles:GVK-Static-TradeStation-Manipulation]
+			[UseRivalAi:true]
+			</Description>
+			<IsPirate>true</IsPirate>
+			<Frequency>5.0</Frequency>
+			<Prefabs>
+				<Prefab SubtypeId="[NPC Trade Station] Rover Store 1">
+					<Position>
+						<X>0.0</X>
+						<Y>0.0</Y>
+						<Z>0.0</Z>
+					</Position>
+					<Speed>0</Speed>
+					<BeaconText>Vehicle Store</BeaconText>
+					<Behaviour>GVK-Store-Behavior-RoverSales-Basic</Behaviour>
+				</Prefab>
+			</Prefabs>
+		</SpawnGroup>
+		<!-- Rover store at Sevastapol with medium cores -->
+		<SpawnGroup>
+			<Id>
+				<TypeId>SpawnGroupDefinition</TypeId>
+				<SubtypeId>GVK-StaticEncounters-TradeStations-SpawnGroup-RoverSales02</SubtypeId>
 			</Id>
 			<Description>
 			[Modular Encounters SpawnGroup]
@@ -79,10 +121,11 @@
 					</Position>
 					<Speed>0</Speed>
 					<BeaconText>Vehicle Store</BeaconText>
-					<Behaviour>GVK-Store-Behavior-RoverSales</Behaviour>
+					<Behaviour>GVK-Store-Behavior-RoverSales-Advanced</Behaviour>
 				</Prefab>
 			</Prefabs>
 		</SpawnGroup>
+
 		<SpawnGroup>
 			<Id>
 				<TypeId>SpawnGroupDefinition</TypeId>
