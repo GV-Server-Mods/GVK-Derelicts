@@ -38,7 +38,6 @@
 			[Triggers:GVK-CargoShip-Land-COALITION-Trigger-EscortBeaconDisabled]
 			[Triggers:GVK-CargoShip-Land-COALITION-Trigger-EscortCompromised]
 			[Triggers:GVK-CargoShip-Land-COALITION-Trigger-EscortAttacked]
-			[Triggers:GVK-CargoShip-Land-COALITION-Trigger-EscortEnemySpawns]
 			[Triggers:GVK-CargoShip-Land-COALITION-Trigger-EscortPlayerNear]
 			[Triggers:GVK-CargoShip-Land-COALITION-Trigger-EscortPlayerStillNear]
 			[Triggers:GVK-CargoShip-Land-COALITION-Trigger-EscortPlayerNotNear]
@@ -76,8 +75,8 @@
 			[WaypointAbandonTimeTrigger:9999999]
 			[WaypointTolerance:95]
 			[IdealMinSpeed:35]
-			[IdealMaxSpeed:50]
-			[MaxSpeedTolerance:10]
+			[IdealMaxSpeed:40]
+			[MaxSpeedTolerance:5]
 			[SlowDownOnWaypointApproach:true]
 			[WaypointWaitTimeTrigger:120]
 			[ExtraSlowDownDistance:300]
@@ -685,7 +684,7 @@
 			[Type:PlayerNear]
 			[TargetDistance:2000]
 			[StartsReady:true]
-			[MinCooldownMs:120000]
+			[MinCooldownMs:90000]
 			[MaxCooldownMs:120001]
 			[MaxActions:20]
 			[Actions:GVK-CargoShip-Land-COALITION-Action-EscortEnemySpawns]
@@ -715,13 +714,13 @@
 			[StartsReady:true]
 			[ProcessAsAdminSpawn:false]
 			[MaxSpawns:-1]
+			[SpawnGroups:GVK-Drone-Defense-SpawnGroup-GAALSIEN-LightSandskimmerSquad]
 			[SpawnGroups:GVK-Drone-Defense-SpawnGroup-GAALSIEN-SmallFlyerSquad]
-			[SpawnGroups:GVK-Drone-Defense-SpawnGroup-GAALSIEN-SmallHoverSquad]
 			[SpawnGroups:GVK-Drone-Defense-SpawnGroup-GAALSIEN-MediumHoverLight]
 			[SpawnGroups:GVK-Drone-Defense-SpawnGroup-GAALSIEN-MediumHoverHeavy]
 			[SpawnGroups:GVK-Drone-Defense-SpawnGroup-GAALSIEN-LargeHover]
 			[MinDistance:1000]
-			[MaxDistance:1500]
+			[MaxDistance:1250]
 			[MinAltitude:50]
 			[MaxAltitude:51]
 			[InheritNpcAltitude:true]
@@ -933,6 +932,33 @@
 			[EnableBlocks:true]
 			[EnableBlockNames:NPC Weapon]
 			[EnableBlockStates:On]
+			[SpawnEncounter:true]
+			[Spawner:GVK-CargoShip-Land-COALITION-Spawner-EscortEnemySandskimmers]
+			[EnableTriggers:true]
+			[EnableTriggerNames:GVK-CargoShip-Land-COALITION-Trigger-EscortEnemySpawns]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-CargoShip-Land-COALITION-Spawner-EscortEnemySandskimmers</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Spawn]
+			[UseSpawn:true]
+			[SpawningType:CustomSpawn]
+			[StartsReady:true]
+			[ProcessAsAdminSpawn:false]
+			[MaxSpawns:1]
+			[SpawnGroups:GVK-Drone-Defense-SpawnGroup-GAALSIEN-LightSandskimmerSquad]
+			[MinDistance:1000]
+			[MaxDistance:1250]
+			[MinAltitude:50]
+			[MaxAltitude:51]
+			[InheritNpcAltitude:false]
+			[IgnoreSafetyChecks:true]
+			[UseChatBroadcast:true]
+			[ChatData:GVK-CargoShip-Land-COALITION-Chat-EscortEnemySpawns]
 			</Description>
 		</EntityComponent>
 		<!-- Trigger when it reaches Sevastapol to spawn reward -->
