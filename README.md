@@ -17,6 +17,10 @@ To get large grids to spawn: `/MES.Debug.ChangeBool.LargeWreckActive.false`
 
 To get Convoy to spawn: `/MES.Debug.ChangeBool.ConvoyInactive.true`
 
+Other useful commands:
+`/MES.Debug.ClearUniqueEncounters`
+`/MES.Debug.ClearStaticEncounters`
+
 ### Profile Naming Convention:
 `GVK-<SpawnType>-<SubType>-<ProfileType>-<UniqueTag>`
 
