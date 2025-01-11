@@ -20,7 +20,8 @@
 			<DiscoveredByDefault>true</DiscoveredByDefault>
 			<StaticReputation>true</StaticReputation>
 			<StartingReputation>1500</StartingReputation>
-			<FactionIcon>Textures\FactionLogo\Homeworld\Kiith_Coalition.png</FactionIcon> <!--Game or Mod Path For Texture File-->
+			<FactionIcon>Textures\FactionLogo\Homeworld\Kiith_Coalition.dds</FactionIcon> <!--Game or Mod Path For Texture File-->
+			<IconColor x="1" y="1" z="1" />
 			<Description>Coalition of the Northern Kiithid</Description>
 		</Faction>
 		<Faction Tag="GAALSIEN" Founder="Khagaan">
@@ -36,7 +37,9 @@
 			<StartingBalance>100000000</StartingBalance>
 			<Type>Builder</Type> <!--None, Miner, Trader, Builder, PlayerMade-->
 			<DiscoveredByDefault>false</DiscoveredByDefault>
-			<FactionIcon>Textures\FactionLogo\Homeworld\Kiith_Gaalsien.png</FactionIcon> <!--Game or Mod Path For Texture File-->
+			<StaticReputation>true</StaticReputation>
+			<StartingReputation>-1500</StartingReputation>
+			<FactionIcon>Textures\FactionLogo\Homeworld\Kiith_Gaalsien.dds</FactionIcon> <!--Game or Mod Path For Texture File-->
 			<Description>Kiith Gaalsien</Description>
 		</Faction>
 		<Faction Tag="SOBAN" Founder="Soban the Red">
@@ -52,7 +55,7 @@
 			<StartingBalance>100000000</StartingBalance>
 			<Type>Miner</Type> <!--None, Miner, Trader, Builder, PlayerMade-->
 			<DiscoveredByDefault>false</DiscoveredByDefault>
-			<FactionIcon>Textures\FactionLogo\Homeworld\Kiith_Soban.png</FactionIcon> <!--Game or Mod Path For Texture File-->
+			<FactionIcon>Textures\FactionLogo\Homeworld\Kiith_Soban.dds</FactionIcon> <!--Game or Mod Path For Texture File-->
 			<Description>Kiith Soban</Description>
 		</Faction>
 		<Faction Tag="KHAANEPH" Founder="Scavengers">
@@ -68,7 +71,7 @@
 			<StartingBalance>100000000</StartingBalance>
 			<Type>Miner</Type> <!--None, Miner, Trader, Builder, PlayerMade-->
 			<DiscoveredByDefault>false</DiscoveredByDefault>
-			<FactionIcon>Textures\FactionLogo\Homeworld\Khaaneph.png</FactionIcon> <!--Game or Mod Path For Texture File-->
+			<FactionIcon>Textures\FactionLogo\Homeworld\Khaaneph.dds</FactionIcon> <!--Game or Mod Path For Texture File-->
 			<Description>Clanless scavengers from the southern deserts</Description>
 		</Faction>
 		<Faction Tag="DERELICT" Founder="Unknown">
@@ -84,13 +87,15 @@
 			<StartingBalance>100000000</StartingBalance>
 			<Type>Builder</Type> <!--None, Miner, Trader, Builder, PlayerMade-->
 			<DiscoveredByDefault>false</DiscoveredByDefault>
+			<StaticReputation>true</StaticReputation>
+			<StartingReputation>-1500</StartingReputation>
 			<FactionIcon>Textures\FactionLogo\PirateIcon.dds</FactionIcon> <!--Game or Mod Path For Texture File-->
 			<Description>Unknown origin</Description>
 		</Faction>
 		<Faction Tag="KOTH" Founder="Unknown">
 			<Id>
 				<TypeId>MyObjectBuilder_FactionDefinition</TypeId> <!--Do Not Edit-->
-				<SubtypeId>GVK_Derelict_Faction</SubtypeId> <!--Must Be Unique-->
+				<SubtypeId>GVK_KOTH_Faction</SubtypeId> <!--Must Be Unique-->
 			</Id>
 			<DisplayName>Unknown</DisplayName>
 			<IsDefault>true</IsDefault>
@@ -100,6 +105,8 @@
 			<AutoAcceptMember>false</AutoAcceptMember>
 			<StartingBalance>100000000</StartingBalance>
 			<Type>None</Type> <!--None, Miner, Trader, Builder, PlayerMade-->
+			<StaticReputation>true</StaticReputation>
+			<StartingReputation>0</StartingReputation>
 			<DiscoveredByDefault>false</DiscoveredByDefault>
 			<FactionIcon>Textures\FactionLogo\PirateIcon.dds</FactionIcon> <!--Game or Mod Path For Texture File-->
 			<Description>Unknown origin</Description>
