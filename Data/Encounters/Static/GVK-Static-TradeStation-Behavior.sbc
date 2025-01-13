@@ -14,7 +14,8 @@
 			[UseNoTargetTimer:false]
 			[UsePlayerDistanceTimer:false]
 			[Triggers:GVK-Static-TradeStation-Trigger-CreateSafeZone]
-			[Triggers:GVK-Static-TradeStation-Trigger-SendWaypoint]
+			[Triggers:GVK-Static-TradeStation-Trigger-Unload-ResetCooldown]
+			[Triggers:GVK-Static-TradeStation-Trigger-Unload-Despawn]
 			</Description>
 		</EntityComponent>
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
@@ -28,7 +29,6 @@
 			[UseRetreatTimer:false]
 			[UseNoTargetTimer:false]
 			[UsePlayerDistanceTimer:false]
-			[Triggers:GVK-Static-TradeStation-Trigger-SendWaypoint]
 			[Triggers:GVK-Universal-Trigger-JetpackInhibitor]
 			</Description>
 		</EntityComponent>
@@ -83,7 +83,7 @@
 			[AllowedActions:LandingGearLock]
 			</Description>
 		</EntityComponent>
-		<!-- Trigger sequence for Trade Station to send relative waypoint to listening Cargo Ship -->
+		<!-- Trigger sequence for Trade Station to send relative waypoint to listening Cargo Ship (not currently used)
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
@@ -151,6 +151,62 @@
 			[SendToAllOnlinePlayers:false]
 			[IgnoreAntennaRequirement:true]
 			[IgnoredAntennaRangeOverride:9999999]
+			</Description>
+		</EntityComponent> -->
+		<!-- Trigger sequence to despawn the trade station when players are far -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Static-TradeStation-Trigger-Unload-ResetCooldown</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Trigger]
+			[Type:PlayerNear]
+			[UseTrigger:true]
+			[StartsReady:true]
+			[TargetDistance:10000]
+			[MinCooldownMs:30000]
+			[MaxCooldownMs:30001]
+			[Actions:GVK-Static-TradeStation-Action-Unload-ResetCooldown]	  
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Static-TradeStation-Action-Unload-ResetCooldown</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Action]
+			[ResetCooldownTimeOfTriggers:true]
+			[ResetTriggerCooldownNames:GVK-Static-TradeStation-Trigger-Unload-Despawn]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Static-TradeStation-Trigger-Unload-Despawn</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Trigger]
+			[Type:PlayerFar]
+			[UseTrigger:true]
+			[StartsReady:false]
+			[TargetDistance:10000]
+			[MinCooldownMs:300000]
+			[MaxCooldownMs:300001]
+			[MaxActions:1]
+			[Actions:GVK-Static-TradeStation-Action-Unload-Despawn]	  
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Static-TradeStation-Action-Unload-Despawn</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Action]
+			[ResetThisStaticEncounter:true]
+			[ForceDespawn:true]
 			</Description>
 		</EntityComponent>
 	</EntityComponents>
