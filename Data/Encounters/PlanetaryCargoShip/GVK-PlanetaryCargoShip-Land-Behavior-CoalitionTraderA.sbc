@@ -42,7 +42,7 @@
 			[Triggers:GVK-CargoShip-Land-COALITION-Trigger-TraderPlayerNear]
 			[Triggers:GVK-CargoShip-Land-COALITION-Trigger-TraderPlayerStillNear]
 			[Triggers:GVK-CargoShip-Land-COALITION-Trigger-TraderPlayerNotNear]
-			[Triggers:GVK-CargoShip-Land-COALITION-Trigger-EscortOutsideZone0]
+			[Triggers:GVK-CargoShip-Land-COALITION-Trigger-TraderOutsideZone0]
 			[RemoteControlCode:CoalitionRouteA]
 			</Description>
 		</EntityComponent>
@@ -303,6 +303,36 @@
 			[SendToAllOnlinePlayers:false]
 			[IgnoreAntennaRequirement:true]
 			[IgnoredAntennaRangeOverride:1000]
+			</Description>
+		</EntityComponent>
+		<!-- sequence to turn on weapons when leaving Z0 -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-CargoShip-Land-COALITION-Trigger-TraderOutsideZone0</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Trigger]
+			[UseTrigger:true]
+			[Type:OutsideZone]
+			[ZoneName:Zone 0]
+			[StartsReady:false]
+			[MinCooldownMs:10000]
+			[MaxCooldownMs:10001]
+			[MaxActions:2]
+			[Actions:GVK-CargoShip-Land-COALITION-Action-TraderOutsideZone0]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-CargoShip-Land-COALITION-Action-TraderOutsideZone0</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Action]
+			[EnableBlocks:true]
+			[EnableBlockNames:NPC Weapon]
+			[EnableBlockStates:On]
 			</Description>
 		</EntityComponent>
 		<!-- Trigger sequence when Cargo Ship departs to despawn waypoint (completed route) -->
