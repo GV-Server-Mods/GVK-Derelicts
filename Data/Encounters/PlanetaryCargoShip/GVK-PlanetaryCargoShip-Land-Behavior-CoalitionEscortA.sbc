@@ -904,7 +904,7 @@
 			[IgnoredAntennaRangeOverride:1000]
 			</Description>
 		</EntityComponent>
-		<!-- sequence to turn on weapons when leaving Z0 -->
+		<!-- sequence to turn on weapons and spawn enemies when leaving Z0 -->
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
@@ -936,6 +936,8 @@
 			[Spawner:GVK-CargoShip-Land-COALITION-Spawner-EscortEnemySandskimmers]
 			[EnableTriggers:true]
 			[EnableTriggerNames:GVK-CargoShip-Land-COALITION-Trigger-EscortEnemySpawns]
+			[UseChatBroadcast:true]
+			[ChatData:GVK-CargoShip-Land-COALITION-Chat-EscortEnemySpawns]
 			</Description>
 		</EntityComponent>
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
@@ -957,8 +959,6 @@
 			[MaxAltitude:51]
 			[InheritNpcAltitude:false]
 			[IgnoreSafetyChecks:true]
-			[UseChatBroadcast:true]
-			[ChatData:GVK-CargoShip-Land-COALITION-Chat-EscortEnemySpawns]
 			</Description>
 		</EntityComponent>
 		<!-- Trigger when it reaches Sevastapol to spawn reward -->
