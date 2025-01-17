@@ -145,6 +145,39 @@
 				</Prefab>
 			</Prefabs>
 		</SpawnGroup>
+		<!-- [NPC Drone] Interceptor Flyer Admin behavior test -->
+		<SpawnGroup>
+			<Id>
+				<TypeId>SpawnGroupDefinition</TypeId>
+				<!--Do Not Edit-->
+				<SubtypeId>GVK-Drone-Encounter-SpawnGroup-GAALSIEN-InterceptorTest</SubtypeId>
+			</Id>
+			<Description>
+			[Modular Encounters SpawnGroup]
+			[AdminSpawnOnly:true]
+			[IgnoreCleanupRules:false]
+			[ReplenishSystems:true]
+			[ManipulationProfiles:GVK-Drone-All-Manipulation-Interceptor]
+			[ManipulationProfiles:GVK-Drone-All-Manipulation-Small5x5StandardTurrets]
+			[SpawnConditionsProfiles:GVK-Drone-Encounter-SpawnCondition-GAALSIEN-SmallFlyerSingle]
+			[SpawnConditionsProfiles:GVK-Drone-Encounter-SpawnCondition-GAALSIEN-SmallFlyerSquad]
+			</Description>
+			<IsPirate>true</IsPirate>
+			<!--Do not edit-->
+			<Frequency>0.15</Frequency>
+			<Prefabs>
+				<Prefab SubtypeId="[NPC Drone] Interceptor">
+					<Position>
+						<X>0</X>
+						<Y>0.0</Y>
+						<Z>0</Z>
+					</Position>
+					<Speed>0</Speed>
+					<BeaconText>Interceptor</BeaconText>
+					<Behaviour>GVK-Drone-Behavior-PatrolHorseflyInterceptor</Behaviour>
+				</Prefab>
+			</Prefabs>
+		</SpawnGroup>
 		<!-- [NPC Drone] Interceptor Flyer -->
 		<SpawnGroup>
 			<Id>
@@ -173,7 +206,7 @@
 					</Position>
 					<Speed>0</Speed>
 					<BeaconText>Interceptor</BeaconText>
-					<Behaviour>GVK-Drone-All-Behavior-SmallFlyer-Interceptor</Behaviour>
+					<Behaviour>GVK-Drone-Behavior-PatrolHorseflyInterceptor</Behaviour>
 				</Prefab>
 				<Prefab SubtypeId="[NPC Drone] Assault Interceptor">
 					<Position>
@@ -183,7 +216,7 @@
 					</Position>
 					<Speed>0</Speed>
 					<BeaconText>Interceptor-A</BeaconText>
-					<Behaviour>GVK-Drone-All-Behavior-SmallFlyer-Interceptor</Behaviour>
+					<Behaviour>GVK-Drone-Behavior-PatrolHorseflyInterceptor</Behaviour>
 				</Prefab>
 				<Prefab SubtypeId="[NPC Drone] Gunship Interceptor">
 					<Position>
@@ -193,7 +226,7 @@
 					</Position>
 					<Speed>0</Speed>
 					<BeaconText>Interceptor-G</BeaconText>
-					<Behaviour>GVK-Drone-All-Behavior-SmallFlyer-Interceptor</Behaviour>
+					<Behaviour>GVK-Drone-Behavior-PatrolHorseflyInterceptor</Behaviour>
 				</Prefab>
 			</Prefabs>
 		</SpawnGroup>
@@ -244,7 +277,7 @@
 					</Position>
 					<Speed>0</Speed>
 					<BeaconText>Bomber</BeaconText>
-					<Behaviour>GVK-Drone-All-Behavior-LargeFlyerHorsefly</Behaviour>
+					<Behaviour>GVK-Drone-All-Behavior-PatrolHorseflyBomber</Behaviour>
 				</Prefab>
 			</Prefabs>
 		</SpawnGroup>
