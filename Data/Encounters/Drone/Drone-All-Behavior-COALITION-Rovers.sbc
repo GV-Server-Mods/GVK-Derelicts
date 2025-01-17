@@ -32,7 +32,6 @@
 			[Triggers:GVK-Drone-Encounter-Trigger-RetreatNoTarget]
 			[Triggers:GVK-Drone-Encounter-Trigger-RetreatTimer]
 			[Triggers:GVK-Drone-All-Trigger-CoalitionPlayerNear]
-			[Triggers:GVK-Drone-All-Trigger-CoalitionPlayerNotNear]
 			[Triggers:GVK-Drone-All-Trigger-CoalitionRoverHasTarget]
 			[Triggers:GVK-Drone-All-Trigger-CoalitionRoverNoTarget]
 			[Triggers:GVK-Drone-All-Trigger-CoalitionHorizonAngleSteep]
@@ -91,6 +90,8 @@
 			[MinCooldownMs:1000]
 			[MaxCooldownMs:1001]
 			[Actions:GVK-Drone-All-Action-CoalitionPlayerNear]
+			[UseElseActions:true]
+			[ElseActions:GVK-Drone-All-Action-CoalitionPlayerNotNear]
 			</Description>
 		</EntityComponent>
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
@@ -105,29 +106,10 @@
 			[EnableBlocks:true]
 			[EnableBlockNames:NPC Suspension]
 			[EnableBlockStates:Off]
-			[EnableTriggers:true]
-			[EnableTriggerNames:GVK-Drone-All-Trigger-CoalitionPlayerNotNear]
 			[DisableTriggers:true]
 			[DisableTriggerNames:GVK-Drone-All-Trigger-CoalitionRoverHasTarget]
 			[DisableTriggerNames:GVK-Drone-All-Trigger-CoalitionRoverNoTarget]
 			[DisableTriggerNames:GVK-Drone-All-Trigger-CoalitionHorizonAngleSteep]
-			[ResetCooldownTimeOfTriggers:true]
-			[ResetTriggerCooldownNames:GVK-Drone-All-Trigger-CoalitionPlayerNotNear]
-			</Description>
-		</EntityComponent>
-		<!-- Trigger Sequence to stop when player is no longer near -->
-		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
-			<Id>
-				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Drone-All-Trigger-CoalitionPlayerNotNear</SubtypeId>
-			</Id>
-			<Description>
-			[RivalAI Trigger]
-			[UseTrigger:false]
-			[Type:Timer]
-			[MinCooldownMs:10000]
-			[MaxCooldownMs:10001]
-			[Actions:GVK-Drone-All-Action-CoalitionPlayerNotNear]
 			</Description>
 		</EntityComponent>
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
@@ -146,8 +128,6 @@
 			[EnableTriggerNames:GVK-Drone-All-Trigger-CoalitionRoverHasTarget]
 			[EnableTriggerNames:GVK-Drone-All-Trigger-CoalitionRoverNoTarget]
 			[EnableTriggerNames:GVK-Drone-All-Trigger-CoalitionHorizonAngleSteep]
-			[DisableTriggers:true]
-			[DisableTriggerNames:GVK-Drone-All-Trigger-CoalitionPlayerNotNear]
 			</Description>
 		</EntityComponent>
 		<!-- Trigger Sequence to turn on wheels when target near -->
