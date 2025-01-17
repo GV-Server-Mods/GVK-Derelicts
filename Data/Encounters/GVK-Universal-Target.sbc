@@ -70,6 +70,38 @@
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Universal-Target-EnemyGridsinKPL</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Target]
+			[UseCustomTargeting:true]
+			[Target:Grid]
+			[UseTargetRefresh:false]
+			[TimeUntilNextRefresh:60]
+			[TimeUntilNextEvaluation:15]
+			[MaxDistance:2000]
+			[MaxExistingTargetDistance:2000]
+			[GetTargetBy:ClosestDistance]
+			[MatchAllFilters:Relation]
+			[MatchAllFilters:OutsideOfSafezone]
+			[MatchAllFilters:TargetValue]
+			[MatchAllFilters:PlayerControlled]
+			[MatchAllFilters:Powered]
+			[MatchAllFilters:PlayerKnownLocation]
+			[MatchNoneFilters:Name]
+			[Relations:Enemy]
+			[Names:NPC Static]
+			[Names:NPC Trade Station]
+			[Names:NPC KOTH]
+			[UsePartialNameMatching:true]
+			[MinTargetValue:10]
+			[MaxTargetValue:999999]
+			[PrioritizePlayerControlled:true]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
 				<SubtypeId>GVK-Universal-Target-EnemyGridsLongRange</SubtypeId>
 			</Id>
 			<Description>
