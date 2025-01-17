@@ -137,7 +137,7 @@
 			[MaxActions:1]
 			[ActionExecution:All]
 			[Actions:GVK-Drone-Encounter-Salvager-GAALSIEN-Action-Compromised]
-			[Actions:GVK-Drone-Encounter-Salvager-GAALSIEN-Action-Disabled]
+			[Actions:GVK-Universal-Action-Disabled]
 			[Actions:GVK-Universal-Action-EditableOnCompromised]
 			</Description>
 		</EntityComponent>
@@ -148,6 +148,10 @@
 			</Id>
 			<Description>
 			[RivalAI Action]
+			[DisableTriggers:true]
+			[DisableTriggerNames:GVK-Drone-Encounter-Salvager-GAALSIEN-Trigger-Crashed]			
+			[DisableTriggerNames:GVK-Drone-Encounter-Salvager-GAALSIEN-Trigger-Compromised]			
+			[DisableTriggerNames:GVK-Drone-Encounter-Salvager-GAALSIEN-Trigger-BeaconDisabled]
 			[UseChatBroadcast:true]
 			[ChatData:GVK-Drone-Encounter-Salvager-GAALSIEN-Chat-Compromised]
 			</Description>
@@ -191,7 +195,7 @@
 			[Conditions:GVK-Drone-All-Condition-LargeCrashed]
 			[ActionExecution:All]
 			[Actions:GVK-Drone-Encounter-Salvager-GAALSIEN-Action-Crashed]
-			[Actions:GVK-Drone-Encounter-Salvager-GAALSIEN-Action-Disabled]
+			[Actions:GVK-Universal-Action-Disabled]
 			[Actions:GVK-Universal-Action-EditableOnCompromised]
 			</Description>
 		</EntityComponent>
@@ -245,7 +249,7 @@
 			[MaxActions:1]
 			[ActionExecution:All]
 			[Actions:GVK-Drone-Encounter-Salvager-GAALSIEN-Action-Compromised]
-			[Actions:GVK-Drone-Encounter-Salvager-GAALSIEN-Action-Disabled]
+			[Actions:GVK-Universal-Action-Disabled]
 			[Actions:GVK-Universal-Action-EditableOnCompromised]
 			</Description>
 		</EntityComponent>
@@ -261,58 +265,6 @@
 			[CheckForBlocksOfType:true]
 			[BlocksOfType:MyObjectBuilder_Beacon]
 			[UseFailCondition:true]
-			</Description>
-		</EntityComponent>
-		<!-- Action for Large drones when defeated to disable stuff -->
-		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
-			<Id>
-				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Drone-Encounter-Salvager-GAALSIEN-Action-Disabled</SubtypeId>
-			</Id>
-			<Description>
-			[RivalAI Action]
-			[EnableBlocks:true]
-			[EnableBlockNames:Magnetic Plate]
-			[EnableBlockStates:On]
-			[StopAllRotation:true]
-			[StopAllThrust:true]
-			[GenerateExplosion:false]
-			[ExplosionOffsetFromRemote:{X:0 Y:0 Z:0}]
-			[ExplosionRange:5]
-			[ExplosionDamage:1]
-			[ExplosionIgnoresVoxels:true]
-			[RazeBlocksOfType:true]
-			[RazeBlocksTypes:MyObjectBuilder_Beacon/ZoneBlock]
-			[RazeBlocksTypes:MyObjectBuilder_RemoteControl/RivalAIRemoteControlLarge]
-			[RazeBlocksTypes:MyObjectBuilder_RemoteControl/RivalAIRemoteControlSmall]
-			[RazeBlocksTypes:MyObjectBuilder_Beacon/ZoneBlock]
-			[RazeBlocksTypes:MyObjectBuilder_Beacon/SmallBlockBeacon]
-			[RazeBlocksTypes:MyObjectBuilder_Beacon/LargeBlockBeacon]
-			[RazeBlocksTypes:MyObjectBuilder_Beacon/SmallBlockBeacon_NPCNoConceal]
-			[RazeBlocksTypes:MyObjectBuilder_Beacon/LargeBlockBeacon_NPCNoConceal]
-			[ToggleBlocksOfType:true]
-			[BlockTypesToToggle:MyObjectBuilder_Beacon/ZoneBlock]
-			[BlockTypeToggles:Off]
-			[BlockTypesToToggle:MyObjectBuilder_Beacon/DisposableNpcBeaconSmall]
-			[BlockTypeToggles:Off]
-			[BlockTypesToToggle:MyObjectBuilder_Beacon/DisposableNpcBeaconLarge]
-			[BlockTypeToggles:Off]
-			[BlockTypesToToggle:MyObjectBuilder_Beacon/SmallBlockBeacon]
-			[BlockTypeToggles:Off]
-			[BlockTypesToToggle:MyObjectBuilder_Beacon/LargeBlockBeacon]
-			[BlockTypeToggles:Off]
-			[BlockTypesToToggle:MyObjectBuilder_Beacon/LargeBlockBeacon_NPCNoConceal]
-			[BlockTypeToggles:Off]
-			[BlockTypesToToggle:MyObjectBuilder_Beacon/SmallBlockBeacon_NPCNoConceal]
-			[BlockTypeToggles:Off]
-			[DisableTriggers:true]
-			[DisableTriggerNames:GVK-Drone-Encounter-Salvager-GAALSIEN-Trigger-Crashed]			
-			[DisableTriggerNames:GVK-Drone-Encounter-Salvager-GAALSIEN-Trigger-Compromised]			
-			[DisableTriggerNames:GVK-Drone-Encounter-Salvager-GAALSIEN-Trigger-BeaconDisabled]
-			[ChangeInertiaDampeners:true]
-			[InertiaDampenersEnable:false]
-			[TerminateBehavior:true]
-			[ForceDespawn:false]
 			</Description>
 		</EntityComponent>
 	</EntityComponents>

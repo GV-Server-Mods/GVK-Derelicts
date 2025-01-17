@@ -2,83 +2,6 @@
 <Definitions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
 	<EntityComponents>
 		<!--=== Trigger Sequences ===-->
-		<!--NPC Defeated when all thrusters or gyros offline: Trigger warheads, generic SPRT Defeated Chat-->
-		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
-			<Id>
-				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Universal-Trigger-SPRTCantFly</SubtypeId>
-			</Id>
-			<Description>
-			[RivalAI Trigger]
-			[Type:Timer]
-			[UseTrigger:true]
-			[MinCooldownMs:15000]
-			[MaxCooldownMs:15000]
-			[StartsReady:false]
-			[MaxActions:1]
-			[Conditions:GVK-Universal-Condition-SPRTCantFly]
-			[ConditionCheckResetsTimer:true]
-			[Actions:GVK-Universal-Action-SPRTDefeated]
-			</Description>
-		</EntityComponent>
-		<!--future improvements coming to RAI to make this work better-->
-		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
-			<Id>
-				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Universal-Condition-SPRTCantFly</SubtypeId>
-			</Id>
-			<Description>
-			[RivalAI Condition]
-			[UseConditions:true]
-			[UseFailCondition:true]
-			[MatchAnyCondition:true]
-			[CheckForBlocksOfType:true]
-			[BlocksOfType:MyObjectBuilder_Gyro]
-			[BlocksOfType:MyObjectBuilder_Thrust]
-			</Description>
-		</EntityComponent>
-		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
-			<Id>
-				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Universal-Action-SPRTDefeated</SubtypeId>
-			</Id>
-			<Description>
-			[RivalAI Action]
-			[GenerateExplosion:false]
-			[ExplosionOffsetFromRemote:{X:0 Y:0 Z:0}]
-			[ExplosionRange:25]
-			[ExplosionDamage:1]
-			[ExplosionIgnoresVoxels:true]
-			[RazeBlocksOfType:true]
-			[RazeBlocksTypes:MyObjectBuilder_Beacon/ZoneBlock]
-			[RazeBlocksTypes:MyObjectBuilder_RemoteControl/RivalAIRemoteControlLarge]
-			[RazeBlocksTypes:MyObjectBuilder_RemoteControl/RivalAIRemoteControlSmall]
-			[RazeBlocksTypes:MyObjectBuilder_Beacon/ZoneBlock]
-			[RazeBlocksTypes:MyObjectBuilder_Beacon/SmallBlockBeacon]
-			[RazeBlocksTypes:MyObjectBuilder_Beacon/LargeBlockBeacon]
-			[RazeBlocksTypes:MyObjectBuilder_Beacon/SmallBlockBeacon_NPCNoConceal]
-			[RazeBlocksTypes:MyObjectBuilder_Beacon/LargeBlockBeacon_NPCNoConceal]
-			[ToggleBlocksOfType:true]
-			[BlockTypesToToggle:MyObjectBuilder_Beacon/ZoneBlock]
-			[BlockTypeToggles:Off]
-			[BlockTypesToToggle:MyObjectBuilder_Beacon/DisposableNpcBeaconSmall]
-			[BlockTypeToggles:Off]
-			[BlockTypesToToggle:MyObjectBuilder_Beacon/DisposableNpcBeaconLarge]
-			[BlockTypeToggles:Off]
-			[BlockTypesToToggle:MyObjectBuilder_Beacon/SmallBlockBeacon]
-			[BlockTypeToggles:Off]
-			[BlockTypesToToggle:MyObjectBuilder_Beacon/LargeBlockBeacon]
-			[BlockTypeToggles:Off]
-			[BlockTypesToToggle:MyObjectBuilder_Beacon/LargeBlockBeacon_NPCNoConceal]
-			[BlockTypeToggles:Off]
-			[BlockTypesToToggle:MyObjectBuilder_Beacon/SmallBlockBeacon_NPCNoConceal]
-			[BlockTypeToggles:Off]
-			[ForceDespawn:false]
-			[ChangeInertiaDampeners:true]
-			[InertiaDampenersEnable:false]
-			[TerminateBehavior:true]
-			</Description>
-		</EntityComponent>
 		<!--NPC Chat when target is acquired-->
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
@@ -103,23 +26,6 @@
 			[RivalAI Action]
 			[UseChatBroadcast:true]
 			[ChatData:GVK-Universal-Chat-SPRTTargetAcquiredChatter]
-			</Description>
-		</EntityComponent>
-		<!--NPC Retreat when all guns are disabled, does not work with WC1-->
-		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
-			<Id>
-				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Universal-Trigger-SPRTNoWeapon</SubtypeId>
-			</Id>
-			<Description>
-			[RivalAI Trigger]
-			[Type:NoWeapon]
-			[UseTrigger:false]
-			[MinCooldownMs:15000]
-			[MaxCooldownMs:15000]
-			[StartsReady:false]
-			[MaxActions:1]
-			[Actions:GVK-Universal-Action-SPRTDefeated]
 			</Description>
 		</EntityComponent>
 		<!-- Jetpack Inhibitor on Session (This appears to be broken in DS MP, players can glide long distances  -->
@@ -363,6 +269,40 @@
 			[ChatMessages:This is your last chance to run.]
 			[ChatAudio:ArcHudGPSNotification2]
 			[BroadcastChatType:Chat]
+			</Description>
+		</EntityComponent>
+		<!-- Shared disabled action for most NPCs that do not despawn on death -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Universal-Action-Disabled</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Action]
+			[EnableBlocks:true]
+			[EnableBlockNames:Magnetic Plate]
+			[EnableBlockStates:On]
+			[EnableBlockNames:NPC Beacon]
+			[EnableBlockStates:Off]
+			[StopAllRotation:true]
+			[StopAllThrust:true]
+			[RazeBlocksOfType:true]
+			[RazeBlocksTypes:MyObjectBuilder_Beacon/ZoneBlock]
+			[RazeBlocksTypes:MyObjectBuilder_RemoteControl/RivalAIRemoteControlLarge]
+			[RazeBlocksTypes:MyObjectBuilder_RemoteControl/RivalAIRemoteControlSmall]
+			[RazeBlocksTypes:MyObjectBuilder_Beacon/SmallBlockBeacon]
+			[RazeBlocksTypes:MyObjectBuilder_Beacon/LargeBlockBeacon]
+			[RazeBlocksTypes:MyObjectBuilder_Beacon/SmallBlockBeacon_NPCNoConceal]
+			[RazeBlocksTypes:MyObjectBuilder_Beacon/LargeBlockBeacon_NPCNoConceal]
+			[ToggleBlocksOfType:true]
+			[BlockTypesToToggle:MyObjectBuilder_Beacon/DisposableNpcBeaconSmall]
+			[BlockTypeToggles:Off]
+			[BlockTypesToToggle:MyObjectBuilder_Beacon/DisposableNpcBeaconLarge]
+			[BlockTypeToggles:Off]
+			[ChangeInertiaDampeners:true]
+			[InertiaDampenersEnable:false]
+			[TerminateBehavior:true]
+			[ForceDespawn:false]
 			</Description>
 		</EntityComponent>
 	</EntityComponents>
