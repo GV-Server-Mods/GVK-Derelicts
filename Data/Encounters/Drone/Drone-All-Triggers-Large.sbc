@@ -92,6 +92,7 @@
 			[Actions:GVK-Drone-All-Action-LargeDisabled]
 			[Actions:GVK-Universal-Action-EditableOnCompromised]
 			[Actions:GVK-Universal-Action-Disabled]
+			[Actions:GVK-Universal-Action-LargeBlueExplosionEffects]
 			</Description>
 		</EntityComponent>
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
@@ -202,6 +203,7 @@
 			[Actions:GVK-Drone-All-Action-LargeDisabled]
 			[Actions:GVK-Universal-Action-EditableOnCompromised]
 			[Actions:GVK-Universal-Action-Disabled]
+			[Actions:GVK-Universal-Action-LargeBlueExplosionEffects]
 			</Description>
 		</EntityComponent>
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
@@ -235,6 +237,7 @@
 			[Actions:GVK-Drone-All-Action-LargeDisabled]
 			[Actions:GVK-Universal-Action-EditableOnCompromised]
 			[Actions:GVK-Universal-Action-Disabled]
+			[Actions:GVK-Universal-Action-LargeBlueExplosionEffects]
 			</Description>
 		</EntityComponent>
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
@@ -290,6 +293,7 @@
 			[Actions:GVK-Drone-All-Action-LargeDisabled]
 			[Actions:GVK-Universal-Action-EditableOnCompromised]
 			[Actions:GVK-Universal-Action-Disabled]
+			[Actions:GVK-Universal-Action-LargeBlueExplosionEffects]
 			</Description>
 		</EntityComponent>
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
@@ -345,6 +349,7 @@
 			[Actions:GVK-Drone-All-Action-LargeFlyerCrashed]
 			[Actions:GVK-Drone-All-Action-LargeFlyerDisabled]
 			[Actions:GVK-Universal-Action-EditableOnCompromised]
+			[Actions:GVK-Universal-Action-LargeBlueExplosionEffects]
 			</Description>
 		</EntityComponent>
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
@@ -415,6 +420,7 @@
 			[Actions:GVK-Drone-All-Action-LargeFlyerCompromised]
 			[Actions:GVK-Drone-All-Action-LargeFlyerDisabled]
 			[Actions:GVK-Universal-Action-EditableOnCompromised]
+			[Actions:GVK-Universal-Action-LargeBlueExplosionEffects]
 			</Description>
 		</EntityComponent>
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
@@ -467,6 +473,7 @@
 			[Actions:GVK-Drone-All-Action-LargeFlyerCompromised]
 			[Actions:GVK-Drone-All-Action-LargeFlyerDisabled]
 			[Actions:GVK-Universal-Action-EditableOnCompromised]
+			[Actions:GVK-Universal-Action-MediumBlueExplosionEffects]
 			</Description>
 		</EntityComponent>
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
@@ -483,7 +490,7 @@
 			[UseFailCondition:true]
 			</Description>
 		</EntityComponent>
-		<!-- Action for Large drones when defeated to disable stuff -->
+		<!-- Action for Large drones when defeated to disable stuff and despawn -->
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
@@ -495,51 +502,6 @@
 			[DisableTriggerNames:GVK-Drone-All-Trigger-LargeFlyerCrashed]
 			[DisableTriggerNames:GVK-Drone-All-Trigger-LargeFlyerCompromised]
 			[DisableTriggerNames:GVK-Drone-All-Trigger-LargeFlyerBeaconDisabled]
-			[ForceDespawn:true]
-			</Description>
-		</EntityComponent>
-		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
-			<Id>
-				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Drone-All-Action-LargeFlyerDisabled-Old</SubtypeId>
-			</Id>
-			<Description>
-			[RivalAI Action]
-			[EnableBlocks:true]
-			[EnableBlockNames:Magnetic Plate]
-			[EnableBlockStates:On]
-			[StopAllRotation:true]
-			[StopAllThrust:true]
-			[RazeBlocksOfType:false]
-			[RazeBlocksTypes:MyObjectBuilder_Beacon/ZoneBlock]
-			[RazeBlocksTypes:MyObjectBuilder_RemoteControl/RivalAIRemoteControlLarge]
-			[RazeBlocksTypes:MyObjectBuilder_RemoteControl/RivalAIRemoteControlSmall]
-			[RazeBlocksTypes:MyObjectBuilder_Beacon/SmallBlockBeacon]
-			[RazeBlocksTypes:MyObjectBuilder_Beacon/LargeBlockBeacon]
-			[RazeBlocksTypes:MyObjectBuilder_Beacon/SmallBlockBeacon_NPCNoConceal]
-			[RazeBlocksTypes:MyObjectBuilder_Beacon/LargeBlockBeacon_NPCNoConceal]
-			[ToggleBlocksOfType:true]
-			[BlockTypesToToggle:MyObjectBuilder_Beacon/ZoneBlock]
-			[BlockTypeToggles:Off]
-			[BlockTypesToToggle:MyObjectBuilder_Beacon/DisposableNpcBeaconSmall]
-			[BlockTypeToggles:Off]
-			[BlockTypesToToggle:MyObjectBuilder_Beacon/DisposableNpcBeaconLarge]
-			[BlockTypeToggles:Off]
-			[BlockTypesToToggle:MyObjectBuilder_Beacon/SmallBlockBeacon]
-			[BlockTypeToggles:Off]
-			[BlockTypesToToggle:MyObjectBuilder_Beacon/LargeBlockBeacon]
-			[BlockTypeToggles:Off]
-			[BlockTypesToToggle:MyObjectBuilder_Beacon/LargeBlockBeacon_NPCNoConceal]
-			[BlockTypeToggles:Off]
-			[BlockTypesToToggle:MyObjectBuilder_Beacon/SmallBlockBeacon_NPCNoConceal]
-			[BlockTypeToggles:Off]
-			[DisableTriggers:true]
-			[DisableTriggerNames:GVK-Drone-All-Trigger-LargeFlyerCrashed]
-			[DisableTriggerNames:GVK-Drone-All-Trigger-LargeFlyerCompromised]
-			[DisableTriggerNames:GVK-Drone-All-Trigger-LargeFlyerBeaconDisabled]
-			[ChangeInertiaDampeners:true]
-			[InertiaDampenersEnable:false]
-			[TerminateBehavior:true]
 			[ForceDespawn:true]
 			</Description>
 		</EntityComponent>
