@@ -1,0 +1,113 @@
+<?xml version="1.0"?>
+<Definitions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+	<EntityComponents>
+		<!-- HoverCruiserHorsefly Behavior -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Drone-All-Behavior-HoverCruiserHorsefly</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Behavior]
+			[BehaviorName:Patrol]
+			[UseStaticGuns:true]
+			[UseTurrets:true]
+			[MaxStaticWeaponRange:-1]
+			[WeaponMaxAngleFromTarget:180]
+			[UseAmmoReplenish:true]
+			[AmmoReplenishClipAmount:10]
+			[MaxAmmoReplenishments:99999999]
+			[UsePlayerDistanceTimer:true]
+			[PlayerDistanceTimerTrigger:900]
+			[PlayerDistanceTrigger:3000]
+			[UseNoTargetTimer:true]
+			[NoTargetTimerTrigger:900]
+			[UseRetreatTimer:false]
+			[TargetData:GVK-Universal-Target-EnemyGrids]
+			[AutopilotData:GVK-Drone-All-Autopilot-HoverCruiserHorsefly-Passive]
+			[SecondaryAutopilotData:GVK-Drone-All-Autopilot-HoverCruiserHorsefly-Aggressive]
+			[Triggers:GVK-Drone-All-Trigger-CruiserBeaconDisabled]
+			[Triggers:GVK-Drone-All-Trigger-CruiserCompromised]
+			[Triggers:GVK-Drone-All-Trigger-TargetAttacker]
+			[Triggers:GVK-Drone-All-Trigger-WeaponsToMaxRange]
+			[Triggers:GVK-Drone-All-Trigger-FireMissilesTimers]
+			[Triggers:GVK-Universal-Trigger-SPRTTargetAcquiredChatter]
+			[Triggers:GVK-Universal-Trigger-SPRTNoWeapon]
+			[Triggers:GVK-Universal-Trigger-JetpackInhibitor]
+			[Triggers:GVK-Drone-Encounter-Trigger-RetreatNoTarget]
+			[Triggers:GVK-Drone-Encounter-Trigger-RetreatTimer]
+			[TriggerGroups:GVK-Drone-All-TriggerGroup-PatrolHorsefly]
+			BountyOnKill=3000000;
+			</Description>
+		</EntityComponent>
+		<!-- HoverCruiserHorsefly Autopilot -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Drone-All-Autopilot-HoverCruiserHorsefly-Passive</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Autopilot]
+			[UseVelocityCollisionEvasion:false]
+			[RotationMultiplier:8]
+			[LimitRotationSpeed:true]
+			[MaxRotationMagnitude:0.25]
+			[DisableInertiaDampeners:false]
+			[FlyLevelWithGravity:true]
+			[LevelWithGravityWhenIdle:true]
+			[IdealPlanetAltitude:10]
+			[MinimumPlanetAltitude:0]
+			[AltitudeTolerance:5000]
+			[WaypointAbandonTimeTrigger:15]
+			[WaypointTolerance:150]
+			[IdealMinSpeed:35]
+			[IdealMaxSpeed:40]
+			[MaxSpeedTolerance:10]
+			[OffsetPlanetMinDistFromTarget:600]
+			[OffsetPlanetMaxDistFromTarget:601]
+			[OffsetPlanetMinTargetAltitude:10]
+			[OffsetPlanetMaxTargetAltitude:15]
+			[ReverseOffsetDistAltAboveHeight:false]
+			[ReverseOffsetHeight:0]
+			[AngleAllowedForForwardThrust:180]
+			[MaxVelocityAngleForSpeedControl:180]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Drone-All-Autopilot-HoverCruiserHorsefly-Aggressive</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Autopilot]
+			[UseVelocityCollisionEvasion:false]
+			[RotationMultiplier:8]
+			[LimitRotationSpeed:true]
+			[MaxRotationMagnitude:0.25]
+			[DisableInertiaDampeners:false]
+			[FlyLevelWithGravity:true]
+			[LevelWithGravityWhenIdle:true]
+			[IdealPlanetAltitude:10]
+			[MinimumPlanetAltitude:0]
+			[AltitudeTolerance:5000]
+			[CollisionEvasionWaypointDistance:300]
+			[CollisionEvasionResumeDistance:150]
+			[CollisionEvasionResumeTime:10]
+			[CollisionEvasionWaypointCalculatedAwayFromEntity:true]
+			[WaypointAbandonTimeTrigger:20]
+			[WaypointTolerance:150]
+			[IdealMinSpeed:35]
+			[IdealMaxSpeed:60]
+			[MaxSpeedTolerance:10]
+			[OffsetPlanetMinDistFromTarget:1200]
+			[OffsetPlanetMaxDistFromTarget:2000]
+			[OffsetPlanetMinTargetAltitude:10]
+			[OffsetPlanetMaxTargetAltitude:15]
+			[ReverseOffsetDistAltAboveHeight:false]
+			[ReverseOffsetHeight:0]
+			[AngleAllowedForForwardThrust:180]
+			[MaxVelocityAngleForSpeedControl:180]
+			</Description>
+		</EntityComponent>
+	</EntityComponents>
+</Definitions>

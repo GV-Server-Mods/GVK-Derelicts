@@ -1,0 +1,235 @@
+<?xml version="1.0"?>
+<Definitions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+	<EntityComponents>
+		<!-- Drone Patrol/Horsefly trigger group with 4km KPL -->
+		<!-- requires two autopilots: pimary passive and secondary aggressive -->
+		<!-- Known issue with KPLs disappearing without explaination, so KPL creation cooldown is lower -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Drone-All-TriggerGroup-PatrolHorsefly</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI TriggerGroup]
+			[Triggers:GVK-Drone-All-PatrolHorsefly-ManualTrigger-SwitchToHorsefly]
+			[Triggers:GVK-Drone-All-PatrolHorsefly-ManualTrigger-SwitchToPatrol]
+			[Triggers:GVK-Drone-All-PatrolHorsefly-Trigger-TargetNear]
+			[Triggers:GVK-Drone-All-PatrolHorsefly-Trigger-LostTarget]
+			[Triggers:GVK-Drone-All-PatrolHorsefly-Trigger-TargetFar]
+			[Triggers:GVK-Drone-All-PatrolHorsefly-ManualTrigger-CreateKPL]
+			[Triggers:GVK-Drone-All-PatrolHorsefly-Trigger-CheckforKPL]
+			</Description>
+		</EntityComponent>
+		<!-- manual triggers so multiple triggers can reference it without complications -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Drone-All-PatrolHorsefly-ManualTrigger-SwitchToHorsefly</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Trigger]
+			[UseTrigger:true]
+			[Type:Manual]
+			[StartsReady:true]
+			[MinCooldownMs:5000]
+			[MaxCooldownMs:5001]
+			[Actions:GVK-Drone-All-PatrolHorsefly-Action-SwitchToHorsefly]
+			[ToggleWithTriggerProfile:GVK-Drone-All-PatrolHorsefly-ManualTrigger-SwitchToPatrol]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Drone-All-PatrolHorsefly-Action-SwitchToHorsefly</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Action]
+			[ChangeBehaviorSubclass:true]
+			[NewBehaviorSubclass:Horsefly]
+			[ChangeAutopilotProfile:true]
+			[AutopilotProfile:Secondary]
+			</Description>
+		</EntityComponent>
+		<!-- should start false since it already spawns in Patrol mode -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Drone-All-PatrolHorsefly-ManualTrigger-SwitchToPatrol</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Trigger]
+			[UseTrigger:false]
+			[Type:Manual]
+			[StartsReady:true]
+			[Actions:GVK-Drone-All-PatrolHorsefly-Action-SwitchToPatrol]
+			[ToggleWithTriggerProfile:GVK-Drone-All-PatrolHorsefly-ManualTrigger-SwitchToHorsefly]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Drone-All-PatrolHorsefly-Action-SwitchToPatrol</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Action]
+			[ChangeBehaviorSubclass:true]
+			[NewBehaviorSubclass:Patrol]
+			[ChangeAutopilotProfile:true]
+			[AutopilotProfile:Primary]
+			</Description>
+		</EntityComponent>
+		<!-- When target in 2km, become aggressive and create KPL -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Drone-All-PatrolHorsefly-Trigger-TargetNear</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Trigger]
+			[UseTrigger:true]
+			[Type:TargetNear]
+			[StartsReady:true]
+			[MinCooldownMs:5000]
+			[MaxCooldownMs:5001]
+			[TargetDistance:2000]
+			[Actions:GVK-Drone-All-PatrolHorsefly-Action-TargetNear]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Drone-All-PatrolHorsefly-Action-TargetNear</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Action]
+			[EnableTriggers:true]
+			[ManuallyActivateTrigger:true]
+			[ManuallyActivatedTriggerNames:GVK-Drone-All-PatrolHorsefly-ManualTrigger-SwitchToHorsefly]
+			[ManuallyActivatedTriggerNames:GVK-Drone-All-PatrolHorsefly-ManualTrigger-CreateKPL]
+			</Description>
+		</EntityComponent>
+		<!-- Create new KPL (if not already in KPL) -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Drone-All-PatrolHorsefly-ManualTrigger-CreateKPL</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Trigger]
+			[UseTrigger:true]
+			[Type:Manual]
+			[StartsReady:true]
+			[MinCooldownMs:20000]
+			[MaxCooldownMs:20001]
+			[Actions:GVK-Drone-All-PatrolHorsefly-Action-CreateKPL]
+			[ToggleWithTriggerProfile:GVK-Drone-All-PatrolHorsefly-Trigger-CheckforKPL]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Drone-All-PatrolHorsefly-Action-CreateKPL</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Action]
+			[CreateKnownPlayerArea:true]
+			[KnownPlayerAreaRadius:4000]
+			[KnownPlayerAreaTimer:5]
+			[KnownPlayerAreaMaxSpawns:-1]
+			</Description>
+		</EntityComponent>
+		<!-- Check if still in KPL -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Drone-All-PatrolHorsefly-Trigger-CheckforKPL</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Trigger]
+			[UseTrigger:false]
+			[Type:PlayerKnownLocation]
+			[StartsReady:true]
+			[MinCooldownMs:10000]
+			[MaxCooldownMs:10001]
+			[Actions:GVK-Drone-All-PatrolHorsefly-Action-StillinKPL]
+			[UseElseActions:true]
+			[ElseActions:GVK-Drone-All-PatrolHorsefly-Action-NotinKPL]
+			</Description>
+		</EntityComponent>
+		<!-- If still in KPL then reset CreateKPL cooldown -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Drone-All-PatrolHorsefly-Action-StillinKPL</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Action]
+			[ResetCooldownTimeOfTriggers:true]
+			[ResetTriggerCooldownNames:GVK-Drone-All-PatrolHorsefly-ManualTrigger-CreateKPL]
+			</Description>
+		</EntityComponent>
+		<!-- If not in KPL, switch to patrol and return to origin -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Drone-All-PatrolHorsefly-Action-NotinKPL</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Action]
+			[ManuallyActivateTrigger:true]
+			[ManuallyActivatedTriggerNames:GVK-Drone-All-PatrolHorsefly-ManualTrigger-SwitchToPatrol]
+			[EnableTriggers:true]
+			[EnableTriggerNames:GVK-Drone-All-PatrolHorsefly-ManualTrigger-CreateKPL]
+			[DisableTriggers:true]
+			[DisableTriggerNames:GVK-Drone-All-PatrolHorsefly-Trigger-CheckforKPL]
+			</Description>
+		</EntityComponent>
+		<!-- If no/lost target, switch to patrol and return to origin -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Drone-All-PatrolHorsefly-Trigger-LostTarget</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Trigger]
+			[UseTrigger:true]
+			[Type:LostTarget]
+			[StartsReady:true]
+			[MinCooldownMs:5000]
+			[MaxCooldownMs:5001]
+			[TargetDistance:2000]
+			[AllowTargetFarWithoutTarget:true]
+			[Actions:GVK-Drone-All-PatrolHorsefly-Action-TargetFar]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Drone-All-PatrolHorsefly-Trigger-TargetFar</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Trigger]
+			[UseTrigger:true]
+			[Type:TargetFar]
+			[StartsReady:true]
+			[MinCooldownMs:5000]
+			[MaxCooldownMs:5001]
+			[TargetDistance:2000]
+			[AllowTargetFarWithoutTarget:true]
+			[Actions:GVK-Drone-All-PatrolHorsefly-Action-TargetFar]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Drone-All-PatrolHorsefly-Action-TargetFar</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Action]
+			[EnableTriggers:true]
+			[ManuallyActivateTrigger:true]
+			[ManuallyActivatedTriggerNames:GVK-Drone-All-PatrolHorsefly-ManualTrigger-SwitchToPatrol]
+			</Description>
+		</EntityComponent>
+	</EntityComponents>
+</Definitions>

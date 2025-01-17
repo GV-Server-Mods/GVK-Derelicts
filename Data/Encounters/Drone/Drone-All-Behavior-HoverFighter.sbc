@@ -9,7 +9,11 @@
 			</Id>
 			<Description>
 			[RivalAI Behavior]
-			[BehaviorName:Fighter]
+			[BehaviorName:Patrol]
+			[UseStaticGuns:true]
+			[UseTurrets:true]
+			[MaxStaticWeaponRange:-1]
+			[WeaponMaxAngleFromTarget:10]
 			[UseAmmoReplenish:true]
 			[AmmoReplenishClipAmount:10]
 			[MaxAmmoReplenishments:99999999]
@@ -18,31 +22,55 @@
 			[PlayerDistanceTrigger:3000]
 			[UseNoTargetTimer:false]
 			[UseRetreatTimer:false]
-			[HorseFighterTimeApproaching:30]
-			[HorseFighterTimeEngaging:30]
 			[TargetData:GVK-Universal-Target-EnemyGrids]
-			[AutopilotData:GVK-Drone-All-Autopilot-MediumHoverFighterPrimary]
-			[SecondaryAutopilotData:GVK-Drone-All-Autopilot-MediumHoverFighterSecondary]
+			[AutopilotData:GVK-Drone-All-Autopilot-MediumHoverFighter-Patrol]
+			[SecondaryAutopilotData:GVK-Drone-All-Autopilot-MediumHoverFighter-Fighter]
 			[Triggers:GVK-Drone-All-Trigger-LargeBeaconDisabled]
 			[Triggers:GVK-Drone-All-Trigger-WeaponsToMaxRange]
-			[Triggers:GVK-Drone-All-Trigger-FireRailgunsTimers]
-			[Triggers:GVK-Drone-All-Trigger-FireMissilesTimers]
 			[Triggers:GVK-Universal-Trigger-SPRTTargetAcquiredChatter]
 			[Triggers:GVK-Drone-All-Trigger-LargeCompromised]
 			[Triggers:GVK-Universal-Trigger-SPRTNoWeapon]
-			[Triggers:GVK-Drone-All-Trigger-MediumHoverFighterSecondaryAutopilot]
-			[Triggers:GVK-Drone-All-Trigger-MediumHoverFighterPrimaryAutopilot]
 			[Triggers:GVK-Drone-Encounter-Trigger-RetreatNoTarget]
 			[Triggers:GVK-Drone-Encounter-Trigger-RetreatTimer]
-			[WeaponSystem:GVK-Drone-All-Weapon-Fixed]
+			[TriggerGroups:GVK-Drone-All-TriggerGroup-PatrolFighter]
 			BountyOnKill=1000000;
 			</Description>
 		</EntityComponent>
-		<!-- Medium Hover Fighter Autopilot Primary -->
+		<!-- Medium Hover Fighter Autopilot Primary Passive for Patrol behavior -->
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Drone-All-Autopilot-MediumHoverFighterPrimary</SubtypeId>
+				<SubtypeId>GVK-Drone-All-Autopilot-MediumHoverFighter-Patrol</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Autopilot]
+			[RotationMultiplier:0.5]
+			[LimitRotationSpeed:true]
+			[MaxRotationMagnitude:0.75]
+			[DisableInertiaDampeners:false]
+			[FlyLevelWithGravity:false]
+			[LevelWithGravityWhenIdle:true]
+			[IdealPlanetAltitude:15]
+			[MinimumPlanetAltitude:15]
+			[AltitudeTolerance:500]
+			[WaypointTolerance:50]
+			[IdealMinSpeed:29]
+			[IdealMaxSpeed:30]
+			[MaxSpeedTolerance:10]
+			[WaypointAbandonTimeTrigger:6]
+			[OffsetPlanetMinDistFromTarget:500]
+			[OffsetPlanetMaxDistFromTarget:501]
+			[OffsetPlanetMinTargetAltitude:15]
+			[OffsetPlanetMaxTargetAltitude:16]
+			[AngleAllowedForForwardThrust:180]
+			[MaxVelocityAngleForSpeedControl:180]
+			</Description>
+		</EntityComponent>
+		<!-- Medium Hover Fighter Autopilot Secondary -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Drone-All-Autopilot-MediumHoverFighter-Fighter</SubtypeId>
 			</Id>
 			<Description>
 			[RivalAI Autopilot]
@@ -51,13 +79,14 @@
 			[RotationMultiplier:1]
 			[LimitRotationSpeed:false]
 			[MaxRotationMagnitude:4]
-			[FlyLevelWithGravity:true]
+			[FlyLevelWithGravity:false]
 			[LevelWithGravityWhenIdle:true]
 			[IdealPlanetAltitude:15]
 			[MinimumPlanetAltitude:15]
 			[AltitudeTolerance:20]
 			[IdealMinSpeed:30]
-			[IdealMaxSpeed:50]
+			[IdealMaxSpeed:60]
+			[MaxSpeedTolerance:10]
 			[AllowStrafing:true]
 			[StrafeMinDurationMs:1000]
 			[StrafeMaxDurationMs:5000]
@@ -71,11 +100,11 @@
 			[MaxVelocityAngleForSpeedControl:180]
 			</Description>
 		</EntityComponent>
-		<!-- Medium Hover Fighter Autopilot Secondary -->
+		<!-- Medium Hover Fighter Autopilot Tertiary -->
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Drone-All-Autopilot-MediumHoverFighterSecondary</SubtypeId>
+				<SubtypeId>GVK-Drone-All-Autopilot-MediumHoverFighter-Tertiary</SubtypeId>
 			</Id>
 			<Description>
 			[RivalAI Autopilot]
@@ -90,7 +119,8 @@
 			[MinimumPlanetAltitude:15]
 			[AltitudeTolerance:20]
 			[IdealMinSpeed:30]
-			[IdealMaxSpeed:50]
+			[IdealMaxSpeed:60]
+			[MaxSpeedTolerance:10]
 			[AllowStrafing:true]
 			[StrafeMinDurationMs:1000]
 			[StrafeMaxDurationMs:5000]
@@ -104,7 +134,50 @@
 			[MaxVelocityAngleForSpeedControl:180]
 			</Description>
 		</EntityComponent>
-		<!-- Action group switch to secondary autopilot when strafing -->
+		<!-- Action group switch to Tertiary autopilot when strafing -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Drone-All-Trigger-MediumHoverFighterTertiaryAutopilot</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Trigger]
+			[UseTrigger:true]
+			[Type:TargetNear]
+			[TargetDistance:2000]
+			[MinCooldownMs:5000]
+			[MaxCooldownMs:5000]
+			[StartsReady:true]
+			[ConditionCheckResetsTimer:false]
+			[Conditions:GVK-Drone-All-Condition-MediumHoverFighterTertiaryAutopilot]
+			[Actions:GVK-Drone-All-Action-MediumHoverFighterTertiaryAutopilot]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Drone-All-Condition-MediumHoverFighterTertiaryAutopilot</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Condition]
+			[UseConditions:true]
+			[MatchAnyCondition:true]
+			[CheckTargetAngleFromForward:true]
+			[MinTargetAngle:0]
+			[MaxTargetAngle:20]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Drone-All-Action-MediumHoverFighterTertiaryAutopilot</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Action]
+			[ChangeAutopilotProfile:true]
+			[AutopilotProfile:Tertiary]
+			</Description>
+		</EntityComponent>
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
@@ -115,8 +188,6 @@
 			[UseTrigger:true]
 			[Type:TargetNear]
 			[TargetDistance:2000]
-			[MinCooldownMs:5000]
-			[MaxCooldownMs:5000]
 			[StartsReady:true]
 			[ConditionCheckResetsTimer:false]
 			[Conditions:GVK-Drone-All-Condition-MediumHoverFighterSecondaryAutopilot]
@@ -133,8 +204,8 @@
 			[UseConditions:true]
 			[MatchAnyCondition:true]
 			[CheckTargetAngleFromForward:true]
-			[MinTargetAngle:0]
-			[MaxTargetAngle:20]
+			[MinTargetAngle:11]
+			[MaxTargetAngle:180]
 			</Description>
 		</EntityComponent>
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
@@ -146,47 +217,6 @@
 			[RivalAI Action]
 			[ChangeAutopilotProfile:true]
 			[AutopilotProfile:Secondary]
-			</Description>
-		</EntityComponent>
-		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
-			<Id>
-				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Drone-All-Trigger-MediumHoverFighterPrimaryAutopilot</SubtypeId>
-			</Id>
-			<Description>
-			[RivalAI Trigger]
-			[UseTrigger:true]
-			[Type:TargetNear]
-			[TargetDistance:2000]
-			[StartsReady:true]
-			[ConditionCheckResetsTimer:false]
-			[Conditions:GVK-Drone-All-Condition-MediumHoverFighterPrimaryAutopilot]
-			[Actions:GVK-Drone-All-Action-MediumHoverFighterPrimaryAutopilot]
-			</Description>
-		</EntityComponent>
-		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
-			<Id>
-				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Drone-All-Condition-MediumHoverFighterPrimaryAutopilot</SubtypeId>
-			</Id>
-			<Description>
-			[RivalAI Condition]
-			[UseConditions:true]
-			[MatchAnyCondition:true]
-			[CheckTargetAngleFromForward:true]
-			[MinTargetAngle:11]
-			[MaxTargetAngle:180]
-			</Description>
-		</EntityComponent>
-		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
-			<Id>
-				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Drone-All-Action-MediumHoverFighterPrimaryAutopilot</SubtypeId>
-			</Id>
-			<Description>
-			[RivalAI Action]
-			[ChangeAutopilotProfile:true]
-			[AutopilotProfile:Primary]
 			</Description>
 		</EntityComponent>
 	</EntityComponents>
