@@ -28,6 +28,34 @@
 			[ChatData:GVK-Universal-Chat-SPRTTargetAcquiredChatter]
 			</Description>
 		</EntityComponent>
+		<!-- retreat when all weapons are gone -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Universal-Trigger-NoWeapon</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Trigger]
+			[Type:NoWeapon]
+			[UseTrigger:true]
+			[StartsReady:false]
+			[MinCooldownMs:10000]
+			[MaxCooldownMs:10001]
+			[MaxActions:1]
+			[Actions:GVK-Universal-Action-NoWeapon]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Universal-Action-NoWeapon</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Action]
+			[Retreat:true]
+			[RecalculateDespawnCoords:true]
+			</Description>
+		</EntityComponent>
 		<!-- Jetpack Inhibitor on Session (This appears to be broken in DS MP, players can glide long distances  -->
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
