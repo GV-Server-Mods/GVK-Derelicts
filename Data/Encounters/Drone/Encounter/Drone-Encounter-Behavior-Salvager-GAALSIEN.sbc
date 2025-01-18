@@ -23,7 +23,6 @@
 			[Triggers:GVK-Drone-Encounter-Salvager-GAALSIEN-Trigger-Retreat-PlayerNear]
 			[Triggers:GVK-Drone-Encounter-Salvager-GAALSIEN-Trigger-Retreat-Damage]
 			[Triggers:GVK-Drone-Encounter-Salvager-GAALSIEN-Trigger-Compromised]
-			[Triggers:GVK-Drone-Encounter-Salvager-GAALSIEN-Trigger-Crashed]
 			[Triggers:GVK-Drone-Encounter-Salvager-GAALSIEN-Trigger-BeaconDisabled]
 			[Triggers:GVK-Drone-Encounter-Trigger-RetreatNoTarget]
 			[Triggers:GVK-Drone-Encounter-Trigger-RetreatTimer]
@@ -150,7 +149,6 @@
 			<Description>
 			[RivalAI Action]
 			[DisableTriggers:true]
-			[DisableTriggerNames:GVK-Drone-Encounter-Salvager-GAALSIEN-Trigger-Crashed]			
 			[DisableTriggerNames:GVK-Drone-Encounter-Salvager-GAALSIEN-Trigger-Compromised]			
 			[DisableTriggerNames:GVK-Drone-Encounter-Salvager-GAALSIEN-Trigger-BeaconDisabled]
 			[UseChatBroadcast:true]
@@ -172,62 +170,6 @@
 			[Author:Sensors]
 			[Color:Blue]
 			[ChatMessages:Gaalsien salvager disabled.]
-			[ChatAudio:ArcHudSensors]
-			[BroadcastChatType:Notify]
-			[SendToAllOnlinePlayers:false]
-			[IgnoreAntennaRequirement:true]
-			[IgnoredAntennaRangeOverride:9999999]
-			</Description>
-		</EntityComponent>
-		<!-- Trigger sequence when small NPC crashes into the ground (instant delete) -->
-		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
-			<Id>
-				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Drone-Encounter-Salvager-GAALSIEN-Trigger-Crashed</SubtypeId>
-			</Id>
-			<Description>
-			[RivalAI Trigger]
-			[Type:Timer]
-			[UseTrigger:true]
-			[StartsReady:false]
-			[MinCooldownMs:5000]
-			[MaxCooldownMs:5000]
-			[MaxActions:1]
-			[Conditions:GVK-Drone-All-Condition-LargeCrashed]
-			[ActionExecution:All]
-			[Actions:GVK-Drone-Encounter-Salvager-GAALSIEN-Action-Crashed]
-			[Actions:GVK-Universal-Action-Disabled]
-			[Actions:GVK-Universal-Action-EditableOnCompromised]
-			</Description>
-		</EntityComponent>
-		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
-			<Id>
-				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Drone-Encounter-Salvager-GAALSIEN-Action-Crashed</SubtypeId>
-			</Id>
-			<Description>
-			[RivalAI Action]
-			[DisableTriggers:true]
-			[DisableTriggerNames:GVK-Drone-Encounter-Salvager-GAALSIEN-Trigger-Compromised]
-			[UseChatBroadcast:true]
-			[ChatData:GVK-Drone-Encounter-Salvager-GAALSIEN-Chat-Crashed]
-			</Description>
-		</EntityComponent>
-		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
-			<Id>
-				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Drone-Encounter-Salvager-GAALSIEN-Chat-Crashed</SubtypeId>
-			</Id>
-			<Description>
-			[RivalAI Chat]
-			[UseChat:true]
-			[StartsReady:true]
-			[Chance:100]
-			[MaxChats:1]
-			[BroadcastRandomly:true]
-			[Author:Sensors]
-			[Color:Blue]
-			[ChatMessages:Gaalsien salvager crashed.]
 			[ChatAudio:ArcHudSensors]
 			[BroadcastChatType:Notify]
 			[SendToAllOnlinePlayers:false]

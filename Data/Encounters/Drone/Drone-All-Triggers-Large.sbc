@@ -54,63 +54,6 @@
 			[IgnoredAntennaRangeOverride:10000]
 			</Description>
 		</EntityComponent>
-		<!-- Trigger sequence when Cruiser crashes into the ground -->
-		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
-			<Id>
-				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Drone-All-Trigger-CruiserCrashed</SubtypeId>
-			</Id>
-			<Description>
-			[RivalAI Trigger]
-			[Type:Timer]
-			[UseTrigger:true]
-			[StartsReady:false]
-			[MinCooldownMs:5000]
-			[MaxCooldownMs:5000]
-			[MaxActions:1]
-			[Conditions:GVK-Drone-All-Condition-LargeCrashed]
-			[ActionExecution:All]
-			[Actions:GVK-Drone-All-Action-CruiserCrashed]
-			[Actions:GVK-Drone-All-Action-LargeDisabled]
-			[Actions:GVK-Universal-Action-EditableOnCompromised]
-			[Actions:GVK-Universal-Action-Disabled]
-			</Description>
-		</EntityComponent>
-		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
-			<Id>
-				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Drone-All-Action-CruiserCrashed</SubtypeId>
-			</Id>
-			<Description>
-			[RivalAI Action]
-			[DisableTriggers:true]
-			[DisableTriggerNames:GVK-Drone-All-Trigger-CruiserCompromised]
-			[UseChatBroadcast:true]
-			[ChatData:GVK-Drone-All-Chat-CruiserCrashed]
-			</Description>
-		</EntityComponent>
-		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
-			<Id>
-				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Drone-All-Chat-CruiserCrashed</SubtypeId>
-			</Id>
-			<Description>
-			[RivalAI Chat]
-			[UseChat:true]
-			[StartsReady:true]
-			[Chance:100]
-			[MaxChats:1]
-			[BroadcastRandomly:true]
-			[Author:Sensors]
-			[Color:Blue]
-			[ChatMessages:Gaalsien cruiser crashed.]
-			[ChatAudio:ArcHudSensors]
-			[BroadcastChatType:Notify]
-			[SendToAllOnlinePlayers:false]
-			[IgnoreAntennaRequirement:true]
-			[IgnoredAntennaRangeOverride:9999999]
-			</Description>
-		</EntityComponent>
 		<!-- Trigger sequence when large NPC Beacon is disabled -->
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
@@ -174,7 +117,8 @@
 			<Description>
 			[RivalAI Action]
 			[DisableTriggers:true]
-			[DisableTriggerNames:GVK-Drone-All-Trigger-CruiserCrashed]
+			[DisableTriggerNames:GVK-Drone-All-Trigger-LargeBeaconDisabled]
+			[DisableTriggerNames:GVK-Drone-All-Trigger-CruiserCompromised]
 			[UseChatBroadcast:true]
 			[ChatData:GVK-Drone-All-Chat-CruiserCompromised]
 			</Description>
@@ -246,7 +190,6 @@
 			[RivalAI Action]
 			[DisableTriggers:true]
 			[DisableTriggerNames:GVK-Drone-All-Trigger-LargeCompromised]
-			[DisableTriggerNames:GVK-Drone-All-Trigger-CruiserCrashed]
 			[DisableTriggerNames:GVK-Drone-All-Trigger-CruiserCompromised]
 			[DisableTriggerNames:GVK-Drone-All-Trigger-LargeBeaconDisabled]
 			[ChangeInertiaDampeners:true]
