@@ -1,0 +1,267 @@
+<?xml version="1.0"?>
+<Definitions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+	<EntityComponents>
+		<!-- Trigger sequence when Medium NPC RAI Remote is disabled -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Drone-All-Trigger-MediumCompromised</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Trigger]
+			[Type:Compromised]
+			[UseTrigger:true]
+			[StartsReady:true]
+			[MaxActions:1]
+			[ActionExecution:All]
+			[Actions:GVK-Drone-All-Action-MediumCompromised]
+			[Actions:GVK-Universal-Action-Disabled]
+			[Actions:GVK-Universal-Action-MediumBlueExplosionEffects]
+			</Description>
+		</EntityComponent>
+		<!-- Trigger sequence when Medium NPC Beacon is disabled -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Drone-All-Trigger-MediumBeaconDisabled</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Trigger]
+			[Type:Timer]
+			[UseTrigger:true]
+			[StartsReady:true]
+			[Conditions:GVK-Drone-All-Condition-MediumBeaconDisabled]
+			[MaxActions:1]
+			[ActionExecution:All]
+			[Actions:GVK-Drone-All-Action-MediumCompromised]
+			[Actions:GVK-Universal-Action-Disabled]
+			[Actions:GVK-Universal-Action-MediumBlueExplosionEffects]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Drone-All-Condition-MediumBeaconDisabled</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Condition]
+			[UseConditions:true]
+			[MatchAnyCondition:false]
+			[CheckForBlocksOfType:true]
+			[BlocksOfType:MyObjectBuilder_Beacon]
+			[UseFailCondition:true]
+			</Description>
+		</EntityComponent>
+		<!-- Action for Medium drones when defeated to disable stuff -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Drone-All-Action-MediumCompromised</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Action]
+			[DisableTriggers:true]
+			[DisableTriggerNames:GVK-Drone-All-Trigger-MediumCompromised]
+			[DisableTriggerNames:GVK-Drone-All-Trigger-MediumBeaconDisabled]
+			[UseChatBroadcast:true]
+			[ChatData:GVK-Drone-All-Chat-MediumCompromised]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Drone-All-Chat-MediumCompromised</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Chat]
+			[UseChat:true]
+			[StartsReady:true]
+			[Chance:100]
+			[MaxChats:1]
+			[BroadcastRandomly:true]
+			[Author:Sensors]
+			[Color:Blue]
+			[ChatMessages:Gaalsien craft destroyed.]
+			[ChatAudio:ArcHudSensors]
+			[BroadcastChatType:Notify]
+			[SendToAllOnlinePlayers:false]
+			[IgnoreAntennaRequirement:true]
+			[IgnoredAntennaRangeOverride:10000]
+			</Description>
+		</EntityComponent>
+		<!-- Flyers are handled different because they despawn on death, and have crashed trigger -->
+		<!-- Trigger sequence when Medium NPC crashes into the ground -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Drone-All-Trigger-MediumFlyerCrashed</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Trigger]
+			[Type:Timer]
+			[UseTrigger:true]
+			[StartsReady:false]
+			[MinCooldownMs:5000]
+			[MaxCooldownMs:5001]
+			[MaxActions:1]
+			[Conditions:GVK-Drone-All-Condition-MediumFlyerCrashed]
+			[ActionExecution:All]
+			[Actions:GVK-Drone-All-Action-MediumFlyerCrashed]
+			[Actions:GVK-Drone-All-Action-MediumFlyerDisabled]
+			[Actions:GVK-Universal-Action-MediumBlueExplosionEffects]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Drone-All-Condition-MediumFlyerCrashed</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Condition]
+			[UseConditions:true]
+			[MatchAnyCondition:false]
+			[CheckGridSpeed:true]
+			[MinGridSpeed:0]
+			[MaxGridSpeed:10]
+			[AltitudeCheck:true]
+			[MinAltitude:-999999]
+			[MaxAltitude:10]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Drone-All-Action-MediumFlyerCrashed</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Action]
+			[DisableTriggers:true]
+			[DisableTriggerNames:GVK-Drone-All-Trigger-MediumFlyerCompromised]
+			[DisableTriggerNames:GVK-Drone-All-Trigger-MediumFlyerBeaconDisabled]
+			[UseChatBroadcast:true]
+			[ChatData:GVK-Drone-All-Chat-MediumFlyerCrashed]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Drone-All-Chat-MediumFlyerCrashed</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Chat]
+			[UseChat:true]
+			[StartsReady:true]
+			[Chance:100]
+			[MaxChats:1]
+			[BroadcastRandomly:true]
+			[Author:Sensors]
+			[Color:Blue]
+			[ChatMessages:Gaalsien aircraft crashed.]
+			[ChatAudio:ArcHudSensors]
+			[BroadcastChatType:Notify]
+			[SendToAllOnlinePlayers:false]
+			[IgnoreAntennaRequirement:true]
+			[IgnoredAntennaRangeOverride:10000]
+			</Description>
+		</EntityComponent>
+		<!-- Trigger sequence when Medium NPC RAI Remote is disabled -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Drone-All-Trigger-MediumFlyerCompromised</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Trigger]
+			[Type:Compromised]
+			[UseTrigger:true]
+			[StartsReady:true]
+			[MaxActions:1]
+			[ActionExecution:All]
+			[Actions:GVK-Drone-All-Action-MediumFlyerCompromised]
+			[Actions:GVK-Drone-All-Action-MediumFlyerDisabled]
+			[Actions:GVK-Universal-Action-MediumBlueExplosionEffects]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Drone-All-Action-MediumFlyerCompromised</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Action]
+			[UseChatBroadcast:true]
+			[ChatData:GVK-Drone-All-Chat-MediumFlyerCompromised]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Drone-All-Chat-MediumFlyerCompromised</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Chat]
+			[UseChat:true]
+			[StartsReady:true]
+			[Chance:100]
+			[MaxChats:1]
+			[BroadcastRandomly:true]
+			[Author:Sensors]
+			[Color:Blue]
+			[ChatMessages:Gaalsien aircraft destroyed.]
+			[ChatAudio:ArcHudSensors]
+			[BroadcastChatType:Notify]
+			[SendToAllOnlinePlayers:false]
+			[IgnoreAntennaRequirement:true]
+			[IgnoredAntennaRangeOverride:10000]
+			</Description>
+		</EntityComponent>
+		<!-- Trigger sequence when Medium NPC Beacon is disabled -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Drone-All-Trigger-MediumFlyerBeaconDisabled</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Trigger]
+			[Type:Timer]
+			[UseTrigger:true]
+			[StartsReady:true]
+			[Conditions:GVK-Drone-All-Condition-MediumFlyerBeaconDisabled]
+			[MaxActions:1]
+			[ActionExecution:All]
+			[Actions:GVK-Drone-All-Action-MediumFlyerCompromised]
+			[Actions:GVK-Drone-All-Action-MediumFlyerDisabled]
+			[Actions:GVK-Universal-Action-MediumBlueExplosionEffects]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Drone-All-Condition-MediumFlyerBeaconDisabled</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Condition]
+			[UseConditions:true]
+			[MatchAnyCondition:false]
+			[CheckForBlocksOfType:true]
+			[BlocksOfType:MyObjectBuilder_Beacon]
+			[UseFailCondition:true]
+			</Description>
+		</EntityComponent>
+		<!-- Action for Medium drones when defeated to disable stuff and despawn -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Drone-All-Action-MediumFlyerDisabled</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Action]
+			[DisableTriggers:true]
+			[DisableTriggerNames:GVK-Drone-All-Trigger-MediumFlyerCrashed]
+			[DisableTriggerNames:GVK-Drone-All-Trigger-MediumFlyerCompromised]
+			[DisableTriggerNames:GVK-Drone-All-Trigger-MediumFlyerBeaconDisabled]
+			[ForceDespawn:true]
+			</Description>
+		</EntityComponent>
+	</EntityComponents>
+</Definitions>
