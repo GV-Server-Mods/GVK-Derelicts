@@ -5,7 +5,7 @@
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-PlanetaryInstallation-Large-Behavior-GaalsienFortress</SubtypeId>
+				<SubtypeId>GVK-PlanetaryInstallation-Large-Behavior-GAALSIENFortress</SubtypeId>
 			</Id>
 			<Description>
 			[RivalAI Behavior]
@@ -20,12 +20,12 @@
 			[Triggers:GVK-Drone-All-Trigger-WeaponsToMaxRange]
 			[Triggers:GVK-Universal-Trigger-JetpackInhibitor]
 			[Triggers:GVK-Universal-Trigger-TargetAcquiredChatter]
-			[Triggers:GVK-PlanetaryInstallation-Large-Trigger-GaalsienFortressOnSpawn]
-			[Triggers:GVK-PlanetaryInstallation-Large-Trigger-GaalsienFortressBeaconDisabled]
-			[Triggers:GVK-PlanetaryInstallation-Large-Trigger-GaalsienFortressDespawn]
-			[Triggers:GVK-PlanetaryInstallation-Large-Trigger-GaalsienFortressDespawnMES]
-			[Triggers:GVK-PlanetaryInstallation-Large-Trigger-GaalsienFortressCompromised]
-			[Triggers:GVK-PlanetaryInstallation-Large-Trigger-GaalsienHangarSpawnCruisers]
+			[Triggers:GVK-PlanetaryInstallation-Large-Trigger-GAALSIENFortressOnSpawn]
+			[Triggers:GVK-PlanetaryInstallation-Large-Trigger-GAALSIENFortressBeaconDisabled]
+			[Triggers:GVK-PlanetaryInstallation-Large-Trigger-GAALSIENFortressDespawn]
+			[Triggers:GVK-PlanetaryInstallation-Large-Trigger-GAALSIENFortressDespawnMES]
+			[Triggers:GVK-PlanetaryInstallation-Large-Trigger-GAALSIENFortressCompromised]
+			[Triggers:GVK-PlanetaryInstallation-Large-Trigger-GAALSIENHangarSpawnCruisers]
 			[Triggers:GVK-PlanetaryInstallation-Large-Trigger-DefensesPlayerNear]
 			[Triggers:GVK-PlanetaryInstallation-Large-Trigger-DefensesDamage]
 			[Triggers:GVK-PlanetaryInstallation-Large-Trigger-DefensesManual]
@@ -38,7 +38,7 @@
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-PlanetaryInstallation-Large-Trigger-GaalsienFortressOnSpawn</SubtypeId>
+				<SubtypeId>GVK-PlanetaryInstallation-Large-Trigger-GAALSIENFortressOnSpawn</SubtypeId>
 			</Id>
 			<Description>
 			[RivalAI Trigger]
@@ -48,13 +48,13 @@
 			[MaxActions:1]
 			[MinCooldownMs:900000]
 			[MaxCooldownMs:900000]
-			[Actions:GVK-PlanetaryInstallation-GaalsienFortress-Action-OnSpawn]
+			[Actions:GVK-PlanetaryInstallation-GAALSIENFortress-Action-OnSpawn]
 			</Description>
 		</EntityComponent>
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-PlanetaryInstallation-GaalsienFortress-Action-OnSpawn</SubtypeId>
+				<SubtypeId>GVK-PlanetaryInstallation-GAALSIENFortress-Action-OnSpawn</SubtypeId>
 			</Id>
 			<Description>
 			[RivalAI Action]
@@ -62,14 +62,14 @@
 			[SetSandboxBooleansTrue:LargeWreckActive]
 			[SetWeaponsToMaxRange:true]
 			[UseChatBroadcast:true]
-			[ChatData:GVK-PlanetaryInstallation-GaalsienFortress-Chat-Announce]
+			[ChatData:GVK-PlanetaryInstallation-GAALSIENFortress-Chat-Announce]
 			</Description>
 		</EntityComponent>
 		<!-- need to run jetpack inhibitor on restart as well -->
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-PlanetaryInstallation-GaalsienFortress-Chat-Announce</SubtypeId>
+				<SubtypeId>GVK-PlanetaryInstallation-GAALSIENFortress-Chat-Announce</SubtypeId>
 			</Id>
 			<Description>
 			[RivalAI Chat]
@@ -80,7 +80,7 @@
 			[BroadcastRandomly:false]
 			[Author:Sensors]
 			[Color:Blue]
-			[ChatMessages:Gaalsien base detected.]
+			[ChatMessages:GAALSIEN base detected.]
 			[ChatAudio:ArcHudSensors]
 			[BroadcastChatType:Both]
 			[SendToAllOnlinePlayers:true]
@@ -90,7 +90,7 @@
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-PlanetaryInstallation-Large-Trigger-GaalsienFortressBeaconDisabled</SubtypeId>
+				<SubtypeId>GVK-PlanetaryInstallation-Large-Trigger-GAALSIENFortressBeaconDisabled</SubtypeId>
 			</Id>
 			<Description>
 			[RivalAI Trigger]
@@ -101,7 +101,7 @@
 			[StartsReady:false]
 			[Conditions:GVK-PlanetaryInstallation-All-Condition-BeaconDisabled]				  
 			[ActionExecution:All]
-			[Actions:GVK-PlanetaryInstallation-GaalsienFortress-Action-Compromised]
+			[Actions:GVK-PlanetaryInstallation-GAALSIENFortress-Action-Compromised]
 			[Actions:GVK-PlanetaryInstallation-Large-Action-DefensesTrigger]
 			[Actions:GVK-Universal-Action-Disabled]
 			[Actions:GVK-Universal-Action-LargeExplosionEffects]
@@ -110,7 +110,7 @@
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-PlanetaryInstallation-Large-Trigger-GaalsienFortressCompromised</SubtypeId>
+				<SubtypeId>GVK-PlanetaryInstallation-Large-Trigger-GAALSIENFortressCompromised</SubtypeId>
 			</Id>
 			<Description>
 			[RivalAI Trigger]
@@ -119,7 +119,7 @@
 			[StartsReady:true]
 			[MaxActions:1]
 			[ActionExecution:All]
-			[Actions:GVK-PlanetaryInstallation-GaalsienFortress-Action-Compromised]
+			[Actions:GVK-PlanetaryInstallation-GAALSIENFortress-Action-Compromised]
 			[Actions:GVK-PlanetaryInstallation-Large-Action-DefensesTrigger]
 			[Actions:GVK-Universal-Action-Disabled]
 			[Actions:GVK-Universal-Action-LargeExplosionEffects]
@@ -128,7 +128,7 @@
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-PlanetaryInstallation-Large-Trigger-GaalsienFortressDespawn</SubtypeId>
+				<SubtypeId>GVK-PlanetaryInstallation-Large-Trigger-GAALSIENFortressDespawn</SubtypeId>
 			</Id>
 			<Description>
 			[RivalAI Trigger]
@@ -136,13 +136,13 @@
 			[UseTrigger:true]
 			[StartsReady:true]
 			[MaxActions:1]
-			[Actions:GVK-PlanetaryInstallation-GaalsienFortress-Action-Compromised]
+			[Actions:GVK-PlanetaryInstallation-GAALSIENFortress-Action-Compromised]
 			</Description>
 		</EntityComponent>
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-PlanetaryInstallation-Large-Trigger-GaalsienFortressDespawnMES</SubtypeId>
+				<SubtypeId>GVK-PlanetaryInstallation-Large-Trigger-GAALSIENFortressDespawnMES</SubtypeId>
 			</Id>
 			<Description>
 			[RivalAI Trigger]
@@ -150,19 +150,19 @@
 			[UseTrigger:true]
 			[StartsReady:true]
 			[MaxActions:1]
-			[Actions:GVK-PlanetaryInstallation-GaalsienFortress-Action-Compromised]
+			[Actions:GVK-PlanetaryInstallation-GAALSIENFortress-Action-Compromised]
 			</Description>
 		</EntityComponent>
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-PlanetaryInstallation-GaalsienFortress-Action-Compromised</SubtypeId>
+				<SubtypeId>GVK-PlanetaryInstallation-GAALSIENFortress-Action-Compromised</SubtypeId>
 			</Id>
 			<Description>
 			[RivalAI Action]
 			[RemoveKnownPlayerArea:true]
 			[UseChatBroadcast:true]
-			[ChatData:GVK-PlanetaryInstallation-GaalsienFortress-Chat-Compromised]
+			[ChatData:GVK-PlanetaryInstallation-GAALSIENFortress-Chat-Compromised]
 			[SetSandboxBooleansFalse:LargeWreckActive]	
 			[TerminateBehavior:true]
 			</Description>
@@ -170,7 +170,7 @@
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-PlanetaryInstallation-GaalsienFortress-Chat-Compromised</SubtypeId>
+				<SubtypeId>GVK-PlanetaryInstallation-GAALSIENFortress-Chat-Compromised</SubtypeId>
 			</Id>
 			<Description>
 			[RivalAI Chat]
@@ -179,9 +179,9 @@
 			[Chance:100]
 			[MaxChats:1]
 			[BroadcastRandomly:false]
-			[Author:Coalition]
+			[Author:COALITION]
 			[Color:White]
-			[ChatMessages:Gaalsien base destroyed]
+			[ChatMessages:GAALSIEN base destroyed]
 			[ChatAudio:ArcHudGPSNotification2]
 			[BroadcastChatType:Both]
 			[SendToAllOnlinePlayers:true]
