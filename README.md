@@ -23,6 +23,12 @@ Other useful commands:
 
 ### Profile Naming Convention:
 `GVK-<SpawnType>-<SubType>-<ProfileType>-<UniqueTag>`
+
+
+Example: `GVK-Drone-Encounter-Behavior-ProductionCruiserHorsefly`
+
+
+Prefab naming:
 ```NCS	[NPC CargoShip]		"NCS [COALITION] Trader"
 NCO	[NPC Convoy]		"NCO [COALITION] Cargo Cruiser"
 NDR	[NPC Drone]		"NDR [GAALSIEN] Salvager"
@@ -36,9 +42,8 @@ NTS	[NPC Trade Station]	"NTS [COALITION] Rusty's"
 NLO	[NPC Loot]		"NLO [COALITION] Cargo Drop"
 
 NOU	[NPC Outpost]		Out of date
-NSN	[NPC Station]		Out of date	```
+NSN	[NPC Station]		Out of date
+```
 
-
-Example: `GVK-Drone-Encounter-Behavior-ProductionCruiserHorsefly`
 ## Thanks Yous:
 Nekron910 https://steamcommunity.com/sharedfiles/filedetails/?id=2650194963&tscn=1643638039
