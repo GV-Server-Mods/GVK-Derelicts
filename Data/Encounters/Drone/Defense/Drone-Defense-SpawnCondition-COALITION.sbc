@@ -1,6 +1,45 @@
 <?xml version="1.0"?>
 <Definitions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
 	<EntityComponents>
+		<!-- This spawns 2 small flyers ONLY in Z3 -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Drone-Encounter-SpawnCondition-COALITION-SmallFlyerSquad</SubtypeId>
+			</Id>
+			<Description>
+			[MES Spawn Conditions]
+			[RivalAiAtmosphericSpawn:true]
+			[FactionOwner:COALITION]
+			[ReactorsOn:true]
+			[ForceStaticGrid:false]
+			[SkipVoxelSpawnChecks:true]
+			[SkipGridSpawnChecks:true]
+			[ZoneConditions:GVK-Universal-ZoneConditions-WreckZone3Only]
+ 			[PrefabSpawningMode:RandomFixedCount]
+			[PrefabFixedCount:2]
+			[PrefabOffsetOverrides:{X:25 Y:0 Z:0}]
+			[PrefabOffsetOverrides:{X:-25 Y:0 Z:0}]
+			</Description>
+		</EntityComponent>
+		<!-- This spawns 1 Medium flyer in Z23 -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Drone-Encounter-SpawnCondition-COALITION-MediumFlyerSingle</SubtypeId>
+			</Id>
+			<Description>
+			[MES Spawn Conditions]
+			[RivalAiAtmosphericSpawn:true]
+			[FactionOwner:COALITION]
+			[ReactorsOn:true]
+			[ForceStaticGrid:false]
+			[SkipVoxelSpawnChecks:true]
+			[SkipGridSpawnChecks:true]
+			[ZoneConditions:GVK-Universal-ZoneConditions-WreckZone123]
+ 			[PrefabSpawningMode:Random]
+			</Description>
+		</EntityComponent>
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>

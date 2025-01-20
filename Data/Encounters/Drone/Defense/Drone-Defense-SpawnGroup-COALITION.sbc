@@ -51,5 +51,46 @@
 				</Prefab>
 			</Prefabs>
 		</SpawnGroup>
+		<SpawnGroup>
+			<Id>
+				<TypeId>SpawnGroupDefinition</TypeId>
+				<!--Do Not Edit-->
+				<SubtypeId>GVK-Drone-Defense-SpawnGroup-COALITION-StrikeFighter</SubtypeId>
+			</Id>
+			<Description>
+			[Modular Encounters SpawnGroup]
+			[IgnoreCleanupRules:false]
+			[ReplenishSystems:true]
+			[ManipulationProfiles:GVK-Drone-All-Manipulation-Interceptor]
+			[ManipulationProfiles:GVK-Universal-Manipulation-DamageModifier50]
+			[SpawnConditionsProfiles:GVK-Drone-Defense-SpawnCondition-COALITION-SmallFlyerSquad]
+			[SpawnConditionsProfiles:GVK-Drone-Defense-SpawnCondition-COALITION-SmallFlyerSingle]
+			</Description>
+			<IsPirate>true</IsPirate>
+			<!--Do not edit-->
+			<Frequency>0.1</Frequency>
+			<Prefabs>
+				<Prefab SubtypeId="NDR [COAL] Strike Fighter">
+					<Position>
+						<X>0</X>
+						<Y>0.0</Y>
+						<Z>0</Z>
+					</Position>
+					<Speed>0</Speed>
+					<BeaconText>Strike Fighter</BeaconText>
+					<Behaviour>GVK-Drone-All-Behavior-SmallFlyerPatrolStrike</Behaviour>
+				</Prefab>
+				<Prefab SubtypeId="NDR [COAL] Strike Fighter">
+					<Position>
+						<X>0</X>
+						<Y>0.0</Y>
+						<Z>0</Z>
+					</Position>
+					<Speed>0</Speed>
+					<BeaconText>Strike Fighter</BeaconText>
+					<Behaviour>GVK-Drone-All-Behavior-SmallFlyerPatrolStrike</Behaviour>
+				</Prefab>
+			</Prefabs>
+		</SpawnGroup>
 	</SpawnGroups>
 </Definitions>
