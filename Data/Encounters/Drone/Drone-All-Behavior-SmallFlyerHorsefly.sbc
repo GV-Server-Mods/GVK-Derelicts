@@ -1,0 +1,105 @@
+<Definitions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+	<EntityComponents>
+			<!-- SmallFlyerHorsefly Behavior -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Drone-All-Behavior-SmallFlyerHorsefly</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Behavior]
+			[BehaviorName:Horsefly]
+			[UseStaticGuns:true]
+			[UseTurrets:true]
+			[MaxStaticWeaponRange:-1]
+			[WeaponMaxAngleFromTarget:180]
+			[UseAmmoReplenish:true]
+			[AmmoReplenishClipAmount:10]
+			[MaxAmmoReplenishments:99999999]
+			[UsePlayerDistanceTimer:true]
+			[PlayerDistanceTimerTrigger:900]
+			[PlayerDistanceTrigger:3000]
+			[UseNoTargetTimer:true]
+			[NoTargetTimerTrigger:900]
+			[UseRetreatTimer:false]
+			[TargetData:GVK-Universal-Target-EnemyGrids]
+			[AutopilotData:GVK-Drone-All-Autopilot-SmallFlyerHorsefly-Patrol]
+			[SecondaryAutopilotData:GVK-Drone-All-Autopilot-SmallFlyerHorsefly-Horsefly]
+			[Triggers:GVK-Drone-All-Trigger-TargetAttacker]
+			[Triggers:GVK-Drone-All-Trigger-WeaponsToMaxRange]
+			[Triggers:GVK-Universal-Trigger-TargetAcquiredChatter]
+			[Triggers:GVK-Drone-Encounter-Trigger-RetreatNoTarget]
+			[Triggers:GVK-Drone-Encounter-Trigger-RetreatTimer]
+			[TriggerGroups:GVK-Drone-All-TriggerGroup-PatrolHorsefly]
+			[TriggerGroups:GVK-Drone-All-TriggerGroup-SmallFlyerDefeated]
+			BountyOnKill=500000;
+			</Description>
+		</EntityComponent>
+		<!-- SmallFlyerHorsefly Autopilot -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Drone-All-Autopilot-SmallFlyerHorsefly-Patrol</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Autopilot]
+			[WaypointAbandonTimeTrigger:10]
+			[RotationMultiplier:1]
+			[LimitRotationSpeed:true]
+			[MaxRotationMagnitude:0.5]
+			[DisableInertiaDampeners:false]
+			[FlyLevelWithGravity:true]
+			[LevelWithGravityWhenIdle:true]
+			[IdealPlanetAltitude:250]
+			[MinimumPlanetAltitude:150]
+			[AltitudeTolerance:50]
+			[WaypointTolerance:150]
+			[RamMinDurationMs:0]
+			[RamMaxDurationMs:0]
+			[IdealMinSpeed:49]
+			[IdealMaxSpeed:50]
+			[OffsetPlanetMinDistFromTarget:600]
+			[OffsetPlanetMaxDistFromTarget:601]
+			[OffsetPlanetMinTargetAltitude:250]
+			[OffsetPlanetMaxTargetAltitude:400]
+			[WaypointWaitTimeTrigger:0]
+			[MaxVerticalSpeed:20]
+			[AngleAllowedForForwardThrust:180]
+			[MaxVelocityAngleForSpeedControl:180]
+			</Description>
+		</EntityComponent>
+		<!-- SmallFlyerHorsefly Autopilot -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Drone-All-Autopilot-SmallFlyerHorsefly-Horsefly</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Autopilot]
+			[WaypointAbandonTimeTrigger:20]
+			[RotationMultiplier:1]
+			[LimitRotationSpeed:true]
+			[MaxRotationMagnitude:0.5]
+			[DisableInertiaDampeners:false]
+			[FlyLevelWithGravity:true]
+			[LevelWithGravityWhenIdle:true]
+			[IdealPlanetAltitude:250]
+			[MinimumPlanetAltitude:150]
+			[AltitudeTolerance:50]
+			[WaypointTolerance:150]
+			[RamMinDurationMs:6000]
+			[RamMaxDurationMs:6001]
+			[IdealMinSpeed:50]
+			[IdealMaxSpeed:75]
+			[OffsetPlanetMinDistFromTarget:500]
+			[OffsetPlanetMaxDistFromTarget:1200]
+			[OffsetPlanetMinTargetAltitude:250]
+			[OffsetPlanetMaxTargetAltitude:400]
+			[WaypointWaitTimeTrigger:0]
+			[MaxVerticalSpeed:20]
+			[AngleAllowedForForwardThrust:180]
+			[MaxVelocityAngleForSpeedControl:180]
+			</Description>
+		</EntityComponent>
+	</EntityComponents>
+</Definitions>

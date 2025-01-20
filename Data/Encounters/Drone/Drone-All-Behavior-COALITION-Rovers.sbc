@@ -31,10 +31,9 @@
 			[Triggers:GVK-Drone-All-Trigger-WeaponsToMaxRange]
 			[Triggers:GVK-Drone-Encounter-Trigger-RetreatNoTarget]
 			[Triggers:GVK-Drone-Encounter-Trigger-RetreatTimer]
-			[Triggers:GVK-Drone-All-Trigger-COALITION-LargeRoverCompromised]
-			[Triggers:GVK-Drone-All-Trigger-COALITION-LargeRoverBeaconDisabled]
 			[Triggers:GVK-Drone-All-Trigger-COALITION-LargeRoverPlayerNear]
 			[Triggers:GVK-Drone-All-Trigger-COALITION-LargeRoverPlayerNotNear]
+			[TriggerGroups:GVK-Drone-All-TriggerGroup-LargeCOALITIONRoverDefeated]
 			[TriggerGroups:GVK-Drone-All-TriggerGroup-PatrolHorsefly]
 			</Description>
 		</EntityComponent>
@@ -207,93 +206,6 @@
 			[AutopilotProfile:Primary]
 			[DisableTriggers:true]
 			[DisableTriggerNames:GVK-Drone-All-Trigger-COALITION-LargeRoverPlayerNotNear]
-			</Description>
-		</EntityComponent>		<!-- Trigger sequence when Large NPC RAI Remote is disabled -->
-		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
-			<Id>
-				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Drone-All-Trigger-COALITION-LargeRoverCompromised</SubtypeId>
-			</Id>
-			<Description>
-			[RivalAI Trigger]
-			[Type:Compromised]
-			[UseTrigger:true]
-			[StartsReady:true]
-			[MaxActions:1]
-			[ActionExecution:All]
-			[Actions:GVK-Drone-All-Action-COALITION-LargeRoverCompromised]
-			[Actions:GVK-Drone-All-Action-LargeDisabled]
-			[Actions:GVK-Universal-Action-EditableOnCompromised]
-			[Actions:GVK-Universal-Action-Disabled]
-			[Actions:GVK-Universal-Action-LargeExplosionEffects]
-			</Description>
-		</EntityComponent>
-		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
-			<Id>
-				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Drone-All-Action-COALITION-LargeRoverCompromised</SubtypeId>
-			</Id>
-			<Description>
-			[RivalAI Action]
-			[UseChatBroadcast:true]
-			[ChatData:GVK-Drone-All-Chat-COALITION-LargeRoverCompromised]
-			</Description>
-		</EntityComponent>
-		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
-			<Id>
-				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Drone-All-Chat-COALITION-LargeRoverCompromised</SubtypeId>
-			</Id>
-			<Description>
-			[RivalAI Chat]
-			[UseChat:true]
-			[StartsReady:true]
-			[Chance:100]
-			[MaxChats:1]
-			[BroadcastRandomly:true]
-			[Author:Sensors]
-			[Color:Blue]
-			[ChatMessages:COALITION cruiser destroyed.]
-			[ChatAudio:ArcHudSensors]
-			[BroadcastChatType:Notify]
-			[SendToAllOnlinePlayers:false]
-			[IgnoreAntennaRequirement:true]
-			[IgnoredAntennaRangeOverride:10000]
-			</Description>
-		</EntityComponent>
-		<!-- Trigger sequence when Cruiser NPC Beacon is disabled -->
-		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
-			<Id>
-				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Drone-All-Trigger-COALITION-LargeRoverBeaconDisabled</SubtypeId>
-			</Id>
-			<Description>
-			[RivalAI Trigger]
-			[Type:Timer]
-			[UseTrigger:true]
-			[StartsReady:true]
-			[Conditions:GVK-Drone-All-Condition-COALITION-LargeRoverBeaconDisabled]
-			[MaxActions:1]
-			[ActionExecution:All]
-			[Actions:GVK-Drone-All-Action-COALITION-LargeRoverCompromised]
-			[Actions:GVK-Drone-All-Action-LargeDisabled]
-			[Actions:GVK-Universal-Action-EditableOnCompromised]
-			[Actions:GVK-Universal-Action-Disabled]
-			[Actions:GVK-Universal-Action-LargeExplosionEffects]
-			</Description>
-		</EntityComponent>
-		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
-			<Id>
-				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Drone-All-Condition-COALITION-LargeRoverBeaconDisabled</SubtypeId>
-			</Id>
-			<Description>
-			[RivalAI Condition]
-			[UseConditions:true]
-			[MatchAnyCondition:false]
-			[CheckForBlocksOfType:true]
-			[BlocksOfType:MyObjectBuilder_Beacon]
-			[UseFailCondition:true]
 			</Description>
 		</EntityComponent>
 	</EntityComponents>
