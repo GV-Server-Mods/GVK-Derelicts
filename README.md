@@ -47,3 +47,20 @@ NSN	[NPC Station]		Out of date
 
 ## Thanks Yous:
 Nekron910 https://steamcommunity.com/sharedfiles/filedetails/?id=2650194963&tscn=1643638039
+
+# Notes
+1. Chat SendToAllPlayers will also be received by SEDB when set to send server messages.
+2. Don't use UseSurfaceHoverThrustMode at the same time as FlyLevelWithGravity.
+3. When using UseSurfaceHoverThrustMode, ensure WaypointTolerance is less than HoverPathStepDistance.
+4. UseSurfaceHoverThrustMode works well for wheeled rovers on planets, but use HoverPathStepDistance less than 100 for rougher terrains.
+5. Planet rovers with suspension need hidden NPC thrusters and gyros to operate because MES has no suspension controls.
+6. Set planet rover suspension friction very low, like 12% or less, to allow it to turn reasonably.
+7. Use Patrol behavior for random encounters and a trigger sequence to switch between aggressive behaviors with secondary autopilots.
+8. Use a Manual Trigger where multiple triggers need to operate the same action to prevent repeat trigger actions.
+9. KPLs disappear quickly for unknown reasons; when using KPLs, plan them to work for a few minutes or less at a time.
+10. Particles can be played similar to sounds but are undocumented in the wiki.
+11. Condition Profiles do not work correctly with some static SpawnGroups; instead, use those tags in the SpawnGroup directly.
+12. Do not raze blocks that could be on subgrids; this can lead to a crash.
+14. Do not use GenerateExplosion and raze functions simultaneously near the same block (like RAI Remote); this can lead to a crash.
+15. `BountyOnKill=3000000;` can be put directly in the behavior profile when using this mod https://steamcommunity.com/sharedfiles/filedetails/?id=2812148664
+16. `ResetThisStaticEncounter:true` and `ForceDespawn:true` can remove and reset static encounters but are undocumented in the wiki.
