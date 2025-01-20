@@ -68,3 +68,4 @@ Nekron910 https://steamcommunity.com/sharedfiles/filedetails/?id=2650194963&tscn
 18. StrikeBeginPlanetAttackRunDistance is measured from the min and max offset distance waypoint; keep this low, around 100m.
 19. If IdealPlanetAltitude is way higher than MinimumPlanetAltitude, it will climb too sharply and disturb its angle of attack.
 20. NPCs are awful at aiming at targets. Use Keen AI blocks instead of RAI autopilot if accuracy is critical.
+21. `ProcessAsAdminSpawn:true` is available for Spawner profiles to bypass some restrictions.
