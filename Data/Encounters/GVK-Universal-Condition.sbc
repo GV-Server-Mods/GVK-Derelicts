@@ -1,0 +1,48 @@
+<?xml version="1.0"?>
+<Definitions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+	<EntityComponents>
+		<!-- Condition for beacon disabled triggers with all known beacon names -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Universal-Condition-BeaconDisabled-WIP</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Condition]
+			[UseConditions:true]
+			[MatchAnyCondition:false]
+			[UseRequiredFunctionalBlocks:true]
+			[RequiredNoneFunctionalBlockNames:Proprietary Beacon]
+			[RequiredNoneFunctionalBlockNames:Small Signal]
+			[RequiredNoneFunctionalBlockNames:Medium Signal]
+			[RequiredNoneFunctionalBlockNames:Large Signal]
+			[RequiredNoneFunctionalBlockNames:Massive Signal]
+			[RequiredNoneFunctionalBlockNames:Disposable Beacon]
+			[RequiredNoneFunctionalBlockNames:Fortress]
+			[RequiredNoneFunctionalBlockNames:Hangar]
+			[RequiredNoneFunctionalBlockNames:Outpost]
+			[RequiredNoneFunctionalBlockNames:Player KOTH]
+			[RequiredNoneFunctionalBlockNames:Distress Signal]
+			[RequiredNoneFunctionalBlockNames:Downed Salvager]
+			[MatchAnyCondition:false]
+			[CheckForBlocksOfType:true]
+			[BlocksOfType:MyObjectBuilder_Beacon]
+			[UseFailCondition:true]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Universal-Condition-AllBeaconsDisabled</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Condition]
+			[UseConditions:true]
+			[MatchAnyCondition:false]
+			[CheckForBlocksOfType:true]
+			[BlocksOfType:MyObjectBuilder_Beacon]
+			[UseFailCondition:true]
+			</Description>
+		</EntityComponent>
+	</EntityComponents>
+</Definitions>
