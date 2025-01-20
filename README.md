@@ -64,3 +64,7 @@ Nekron910 https://steamcommunity.com/sharedfiles/filedetails/?id=2650194963&tscn
 14. Do not use GenerateExplosion and raze functions simultaneously near the same block (like RAI Remote); this can lead to a crash.
 15. `BountyOnKill=3000000;` can be put directly in the behavior profile when using this mod https://steamcommunity.com/sharedfiles/filedetails/?id=2812148664
 16. `ResetThisStaticEncounter:true` and `ForceDespawn:true` can remove and reset static encounters but are undocumented in the wiki.
+17. Strike behavior needs a good amount of distance to line up and attack, and use min and max offset distances of around 2km.
+18. StrikeBeginPlanetAttackRunDistance is measured from the min and max offset distance waypoint; keep this low, around 100m.
+19. If IdealPlanetAltitude is way higher than MinimumPlanetAltitude, it will climb too sharply and disturb its angle of attack.
+20. NPCs are awful at aiming at targets. Use Keen AI blocks instead of RAI autopilot if accuracy is critical.
