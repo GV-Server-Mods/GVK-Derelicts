@@ -20,7 +20,6 @@
 			[Triggers:GVK-PlanetaryInstallation-All-Trigger-DespawnMES]
 			[Triggers:GVK-PlanetaryInstallation-Small-Trigger-COALITIONRelayOnSpawn]
 			[Triggers:GVK-PlanetaryInstallation-Small-Trigger-COALITIONRelayButtonPress]
-			[Triggers:GVK-PlanetaryInstallation-Small-Trigger-COALITIONRelaySpawnsManual]
 			</Description>
 		</EntityComponent>
 		<!-- Trigger sequence when Wreck Spawns -->
@@ -88,8 +87,10 @@
 			[ButtonPanelIndex:0]
 			[ActionExecution:All]
 			[Actions:GVK-PlanetaryInstallation-Small-Action-COALITIONRelayButtonPress]
-			[Actions:GVK-PlanetaryInstallation-Small-Action-COALITIONRelayEnemiesManual]
+			[Actions:GVK-PlanetaryInstallation-Small-Action-COALITIONRelayDefendersSpawn]
+			[Actions:GVK-PlanetaryInstallation-Small-Action-COALITIONRelayAttackersSpawn]
 			[Actions:GVK-PlanetaryInstallation-All-Action-CompromisedGeneric]
+			[Actions:GVK-Universal-Action-Disabled]
 			</Description>
 		</EntityComponent>
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
@@ -102,7 +103,6 @@
 			[Chance:100]
 			[ApplyContainerTypeToInventoryBlock:true]
 			[ContainerTypeBlockNames:Shared Cargo Container]
-			[ContainerTypeSubtypeIds:Kharak_Loot_Large]
 			[ContainerTypeSubtypeIds:Kharak_Loot_Large]
 			[UseChatBroadcast:true]
 			[ChatData:GVK-PlanetaryInstallation-Small-Chat-COALITIONRelayButtonPress]
@@ -130,30 +130,90 @@
 			[IgnoredAntennaRangeOverride:10000]
 		  </Description>
 		</EntityComponent>
-		<!-- Trigger Sequence for Small Defenses -->
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-PlanetaryInstallation-Small-Action-COALITIONRelayEnemiesManual</SubtypeId>
+				<SubtypeId>GVK-PlanetaryInstallation-Small-Action-COALITIONRelayDefendersSpawn</SubtypeId>
 			</Id>
 			<Description>
 			[RivalAI Action]
-			[Chance:100]
+			[Chance:50]
 			[DisableTriggers:true]
 			[DisableTriggerNames:GVK-PlanetaryInstallation-All-Trigger-Despawn]
 			[DisableTriggerNames:GVK-PlanetaryInstallation-All-Trigger-DespawnMES]
 			[DisableTriggerNames:GVK-PlanetaryInstallation-Small-Trigger-COALITIONRelayOnSpawn]
-			[DisableTriggerNames:GVK-PlanetaryInstallation-Small-Trigger-COALITIONRelaySpawnsManual]
+			[DisableTriggerNames:GVK-PlanetaryInstallation-Small-Trigger-COALITIONRelayButtonPress]
 			[SpawnEncounter:true]
-			[Spawner:GVK-PlanetaryInstallation-Small-Spawner-COALITIONRelayDefenseDroneSmall]
+			[Spawner:GVK-PlanetaryInstallation-Small-Spawner-COALITIONRelayDefendersSpawn]
 			[UseChatBroadcast:true]
-			[ChatData:GVK-PlanetaryInstallation-All-Chat-Defenses]
+			[ChatData:GVK-PlanetaryInstallation-Small-Chat-COALITIONRelayDefendersSpawn]
 			</Description>
 		</EntityComponent>
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-PlanetaryInstallation-Small-Spawner-COALITIONRelayDefenseDroneSmall</SubtypeId>
+				<SubtypeId>GVK-PlanetaryInstallation-Small-Spawner-COALITIONRelayDefendersSpawn</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Spawn]
+			[UseSpawn:true]
+			[SpawningType:CustomSpawn]
+			[StartsReady:true]
+			[ProcessAsAdminSpawn:false]
+			[MaxSpawns:1]
+			[SpawnGroups:GVK-Drone-Defense-SpawnGroup-COALITION-StrikeFighter]
+			[MinDistance:1500]
+			[MaxDistance:1750]
+			[MinAltitude:20]
+			[MaxAltitude:21]
+			[InheritNpcAltitude:false]
+			[IgnoreSafetyChecks:true]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-PlanetaryInstallation-Small-Chat-COALITIONRelayDefendersSpawn</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Chat]
+			[UseChat:true]
+			[StartsReady:true]
+			[Chance:100]
+			[MaxChats:1]
+			[Author:Sensors]
+			[Color:Blue]
+			[ChatMessages:COALITION forces in-bound.]
+			[ChatAudio:ArcHudSensors]
+			[BroadcastChatType:Both]
+			[SendToAllOnlinePlayers:false]
+			[IgnoreAntennaRequirement:true]
+			[IgnoredAntennaRangeOverride:10000]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-PlanetaryInstallation-Small-Action-COALITIONRelayAttackersSpawn</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Action]
+			[Chance:50]
+			[DisableTriggers:true]
+			[DisableTriggerNames:GVK-PlanetaryInstallation-All-Trigger-Despawn]
+			[DisableTriggerNames:GVK-PlanetaryInstallation-All-Trigger-DespawnMES]
+			[DisableTriggerNames:GVK-PlanetaryInstallation-Small-Trigger-COALITIONRelayOnSpawn]
+			[DisableTriggerNames:GVK-PlanetaryInstallation-Small-Trigger-COALITIONRelayButtonPress]
+			[SpawnEncounter:true]
+			[Spawner:GVK-PlanetaryInstallation-Small-Spawner-COALITIONRelayAttackersSpawn]
+			[UseChatBroadcast:true]
+			[ChatData:GVK-PlanetaryInstallation-Small-Chat-COALITIONRelayAttackersSpawn]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-PlanetaryInstallation-Small-Spawner-COALITIONRelayAttackersSpawn</SubtypeId>
 			</Id>
 			<Description>
 			[RivalAI Spawn]
@@ -163,13 +223,33 @@
 			[ProcessAsAdminSpawn:false]
 			[MaxSpawns:1]
 			[SpawnGroups:GVK-Drone-Defense-SpawnGroup-GAALSIEN-LightSandskimmerSquad]
-			[SpawnGroups:GVK-Drone-Defense-SpawnGroup-COALITION-StrikeFighter]
 			[MinDistance:1500]
 			[MaxDistance:1750]
 			[MinAltitude:20]
 			[MaxAltitude:21]
 			[InheritNpcAltitude:false]
 			[IgnoreSafetyChecks:true]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-PlanetaryInstallation-Small-Chat-COALITIONRelayAttackersSpawn</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Chat]
+			[UseChat:true]
+			[StartsReady:true]
+			[Chance:100]
+			[MaxChats:1]
+			[Author:Sensors]
+			[Color:Blue]
+			[ChatMessages:GAALSIEN forces in-bound.]
+			[ChatAudio:ArcHudSensors]
+			[BroadcastChatType:Both]
+			[SendToAllOnlinePlayers:false]
+			[IgnoreAntennaRequirement:true]
+			[IgnoredAntennaRangeOverride:10000]
 			</Description>
 		</EntityComponent>
 	</EntityComponents>

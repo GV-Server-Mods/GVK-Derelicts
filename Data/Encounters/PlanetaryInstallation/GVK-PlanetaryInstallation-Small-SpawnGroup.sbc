@@ -1,11 +1,41 @@
 <?xml version="1.0"?>
 <Definitions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
 	<SpawnGroups>
+
 		<!-- Small wrecks 5km beacon -->
 		<SpawnGroup>
 			<Id>
 				<TypeId>SpawnGroupDefinition</TypeId>
-				<SubtypeId>GVK-PlanetaryInstallation-Small-SpawnGroup-COALITIONRelay1</SubtypeId>
+				<SubtypeId>GVK-PlanetaryInstallation-Small-SpawnGroup-COALITIONTurret</SubtypeId>
+			</Id>
+			<Description>
+			[Modular Encounters SpawnGroup]
+			[IgnoreCleanupRules:true]
+			[ReplenishSystems:true]
+			[SpawnConditionsProfiles:GVK-PlanetaryInstallation-Small-SpawnCondition-Building-COALITION]
+			[ManipulationProfiles:GVK-Drone-All-Manipulation-Large3x3HeavyTurrets]
+			[ManipulationProfiles:GVK-PlanetaryInstallation-Small-Manipulation-TurretPost]
+			[ManipulationProfiles:GVK-Universal-Manipulation-DamageModifier25]
+			</Description>
+			<IsPirate>true</IsPirate>
+			<Frequency>0.4</Frequency>
+			<Prefabs>
+				<Prefab SubtypeId="NMI [COAL] Turret Station 1">
+					<Position>
+						<X>0.0</X>
+						<Y>3</Y>
+						<Z>0.0</Z>
+					</Position>
+					<Speed>0</Speed>
+					<BeaconText>Turret Post</BeaconText>
+					<Behaviour>GVK-PlanetaryInstallation-Small-Behavior-COALITIONTurretPost</Behaviour>
+				</Prefab>
+			</Prefabs>
+		</SpawnGroup>
+		<SpawnGroup>
+			<Id>
+				<TypeId>SpawnGroupDefinition</TypeId>
+				<SubtypeId>GVK-PlanetaryInstallation-Small-SpawnGroup-COALITIONRelay</SubtypeId>
 			</Id>
 			<Description>
 			[Modular Encounters SpawnGroup]
@@ -28,24 +58,6 @@
 					<BeaconText>Comms Relay</BeaconText>
 					<Behaviour>GVK-PlanetaryInstallation-Small-Behavior-COALITIONRelay</Behaviour>
 				</Prefab>
-			</Prefabs>
-		</SpawnGroup>
-		<SpawnGroup>
-			<Id>
-				<TypeId>SpawnGroupDefinition</TypeId>
-				<SubtypeId>GVK-PlanetaryInstallation-Small-SpawnGroup-COALITIONRelay2</SubtypeId>
-			</Id>
-			<Description>
-			[Modular Encounters SpawnGroup]
-			[IgnoreCleanupRules:true]
-			[ReplenishSystems:true]
-			[SpawnConditionsProfiles:GVK-PlanetaryInstallation-Small-SpawnCondition-Building-COALITION]
-			[ManipulationProfiles:GVK-PlanetaryInstallation-Small-Manipulation]
-			[ManipulationProfiles:GVK-Universal-Manipulation-DamageModifier25]
-			</Description>
-			<IsPirate>true</IsPirate>
-			<Frequency>0.4</Frequency>
-			<Prefabs>
 				<Prefab SubtypeId="NMI [COAL] Relay Station 2">
 					<Position>
 						<X>0.0</X>
@@ -56,24 +68,6 @@
 					<BeaconText>Comms Relay</BeaconText>
 					<Behaviour>GVK-PlanetaryInstallation-Small-Behavior-COALITIONRelay</Behaviour>
 				</Prefab>
-			</Prefabs>
-		</SpawnGroup>
-		<SpawnGroup>
-			<Id>
-				<TypeId>SpawnGroupDefinition</TypeId>
-				<SubtypeId>GVK-PlanetaryInstallation-Small-SpawnGroup-COALITIONRelay3</SubtypeId>
-			</Id>
-			<Description>
-			[Modular Encounters SpawnGroup]
-			[IgnoreCleanupRules:true]
-			[ReplenishSystems:true]
-			[SpawnConditionsProfiles:GVK-PlanetaryInstallation-Small-SpawnCondition-Building-COALITION]
-			[ManipulationProfiles:GVK-PlanetaryInstallation-Small-Manipulation]
-			[ManipulationProfiles:GVK-Universal-Manipulation-DamageModifier25]
-			</Description>
-			<IsPirate>true</IsPirate>
-			<Frequency>0.4</Frequency>
-			<Prefabs>
 				<Prefab SubtypeId="NMI [COAL] Relay Station 3">
 					<Position>
 						<X>0.0</X>

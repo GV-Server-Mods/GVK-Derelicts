@@ -1,0 +1,302 @@
+<?xml version="1.0"?>
+<Definitions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+	<EntityComponents>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-PlanetaryInstallation-Small-Behavior-COALITIONTurretPost</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Behavior]
+			[BehaviorName:Passive]
+			[UseAmmoReplenish:true]
+			[AmmoReplenishClipAmount:10]
+			[MaxAmmoReplenishments:99999999]
+			[UsePlayerDistanceTimer:false]
+			[UseRetreatTimer:false]
+			[UseNoTargetTimer:false]
+			[Triggers:GVK-Universal-Trigger-UneditableOnSpawn]
+			[Triggers:GVK-PlanetaryInstallation-All-Trigger-Despawn]
+			[Triggers:GVK-PlanetaryInstallation-All-Trigger-DespawnMES]
+			[Triggers:GVK-PlanetaryInstallation-Small-Trigger-COALITIONTurretPostRepaired1]
+			[Triggers:GVK-PlanetaryInstallation-Small-Trigger-COALITIONTurretPostRepaired2]
+			[Triggers:GVK-PlanetaryInstallation-Small-Trigger-COALITIONTurretPostOnSpawn]
+			[Triggers:GVK-PlanetaryInstallation-Small-Trigger-COALITIONTurretPostButtonPress]
+			</Description>
+		</EntityComponent>
+		<!-- Trigger sequence when Wreck Spawns -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-PlanetaryInstallation-Small-Trigger-COALITIONTurretPostOnSpawn</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Trigger]
+			[Type:Session]
+			[UseTrigger:true]
+			[StartsReady:true]
+			[MaxActions:1]
+			[Actions:GVK-PlanetaryInstallation-Small-Action-COALITIONTurretPostOnSpawn]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-PlanetaryInstallation-Small-Action-COALITIONTurretPostOnSpawn</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Action]
+			[Chance:100]
+			[UseChatBroadcast:true]
+			[ChatData:GVK-PlanetaryInstallation-Small-Chat-COALITIONTurretPostOnSpawn]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-PlanetaryInstallation-Small-Chat-COALITIONTurretPostOnSpawn</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Chat]
+			[UseChat:true]
+			[StartsReady:true]
+			[Chance:100]
+			[MaxChats:1]
+			[BroadcastRandomly:false]
+			[Author:COALITION]
+			[Color:White]
+			[ChatMessages:GAALSIEN units have disabled a turret post, please assist!]
+			[ChatAudio:ArcHudGPSNotification2]
+			[BroadcastChatType:Chat]
+			[SendToAllOnlinePlayers:false]
+			[IgnoreAntennaRequirement:true]
+			[IgnoredAntennaRangeOverride:5000]
+		  </Description>
+		</EntityComponent>
+		<!-- need two of these because there are two blocktypes and RequiredAnyFunctionalBlockNames is just broken -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-PlanetaryInstallation-Small-Trigger-COALITIONTurretPostRepaired1</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Trigger]
+			[Type:Timer]
+			[UseTrigger:true]
+			[StartsReady:false]
+			[MinCooldownMs:2000]
+			[MaxCooldownMs:2001]
+			[MaxActions:1]
+			[Conditions:GVK-PlanetaryInstallation-Small-Condition-COALITIONTurretPostRepaired1]
+			[ActionExecution:All]
+			[Actions:GVK-PlanetaryInstallation-Small-Action-COALITIONTurretPostRepaired]
+			[ToggleWithTriggerProfile:GVK-PlanetaryInstallation-Small-Trigger-COALITIONTurretPostButtonPress]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-PlanetaryInstallation-Small-Condition-COALITIONTurretPostRepaired1</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Condition]
+			[UseConditions:true]
+			[MatchAnyCondition:false]
+			[CheckForBlocksOfType:true]
+			[BlocksOfType:MyObjectBuilder_LargeMissileTurret]
+			[UseRequiredFunctionalBlocks:true]
+			[RequiredAnyFunctionalBlockNames:NPC Turret]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-PlanetaryInstallation-Small-Trigger-COALITIONTurretPostRepaired2</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Trigger]
+			[Type:Timer]
+			[UseTrigger:true]
+			[StartsReady:false]
+			[MinCooldownMs:2000]
+			[MaxCooldownMs:2001]
+			[MaxActions:1]
+			[Conditions:GVK-PlanetaryInstallation-Small-Condition-COALITIONTurretPostRepaired2]
+			[ActionExecution:All]
+			[Actions:GVK-PlanetaryInstallation-Small-Action-COALITIONTurretPostRepaired]
+			[ToggleWithTriggerProfile:GVK-PlanetaryInstallation-Small-Trigger-COALITIONTurretPostButtonPress]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-PlanetaryInstallation-Small-Condition-COALITIONTurretPostRepaired2</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Condition]
+			[UseConditions:true]
+			[CheckForBlocksOfType:true]
+			[BlocksOfType:MyObjectBuilder_ConveyorSorter]
+			[UseRequiredFunctionalBlocks:true]
+			[RequiredAnyFunctionalBlockNames:NPC Turret]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-PlanetaryInstallation-Small-Action-COALITIONTurretPostRepaired</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Action]
+			[EnableBlocks:true]
+			[EnableBlockNames:NPC Button]
+			[EnableBlockStates:On]
+			[UseChatBroadcast:true]
+			[ChatData:GVK-PlanetaryInstallation-Small-Chat-COALITIONTurretPostRepaired]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-PlanetaryInstallation-Small-Chat-COALITIONTurretPostRepaired</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Chat]
+			[UseChat:true]
+			[StartsReady:true]
+			[Chance:100]
+			[MaxChats:1]
+			[BroadcastRandomly:false]
+			[Author:COALITION]
+			[Color:White]
+			[ChatMessages:Turret repaired, please press button to activate.]
+			[ChatAudio:ArcHudGPSNotification2]
+			[BroadcastChatType:Chat]
+			[SendToAllOnlinePlayers:false]
+			[IgnoreAntennaRequirement:true]
+			[IgnoredAntennaRangeOverride:5000]
+		  </Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-PlanetaryInstallation-Small-Trigger-COALITIONTurretPostButtonPress</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Trigger]
+			[Type:ButtonPress]
+			[UseTrigger:false]
+			[StartsReady:true]
+			[MaxActions:1]
+			[ButtonPanelName:NPC Button]
+			[ButtonPanelIndex:0]
+			[ActionExecution:All]
+			[Actions:GVK-PlanetaryInstallation-Small-Action-COALITIONTurretPostButtonPress]
+			[Actions:GVK-PlanetaryInstallation-Small-Action-COALITIONTurretPostAttackersSpawn]
+			[Actions:GVK-PlanetaryInstallation-All-Action-CompromisedGeneric]
+			[Actions:GVK-Universal-Action-Disabled]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-PlanetaryInstallation-Small-Action-COALITIONTurretPostButtonPress</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Action]
+			[Chance:100]
+			[EnableBlocks:true]
+			[EnableBlockNames:NPC Turret]
+			[EnableBlockStates:On]
+			[ApplyContainerTypeToInventoryBlock:true]
+			[ContainerTypeBlockNames:Shared Cargo Container]
+			[ContainerTypeSubtypeIds:Kharak_Loot_Large]
+			[UseChatBroadcast:true]
+			[ChatData:GVK-PlanetaryInstallation-Small-Chat-COALITIONTurretPostButtonPress]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-PlanetaryInstallation-Small-Chat-COALITIONTurretPostButtonPress</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Chat]
+			[UseChat:true]
+			[StartsReady:true]
+			[Chance:100]
+			[MaxChats:1]
+			[BroadcastRandomly:false]
+			[Author:Sensors]
+			[Color:Blue]
+			[ChatMessages:Turret Post re-activated.]
+			[ChatAudio:ArcHudGPSNotification2]
+			[BroadcastChatType:Chat]
+			[SendToAllOnlinePlayers:false]
+			[IgnoreAntennaRequirement:true]
+			[IgnoredAntennaRangeOverride:10000]
+		  </Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-PlanetaryInstallation-Small-Action-COALITIONTurretPostAttackersSpawn</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Action]
+			[Chance:100]
+			[DisableTriggers:true]
+			[DisableTriggerNames:GVK-PlanetaryInstallation-All-Trigger-Despawn]
+			[DisableTriggerNames:GVK-PlanetaryInstallation-All-Trigger-DespawnMES]
+			[DisableTriggerNames:GVK-PlanetaryInstallation-Small-Trigger-COALITIONTurretPostOnSpawn]
+			[DisableTriggerNames:GVK-PlanetaryInstallation-Small-Trigger-COALITIONTurretPostButtonPress]
+			[SpawnEncounter:true]
+			[Spawner:GVK-PlanetaryInstallation-Small-Spawner-COALITIONTurretPostAttackersSpawn]
+			[UseChatBroadcast:true]
+			[ChatData:GVK-PlanetaryInstallation-Small-Chat-COALITIONTurretPostAttackersSpawn]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-PlanetaryInstallation-Small-Spawner-COALITIONTurretPostAttackersSpawn</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Spawn]
+			[UseSpawn:true]
+			[SpawningType:CustomSpawn]
+			[StartsReady:true]
+			[ProcessAsAdminSpawn:false]
+			[MaxSpawns:1]
+			[SpawnGroups:GVK-Drone-Defense-SpawnGroup-GAALSIEN-LightSandskimmerSquad]
+			[MinDistance:1500]
+			[MaxDistance:1750]
+			[MinAltitude:20]
+			[MaxAltitude:21]
+			[InheritNpcAltitude:false]
+			[IgnoreSafetyChecks:true]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-PlanetaryInstallation-Small-Chat-COALITIONTurretPostAttackersSpawn</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Chat]
+			[UseChat:true]
+			[StartsReady:true]
+			[Chance:100]
+			[MaxChats:1]
+			[Author:Sensors]
+			[Color:Blue]
+			[ChatMessages:GAALSIEN forces have been alerted by your activity.]
+			[ChatAudio:ArcHudSensors]
+			[BroadcastChatType:Both]
+			[SendToAllOnlinePlayers:false]
+			[IgnoreAntennaRequirement:true]
+			[IgnoredAntennaRangeOverride:10000]
+			</Description>
+		</EntityComponent>
+	</EntityComponents>
+</Definitions>
