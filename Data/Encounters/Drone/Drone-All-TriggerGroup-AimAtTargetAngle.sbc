@@ -1,0 +1,92 @@
+<?xml version="1.0"?>
+<Definitions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+	<EntityComponents>
+		<!-- Action group switch to Tertiary autopilot when Target is near forward angle -->
+		<!-- Assumes Secondary Autopilot is FlyLevelWithGravity, and Tertiary is not -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Drone-All-TriggerGroup-AimAtTargetAngle</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI TriggerGroup]
+			[Triggers:GVK-Drone-All-Trigger-TargetForwardAngle]
+			[Triggers:GVK-Drone-All-Trigger-FlyLevelAngle]			
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Drone-All-Trigger-TargetForwardAngle</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Trigger]
+			[UseTrigger:true]
+			[Type:TargetNear]
+			[TargetDistance:2000]
+			[MinCooldownMs:1000]
+			[MaxCooldownMs:1001]
+			[StartsReady:true]
+			[ConditionCheckResetsTimer:false]
+			[Conditions:GVK-Drone-All-Condition-TargetForwardAngle]
+			[Actions:GVK-Drone-All-Action-TargetForwardAngle]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Drone-All-Condition-TargetForwardAngle</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Condition]
+			[UseConditions:true]
+			[MatchAnyCondition:true]
+			[CheckTargetAngleFromForward:true]
+			[MinTargetAngle:0]
+			[MaxTargetAngle:15]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Drone-All-Action-TargetForwardAngle</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Action]
+			[EnableTriggers:true]
+			[EnableTriggerNames:GVK-Drone-All-Trigger-FlyLevelAngle]
+			[ResetCooldownTimeOfTriggers:true]
+			[ResetTriggerCooldownNames:GVK-Drone-All-Trigger-FlyLevelAngle]
+			[ChangeAutopilotProfile:true]
+			[AutopilotProfile:Tertiary]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Drone-All-Trigger-FlyLevelAngle</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Trigger]
+			[UseTrigger:false]
+			[Type:Timer]
+			[MinCooldownMs:3000]
+			[MaxCooldownMs:3001]
+			[Actions:GVK-Drone-All-Action-FlyLevelAngle]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Drone-All-Action-FlyLevelAngle</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Action]
+			[DisableTriggers:true]
+			[DisableTriggerNames:GVK-Drone-All-Trigger-FlyLevelAngle]
+			[ChangeAutopilotProfile:true]
+			[AutopilotProfile:Secondary]
+			</Description>
+		</EntityComponent>
+	</EntityComponents>
+</Definitions>

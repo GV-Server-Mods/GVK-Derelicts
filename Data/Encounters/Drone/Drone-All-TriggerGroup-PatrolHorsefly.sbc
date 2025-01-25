@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <Definitions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
 	<EntityComponents>
-		<!-- Drone Patrol/Horsefly trigger group with 4km KPL -->
+		<!-- Drone Patrol/Horsefly trigger group with 5km KPL and 2km targeting -->
 		<!-- requires two autopilots: pimary passive and secondary aggressive -->
 		<!-- Known issue with KPLs disappearing without explaination, so KPL creation cooldown is lower -->
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
@@ -18,6 +18,7 @@
 			[Triggers:GVK-Drone-All-PatrolHorsefly-Trigger-TargetFar]
 			[Triggers:GVK-Drone-All-PatrolHorsefly-ManualTrigger-CreateKPL]
 			[Triggers:GVK-Drone-All-PatrolHorsefly-Trigger-CheckforKPL]
+			[Triggers:GVK-Drone-All-PatrolHorsefly-Trigger-KPLStatusBool]
 			</Description>
 		</EntityComponent>
 		<!-- manual triggers so multiple triggers can reference it without complications -->
@@ -78,7 +79,7 @@
 			[AutopilotProfile:Primary]
 			</Description>
 		</EntityComponent>
-		<!-- When target in 2km, become aggressive and create KPL -->
+		<!-- When target in 2km, become aggressive and create KPL if not in KPL -->
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
@@ -108,6 +109,59 @@
 			[ManuallyActivatedTriggerNames:GVK-Drone-All-PatrolHorsefly-ManualTrigger-CreateKPL]
 			</Description>
 		</EntityComponent>
+		<!-- Check if still in KPL -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Drone-All-PatrolHorsefly-Trigger-KPLStatusBool</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Trigger]
+			[UseTrigger:true]
+			[Type:PlayerKnownLocation]
+			[StartsReady:true]
+			[MinCooldownMs:2000]
+			[MaxCooldownMs:2001]
+			[Actions:GVK-Drone-All-PatrolHorsefly-Action-InKPL]
+			[UseElseActions:true]
+			[ElseActions:GVK-Drone-All-PatrolHorsefly-Action-NotInKPL]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Drone-All-PatrolHorsefly-Action-InKPL</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Action]
+			[SetBooleansTrue:NPCInKPL]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Drone-All-PatrolHorsefly-Action-NotInKPL</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Action]
+			[SetBooleansFalse:NPCInKPL]
+			</Description>
+		</EntityComponent>
+		<!-- Create conditions for KPL status -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Drone-All-PatrolHorsefly-Condition-NPCInKPLFlase</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Condition]
+			[UseConditions:true]
+			[MatchAnyCondition:true]
+			[CheckTrueBooleans:true]
+			[TrueBooleans:NPCInKPL]
+			[UseFailCondition:true]
+			</Description>
+		</EntityComponent>
 		<!-- Create new KPL (if not already in KPL) -->
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
@@ -121,6 +175,7 @@
 			[StartsReady:true]
 			[MinCooldownMs:20000]
 			[MaxCooldownMs:20001]
+			[Conditions:GVK-Drone-All-PatrolHorsefly-Condition-NPCInKPLFlase]
 			[Actions:GVK-Drone-All-PatrolHorsefly-Action-CreateKPL]
 			[ToggleWithTriggerProfile:GVK-Drone-All-PatrolHorsefly-Trigger-CheckforKPL]
 			</Description>

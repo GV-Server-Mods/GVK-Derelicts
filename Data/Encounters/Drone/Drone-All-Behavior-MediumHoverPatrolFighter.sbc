@@ -26,11 +26,13 @@
 			[TargetData:GVK-Universal-Target-EnemyGrids]
 			[AutopilotData:GVK-Drone-All-Autopilot-MediumHoverPatrolFighter-Patrol]
 			[SecondaryAutopilotData:GVK-Drone-All-Autopilot-MediumHoverPatrolFighter-Fighter]
-			[Triggers:GVK-Universal-Trigger-TargetAcquiredChatter]
+			[TertiaryAutopilotData:GVK-Drone-All-Autopilot-MediumHoverPatrolFighter-Tertiary]
+			[Triggers:GVK-Universal-Trigger-GAALSIEN-TargetAcquiredChatter]
 			[Triggers:GVK-Drone-All-Trigger-TargetAttacker]
 			[Triggers:GVK-Drone-All-Trigger-WeaponsToMaxRange]
-			[Triggers:GVK-Drone-Encounter-Trigger-RetreatNoTarget]
-			[Triggers:GVK-Drone-Encounter-Trigger-RetreatTimer]
+			[Triggers:GVK-Drone-Encounter-Trigger-SpawnSmallCOALITIONAttackers]
+			[TriggerGroups:GVK-Drone-Encounter-TriggerGroup-InactivityRetreat]
+			[TriggerGroups:GVK-Drone-All-TriggerGroup-AimAtTargetAngle]
 			[TriggerGroups:GVK-Drone-All-TriggerGroup-PatrolFighter]
 			[TriggerGroups:GVK-Drone-All-TriggerGroup-MediumHoverDefeated]
 			BountyOnKill=1000000;
@@ -132,91 +134,6 @@
 			[StrafeMinimumSafeAngleFromTarget:25]
 			[AngleAllowedForForwardThrust:120]
 			[MaxVelocityAngleForSpeedControl:180]
-			</Description>
-		</EntityComponent>
-		<!-- Action group switch to Tertiary autopilot when strafing -->
-		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
-			<Id>
-				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Drone-All-Trigger-MediumHoverPatrolFighterTertiaryAutopilot</SubtypeId>
-			</Id>
-			<Description>
-			[RivalAI Trigger]
-			[UseTrigger:true]
-			[Type:TargetNear]
-			[TargetDistance:2000]
-			[MinCooldownMs:5000]
-			[MaxCooldownMs:5000]
-			[StartsReady:true]
-			[ConditionCheckResetsTimer:false]
-			[Conditions:GVK-Drone-All-Condition-MediumHoverPatrolFighterTertiaryAutopilot]
-			[Actions:GVK-Drone-All-Action-MediumHoverPatrolFighterTertiaryAutopilot]
-			</Description>
-		</EntityComponent>
-		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
-			<Id>
-				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Drone-All-Condition-MediumHoverPatrolFighterTertiaryAutopilot</SubtypeId>
-			</Id>
-			<Description>
-			[RivalAI Condition]
-			[UseConditions:true]
-			[MatchAnyCondition:true]
-			[CheckTargetAngleFromForward:true]
-			[MinTargetAngle:0]
-			[MaxTargetAngle:20]
-			</Description>
-		</EntityComponent>
-		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
-			<Id>
-				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Drone-All-Action-MediumHoverPatrolFighterTertiaryAutopilot</SubtypeId>
-			</Id>
-			<Description>
-			[RivalAI Action]
-			[ChangeAutopilotProfile:true]
-			[AutopilotProfile:Tertiary]
-			</Description>
-		</EntityComponent>
-		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
-			<Id>
-				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Drone-All-Trigger-MediumHoverPatrolFighterSecondaryAutopilot</SubtypeId>
-			</Id>
-			<Description>
-			[RivalAI Trigger]
-			[UseTrigger:true]
-			[Type:TargetNear]
-			[TargetDistance:2000]
-			[StartsReady:true]
-			[ConditionCheckResetsTimer:false]
-			[Conditions:GVK-Drone-All-Condition-MediumHoverPatrolFighterSecondaryAutopilot]
-			[Actions:GVK-Drone-All-Action-MediumHoverPatrolFighterSecondaryAutopilot]
-			</Description>
-		</EntityComponent>
-		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
-			<Id>
-				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Drone-All-Condition-MediumHoverPatrolFighterSecondaryAutopilot</SubtypeId>
-			</Id>
-			<Description>
-			[RivalAI Condition]
-			[UseConditions:true]
-			[MatchAnyCondition:true]
-			[CheckTargetAngleFromForward:true]
-			[MinTargetAngle:11]
-			[MaxTargetAngle:180]
-			</Description>
-		</EntityComponent>
-		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
-			<Id>
-				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Drone-All-Action-MediumHoverPatrolFighterSecondaryAutopilot</SubtypeId>
-			</Id>
-			<Description>
-			[RivalAI Action]
-			[ChangeAutopilotProfile:true]
-			[AutopilotProfile:Secondary]
 			</Description>
 		</EntityComponent>
 	</EntityComponents>

@@ -26,13 +26,14 @@
 			[SecondaryAutopilotData:GVK-Drone-All-Autopilot-LargeRoverHorsefly-Horsefly]
 			[TertiaryAutopilotData:GVK-Drone-All-Autopilot-LargeRoverHorsefly-Tertiary]
 			[Triggers:GVK-Universal-Trigger-UneditableOnSpawn]
+			[Triggers:GVK-Universal-Trigger-COALITION-TargetAcquiredChatter]
+			[Triggers:GVK-Universal-Trigger-COALITION-NoTargetsChatter]
 			[Triggers:GVK-Drone-All-Trigger-TargetAttacker]
 			[Triggers:GVK-Drone-All-Trigger-TurretTarget]
 			[Triggers:GVK-Drone-All-Trigger-WeaponsToMaxRange]
-			[Triggers:GVK-Drone-Encounter-Trigger-RetreatNoTarget]
-			[Triggers:GVK-Drone-Encounter-Trigger-RetreatTimer]
-			[Triggers:GVK-Drone-All-Trigger-COALITION-LargeRoverPlayerNear]
-			[Triggers:GVK-Drone-All-Trigger-COALITION-LargeRoverPlayerNotNear]
+			[Triggers:GVK-Drone-Encounter-Trigger-SpawnAnyGAALSIENAttackers]
+			[TriggerGroups:GVK-Drone-Encounter-TriggerGroup-InactivityRetreat]
+			[TriggerGroups:GVK-Drone-All-TriggerGroup-PlayerNearStop]
 			[TriggerGroups:GVK-Drone-All-TriggerGroup-LargeCOALITIONRoverDefeated]
 			[TriggerGroups:GVK-Drone-All-TriggerGroup-PatrolHorsefly]
 			</Description>
@@ -105,7 +106,7 @@
 			[WaypointAbandonTimeTrigger:30]
 			[WaypointTolerance:75]
 			[IdealMinSpeed:35]
-			[IdealMaxSpeed:60]
+			[IdealMaxSpeed:50]
 			[MaxSpeedTolerance:10]
 			[OffsetPlanetMinDistFromTarget:800]
 			[OffsetPlanetMaxDistFromTarget:1200]
@@ -146,66 +147,6 @@
 			[OffsetPlanetMaxTargetAltitude:15]
 			[AngleAllowedForForwardThrust:0]
 			[MaxVelocityAngleForSpeedControl:180]
-			</Description>
-		</EntityComponent>
-		<!-- Trigger Sequence to stop when player is near -->
-		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
-			<Id>
-				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Drone-All-Trigger-COALITION-LargeRoverPlayerNear</SubtypeId>
-			</Id>
-			<Description>
-			[RivalAI Trigger]
-			[UseTrigger:true]
-			[Type:PlayerNear]
-			[TargetDistance:400]
-			[MinCooldownMs:2000]
-			[MaxCooldownMs:2001]
-			[Actions:GVK-Drone-All-Action-COALITION-LargeRoverPlayerNear]
-			</Description>
-		</EntityComponent>
-		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
-			<Id>
-				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Drone-All-Action-COALITION-LargeRoverPlayerNear</SubtypeId>
-			</Id>
-			<Description>
-			[RivalAI Action]
-			[ChangeAutopilotProfile:true]
-			[AutopilotProfile:Tertiary]
-			[EnableTriggers:true]
-			[EnableTriggerNames:GVK-Drone-All-Trigger-COALITION-LargeRoverPlayerNotNear]
-			[ResetCooldownTimeOfTriggers:true]
-			[ResetTriggerCooldownNames:GVK-Drone-All-Trigger-COALITION-LargeRoverPlayerNotNear]
-			</Description>
-		</EntityComponent>
-		<!-- Trigger Sequence to stop when player is no longer near -->
-		<!-- This is more suitable than ElseActions because it needs to stop applying the else action after player leaves -->
-		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
-			<Id>
-				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Drone-All-Trigger-COALITION-LargeRoverPlayerNotNear</SubtypeId>
-			</Id>
-			<Description>
-			[RivalAI Trigger]
-			[UseTrigger:false]
-			[Type:Timer]
-			[MinCooldownMs:10000]
-			[MaxCooldownMs:10001]
-			[Actions:GVK-Drone-All-Action-COALITION-LargeRoverPlayerNotNear]
-			</Description>
-		</EntityComponent>
-		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
-			<Id>
-				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Drone-All-Action-COALITION-LargeRoverPlayerNotNear</SubtypeId>
-			</Id>
-			<Description>
-			[RivalAI Action]
-			[ChangeAutopilotProfile:true]
-			[AutopilotProfile:Primary]
-			[DisableTriggers:true]
-			[DisableTriggerNames:GVK-Drone-All-Trigger-COALITION-LargeRoverPlayerNotNear]
 			</Description>
 		</EntityComponent>
 	</EntityComponents>

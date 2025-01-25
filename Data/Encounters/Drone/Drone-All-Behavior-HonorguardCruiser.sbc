@@ -9,7 +9,7 @@
 			</Id>
 			<Description>
 			[RivalAI Behavior]
-			[BehaviorName:Fighter]
+			[BehaviorName:Patrol]
 			[UseAmmoReplenish:true]
 			[AmmoReplenishClipAmount:10]
 			[MaxAmmoReplenishments:99999999]
@@ -21,20 +21,17 @@
 			[HorseFighterTimeApproaching:30]
 			[HorseFighterTimeEngaging:30]
 			[TargetData:GVK-Universal-Target-EnemyGrids]
-			[AutopilotData:GVK-Drone-All-Autopilot-HonorguardCruiserPrimary]
-			[SecondaryAutopilotData:GVK-Drone-All-Autopilot-HonorguardCruiserSecondary]
-			[Triggers:GVK-Drone-All-Trigger-CruiserBeaconDisabled]
+			[AutopilotData:GVK-Drone-All-Autopilot-HoverCruiserHorsefly-Passive]
+			[SecondaryAutopilotData:GVK-Drone-All-Autopilot-HonorguardCruiser-Aggressive]
+			[TertiaryAutopilotData:GVK-Drone-All-Autopilot-HonorguardCruiser-Tertiary]
 			[Triggers:GVK-Drone-All-Trigger-WeaponsToMaxRange]
-			[Triggers:GVK-Drone-All-Trigger-FireRailgunsTimers]
-			[Triggers:GVK-Drone-All-Trigger-FireMissilesTimers]
-			[Triggers:GVK-Universal-Trigger-TargetAcquiredChatter]
-			[Triggers:GVK-Drone-All-Trigger-CruiserCompromised]
-			[Triggers:GVK-Drone-All-Trigger-HonorguardCruiserSecondaryAutopilot]
-			[Triggers:GVK-Drone-All-Trigger-HonorguardCruiserPrimaryAutopilot]
+			[Triggers:GVK-Universal-Trigger-GAALSIEN-TargetAcquiredChatter]
 			[Triggers:GVK-Universal-Trigger-JetpackInhibitor]
-			[Triggers:GVK-Drone-All-Trigger-Crashed]
-			[Triggers:GVK-Drone-Encounter-Trigger-RetreatNoTarget]
-			[Triggers:GVK-Drone-Encounter-Trigger-RetreatTimer]
+			[Triggers:GVK-Drone-Encounter-Trigger-SpawnAnyCOALITIONAttackers]
+			[TriggerGroups:GVK-Drone-Encounter-TriggerGroup-InactivityRetreat]
+			[TriggerGroups:GVK-Drone-All-TriggerGroup-AimAtTargetAngle]
+			[TriggerGroups:GVK-Drone-All-TriggerGroup-PatrolFighter]
+			[TriggerGroups:GVK-Drone-All-TriggerGroup-LargeHoverDefeated]
 			[WeaponSystem:GVK-Universal-Weapons-Static06]
 			BountyOnKill=3000000;
 			</Description>
@@ -43,12 +40,12 @@
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Drone-All-Autopilot-HonorguardCruiserPrimary</SubtypeId>
+				<SubtypeId>GVK-Drone-All-Autopilot-HonorguardCruiser-Aggressive</SubtypeId>
 			</Id>
 			<Description>
 			[RivalAI Autopilot]
 			[UseVelocityCollisionEvasion:false]
-			[UseProjectileLeadPrediction:true]
+			[UseProjectileLeadPrediction:false]
 			[RotationMultiplier:1]
 			[LimitRotationSpeed:false]
 			[MaxRotationMagnitude:2]
@@ -76,12 +73,12 @@
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Drone-All-Autopilot-HonorguardCruiserSecondary</SubtypeId>
+				<SubtypeId>GVK-Drone-All-Autopilot-HonorguardCruiser-Tertiary</SubtypeId>
 			</Id>
 			<Description>
 			[RivalAI Autopilot]
 			[UseVelocityCollisionEvasion:false]
-			[UseProjectileLeadPrediction:true]
+			[UseProjectileLeadPrediction:false]
 			[RotationMultiplier:1]
 			[LimitRotationSpeed:false]
 			[MaxRotationMagnitude:2]
@@ -103,91 +100,6 @@
 			[StrafeMinimumSafeAngleFromTarget:25]
 			[AngleAllowedForForwardThrust:120]
 			[MaxVelocityAngleForSpeedControl:180]
-			</Description>
-		</EntityComponent>
-		<!-- Action group switch to secondary autopilot when strafing -->
-		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
-			<Id>
-				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Drone-All-Trigger-HonorguardCruiserSecondaryAutopilot</SubtypeId>
-			</Id>
-			<Description>
-			[RivalAI Trigger]
-			[UseTrigger:true]
-			[Type:TargetNear]
-			[TargetDistance:2000]
-			[MinCooldownMs:5000]
-			[MaxCooldownMs:5000]
-			[StartsReady:true]
-			[ConditionCheckResetsTimer:false]
-			[Conditions:GVK-Drone-All-Condition-HonorguardCruiserSecondaryAutopilot]
-			[Actions:GVK-Drone-All-Action-HonorguardCruiserSecondaryAutopilot]
-			</Description>
-		</EntityComponent>
-		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
-			<Id>
-				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Drone-All-Condition-HonorguardCruiserSecondaryAutopilot</SubtypeId>
-			</Id>
-			<Description>
-			[RivalAI Condition]
-			[UseConditions:true]
-			[MatchAnyCondition:true]
-			[CheckTargetAngleFromForward:true]
-			[MinTargetAngle:0]
-			[MaxTargetAngle:10]
-			</Description>
-		</EntityComponent>
-		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
-			<Id>
-				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Drone-All-Action-HonorguardCruiserSecondaryAutopilot</SubtypeId>
-			</Id>
-			<Description>
-			[RivalAI Action]
-			[ChangeAutopilotProfile:true]
-			[AutopilotProfile:Secondary]
-			</Description>
-		</EntityComponent>
-		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
-			<Id>
-				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Drone-All-Trigger-HonorguardCruiserPrimaryAutopilot</SubtypeId>
-			</Id>
-			<Description>
-			[RivalAI Trigger]
-			[UseTrigger:true]
-			[Type:TargetNear]
-			[TargetDistance:2000]
-			[StartsReady:true]
-			[ConditionCheckResetsTimer:false]
-			[Conditions:GVK-Drone-All-Condition-HonorguardCruiserPrimaryAutopilot]
-			[Actions:GVK-Drone-All-Action-HonorguardCruiserPrimaryAutopilot]
-			</Description>
-		</EntityComponent>
-		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
-			<Id>
-				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Drone-All-Condition-HonorguardCruiserPrimaryAutopilot</SubtypeId>
-			</Id>
-			<Description>
-			[RivalAI Condition]
-			[UseConditions:true]
-			[MatchAnyCondition:true]
-			[CheckTargetAngleFromForward:true]
-			[MinTargetAngle:11]
-			[MaxTargetAngle:180]
-			</Description>
-		</EntityComponent>
-		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
-			<Id>
-				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Drone-All-Action-HonorguardCruiserPrimaryAutopilot</SubtypeId>
-			</Id>
-			<Description>
-			[RivalAI Action]
-			[ChangeAutopilotProfile:true]
-			[AutopilotProfile:Primary]
 			</Description>
 		</EntityComponent>
 	</EntityComponents>

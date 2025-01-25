@@ -4,7 +4,7 @@
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Drone-All-Behavior-SmallFlyerPatrolStrike</SubtypeId>
+				<SubtypeId>GVK-Drone-All-Behavior-COALITIONStrikeFighter</SubtypeId>
 			</Id>
 			<Description>
 			[RivalAI Behavior]
@@ -25,24 +25,25 @@
 			[HorseFighterTimeApproaching:10]
 			[HorseFighterTimeEngaging:10]
 			[TargetData:GVK-Universal-Target-EnemyGAALSIENBeacon]
-			[AutopilotData:GVK-Drone-All-Autopilot-SmallFlyerPatrolFighter-Patrol]
-			[SecondaryAutopilotData:GVK-Drone-All-Autopilot-SmallFlyerPatrolFighter-Strike]
+			[AutopilotData:GVK-Drone-All-Autopilot-COALITIONStrikeFighter-Patrol]
+			[SecondaryAutopilotData:GVK-Drone-All-Autopilot-COALITIONStrikeFighter-Strike]
 			[Triggers:GVK-Drone-All-Trigger-BarrelRoll]
 			[Triggers:GVK-Universal-Trigger-UneditableOnSpawn]
 			[Triggers:GVK-Drone-All-Trigger-TargetAttacker]
 			[Triggers:GVK-Drone-All-Trigger-WeaponsToMaxRange]
-			[Triggers:GVK-Universal-Trigger-TargetAcquiredChatter]
-			[Triggers:GVK-Drone-Encounter-Trigger-RetreatNoTarget]
-			[Triggers:GVK-Drone-Encounter-Trigger-RetreatTimer]
+			[Triggers:GVK-Universal-Trigger-COALITION-TargetAcquiredChatter]
+			[Triggers:GVK-Universal-Trigger-COALITION-NoTargetsChatter]
+			[Triggers:GVK-Drone-Encounter-Trigger-SpawnSmallGAALSIENAttackers]
+			[TriggerGroups:GVK-Drone-Encounter-TriggerGroup-InactivityRetreat]
 			[TriggerGroups:GVK-Drone-All-TriggerGroup-PatrolStrike]
-			[TriggerGroups:GVK-Drone-All-TriggerGroup-SmallFlyerDefeated]
+			[TriggerGroups:GVK-Drone-All-TriggerGroup-SmallCOALITIONFlyerDefeated]
 			</Description>
 		</EntityComponent>
 		<!-- SmallFlyerHorseFighter Autopilot -->
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Drone-All-Autopilot-SmallFlyerPatrolFighter-Patrol</SubtypeId>
+				<SubtypeId>GVK-Drone-All-Autopilot-COALITIONStrikeFighter-Patrol</SubtypeId>
 			</Id>
 			<Description>
 			[RivalAI Autopilot]
@@ -74,7 +75,7 @@
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Drone-All-Autopilot-SmallFlyerPatrolFighter-Strike</SubtypeId>
+				<SubtypeId>GVK-Drone-All-Autopilot-COALITIONStrikeFighter-Strike</SubtypeId>
 			</Id>
 			<Description>
 			[RivalAI Autopilot]
@@ -90,8 +91,8 @@
 			[DisableInertiaDampeners:false]
 			[FlyLevelWithGravity:false]
 			[LevelWithGravityWhenIdle:false]
-			[IdealPlanetAltitude:100]
-			[MinimumPlanetAltitude:100]
+			[IdealPlanetAltitude:150]
+			[MinimumPlanetAltitude:150]
 			[AltitudeTolerance:10]
 			[WaypointTolerance:200]
 			[RamMinDurationMs:6000]

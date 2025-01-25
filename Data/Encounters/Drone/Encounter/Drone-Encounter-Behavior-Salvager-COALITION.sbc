@@ -18,15 +18,17 @@
 			[RetreatTimerTrigger:1800]
 			[RetreatDespawnDistance:2000]
 			[AutopilotData:GVK-Drone-Encounter-Autopilot-Salvager-COALITION]
-			[TargetData:TargetData:GVK-Universal-Target-EnemyPlayerAndGrid]
+			[SecondaryAutopilotData:GVK-Drone-Encounter-Autopilot-Salvager-COALITION]
+			[TertiaryAutopilotData:GVK-Drone-All-Autopilot-COALITION-Salvager-Stop]
+			[TargetData:TargetData:GVK-Universal-Target-EnemyGrids]
 			[Triggers:GVK-Universal-Trigger-UneditableOnSpawn]
 			[Triggers:GVK-Drone-Encounter-Salvager-COALITION-Trigger-PlayerNear]
-			[Triggers:GVK-Drone-Encounter-Trigger-RetreatNoTarget]
-			[Triggers:GVK-Drone-Encounter-Trigger-RetreatTimer]
+			[TriggerGroups:GVK-Drone-All-TriggerGroup-FrontSensorStop]
+			[TriggerGroups:GVK-Drone-Encounter-TriggerGroup-InactivityRetreat]
 			[TriggerGroups:GVK-Drone-All-TriggerGroup-SmallCOALITIONRoverDefeated]
 			</Description>
 		</EntityComponent>
-		<!-- Salvager Hover Drone Behavior -->
+		<!-- Salvager at wrecks does not spawn attacker sandskimmers -->
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
@@ -43,10 +45,12 @@
 			[RetreatTimerTrigger:1800]
 			[RetreatDespawnDistance:2000]
 			[AutopilotData:GVK-Drone-Encounter-Autopilot-Salvager-COALITION]
-			[TargetData:TargetData:GVK-Universal-Target-EnemyPlayerAndGrid]
+			[SecondaryAutopilotData:GVK-Drone-Encounter-Autopilot-Salvager-COALITION]
+			[TertiaryAutopilotData:GVK-Drone-All-Autopilot-COALITION-Salvager-Stop]
+			[TargetData:TargetData:GVK-Universal-Target-EnemyGrids]
 			[Triggers:GVK-Universal-Trigger-UneditableOnSpawn]
-			[Triggers:GVK-Drone-Encounter-Trigger-RetreatNoTarget]
-			[Triggers:GVK-Drone-Encounter-Trigger-RetreatTimer]
+			[TriggerGroups:GVK-Drone-All-TriggerGroup-FrontSensorStop]
+			[TriggerGroups:GVK-Drone-Encounter-TriggerGroup-InactivityRetreat]
 			[TriggerGroups:GVK-Drone-All-TriggerGroup-SmallCOALITIONRoverDefeated]
 			</Description>
 		</EntityComponent>
@@ -60,22 +64,58 @@
 			[RivalAI Autopilot]
 			[UseVelocityCollisionEvasion:false]
 			[CollisionEvasionWaypointCalculatedAwayFromEntity:true]
-			[RotationMultiplier:2]
+			[RotationMultiplier:1]
 			[LimitRotationSpeed:true]
-			[MaxRotationMagnitude:0.5]
-			[FlyLevelWithGravity:true]
-			[LevelWithGravityWhenIdle:true]
+			[MaxRotationMagnitude:0.25]
+			[FlyLevelWithGravity:false]
+			[LevelWithGravityWhenIdle:false]
+			[UseSurfaceHoverThrustMode:true]
+			[HoverPathStepDistance:60]
 			[AltitudeTolerance:5000]
-			[WaypointAbandonTimeTrigger:60]
-			[WaypointTolerance:100]
+			[WaypointAbandonTimeTrigger:30]
+			[WaypointTolerance:55]
+			[IdealPlanetAltitude:13]
 			[IdealMinSpeed:25]
-			[IdealMaxSpeed:65]
+			[IdealMaxSpeed:30]
 			[WaypointWaitTimeTrigger:10]
-			[OffsetPlanetMinDistFromTarget:200]
-			[OffsetPlanetMaxDistFromTarget:500]
-			[OffsetPlanetMinTargetAltitude:0]
+			[OffsetPlanetMinDistFromTarget:500]
+			[OffsetPlanetMaxDistFromTarget:501]
+			[OffsetPlanetMinTargetAltitude:9]
 			[OffsetPlanetMaxTargetAltitude:10]
-			[AngleAllowedForForwardThrust:120]
+			[AngleAllowedForForwardThrust:45]
+			[MaxVelocityAngleForSpeedControl:180]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Drone-All-Autopilot-COALITION-Salvager-Stop</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Autopilot]
+			[UseVelocityCollisionEvasion:false]
+			[RotationMultiplier:0]
+			[LimitRotationSpeed:true]
+			[MaxRotationMagnitude:0]
+			[DisableInertiaDampeners:false]
+			[FlyLevelWithGravity:false]
+			[LevelWithGravityWhenIdle:false]
+			[UseSurfaceHoverThrustMode:true]
+			[HoverPathStepDistance:1]
+			[IdealPlanetAltitude:13]
+			[MinimumPlanetAltitude:0]
+			[AltitudeTolerance:5000]
+			[WaypointAbandonTimeTrigger:15]
+			[WaypointTolerance:1]
+			[IdealMinSpeed:0]
+			[IdealMaxSpeed:0]
+			[MaxSpeedTolerance:1]
+			[OffsetPlanetMinDistFromTarget:0]
+			[OffsetPlanetMaxDistFromTarget:1]
+			[OffsetPlanetMinTargetAltitude:13]
+			[OffsetPlanetMaxTargetAltitude:14]
+			[AngleAllowedForForwardThrust:0]
+			[MaxVelocityAngleForSpeedControl:180]
 			</Description>
 		</EntityComponent>
 		<!-- Trigger sequence for Salvager to spawn enemies when player is near -->
@@ -102,8 +142,6 @@
 			</Id>
 			<Description>
 			[RivalAI Action]
-			[TriggerTimerBlocks:true]
-			[TimerBlockNames:NPC Timer Resume Cruise]
 			[SpawnEncounter:true]
 			[Spawner:GVK-Drone-Encounter-Salvager-COALITION-Spawner-PlayerNear]
 			[UseChatBroadcast:true]
@@ -149,7 +187,7 @@
 			[MaxDistance:750]
 			[MinAltitude:20]
 			[MaxAltitude:21]
-			[InheritNpcAltitude:true]
+			[InheritNpcAltitude:false]
 			[IgnoreSafetyChecks:true]
 			</Description>
 		</EntityComponent>

@@ -18,14 +18,11 @@
 			[RetreatTimerTrigger:1800]
 			[RetreatDespawnDistance:2000]
 			[AutopilotData:GVK-Drone-Encounter-Autopilot-Salvager-GAALSIEN]
-			[TargetData:TargetData:GVK-Universal-Target-EnemyPlayerAndGrid]
+			[TargetData:TargetData:GVK-Universal-Target-EnemyGrids]
 			[Triggers:GVK-Drone-All-Trigger-TargetAttacker]
-			[Triggers:GVK-Drone-Encounter-Salvager-GAALSIEN-Trigger-Retreat-PlayerNear]
-			[Triggers:GVK-Drone-Encounter-Salvager-GAALSIEN-Trigger-Retreat-Damage]
-			[Triggers:GVK-Drone-Encounter-Salvager-GAALSIEN-Trigger-Compromised]
-			[Triggers:GVK-Drone-Encounter-Salvager-GAALSIEN-Trigger-BeaconDisabled]
-			[Triggers:GVK-Drone-Encounter-Trigger-RetreatNoTarget]
-			[Triggers:GVK-Drone-Encounter-Trigger-RetreatTimer]
+			[TriggerGroups:GVK-Drone-Encounter-TriggerGroup-InactivityRetreat]
+			[TriggerGroups:GVK-Drone-All-TriggerGroup-GAALSIENSalvagerDefeated]
+			[TriggerGroups:GVK-Drone-All-TriggerGroup-GAALSIENSalvagerRetreat]
 			BountyOnKill=500000;
 			</Description>
 		</EntityComponent>
@@ -54,162 +51,6 @@
 			[OffsetPlanetMinTargetAltitude:0]
 			[OffsetPlanetMaxTargetAltitude:10]
 			[AngleAllowedForForwardThrust:120]
-			</Description>
-		</EntityComponent>
-		<!-- Trigger sequence for Salvager to run away when player is near -->
-		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
-			<Id>
-				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Drone-Encounter-Salvager-GAALSIEN-Trigger-Retreat-PlayerNear</SubtypeId>
-			</Id>
-			<Description>
-			[RivalAI Trigger]
-			[Type:PlayerNear]
-			[UseTrigger:true]
-			[StartsReady:true]
-			[TargetDistance:500]
-			[MaxActions:1]
-			[ActionExecution:All]
-			[Actions:GVK-Drone-Encounter-Salvager-GAALSIEN-Action-Retreat]
-			</Description>
-		</EntityComponent>
-		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
-			<Id>
-				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Drone-Encounter-Salvager-GAALSIEN-Trigger-Retreat-Damage</SubtypeId>
-			</Id>
-			<Description>
-			[RivalAI Trigger]
-			[Type:Damage]
-			[UseTrigger:true]
-			[StartsReady:true]
-			[DamageTypes:Any]
-			[MaxActions:1]
-			[ActionExecution:All]
-			[Actions:GVK-Drone-Encounter-Salvager-GAALSIEN-Action-Retreat]
-			</Description>
-		</EntityComponent>
-		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
-			<Id>
-				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Drone-Encounter-Salvager-GAALSIEN-Action-Retreat</SubtypeId>
-			</Id>
-			<Description>
-			[RivalAI Action]
-			[Retreat:true]
-			[UseChatBroadcast:true]
-			[ChatData:GVK-Drone-Encounter-Salvager-GAALSIEN-Chat-Retreat]
-			</Description>
-		</EntityComponent>
-		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
-			<Id>
-				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Drone-Encounter-Salvager-GAALSIEN-Chat-Retreat</SubtypeId>
-			</Id>
-			<Description>
-			[RivalAI Chat]
-			[UseChat:true]
-			[StartsReady:true]
-			[Chance:100]
-			[MaxChats:1]
-			[BroadcastRandomly:true]
-			[Author:GAALSIEN Salvager]
-			[Color:Red]
-			[ChatMessages:Enemy Detected, retreating immediately.]
-			[ChatAudio:ArcHudGPSNotification2]
-			[BroadcastChatType:Chat]
-			[SendToAllOnlinePlayers:false]
-			[IgnoreAntennaRequirement:true]
-			[IgnoredAntennaRangeOverride:9999999]
-			</Description>
-		</EntityComponent>
-		<!-- Trigger sequence when Salvager is disabled -->
-		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
-			<Id>
-				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Drone-Encounter-Salvager-GAALSIEN-Trigger-Compromised</SubtypeId>
-			</Id>
-			<Description>
-			[RivalAI Trigger]
-			[Type:Compromised]
-			[UseTrigger:true]
-			[StartsReady:true]
-			[MaxActions:1]
-			[ActionExecution:All]
-			[Actions:GVK-Drone-Encounter-Salvager-GAALSIEN-Action-Compromised]
-			[Actions:GVK-Universal-Action-EditableOnCompromised]
-			[Actions:GVK-Universal-Action-Disabled]
-			[Actions:GVK-Universal-Action-SmallBlueExplosionEffects]
-			</Description>
-		</EntityComponent>
-		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
-			<Id>
-				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Drone-Encounter-Salvager-GAALSIEN-Action-Compromised</SubtypeId>
-			</Id>
-			<Description>
-			[RivalAI Action]
-			[DisableTriggers:true]
-			[DisableTriggerNames:GVK-Drone-Encounter-Salvager-GAALSIEN-Trigger-Compromised]			
-			[DisableTriggerNames:GVK-Drone-Encounter-Salvager-GAALSIEN-Trigger-BeaconDisabled]
-			[UseChatBroadcast:true]
-			[ChatData:GVK-Drone-Encounter-Salvager-GAALSIEN-Chat-Compromised]
-			</Description>
-		</EntityComponent>
-		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
-			<Id>
-				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Drone-Encounter-Salvager-GAALSIEN-Chat-Compromised</SubtypeId>
-			</Id>
-			<Description>
-			[RivalAI Chat]
-			[UseChat:true]
-			[StartsReady:true]
-			[Chance:100]
-			[MaxChats:1]
-			[BroadcastRandomly:true]
-			[Author:Sensors]
-			[Color:Blue]
-			[ChatMessages:GAALSIEN salvager disabled.]
-			[ChatAudio:ArcHudSensors]
-			[BroadcastChatType:Notify]
-			[SendToAllOnlinePlayers:false]
-			[IgnoreAntennaRequirement:true]
-			[IgnoredAntennaRangeOverride:9999999]
-			</Description>
-		</EntityComponent>
-		<!-- Trigger sequence when large NPC Beacon is disabled -->
-		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
-			<Id>
-				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Drone-Encounter-Salvager-GAALSIEN-Trigger-BeaconDisabled</SubtypeId>
-			</Id>
-			<Description>
-			[RivalAI Trigger]
-			[Type:Timer]
-			[UseTrigger:true]
-			[StartsReady:true]
-			[Conditions:GVK-Drone-Encounter-Salvager-GAALSIEN-Condition-BeaconDisabled]
-			[MaxActions:1]
-			[ActionExecution:All]
-			[Actions:GVK-Drone-Encounter-Salvager-GAALSIEN-Action-Compromised]
-			[Actions:GVK-Universal-Action-EditableOnCompromised]
-			[Actions:GVK-Universal-Action-Disabled]
-			[Actions:GVK-Universal-Action-SmallBlueExplosionEffects]
-			</Description>
-		</EntityComponent>
-		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
-			<Id>
-				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Drone-Encounter-Salvager-GAALSIEN-Condition-BeaconDisabled</SubtypeId>
-			</Id>
-			<Description>
-			[RivalAI Condition]
-			[UseConditions:true]
-			[MatchAnyCondition:false]
-			[CheckForBlocksOfType:true]
-			[BlocksOfType:MyObjectBuilder_Beacon]
-			[UseFailCondition:true]
 			</Description>
 		</EntityComponent>
 	</EntityComponents>

@@ -21,8 +21,9 @@
 			[TargetData:GVK-Universal-Target-EnemyGrids]
 			[Triggers:GVK-Universal-Trigger-UneditableOnSpawn]
 			[Triggers:GVK-Drone-Encounter-LAV-COALITION-Trigger-PlayerNear]
-			[Triggers:GVK-Drone-Encounter-Trigger-RetreatNoTarget]
-			[Triggers:GVK-Drone-Encounter-Trigger-RetreatTimer]
+			[Triggers:GVK-Universal-Trigger-COALITION-TargetAcquiredChatter]
+			[Triggers:GVK-Universal-Trigger-COALITION-NoTargetsChatter]
+			[TriggerGroups:GVK-Drone-Encounter-TriggerGroup-InactivityRetreat]
 			[TriggerGroups:GVK-Drone-All-TriggerGroup-SmallCOALITIONRoverDefeated]
 			</Description>
 		</EntityComponent>
@@ -84,8 +85,6 @@
 			</Id>
 			<Description>
 			[RivalAI Action]
-			[TriggerTimerBlocks:true]
-			[TimerBlockNames:NPC Timer Resume Cruise]
 			[SpawnEncounter:true]
 			[Spawner:GVK-Drone-Encounter-LAV-COALITION-Spawner-PlayerNear]
 			[UseChatBroadcast:false]

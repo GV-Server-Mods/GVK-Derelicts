@@ -6,7 +6,7 @@
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Universal-Trigger-TargetAcquiredChatter</SubtypeId>
+				<SubtypeId>GVK-Universal-Trigger-GAALSIEN-TargetAcquiredChatter</SubtypeId>
 			</Id>
 			<Description>
 			[RivalAI Trigger]
@@ -14,18 +14,68 @@
 			[UseTrigger:true]
 			[StartsReady:true]
 			[MaxActions:1]
-			[Actions:GVK-Universal-Action-SPRTTargetAcquiredChatter]
+			[Actions:GVK-Universal-Action-GAALSIEN-TargetAcquiredChatter]
 			</Description>
 		</EntityComponent>
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Universal-Action-SPRTTargetAcquiredChatter</SubtypeId>
+				<SubtypeId>GVK-Universal-Action-GAALSIEN-TargetAcquiredChatter</SubtypeId>
 			</Id>
 			<Description>
 			[RivalAI Action]
 			[UseChatBroadcast:true]
-			[ChatData:GVK-Universal-Chat-SPRTTargetAcquiredChatter]
+			[ChatData:GVK-Universal-Chat-GAALSIEN-TargetAcquiredChatter]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Universal-Trigger-COALITION-TargetAcquiredChatter</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Trigger]
+			[Type:AcquiredTarget]
+			[UseTrigger:true]
+			[StartsReady:true]
+			[MaxActions:1]
+			[Actions:GVK-Universal-Action-COALITION-TargetAcquiredChatter]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Universal-Action-COALITION-TargetAcquiredChatter</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Action]
+			[UseChatBroadcast:true]
+			[ChatData:GVK-Universal-Chat-COALITION-TargetAcquiredChatter]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Universal-Trigger-COALITION-NoTargetsChatter</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Trigger]
+			[Type:AcquiredTarget]
+			[UseTrigger:true]
+			[StartsReady:true]
+			[MaxActions:1]
+			[Actions:GVK-Universal-Action-COALITION-NoTargetsChatter]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Universal-Action-COALITION-NoTargetsChatter</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Action]
+			[UseChatBroadcast:true]
+			[ChatData:GVK-Universal-Chat-COALITION-NoTargetsChatter]
 			</Description>
 		</EntityComponent>
 		<!-- Jetpack Inhibitor on Session (This appears to be broken in DS MP, players can glide long distances  -->
@@ -207,11 +257,11 @@
 			[BroadcastChatType:Chat]
 			</Description>
 		</EntityComponent>
-		<!-- Generic SPRT Target Acquired Chatter -->
+		<!-- GAALSIEN Target Acquired Chatter -->
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Universal-Chat-SPRTTargetAcquiredChatter</SubtypeId>
+				<SubtypeId>GVK-Universal-Chat-GAALSIEN-TargetAcquiredChatter</SubtypeId>
 			</Id>
 			<Description>
 			[RivalAI Chat]
@@ -267,6 +317,95 @@
 			[ChatAudio:ArcHudGPSNotification2]
 			[BroadcastChatType:Chat]
 			[ChatMessages:This is your last chance to run.]
+			[ChatAudio:ArcHudGPSNotification2]
+			[BroadcastChatType:Chat]
+			</Description>
+		</EntityComponent>
+		<!-- COALITION Target Acquired Chatter -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Universal-Chat-COALITION-TargetAcquiredChatter</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Chat]
+			[UseChat:true]
+			[StartsReady:true]
+			[Chance:50]
+			[BroadcastRandomly:true]
+			[SendToAllOnlinePlayers:false]
+			[IgnoreAntennaRequirement:true]
+			[IgnoredAntennaRangeOverride:9999999]
+			[Author:{GridName}]
+			[Color:White]
+			[ChatMessages:Target acquired.]
+			[ChatAudio:ArcHudGPSNotification2]
+			[BroadcastChatType:Chat]
+			[ChatMessages:Target locked.]
+			[ChatAudio:ArcHudGPSNotification2]
+			[BroadcastChatType:Chat]
+			[ChatMessages:Don't let them near the Kapisi.]
+			[ChatAudio:ArcHudGPSNotification2]
+			[BroadcastChatType:Chat]
+			[ChatMessages:We'll handle this.]
+			[ChatAudio:ArcHudGPSNotification2]
+			[BroadcastChatType:Chat]
+			[ChatMessages:Engaging enemy.]
+			[ChatAudio:ArcHudGPSNotification2]
+			[BroadcastChatType:Chat]
+			[ChatMessages:Enemy GAALSIEN detected.]
+			[ChatAudio:ArcHudGPSNotification2]
+			[BroadcastChatType:Chat]
+			[ChatMessages:COALITION Reinforcements have arrived.]
+			[ChatAudio:ArcHudGPSNotification2]
+			[BroadcastChatType:Chat]
+			[ChatMessages:We're from the COALITION and we're here to help.]
+			[ChatAudio:ArcHudGPSNotification2]
+			[BroadcastChatType:Chat]
+			[ChatMessages:We must find the primary anomaly.]
+			[ChatAudio:ArcHudGPSNotification2]
+			[BroadcastChatType:Chat]
+			[ChatMessages:Protect the Jaraci Object.]
+			[ChatAudio:ArcHudGPSNotification2]
+			[BroadcastChatType:Chat]
+			[ChatMessages:For Kiith S'jet.]
+			[ChatAudio:ArcHudGPSNotification2]
+			[BroadcastChatType:Chat]
+			[ChatMessages:Destroy the zealots.]
+			[ChatAudio:ArcHudGPSNotification2]
+			[BroadcastChatType:Chat]
+			</Description>
+		</EntityComponent>
+		<!-- COALITION Target Acquired Chatter -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Universal-Chat-COALITION-NoTargetsChatter</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Chat]
+			[UseChat:true]
+			[StartsReady:true]
+			[Chance:50]
+			[BroadcastRandomly:true]
+			[SendToAllOnlinePlayers:false]
+			[IgnoreAntennaRequirement:true]
+			[IgnoredAntennaRangeOverride:9999999]
+			[Author:{GridName}]
+			[Color:White]
+			[ChatMessages:Sector is Clear.]
+			[ChatAudio:ArcHudGPSNotification2]
+			[BroadcastChatType:Chat]
+			[ChatMessages:Searching for targets.]
+			[ChatAudio:ArcHudGPSNotification2]
+			[BroadcastChatType:Chat]
+			[ChatMessages:No GAALSIEN detected.]
+			[ChatAudio:ArcHudGPSNotification2]
+			[BroadcastChatType:Chat]
+			[ChatMessages:I think we got them all.]
+			[ChatAudio:ArcHudGPSNotification2]
+			[BroadcastChatType:Chat]
+			[ChatMessages:Keep your eyes open for more enemies.]
 			[ChatAudio:ArcHudGPSNotification2]
 			[BroadcastChatType:Chat]
 			</Description>

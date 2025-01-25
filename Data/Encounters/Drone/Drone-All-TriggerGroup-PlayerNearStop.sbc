@@ -1,0 +1,77 @@
+<?xml version="1.0"?>
+<Definitions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+	<EntityComponents>
+		<!-- Stop when player is nearby for COALITION large vehicles -->
+		<!-- This requires a Tertiary autopilot with 0m/s speed, and 0 rotation -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Drone-All-TriggerGroup-PlayerNearStop</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI TriggerGroup]
+			[Triggers:GVK-Drone-All-Trigger-PlayerIsNearStop]
+			[Triggers:GVK-Drone-All-Trigger-PlayerNotNearResume]			
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Drone-All-Trigger-PlayerIsNearStop</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Trigger]
+			[UseTrigger:true]
+			[Type:PlayerNear]
+			[TargetDistance:400]
+			[MinCooldownMs:1000]
+			[MaxCooldownMs:1001]
+			[Actions:GVK-Drone-All-Action-PlayerIsNearStop]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Drone-All-Action-PlayerIsNearStop</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Action]
+			[EnableTriggers:true]
+			[EnableTriggerNames:GVK-Drone-All-Trigger-PlayerNotNearResume]
+			[ResetCooldownTimeOfTriggers:true]
+			[ResetTriggerCooldownNames:GVK-Drone-All-Trigger-PlayerNotNearResume]
+			[ChangeAutopilotProfile:true]
+			[AutopilotProfile:Tertiary]
+			</Description>
+		</EntityComponent>
+		<!-- Trigger Sequence to resume when player is no longer near -->
+		<!-- This is more suitable than ElseActions because it needs to stop applying the else action after player leaves -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Drone-All-Trigger-PlayerNotNearResume</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Trigger]
+			[UseTrigger:false]
+			[Type:Timer]
+			[MinCooldownMs:10000]
+			[MaxCooldownMs:10001]
+			[Actions:GVK-Drone-All-Action-PlayerNotNearResume]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Drone-All-Action-PlayerNotNearResume</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Action]
+			[DisableTriggers:true]
+			[DisableTriggerNames:GVK-Drone-All-Trigger-PlayerNotNearResume]
+			[ChangeAutopilotProfile:true]
+			[AutopilotProfile:Primary]
+			</Description>
+		</EntityComponent>
+	</EntityComponents>
+</Definitions>

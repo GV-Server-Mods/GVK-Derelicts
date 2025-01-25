@@ -1,0 +1,75 @@
+<?xml version="1.0"?>
+<Definitions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+	<EntityComponents>
+		<!-- Makes grids invulnerable until player near, for fighting NPCs to reduce damage load -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Drone-All-TriggerGroup-InvulnerableUntilPlayerNear</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI TriggerGroup]
+			[Triggers:GVK-Drone-All-Trigger-PlayerIsNearBecomeVulnerable]
+			[Triggers:GVK-Drone-All-Trigger-PlayerNotNearBecomeInvulnerable]			
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Drone-All-Trigger-PlayerIsNearBecomeVulnerable</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Trigger]
+			[UseTrigger:true]
+			[Type:PlayerNear]
+			[TargetDistance:4000]
+			[MinCooldownMs:1000]
+			[MaxCooldownMs:1001]
+			[Actions:GVK-Drone-All-Action-PlayerIsNearBecomeVulnerable]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Drone-All-Action-PlayerIsNearBecomeVulnerable</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Action]
+			[EnableTriggers:true]
+			[EnableTriggerNames:GVK-Drone-All-Trigger-PlayerNotNearBecomeInvulnerable]
+			[ResetCooldownTimeOfTriggers:true]
+			[ResetTriggerCooldownNames:GVK-Drone-All-Trigger-PlayerNotNearBecomeInvulnerable]
+			[GridDestructible:true]
+			[SubGridsDestructible:true]
+			</Description>
+		</EntityComponent>
+		<!-- This is more suitable than ElseActions because it needs to stop applying the else action after player leaves -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Drone-All-Trigger-PlayerNotNearBecomeInvulnerable</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Trigger]
+			[UseTrigger:false]
+			[Type:Timer]
+			[MinCooldownMs:10000]
+			[MaxCooldownMs:10001]
+			[Actions:GVK-Drone-All-Action-PlayerNotNearBecomeInvulnerable]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Drone-All-Action-PlayerNotNearBecomeInvulnerable</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Action]
+			[DisableTriggers:true]
+			[DisableTriggerNames:GVK-Drone-All-Trigger-PlayerNotNearBecomeInvulnerable]
+			[GridDestructible:false]
+			[SubGridsDestructible:false]
+			</Description>
+		</EntityComponent>
+	</EntityComponents>
+</Definitions>
