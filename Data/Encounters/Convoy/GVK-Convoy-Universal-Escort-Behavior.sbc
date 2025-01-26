@@ -1,11 +1,11 @@
 <?xml version="1.0"?>
 <Definitions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
 	<EntityComponents>
-		<!-- Escort Drone Rover Behavior -->
+		<!-- Medium Escort Drone Rover Behavior -->
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Convoy-Escort-Behavior-Hover</SubtypeId>
+				<SubtypeId>GVK-Convoy-Escort-Behavior-MediumHover</SubtypeId>
 			</Id>
 			<Description>
 			[RivalAI Behavior]
@@ -25,16 +25,48 @@
 			[TargetData:GVK-Universal-Target-EnemyGrids]
 			[AutopilotData:GVK-Convoy-Escort-PrimaryAutopilot]
 			[SecondaryAutopilotData:GVK-Drone-All-Autopilot-MediumHoverPatrolHorsefly]
-			[Triggers:GVK-Drone-All-Trigger-LargeBeaconDisabled]
-			[Triggers:GVK-Drone-All-Trigger-LargeCompromised]
 			[Triggers:GVK-Drone-All-Trigger-TargetAttacker]
 			[Triggers:GVK-Drone-All-Trigger-WeaponsToMaxRange]
 			[Triggers:GVK-Drone-All-Trigger-FireMissilesTimers]
-			[Triggers:GVK-Universal-Trigger-GAALSIEN-TargetAcquiredChatter]
 			[Triggers:GVK-Convoy-Escort-Trigger-RequestEscortSlot]
 			[Triggers:GVK-Convoy-Escort-Trigger-ReceiveScatterCommand]
+			[TriggerGroups:GVK-Drone-All-TriggerGroup-MediumHoverDefeated]
 			[TriggerGroups:GVK-Drone-Encounter-TriggerGroup-InactivityRetreat]
 			BountyOnKill=1000000;
+			</Description>
+		</EntityComponent>
+		<!-- Large Escort Drone Rover Behavior -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Convoy-Escort-Behavior-LargeHover</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Behavior]
+			[BehaviorName:Escort]
+			[UseStaticGuns:true]
+			[UseTurrets:true]
+			[MaxStaticWeaponRange:-1]
+			[WeaponMaxAngleFromTarget:180]
+			[UseAmmoReplenish:true]
+			[AmmoReplenishClipAmount:10]
+			[MaxAmmoReplenishments:99999999]
+			[UsePlayerDistanceTimer:true]
+			[PlayerDistanceTimerTrigger:1800]
+			[PlayerDistanceTrigger:5000]
+			[UseNoTargetTimer:false]
+			[UseRetreatTimer:false]
+			[TargetData:GVK-Universal-Target-EnemyGrids]
+			[AutopilotData:GVK-Convoy-Escort-PrimaryAutopilot]
+			[SecondaryAutopilotData:GVK-Drone-All-Autopilot-MediumHoverPatrolHorsefly]
+			[Triggers:GVK-Drone-All-Trigger-TargetAttacker]
+			[Triggers:GVK-Drone-All-Trigger-WeaponsToMaxRange]
+			[Triggers:GVK-Drone-All-Trigger-FireMissilesTimers]
+			[Triggers:GVK-Convoy-Escort-Trigger-RequestEscortSlot]
+			[Triggers:GVK-Convoy-Escort-Trigger-ReceiveScatterCommand]
+			[TriggerGroups:GVK-Drone-All-TriggerGroup-LargeHoverDefeated]
+			[TriggerGroups:GVK-Drone-Encounter-TriggerGroup-InactivityRetreat]
+			BountyOnKill=3000000;
 			</Description>
 		</EntityComponent>
 		<!-- Escort Drone Rover Autopilot -->
