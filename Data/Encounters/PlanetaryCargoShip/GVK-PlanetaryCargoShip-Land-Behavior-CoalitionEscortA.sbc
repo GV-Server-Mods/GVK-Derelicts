@@ -966,7 +966,6 @@
 			[MinCooldownMs:9998]
 			[MaxCooldownMs:9999]
 			[Actions:GVK-CargoShip-Land-COALITION-Action-EscortSuccessA]
-			[Actions:GVK-Universal-Action-Disabled]
 			</Description>
 		</EntityComponent>
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
@@ -986,7 +985,6 @@
 			[Conditions:GVK-CargoShip-Land-COALITION-Condition-EscortSuccessA]
 			[ConditionCheckResetsTimer:true]
 			[Actions:GVK-CargoShip-Land-COALITION-Action-EscortSuccessA]
-			[Actions:GVK-Universal-Action-Disabled]
 			</Description>
 		</EntityComponent>
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
@@ -1017,12 +1015,6 @@
 			[ChatData:GVK-CargoShip-Land-COALITION-Chat-EscortSuccessA]
 			[SpawnEncounter:true]
 			[Spawner:GVK-CargoShip-Land-COALITION-Spawner-EscortSuccessA]
-			[ChangeAutopilotProfile:true]
-			[AutopilotProfile:Secondary]
-			[RecalculateDespawnCoords:true]
-			[TriggerTimerBlocks:true]
-			[TimerBlockNames:NPC Timer E-brake]
-			[StopAllRotation:true]
 			[DisableTriggers:true]
 			[DisableTriggerNames:GVK-CargoShip-Land-COALITION-Trigger-EscortSuccessTargetA]
 			[DisableTriggerNames:GVK-CargoShip-Land-COALITION-Trigger-EscortSuccessCounterA]
@@ -1033,7 +1025,15 @@
 			[DisableTriggerNames:GVK-CargoShip-Land-COALITION-Trigger-EscortAttacked]
 			[DisableTriggerNames:GVK-CargoShip-Land-COALITION-Trigger-EscortBeaconDisabled]
 			[DisableTriggerNames:GVK-CargoShip-Land-COALITION-Trigger-EscortCompromised]
-			[TerminateBehavior:true]
+			[PlayParticleEffectAtRemote:true]
+			[ParticleEffectId:CruiserPoofSmoke]
+			[ParticleEffectOffset:{X:0.0 Y:0.0 Z:0.0}]
+			[ParticleEffectScale:2.0]
+			[ParticleEffectMaxTime:1000]
+			[ParticleEffectColor:{X:1.0 Y:1.0 Z:1.0}]
+			[PlaySoundAtPosition:true]
+			[SoundAtPosition:Cruiser_Explosion]
+			[ForceDespawn:true]
 			</Description>
 		</EntityComponent>
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
@@ -1050,7 +1050,7 @@
 			[BroadcastRandomly:false]
 			[Author:COALITION]
 			[Color:White]
-			[ChatMessages:Cargo Transport arrived safely.]
+			[ChatMessages:Cargo Transport arrived safely at Sevastopol.]
 			[ChatAudio:ArcHudGPSNotification2]
 			[BroadcastChatType:Both]
 			[SendToAllOnlinePlayers:true]
