@@ -14,8 +14,7 @@
 			[UseNoTargetTimer:false]
 			[UsePlayerDistanceTimer:false]
 			[Triggers:GVK-Static-TradeStation-Trigger-CreateSafeZone]
-			[Triggers:GVK-Static-TradeStation-Trigger-Unload-ResetCooldown]
-			[Triggers:GVK-Static-TradeStation-Trigger-Unload-Despawn]
+			[RemoteControlCode:GVK-Static]
 			</Description>
 		</EntityComponent>
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
@@ -30,6 +29,7 @@
 			[UseNoTargetTimer:false]
 			[UsePlayerDistanceTimer:false]
 			[Triggers:GVK-Universal-Trigger-JetpackInhibitor]
+			[RemoteControlCode:GVK-Static]
 			</Description>
 		</EntityComponent>
 		<!-- Trigger sequence to create a safezone on trade station spawn -->
@@ -81,6 +81,7 @@
 			[GridAccess:Blacklist]
 			[PlayerAccess:Blacklist]
 			[AllowedActions:LandingGearLock]
+			[AllowedActions:ConvertToStation]
 			</Description>
 		</EntityComponent>
 		<!-- Trigger sequence for Trade Station to send relative waypoint to listening Cargo Ship (not currently used)
