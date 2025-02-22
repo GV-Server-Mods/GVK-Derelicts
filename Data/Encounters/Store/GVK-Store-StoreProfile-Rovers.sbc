@@ -49,5 +49,43 @@
 			[RequiredOffers:Light Hauler]
 			</Description>
 		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Store-StoreProfile-SmallRovers</SubtypeId>
+			</Id>
+			<Description>
+			[MES Store]
+			[FileSource:GVK-Store-StoreItems-Rovers.xml]
+			[MinOfferItems:5]
+			[MaxOfferItems:5]
+			[ItemsRequireInventory:false]
+			[RequiredOffers:COALITION LAV]
+			[RequiredOffers:Meerkat]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Store-StoreProfile-Ammo</SubtypeId>
+			</Id>
+			<Description>
+			[MES Store]
+			[FileSource:GVK-Store-StoreItems-Ammo.xml]
+			[AddedItemsCombineQuantity:true]
+			[AddedItemsAveragePrice:false]
+			[EqualizeOffersAndOrders:true]
+			[MinOfferItems:5]
+			[MaxOfferItems:6]
+			[ItemsRequireInventory:false]
+			[RequiredOffers:Gatling]
+			[RequiredOffers:Hydra]
+			[RequiredOffers:Rifle]
+			[RequiredOffers:Autocannon]
+			[RequiredOffers:Cannon]
+			[RequiredOffers:Flak]
+			[RequiredOrders:SpecialPackage]
+			</Description>
+		</EntityComponent>
 	</EntityComponents>
 </Definitions>
