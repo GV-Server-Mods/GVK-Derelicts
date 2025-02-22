@@ -634,5 +634,33 @@
 			[ForceDespawn:false]
 			</Description>
 		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Universal-Trigger-PublicSpawnPoint</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Trigger]
+			[UseTrigger:true]
+			[Type:Timer]
+			[MinCooldownMs:10000]
+			[MaxCooldownMs:10001]
+			[StartsReady:false]
+			[MaxActions:-1]
+			[Actions:GVK-Universal-Action-PublicSpawnPoint]
+			</Description>
+		</EntityComponent>
+		<!-- ChangeBlocksShareModeAll seems broken right now -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Universal-Action-PublicSpawnPoint</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Action]
+			[ChangeBlocksShareModeAll:true]
+			[BlockNamesShareModeAll:PublicSpawnPoint]
+			</Description>
+		</EntityComponent>
 	</EntityComponents>
 </Definitions>
