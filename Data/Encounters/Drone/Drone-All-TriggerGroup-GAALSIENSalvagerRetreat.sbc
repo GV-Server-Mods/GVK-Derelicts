@@ -11,6 +11,7 @@
 			[RivalAI TriggerGroup]
 			[Triggers:GVK-Drone-All-Trigger-GAALSIENSalvagerPlayerNear]			
 			[Triggers:GVK-Drone-All-Trigger-GAALSIENSalvagerDamage]			
+			[Triggers:GVK-Drone-All-ManualTrigger-GAALSIENSalvagerRetreat]			
 			</Description>
 		</EntityComponent>
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
@@ -26,7 +27,7 @@
 			[TargetDistance:500]
 			[MaxActions:1]
 			[ActionExecution:All]
-			[Actions:GVK-Drone-All-Action-GAALSIENSalvagerRetreat]
+			[Actions:GVK-Drone-All-Action-ManualTriggerGAALSIENSalvagerRetreat]
 			</Description>
 		</EntityComponent>
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
@@ -42,6 +43,33 @@
 			[DamageTypes:Any]
 			[MaxActions:1]
 			[ActionExecution:All]
+			[Actions:GVK-Drone-All-Action-ManualTriggerGAALSIENSalvagerRetreat]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Drone-All-Action-ManualTriggerGAALSIENSalvagerRetreat</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Action]
+			[ManuallyActivateTrigger:true]
+			[ManuallyActivatedTriggerNames:GVK-Drone-All-ManualTrigger-GAALSIENSalvagerRetreat]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Drone-All-ManualTrigger-GAALSIENSalvagerRetreat</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Trigger]
+			[UseTrigger:true]
+			[Type:Manual]
+			[StartsReady:true]
+			[MinCooldownMs:5000]
+			[MaxCooldownMs:5001]
+			[MaxActions:1]
 			[Actions:GVK-Drone-All-Action-GAALSIENSalvagerRetreat]
 			</Description>
 		</EntityComponent>
