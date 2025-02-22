@@ -351,7 +351,6 @@
 			[MaxActions:1]
 			[ActionExecution:All]
 			[Actions:GVK-CargoShip-Land-COALITION-Action-TraderHeadToDespawn]
-			[Actions:GVK-Universal-Action-Disabled]
 			</Description>
 		</EntityComponent>
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
@@ -368,13 +367,30 @@
 			[TimerBlockNames:NPC Timer E-brake]
 			[UseChatBroadcast:true]
 			[ChatData:GVK-CargoShip-Land-COALITION-Chat-TraderHeadToDespawn]
-			[StopAllRotation:true]
 			[DisableTriggers:true]
 			[DisableTriggerNames:GVK-CargoShip-Land-COALITION-Trigger-EscortHorizonAngleHigh]
 			[DisableTriggerNames:GVK-CargoShip-Land-COALITION-Trigger-TraderPlayerNear]
 			[DisableTriggerNames:GVK-CargoShip-Land-COALITION-Trigger-TraderPlayerStillNear]
 			[DisableTriggerNames:GVK-CargoShip-Land-COALITION-Trigger-TraderPlayerNotNear]
 			[DisableTriggerNames:GVK-CargoShip-Land-COALITION-Trigger-EscortCompromised]
+			[EnableBlocks:true]
+			[EnableBlockNames:NPC Beacon]
+			[EnableBlockStates:Off]
+			[StopAllRotation:true]
+			[StopAllThrust:false]
+			[RazeBlocksOfType:true]
+			[RazeBlocksTypes:MyObjectBuilder_Beacon/SmallBlockBeacon]
+			[RazeBlocksTypes:MyObjectBuilder_Beacon/LargeBlockBeacon]
+			[RazeBlocksTypes:MyObjectBuilder_Beacon/SmallBlockBeacon_NPC]
+			[RazeBlocksTypes:MyObjectBuilder_Beacon/LargeBlockBeacon_NPC]
+			[RazeBlocksTypes:MyObjectBuilder_Beacon/SmallBlockBeacon_NPCNoConceal]
+			[RazeBlocksTypes:MyObjectBuilder_Beacon/LargeBlockBeacon_NPCNoConceal]
+			[ToggleBlocksOfType:true]
+			[BlockTypesToToggle:MyObjectBuilder_Beacon/DisposableNpcBeaconSmall]
+			[BlockTypeToggles:Off]
+			[BlockTypesToToggle:MyObjectBuilder_Beacon/DisposableNpcBeaconLarge]
+			[BlockTypeToggles:Off]
+			[TerminateBehavior:true]
 			</Description>
 		</EntityComponent>
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
