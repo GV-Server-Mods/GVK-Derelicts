@@ -4,31 +4,30 @@
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Drone-All-TriggerGroup-LargeHoverBossDefeated</SubtypeId>
+				<SubtypeId>GVK-Boss-TriggerGroup-LargeHoverBossDefeated</SubtypeId>
 			</Id>
 			<Description>
 			[RivalAI TriggerGroup]
-			[Triggers:GVK-Drone-All-ManualTrigger-LargeHoverBossDefeated]
-			[Triggers:GVK-Drone-All-Trigger-LargeHoverCompromised]			
-			[Triggers:GVK-Drone-All-Trigger-LargeHoverBeaconDisabled]			
-			[Triggers:GVK-Drone-All-Trigger-LargeHoverNoWeapon]			
+			[Triggers:GVK-Boss-ManualTrigger-LargeHoverBossDefeated]
+			[Triggers:GVK-Boss-Trigger-LargeHoverBossCompromised]			
+			[Triggers:GVK-Boss-Trigger-LargeHoverBossBeaconDisabled]			
 			</Description>
 		</EntityComponent>
-		<!-- Manual Trigger sequence Large NPC is defeated through Compromised, Beacon, or NoWeapon (instant delete) -->
-		<!-- this is used to prevent multiple different defeated actions running at the same time -->
+		<!-- Manual Trigger sequence Large NPC is defeated through Compromised, Beacon -->
+		<!-- Manual is used to prevent multiple different defeated actions running at the same time -->
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Drone-All-ManualTrigger-LargeHoverBossDefeated</SubtypeId>
+				<SubtypeId>GVK-Boss-ManualTrigger-LargeHoverBossDefeated</SubtypeId>
 			</Id>
 			<Description>
 			[RivalAI Trigger]
-			[Type:Compromised]
+			[Type:Manual]
 			[UseTrigger:true]
 			[StartsReady:true]
 			[MaxActions:1]
 			[ActionExecution:All]
-			[Actions:GVK-Drone-All-Action-LargeHoverBossDefeated]
+			[Actions:GVK-Boss-Action-LargeHoverBossDefeated]
 			[Actions:GVK-Universal-Action-LargeBlueExplosionEffects]
 			[Actions:GVK-Universal-Action-Disabled]
 			[Actions:GVK-Universal-Action-EditableOnCompromised]
@@ -37,24 +36,21 @@
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Drone-All-Action-LargeHoverBossDefeated</SubtypeId>
+				<SubtypeId>GVK-Boss-Action-LargeHoverBossDefeated</SubtypeId>
 			</Id>
 			<Description>
 			[RivalAI Action]
 			[UseChatBroadcast:true]
-			[ChatData:GVK-Drone-All-Chat-LargeHoverBossDefeated]
+			[ChatData:GVK-Boss-Chat-LargeHoverBossDefeated]
 			[DisableTriggers:true]
-			[DisableTriggerNames:GVK-Drone-All-Trigger-LargeHoverCompromised]			
-			[DisableTriggerNames:GVK-Drone-All-Trigger-LargeHoverBeaconDisabled]			
-			[DisableTriggerNames:GVK-Drone-All-Trigger-LargeHoverNoWeapon]			
-			[TerminateBehavior:true]
-			[ForceDespawn:false]
+			[DisableTriggerNames:GVK-Boss-Trigger-LargeHoverBossCompromised]			
+			[DisableTriggerNames:GVK-Boss-Trigger-LargeHoverBossBeaconDisabled]			
 			</Description>
 		</EntityComponent>
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Drone-All-Chat-LargeHoverBossDefeated</SubtypeId>
+				<SubtypeId>GVK-Boss-Chat-LargeHoverBossDefeated</SubtypeId>
 			</Id>
 			<Description>
 			[RivalAI Chat]
@@ -65,7 +61,7 @@
 			[BroadcastRandomly:true]
 			[Author:Sensors]
 			[Color:Blue]
-			[ChatMessages:Elite Cruiser destroyed.]
+			[ChatMessages:Elite Cruiser destroyed!]
 			[ChatAudio:ArcHudSensors]
 			[BroadcastChatType:Notify]
 			[SendToAllOnlinePlayers:false]
@@ -77,12 +73,12 @@
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Drone-All-Action-ManualTriggerLargeHoverBossDefeated</SubtypeId>
+				<SubtypeId>GVK-Boss-Action-ManualTriggerLargeHoverBossDefeated</SubtypeId>
 			</Id>
 			<Description>
 			[RivalAI Action]
 			[ManuallyActivateTrigger:true]
-			[ManuallyActivatedTriggerNames:GVK-Drone-All-ManualTrigger-LargeHoverBossDefeated]
+			[ManuallyActivatedTriggerNames:GVK-Boss-ManualTrigger-LargeHoverBossDefeated]
 			[ForceManualTriggerActivation:true]
 			</Description>
 		</EntityComponent>
@@ -90,7 +86,7 @@
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Drone-All-Trigger-LargeHoverCompromised</SubtypeId>
+				<SubtypeId>GVK-Boss-Trigger-LargeHoverBossCompromised</SubtypeId>
 			</Id>
 			<Description>
 			[RivalAI Trigger]
@@ -99,14 +95,14 @@
 			[StartsReady:true]
 			[MaxActions:1]
 			[ActionExecution:All]
-			[Actions:GVK-Drone-All-Action-ManualTriggerLargeHoverBossDefeated]
+			[Actions:GVK-Boss-Action-ManualTriggerLargeHoverBossDefeated]
 			</Description>
 		</EntityComponent>
 		<!-- Trigger sequence when Large NPC Beacon is disabled -->
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Drone-All-Trigger-LargeHoverBeaconDisabled</SubtypeId>
+				<SubtypeId>GVK-Boss-Trigger-LargeHoverBossBeaconDisabled</SubtypeId>
 			</Id>
 			<Description>
 			[RivalAI Trigger]
@@ -116,36 +112,7 @@
 			[Conditions:GVK-Universal-Condition-AllBeaconsDisabled]
 			[MaxActions:1]
 			[ActionExecution:All]
-			[Actions:GVK-Drone-All-Action-ManualTriggerLargeHoverBossDefeated]
-			</Description>
-		</EntityComponent>
-		<!-- Random chance to retreat or do nothing when out of weapons -->
-		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
-			<Id>
-				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Drone-All-Trigger-LargeHoverNoWeapon</SubtypeId>
-			</Id>
-			<Description>
-			[RivalAI Trigger]
-			[Type:NoWeapon]
-			[UseTrigger:true]
-			[StartsReady:false]
-			[MinCooldownMs:10000]
-			[MaxCooldownMs:10001]
-			[MaxActions:1]
-			[ActionExecution:Random]
-			[Actions:GVK-Drone-All-Action-LargeHoverNoWeapon]
-			</Description>
-		</EntityComponent>
-		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
-			<Id>
-				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Drone-All-Action-LargeHoverNoWeapon</SubtypeId>
-			</Id>
-			<Description>
-			[RivalAI Action]
-			[Chance:25]
-			[Retreat:true]
+			[Actions:GVK-Boss-Action-ManualTriggerLargeHoverBossDefeated]
 			</Description>
 		</EntityComponent>
 	</EntityComponents>
