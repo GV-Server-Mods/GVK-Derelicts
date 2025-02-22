@@ -69,3 +69,4 @@ Nekron910 https://steamcommunity.com/sharedfiles/filedetails/?id=2650194963&tscn
 19. If IdealPlanetAltitude is way higher than MinimumPlanetAltitude, it will climb too sharply and disturb its angle of attack.
 20. NPCs are awful at aiming at targets. Use Keen AI blocks instead of RAI autopilot if accuracy is critical.
 21. `ProcessAsAdminSpawn:true` is available for Spawner profiles to bypass some restrictions.
+22. To prevent NPC chat messages from going to discord while still sending to all players (non-Nexus), use `SendToAllOnlinePlayers:false`, `IgnoreAntennaRequirement:true` and a very large override range.
