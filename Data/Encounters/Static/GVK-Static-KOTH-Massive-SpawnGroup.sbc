@@ -5,7 +5,7 @@
 		<SpawnGroup>
 			<Id>
 				<TypeId>SpawnGroupDefinition</TypeId>
-				<SubtypeId>GVK-Static-KOTH-Massive-SpawnGroup-01</SubtypeId>
+				<SubtypeId>GVK-Static-KOTH-Massive-SpawnGroup-01a</SubtypeId>
 			</Id>
 			<Description>
 			[Modular Encounters SpawnGroup]
@@ -14,7 +14,7 @@
 			[ManipulationProfiles:GVK-Static-KOTH-Massive-Manipulation]
 			[ReactorsOn:true]
 			[ForceStaticGrid:true]
-			[TriggerCoords:{X:4308.00713731524 Y:38829.8174611633 Z:26097.6385303603}]
+			[TriggerCoords:{X:4314.69888337738 Y:38878.6326463931 Z:26100.4171982021}]
 			[TriggerRadius:10000]
 			[IgnoreCleanupRules:true]
 			[ReplenishSystems:true]
@@ -22,7 +22,7 @@
 			[SkipGridSpawnChecks:true]
 			[RotateFirstCockpitToForward:false]
 			[ForceExactPositionAndOrientation:true]
-			[StaticEncounterCoords:{X:4314.69890977618 Y:38878.6326467102 Z:26100.417338954}]
+			[StaticEncounterCoords:{X:4314.69888337738 Y:38878.6326463931 Z:26100.4171982021}]
 			[StaticEncounterForward:{X:0.122852876782417 Y:-0.311551094055176 Z:-0.942254245281219}]
 			[StaticEncounterUp:{X:-0.990446865558624 Y:0.021424937993288 Z:-0.136220365762711}]
 			[SandboxVariables:KOTHsEnabled]
@@ -46,6 +46,53 @@
 					<Speed>0</Speed>
 					<BeaconText>Massive Signal</BeaconText>
 					<Behaviour>GVK-Static-KOTH-Massive01-Behavior</Behaviour>
+				</Prefab>
+			</Prefabs>
+		</SpawnGroup>
+		<SpawnGroup>
+			<Id>
+				<TypeId>SpawnGroupDefinition</TypeId>
+				<SubtypeId>GVK-Static-KOTH-Massive-SpawnGroup-01-Chunk1</SubtypeId>
+			</Id>
+			<Description>
+			[Modular Encounters SpawnGroup]
+			[StaticEncounter:true]
+			[FactionOwner:KOTH]
+			[ManipulationProfiles:GVK-StaticEncounters-Manipulation]
+			[ReactorsOn:true]
+			[ForceStaticGrid:true]
+			[TriggerCoords:{X:4365.63070710785 Y:39081.6084001773 Z:26177.1925888271}]
+			[TriggerRadius:5000]
+			[IgnoreCleanupRules:true]
+			[ReplenishSystems:true]
+			[SkipVoxelSpawnChecks:true]
+			[SkipGridSpawnChecks:true]
+			[RotateFirstCockpitToForward:false]
+			[ForceExactPositionAndOrientation:true]
+			[StaticEncounterCoords:{X:4365.63070710785 Y:39081.6084001773 Z:26177.1925888271}]
+			[StaticEncounterForward:{X:-0.455405235290527 Y:-0.884325444698334 Z:0.102833092212677}]
+			[StaticEncounterUp:{X:-0.858821511268616 Y:0.405935078859329 Z:-0.312477648258209}]
+			[SandboxVariables:KOTHsEnabled]
+			[ZoneConditions:GVK-Universal-ZoneConditions-KOTH-Massive-01]
+			[ZoneConditions:GVK-Universal-ZoneConditions-KOTH-Massive-02]
+			[ZoneConditions:GVK-Universal-ZoneConditions-KOTH-Massive-03]
+			[UseRemoteControlCodeRestrictions:true]
+			[RemoteControlCode:GVK-Static]
+			[RemoteControlCodeMinDistance:300]
+			[RemoteControlCodeMaxDistance:-1]
+			</Description>
+			<IsPirate>true</IsPirate>
+			<Frequency>5.0</Frequency>
+			<Prefabs>
+				<Prefab SubtypeId="NKO [KOTH] Khar Toba Chunk 1">
+					<Position>
+						<X>0.0</X>
+						<Y>0</Y>
+						<Z>0.0</Z>
+					</Position>
+					<Speed>0</Speed>
+					<BeaconText>Massive Signal</BeaconText>
+					<Behaviour>GVK-Static-Generic-Behavior</Behaviour>
 				</Prefab>
 			</Prefabs>
 		</SpawnGroup>
@@ -126,7 +173,7 @@
 			[ZoneConditions:GVK-Universal-ZoneConditions-KOTH-Massive-03]
 			[UseRemoteControlCodeRestrictions:true]
 			[RemoteControlCode:GVK-Static]
-			[RemoteControlCodeMinDistance:500]
+			[RemoteControlCodeMinDistance:300]
 			[RemoteControlCodeMaxDistance:-1]
 			</Description>
 			<IsPirate>true</IsPirate>
@@ -173,7 +220,7 @@
 			[ZoneConditions:GVK-Universal-ZoneConditions-KOTH-Massive-03]
 			[UseRemoteControlCodeRestrictions:true]
 			[RemoteControlCode:GVK-Static]
-			[RemoteControlCodeMinDistance:500]
+			[RemoteControlCodeMinDistance:300]
 			[RemoteControlCodeMaxDistance:-1]
 			</Description>
 			<IsPirate>true</IsPirate>
