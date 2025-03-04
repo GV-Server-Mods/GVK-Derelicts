@@ -475,5 +475,78 @@
 			[ProcessAsAdminSpawn:false]
 			[IgnoreSafetyChecks:true]
 			</Description>
-		</EntityComponent>	</EntityComponents>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Drone-All-Trigger-SpawnInterceptorSingle</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Trigger]
+			[Type:PlayerNear]
+			[UseTrigger:true]
+			[TargetDistance:1500]
+			[StartsReady:false]
+			[MaxActions:1]
+			[MinCooldownMs:10000]
+			[MaxCooldownMs:10001]
+			[Actions:GVK-Drone-All-Action-SpawnInterceptorSingle]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Drone-All-Action-SpawnInterceptorSingle</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Action]
+			[Chance:50]
+			[SpawnEncounter:true]
+			[Spawner:GVK-Drone-All-Spawner-SpawnInterceptorSingle]
+			[UseChatBroadcast:true]
+			[ChatData:GVK-Drone-All-Chat-SpawnInterceptorSingle]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Drone-All-Spawner-SpawnInterceptorSingle</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Spawn]
+			[UseSpawn:true]
+			[SpawningType:CustomSpawn]
+			[StartsReady:true]
+			[MinDistance:600]
+			[MaxDistance:800]
+			[MinAltitude:50]
+			[MaxAltitude:100]
+			[InheritNpcAltitude:false]
+			[SpawnGroups:GVK-Drone-Defense-SpawnGroup-GAALSIEN-InterceptorSingle]
+			[ProcessAsAdminSpawn:false]
+			[IgnoreSafetyChecks:true]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Drone-All-Chat-SpawnInterceptorSingle</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Chat]
+			[UseChat:true]
+			[StartsReady:true]
+			[Chance:50]
+			[BroadcastRandomly:false]
+			[Author:GAALSIEN Interceptor]
+			[Color:Red]
+			[ChatMessages:Air support inbound.]
+			[ChatAudio:GreetingSoundId-A]
+			[BroadcastChatType:Chat]
+			[SendToAllOnlinePlayers:false]
+			[IgnoreAntennaRequirement:true]
+			[IgnoredAntennaRangeOverride:9999999]
+			</Description>
+		</EntityComponent>
+	</EntityComponents>
 </Definitions>
