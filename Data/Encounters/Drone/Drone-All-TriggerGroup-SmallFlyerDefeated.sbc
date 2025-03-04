@@ -123,6 +123,7 @@
 			[MaxActions:1]
 			[ActionExecution:All]
 			[Actions:GVK-Drone-All-Action-SmallFlyerExplosion]
+			[Actions:GVK-Universal-Action-SmallBlueExplosionEffects]
 			</Description>
 		</EntityComponent>
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
@@ -132,6 +133,8 @@
 			</Id>
 			<Description>
 			[RivalAI Action]
+			[UseChatBroadcast:true]
+			[ChatData:GVK-Drone-All-Chat-SmallFlyerDefeated]
 			[DisableTriggers:true]
 			[DisableTriggerNames:GVK-Drone-All-Trigger-SmallFlyerCrashed]			
 			[DisableTriggerNames:GVK-Drone-All-Trigger-SmallFlyerBeaconDisabled]			
@@ -140,10 +143,6 @@
 			[StopAllThrust:true]
 			[ChangeInertiaDampeners:true]
 			[InertiaDampenersEnable:false]
-			[GenerateExplosion:true]
-			[ExplosionRange:1]
-			[ExplosionDamage:1]
-			[ExplosionIgnoresVoxels:true]
 			[RazeBlocksOfType:true]
 			[RazeBlocksTypes:MyObjectBuilder_RemoteControl/RivalAIRemoteControlSmall]
 			[TerminateBehavior:true]
