@@ -84,30 +84,24 @@
 			[Conditions:GVK-Universal-Condition-AllBeaconsDisabled]
 			[MaxActions:1]
 			[ActionExecution:All]
-			[Actions:GVK-Drone-All-Action-SmallHoverExplosion]
+			[Actions:GVK-Universal-Action-Disabled]
 			[Actions:GVK-Universal-Action-SmallBlueExplosionEffects]
 			</Description>
 		</EntityComponent>
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Drone-All-Action-SmallHoverExplosion</SubtypeId>
+				<SubtypeId>GVK-Drone-All-Action-SmallHoverDestroyed</SubtypeId>
 			</Id>
 			<Description>
 			[RivalAI Action]
 			[UseChatBroadcast:true]
 			[ChatData:GVK-Drone-All-Chat-SmallHoverDefeated]
 			[DisableTriggers:true]
-			[DisableTriggerNames:GVK-Drone-All-Trigger-SmallHoverCrashed]			
+			[DisableTriggerNames:GVK-Drone-All-Trigger-SmallHoverCompromised]			
 			[DisableTriggerNames:GVK-Drone-All-Trigger-SmallHoverBeaconDisabled]			
 			[DisableTriggerNames:GVK-Drone-All-Trigger-SmallHoverNoWeapon]			
-			[StopAllRotation:true]
-			[StopAllThrust:true]
-			[ChangeInertiaDampeners:true]
-			[InertiaDampenersEnable:false]
-			[RazeBlocksOfType:true]
-			[RazeBlocksTypes:MyObjectBuilder_RemoteControl/RivalAIRemoteControlSmall]
-			[TerminateBehavior:true]
+			[ForceDespawn:false]
 			</Description>
 		</EntityComponent>
 		<!-- Random chance to ram or die when out of weapons -->
@@ -126,7 +120,6 @@
 			[MaxActions:1]
 			[ActionExecution:Random]
 			[Actions:GVK-Drone-All-Action-SmallHoverNoWeapon]
-			[Actions:GVK-Drone-All-Action-SmallHoverExplosion]
 			</Description>
 		</EntityComponent>
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
