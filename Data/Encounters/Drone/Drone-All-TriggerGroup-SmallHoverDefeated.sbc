@@ -11,6 +11,7 @@
 			[RivalAI TriggerGroup]
 			[Triggers:GVK-Drone-All-Trigger-SmallHoverCompromised]			
 			[Triggers:GVK-Drone-All-Trigger-SmallHoverBeaconDisabled]			
+			[Triggers:GVK-Drone-All-Trigger-SmallHoverNoPower]
 			[Triggers:GVK-Drone-All-Trigger-SmallHoverNoWeapon]			
 			</Description>
 		</EntityComponent>
@@ -44,6 +45,7 @@
 			[DisableTriggers:true]
 			[DisableTriggerNames:GVK-Drone-All-Trigger-SmallHoverCompromised]			
 			[DisableTriggerNames:GVK-Drone-All-Trigger-SmallHoverBeaconDisabled]			
+			[DisableTriggerNames:GVK-Drone-All-Trigger-SmallHoverNoPower]
 			[DisableTriggerNames:GVK-Drone-All-Trigger-SmallHoverNoWeapon]			
 			[ForceDespawn:true]
 			</Description>
@@ -70,6 +72,41 @@
 			[IgnoredAntennaRangeOverride:10000]
 			</Description>
 		</EntityComponent>
+		<!-- Trigger sequence when small NPC is out of power providers -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Drone-All-Trigger-SmallHoverNoPower</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Trigger]
+			[Type:Timer]
+			[UseTrigger:true]
+			[StartsReady:false]
+			[MinCooldownMs:3000]
+			[MaxCooldownMs:3001]
+			[MaxActions:1]
+			[Conditions:GVK-Drone-All-Condition-SmallHoverNoPower]
+			[ActionExecution:All]
+			[Actions:GVK-Drone-All-Action-SmallHoverDefeated]
+			[Actions:GVK-Universal-Action-SmallBlueExplosionEffects]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Drone-All-Condition-SmallHoverNoPower</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Condition]
+			[UseConditions:true]
+			[MatchAnyCondition:false]
+			[UseFailCondition:true]
+			[CheckForBlocksOfType:true]
+			[BlocksOfType:MyObjectBuilder_BatteryBlock]
+			[BlocksOfType:MyObjectBuilder_Reactor]
+			</Description>
+		</EntityComponent>
 		<!-- Trigger sequence when small NPC Beacon is disabled -->
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
@@ -84,7 +121,7 @@
 			[Conditions:GVK-Universal-Condition-AllBeaconsDisabled]
 			[MaxActions:1]
 			[ActionExecution:All]
-			[Actions:GVK-Universal-Action-Disabled]
+			[Actions:GVK-Drone-All-Action-SmallHoverDefeated]
 			[Actions:GVK-Universal-Action-SmallBlueExplosionEffects]
 			</Description>
 		</EntityComponent>
@@ -100,6 +137,7 @@
 			[DisableTriggers:true]
 			[DisableTriggerNames:GVK-Drone-All-Trigger-SmallHoverCompromised]			
 			[DisableTriggerNames:GVK-Drone-All-Trigger-SmallHoverBeaconDisabled]			
+			[DisableTriggerNames:GVK-Drone-All-Trigger-SmallHoverNoPower]
 			[DisableTriggerNames:GVK-Drone-All-Trigger-SmallHoverNoWeapon]			
 			[ForceDespawn:false]
 			</Description>

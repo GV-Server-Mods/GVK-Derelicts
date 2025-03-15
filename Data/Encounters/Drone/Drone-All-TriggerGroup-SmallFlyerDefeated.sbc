@@ -11,7 +11,8 @@
 			[RivalAI TriggerGroup]
 			[Triggers:GVK-Drone-All-Trigger-SmallFlyerCrashed]			
 			[Triggers:GVK-Drone-All-Trigger-SmallFlyerCompromised]			
-			[Triggers:GVK-Drone-All-Trigger-SmallFlyerBeaconDisabled]			
+			[Triggers:GVK-Drone-All-Trigger-SmallFlyerBeaconDisabled]	
+			[Triggers:GVK-Drone-All-Trigger-SmallFlyerNoPower]
 			[Triggers:GVK-Drone-All-Trigger-SmallFlyerNoWeapon]			
 			</Description>
 		</EntityComponent>
@@ -46,6 +47,7 @@
 			[DisableTriggerNames:GVK-Drone-All-Trigger-SmallFlyerCrashed]			
 			[DisableTriggerNames:GVK-Drone-All-Trigger-SmallFlyerCompromised]			
 			[DisableTriggerNames:GVK-Drone-All-Trigger-SmallFlyerBeaconDisabled]			
+			[DisableTriggerNames:GVK-Drone-All-Trigger-SmallFlyerNoPower]
 			[DisableTriggerNames:GVK-Drone-All-Trigger-SmallFlyerNoWeapon]			
 			[ForceDespawn:true]
 			</Description>
@@ -88,8 +90,7 @@
 			[MaxActions:1]
 			[Conditions:GVK-Drone-All-Condition-SmallFlyerCrashed]
 			[ActionExecution:All]
-			[Actions:GVK-Drone-All-Action-SmallFlyerDestroyed]
-			[Actions:GVK-Universal-Action-Disabled]
+			[Actions:GVK-Drone-All-Action-SmallFlyerDefeated]
 			[Actions:GVK-Universal-Action-SmallBlueExplosionEffects]
 			</Description>
 		</EntityComponent>
@@ -110,6 +111,41 @@
 			[MaxAltitude:10]
 			</Description>
 		</EntityComponent>
+		<!-- Trigger sequence when small NPC is out of power providers -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Drone-All-Trigger-SmallFlyerNoPower</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Trigger]
+			[Type:Timer]
+			[UseTrigger:true]
+			[StartsReady:false]
+			[MinCooldownMs:3000]
+			[MaxCooldownMs:3001]
+			[MaxActions:1]
+			[Conditions:GVK-Drone-All-Condition-SmallFlyerNoPower]
+			[ActionExecution:All]
+			[Actions:GVK-Drone-All-Action-SmallFlyerDefeated]
+			[Actions:GVK-Universal-Action-SmallBlueExplosionEffects]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Drone-All-Condition-SmallFlyerNoPower</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Condition]
+			[UseConditions:true]
+			[MatchAnyCondition:false]
+			[UseFailCondition:true]
+			[CheckForBlocksOfType:true]
+			[BlocksOfType:MyObjectBuilder_BatteryBlock]
+			[BlocksOfType:MyObjectBuilder_Reactor]
+			</Description>
+		</EntityComponent>
 		<!-- Trigger sequence when small NPC Beacon is disabled -->
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
@@ -124,8 +160,7 @@
 			[Conditions:GVK-Universal-Condition-AllBeaconsDisabled]
 			[MaxActions:1]
 			[ActionExecution:All]
-			[Actions:GVK-Drone-All-Action-SmallFlyerDestroyed]
-			[Actions:GVK-Universal-Action-Disabled]
+			[Actions:GVK-Drone-All-Action-SmallFlyerDefeated]
 			[Actions:GVK-Universal-Action-SmallBlueExplosionEffects]
 			</Description>
 		</EntityComponent>
@@ -142,6 +177,7 @@
 			[DisableTriggerNames:GVK-Drone-All-Trigger-SmallFlyerCrashed]			
 			[DisableTriggerNames:GVK-Drone-All-Trigger-SmallFlyerCompromised]			
 			[DisableTriggerNames:GVK-Drone-All-Trigger-SmallFlyerBeaconDisabled]			
+			[DisableTriggerNames:GVK-Drone-All-Trigger-SmallFlyerNoPower]
 			[DisableTriggerNames:GVK-Drone-All-Trigger-SmallFlyerNoWeapon]			
 			[ForceDespawn:false]
 			</Description>
