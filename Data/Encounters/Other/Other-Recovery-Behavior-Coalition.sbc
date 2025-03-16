@@ -26,6 +26,8 @@
 			[Triggers:GVK-Other-Recovery-Trigger-Compromised]
 			[Triggers:GVK-Other-Recovery-Trigger-Repaired]
 			[Triggers:GVK-Other-Recovery-Trigger-ReceivedWaypoint]
+			[Triggers:GVK-Other-Recovery-Trigger-SpawnTimeOut]
+			[Triggers:GVK-Other-Recovery-Trigger-TravelTimeOut]
 			</Description>
 		</EntityComponent>
 		<!-- Salvager CargoShip Autopilot -->
@@ -191,6 +193,8 @@
 			[MaxCooldownMs:9999]
 			[Actions:GVK-Other-Recovery-Action-OnSuccess]
 			[Actions:GVK-Universal-Action-Disabled]
+			[DisableNamedTriggerOnSuccess:GVK-Other-Recovery-Trigger-SpawnTimeOut]
+			[DisableNamedTriggerOnSuccess:GVK-Other-Recovery-Trigger-TravelTimeOut]
 			</Description>
 		</EntityComponent>
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
@@ -202,6 +206,7 @@
 			[RivalAI Action]
 			[Chance:100]
 			[DisableTriggers:true]
+			[DisableTriggerNames:GVK-Other-Recovery-Trigger-TravelTimeOut]
 			[DisableTriggerNames:GVK-Other-Recovery-Trigger-OnSuccess]
 			[DisableTriggerNames:GVK-Other-Recovery-Trigger-BeaconDisabled]
 			[DisableTriggerNames:GVK-Other-Recovery-Trigger-Despawn]
@@ -341,6 +346,8 @@
 			[RivalAI Action]
 			[RemoveKnownPlayerArea:false]
 			[DisableTriggers:true]
+			[DisableTriggerNames:GVK-Other-Recovery-Trigger-TravelTimeOut]
+			[DisableTriggerNames:GVK-Other-Recovery-Trigger-OnSuccess]
 			[DisableTriggerNames:GVK-Other-Recovery-Trigger-BeaconDisabled]
 			[DisableTriggerNames:GVK-Other-Recovery-Trigger-Despawn]
 			[DisableTriggerNames:GVK-Other-Recovery-Trigger-DespawnMES]
@@ -406,6 +413,9 @@
 			[MaxActions:1]
 			[ActionExecution:All]
 			[Actions:GVK-Other-Recovery-Action-Repaired]
+			[ToggleWithTriggerProfile:GVK-Other-Recovery-Trigger-TravelTimeOut]
+			[ToggledProfileResetsCooldown:true]
+			[DisableNamedTriggerOnSuccess:GVK-Other-Recovery-Trigger-SpawnTimeOut]
 			</Description>
 		</EntityComponent>
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
@@ -444,6 +454,7 @@
 			[ChatData:GVK-Other-Recovery-Chat-Repaired]
 			</Description>
 		</EntityComponent>
+		<!-- not used, cruiser sends out waypoint ever 10 seconds instead -->
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
@@ -527,6 +538,92 @@
 			[ChatAudio:ArcHudGPSNotification2]
 			[BroadcastChatType:Both]
 		  </Description>
+		</EntityComponent>
+		<!-- Trigger sequence if player takes too long to repair or return (30 mins) -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Other-Recovery-Trigger-SpawnTimeOut</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Trigger]
+			[Type:Timer]
+			[UseTrigger:true]
+			[StartsReady:false]
+			[MinCooldownMs:1800000]
+			[MaxCooldownMs:1800001]
+			[MaxActions:1]
+			[ActionExecution:All]
+			[Actions:GVK-Other-Recovery-Action-TravelTimeOut]
+			[Actions:GVK-PlanetaryInstallation-All-Action-CompromisedGeneric]
+			[Actions:GVK-Universal-Action-EditableOnCompromised]
+			[Actions:GVK-Universal-Action-Disabled]
+			[Actions:GVK-Universal-Action-SmallExplosionEffects]
+			</Description>
+		</EntityComponent>
+		<!-- Trigger sequence for Salvager to die if it takes too long to drive back after repairs (5 mins) -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Other-Recovery-Trigger-TravelTimeOut</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Trigger]
+			[Type:Timer]
+			[UseTrigger:false]
+			[StartsReady:false]
+			[MinCooldownMs:300000]
+			[MaxCooldownMs:300001]
+			[MaxActions:1]
+			[ActionExecution:All]
+			[Actions:GVK-Other-Recovery-Action-TravelTimeOut]
+			[Actions:GVK-PlanetaryInstallation-All-Action-CompromisedGeneric]
+			[Actions:GVK-Universal-Action-EditableOnCompromised]
+			[Actions:GVK-Universal-Action-Disabled]
+			[Actions:GVK-Universal-Action-SmallExplosionEffects]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Other-Recovery-Action-TravelTimeOut</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Action]
+			[DisableTriggers:true]
+			[DisableTriggerNames:GVK-Other-Recovery-Trigger-TravelTimeOut]
+			[DisableTriggerNames:GVK-Other-Recovery-Trigger-OnSuccess]
+			[DisableTriggerNames:GVK-Other-Recovery-Trigger-BeaconDisabled]
+			[DisableTriggerNames:GVK-Other-Recovery-Trigger-Despawn]
+			[DisableTriggerNames:GVK-Other-Recovery-Trigger-DespawnMES]
+			[DisableTriggerNames:GVK-Other-Recovery-Trigger-Compromised]
+			[BroadcastCommandProfiles:true]
+			[CommandProfileIds:GVK-Other-Recovery-Command-Compromised]
+			[UseChatBroadcast:true]
+			[ChatData:GVK-Other-Recovery-Chat-TravelTimeOut]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Other-Recovery-Chat-TravelTimeOut</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Chat]
+			[UseChat:true]
+			[StartsReady:true]
+			[Chance:100]
+			[MaxChats:1]
+			[BroadcastRandomly:true]
+			[Author:COALITION]
+			[Color:Blue]
+			[ChatMessages:Salvager was unable to return in time.]
+			[ChatAudio:ArcHudSensors]
+			[BroadcastChatType:Both]
+			[SendToAllOnlinePlayers:false]
+			[IgnoreAntennaRequirement:true]
+			[IgnoredAntennaRangeOverride:3000]
+			</Description>
 		</EntityComponent>
 	</EntityComponents>
 </Definitions>
