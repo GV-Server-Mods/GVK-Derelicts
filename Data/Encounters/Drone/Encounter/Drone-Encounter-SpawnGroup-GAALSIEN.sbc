@@ -1,0 +1,758 @@
+<?xml version="1.0"?>
+<Definitions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+	<SpawnGroups>
+		<!-- NDR Salvager -->
+		<SpawnGroup>
+			<Id>
+				<TypeId>SpawnGroupDefinition</TypeId>
+				<SubtypeId>GVK-Drone-Encounter-SpawnGroup-GAALSIEN-Salvager</SubtypeId>
+			</Id>
+			<Description>
+			[Modular Encounters SpawnGroup]
+			[IgnoreCleanupRules:false]
+			[ReplenishSystems:true]
+			[ManipulationProfiles:GVK-Drone-All-Manipulation-Hover] 
+			[SpawnConditionsProfiles:GVK-Drone-Encounter-SpawnCondition-GAALSIEN-Salvager]
+			</Description>
+			<IsPirate>true</IsPirate>
+			<Frequency>0.1</Frequency>
+			<Prefabs>
+				<Prefab SubtypeId="NDR [GAAL] Salvager">
+					<Position>
+						<X>0.0</X>
+						<Y>0.0</Y>
+						<Z>0.0</Z>
+					</Position>
+					<Speed>0</Speed>
+					<BeaconText>Salvager</BeaconText>
+					<Behaviour>GVK-Drone-Encounter-Behavior-Salvager-GAALSIEN</Behaviour>
+				</Prefab>
+			</Prefabs>
+		</SpawnGroup>		
+		<SpawnGroup>
+			<Id>
+				<TypeId>SpawnGroupDefinition</TypeId>
+				<SubtypeId>GVK-Drone-Encounter-SpawnGroup-GAALSIEN-Salvager-WreckSpawn</SubtypeId>
+			</Id>
+			<Description>
+			[Modular Encounters SpawnGroup]
+			[IgnoreCleanupRules:false]
+			[ReplenishSystems:true]
+			[ManipulationProfiles:GVK-Drone-All-Manipulation-Hover] 
+			[SpawnConditionsProfiles:GVK-Drone-Encounter-SpawnCondition-GAALSIEN-Salvager-WreckSpawn]
+			</Description>
+			<IsPirate>true</IsPirate>
+			<Frequency>0.1</Frequency>
+			<Prefabs>
+				<Prefab SubtypeId="NDR [GAAL] Salvager">
+					<Position>
+						<X>0.0</X>
+						<Y>0.0</Y>
+						<Z>0.0</Z>
+					</Position>
+					<Speed>0</Speed>
+					<BeaconText>Salvager</BeaconText>
+					<Behaviour>GVK-Drone-Encounter-Behavior-Salvager-GAALSIEN</Behaviour>
+				</Prefab>
+			</Prefabs>
+		</SpawnGroup>		
+		<!-- NDR Small Flyers -->
+		<SpawnGroup>
+			<Id>
+				<TypeId>SpawnGroupDefinition</TypeId>
+				<SubtypeId>GVK-Drone-Encounter-SpawnGroup-GAALSIEN-SmallFlyer</SubtypeId>
+			</Id>
+			<Description>
+			[Modular Encounters SpawnGroup]
+			[IgnoreCleanupRules:false]
+			[ReplenishSystems:true]
+			[ManipulationProfiles:GVK-Drone-All-Manipulation-Flyer]
+			[SpawnConditionsProfiles:GVK-Drone-Encounter-SpawnCondition-GAALSIEN-SmallFlyerSingle]
+			[SpawnConditionsProfiles:GVK-Drone-Encounter-SpawnCondition-GAALSIEN-SmallFlyerSquad]
+			</Description>
+			<IsPirate>true</IsPirate>
+			<Frequency>0.075</Frequency>
+			<Prefabs>
+				<Prefab SubtypeId="NDR Reaper V2">
+					<Position>
+						<X>0.0</X>
+						<Y>0.0</Y>
+						<Z>0.0</Z>
+					</Position>
+					<Speed>0</Speed>
+					<BeaconText>Reaper</BeaconText>
+					<Behaviour>GVK-Drone-All-Behavior-SmallFlyerPatrolHorseFighter</Behaviour>
+				</Prefab>
+				<Prefab SubtypeId="NDR Defiant V2">
+					<Position>
+						<X>0.0</X>
+						<Y>0.0</Y>
+						<Z>0.0</Z>
+					</Position>
+					<Speed>0</Speed>
+					<BeaconText>Defiant</BeaconText>
+					<Behaviour>GVK-Drone-All-Behavior-SmallFlyerPatrolHorseFighter</Behaviour>
+				</Prefab>
+				<Prefab SubtypeId="NDR Hawk V2">
+					<Position>
+						<X>0.0</X>
+						<Y>0.0</Y>
+						<Z>0.0</Z>
+					</Position>
+					<Speed>0</Speed>
+					<BeaconText>Hawk</BeaconText>
+					<Behaviour>GVK-Drone-All-Behavior-SmallFlyerHorsefly</Behaviour>
+				</Prefab>
+				<Prefab SubtypeId="NDR Slicer V2">
+					<Position>
+						<X>0.0</X>
+						<Y>0.0</Y>
+						<Z>0.0</Z>
+					</Position>
+					<Speed>0</Speed>
+					<BeaconText>Slicer</BeaconText>
+					<Behaviour>GVK-Drone-All-Behavior-SmallFlyerHorsefly</Behaviour>
+				</Prefab>
+				<Prefab SubtypeId="NDR Wasp V2">
+					<Position>
+						<X>0.0</X>
+						<Y>0.0</Y>
+						<Z>0.0</Z>
+					</Position>
+					<Speed>0</Speed>
+					<BeaconText>Wasp</BeaconText>
+					<Behaviour>GVK-Drone-All-Behavior-SmallFlyerPatrolHorseFighter</Behaviour>
+				</Prefab>
+				<Prefab SubtypeId="NDR Hornet V2">
+					<Position>
+						<X>0.0</X>
+						<Y>0.0</Y>
+						<Z>0.0</Z>
+					</Position>
+					<Speed>0</Speed>
+					<BeaconText>Hornet</BeaconText>
+					<Behaviour>GVK-Drone-All-Behavior-SmallFlyerHorsefly</Behaviour>
+				</Prefab>
+				<Prefab SubtypeId="NDR Foxhound">
+					<Position>
+						<X>0.0</X>
+						<Y>0.0</Y>
+						<Z>0.0</Z>
+					</Position>
+					<Speed>0</Speed>
+					<BeaconText>Foxhound</BeaconText>
+					<Behaviour>GVK-Drone-All-Behavior-SmallFlyerPatrolHorseFighter</Behaviour>
+				</Prefab>
+			</Prefabs>
+		</SpawnGroup>
+		<!-- NDR [GAAL] Interceptor Flyer Admin behavior test -->
+		<SpawnGroup>
+			<Id>
+				<TypeId>SpawnGroupDefinition</TypeId>
+				<!--Do Not Edit-->
+				<SubtypeId>GVK-Drone-Encounter-SpawnGroup-GAALSIEN-InterceptorTest</SubtypeId>
+			</Id>
+			<Description>
+			[Modular Encounters SpawnGroup]
+			[AdminSpawnOnly:true]
+			[IgnoreCleanupRules:false]
+			[ReplenishSystems:true]
+			[ManipulationProfiles:GVK-Drone-All-Manipulation-Interceptor]
+			[ManipulationProfiles:GVK-Drone-All-Manipulation-Small5x5StandardTurrets]
+			[SpawnConditionsProfiles:GVK-Drone-Encounter-SpawnCondition-GAALSIEN-SmallFlyerSingle]
+			[SpawnConditionsProfiles:GVK-Drone-Encounter-SpawnCondition-GAALSIEN-SmallFlyerSquad]
+			</Description>
+			<IsPirate>true</IsPirate>
+			<!--Do not edit-->
+			<Frequency>0.15</Frequency>
+			<Prefabs>
+				<Prefab SubtypeId="NDR [GAAL] Interceptor">
+					<Position>
+						<X>0</X>
+						<Y>0.0</Y>
+						<Z>0</Z>
+					</Position>
+					<Speed>0</Speed>
+					<BeaconText>Interceptor</BeaconText>
+					<Behaviour>GVK-Drone-Behavior-SmallPatrolHorseflyInterceptor</Behaviour>
+				</Prefab>
+			</Prefabs>
+		</SpawnGroup>
+		<!-- NDR [GAAL] Interceptor Flyer -->
+		<SpawnGroup>
+			<Id>
+				<TypeId>SpawnGroupDefinition</TypeId>
+				<!--Do Not Edit-->
+				<SubtypeId>GVK-Drone-Encounter-SpawnGroup-GAALSIEN-Interceptor</SubtypeId>
+			</Id>
+			<Description>
+			[Modular Encounters SpawnGroup]
+			[IgnoreCleanupRules:false]
+			[ReplenishSystems:true]
+			[ManipulationProfiles:GVK-Drone-All-Manipulation-Interceptor]
+			[ManipulationProfiles:GVK-Drone-All-Manipulation-Small5x5StandardTurrets]
+			[SpawnConditionsProfiles:GVK-Drone-Encounter-SpawnCondition-GAALSIEN-SmallFlyerSingle]
+			[SpawnConditionsProfiles:GVK-Drone-Encounter-SpawnCondition-GAALSIEN-SmallFlyerSquad]
+			</Description>
+			<IsPirate>true</IsPirate>
+			<!--Do not edit-->
+			<Frequency>0.15</Frequency>
+			<Prefabs>
+				<Prefab SubtypeId="NDR [GAAL] Interceptor">
+					<Position>
+						<X>0</X>
+						<Y>0.0</Y>
+						<Z>0</Z>
+					</Position>
+					<Speed>0</Speed>
+					<BeaconText>Interceptor</BeaconText>
+					<Behaviour>GVK-Drone-Behavior-SmallPatrolHorseflyInterceptor</Behaviour>
+				</Prefab>
+				<Prefab SubtypeId="NDR [GAAL] Interceptor-A">
+					<Position>
+						<X>0</X>
+						<Y>0.0</Y>
+						<Z>0</Z>
+					</Position>
+					<Speed>0</Speed>
+					<BeaconText>Interceptor-A</BeaconText>
+					<Behaviour>GVK-Drone-Behavior-SmallPatrolHorseflyInterceptor</Behaviour>
+				</Prefab>
+				<Prefab SubtypeId="NDR [GAAL] Interceptor-G">
+					<Position>
+						<X>0</X>
+						<Y>0.0</Y>
+						<Z>0</Z>
+					</Position>
+					<Speed>0</Speed>
+					<BeaconText>Interceptor-G</BeaconText>
+					<Behaviour>GVK-Drone-Behavior-SmallPatrolHorseflyInterceptor</Behaviour>
+				</Prefab>
+			</Prefabs>
+		</SpawnGroup>
+		<!-- NDR Medium Flyer -->
+		<SpawnGroup>
+			<Id>
+				<TypeId>SpawnGroupDefinition</TypeId>
+				<!--Do Not Edit-->
+				<SubtypeId>GVK-Drone-Encounter-SpawnGroup-GAALSIEN-MediumFlyer</SubtypeId>
+			</Id>
+			<Description>
+			[Modular Encounters SpawnGroup]
+			[IgnoreCleanupRules:false]
+			[ReplenishSystems:true]
+			[ManipulationProfiles:GVK-Universal-Manipulation-Large3x3StandardTurrets]
+			[ManipulationProfiles:GVK-Drone-All-Manipulation-Flyer]
+			[SpawnConditionsProfiles:GVK-Drone-Encounter-SpawnCondition-GAALSIEN-MediumFlyerSingle]
+			</Description>
+			<IsPirate>true</IsPirate>
+			<!--Do not edit-->
+			<Frequency>0.1</Frequency>
+			<Prefabs>
+				<Prefab SubtypeId="NDR Shuttle">
+					<Position>
+						<X>0.0</X>
+						<Y>0.0</Y>
+						<Z>0.0</Z>
+					</Position>
+					<Speed>0</Speed>
+					<BeaconText>Chad Shuttle</BeaconText>
+					<Behaviour>GVK-Drone-All-Behavior-LargeFlyerHorseFighter</Behaviour>
+				</Prefab>
+				<Prefab SubtypeId="NDR Denizen">
+					<Position>
+						<X>0.0</X>
+						<Y>0.0</Y>
+						<Z>0.0</Z>
+					</Position>
+					<Speed>0</Speed>
+					<BeaconText>Denizen</BeaconText>
+					<Behaviour>GVK-Drone-All-Behavior-LargeFlyerHorseFighter</Behaviour>
+				</Prefab>
+				<Prefab SubtypeId="NDR [GAAL] Bomber">
+					<Position>
+						<X>0.0</X>
+						<Y>0.0</Y>
+						<Z>100</Z>
+					</Position>
+					<Speed>0</Speed>
+					<BeaconText>Bomber</BeaconText>
+					<Behaviour>GVK-Drone-All-Behavior-LargeFlyerPatrolHorseflyBomber</Behaviour>
+				</Prefab>
+			</Prefabs>
+		</SpawnGroup>
+		<!-- NDR Small Hovers -->
+		<SpawnGroup>
+			<Id>
+				<TypeId>SpawnGroupDefinition</TypeId>
+				<SubtypeId>GVK-Drone-Encounter-SpawnGroup-GAALSIEN-SmallHover</SubtypeId>
+			</Id>
+			<Description>
+			[Modular Encounters SpawnGroup]
+			[IgnoreCleanupRules:false]
+			[ReplenishSystems:true]
+			[ManipulationProfiles:GVK-Drone-All-Manipulation-Hover]
+			[SpawnConditionsProfiles:GVK-Drone-Encounter-SpawnCondition-GAALSIEN-SmallHoverSingle]
+			[SpawnConditionsProfiles:GVK-Drone-Encounter-SpawnCondition-GAALSIEN-SmallHoverSquad]
+			</Description>
+			<IsPirate>true</IsPirate>
+			<Frequency>0.1</Frequency>
+			<Prefabs>
+				<Prefab SubtypeId="NDR Dragoon Hover">
+					<Position>
+						<X>0.0</X>
+						<Y>0.0</Y>
+						<Z>0.0</Z>
+					</Position>
+					<Speed>0</Speed>
+					<BeaconText>Dragoon</BeaconText>
+					<Behaviour>GVK-Drone-All-Behavior-SmallHoverHorsefly</Behaviour>
+				</Prefab>
+				<Prefab SubtypeId="NDR Pollux Hover">
+					<Position>
+						<X>0.0</X>
+						<Y>0.0</Y>
+						<Z>0.0</Z>
+					</Position>
+					<Speed>0</Speed>
+					<BeaconText>Pollux</BeaconText>
+					<Behaviour>GVK-Drone-All-Behavior-SmallHoverHorsefly</Behaviour>
+				</Prefab>
+				<Prefab SubtypeId="NDR Stryker Hover">
+					<Position>
+						<X>0.0</X>
+						<Y>0.0</Y>
+						<Z>0.0</Z>
+					</Position>
+					<Speed>0</Speed>
+					<BeaconText>Stryker</BeaconText>
+					<Behaviour>GVK-Drone-All-Behavior-SmallHoverHorsefly</Behaviour>
+				</Prefab>
+				<Prefab SubtypeId="NDR Stryker ICV Hover">
+					<Position>
+						<X>0.0</X>
+						<Y>0.0</Y>
+						<Z>0.0</Z>
+					</Position>
+					<Speed>0</Speed>
+					<BeaconText>Stryker ICV</BeaconText>
+					<Behaviour>GVK-Drone-All-Behavior-SmallHoverHorsefly</Behaviour>
+				</Prefab>
+				<Prefab SubtypeId="NDR [GAAL] Heavy Sandskimmer">
+					<Position>
+						<X>0.0</X>
+						<Y>30</Y>
+						<Z>0.0</Z>
+					</Position>
+					<Speed>0</Speed>
+					<BeaconText>Sandskimmer</BeaconText>
+					<Behaviour>GVK-Drone-All-Behavior-SmallHoverHorseFighter</Behaviour>
+				</Prefab>
+			</Prefabs>
+		</SpawnGroup>		
+		<!-- NDR Medium Light Hover Single -->
+		<SpawnGroup>
+			<Id>
+				<TypeId>SpawnGroupDefinition</TypeId>
+				<SubtypeId>GVK-Drone-Encounter-SpawnGroup-GAALSIEN-HoverCannon</SubtypeId>
+			</Id>
+			<Description>
+			[Modular Encounters SpawnGroup]
+			[AdminSpawnOnly:true]
+			[IgnoreCleanupRules:false]
+			[ReplenishSystems:true]
+			[ManipulationProfiles:GVK-Drone-All-Manipulation-Hover]
+			[ManipulationProfiles:GVK-Universal-Manipulation-Large3x3StandardTurrets]
+			[SpawnConditionsProfiles:GVK-Drone-Encounter-SpawnCondition-GAALSIEN-MediumHoverSingle]
+			</Description>
+			<IsPirate>true</IsPirate>
+			<Frequency>0.3</Frequency>
+			<Prefabs>
+				<Prefab SubtypeId="NDR [GAAL] Light Assault Cannon">
+					<Position>
+						<X>0.0</X>
+						<Y>0.0</Y>
+						<Z>0.0</Z>
+					</Position>
+					<Speed>0</Speed>
+					<BeaconText>Light Assault Cannon</BeaconText>
+					<Behaviour>GVK-Drone-All-Behavior-MediumHoverPatrolFighter</Behaviour>
+				</Prefab>
+			</Prefabs>
+		</SpawnGroup>
+		<SpawnGroup>
+			<Id>
+				<TypeId>SpawnGroupDefinition</TypeId>
+				<SubtypeId>GVK-Drone-Encounter-SpawnGroup-GAALSIEN-HoverRailgun</SubtypeId>
+			</Id>
+			<Description>
+			[Modular Encounters SpawnGroup]
+			[AdminSpawnOnly:true]
+			[IgnoreCleanupRules:false]
+			[ReplenishSystems:true]
+			[ManipulationProfiles:GVK-Drone-All-Manipulation-Hover]
+			[ManipulationProfiles:GVK-Universal-Manipulation-Large3x3StandardTurrets]
+			[SpawnConditionsProfiles:GVK-Drone-Encounter-SpawnCondition-GAALSIEN-MediumHoverSingle]
+			</Description>
+			<IsPirate>true</IsPirate>
+			<Frequency>0.3</Frequency>
+			<Prefabs>
+				<Prefab SubtypeId="NDR [GAAL] Heavy Assault Railgun">
+					<Position>
+						<X>0.0</X>
+						<Y>10.0</Y>
+						<Z>0.0</Z>
+					</Position>
+					<Speed>0</Speed>
+					<BeaconText>Heavy Assault Railgun</BeaconText>
+					<Behaviour>GVK-Drone-All-Behavior-MediumHoverPatrolFighter</Behaviour>
+				</Prefab>
+			</Prefabs>
+		</SpawnGroup>
+		<!-- Missile Test Bed -->
+		<SpawnGroup>
+			<Id>
+				<TypeId>SpawnGroupDefinition</TypeId>
+				<SubtypeId>GVK-Drone-Encounter-SpawnGroup-GAALSIEN-HeavyAssaultMissile</SubtypeId>
+			</Id>
+			<Description>
+			[Modular Encounters SpawnGroup]
+			[AdminSpawnOnly:true]
+			[IgnoreCleanupRules:false]
+			[ReplenishSystems:true]
+			[ManipulationProfiles:GVK-Drone-All-Manipulation-Hover]
+			[ManipulationProfiles:GVK-Drone-All-Manipulation-Large3x3HeavyTurrets]
+			[SpawnConditionsProfiles:GVK-Drone-Encounter-SpawnCondition-GAALSIEN-MediumHoverSingle]
+			</Description>
+			<IsPirate>true</IsPirate>
+			<Frequency>0.3</Frequency>
+			<Prefabs>
+				<Prefab SubtypeId="NDR [GAAL] Heavy Assault Missile">
+					<Position>
+						<X>0.0</X>
+						<Y>0.0</Y>
+						<Z>0.0</Z>
+					</Position>
+					<Speed>0</Speed>
+					<BeaconText>Heavy Assault Missile</BeaconText>
+					<Behaviour>GVK-Drone-All-Behavior-MediumHoverPatrolHorsefly</Behaviour>
+				</Prefab>
+			</Prefabs>
+		</SpawnGroup>
+		<SpawnGroup>
+			<Id>
+				<TypeId>SpawnGroupDefinition</TypeId>
+				<SubtypeId>GVK-Drone-Encounter-SpawnGroup-GAALSIEN-MediumHoverLight</SubtypeId>
+			</Id>
+			<Description>
+			[Modular Encounters SpawnGroup]
+			[IgnoreCleanupRules:false]
+			[ReplenishSystems:true]
+			[ManipulationProfiles:GVK-Drone-All-Manipulation-Hover]
+			[ManipulationProfiles:GVK-Universal-Manipulation-Large3x3StandardTurrets]
+			[SpawnConditionsProfiles:GVK-Drone-Encounter-SpawnCondition-GAALSIEN-MediumHoverSingle]
+			</Description>
+			<IsPirate>true</IsPirate>
+			<Frequency>0.3</Frequency>
+			<Prefabs>
+				<Prefab SubtypeId="NDR [GAAL] Light Assault Platform">
+					<Position>
+						<X>0.0</X>
+						<Y>0.0</Y>
+						<Z>0.0</Z>
+					</Position>
+					<Speed>0</Speed>
+					<BeaconText>Light Assault Ship</BeaconText>
+					<Behaviour>GVK-Drone-All-Behavior-MediumHoverPatrolHorsefly</Behaviour>
+				</Prefab>
+				<Prefab SubtypeId="NDR [GAAL] Light Assault Cannon">
+					<Position>
+						<X>0.0</X>
+						<Y>0.0</Y>
+						<Z>0.0</Z>
+					</Position>
+					<Speed>0</Speed>
+					<BeaconText>Light Assault Cannon</BeaconText>
+					<Behaviour>GVK-Drone-All-Behavior-MediumHoverPatrolFighter</Behaviour>
+				</Prefab>
+				<Prefab SubtypeId="NDR [GAAL] Light Baserunner">
+					<Position>
+						<X>0.0</X>
+						<Y>10.0</Y>
+						<Z>0.0</Z>
+					</Position>
+					<Speed>0</Speed>
+					<BeaconText>Light Baserunner</BeaconText>
+					<Behaviour>GVK-Drone-All-Behavior-MediumHoverPatrolHorsefly</Behaviour>
+				</Prefab>
+			</Prefabs>
+		</SpawnGroup>
+		<!-- NDR Medium Heavy Hover Single -->
+		<SpawnGroup>
+			<Id>
+				<TypeId>SpawnGroupDefinition</TypeId>
+				<SubtypeId>GVK-Drone-Encounter-SpawnGroup-GAALSIEN-MediumHoverHeavy</SubtypeId>
+			</Id>
+			<Description>
+			[Modular Encounters SpawnGroup]
+			[IgnoreCleanupRules:false]
+			[ReplenishSystems:true]
+			[ManipulationProfiles:GVK-Drone-All-Manipulation-Hover]
+			[ManipulationProfiles:GVK-Drone-All-Manipulation-Large3x3HeavyTurrets]
+			[SpawnConditionsProfiles:GVK-Drone-Encounter-SpawnCondition-GAALSIEN-MediumHoverSingle]
+			</Description>
+			<IsPirate>true</IsPirate>
+			<Frequency>0.3</Frequency>
+			<Prefabs>
+				<Prefab SubtypeId="NDR [GAAL] Heavy Assault Platform">
+					<Position>
+						<X>0.0</X>
+						<Y>0.0</Y>
+						<Z>0.0</Z>
+					</Position>
+					<Speed>0</Speed>
+					<BeaconText>Heavy Assault Ship</BeaconText>
+					<Behaviour>GVK-Drone-All-Behavior-MediumHoverPatrolHorsefly</Behaviour>
+				</Prefab>
+				<Prefab SubtypeId="NDR [GAAL] Heavy Assault Missile">
+					<Position>
+						<X>0.0</X>
+						<Y>0.0</Y>
+						<Z>0.0</Z>
+					</Position>
+					<Speed>0</Speed>
+					<BeaconText>Heavy Assault Missile</BeaconText>
+					<Behaviour>GVK-Drone-All-Behavior-MediumHoverPatrolHorsefly</Behaviour>
+				</Prefab>
+				<Prefab SubtypeId="NDR [GAAL] Heavy Assault Hydra">
+					<Position>
+						<X>0.0</X>
+						<Y>0.0</Y>
+						<Z>0.0</Z>
+					</Position>
+					<Speed>0</Speed>
+					<BeaconText>Heavy Assault Hydra</BeaconText>
+					<Behaviour>GVK-Drone-All-Behavior-MediumHoverPatrolFighter</Behaviour>
+				</Prefab>
+				<Prefab SubtypeId="NDR [GAAL] Heavy Assault Railgun">
+					<Position>
+						<X>0.0</X>
+						<Y>10.0</Y>
+						<Z>0.0</Z>
+					</Position>
+					<Speed>0</Speed>
+					<BeaconText>Heavy Assault Railgun</BeaconText>
+					<Behaviour>GVK-Drone-All-Behavior-MediumHoverPatrolFighter</Behaviour>
+				</Prefab>
+				<Prefab SubtypeId="NDR [GAAL] Heavy Baserunner">
+					<Position>
+						<X>0.0</X>
+						<Y>10.0</Y>
+						<Z>0.0</Z>
+					</Position>
+					<Speed>0</Speed>
+					<BeaconText>Heavy Baserunner</BeaconText>
+					<Behaviour>GVK-Drone-All-Behavior-MediumHoverPatrolHorsefly</Behaviour>
+				</Prefab>
+				<Prefab SubtypeId="NDR [GAAL] Heavy Baserunner">
+					<Position>
+						<X>0.0</X>
+						<Y>10.0</Y>
+						<Z>0.0</Z>
+					</Position>
+					<Speed>0</Speed>
+					<BeaconText>Heavy Baserunner</BeaconText>
+					<Behaviour>GVK-Drone-All-Behavior-MediumHoverPatrolHorsefly</Behaviour>
+				</Prefab>
+				<Prefab SubtypeId="NDR [GAAL] Baserunner Loki">
+					<Position>
+						<X>0.0</X>
+						<Y>10.0</Y>
+						<Z>0.0</Z>
+					</Position>
+					<Speed>0</Speed>
+					<BeaconText>Heavy Baserunner</BeaconText>
+					<Behaviour>GVK-Drone-All-Behavior-MediumHoverPatrolHorsefly</Behaviour>
+				</Prefab>
+				<Prefab SubtypeId="NDR [GAAL] Baserunner Hurricane">
+					<Position>
+						<X>0.0</X>
+						<Y>10.0</Y>
+						<Z>0.0</Z>
+					</Position>
+					<Speed>0</Speed>
+					<BeaconText>Heavy Baserunner</BeaconText>
+					<Behaviour>GVK-Drone-All-Behavior-MediumHoverPatrolHorsefly</Behaviour>
+				</Prefab>
+				<Prefab SubtypeId="NDR [GAAL] Baserunner Railgun">
+					<Position>
+						<X>0.0</X>
+						<Y>10.0</Y>
+						<Z>0.0</Z>
+					</Position>
+					<Speed>0</Speed>
+					<BeaconText>Heavy Baserunner</BeaconText>
+					<Behaviour>GVK-Drone-All-Behavior-MediumHoverPatrolHorsefly</Behaviour>
+				</Prefab>
+			</Prefabs>
+		</SpawnGroup>
+		<!-- Admin MAC test bed -->
+		<SpawnGroup>
+			<Id>
+				<TypeId>SpawnGroupDefinition</TypeId>
+				<SubtypeId>GVK-Drone-Encounter-SpawnGroup-GAALSIEN-Honorguard</SubtypeId>
+			</Id>
+			<Description>
+			[Modular Encounters SpawnGroup]
+			[AdminSpawnOnly:true]
+			[IgnoreCleanupRules:false]
+			[ReplenishSystems:true]
+			[ManipulationProfiles:GVK-Drone-All-Manipulation-Large3x3HeavyTurrets]
+			[ManipulationProfiles:GVK-Drone-All-Manipulation-Hover]
+			[SpawnConditionsProfiles:GVK-Drone-Encounter-SpawnCondition-GAALSIEN-LargeHoverSingle]
+			</Description>
+			<IsPirate>true</IsPirate>
+			<Frequency>0.3</Frequency>
+			<Prefabs>
+				<Prefab SubtypeId="NDR [GAAL] Honorguard Cruiser">
+					<Position>
+						<X>0.0</X>
+						<Y>10.0</Y>
+						<Z>0.0</Z>
+					</Position>
+					<Speed>0</Speed>
+					<BeaconText>Honorguard</BeaconText>
+					<Behaviour>GVK-Drone-All-Behavior-HonorguardCruiserFighter</Behaviour>
+				</Prefab>
+			</Prefabs>
+		</SpawnGroup>
+		<!-- Admin torpedo test bed -->
+		<SpawnGroup>
+			<Id>
+				<TypeId>SpawnGroupDefinition</TypeId>
+				<SubtypeId>GVK-Drone-Encounter-SpawnGroup-GAALSIEN-TorpedoCruiser</SubtypeId>
+			</Id>
+			<Description>
+			[Modular Encounters SpawnGroup]
+			[AdminSpawnOnly:true]
+			[IgnoreCleanupRules:false]
+			[ReplenishSystems:true]
+			[ManipulationProfiles:GVK-Drone-All-Manipulation-Large3x3HeavyTurrets]
+			[ManipulationProfiles:GVK-Drone-All-Manipulation-Hover]
+			[SpawnConditionsProfiles:GVK-Drone-Encounter-SpawnCondition-GAALSIEN-LargeHoverSingle]
+			</Description>
+			<IsPirate>true</IsPirate>
+			<Frequency>0.3</Frequency>
+			<Prefabs>
+				<Prefab SubtypeId="NDR [GAAL] Torpedo Cruiser">
+					<Position>
+						<X>0.0</X>
+						<Y>15.0</Y>
+						<Z>0.0</Z>
+					</Position>
+					<Speed>0</Speed>
+					<BeaconText>Torpedo Cruiser</BeaconText>
+					<Behaviour>GVK-Drone-All-Behavior-HoverCruiserHorsefly</Behaviour>
+				</Prefab>
+			</Prefabs>
+		</SpawnGroup>
+		<SpawnGroup>
+			<Id>
+				<TypeId>SpawnGroupDefinition</TypeId>
+				<SubtypeId>GVK-Drone-Encounter-SpawnGroup-GAALSIEN-LargeHoverSingle</SubtypeId>
+			</Id>
+			<Description>
+			[Modular Encounters SpawnGroup]
+			[IgnoreCleanupRules:false]
+			[ReplenishSystems:true]
+			[ManipulationProfiles:GVK-Drone-All-Manipulation-Large3x3HeavyTurrets]
+			[ManipulationProfiles:GVK-Drone-All-Manipulation-Hover]
+			[SpawnConditionsProfiles:GVK-Drone-Encounter-SpawnCondition-GAALSIEN-LargeHoverSingle]
+			</Description>
+			<IsPirate>true</IsPirate>
+			<Frequency>0.3</Frequency>
+			<Prefabs>
+				<Prefab SubtypeId="NDR [GAAL] Honorguard Cruiser">
+					<Position>
+						<X>0.0</X>
+						<Y>10.0</Y>
+						<Z>0.0</Z>
+					</Position>
+					<Speed>0</Speed>
+					<BeaconText>Honorguard</BeaconText>
+					<Behaviour>GVK-Drone-All-Behavior-HonorguardCruiserFighter</Behaviour>
+				</Prefab>
+				<Prefab SubtypeId="NDR [GAAL] Missile Cruiser">
+					<Position>
+						<X>0.0</X>
+						<Y>15.0</Y>
+						<Z>0.0</Z>
+					</Position>
+					<Speed>0</Speed>
+					<BeaconText>Missile Cruiser</BeaconText>
+					<Behaviour>GVK-Drone-All-Behavior-HoverCruiserHorsefly</Behaviour>
+				</Prefab>
+				<Prefab SubtypeId="NDR Production Cruiser">
+					<Position>
+						<X>0.0</X>
+						<Y>15.0</Y>
+						<Z>0.0</Z>
+					</Position>
+					<Speed>0</Speed>
+					<BeaconText>Production Cruiser</BeaconText>
+					<Behaviour>GVK-Drone-All-Behavior-ProductionCruiserHorsefly</Behaviour>
+				</Prefab>
+				<Prefab SubtypeId="NDR Railgun Cruiser">
+					<Position>
+						<X>0.0</X>
+						<Y>15.0</Y>
+						<Z>0.0</Z>
+					</Position>
+					<Speed>0</Speed>
+					<BeaconText>Railgun Cruiser</BeaconText>
+					<Behaviour>GVK-Drone-All-Behavior-HoverCruiserHorsefly</Behaviour>
+				</Prefab>
+				<Prefab SubtypeId="NDR [GAAL] Torpedo Cruiser">
+					<Position>
+						<X>0.0</X>
+						<Y>15.0</Y>
+						<Z>0.0</Z>
+					</Position>
+					<Speed>0</Speed>
+					<BeaconText>Torpedo Cruiser</BeaconText>
+					<Behaviour>GVK-Drone-All-Behavior-HoverCruiserHorsefly</Behaviour>
+				</Prefab>
+				<Prefab SubtypeId="NDR [GAAL] Loki Cruiser">
+					<Position>
+						<X>0.0</X>
+						<Y>15.0</Y>
+						<Z>0.0</Z>
+					</Position>
+					<Speed>0</Speed>
+					<BeaconText>Loki Cruiser</BeaconText>
+					<Behaviour>GVK-Drone-All-Behavior-HoverCruiserHorsefly</Behaviour>
+				</Prefab>
+				<Prefab SubtypeId="NDR [GAAL] Hurricane Cruiser">
+					<Position>
+						<X>0.0</X>
+						<Y>15.0</Y>
+						<Z>0.0</Z>
+					</Position>
+					<Speed>0</Speed>
+					<BeaconText>Hurricane Cruiser</BeaconText>
+					<Behaviour>GVK-Drone-All-Behavior-HoverCruiserHorsefly</Behaviour>
+				</Prefab>
+				<Prefab SubtypeId="NDR [GAAL] Assault Cruiser">
+					<Position>
+						<X>0.0</X>
+						<Y>15.0</Y>
+						<Z>0.0</Z>
+					</Position>
+					<Speed>0</Speed>
+					<BeaconText>Assault Cruiser</BeaconText>
+					<Behaviour>GVK-Drone-All-Behavior-HoverCruiserHorsefly</Behaviour>
+				</Prefab>
+			</Prefabs>
+		</SpawnGroup>
+	</SpawnGroups>
+</Definitions>

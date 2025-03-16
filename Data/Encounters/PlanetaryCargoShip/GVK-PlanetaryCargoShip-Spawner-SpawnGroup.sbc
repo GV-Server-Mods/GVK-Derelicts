@@ -4,45 +4,7 @@
 		<SpawnGroup>
 			<Id>
 				<TypeId>SpawnGroupDefinition</TypeId>
-				<SubtypeId>GVK-StaticEncounter-SpawnGroup-ConvoyOutpost-GaalsienC</SubtypeId>
-			</Id>
-			<Description>
-			[Modular Encounters SpawnGroup]
-			[StaticEncounter:true]
-			[FactionOwner:COALITION]
-			[IgnoreCleanupRules:true]
-			[ReactorsOn:true]
-			[ForceStaticGrid:true]
-			[TriggerCoords:{X:64290.2373847149 Y:62037.8993698961 Z:31283.5925882591}]
-			[TriggerRadius:999999]
-			[ReplenishSystems:true]
-			[SkipVoxelSpawnChecks:true]
-			[SkipGridSpawnChecks:true]
-			[ForceExactPositionAndOrientation:true]
-			[StaticEncounterCoords:{X:3523.61064410618 Y:37419.5105935727 Z:28394.327260597}]
-			[StaticEncounterForward:{X:0.144385741958034 Y:-0.0232047273871626 Z:-0.989249360953099}]
-			[StaticEncounterUp:{X:-0.976716068234433 Y:0.156971399301862 Z:-0.146238510160233}]
-			[ManipulationProfiles:GVK-StaticEncounters-Manipulation-ConvoySpawner]
-			</Description>
-			<IsPirate>true</IsPirate>
-			<Frequency>5.0</Frequency>
-			<Prefabs>
-				<Prefab SubtypeId="[NPC Static] Encounter Spawner">
-					<Position>
-						<X>0.0</X>
-						<Y>0</Y>
-						<Z>0.0</Z>
-					</Position>
-					<Speed>0</Speed>
-					<BeaconText>Abandoned Outpost</BeaconText>
-					<Behaviour>GVK-Static-Behavior-ConvoySpawner-GaalsienC</Behaviour>
-				</Prefab>
-			</Prefabs>
-		</SpawnGroup>
-		<SpawnGroup>
-			<Id>
-				<TypeId>SpawnGroupDefinition</TypeId>
-				<SubtypeId>GVK-StaticEncounter-SpawnGroup-ConvoyOutpost-CoalitionA_2</SubtypeId>
+				<SubtypeId>GVK-StaticEncounter-SpawnGroup-ConvoyOutpost-COALITIONA</SubtypeId>
 			</Id>
 			<Description>
 			[Modular Encounters SpawnGroup]
@@ -61,11 +23,15 @@
 			[StaticEncounterForward:{X:0.00633329228246706 Y:-0.999979944503217 Z:-4.55131826874702E-07}]
 			[StaticEncounterUp:{X:0.925632532937614 Y:0.0058622467355719 Z:0.378378181229716}]
 			[ManipulationProfiles:GVK-StaticEncounters-Manipulation-ConvoySpawner]
+			[UseRemoteControlCodeRestrictions:true]
+			[RemoteControlCode:GVK-Static]
+			[RemoteControlCodeMinDistance:1000]
+			[RemoteControlCodeMaxDistance:-1]
 			</Description>
 			<IsPirate>true</IsPirate>
 			<Frequency>5.0</Frequency>
 			<Prefabs>
-				<Prefab SubtypeId="[NPC Static] Encounter Spawner">
+				<Prefab SubtypeId="NST Encounter Spawner">
 					<Position>
 						<X>0.0</X>
 						<Y>0</Y>
@@ -73,14 +39,14 @@
 					</Position>
 					<Speed>0</Speed>
 					<BeaconText>Abandoned Outpost</BeaconText>
-					<Behaviour>GVK-Static-Behavior-ConvoySpawner-CoalitionA</Behaviour>
+					<Behaviour>GVK-Static-Behavior-ConvoySpawner-COALITIONA</Behaviour>
 				</Prefab>
 			</Prefabs>
 		</SpawnGroup>
 		<SpawnGroup>
 			<Id>
 				<TypeId>SpawnGroupDefinition</TypeId>
-				<SubtypeId>GVK-StaticEncounter-SpawnGroup-ConvoyOutpost-CoalitionB_2</SubtypeId>
+				<SubtypeId>GVK-StaticEncounter-SpawnGroup-ConvoyOutpost-COALITIONB</SubtypeId>
 			</Id>
 			<Description>
 			[Modular Encounters SpawnGroup]
@@ -99,11 +65,15 @@
 			[StaticEncounterForward:{X:0.00788450622735279 Y:-0.00261389048067396 Z:-0.999965500473944}]
 			[StaticEncounterUp:{X:0.949164968213204 Y:-0.314669453959125 Z:0.00830649516307105}]
 			[ManipulationProfiles:GVK-StaticEncounters-Manipulation-ConvoySpawner]
+			[UseRemoteControlCodeRestrictions:true]
+			[RemoteControlCode:GVK-Static]
+			[RemoteControlCodeMinDistance:1000]
+			[RemoteControlCodeMaxDistance:-1]
 			</Description>
 			<IsPirate>true</IsPirate>
 			<Frequency>5.0</Frequency>
 			<Prefabs>
-				<Prefab SubtypeId="[NPC Static] Encounter Spawner">
+				<Prefab SubtypeId="NST Encounter Spawner">
 					<Position>
 						<X>0.0</X>
 						<Y>0</Y>
@@ -111,41 +81,7 @@
 					</Position>
 					<Speed>0</Speed>
 					<BeaconText>Abandoned Outpost</BeaconText>
-					<Behaviour>GVK-Static-Behavior-ConvoySpawner-CoalitionB</Behaviour>
-				</Prefab>
-			</Prefabs>
-		</SpawnGroup>
-		<SpawnGroup>
-			<Id>
-				<TypeId>SpawnGroupDefinition</TypeId>
-				<SubtypeId>GVK-StaticEncounter-SpawnGroup-ConvoyOutpost-CoalitionB-Admin</SubtypeId>
-			</Id>
-			<Description>
-			[Modular Encounters SpawnGroup]
-			[PlanetaryInstallation:true]
-			[AdminSpawnOnly:true]
-			[FactionOwner:COALITION]
-			[IgnoreCleanupRules:true]
-			[ReactorsOn:true]
-			[ForceStaticGrid:true]
-			[ReplenishSystems:true]
-			[SkipVoxelSpawnChecks:true]
-			[SkipGridSpawnChecks:true]
-			[ManipulationProfiles:GVK-StaticEncounters-Manipulation-ConvoySpawner]
-			[ZoneConditions:GVK-Universal-ZoneConditions-WreckZone0]
-			</Description>
-			<IsPirate>true</IsPirate>
-			<Frequency>5.0</Frequency>
-			<Prefabs>
-				<Prefab SubtypeId="[NPC Static] Encounter Spawner">
-					<Position>
-						<X>0.0</X>
-						<Y>0</Y>
-						<Z>0.0</Z>
-					</Position>
-					<Speed>0</Speed>
-					<BeaconText>Abandoned Outpost</BeaconText>
-					<Behaviour>GVK-Static-Behavior-ConvoySpawner-CoalitionB</Behaviour>
+					<Behaviour>GVK-Static-Behavior-ConvoySpawner-COALITIONB</Behaviour>
 				</Prefab>
 			</Prefabs>
 		</SpawnGroup>

@@ -1,0 +1,47 @@
+<?xml version="1.0"?>
+<Definitions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+	<SpawnGroups>
+		<SpawnGroup>
+			<Id>
+				<TypeId>SpawnGroupDefinition</TypeId>
+				<SubtypeId>GVK-StaticEncounter-SpawnGroup-ConvoyOutpost-GAALSIENC</SubtypeId>
+			</Id>
+			<Description>
+			[Modular Encounters SpawnGroup]
+			[StaticEncounter:true]
+			[FactionOwner:COALITION]
+			[IgnoreCleanupRules:true]
+			[ReactorsOn:true]
+			[ForceStaticGrid:true]
+			[TriggerCoords:{X:3460.20632347499 Y:38678.3699199663 Z:31099.3855266571}]
+			[TriggerRadius:999999]
+			[ReplenishSystems:true]
+			[SkipVoxelSpawnChecks:true]
+			[SkipGridSpawnChecks:true]
+			[ForceExactPositionAndOrientation:true]
+			[StaticEncounterCoords:{X:3460.20632347499 Y:38678.3699199663 Z:31099.3855266571}]
+			[StaticEncounterForward:{X:0.0546235263239168 Y:-0.0110333218790949 Z:-0.998446060726493}]
+			[StaticEncounterUp:{X:-0.978680881465587 Y:0.197682241068829 Z:-0.0557266885769049}]
+			[ManipulationProfiles:GVK-StaticEncounters-Manipulation-ConvoySpawner]
+			[UseRemoteControlCodeRestrictions:true]
+			[RemoteControlCode:GVK-Static]
+			[RemoteControlCodeMinDistance:1000]
+			[RemoteControlCodeMaxDistance:-1]
+			</Description>
+			<IsPirate>true</IsPirate>
+			<Frequency>5.0</Frequency>
+			<Prefabs>
+				<Prefab SubtypeId="NST Encounter Spawner">
+					<Position>
+						<X>0.0</X>
+						<Y>0</Y>
+						<Z>0.0</Z>
+					</Position>
+					<Speed>0</Speed>
+					<BeaconText>Abandoned Outpost</BeaconText>
+					<Behaviour>GVK-Static-Behavior-ConvoySpawner-GAALSIENC</Behaviour>
+				</Prefab>
+			</Prefabs>
+		</SpawnGroup>
+	</SpawnGroups>
+</Definitions>

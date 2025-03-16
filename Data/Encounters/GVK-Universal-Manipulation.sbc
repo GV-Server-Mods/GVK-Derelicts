@@ -35,8 +35,8 @@
 			[RandomizeWeapons:true]
 			[IgnoreWeaponRandomizerTargetGlobalBlacklist:true]
 			[IgnoreWeaponRandomizerTargetGlobalWhitelist:true]
-			[WeaponRandomizerWhitelist:MyObjectBuilder_LargeMissileTurret/ARYXSpartanTurret_NPC,MyObjectBuilder_LargeMissileTurret/ARYXVulcanTurret_NPC,MyObjectBuilder_LargeMissileTurret/ARYXHeavyFlakTurret_NPC,MyObjectBuilder_ConveyorSorter/missileBattery01_NPC,MyObjectBuilder_LargeMissileTurret/GVK_CycloneCannonTurret_NPC]
-			[WeaponRandomizerTargetWhitelist:MyObjectBuilder_LargeMissileTurret/ARYXSpartanTurret_NPC,MyObjectBuilder_LargeMissileTurret/ARYXVulcanTurret_NPC,MyObjectBuilder_LargeMissileTurret/ARYXHeavyFlakTurret_NPC,MyObjectBuilder_ConveyorSorter/missileBattery01_NPC,MyObjectBuilder_LargeMissileTurret/GVK_CycloneCannonTurret_NPC,MyObjectBuilder_ConveyorSorter/GVK_GriffinMissileTurret]
+			[WeaponRandomizerWhitelist:MyObjectBuilder_LargeMissileTurret/ARYXSpartanTurret_NPC,MyObjectBuilder_LargeMissileTurret/GVK_AvengerGatlingTurret_NPC,MyObjectBuilder_LargeMissileTurret/ARYXHeavyFlakTurret_NPC,MyObjectBuilder_ConveyorSorter/missileBattery01_NPC,MyObjectBuilder_LargeMissileTurret/GVK_CycloneCannonTurret_NPC]
+			[WeaponRandomizerTargetWhitelist:MyObjectBuilder_LargeMissileTurret/ARYXSpartanTurret_NPC,MyObjectBuilder_LargeMissileTurret/GVK_AvengerGatlingTurret_NPC,MyObjectBuilder_LargeMissileTurret/ARYXHeavyFlakTurret_NPC,MyObjectBuilder_ConveyorSorter/missileBattery01_NPC,MyObjectBuilder_LargeMissileTurret/GVK_CycloneCannonTurret_NPC,MyObjectBuilder_ConveyorSorter/GVK_GriffinMissileTurret_NPC]
 			</Description>
 		</EntityComponent>
 		<!-- TargetWhitlist blocks must be Public -->
@@ -56,6 +56,32 @@
 			[IgnoreWeaponRandomizerTargetGlobalWhitelist:true]
 			[WeaponRandomizerWhitelist:MyObjectBuilder_LargeGatlingTurret/SmallGatlingTurret_NPC,MyObjectBuilder_LargeMissileTurret/ReceptorTurret_NPC,MyObjectBuilder_LargeMissileTurret/SmallMissileTurret_NPC]
 			[WeaponRandomizerTargetWhitelist:MyObjectBuilder_LargeGatlingTurret/SmallGatlingTurret_NPC,MyObjectBuilder_LargeMissileTurret/ReceptorTurret_NPC,MyObjectBuilder_LargeMissileTurret/SmallMissileTurret_NPC]
+			</Description>
+		</EntityComponent>
+		<!-- Damage Reduction 0.25x -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Universal-Manipulation-DamageModifier25</SubtypeId>
+			</Id>
+			<Description>
+			[MES Manipulation]
+			[ManipulationChance:100]
+			[OverrideBlockDamageModifier:true]
+			[BlockDamageModifier:25]
+			</Description>
+		</EntityComponent>
+		<!-- Damage Reduction 0.5x -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Universal-Manipulation-DamageModifier50</SubtypeId>
+			</Id>
+			<Description>
+			[MES Manipulation]
+			[ManipulationChance:100]
+			[OverrideBlockDamageModifier:true]
+			[BlockDamageModifier:50]
 			</Description>
 		</EntityComponent>
 	</EntityComponents>

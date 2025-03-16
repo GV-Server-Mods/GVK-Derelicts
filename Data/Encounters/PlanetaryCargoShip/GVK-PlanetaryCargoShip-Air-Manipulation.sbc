@@ -4,7 +4,7 @@
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Manipulation-CargoShip</SubtypeId>
+				<SubtypeId>GVK-Manipulation-CargoShip-Trader</SubtypeId>
 			</Id>
 			<Description>
 			[MES Manipulation]
@@ -26,7 +26,42 @@
 			[BlockReplacerProfileNames:GVK-Replacer-NPCNoConcealBeacons]
 			[ConfigureSpecialNpcThrusters:true]
 			[RestrictNpcIonThrust:true]
-			[NpcIonThrustForceMultiply:1.5]
+			[NpcIonThrustForceMultiply:2]
+			[NpcIonThrustPowerMultiply:0.0001]
+			[RestrictNpcAtmoThrust:true]
+			[NpcAtmoThrustForceMultiply:5]
+			[NpcAtmoThrustPowerMultiply:0.0001]
+			[RestrictNpcHydroThrust:true]
+			[NpcHydroThrustForceMultiply:5]
+			[NpcHydroThrustPowerMultiply:0.000001]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Manipulation-CargoShip-Escort</SubtypeId>
+			</Id>
+			<Description>
+			[MES Manipulation]
+			[ManipulationChance:100]
+			[ClearAuthorship:true]
+			[EraseIngameScripts:true]
+			[IgnoreGlobalBlockReplacer:false]
+			[ClearGridInventories:true]
+			[DisableBlocksWithName:Survival]
+			[AllowPartialNames:true]
+			[UseLootProfiles:true]
+			[LootProfiles:GVK-Universal-Loot-Large]
+			[DisableGyroOverride:true]
+			[UseBlockReplacerProfile:true]
+			[BlockReplacerProfileNames:GVK-Replacer-NPCWeapons]
+			[BlockReplacerProfileNames:GVK-Replacer-NPCHovers]
+			[BlockReplacerProfileNames:MES-Armor-LightToHeavy]
+			[BlockReplacerProfileNames:GVK-Replacer-LargeCockpitToRivalAI]
+			[BlockReplacerProfileNames:MES-DisposableNpcBeacons]
+			[ConfigureSpecialNpcThrusters:true]
+			[RestrictNpcIonThrust:true]
+			[NpcIonThrustForceMultiply:2]
 			[NpcIonThrustPowerMultiply:0.0001]
 			[RestrictNpcAtmoThrust:true]
 			[NpcAtmoThrustForceMultiply:5]

@@ -4,7 +4,7 @@
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Static-Behavior-ConvoySpawner-CoalitionB</SubtypeId>
+				<SubtypeId>GVK-Static-Behavior-ConvoySpawner-COALITIONB</SubtypeId>
 			</Id>
 			<Description>
 			[RivalAI Behavior]
@@ -12,14 +12,15 @@
 			[UseRetreatTimer:false]
 			[UseNoTargetTimer:false]
 			[UsePlayerDistanceTimer:false]
-			[Triggers:GVK-Static-Trigger-ConvoySpawner-Coalition-SpawnConvoyB]
+			[Triggers:GVK-Static-Trigger-ConvoySpawner-COALITION-SpawnConvoyB]
+			[RemoteControlCode:GVK-Static]
 			</Description>
 		</EntityComponent>
 		<!-- wait timer until next spawn 3600000-7200000 = 1-2 hours -->
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Static-Trigger-ConvoySpawner-Coalition-SpawnConvoyB</SubtypeId>
+				<SubtypeId>GVK-Static-Trigger-ConvoySpawner-COALITION-SpawnConvoyB</SubtypeId>
 			</Id>
 			<Description>
 			[RivalAI Trigger]
@@ -27,34 +28,34 @@
 			[MinCooldownMs:4800000]
 			[MaxCooldownMs:7200000]
 			[UseTrigger:true]
-			[StartsReady:true]
+			[StartsReady:false]
 			[ConditionCheckResetsTimer:true]
-			[Actions:GVK-Static-Action-ConvoySpawner-Coalition-SpawnConvoyB]
+			[Actions:GVK-Static-Action-ConvoySpawner-COALITION-SpawnConvoyB]
 			</Description>
 		</EntityComponent>
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Static-Action-ConvoySpawner-Coalition-SpawnConvoyB</SubtypeId>
+				<SubtypeId>GVK-Static-Action-ConvoySpawner-COALITION-SpawnConvoyB</SubtypeId>
 			</Id>
 			<Description>
 			[RivalAI Action]
 			[SpawnEncounter:true]
-			[Spawner:GVK-Static-Spawner-ConvoySpawner-Coalition-SpawnConvoyB]
+			[Spawner:GVK-Static-Spawner-ConvoySpawner-COALITION-SpawnConvoyB]
 			</Description>
 		</EntityComponent>
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Static-Spawner-ConvoySpawner-Coalition-SpawnConvoyB</SubtypeId>
+				<SubtypeId>GVK-Static-Spawner-ConvoySpawner-COALITION-SpawnConvoyB</SubtypeId>
 			</Id>
 			<Description>
 			[RivalAI Spawn]
 			[UseSpawn:true]
 			[SpawningType:CustomSpawn]
 			[StartsReady:true]
-			[SpawnGroups:GVK-PlanetaryCargoShip-Land-Coalition-SpawnGroup-TraderB]
-			[SpawnGroups:GVK-PlanetaryCargoShip-Land-Coalition-SpawnGroup-EscortB]
+			[SpawnGroups:GVK-PlanetaryCargoShip-Land-COALITION-SpawnGroup-TraderB]
+			[SpawnGroups:GVK-PlanetaryCargoShip-Land-COALITION-SpawnGroup-EscortB]
 			[MinDistance:200]
 			[MaxDistance:500]
 			[MinAltitude:40]

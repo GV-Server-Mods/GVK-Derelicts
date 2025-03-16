@@ -1,0 +1,133 @@
+<?xml version="1.0"?>
+<Definitions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+	<SpawnGroups>
+		<!-- NDR Large Hovers -->
+		<SpawnGroup>
+			<Id>
+				<TypeId>SpawnGroupDefinition</TypeId>
+				<SubtypeId>GVK-Drone-Defense-SpawnGroup-COALITION-LargeRover</SubtypeId>
+			</Id>
+			<Description>
+			[Modular Encounters SpawnGroup]
+			[IgnoreCleanupRules:false]
+			[ReplenishSystems:true]
+			[ManipulationProfiles:MES-Manipulation-RivalAi] 
+			[ManipulationProfiles:GVK-Drone-All-Manipulation-Hover]
+			[SpawnConditionsProfiles:GVK-Drone-Defense-SpawnCondition-COALITION-LargeRoverSingle]
+			</Description>
+			<IsPirate>true</IsPirate>
+			<Frequency>0.05</Frequency>
+			<Prefabs>
+				<Prefab SubtypeId="NDR [COAL] Missile Cruiser">
+					<Position>
+						<X>0.0</X>
+						<Y>10.0</Y>
+						<Z>0.0</Z>
+					</Position>
+					<Speed>0</Speed>
+					<BeaconText>Missile Cruiser</BeaconText>
+					<Behaviour>GVK-Drone-All-Behavior-LargeRoverHorsefly</Behaviour>
+				</Prefab>
+				<Prefab SubtypeId="NDR [COAL] Battlecruiser">
+					<Position>
+						<X>0.0</X>
+						<Y>10.0</Y>
+						<Z>0.0</Z>
+					</Position>
+					<Speed>0</Speed>
+					<BeaconText>Battlecruiser</BeaconText>
+					<Behaviour>GVK-Drone-All-Behavior-LargeRoverHorsefly</Behaviour>
+				</Prefab>
+				<Prefab SubtypeId="NDR [COAL] Assault Cruiser">
+					<Position>
+						<X>0.0</X>
+						<Y>15.0</Y>
+						<Z>0.0</Z>
+					</Position>
+					<Speed>0</Speed>
+					<BeaconText>Assault Cruiser</BeaconText>
+					<Behaviour>GVK-Drone-All-Behavior-COALITION-AssaultCruiser</Behaviour>
+				</Prefab>
+			</Prefabs>
+		</SpawnGroup>
+		<SpawnGroup>
+			<Id>
+				<TypeId>SpawnGroupDefinition</TypeId>
+				<!--Do Not Edit-->
+				<SubtypeId>GVK-Drone-Defense-SpawnGroup-COALITION-StrikeFighter</SubtypeId>
+			</Id>
+			<Description>
+			[Modular Encounters SpawnGroup]
+			[IgnoreCleanupRules:false]
+			[ReplenishSystems:true]
+			[ManipulationProfiles:GVK-Drone-All-Manipulation-Interceptor]
+			[ManipulationProfiles:GVK-Universal-Manipulation-DamageModifier50]
+			[SpawnConditionsProfiles:GVK-Drone-Defense-SpawnCondition-COALITION-SmallFlyerSquad]
+			[SpawnConditionsProfiles:GVK-Drone-Defense-SpawnCondition-COALITION-SmallFlyerSingle]
+			</Description>
+			<IsPirate>true</IsPirate>
+			<!--Do not edit-->
+			<Frequency>0.1</Frequency>
+			<Prefabs>
+				<Prefab SubtypeId="NDR [COAL] Strike Fighter">
+					<Position>
+						<X>0</X>
+						<Y>0.0</Y>
+						<Z>0</Z>
+					</Position>
+					<Speed>0</Speed>
+					<BeaconText>Strike Fighter</BeaconText>
+					<Behaviour>GVK-Drone-All-Behavior-COALITIONStrikeFighter</Behaviour>
+				</Prefab>
+				<Prefab SubtypeId="NDR [COAL] Strike Fighter">
+					<Position>
+						<X>0</X>
+						<Y>0.0</Y>
+						<Z>0</Z>
+					</Position>
+					<Speed>0</Speed>
+					<BeaconText>Strike Fighter</BeaconText>
+					<Behaviour>GVK-Drone-All-Behavior-COALITIONStrikeFighter</Behaviour>
+				</Prefab>
+			</Prefabs>
+		</SpawnGroup>
+		<SpawnGroup>
+			<Id>
+				<TypeId>SpawnGroupDefinition</TypeId>
+				<SubtypeId>GVK-Drone-Defense-SpawnGroup-COALITION-LAV</SubtypeId>
+			</Id>
+			<Description>
+			[Modular Encounters SpawnGroup]
+			[IgnoreCleanupRules:false]
+			[ReplenishSystems:true]
+			[ManipulationProfiles:GVK-Drone-All-Manipulation-Hover] 
+			[ManipulationProfiles:GVK-Universal-Manipulation-DamageModifier50]
+			[SpawnConditionsProfiles:GVK-Drone-Defense-SpawnCondition-COALITION-LAV]
+			</Description>
+			<IsPirate>true</IsPirate>
+			<Frequency>0.1</Frequency>
+			<Prefabs>
+				<Prefab SubtypeId="NDR [COAL] LAV">
+					<Position>
+						<X>-50</X>
+						<Y>20</Y>
+						<Z>0.0</Z>
+					</Position>
+					<Speed>0</Speed>
+					<BeaconText>LAV</BeaconText>
+					<Behaviour>GVK-Drone-Encounter-Behavior-LAV-COALITION</Behaviour>
+				</Prefab>
+				<Prefab SubtypeId="NDR [COAL] LAV">
+					<Position>
+						<X>50</X>
+						<Y>20</Y>
+						<Z>0.0</Z>
+					</Position>
+					<Speed>0</Speed>
+					<BeaconText>LAV</BeaconText>
+					<Behaviour>GVK-Drone-Encounter-Behavior-LAV-COALITION</Behaviour>
+				</Prefab>
+			</Prefabs>
+		</SpawnGroup>		
+	</SpawnGroups>
+</Definitions>

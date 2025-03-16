@@ -5,6 +5,34 @@
 		<SpawnGroup>
 			<Id>
 				<TypeId>SpawnGroupDefinition</TypeId>
+				<SubtypeId>GVK-PlanetaryInstallation-SpawnGroups-Medium-RecoveryMission</SubtypeId>
+			</Id>
+			<Description>
+			[Modular Encounters SpawnGroup]
+			[IgnoreCleanupRules:true]
+			[ReplenishSystems:true]
+			[SpawnConditionsProfiles:GVK-PlanetaryInstallation-Medium-SpawnCondition-Building-COALITION]
+			[ManipulationProfiles:GVK-PlanetaryInstallation-Medium-Manipulation-MissionRover]
+			[ForceStaticGrid:false]
+			</Description>
+			<IsPirate>true</IsPirate>
+			<Frequency>0.1</Frequency>
+			<Prefabs>
+				<Prefab SubtypeId="NMI [COAL] Support Cruiser">
+					<Position>
+						<X>0.0</X>
+						<Y>27.5</Y>
+						<Z>0.0</Z>
+					</Position>
+					<Speed>0</Speed>
+					<BeaconText>Recovery Mission</BeaconText>
+					<Behaviour>GVK-PlanetaryInstallation-Medium-Behavior-RecoveryMission</Behaviour>
+				</Prefab>
+			</Prefabs>
+		</SpawnGroup>
+		<SpawnGroup>
+			<Id>
+				<TypeId>SpawnGroupDefinition</TypeId>
 				<SubtypeId>GVK-PlanetaryInstallation-SpawnGroups-Medium-Battlecruiser</SubtypeId>
 			</Id>
 			<Description>
@@ -17,9 +45,9 @@
 			[CutVoxelSize:9]
 			</Description>
 			<IsPirate>true</IsPirate>
-			<Frequency>0.025</Frequency>
+			<Frequency>0.1</Frequency>
 			<Prefabs>
-				<Prefab SubtypeId="[NPC Med Wreck] Battlecruiser">
+				<Prefab SubtypeId="NWM Battlecruiser">
 					<Position>
 						<X>0.0</X>
 						<Y>0</Y>
@@ -27,7 +55,7 @@
 					</Position>
 					<Speed>0</Speed>
 					<BeaconText>Distress Signal</BeaconText>
-					<Behaviour>GVK-PlanetaryInstallation-Medium-Behavior-CoalitionWreck</Behaviour>
+					<Behaviour>GVK-PlanetaryInstallation-Medium-Behavior-COALITIONWreck</Behaviour>
 				</Prefab>
 			</Prefabs>
 		</SpawnGroup>
@@ -46,9 +74,9 @@
 			[CutVoxelSize:9]
 			</Description>
 			<IsPirate>true</IsPirate>
-			<Frequency>0.025</Frequency>
+			<Frequency>0.1</Frequency>
 			<Prefabs>
-				<Prefab SubtypeId="[NPC Med Wreck] Support Cruiser">
+				<Prefab SubtypeId="NWM Support Cruiser">
 					<Position>
 						<X>0.0</X>
 						<Y>3</Y>
@@ -56,7 +84,7 @@
 					</Position>
 					<Speed>0</Speed>
 					<BeaconText>Distress Signal</BeaconText>
-					<Behaviour>GVK-PlanetaryInstallation-Medium-Behavior-CoalitionWreck</Behaviour>
+					<Behaviour>GVK-PlanetaryInstallation-Medium-Behavior-COALITIONWreck</Behaviour>
 				</Prefab>
 			</Prefabs>
 		</SpawnGroup>
@@ -76,9 +104,9 @@
 			[CutVoxelSize:9]
 			</Description>
 			<IsPirate>true</IsPirate>
-			<Frequency>0.1</Frequency>
+			<Frequency>0.4</Frequency>
 			<Prefabs>
-				<Prefab SubtypeId="[NPC Med Wreck] Doodle bug">
+				<Prefab SubtypeId="NWM Doodle bug">
 					<Position>
 						<X>0.0</X>
 						<Y>0</Y>
@@ -106,9 +134,9 @@
 			[CutVoxelSize:9]
 			</Description>
 			<IsPirate>true</IsPirate>
-			<Frequency>0.1</Frequency>
+			<Frequency>0.4</Frequency>
 			<Prefabs>
-				<Prefab SubtypeId="[NPC Med Wreck] Sagan">
+				<Prefab SubtypeId="NWM Sagan">
 					<Position>
 						<X>0.0</X>
 						<Y>0</Y>
@@ -136,9 +164,9 @@
 			[CutVoxelSize:9]
 			</Description>
 			<IsPirate>true</IsPirate>
-			<Frequency>0.1</Frequency>
+			<Frequency>0.4</Frequency>
 			<Prefabs>
-				<Prefab SubtypeId="[NPC Med Wreck] Undercut">
+				<Prefab SubtypeId="NWM Undercut">
 					<Position>
 						<X>0.0</X>
 						<Y>8</Y>
@@ -166,9 +194,9 @@
 			[CutVoxelSize:9]
 			</Description>
 			<IsPirate>true</IsPirate>
-			<Frequency>0.1</Frequency>
+			<Frequency>0.4</Frequency>
 			<Prefabs>
-				<Prefab SubtypeId="[NPC Med Wreck] Ceverus">
+				<Prefab SubtypeId="NWM Ceverus">
 					<Position>
 						<X>0.0</X>
 						<Y>-8</Y>
@@ -196,9 +224,9 @@
 			[CutVoxelSize:9]
 			</Description>
 			<IsPirate>true</IsPirate>
-			<Frequency>0.1</Frequency>
+			<Frequency>0.4</Frequency>
 			<Prefabs>
-				<Prefab SubtypeId="[NPC Med Wreck] MPC-3 Riot RAM">
+				<Prefab SubtypeId="NWM MPC-3 Riot RAM">
 					<Position>
 						<X>0.0</X>
 						<Y>2.5</Y>
@@ -226,9 +254,9 @@
 			[CutVoxelSize:9]
 			</Description>
 			<IsPirate>true</IsPirate>
-			<Frequency>0.1</Frequency>
+			<Frequency>0.4</Frequency>
 			<Prefabs>
-				<Prefab SubtypeId="[NPC Med Wreck] MPC-4">
+				<Prefab SubtypeId="NWM MPC-4">
 					<Position>
 						<X>0.0</X>
 						<Y>-2.5</Y>
@@ -256,9 +284,9 @@
 			[CutVoxelSize:9]
 			</Description>
 			<IsPirate>true</IsPirate>
-			<Frequency>0.1</Frequency>
+			<Frequency>0.4</Frequency>
 			<Prefabs>
-				<Prefab SubtypeId="[NPC Med Wreck] Rhino">
+				<Prefab SubtypeId="NWM Rhino">
 					<Position>
 						<X>0.0</X>
 						<Y>17</Y>
@@ -286,9 +314,9 @@
 			[CutVoxelSize:9]
 			</Description>
 			<IsPirate>true</IsPirate>
-			<Frequency>0.1</Frequency>
+			<Frequency>0.4</Frequency>
 			<Prefabs>
-				<Prefab SubtypeId="[NPC Med Wreck] Icarus">
+				<Prefab SubtypeId="NWM Icarus">
 					<Position>
 						<X>0.0</X>
 						<Y>13.0</Y>
@@ -316,9 +344,9 @@
 			[CutVoxelSize:9]
 			</Description>
 			<IsPirate>true</IsPirate>
-			<Frequency>0.1</Frequency>
+			<Frequency>0.4</Frequency>
 			<Prefabs>
-				<Prefab SubtypeId="[NPC Med Wreck] Kaiju Frigate">
+				<Prefab SubtypeId="NWM Kaiju Frigate">
 					<Position>
 						<X>0.0</X>
 						<Y>20.0</Y>
@@ -346,9 +374,9 @@
 			[CutVoxelSize:9]
 			</Description>
 			<IsPirate>true</IsPirate>
-			<Frequency>0.1</Frequency>
+			<Frequency>0.4</Frequency>
 			<Prefabs>
-				<Prefab SubtypeId="[NPC Med Wreck] Kestrel">
+				<Prefab SubtypeId="NWM Kestrel">
 					<Position>
 						<X>0.0</X>
 						<Y>14</Y>
@@ -376,9 +404,9 @@
 			[CutVoxelSize:9]
 			</Description>
 			<IsPirate>true</IsPirate>
-			<Frequency>0.1</Frequency>
+			<Frequency>0.4</Frequency>
 			<Prefabs>
-				<Prefab SubtypeId="[NPC Med Wreck] Hermes">
+				<Prefab SubtypeId="NWM Hermes">
 					<Position>
 						<X>0.0</X>
 						<Y>19.0</Y>
@@ -406,9 +434,9 @@
 			[CutVoxelSize:9]
 			</Description>
 			<IsPirate>true</IsPirate>
-			<Frequency>0.1</Frequency>
+			<Frequency>0.4</Frequency>
 			<Prefabs>
-				<Prefab SubtypeId="[NPC Med Wreck] Valkyrie">
+				<Prefab SubtypeId="NWM Valkyrie">
 					<Position>
 						<X>0.0</X>
 						<Y>0</Y>
@@ -436,9 +464,9 @@
 			[CutVoxelSize:9]
 			</Description>
 			<IsPirate>true</IsPirate>
-			<Frequency>0.1</Frequency>
+			<Frequency>0.4</Frequency>
 			<Prefabs>
-				<Prefab SubtypeId="[NPC Med Wreck] Guardian">
+				<Prefab SubtypeId="NWM Guardian">
 					<Position>
 						<X>0.0</X>
 						<Y>10.0</Y>
@@ -466,9 +494,9 @@
 			[CutVoxelSize:9]
 			</Description>
 			<IsPirate>true</IsPirate>
-			<Frequency>0.1</Frequency>
+			<Frequency>0.4</Frequency>
 			<Prefabs>
-				<Prefab SubtypeId="[NPC Med Wreck] Corvette">
+				<Prefab SubtypeId="NWM Corvette">
 					<Position>
 						<X>0.0</X>
 						<Y>5.0</Y>
@@ -496,9 +524,9 @@
 			[CutVoxelSize:9]
 			</Description>
 			<IsPirate>true</IsPirate>
-			<Frequency>0.1</Frequency>
+			<Frequency>0.4</Frequency>
 			<Prefabs>
-				<Prefab SubtypeId="[NPC Med Wreck] Raptor Frigate">
+				<Prefab SubtypeId="NWM Raptor Frigate">
 					<Position>
 						<X>0.0</X>
 						<Y>10.0</Y>
@@ -526,9 +554,9 @@
 			[CutVoxelSize:9]
 			</Description>
 			<IsPirate>true</IsPirate>
-			<Frequency>0.1</Frequency>
+			<Frequency>0.4</Frequency>
 			<Prefabs>
-				<Prefab SubtypeId="[NPC Med Wreck] Loki">
+				<Prefab SubtypeId="NWM Loki">
 					<Position>
 						<X>0.0</X>
 						<Y>-5</Y>
@@ -551,12 +579,12 @@
 			[ReplenishSystems:true]
 			[SpawnConditionsProfiles:GVK-PlanetaryInstallation-Medium-SpawnCondition-Building-GAALSIEN]
 			[ManipulationProfiles:GVK-Universal-Manipulation-Large3x3StandardTurrets]
-			[ManipulationProfiles:GVK-PlanetaryInstallation-Medium-Manipulation-GaalsienStructures]
+			[ManipulationProfiles:GVK-PlanetaryInstallation-Medium-Manipulation-GAALSIENStructures]
 			</Description>
 			<IsPirate>true</IsPirate>
-			<Frequency>0.1</Frequency>
+			<Frequency>0.4</Frequency>
 			<Prefabs>
-				<Prefab SubtypeId="[NPC Med Wreck] Gaalsien Mining Outpost">
+				<Prefab SubtypeId="NWM [GAAL] Mining Outpost">
 					<Position>
 						<X>0.0</X>
 						<Y>-5</Y>
@@ -579,12 +607,12 @@
 			[ReplenishSystems:true]
 			[SpawnConditionsProfiles:GVK-PlanetaryInstallation-Large-SpawnCondition-Building-GAALSIEN]
 			[ManipulationProfiles:GVK-Universal-Manipulation-Large3x3StandardTurrets]
-			[ManipulationProfiles:GVK-PlanetaryInstallation-Medium-Manipulation-GaalsienStructures]
+			[ManipulationProfiles:GVK-PlanetaryInstallation-Medium-Manipulation-GAALSIENStructures]
 			</Description>
 			<IsPirate>true</IsPirate>
-			<Frequency>0.1</Frequency>
+			<Frequency>0.4</Frequency>
 			<Prefabs>
-				<Prefab SubtypeId="[NPC Med Wreck] Gaalsien Dome">
+				<Prefab SubtypeId="NWM [GAAL] Dome">
 					<Position>
 						<X>0.0</X>
 						<Y>17</Y>
@@ -607,12 +635,12 @@
 			[ReplenishSystems:true]
 			[SpawnConditionsProfiles:GVK-PlanetaryInstallation-Medium-SpawnCondition-Building-GAALSIEN]
 			[ManipulationProfiles:GVK-Universal-Manipulation-Large3x3StandardTurrets]
-			[ManipulationProfiles:GVK-PlanetaryInstallation-Medium-Manipulation-GaalsienStructures]
+			[ManipulationProfiles:GVK-PlanetaryInstallation-Medium-Manipulation-GAALSIENStructures]
 			</Description>
 			<IsPirate>true</IsPirate>
-			<Frequency>0.1</Frequency>
+			<Frequency>0.4</Frequency>
 			<Prefabs>
-				<Prefab SubtypeId="[NPC Med Wreck] Gaalsien Outpost">
+				<Prefab SubtypeId="NWM [GAAL] Outpost">
 					<Position>
 						<X>0.0</X>
 						<Y>6</Y>
@@ -640,9 +668,9 @@
 			[CutVoxelSize:9]
 			</Description>
 			<IsPirate>true</IsPirate>
-			<Frequency>0.1</Frequency>
+			<Frequency>0.4</Frequency>
 			<Prefabs>
-				<Prefab SubtypeId="[NPC Med Wreck] Artillery Cruiser">
+				<Prefab SubtypeId="NWM Artillery Cruiser">
 					<Position>
 						<X>0.0</X>
 						<Y>5</Y>
@@ -654,10 +682,10 @@
 				</Prefab>
 			</Prefabs>
 		</SpawnGroup>
-		<SpawnGroup>
+		<!--<SpawnGroup>
 			<Id>
 				<TypeId>SpawnGroupDefinition</TypeId>
-				<SubtypeId>GVK-PlanetaryInstallation-SpawnGroups-Medium-CoalitionBaserunner</SubtypeId>
+				<SubtypeId>GVK-PlanetaryInstallation-SpawnGroups-Medium-COALITIONBaserunner</SubtypeId>
 			</Id>
 			<Description>
 			[Modular Encounters SpawnGroup]
@@ -667,9 +695,9 @@
 			[ManipulationProfiles:GVK-PlanetaryInstallation-Medium-Manipulation]
 			</Description>
 			<IsPirate>true</IsPirate>
-			<Frequency>0.025</Frequency>
+			<Frequency>0.1</Frequency>
 			<Prefabs>
-				<Prefab SubtypeId="[NPC Med Wreck] Coalition Baserunner">
+				<Prefab SubtypeId="NWM COALITION Baserunner">
 					<Position>
 						<X>0.0</X>
 						<Y>33</Y>
@@ -677,14 +705,14 @@
 					</Position>
 					<Speed>0</Speed>
 					<BeaconText>Distress Signal</BeaconText>
-					<Behaviour>GVK-PlanetaryInstallation-Medium-Behavior-CoalitionWreck</Behaviour>
+					<Behaviour>GVK-PlanetaryInstallation-Medium-Behavior-COALITIONWreck</Behaviour>
 				</Prefab>
 			</Prefabs>
 		</SpawnGroup>
 		<SpawnGroup>
 			<Id>
 				<TypeId>SpawnGroupDefinition</TypeId>
-				<SubtypeId>GVK-PlanetaryInstallation-SpawnGroups-Medium-CoalitionCruiser</SubtypeId>
+				<SubtypeId>GVK-PlanetaryInstallation-SpawnGroups-Medium-COALITIONCruiser</SubtypeId>
 			</Id>
 			<Description>
 			[Modular Encounters SpawnGroup]
@@ -694,9 +722,9 @@
 			[ManipulationProfiles:GVK-PlanetaryInstallation-Medium-Manipulation]
 			</Description>
 			<IsPirate>true</IsPirate>
-			<Frequency>0.025</Frequency>
+			<Frequency>0.1</Frequency>
 			<Prefabs>
-				<Prefab SubtypeId="[NPC Med Wreck] Coalition Cruiser">
+				<Prefab SubtypeId="NWM COALITION Cruiser">
 					<Position>
 						<X>0.0</X>
 						<Y>33</Y>
@@ -704,14 +732,14 @@
 					</Position>
 					<Speed>0</Speed>
 					<BeaconText>Distress Signal</BeaconText>
-					<Behaviour>GVK-PlanetaryInstallation-Medium-Behavior-CoalitionWreck</Behaviour>
+					<Behaviour>GVK-PlanetaryInstallation-Medium-Behavior-COALITIONWreck</Behaviour>
 				</Prefab>
 			</Prefabs>
 		</SpawnGroup>
 		<SpawnGroup>
 			<Id>
 				<TypeId>SpawnGroupDefinition</TypeId>
-				<SubtypeId>GVK-PlanetaryInstallation-SpawnGroups-Medium-CoalitionCarrier</SubtypeId>
+				<SubtypeId>GVK-PlanetaryInstallation-SpawnGroups-Medium-COALITIONCarrier</SubtypeId>
 			</Id>
 			<Description>
 			[Modular Encounters SpawnGroup]
@@ -721,9 +749,9 @@
 			[ManipulationProfiles:GVK-PlanetaryInstallation-Medium-Manipulation]
 			</Description>
 			<IsPirate>true</IsPirate>
-			<Frequency>0.025</Frequency>
+			<Frequency>0.1</Frequency>
 			<Prefabs>
-				<Prefab SubtypeId="[NPC Med Wreck] Coalition Carrier">
+				<Prefab SubtypeId="NWM COALITION Carrier">
 					<Position>
 						<X>0.0</X>
 						<Y>13</Y>
@@ -731,9 +759,9 @@
 					</Position>
 					<Speed>0</Speed>
 					<BeaconText>Distress Signal</BeaconText>
-					<Behaviour>GVK-PlanetaryInstallation-Medium-Behavior-CoalitionWreck</Behaviour>
+					<Behaviour>GVK-PlanetaryInstallation-Medium-Behavior-COALITIONWreck</Behaviour>
 				</Prefab>
 			</Prefabs>
-		</SpawnGroup>
+		</SpawnGroup>-->
 	</SpawnGroups>
 </Definitions>

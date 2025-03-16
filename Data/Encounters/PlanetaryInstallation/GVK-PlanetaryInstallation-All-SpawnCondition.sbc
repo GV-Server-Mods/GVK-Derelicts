@@ -32,11 +32,12 @@
 			[RotateInstallations:{X:100 Y:100 Z:100},{X:100 Y:100 Z:100},{X:100 Y:100 Z:100}]
 			[ZoneConditions:GVK-Universal-ZoneConditions-WreckZone23]
 			[ZoneConditions:GVK-Universal-ZoneConditions-WreckZone3Only]
-			[UseRandomBuilderFaction:true]
 			[UseRemoteControlCodeRestrictions:true]
 			[RemoteControlCode:GVK-MediumDerelict]
 			[RemoteControlCodeMinDistance:15000]
 			[RemoteControlCodeMaxDistance:-1]
+			[UseRandomBuilderFaction:true]
+			[SandboxVariables:MediumWrecksEnabled]
 			</Description>
 		</EntityComponent>
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
@@ -57,6 +58,7 @@
 			[RemoteControlCode:GVK-MediumDerelict]
 			[RemoteControlCodeMinDistance:15000]
 			[RemoteControlCodeMaxDistance:-1]
+			[SandboxVariables:MediumWrecksEnabled]
 			</Description>
 		</EntityComponent>
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
@@ -77,6 +79,7 @@
 			[RemoteControlCode:GVK-MediumDerelict]
 			[RemoteControlCodeMinDistance:15000]
 			[RemoteControlCodeMaxDistance:-1]
+			[SandboxVariables:MediumWrecksEnabled]
 			</Description>
 		</EntityComponent>
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
@@ -96,8 +99,8 @@
 			[RemoteControlCode:GVK-LargeDerelict]
 			[RemoteControlCodeMinDistance:900000]
 			[RemoteControlCodeMaxDistance:-1]
-			[SandboxVariables:LargeWrecksEnabled]
 			[UseRandomBuilderFaction:true]
+			[SandboxVariables:LargeWrecksEnabled]
 			</Description>
 		</EntityComponent>
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
@@ -141,6 +144,23 @@
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-PlanetaryInstallation-Small-SpawnCondition-Building-COALITION</SubtypeId>
+			</Id>
+			<Description>
+			[MES Spawn Conditions]
+			[PlanetaryInstallation:true]
+			[PlanetaryInstallationType:Small]
+			[FactionOwner:COALITION]
+			[ForceStaticGrid:true]
+			[ZoneConditions:GVK-Universal-ZoneConditions-WreckZone123]
+			[ZoneConditions:GVK-Universal-ZoneConditions-WreckZone23]
+			[ZoneConditions:GVK-Universal-ZoneConditions-WreckZone3Only]
+			[PrefabSpawningMode:Random]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
 				<SubtypeId>GVK-PlanetaryInstallation-Medium-SpawnCondition-Building-COALITION</SubtypeId>
 			</Id>
 			<Description>
@@ -155,6 +175,7 @@
 			[RemoteControlCode:GVK-MediumDerelict]
 			[RemoteControlCodeMinDistance:15000]
 			[RemoteControlCodeMaxDistance:-1]
+			[SandboxVariables:MediumWrecksEnabled]
 			</Description>
 		</EntityComponent>
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
@@ -174,6 +195,7 @@
 			[RemoteControlCode:GVK-MediumDerelict]
 			[RemoteControlCodeMinDistance:15000]
 			[RemoteControlCodeMaxDistance:-1]
+			[SandboxVariables:MediumWrecksEnabled]
 			</Description>
 		</EntityComponent>
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">

@@ -1,7 +1,85 @@
 <?xml version="1.0"?>
 <Definitions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
 	<SpawnGroups>
+
 		<!-- Small wrecks 5km beacon -->
+		<SpawnGroup>
+			<Id>
+				<TypeId>SpawnGroupDefinition</TypeId>
+				<SubtypeId>GVK-PlanetaryInstallation-Small-SpawnGroup-COALITIONTurret</SubtypeId>
+			</Id>
+			<Description>
+			[Modular Encounters SpawnGroup]
+			[IgnoreCleanupRules:true]
+			[ReplenishSystems:true]
+			[SpawnConditionsProfiles:GVK-PlanetaryInstallation-Small-SpawnCondition-Building-COALITION]
+			[ManipulationProfiles:GVK-Drone-All-Manipulation-Large3x3HeavyTurrets]
+			[ManipulationProfiles:GVK-PlanetaryInstallation-Small-Manipulation-TurretPost]
+			[ManipulationProfiles:GVK-Universal-Manipulation-DamageModifier25]
+			</Description>
+			<IsPirate>true</IsPirate>
+			<Frequency>0.4</Frequency>
+			<Prefabs>
+				<Prefab SubtypeId="NMI [COAL] Turret Station 1">
+					<Position>
+						<X>0.0</X>
+						<Y>3</Y>
+						<Z>0.0</Z>
+					</Position>
+					<Speed>0</Speed>
+					<BeaconText>Turret Post</BeaconText>
+					<Behaviour>GVK-PlanetaryInstallation-Small-Behavior-COALITIONTurretPost</Behaviour>
+				</Prefab>
+			</Prefabs>
+		</SpawnGroup>
+		<SpawnGroup>
+			<Id>
+				<TypeId>SpawnGroupDefinition</TypeId>
+				<SubtypeId>GVK-PlanetaryInstallation-Small-SpawnGroup-COALITIONRelay</SubtypeId>
+			</Id>
+			<Description>
+			[Modular Encounters SpawnGroup]
+			[IgnoreCleanupRules:true]
+			[ReplenishSystems:true]
+			[SpawnConditionsProfiles:GVK-PlanetaryInstallation-Small-SpawnCondition-Building-COALITION]
+			[ManipulationProfiles:GVK-PlanetaryInstallation-Small-Manipulation]
+			[ManipulationProfiles:GVK-Universal-Manipulation-DamageModifier25]
+			</Description>
+			<IsPirate>true</IsPirate>
+			<Frequency>0.4</Frequency>
+			<Prefabs>
+				<Prefab SubtypeId="NMI [COAL] Relay Station 1">
+					<Position>
+						<X>0.0</X>
+						<Y>10</Y>
+						<Z>0.0</Z>
+					</Position>
+					<Speed>0</Speed>
+					<BeaconText>Comms Relay</BeaconText>
+					<Behaviour>GVK-PlanetaryInstallation-Small-Behavior-COALITIONRelay</Behaviour>
+				</Prefab>
+				<Prefab SubtypeId="NMI [COAL] Relay Station 2">
+					<Position>
+						<X>0.0</X>
+						<Y>7</Y>
+						<Z>0.0</Z>
+					</Position>
+					<Speed>0</Speed>
+					<BeaconText>Comms Relay</BeaconText>
+					<Behaviour>GVK-PlanetaryInstallation-Small-Behavior-COALITIONRelay</Behaviour>
+				</Prefab>
+				<Prefab SubtypeId="NMI [COAL] Relay Station 3">
+					<Position>
+						<X>0.0</X>
+						<Y>7</Y>
+						<Z>0.0</Z>
+					</Position>
+					<Speed>0</Speed>
+					<BeaconText>Comms Relay</BeaconText>
+					<Behaviour>GVK-PlanetaryInstallation-Small-Behavior-COALITIONRelay</Behaviour>
+				</Prefab>
+			</Prefabs>
+		</SpawnGroup>
 		<SpawnGroup>
 			<Id>
 				<TypeId>SpawnGroupDefinition</TypeId>
@@ -17,9 +95,9 @@
 			[CutVoxelSize:9]
 			</Description>
 			<IsPirate>true</IsPirate>
-			<Frequency>0.1</Frequency>
+			<Frequency>0.4</Frequency>
 			<Prefabs>
-				<Prefab SubtypeId="[NPC Small Wreck] Baserunner">
+				<Prefab SubtypeId="NWS Baserunner">
 					<Position>
 						<X>0.0</X>
 						<Y>-1</Y>
@@ -46,9 +124,9 @@
 			[CutVoxelSize:9]
 			</Description>
 			<IsPirate>true</IsPirate>
-			<Frequency>0.1</Frequency>
+			<Frequency>0.4</Frequency>
 			<Prefabs>
-				<Prefab SubtypeId="[NPC Small Wreck] Lacewing">
+				<Prefab SubtypeId="NWS Lacewing">
 					<Position>
 						<X>0.0</X>
 						<Y>6</Y>
@@ -75,9 +153,9 @@
 			[CutVoxelSize:9]
 			</Description>
 			<IsPirate>true</IsPirate>
-			<Frequency>0.1</Frequency>
+			<Frequency>0.4</Frequency>
 			<Prefabs>
-				<Prefab SubtypeId="[NPC Small Wreck] Black Kite">
+				<Prefab SubtypeId="NWS Black Kite">
 					<Position>
 						<X>0.0</X>
 						<Y>-3</Y>
@@ -104,9 +182,9 @@
 			[CutVoxelSize:9]
 			</Description>
 			<IsPirate>true</IsPirate>
-			<Frequency>0.1</Frequency>
+			<Frequency>0.4</Frequency>
 			<Prefabs>
-				<Prefab SubtypeId="[NPC Small Wreck] Shrike">
+				<Prefab SubtypeId="NWS Shrike">
 					<Position>
 						<X>0.0</X>
 						<Y>0</Y>
@@ -133,9 +211,9 @@
 			[CutVoxelSize:9]
 			</Description>
 			<IsPirate>true</IsPirate>
-			<Frequency>0.1</Frequency>
+			<Frequency>0.4</Frequency>
 			<Prefabs>
-				<Prefab SubtypeId="[NPC Small Wreck] Thornback Ray">
+				<Prefab SubtypeId="NWS Thornback Ray">
 					<Position>
 						<X>0.0</X>
 						<Y>3.0</Y>
@@ -162,9 +240,9 @@
 			[CutVoxelSize:9]
 			</Description>
 			<IsPirate>true</IsPirate>
-			<Frequency>0.1</Frequency>
+			<Frequency>0.4</Frequency>
 			<Prefabs>
-				<Prefab SubtypeId="[NPC Small Wreck] Gunboat">
+				<Prefab SubtypeId="NWS Gunboat">
 					<Position>
 						<X>0.0</X>
 						<Y>3.0</Y>
@@ -191,9 +269,9 @@
 			[CutVoxelSize:9]
 			</Description>
 			<IsPirate>true</IsPirate>
-			<Frequency>0.1</Frequency>
+			<Frequency>0.4</Frequency>
 			<Prefabs>
-				<Prefab SubtypeId="[NPC Small Wreck] Javelin">
+				<Prefab SubtypeId="NWS Javelin">
 					<Position>
 						<X>0.0</X>
 						<Y>3.0</Y>
@@ -220,9 +298,9 @@
 			[CutVoxelSize:9]
 			</Description>
 			<IsPirate>true</IsPirate>
-			<Frequency>0.1</Frequency>
+			<Frequency>0.4</Frequency>
 			<Prefabs>
-				<Prefab SubtypeId="[NPC Small Wreck] Zephyrus">
+				<Prefab SubtypeId="NWS Zephyrus">
 					<Position>
 						<X>0.0</X>
 						<Y>3.0</Y>
@@ -249,9 +327,9 @@
 			[CutVoxelSize:9]
 			</Description>
 			<IsPirate>true</IsPirate>
-			<Frequency>0.1</Frequency>
+			<Frequency>0.4</Frequency>
 			<Prefabs>
-				<Prefab SubtypeId="[NPC Small Wreck] Gnat">
+				<Prefab SubtypeId="NWS Gnat">
 					<Position>
 						<X>0.0</X>
 						<Y>3.0</Y>
@@ -278,9 +356,9 @@
 			[CutVoxelSize:9]
 			</Description>
 			<IsPirate>true</IsPirate>
-			<Frequency>0.1</Frequency>
+			<Frequency>0.4</Frequency>
 			<Prefabs>
-				<Prefab SubtypeId="[NPC Small Wreck] Widowmaker">
+				<Prefab SubtypeId="NWS Widowmaker">
 					<Position>
 						<X>0.0</X>
 						<Y>3.0</Y>
@@ -307,9 +385,9 @@
 			[CutVoxelSize:9]
 			</Description>
 			<IsPirate>true</IsPirate>
-			<Frequency>0.1</Frequency>
+			<Frequency>0.4</Frequency>
 			<Prefabs>
-				<Prefab SubtypeId="[NPC Small Wreck] Jaeger">
+				<Prefab SubtypeId="NWS Jaeger">
 					<Position>
 						<X>0.0</X>
 						<Y>2</Y>
@@ -336,9 +414,9 @@
 			[CutVoxelSize:9]
 			</Description>
 			<IsPirate>true</IsPirate>
-			<Frequency>0.1</Frequency>
+			<Frequency>0.4</Frequency>
 			<Prefabs>
-				<Prefab SubtypeId="[NPC Small Wreck] Sabretooth">
+				<Prefab SubtypeId="NWS Sabretooth">
 					<Position>
 						<X>0.0</X>
 						<Y>0</Y>
@@ -365,9 +443,9 @@
 			[CutVoxelSize:9]
 			</Description>
 			<IsPirate>true</IsPirate>
-			<Frequency>0.1</Frequency>
+			<Frequency>0.4</Frequency>
 			<Prefabs>
-				<Prefab SubtypeId="[NPC Small Wreck] Sentinel">
+				<Prefab SubtypeId="NWS Sentinel">
 					<Position>
 						<X>0.0</X>
 						<Y>-5</Y>
@@ -394,9 +472,9 @@
 			[CutVoxelSize:9]
 			</Description>
 			<IsPirate>true</IsPirate>
-			<Frequency>0.1</Frequency>
+			<Frequency>0.4</Frequency>
 			<Prefabs>
-				<Prefab SubtypeId="[NPC Small Wreck] Turtle">
+				<Prefab SubtypeId="NWS Turtle">
 					<Position>
 						<X>0.0</X>
 						<Y>3.0</Y>
@@ -423,9 +501,9 @@
 			[CutVoxelSize:9]
 			</Description>
 			<IsPirate>true</IsPirate>
-			<Frequency>0.1</Frequency>
+			<Frequency>0.4</Frequency>
 			<Prefabs>
-				<Prefab SubtypeId="[NPC Small Wreck] Uppercut">
+				<Prefab SubtypeId="NWS Uppercut">
 					<Position>
 						<X>0.0</X>
 						<Y>-7</Y>
@@ -452,9 +530,9 @@
 			[CutVoxelSize:9]
 			</Description>
 			<IsPirate>true</IsPirate>
-			<Frequency>0.1</Frequency>
+			<Frequency>0.4</Frequency>
 			<Prefabs>
-				<Prefab SubtypeId="[NPC Small Wreck] Raptor">
+				<Prefab SubtypeId="NWS Raptor">
 					<Position>
 						<X>0.0</X>
 						<Y>4.0</Y>
@@ -481,9 +559,9 @@
 			[CutVoxelSize:9]
 			</Description>
 			<IsPirate>true</IsPirate>
-			<Frequency>0.1</Frequency>
+			<Frequency>0.4</Frequency>
 			<Prefabs>
-				<Prefab SubtypeId="[NPC Small Wreck] MPC-2">
+				<Prefab SubtypeId="NWS MPC-2">
 					<Position>
 						<X>0.0</X>
 						<Y>1.0</Y>
@@ -510,9 +588,9 @@
 			[CutVoxelSize:9]
 			</Description>
 			<IsPirate>true</IsPirate>
-			<Frequency>0.1</Frequency>
+			<Frequency>0.4</Frequency>
 			<Prefabs>
-				<Prefab SubtypeId="[NPC Small Wreck] Aggressor">
+				<Prefab SubtypeId="NWS Aggressor">
 					<Position>
 						<X>0.0</X>
 						<Y>2.0</Y>
@@ -539,9 +617,9 @@
 			[CutVoxelSize:9]
 			</Description>
 			<IsPirate>true</IsPirate>
-			<Frequency>0.1</Frequency>
+			<Frequency>0.4</Frequency>
 			<Prefabs>
-				<Prefab SubtypeId="[NPC Small Wreck] Buzzard">
+				<Prefab SubtypeId="NWS Buzzard">
 					<Position>
 						<X>0.0</X>
 						<Y>5.0</Y>
@@ -568,9 +646,9 @@
 			[CutVoxelSize:9]
 			</Description>
 			<IsPirate>true</IsPirate>
-			<Frequency>0.1</Frequency>
+			<Frequency>0.4</Frequency>
 			<Prefabs>
-				<Prefab SubtypeId="[NPC Small Wreck] Ketar MK1">
+				<Prefab SubtypeId="NWS Ketar MK1">
 					<Position>
 						<X>0.0</X>
 						<Y>0.0</Y>
@@ -597,9 +675,9 @@
 			[CutVoxelSize:9]
 			</Description>
 			<IsPirate>true</IsPirate>
-			<Frequency>0.1</Frequency>
+			<Frequency>0.4</Frequency>
 			<Prefabs>
-				<Prefab SubtypeId="[NPC Small Wreck] Blood Star">
+				<Prefab SubtypeId="NWS Blood Star">
 					<Position>
 						<X>0.0</X>
 						<Y>-3.0</Y>
@@ -626,9 +704,9 @@
 			[CutVoxelSize:9]
 			</Description>
 			<IsPirate>true</IsPirate>
-			<Frequency>0.1</Frequency>
+			<Frequency>0.4</Frequency>
 			<Prefabs>
-				<Prefab SubtypeId="[NPC Small Wreck] Roach">
+				<Prefab SubtypeId="NWS Roach">
 					<Position>
 						<X>0.0</X>
 						<Y>12.0</Y>
@@ -655,9 +733,9 @@
 			[CutVoxelSize:9]
 			</Description>
 			<IsPirate>true</IsPirate>
-			<Frequency>0.1</Frequency>
+			<Frequency>0.4</Frequency>
 			<Prefabs>
-				<Prefab SubtypeId="[NPC Small Wreck] Tempest MK1">
+				<Prefab SubtypeId="NWS Tempest MK1">
 					<Position>
 						<X>0.0</X>
 						<Y>7.0</Y>
@@ -684,9 +762,9 @@
 			[CutVoxelSize:9]
 			</Description>
 			<IsPirate>true</IsPirate>
-			<Frequency>0.1</Frequency>
+			<Frequency>0.4</Frequency>
 			<Prefabs>
-				<Prefab SubtypeId="[NPC Small Wreck] Mantis MK2P3">
+				<Prefab SubtypeId="NWS Mantis MK2P3">
 					<Position>
 						<X>0.0</X>
 						<Y>7.0</Y>
@@ -713,9 +791,9 @@
 			[CutVoxelSize:9]
 			</Description>
 			<IsPirate>true</IsPirate>
-			<Frequency>0.1</Frequency>
+			<Frequency>0.4</Frequency>
 			<Prefabs>
-				<Prefab SubtypeId="[NPC Small Wreck] KLASSPOD">
+				<Prefab SubtypeId="NWS KLASSPOD">
 					<Position>
 						<X>0.0</X>
 						<Y>0</Y>
@@ -742,9 +820,9 @@
 			[CutVoxelSize:9]
 			</Description>
 			<IsPirate>true</IsPirate>
-			<Frequency>0.1</Frequency>
+			<Frequency>0.4</Frequency>
 			<Prefabs>
-				<Prefab SubtypeId="[NPC Small Wreck] Oil Derrick">
+				<Prefab SubtypeId="NWS Oil Derrick">
 					<Position>
 						<X>0.0</X>
 						<Y>6</Y>

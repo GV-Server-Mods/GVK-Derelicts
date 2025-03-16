@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<Definitions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+	<SpawnGroups>
+		<SpawnGroup>
+			<Id>
+				<TypeId>SpawnGroupDefinition</TypeId>
+				<SubtypeId>GVK-Other-Recovery-SpawnGroup-COALITION</SubtypeId>
+			</Id>
+			<Description>
+			[Modular Encounters SpawnGroup]
+			[IgnoreCleanupRules:true]
+			[ReplenishSystems:true]
+			[ManipulationProfiles:GVK-Other-Recovery-Manipulation-COALITION]
+			[ManipulationProfiles:GVK-Universal-Manipulation-DamageModifier50]
+			[SpawnConditionsProfiles:GVK-Other-Recovery-SpawnCondition-COALITION]
+			</Description>
+			<IsPirate>true</IsPirate>
+			<Frequency>0.1</Frequency>
+			<Prefabs>
+				<Prefab SubtypeId="NMI [COAL] Salvager">
+					<Position>
+						<X>0.0</X>
+						<Y>20</Y>
+						<Z>0.0</Z>
+					</Position>
+					<Speed>0</Speed>
+					<BeaconText>Downed Salvager</BeaconText>
+					<Behaviour>GVK-Other-Recovery-Behavior-COALITION</Behaviour>
+				</Prefab>
+			</Prefabs>
+		</SpawnGroup>
+	</SpawnGroups>
+</Definitions>

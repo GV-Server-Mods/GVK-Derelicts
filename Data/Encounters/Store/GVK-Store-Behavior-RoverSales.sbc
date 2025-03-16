@@ -5,18 +5,22 @@
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Store-Behavior-RoverSales</SubtypeId>
+				<SubtypeId>GVK-Store-Behavior-RoverSales-Basic</SubtypeId>
 			</Id>
 			<Description>
 			[RivalAI Behavior]
 			[BehaviorName:Passive]
-			[Triggers:GVK-Store-Trigger-InitMerchantStores]
+			[UseRetreatTimer:false]
+			[UseNoTargetTimer:false]
+			[UsePlayerDistanceTimer:false]
+			[Triggers:GVK-Store-Trigger-InitMerchantStores-Basic]
+			[RemoteControlCode:GVK-Static]
 			</Description>
 		</EntityComponent>
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Store-Trigger-InitMerchantStores</SubtypeId>
+				<SubtypeId>GVK-Store-Trigger-InitMerchantStores-Basic</SubtypeId>
 			</Id>
 			<Description>
 			[MES AI Trigger]
@@ -26,20 +30,64 @@
 			[MaxCooldownMs:60001]
 			[StartsReady:true]
 			[MaxActions:-1]
-			[Actions:GVK-Store-Action-InitMerchantStores]
+			[Actions:GVK-Store-Action-InitMerchantStores-Basic]
 			</Description>
 		</EntityComponent>
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Store-Action-InitMerchantStores</SubtypeId>
+				<SubtypeId>GVK-Store-Action-InitMerchantStores-Basic</SubtypeId>
 			</Id>
 			<Description>
 			[MES AI Action]
 			[ApplyStoreProfiles:true]
 			[ClearStoreContentsFirst:true]
 			[StoreBlocks:Store]
-			[StoreProfiles:GVK-Store-StoreProfile-Rovers]
+			[StoreProfiles:GVK-Store-StoreProfile-Rovers-Basic]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Store-Behavior-RoverSales-Advanced</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Behavior]
+			[BehaviorName:Passive]
+			[UseRetreatTimer:false]
+			[UseNoTargetTimer:false]
+			[UsePlayerDistanceTimer:false]
+			[Triggers:GVK-Store-Trigger-InitMerchantStores-Advanced]
+			[RemoteControlCode:GVK-Static]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Store-Trigger-InitMerchantStores-Advanced</SubtypeId>
+			</Id>
+			<Description>
+			[MES AI Trigger]
+			[UseTrigger:true]
+			[Type:Timer]
+			[MinCooldownMs:60000]
+			[MaxCooldownMs:60001]
+			[StartsReady:true]
+			[MaxActions:-1]
+			[Actions:GVK-Store-Action-InitMerchantStores-Advanced]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Store-Action-InitMerchantStores-Advanced</SubtypeId>
+			</Id>
+			<Description>
+			[MES AI Action]
+			[ApplyStoreProfiles:true]
+			[ClearStoreContentsFirst:true]
+			[StoreBlocks:Store]
+			[StoreProfiles:GVK-Store-StoreProfile-Rovers-Advanced]
 			</Description>
 		</EntityComponent>
 	</EntityComponents>

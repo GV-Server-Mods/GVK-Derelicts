@@ -11,6 +11,40 @@
 			[RivalAI Target]
 			[UseCustomTargeting:true]
 			[Target:PlayerAndGrid]
+			[UseTargetRefresh:true]
+			[TimeUntilNextRefresh:120]
+			[TimeUntilNextEvaluation:15]
+			[MaxDistance:2000]
+			[MaxExistingTargetDistance:2000]
+			[GetTargetBy:ClosestDistance]
+			[MatchAllFilters:Relation]
+			[MatchAllFilters:OutsideOfSafezone]
+			[MatchAllFilters:TargetValue]
+			[MatchAllFilters:PlayerControlled]
+			[MatchAllFilters:Powered]
+			[MatchAllFilters:Faction]
+			[MatchNoneFilters:Name]
+			[Relations:Enemy]
+			[Names:NPC Static]
+			[Names:NPC Trade Station]
+			[Names:NPC KOTH]
+			[UsePartialNameMatching:true]
+			[FactionTargets:COALITION]
+			[MinTargetValue:10]
+			[MaxTargetValue:999999]
+			[PrioritizeSpecifiedFactions:true]
+			[PrioritizePlayerControlled:true]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Universal-Target-EnemyGrids2km</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Target]
+			[UseCustomTargeting:true]
+			[Target:Grid]
 			[UseTargetRefresh:false]
 			[TimeUntilNextRefresh:60]
 			[TimeUntilNextEvaluation:15]
@@ -36,7 +70,7 @@
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Universal-Target-EnemyGrids</SubtypeId>
+				<SubtypeId>GVK-Universal-Target-EnemyGridsinKPL</SubtypeId>
 			</Id>
 			<Description>
 			[RivalAI Target]
@@ -53,6 +87,7 @@
 			[MatchAllFilters:TargetValue]
 			[MatchAllFilters:PlayerControlled]
 			[MatchAllFilters:Powered]
+			[MatchAllFilters:PlayerKnownLocation]
 			[MatchNoneFilters:Name]
 			[Relations:Enemy]
 			[Names:NPC Static]
@@ -97,7 +132,7 @@
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Universal-Target-EnemyGaalsienBeacon</SubtypeId>
+				<SubtypeId>GVK-Universal-Target-EnemyGAALSIENBeacon</SubtypeId>
 			</Id>
 			<Description>
 			[RivalAI Target]
@@ -113,6 +148,57 @@
 			[MatchAllFilters:Faction]
 			[MatchAllFilters:Powered]
 			[FactionTargets:GAALSIEN]
+			[GetTargetBy:ClosestDistance]
+			[PrioritizeSpecifiedFactions:false]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Universal-Target-COALITIONSupportCruiser</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Target]
+			[UseCustomTargeting:true]
+			[Target:Grid]
+			[BlockTargets:RivalAi]
+			[UseTargetRefresh:false]
+			[TimeUntilNextRefresh:60]
+			[TimeUntilNextEvaluation:15]
+			[MaxDistance:300]
+			[MaxExistingTargetDistance:200]
+			[GetTargetBy:ClosestDistance]
+			[MatchAllFilters:Name]
+			[MatchAllFilters:Faction]
+			[MatchAllFilters:Powered]
+			[FactionTargets:COALITION]
+			[Names:NMI [COAL] Support Cruiser]
+			[GetTargetBy:ClosestDistance]
+			[PrioritizeSpecifiedFactions:false]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Universal-Target-COALITIONTradeStation</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Target]
+			[UseCustomTargeting:true]
+			[Target:Grid]
+			[BlockTargets:RivalAi]
+			[UseTargetRefresh:false]
+			[TimeUntilNextRefresh:60]
+			[TimeUntilNextEvaluation:15]
+			[MaxDistance:500]
+			[MaxExistingTargetDistance:500]
+			[GetTargetBy:ClosestDistance]
+			[MatchAllFilters:Name]
+			[MatchAllFilters:Faction]
+			[MatchAllFilters:Powered]
+			[FactionTargets:COALITION]
+			[Names:NTS]
+			[UsePartialNameMatching:true]
 			[GetTargetBy:ClosestDistance]
 			[PrioritizeSpecifiedFactions:false]
 			</Description>

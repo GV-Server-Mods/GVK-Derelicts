@@ -1,0 +1,154 @@
+<?xml version="1.0"?>
+<Definitions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+	<EntityComponents>
+		<!-- COALITION Drone Patrol/Strike trigger group, does not need KPL -->
+		<!-- requires two autopilots: pimary passive and secondary aggressive -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Drone-All-TriggerGroup-PatrolStrike</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI TriggerGroup]
+			[Triggers:GVK-Drone-All-PatrolStrike-ManualTrigger-SwitchToStrike]
+			[Triggers:GVK-Drone-All-PatrolStrike-ManualTrigger-SwitchToPatrol]
+			[Triggers:GVK-Drone-All-PatrolStrike-Trigger-TargetNear]
+			[Triggers:GVK-Drone-All-PatrolStrike-Trigger-LostTarget]
+			[Triggers:GVK-Drone-All-PatrolStrike-Trigger-TargetFar]
+			</Description>
+		</EntityComponent>
+		<!-- manual triggers so multiple triggers can reference it without complications -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Drone-All-PatrolStrike-ManualTrigger-SwitchToStrike</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Trigger]
+			[UseTrigger:true]
+			[Type:Manual]
+			[StartsReady:true]
+			[MinCooldownMs:5000]
+			[MaxCooldownMs:5001]
+			[Actions:GVK-Drone-All-PatrolStrike-Action-SwitchToStrike]
+			[ToggleWithTriggerProfile:GVK-Drone-All-PatrolStrike-ManualTrigger-SwitchToPatrol]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Drone-All-PatrolStrike-Action-SwitchToStrike</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Action]
+			[ChangeBehaviorSubclass:true]
+			[NewBehaviorSubclass:Strike]
+			[ChangeAutopilotProfile:true]
+			[AutopilotProfile:Secondary]
+			</Description>
+		</EntityComponent>
+		<!-- should start false since it already spawns in Patrol mode -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Drone-All-PatrolStrike-ManualTrigger-SwitchToPatrol</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Trigger]
+			[UseTrigger:false]
+			[Type:Manual]
+			[StartsReady:true]
+			[Actions:GVK-Drone-All-PatrolStrike-Action-SwitchToPatrol]
+			[ToggleWithTriggerProfile:GVK-Drone-All-PatrolStrike-ManualTrigger-SwitchToStrike]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Drone-All-PatrolStrike-Action-SwitchToPatrol</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Action]
+			[ChangeBehaviorSubclass:true]
+			[NewBehaviorSubclass:Patrol]
+			[ChangeAutopilotProfile:true]
+			[AutopilotProfile:Primary]
+			</Description>
+		</EntityComponent>
+		<!-- When target in 3km, become aggressive -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Drone-All-PatrolStrike-Trigger-TargetNear</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Trigger]
+			[UseTrigger:true]
+			[Type:TargetNear]
+			[StartsReady:true]
+			[MinCooldownMs:5000]
+			[MaxCooldownMs:5001]
+			[TargetDistance:3000]
+			[Actions:GVK-Drone-All-PatrolStrike-Action-TargetNear]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Drone-All-PatrolStrike-Action-TargetNear</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Action]
+			[EnableTriggers:true]
+			[ManuallyActivateTrigger:true]
+			[ManuallyActivatedTriggerNames:GVK-Drone-All-PatrolStrike-ManualTrigger-SwitchToStrike]
+			</Description>
+		</EntityComponent>
+		<!-- If no/lost target, switch to patrol and return to origin -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Drone-All-PatrolStrike-Trigger-LostTarget</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Trigger]
+			[UseTrigger:true]
+			[Type:LostTarget]
+			[StartsReady:true]
+			[MinCooldownMs:5000]
+			[MaxCooldownMs:5001]
+			[AllowTargetFarWithoutTarget:true]
+			[Actions:GVK-Drone-All-PatrolStrike-Action-TargetFar]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Drone-All-PatrolStrike-Trigger-TargetFar</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Trigger]
+			[UseTrigger:true]
+			[Type:TargetFar]
+			[StartsReady:true]
+			[MinCooldownMs:5000]
+			[MaxCooldownMs:5001]
+			[TargetDistance:3000]
+			[AllowTargetFarWithoutTarget:true]
+			[Actions:GVK-Drone-All-PatrolStrike-Action-TargetFar]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Drone-All-PatrolStrike-Action-TargetFar</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Action]
+			[EnableTriggers:true]
+			[ManuallyActivateTrigger:true]
+			[ManuallyActivatedTriggerNames:GVK-Drone-All-PatrolStrike-ManualTrigger-SwitchToPatrol]
+			</Description>
+		</EntityComponent>
+	</EntityComponents>
+</Definitions>

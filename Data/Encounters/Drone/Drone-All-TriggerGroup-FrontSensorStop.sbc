@@ -1,0 +1,78 @@
+<?xml version="1.0"?>
+<Definitions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+	<EntityComponents>
+		<!-- Stop when player is nearby for COALITION large vehicles -->
+		<!-- This requires a Tertiary autopilot with 0m/s speed, and 0 rotation -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Drone-All-TriggerGroup-FrontSensorStop</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI TriggerGroup]
+			[Triggers:GVK-Drone-All-Trigger-SensorActiveStop]
+			[Triggers:GVK-Drone-All-Trigger-SensorIdleResume]			
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Drone-All-Trigger-SensorActiveStop</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Trigger]
+			[UseTrigger:true]
+			[Type:SensorActive]
+			[SensorName:NPC Sensor]
+			[MinCooldownMs:1000]
+			[MaxCooldownMs:1001]
+			[Actions:GVK-Drone-All-Action-SensorActiveStop]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Drone-All-Action-SensorActiveStop</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Action]
+			[EnableTriggers:true]
+			[EnableTriggerNames:GVK-Drone-All-Trigger-SensorIdleResume]
+			[ResetCooldownTimeOfTriggers:true]
+			[ResetTriggerCooldownNames:GVK-Drone-All-Trigger-SensorIdleResume]
+			[ChangeAutopilotProfile:true]
+			[AutopilotProfile:Tertiary]
+			</Description>
+		</EntityComponent>
+		<!-- Trigger Sequence to resume when player is no longer near -->
+		<!-- This is more suitable than ElseActions because it needs to stop applying the else action after player leaves -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Drone-All-Trigger-SensorIdleResume</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Trigger]
+			[UseTrigger:false]
+			[Type:SensorIdle]
+			[SensorName:NPC Sensor]
+			[MinCooldownMs:10000]
+			[MaxCooldownMs:10001]
+			[Actions:GVK-Drone-All-Action-SensorIdleResume]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Drone-All-Action-SensorIdleResume</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Action]
+			[DisableTriggers:true]
+			[DisableTriggerNames:GVK-Drone-All-Trigger-SensorIdleResume]
+			[ChangeAutopilotProfile:true]
+			[AutopilotProfile:Primary]
+			</Description>
+		</EntityComponent>
+	</EntityComponents>
+</Definitions>
