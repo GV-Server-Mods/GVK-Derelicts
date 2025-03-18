@@ -1,0 +1,877 @@
+<?xml version="1.0"?>
+<Definitions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+	<EntityComponents>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-PlanetaryInstallation-Large-Behavior-COALITIONDepot</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Behavior]
+			[BehaviorName:Passive]
+			[UseAmmoReplenish:true]
+			[AmmoReplenishClipAmount:10]
+			[MaxAmmoReplenishments:99999999]
+			[UsePlayerDistanceTimer:false]
+			[UseRetreatTimer:false]
+			[UseNoTargetTimer:false]
+			[TargetData:GVK-Universal-Target-EnemyGAALSIENBeacon]
+			[Triggers:GVK-Universal-Trigger-UneditableOnSpawn]
+			[Triggers:GVK-Drone-All-Trigger-WeaponsToMaxRange]
+			[Triggers:GVK-PlanetaryInstallation-Large-Trigger-COALITIONDepotOnSpawn]
+			[Triggers:GVK-PlanetaryInstallation-Large-Trigger-COALITIONDepotBeaconDisabled]
+			[Triggers:GVK-PlanetaryInstallation-Large-Trigger-COALITIONDepotDespawn]
+			[Triggers:GVK-PlanetaryInstallation-Large-Trigger-COALITIONDepotDespawnMES]
+			[Triggers:GVK-PlanetaryInstallation-Large-Trigger-COALITIONDepotCompromised]
+			[Triggers:GVK-PlanetaryInstallation-Large-Trigger-COALITIONDepotHasTarget]
+			[Triggers:GVK-PlanetaryInstallation-Large-Trigger-COALITIONDepotOnSuccess]
+			[Triggers:GVK-PlanetaryInstallation-Large-Trigger-COALITIONDepotDamage]
+			[Triggers:GVK-PlanetaryInstallation-Large-Trigger-COALITIONDepotSpawnsWave1]
+			[Triggers:GVK-PlanetaryInstallation-Large-ManualTrigger-COALITIONDepotSpawnsWave1]
+			[Triggers:GVK-PlanetaryInstallation-Large-Trigger-COALITIONDepotIntermission]
+			[Triggers:GVK-PlanetaryInstallation-Large-Trigger-COALITIONDepotWave2Countdown1min]
+			[Triggers:GVK-PlanetaryInstallation-Large-Trigger-COALITIONDepotWave2Begin]
+			[Triggers:GVK-PlanetaryInstallation-Large-Trigger-COALITIONDepotSpawnsWave2]
+			[Triggers:GVK-PlanetaryInstallation-Large-ManualTrigger-COALITIONDepotSpawnsWave2]
+			[RemoteControlCode:GVK-LargeDerelict]
+			</Description>
+		</EntityComponent>
+		<!-- Trigger sequence when Wreck Spawns -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-PlanetaryInstallation-Large-Trigger-COALITIONDepotOnSpawn</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Trigger]
+			[Type:Session]
+			[UseTrigger:true]
+			[StartsReady:true]
+			[MaxActions:1]
+			[Actions:GVK-PlanetaryInstallation-Large-Action-COALITIONDepotOnSpawn]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-PlanetaryInstallation-Large-Action-COALITIONDepotOnSpawn</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Action]
+			[Chance:100]
+			[SetWeaponsToMaxRange:true]
+			[ResetCounters:DistressSpawns]
+			[UseChatBroadcast:true]
+			[ChatData:GVK-PlanetaryInstallation-Large-Chat-COALITIONDepotOnSpawn]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-PlanetaryInstallation-Large-Chat-COALITIONDepotOnSpawn</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Chat]
+			[UseChat:true]
+			[StartsReady:true]
+			[Chance:100]
+			[MaxChats:1]
+			[BroadcastRandomly:false]
+			[Author:COALITION]
+			[Color:White]
+			[ChatMessages:A large GAALSIEN army is attacking a supply depot, please help!]
+			[GPSLabel:Distress Signal]
+			[ChatAudio:ArcHudGPSNotification2]
+			[BroadcastChatType:Chat]
+			[SendToAllOnlinePlayers:false]
+			[IgnoreAntennaRequirement:true]
+			[IgnoredAntennaRangeOverride:999999]
+		  </Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-PlanetaryInstallation-Large-Trigger-COALITIONDepotDamage</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Trigger]
+			[UseTrigger:true]
+			[Type:Damage]
+			[DamageTypes:Any]
+			[StartsReady:false]
+			[MinCooldownMs:240000]
+			[MaxCooldownMs:480001]
+			[MaxActions:-1]
+			[ActionExecution:All]
+			[Actions:GVK-PlanetaryInstallation-Large-Action-COALITIONDepotDamage]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-PlanetaryInstallation-Large-Action-COALITIONDepotDamage</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Action]
+			[Chance:100]
+			[UseChatBroadcast:true]
+			[ChatData:GVK-PlanetaryInstallation-Large-Chat-COALITIONDepotDamage]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-PlanetaryInstallation-Large-Chat-COALITIONDepotDamage</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Chat]
+			[UseChat:true]
+			[StartsReady:true]
+			[Chance:100]
+			[MaxChats:1]
+			[BroadcastRandomly:false]
+			[Author:COALITION]
+			[Color:White]
+			[ChatMessages:The supply depot is taking fire.]
+			[ChatAudio:ArcHudGPSNotification2]
+			[BroadcastChatType:Chat]
+			[ChatMessages:Sustaining heavy damage.]
+			[ChatAudio:ArcHudGPSNotification2]
+			[BroadcastChatType:Chat]
+			[ChatMessages:Incoming enemies!]
+			[ChatAudio:ArcHudGPSNotification2]
+			[BroadcastChatType:Chat]
+			[ChatMessages:Please send reinforcements!]
+			[ChatAudio:ArcHudGPSNotification2]
+			[BroadcastChatType:Chat]
+			[ChatMessages:Taking heavy casualties!]
+			[ChatAudio:ArcHudGPSNotification2]
+			[BroadcastChatType:Chat]
+			[SendToAllOnlinePlayers:false]
+			[IgnoreAntennaRequirement:true]
+			[IgnoredAntennaRangeOverride:999999]
+		  </Description>
+		</EntityComponent>
+		<!-- Trigger sequences for Wreck to die -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-PlanetaryInstallation-Large-Trigger-COALITIONDepotBeaconDisabled</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Trigger]
+			[Type:Timer]
+			[UseTrigger:true]
+			[MinCooldownMs:10000]
+			[MaxCooldownMs:10000]
+			[StartsReady:false]
+			[Conditions:GVK-PlanetaryInstallation-All-Condition-BeaconDisabled]				  
+			[MaxActions:1]
+			[ActionExecution:All]
+			[Actions:GVK-PlanetaryInstallation-Large-Action-COALITIONDepotCompromised]
+			[Actions:GVK-PlanetaryInstallation-All-Action-CompromisedGeneric]
+			[Actions:GVK-PlanetaryInstallation-Large-Action-COALITIONDepotSpawnsWave1]
+			[Actions:GVK-Universal-Action-EditableOnCompromised]
+			[Actions:GVK-Universal-Action-Disabled]
+			[Actions:GVK-Universal-Action-LargeExplosionEffects]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-PlanetaryInstallation-Large-Trigger-COALITIONDepotCompromised</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Trigger]
+			[Type:Compromised]
+			[UseTrigger:true]
+			[StartsReady:true]
+			[MaxActions:1]
+			[ActionExecution:All]
+			[Actions:GVK-PlanetaryInstallation-Large-Action-COALITIONDepotCompromised]
+			[Actions:GVK-PlanetaryInstallation-All-Action-CompromisedGeneric]
+			[Actions:GVK-PlanetaryInstallation-Large-Action-COALITIONDepotSpawnsWave1]
+			[Actions:GVK-Universal-Action-EditableOnCompromised]
+			[Actions:GVK-Universal-Action-Disabled]
+			[Actions:GVK-Universal-Action-LargeExplosionEffects]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-PlanetaryInstallation-Large-Trigger-COALITIONDepotDespawn</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Trigger]
+			[Type:Despawn]
+			[UseTrigger:true]
+			[StartsReady:true]
+			[MaxActions:1]
+			[ActionExecution:All]
+			[Actions:GVK-PlanetaryInstallation-Large-Action-COALITIONDepotCompromised]
+			[Actions:GVK-PlanetaryInstallation-All-Action-CompromisedGeneric]
+			[Actions:GVK-Universal-Action-EditableOnCompromised]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-PlanetaryInstallation-Large-Trigger-COALITIONDepotDespawnMES</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Trigger]
+			[Type:DespawnMES]
+			[UseTrigger:true]
+			[StartsReady:true]
+			[MaxActions:1]
+			[ActionExecution:All]
+			[Actions:GVK-PlanetaryInstallation-Large-Action-COALITIONDepotCompromised]
+			[Actions:GVK-PlanetaryInstallation-All-Action-CompromisedGeneric]
+			[Actions:GVK-Universal-Action-EditableOnCompromised]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-PlanetaryInstallation-Large-Action-COALITIONDepotCompromised</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Action]
+			[RemoveKnownPlayerArea:false]
+			[DisableTriggers:true]
+			[DisableTriggerNames:GVK-PlanetaryInstallation-Large-Trigger-COALITIONDepotBeaconDisabled]
+			[DisableTriggerNames:GVK-PlanetaryInstallation-Large-Trigger-COALITIONDepotDespawn]
+			[DisableTriggerNames:GVK-PlanetaryInstallation-Large-Trigger-COALITIONDepotDespawnMES]
+			[DisableTriggerNames:GVK-PlanetaryInstallation-Large-Trigger-COALITIONDepotCompromised]
+			[DisableTriggerNames:GVK-PlanetaryInstallation-Large-Trigger-COALITIONDepotOnSuccess]
+			[UseChatBroadcast:true]
+			[ChatData:GVK-PlanetaryInstallation-Large-Chat-COALITIONDepotCompromised]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-PlanetaryInstallation-Large-Chat-COALITIONDepotCompromised</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Chat]
+			[UseChat:true]
+			[StartsReady:true]
+			[Chance:100]
+			[MaxChats:1]
+			[BroadcastRandomly:false]
+			[Author:COALITION]
+			[Color:White]
+			[ChatMessages:Supply Depot has been lost.]
+			[ChatAudio:ArcHudGPSNotification2]
+			[BroadcastChatType:Both]
+			[SendToAllOnlinePlayers:false]
+			[IgnoreAntennaRequirement:true]
+			[IgnoredAntennaRangeOverride:999999]
+			</Description>
+		</EntityComponent>
+		<!-- Trigger sequence while GAALSIEN beacons in target range -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-PlanetaryInstallation-Large-Trigger-COALITIONDepotHasTarget</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Trigger]
+			[Type:HasTarget]
+			[UseTrigger:true]
+			[StartsReady:false]
+			[TargetDistance:3000]
+			[ActionExecution:All]
+			[MinCooldownMs:9998]
+			[MaxCooldownMs:9999]
+			[Actions:GVK-PlanetaryInstallation-Large-Action-COALITIONDepotHasTarget]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-PlanetaryInstallation-Large-Action-COALITIONDepotHasTarget</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Action]
+			[Chance:100]
+			[UseChatBroadcast:true]
+			[ChatData:GVK-PlanetaryInstallation-Large-Chat-COALITIONDepotHasTarget]
+			[ResetCooldownTimeOfTriggers:true]
+			[ResetTriggerCooldownNames:GVK-PlanetaryInstallation-Large-Trigger-COALITIONDepotOnSuccess]
+			[ResetTriggerCooldownNames:GVK-PlanetaryInstallation-Large-Trigger-COALITIONDepotIntermission]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-PlanetaryInstallation-Large-Chat-COALITIONDepotHasTarget</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Chat]
+			[UseChat:true]
+			[MinTime:120]
+			[MaxTime:121]
+			[StartsReady:true]
+			[Chance:100]
+			[BroadcastRandomly:false]
+			[IgnoreAntennaRequirement:true]
+			[IgnoredAntennaRangeOverride:5000]
+			[Author:COALITION]
+			[Color:White]
+			[ChatMessages:Enemy GAALSIEN forces still in range.]
+			[ChatAudio:ArcHudGPSNotification2]
+			[BroadcastChatType:Both]
+		  </Description>
+		</EntityComponent>
+		<!-- Trigger sequence when Enemy Spawns are defeated -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-PlanetaryInstallation-Large-Trigger-COALITIONDepotOnSuccess</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Trigger]
+			[Type:Timer]
+			[UseTrigger:false]
+			[StartsReady:false]
+			[MaxActions:1]
+			[ActionExecution:All]
+			[MinCooldownMs:30000]
+			[MaxCooldownMs:30001]
+			[Conditions:GVK-PlanetaryInstallation-Large-Condition-COALITIONDepotOnSuccess]
+			[ConditionCheckResetsTimer:true]
+			[Actions:GVK-PlanetaryInstallation-Large-Action-COALITIONDepotOnSuccess]
+			[Actions:GVK-Universal-Action-Disabled]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-PlanetaryInstallation-Large-Condition-COALITIONDepotOnSuccess</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Condition]
+			[UseConditions:true]
+			[CheckCustomCounters:true]
+			[CustomCounters:DistressSpawns]
+			[CustomCountersTargets:10]
+			[CounterCompareTypes:GreaterOrEqual]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-PlanetaryInstallation-Large-Action-COALITIONDepotOnSuccess</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Action]
+			[Chance:100]
+			[DisableTriggers:true]
+			[DisableTriggerNames:GVK-PlanetaryInstallation-Large-Trigger-COALITIONDepotHasTarget]
+			[DisableTriggerNames:GVK-PlanetaryInstallation-Large-Trigger-COALITIONDepotBeaconDisabled]
+			[DisableTriggerNames:GVK-PlanetaryInstallation-Large-Trigger-COALITIONDepotDespawn]
+			[DisableTriggerNames:GVK-PlanetaryInstallation-Large-Trigger-COALITIONDepotDespawnMES]
+			[DisableTriggerNames:GVK-PlanetaryInstallation-Large-Trigger-COALITIONDepotCompromised]
+			[UseChatBroadcast:true]
+			[ChatData:GVK-PlanetaryInstallation-Large-Chat-COALITIONDepotOnSuccess]
+			[SpawnEncounter:true]
+			[Spawner:GVK-PlanetaryInstallation-Large-Spawner-COALITIONDepotOnSuccess]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-PlanetaryInstallation-Large-Chat-COALITIONDepotOnSuccess</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Chat]
+			[UseChat:true]
+			[StartsReady:true]
+			[Chance:100]
+			[MaxChats:1]
+			[BroadcastRandomly:false]
+			[Author:COALITION]
+			[Color:White]
+			[ChatMessages:Thanks for the assistance, reward drop in-bound.]
+			[ChatAudio:ArcHudGPSNotification2]
+			[BroadcastChatType:Both]
+			[SendToAllOnlinePlayers:false]
+			[IgnoreAntennaRequirement:true]
+			[IgnoredAntennaRangeOverride:40000]
+		  </Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-PlanetaryInstallation-Large-Spawner-COALITIONDepotOnSuccess</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Spawn]
+			[UseSpawn:true]
+			[SpawningType:CustomSpawn]
+			[StartsReady:true]
+			[ProcessAsAdminSpawn:false]
+			[MaxSpawns:1]
+			[SpawnGroups:GVK-Other-Loot-SpawnGroup-COALITION-CargoDrop4x]
+			[MinDistance:300]
+			[MaxDistance:400]
+			[MinAltitude:300]
+			[MaxAltitude:301]
+			[InheritNpcAltitude:true]
+			[IgnoreSafetyChecks:true]
+			</Description>
+		</EntityComponent>
+		<!-- Trigger Sequence for Wave 1 medium and large Defenses -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-PlanetaryInstallation-Large-Trigger-COALITIONDepotSpawnsWave1</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Trigger]
+			[UseTrigger:true]
+			[Type:PlayerNear]
+			[TargetDistance:1500]
+			[StartsReady:true]
+			[MinCooldownMs:30000]
+			[MaxCooldownMs:30001]
+			[MaxActions:-1]
+			[ActionExecution:All]
+			[Actions:GVK-PlanetaryInstallation-Large-Action-COALITIONDepotSpawnsWave1]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-PlanetaryInstallation-Large-Action-COALITIONDepotSpawnsWave1</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Action]
+			[Chance:100]
+			[ManuallyActivateTrigger:true]
+			[ManuallyActivatedTriggerNames:GVK-PlanetaryInstallation-Large-ManualTrigger-COALITIONDepotSpawnsWave1]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-PlanetaryInstallation-Large-ManualTrigger-COALITIONDepotSpawnsWave1</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Trigger]
+			[UseTrigger:true]
+			[Type:Manual]
+			[StartsReady:true]
+			[MaxActions:5]
+			[ActionExecution:All]
+			[Actions:GVK-PlanetaryInstallation-Large-ManualAction-COALITIONDepotSpawnsWave1]
+			[Actions:GVK-PlanetaryInstallation-Large-ManualAction-COALITIONDepotFriendlyWave1]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-PlanetaryInstallation-Large-ManualAction-COALITIONDepotSpawnsWave1</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Action]
+			[Chance:100]
+			[SpawnEncounter:true]
+			[Spawner:GVK-PlanetaryInstallation-Large-ManualSpawner-COALITIONDepotSpawnsWave1]
+			[IncreaseCounters:DistressSpawns]
+			[UseChatBroadcast:true]
+			[ChatData:GVK-PlanetaryInstallation-All-Chat-Defenses]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-PlanetaryInstallation-Large-ManualSpawner-COALITIONDepotSpawnsWave1</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Spawn]
+			[UseSpawn:true]
+			[SpawningType:CustomSpawn]
+			[StartsReady:true]
+			[ProcessAsAdminSpawn:false]
+			[MaxSpawns:5]
+			[SpawnGroups:GVK-Drone-Defense-SpawnGroup-GAALSIEN-MediumHoverHeavy]
+			[SpawnGroups:GVK-Drone-Defense-SpawnGroup-GAALSIEN-LargeHover]
+			[MinDistance:1500]
+			[MaxDistance:1750]
+			[MinAltitude:50]
+			[MaxAltitude:51]
+			[InheritNpcAltitude:false]
+			[IgnoreSafetyChecks:true]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-PlanetaryInstallation-Large-ManualAction-COALITIONDepotFriendlyWave1</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Action]
+			[Chance:15]
+			[SpawnEncounter:true]
+			[Spawner:GVK-PlanetaryInstallation-Large-ManualSpawner-COALITIONDepotFriendlyWave1]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-PlanetaryInstallation-Large-ManualSpawner-COALITIONDepotFriendlyWave1</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Spawn]
+			[UseSpawn:true]
+			[SpawningType:CustomSpawn]
+			[StartsReady:true]
+			[ProcessAsAdminSpawn:false]
+			[MaxSpawns:2]
+			[SpawnGroups:GVK-Drone-Defense-SpawnGroup-COALITION-StrikeFighter]
+			[MinDistance:100]
+			[MaxDistance:300]
+			[MinAltitude:100]
+			[MaxAltitude:200]
+			[InheritNpcAltitude:true]
+			[IgnoreSafetyChecks:true]
+			</Description>
+		</EntityComponent>
+		<!-- Trigger Sequence for Supply drop between waves 1 and 2 -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-PlanetaryInstallation-Large-Trigger-COALITIONDepotIntermission</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Trigger]
+			[Type:Timer]
+			[UseTrigger:true]
+			[StartsReady:false]
+			[MaxActions:1]
+			[ActionExecution:All]
+			[MinCooldownMs:15000]
+			[MaxCooldownMs:15001]
+			[Conditions:GVK-PlanetaryInstallation-Large-Condition-COALITIONDepotIntermission]
+			[ConditionCheckResetsTimer:true]
+			[Actions:GVK-PlanetaryInstallation-Large-Action-COALITIONDepotIntermission]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-PlanetaryInstallation-Large-Condition-COALITIONDepotIntermission</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Condition]
+			[UseConditions:true]
+			[CheckCustomCounters:true]
+			[CustomCounters:DistressSpawns]
+			[CustomCountersTargets:5]
+			[CounterCompareTypes:GreaterOrEqual]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-PlanetaryInstallation-Large-Action-COALITIONDepotIntermission</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Action]
+			[Chance:100]
+			[DisableTriggers:true]
+			[DisableTriggerNames:GVK-PlanetaryInstallation-Large-Trigger-COALITIONDepotSpawnsWave1]
+			[DisableTriggerNames:GVK-PlanetaryInstallation-Large-ManualTrigger-COALITIONDepotSpawnsWave1]
+			[ResetCooldownTimeOfTriggers:true]
+			[ResetTriggerCooldownNames:GVK-PlanetaryInstallation-Large-Trigger-COALITIONDepotOnSuccess]
+			[ResetTriggerCooldownNames:GVK-PlanetaryInstallation-Large-Trigger-COALITIONDepotWave2Countdown1min]
+			[ResetTriggerCooldownNames:GVK-PlanetaryInstallation-Large-Trigger-COALITIONDepotWave2Begin]
+			[EnableTriggers:true]
+			[EnableTriggerNames:GVK-PlanetaryInstallation-Large-Trigger-COALITIONDepotWave2Countdown1min]
+			[EnableTriggerNames:GVK-PlanetaryInstallation-Large-Trigger-COALITIONDepotWave2Begin]
+			[UseChatBroadcast:true]
+			[ChatData:GVK-PlanetaryInstallation-Large-Chat-COALITIONDepotIntermission]
+			[SpawnEncounter:true]
+			[Spawner:GVK-PlanetaryInstallation-Large-Spawner-COALITIONDepotIntermission]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-PlanetaryInstallation-Large-Chat-COALITIONDepotIntermission</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Chat]
+			[UseChat:true]
+			[StartsReady:true]
+			[Chance:100]
+			[MaxChats:1]
+			[BroadcastRandomly:false]
+			[Author:COALITION]
+			[Color:White]
+			[ChatMessages:Final wave in-bound, ETA 5 minutes. Use the supply drop to re-arm and repair.]
+			[ChatAudio:ArcHudGPSNotification2]
+			[BroadcastChatType:Both]
+			[SendToAllOnlinePlayers:false]
+			[IgnoreAntennaRequirement:true]
+			[IgnoredAntennaRangeOverride:40000]
+		  </Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-PlanetaryInstallation-Large-Spawner-COALITIONDepotIntermission</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Spawn]
+			[UseSpawn:true]
+			[SpawningType:CustomSpawn]
+			[StartsReady:true]
+			[ProcessAsAdminSpawn:false]
+			[MaxSpawns:1]
+			[SpawnGroups:GVK-Other-Loot-SpawnGroup-COALITION-AmmoDrop2x]
+			[MinDistance:200]
+			[MaxDistance:300]
+			[MinAltitude:300]
+			[MaxAltitude:301]
+			[InheritNpcAltitude:true]
+			[IgnoreSafetyChecks:true]
+			</Description>
+		</EntityComponent>
+
+		<!-- Trigger Sequence for countdown until wave 2, 1 minute warning (240 seconds after intermission) -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-PlanetaryInstallation-Large-Trigger-COALITIONDepotWave2Countdown1min</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Trigger]
+			[Type:Timer]
+			[UseTrigger:false]
+			[StartsReady:false]
+			[MaxActions:1]
+			[ActionExecution:All]
+			[MinCooldownMs:240000]
+			[MaxCooldownMs:240001]
+			[Actions:GVK-PlanetaryInstallation-Large-Action-COALITIONDepotWave2Countdown1min]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-PlanetaryInstallation-Large-Action-COALITIONDepotWave2Countdown1min</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Action]
+			[Chance:100]
+			[UseChatBroadcast:true]
+			[ChatData:GVK-PlanetaryInstallation-Large-Chat-COALITIONDepotWave2Countdown1min]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-PlanetaryInstallation-Large-Chat-COALITIONDepotWave2Countdown1min</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Chat]
+			[UseChat:true]
+			[StartsReady:true]
+			[Chance:100]
+			[MaxChats:1]
+			[BroadcastRandomly:false]
+			[Author:COALITION]
+			[Color:White]
+			[ChatMessages:Final wave in-bound, ETA 1 minute!]
+			[ChatAudio:ArcHudGPSNotification2]
+			[BroadcastChatType:Both]
+			[SendToAllOnlinePlayers:false]
+			[IgnoreAntennaRequirement:true]
+			[IgnoredAntennaRangeOverride:40000]
+		  </Description>
+		</EntityComponent>
+		<!-- Trigger Sequence to begin wave 2 after 5 minute countdown (300 seconds) -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-PlanetaryInstallation-Large-Trigger-COALITIONDepotWave2Begin</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Trigger]
+			[Type:Timer]
+			[UseTrigger:false]
+			[StartsReady:false]
+			[MaxActions:1]
+			[ActionExecution:All]
+			[MinCooldownMs:300000]
+			[MaxCooldownMs:300001]
+			[Actions:GVK-PlanetaryInstallation-Large-Action-COALITIONDepotWave2Begin]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-PlanetaryInstallation-Large-Action-COALITIONDepotWave2Begin</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Action]
+			[Chance:100]
+			[ResetCooldownTimeOfTriggers:true]
+			[ResetTriggerCooldownNames:GVK-PlanetaryInstallation-Large-Trigger-COALITIONDepotSpawnsWave2]
+			[ResetTriggerCooldownNames:GVK-PlanetaryInstallation-Large-ManualTrigger-COALITIONDepotSpawnsWave2]
+			[ResetTriggerCooldownNames:GVK-PlanetaryInstallation-Large-Trigger-COALITIONDepotOnSuccess]
+			[ResetTriggerCooldownNames:GVK-PlanetaryInstallation-Large-Trigger-COALITIONDepotHasTarget]
+			[EnableTriggers:true]
+			[EnableTriggerNames:GVK-PlanetaryInstallation-Large-Trigger-COALITIONDepotSpawnsWave2]
+			[EnableTriggerNames:GVK-PlanetaryInstallation-Large-ManualTrigger-COALITIONDepotSpawnsWave2]
+			[EnableTriggerNames:GVK-PlanetaryInstallation-Large-Trigger-COALITIONDepotOnSuccess]
+			[UseChatBroadcast:true]
+			[ChatData:GVK-PlanetaryInstallation-Large-Chat-COALITIONDepotWave2Begin]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-PlanetaryInstallation-Large-Chat-COALITIONDepotWave2Begin</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Chat]
+			[UseChat:true]
+			[StartsReady:true]
+			[Chance:100]
+			[MaxChats:1]
+			[BroadcastRandomly:false]
+			[Author:COALITION]
+			[Color:White]
+			[ChatMessages:GAALSIEN main force is attacking!]
+			[ChatAudio:ArcHudGPSNotification2]
+			[BroadcastChatType:Both]
+			[SendToAllOnlinePlayers:false]
+			[IgnoreAntennaRequirement:true]
+			[IgnoredAntennaRangeOverride:40000]
+		  </Description>
+		</EntityComponent>
+
+		<!-- Trigger Sequence for Wave 2 large Defenses -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-PlanetaryInstallation-Large-Trigger-COALITIONDepotSpawnsWave2</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Trigger]
+			[UseTrigger:false]
+			[Type:PlayerNear]
+			[TargetDistance:1500]
+			[StartsReady:false]
+			[MinCooldownMs:30000]
+			[MaxCooldownMs:30001]
+			[MaxActions:-1]
+			[ActionExecution:All]
+			[Actions:GVK-PlanetaryInstallation-Large-Action-COALITIONDepotSpawnsWave2]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-PlanetaryInstallation-Large-Action-COALITIONDepotSpawnsWave2</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Action]
+			[Chance:100]
+			[ManuallyActivateTrigger:true]
+			[ManuallyActivatedTriggerNames:GVK-PlanetaryInstallation-Large-ManualTrigger-COALITIONDepotSpawnsWave2]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-PlanetaryInstallation-Large-ManualTrigger-COALITIONDepotSpawnsWave2</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Trigger]
+			[UseTrigger:false]
+			[Type:Manual]
+			[StartsReady:true]
+			[MaxActions:5]
+			[ActionExecution:All]
+			[Actions:GVK-PlanetaryInstallation-Large-ManualAction-COALITIONDepotSpawnsWave2]
+			[Actions:GVK-PlanetaryInstallation-Large-ManualAction-COALITIONDepotFriendlyWave2]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-PlanetaryInstallation-Large-ManualAction-COALITIONDepotSpawnsWave2</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Action]
+			[Chance:100]
+			[SpawnEncounter:true]
+			[Spawner:GVK-PlanetaryInstallation-Large-ManualSpawner-COALITIONDepotSpawnsWave2]
+			[IncreaseCounters:DistressSpawns]
+			[UseChatBroadcast:true]
+			[ChatData:GVK-PlanetaryInstallation-All-Chat-Defenses]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-PlanetaryInstallation-Large-ManualSpawner-COALITIONDepotSpawnsWave2</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Spawn]
+			[UseSpawn:true]
+			[SpawningType:CustomSpawn]
+			[StartsReady:true]
+			[ProcessAsAdminSpawn:false]
+			[MaxSpawns:5]
+			[SpawnGroups:GVK-Drone-Defense-SpawnGroup-GAALSIEN-LargeHover]
+			[MinDistance:1500]
+			[MaxDistance:1750]
+			[MinAltitude:50]
+			[MaxAltitude:51]
+			[InheritNpcAltitude:false]
+			[IgnoreSafetyChecks:true]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-PlanetaryInstallation-Large-ManualAction-COALITIONDepotFriendlyWave2</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Action]
+			[Chance:15]
+			[SpawnEncounter:true]
+			[Spawner:GVK-PlanetaryInstallation-Large-ManualSpawner-COALITIONDepotFriendlyWave2]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-PlanetaryInstallation-Large-ManualSpawner-COALITIONDepotFriendlyWave2</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Spawn]
+			[UseSpawn:true]
+			[SpawningType:CustomSpawn]
+			[StartsReady:true]
+			[ProcessAsAdminSpawn:false]
+			[MaxSpawns:2]
+			[SpawnGroups:GVK-Drone-Defense-SpawnGroup-COALITION-LargeRover]
+			[SpawnGroups:GVK-Drone-Defense-SpawnGroup-COALITION-StrikeFighter]
+			[MinDistance:500]
+			[MaxDistance:1000]
+			[MinAltitude:50]
+			[MaxAltitude:51]
+			[InheritNpcAltitude:false]
+			[IgnoreSafetyChecks:true]
+			</Description>
+		</EntityComponent>
+	</EntityComponents>
+</Definitions>

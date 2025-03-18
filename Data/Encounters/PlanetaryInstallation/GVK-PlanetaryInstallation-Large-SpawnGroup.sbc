@@ -5,6 +5,35 @@
 		<SpawnGroup>
 			<Id>
 				<TypeId>SpawnGroupDefinition</TypeId>
+				<SubtypeId>GVK-PlanetaryInstallation-SpawnGroups-Large-StorageDepot</SubtypeId>
+			</Id>
+			<Description>
+			[Modular Encounters SpawnGroup]
+			[IgnoreCleanupRules:true]
+			[ReplenishSystems:true]
+			[SpawnConditionsProfiles:GVK-PlanetaryInstallation-Large-SpawnCondition-Building-COALITION]
+			[ManipulationProfiles:GVK-PlanetaryInstallation-Large-Manipulation-COALITIONtructures]
+			[CutVoxelsAtAirtightCells:false]
+			[CutVoxelSize:9]
+			</Description>
+			<IsPirate>true</IsPirate>
+			<Frequency>0.1</Frequency>
+			<Prefabs>
+				<Prefab SubtypeId="NWL [COAL] Storage Depot">
+					<Position>
+						<X>0.0</X>
+						<Y>0</Y>
+						<Z>0.0</Z>
+					</Position>
+					<Speed>0</Speed>
+					<BeaconText>Large Distress Signal</BeaconText>
+					<Behaviour>GVK-PlanetaryInstallation-Large-Behavior-COALITIONDepot</Behaviour>
+				</Prefab>
+			</Prefabs>
+		</SpawnGroup>
+		<SpawnGroup>
+			<Id>
+				<TypeId>SpawnGroupDefinition</TypeId>
 				<SubtypeId>GVK-PlanetaryInstallation-SpawnGroups-Large-Falco</SubtypeId>
 			</Id>
 			<Description>
