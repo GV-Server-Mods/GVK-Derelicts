@@ -598,7 +598,7 @@
 			[SoundAtPosition:Cruiser_Explosion]
 			</Description>
 		</EntityComponent>
-		<!-- Shared disabled action for most NPCs that do not despawn on death -->
+		<!-- Shared disabled action for most NPCs that do not despawn on death, also shut off power producers on lg -->
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
@@ -629,6 +629,30 @@
 			[BlockTypesToToggle:MyObjectBuilder_Beacon/DisposableNpcBeaconSmall]
 			[BlockTypeToggles:Off]
 			[BlockTypesToToggle:MyObjectBuilder_Beacon/DisposableNpcBeaconLarge]
+			[BlockTypeToggles:Off]
+			[BlockTypesToToggle:MyObjectBuilder_BatteryBlock/LargeBlockBatteryBlock]
+			[BlockTypeToggles:Off]
+			[BlockTypesToToggle:MyObjectBuilder_BatteryBlock/LargeBlockPrototechBattery]
+			[BlockTypeToggles:Off]
+			[BlockTypesToToggle:MyObjectBuilder_BatteryBlock/LargeBlockBatteryBlockWarfare2]
+			[BlockTypeToggles:Off]
+			[BlockTypesToToggle:MyObjectBuilder_Reactor/ProprietaryLargeBlockSmallGenerator]
+			[BlockTypeToggles:Off]
+			[BlockTypesToToggle:MyObjectBuilder_Reactor/ProprietaryLargeBlockLargeGenerator]
+			[BlockTypeToggles:Off]
+			[BlockTypesToToggle:MyObjectBuilder_HydrogenEngine/LargeHydrogenEngine]
+			[BlockTypeToggles:Off]
+			[BlockTypesToToggle:MyObjectBuilder_WindTurbine/LargeBlockWindTurbine]
+			[BlockTypeToggles:Off]
+			[BlockTypesToToggle:MyObjectBuilder_WindTurbine/LargeBlockWindTurbineReskin]
+			[BlockTypeToggles:Off]
+			[BlockTypesToToggle:MyObjectBuilder_SolarPanel/LargeBlockSolarPanel]
+			[BlockTypeToggles:Off]
+			[BlockTypesToToggle:MyObjectBuilder_SolarPanel/LargeBlockColorableSolarPanel]
+			[BlockTypeToggles:Off]
+			[BlockTypesToToggle:MyObjectBuilder_SolarPanel/LargeBlockColorableSolarPanelCorner]
+			[BlockTypeToggles:Off]
+			[BlockTypesToToggle:MyObjectBuilder_SolarPanel/LargeBlockColorableSolarPanelCornerInverted]
 			[BlockTypeToggles:Off]
 			[TerminateBehavior:true]
 			[ForceDespawn:false]
