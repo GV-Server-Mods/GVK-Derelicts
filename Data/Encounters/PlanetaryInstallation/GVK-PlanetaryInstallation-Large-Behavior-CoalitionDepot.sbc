@@ -1,6 +1,8 @@
 <?xml version="1.0"?>
 <Definitions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
 	<EntityComponents>
+		<!-- CustomCounters currently do not persist across a server crash or restart. Wave counters have been split, and max actions 
+		and max spawns have been set to	unlimited as a workaround so the mission does not completely break after a server restart. -->
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
@@ -60,7 +62,8 @@
 			[RivalAI Action]
 			[Chance:100]
 			[SetWeaponsToMaxRange:true]
-			[ResetCounters:DistressSpawns]
+			[ResetCounters:DistressSpawnsWave1]
+			[ResetCounters:DistressSpawnsWave2]
 			[UseChatBroadcast:true]
 			[ChatData:GVK-PlanetaryInstallation-Large-Chat-COALITIONDepotOnSpawn]
 			</Description>
@@ -355,8 +358,8 @@
 			[RivalAI Condition]
 			[UseConditions:true]
 			[CheckCustomCounters:true]
-			[CustomCounters:DistressSpawns]
-			[CustomCountersTargets:10]
+			[CustomCounters:DistressSpawnsWave2]
+			[CustomCountersTargets:5]
 			[CounterCompareTypes:GreaterOrEqual]
 			</Description>
 		</EntityComponent>
@@ -464,7 +467,7 @@
 			[UseTrigger:true]
 			[Type:Manual]
 			[StartsReady:true]
-			[MaxActions:5]
+			[MaxActions:-1]
 			[ActionExecution:All]
 			[Actions:GVK-PlanetaryInstallation-Large-ManualAction-COALITIONDepotSpawnsWave1]
 			[Actions:GVK-PlanetaryInstallation-Large-ManualAction-COALITIONDepotFriendlyWave1]
@@ -480,7 +483,7 @@
 			[Chance:100]
 			[SpawnEncounter:true]
 			[Spawner:GVK-PlanetaryInstallation-Large-ManualSpawner-COALITIONDepotSpawnsWave1]
-			[IncreaseCounters:DistressSpawns]
+			[IncreaseCounters:DistressSpawnsWave1]
 			[UseChatBroadcast:true]
 			[ChatData:GVK-PlanetaryInstallation-All-Chat-Defenses]
 			</Description>
@@ -496,7 +499,7 @@
 			[SpawningType:CustomSpawn]
 			[StartsReady:true]
 			[ProcessAsAdminSpawn:false]
-			[MaxSpawns:5]
+			[MaxSpawns:-1]
 			[SpawnGroups:GVK-Drone-Defense-SpawnGroup-GAALSIEN-MediumHoverHeavy]
 			[SpawnGroups:GVK-Drone-Defense-SpawnGroup-GAALSIEN-LargeHover]
 			[MinDistance:1500]
@@ -530,7 +533,7 @@
 			[SpawningType:CustomSpawn]
 			[StartsReady:true]
 			[ProcessAsAdminSpawn:false]
-			[MaxSpawns:2]
+			[MaxSpawns:-1]
 			[SpawnGroups:GVK-Drone-Defense-SpawnGroup-COALITION-StrikeFighter]
 			[MinDistance:100]
 			[MaxDistance:300]
@@ -569,7 +572,7 @@
 			[RivalAI Condition]
 			[UseConditions:true]
 			[CheckCustomCounters:true]
-			[CustomCounters:DistressSpawns]
+			[CustomCounters:DistressSpawnsWave1]
 			[CustomCountersTargets:5]
 			[CounterCompareTypes:GreaterOrEqual]
 			</Description>
@@ -797,7 +800,7 @@
 			[UseTrigger:false]
 			[Type:Manual]
 			[StartsReady:true]
-			[MaxActions:5]
+			[MaxActions:-1]
 			[ActionExecution:All]
 			[Actions:GVK-PlanetaryInstallation-Large-ManualAction-COALITIONDepotSpawnsWave2]
 			[Actions:GVK-PlanetaryInstallation-Large-ManualAction-COALITIONDepotFriendlyWave2]
@@ -813,7 +816,7 @@
 			[Chance:100]
 			[SpawnEncounter:true]
 			[Spawner:GVK-PlanetaryInstallation-Large-ManualSpawner-COALITIONDepotSpawnsWave2]
-			[IncreaseCounters:DistressSpawns]
+			[IncreaseCounters:DistressSpawnsWave2]
 			[UseChatBroadcast:true]
 			[ChatData:GVK-PlanetaryInstallation-All-Chat-Defenses]
 			</Description>
@@ -829,7 +832,7 @@
 			[SpawningType:CustomSpawn]
 			[StartsReady:true]
 			[ProcessAsAdminSpawn:false]
-			[MaxSpawns:5]
+			[MaxSpawns:-1]
 			[SpawnGroups:GVK-Drone-Defense-SpawnGroup-GAALSIEN-LargeHover]
 			[MinDistance:1500]
 			[MaxDistance:1750]
@@ -862,7 +865,7 @@
 			[SpawningType:CustomSpawn]
 			[StartsReady:true]
 			[ProcessAsAdminSpawn:false]
-			[MaxSpawns:2]
+			[MaxSpawns:-1]
 			[SpawnGroups:GVK-Drone-Defense-SpawnGroup-COALITION-LargeRover]
 			[SpawnGroups:GVK-Drone-Defense-SpawnGroup-COALITION-StrikeFighter]
 			[MinDistance:500]
