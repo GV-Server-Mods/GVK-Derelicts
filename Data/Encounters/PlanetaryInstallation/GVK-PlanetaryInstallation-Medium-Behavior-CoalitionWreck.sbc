@@ -54,7 +54,7 @@
 			[RivalAI Action]
 			[Chance:100]
 			[SetWeaponsToMaxRange:true]
-			[ResetCounters:DistressSpawns]
+			[ResetSandboxCounters:SandboxCounter_MediumDistressSpawns]
 			[UseChatBroadcast:true]
 			[ChatData:GVK-PlanetaryInstallation-Medium-Chat-COALITIONWreckOnSpawn]
 			</Description>
@@ -283,10 +283,10 @@
 			<Description>
 			[RivalAI Condition]
 			[UseConditions:true]
-			[CheckCustomCounters:true]
-			[CustomCounters:DistressSpawns]
-			[CustomCountersTargets:3]
-			[CounterCompareTypes:GreaterOrEqual]
+			[CheckCustomSandboxCounters:true]
+			[CustomSandboxCounters:SandboxCounter_MediumDistressSpawns]
+			[CustomSandboxCountersTargets:3]
+			[SandboxCounterCompareTypes:GreaterOrEqual]
 			</Description>
 		</EntityComponent>
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
@@ -428,7 +428,7 @@
 			[SpawnEncounter:true]
 			[Spawner:GVK-PlanetaryInstallation-Medium-Spawner-COALITIONWreckDefenseDroneMedium]
 			[Spawner:GVK-PlanetaryInstallation-Medium-Spawner-COALITIONWreckDefenseDroneSmall]
-			[IncreaseCounters:DistressSpawns]
+			[IncreaseSandboxCounters:SandboxCounter_MediumDistressSpawns]
 			[UseChatBroadcast:true]
 			[ChatData:GVK-PlanetaryInstallation-All-Chat-Defenses]
 			</Description>

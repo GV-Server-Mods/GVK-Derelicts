@@ -1,8 +1,8 @@
 <?xml version="1.0"?>
 <Definitions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
 	<EntityComponents>
-		<!-- CustomCounters currently do not persist across a server crash or restart. Wave counters have been split, and max actions 
-		and max spawns have been set to	unlimited as a workaround so the mission does not completely break after a server restart. -->
+		<!-- CustomCounters currently do not persist across a server crash or restart. Switching to SandboxCounters -->
+		<!-- To Do: Limit the number of production cruisers that can spawn -->
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
@@ -62,8 +62,7 @@
 			[RivalAI Action]
 			[Chance:100]
 			[SetWeaponsToMaxRange:true]
-			[ResetCounters:DistressSpawnsWave1]
-			[ResetCounters:DistressSpawnsWave2]
+			[ResetSandboxCounters:SandboxCounter_LargeDistressSpawns]
 			[UseChatBroadcast:true]
 			[ChatData:GVK-PlanetaryInstallation-Large-Chat-COALITIONDepotOnSpawn]
 			</Description>
@@ -357,10 +356,10 @@
 			<Description>
 			[RivalAI Condition]
 			[UseConditions:true]
-			[CheckCustomCounters:true]
-			[CustomCounters:DistressSpawnsWave2]
-			[CustomCountersTargets:5]
-			[CounterCompareTypes:GreaterOrEqual]
+			[CheckCustomSandboxCounters:true]
+			[CustomSandboxCounters:SandboxCounter_LargeDistressSpawns]
+			[CustomSandboxCountersTargets:10]
+			[SandboxCounterCompareTypes:GreaterOrEqual]
 			</Description>
 		</EntityComponent>
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
@@ -483,7 +482,7 @@
 			[Chance:100]
 			[SpawnEncounter:true]
 			[Spawner:GVK-PlanetaryInstallation-Large-ManualSpawner-COALITIONDepotSpawnsWave1]
-			[IncreaseCounters:DistressSpawnsWave1]
+			[IncreaseSandboxCounters:SandboxCounter_LargeDistressSpawns]
 			[UseChatBroadcast:true]
 			[ChatData:GVK-PlanetaryInstallation-All-Chat-Defenses]
 			</Description>
@@ -499,7 +498,7 @@
 			[SpawningType:CustomSpawn]
 			[StartsReady:true]
 			[ProcessAsAdminSpawn:false]
-			[MaxSpawns:-1]
+			[MaxSpawns:5]
 			[SpawnGroups:GVK-Drone-Defense-SpawnGroup-GAALSIEN-MediumHoverHeavy]
 			[SpawnGroups:GVK-Drone-Defense-SpawnGroup-GAALSIEN-LargeHover]
 			[MinDistance:1500]
@@ -533,7 +532,7 @@
 			[SpawningType:CustomSpawn]
 			[StartsReady:true]
 			[ProcessAsAdminSpawn:false]
-			[MaxSpawns:-1]
+			[MaxSpawns:1]
 			[SpawnGroups:GVK-Drone-Defense-SpawnGroup-COALITION-StrikeFighter]
 			[MinDistance:100]
 			[MaxDistance:300]
@@ -571,10 +570,10 @@
 			<Description>
 			[RivalAI Condition]
 			[UseConditions:true]
-			[CheckCustomCounters:true]
-			[CustomCounters:DistressSpawnsWave1]
-			[CustomCountersTargets:5]
-			[CounterCompareTypes:GreaterOrEqual]
+			[CheckCustomSandboxCounters:true]
+			[CustomSandboxCounters:SandboxCounter_LargeDistressSpawns]
+			[CustomSandboxCountersTargets:5]
+			[SandboxCounterCompareTypes:GreaterOrEqual]
 			</Description>
 		</EntityComponent>
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
@@ -816,7 +815,7 @@
 			[Chance:100]
 			[SpawnEncounter:true]
 			[Spawner:GVK-PlanetaryInstallation-Large-ManualSpawner-COALITIONDepotSpawnsWave2]
-			[IncreaseCounters:DistressSpawnsWave2]
+			[IncreaseSandboxCounters:SandboxCounter_LargeDistressSpawns]
 			[UseChatBroadcast:true]
 			[ChatData:GVK-PlanetaryInstallation-All-Chat-Defenses]
 			</Description>
@@ -832,7 +831,7 @@
 			[SpawningType:CustomSpawn]
 			[StartsReady:true]
 			[ProcessAsAdminSpawn:false]
-			[MaxSpawns:-1]
+			[MaxSpawns:5]
 			[SpawnGroups:GVK-Drone-Defense-SpawnGroup-GAALSIEN-LargeHover]
 			[MinDistance:1500]
 			[MaxDistance:1750]
@@ -865,7 +864,7 @@
 			[SpawningType:CustomSpawn]
 			[StartsReady:true]
 			[ProcessAsAdminSpawn:false]
-			[MaxSpawns:-1]
+			[MaxSpawns:2]
 			[SpawnGroups:GVK-Drone-Defense-SpawnGroup-COALITION-LargeRover]
 			[SpawnGroups:GVK-Drone-Defense-SpawnGroup-COALITION-StrikeFighter]
 			[MinDistance:500]
