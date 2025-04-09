@@ -96,7 +96,48 @@
 				</Prefab>
 			</Prefabs>
 		</SpawnGroup>
-		<!-- NDR [COAL] Cargo Cruiser East Crossroads-Sevastopol-->
+		<!-- Double Convoy East Crossroads-Sevastopol-->
+		<SpawnGroup>
+			<Id>
+				<TypeId>SpawnGroupDefinition</TypeId>
+				<!--Do Not Edit-->
+				<SubtypeId>GVK-PlanetaryCargoShip-Land-COALITION-SpawnGroup-ConvoyEscortA</SubtypeId>
+			</Id>
+			<Description>
+			[Modular Encounters SpawnGroup]
+			[IgnoreCleanupRules:true]
+			[ReplenishSystems:true]
+			[SpawnConditionsProfiles:GVK-SpawnCondition-Land-CargoShip-COALITIONA]
+			[ManipulationProfiles:MES-Manipulation-RivalAi] 
+			[ManipulationProfiles:GVK-PlanetaryCargoShip-Land-Manipulation]
+			</Description>
+			<IsPirate>true</IsPirate>
+			<!--Do not edit-->
+			<Frequency>0.1</Frequency>
+			<Prefabs>
+				<Prefab SubtypeId="NCS [COAL] Cargo Cruiser">
+					<Position>
+						<X>0</X>
+						<Y>0.0</Y>
+						<Z>150</Z>
+					</Position>
+					<Speed>50</Speed>
+					<BeaconText>Cargo Escort 1 (Sevastapol)</BeaconText>
+					<Behaviour>GVK-CargoShip-Land-COALITION-Behavior-ConvoyLeadEscortA</Behaviour>
+				</Prefab>
+				<Prefab SubtypeId="NCS [COAL] Cargo Cruiser">
+					<Position>
+						<X>0</X>
+						<Y>0.0</Y>
+						<Z>-150</Z>
+					</Position>
+					<Speed>50</Speed>
+					<BeaconText>Cargo Escort 2 (Sevastapol)</BeaconText>
+					<Behaviour>GVK-CargoShip-Land-COALITION-Behavior-ConvoyTailEscortA</Behaviour>
+				</Prefab>
+			</Prefabs>
+		</SpawnGroup>
+		<!-- NDR [COAL] Cargo Cruiser East Crossroads-Mastodon-->
 		<SpawnGroup>
 			<Id>
 				<TypeId>SpawnGroupDefinition</TypeId>
