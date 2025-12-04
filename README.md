@@ -50,24 +50,24 @@ Nekron910 https://steamcommunity.com/sharedfiles/filedetails/?id=2650194963&tscn
 
 # Notes
 1. Chat SendToAllPlayers will also be received by SEDB when set to send server messages.
-2. Don't use UseSurfaceHoverThrustMode at the same time as FlyLevelWithGravity.
-3. When using UseSurfaceHoverThrustMode, ensure WaypointTolerance is less than HoverPathStepDistance.
-4. UseSurfaceHoverThrustMode works well for wheeled rovers on planets, but use HoverPathStepDistance less than 100 for rougher terrains.
-5. Planet rovers with suspension need hidden NPC thrusters and gyros to operate because MES has no suspension controls.
-6. Set planet rover suspension friction very low, like 12% or less, to allow it to turn reasonably.
-7. Use Patrol behavior for random encounters and a trigger sequence to switch between aggressive behaviors with secondary autopilots.
-8. Use a Manual Trigger where multiple triggers need to operate the same action to prevent repeat trigger actions.
-9. KPLs disappear quickly for unknown reasons; when using KPLs, plan them to work for a few minutes or less at a time.
-10. Particles can be played similar to sounds but are undocumented in the wiki.
-11. Condition Profiles do not work correctly with some static SpawnGroups; instead, use those tags in the SpawnGroup directly.
-12. Do not raze blocks that could be on subgrids; this can lead to a crash.
-14. Do not use GenerateExplosion and raze functions simultaneously near the same block (like RAI Remote); this can lead to a crash.
-15. `BountyOnKill=3000000;` can be put directly in the behavior profile when using this mod https://steamcommunity.com/sharedfiles/filedetails/?id=2812148664
-16. `ResetThisStaticEncounter:true` and `ForceDespawn:true` can remove and reset static encounters but are undocumented in the wiki.
-17. Strike behavior needs a good amount of distance to line up and attack, and use min and max offset distances of around 2km.
-18. StrikeBeginPlanetAttackRunDistance is measured from the min and max offset distance waypoint; keep this low, around 100m.
-19. If IdealPlanetAltitude is way higher than MinimumPlanetAltitude, it will climb too sharply and disturb its angle of attack.
-20. NPCs are awful at aiming at targets. Use Keen AI blocks instead of RAI autopilot if accuracy is critical.
-21. `ProcessAsAdminSpawn:true` is available for Spawner profiles to bypass some restrictions.
-22. To prevent NPC chat messages from going to discord while still sending to all players (non-Nexus), use `SendToAllOnlinePlayers:false`, `IgnoreAntennaRequirement:true` and a very large override range.
-23. `UseFailCondition` and `UseElseActions` don't appear to work with Timer Triggers because the timer always succeeds.
+2. To avoid this, use `SendToAllOnlinePlayers:false`, `IgnoreAntennaRequirement:true`, and a very large override range.
+3. Don't use UseSurfaceHoverThrustMode at the same time as FlyLevelWithGravity.
+4. When using UseSurfaceHoverThrustMode, ensure WaypointTolerance is less than HoverPathStepDistance.
+5. The UseSurfaceHoverThrustMode works well for wheeled rovers on planets, but use HoverPathStepDistance less than 100 for rougher terrains.
+6. Planet rovers with suspension need hidden NPC thrusters and gyros to operate because MES has no suspension controls.
+7. Set the planet rover suspension friction very low, like 12% or less, to allow it to turn reasonably.
+8. Use Patrol behavior for random encounters and a trigger sequence to switch between aggressive behaviors with secondary autopilots.
+9. Use a Manual Trigger where multiple triggers need to operate the same action to prevent repeated trigger actions.
+10. KPLs disappear quickly for unknown reasons; when using KPLs, plan them to work for a few minutes or less at a time.
+11. `UseFailCondition` and `UseElseActions` don't appear to work with Timer Triggers because the timer always succeeds.
+12. Particles can be played similarly to sounds, but are undocumented in the wiki.
+13. Condition Profiles do not work correctly with some static SpawnGroups; instead, use those tags in the SpawnGroup directly.
+14. Do not raze blocks that could be on subgrids; this can lead to a crash.
+15. Do not use the GenerateExplosion and raze functions simultaneously near the same block (like RAI Remote); this can lead to a crash.
+16. `BountyOnKill=3000000;` can be put directly in the behavior profile when using this mod https://steamcommunity.com/sharedfiles/filedetails/?id=2812148664
+17. `ResetThisStaticEncounter:true` and `ForceDespawn:true` can remove and reset static encounters, but are undocumented in the wiki.
+18. Strike behavior needs a good amount of distance to line up and attack, and use min and max offset distances of around 2km.
+19. StrikeBeginPlanetAttackRunDistance is measured from the min and max offset distance waypoint; keep this low, around 100m.
+20. If IdealPlanetAltitude is way higher than MinimumPlanetAltitude, it will climb too sharply and disturb its angle of attack.
+21. NPCs are awful at aiming at targets. Use Keen AI blocks instead of RAI autopilot if accuracy is critical.
+22. `ProcessAsAdminSpawn:true` is available for Spawner profiles to bypass some restrictions.
