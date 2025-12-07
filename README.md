@@ -71,3 +71,4 @@ Nekron910 https://steamcommunity.com/sharedfiles/filedetails/?id=2650194963&tscn
 20. If IdealPlanetAltitude is way higher than MinimumPlanetAltitude, it will climb too sharply and disturb its angle of attack.
 21. NPCs are awful at aiming at targets. Use Keen AI blocks instead of RAI autopilot if accuracy is critical.
 22. `ProcessAsAdminSpawn:true` is available for Spawner profiles to bypass some restrictions.
+23. Use `[IgnoreCleanupRules:true]` on all NPCs with aggressive MES CleanUp settings to help delete debris that doesn't have an active RAI block.
