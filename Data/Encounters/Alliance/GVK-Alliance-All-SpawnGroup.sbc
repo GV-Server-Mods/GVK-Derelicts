@@ -1,0 +1,207 @@
+<?xml version="1.0"?>
+<Definitions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+	<SpawnGroups>
+		<!-- these don't use spawn conditions because each has a different static coord, and they can't be split -->
+		<SpawnGroup>
+			<Id>
+				<TypeId>SpawnGroupDefinition</TypeId>
+				<SubtypeId>GVK-Alliance-Homebase-SpawnGroup-KHAANEPH</SubtypeId> <!-- GPS:Khaaneph Base:20802.09:21835.64:57944.6:#FFFFA900: -->
+			</Id>
+			<Description>
+			[Modular Encounters SpawnGroup]
+			[StaticEncounter:true]
+			[FactionOwner:KHAANEPH]
+			[InitializeStoreBlocks:false]
+			[ReactorsOn:true]
+			[ForceStaticGrid:true]
+			[TriggerCoords:{X:20797.4026136076 Y:21816.0775106065 Z:57964.3183518895}]
+			[TriggerRadius:10000]
+			[IgnoreCleanupRules:true]
+			[ReplenishSystems:true]
+			[SkipVoxelSpawnChecks:true]
+			[SkipGridSpawnChecks:true]
+			[ForceExactPositionAndOrientation:true]
+			[StaticEncounterCoords:{X:20797.4026136076 Y:21816.0775106065 Z:57964.3183518895}]
+			[StaticEncounterForward:{X:0.911941936323143 Y:-0.253667053993175 Z:0.322513457848846}]
+			[StaticEncounterUp:{X:-0.398949945286668 Y:-0.364412096437324 Z:0.841452770585443}]
+			[ManipulationProfiles:GVK-Alliance-Homebase-Manipulation]
+			[UseRivalAi:true]
+			[UseRemoteControlCodeRestrictions:true]
+			[RemoteControlCode:GVK-Static]
+			[RemoteControlCodeMinDistance:500]
+			[RemoteControlCodeMaxDistance:-1]
+			</Description>
+			<IsPirate>true</IsPirate>
+			<Frequency>5.0</Frequency>
+			<Prefabs>
+				<Prefab SubtypeId="NST [KHAA] Carrier">
+					<Position>
+						<X>0.0</X>
+						<Y>0.0</Y>
+						<Z>0.0</Z>
+					</Position>
+					<Speed>0</Speed>
+					<BeaconText>Homebase</BeaconText>
+					<Behaviour>GVK-Alliance-Homebase-Behavior-KHAANEPH</Behaviour>
+				</Prefab>
+			</Prefabs>
+		</SpawnGroup>
+		<SpawnGroup>
+			<Id>
+				<TypeId>SpawnGroupDefinition</TypeId>
+				<SubtypeId>GVK-Alliance-Homebase-SpawnGroup-SOBAN</SubtypeId> <!-- GPS:Soban Base:45883.26:50407.31:12499.57:#FFFFA900: -->
+			</Id>
+			<Description>
+			[Modular Encounters SpawnGroup]
+			[StaticEncounter:true]
+			[FactionOwner:SOBAN]
+			[InitializeStoreBlocks:false]
+			[ReactorsOn:true]
+			[ForceStaticGrid:true]
+			[TriggerCoords:{X:45883.26 Y:50407.31 Z:12499.57}]
+			[TriggerRadius:10000]
+			[IgnoreCleanupRules:true]
+			[ReplenishSystems:true]
+			[SkipVoxelSpawnChecks:true]
+			[SkipGridSpawnChecks:true]
+			[ForceExactPositionAndOrientation:true]
+			[StaticEncounterCoords:{X:45840.5372800245 Y:50421.6003477879 Z:12457.3170166929}]
+			[StaticEncounterForward:{X:0.89779822411968 Y:-0.292093063134601 Z:0.329605811896869}]
+			[StaticEncounterUp:{X:-0.44038846014017 Y:-0.588553491018758 Z:0.677984359985541}]
+			[ManipulationProfiles:GVK-Alliance-Homebase-Manipulation]
+			[UseRivalAi:true]
+			[UseRemoteControlCodeRestrictions:true]
+			[RemoteControlCode:GVK-Static]
+			[RemoteControlCodeMinDistance:500]
+			[RemoteControlCodeMaxDistance:-1]
+			</Description>
+			<IsPirate>true</IsPirate>
+			<Frequency>5.0</Frequency>
+			<Prefabs>
+				<Prefab SubtypeId="NST [SOBA] Carrier">
+					<Position>
+						<X>0.0</X>
+						<Y>0.0</Y>
+						<Z>0.0</Z>
+					</Position>
+					<Speed>0</Speed>
+					<BeaconText>Homebase</BeaconText>
+					<Behaviour>GVK-Alliance-Homebase-Behavior-SOBAN</Behaviour>
+				</Prefab>
+			</Prefabs>
+		</SpawnGroup>
+		<!-- These do use spawn conditions -->
+		<SpawnGroup>
+			<Id>
+				<TypeId>SpawnGroupDefinition</TypeId>
+				<SubtypeId>GVK-Alliance-Outpost-Spawngroup-KHAANEPH</SubtypeId>
+			</Id>
+			<Description>
+			[Modular Encounters SpawnGroup]
+			[IgnoreCleanupRules:true]
+			[ReplenishSystems:true]
+			[SpawnConditionsProfiles:GVK-Alliance-Outpost-SpawnCondition-KHAANEPH]
+			[ManipulationProfiles:GVK-Universal-Manipulation-Large3x3StandardTurrets]
+			[ManipulationProfiles:GVK-PlanetaryInstallation-Medium-Manipulation-GAALSIENStructures]
+			</Description>
+			<IsPirate>true</IsPirate>
+			<Frequency>5</Frequency>
+			<Prefabs>
+				<Prefab SubtypeId="NAS Outpost">
+					<Position>
+						<X>0.0</X>
+						<Y>0.0</Y>
+						<Z>0.0</Z>
+					</Position>
+					<Speed>0</Speed>
+					<BeaconText>Outpost</BeaconText>
+					<Behaviour>GVK-Alliance-Outpost-Behavior-KHAANEPH</Behaviour>
+				</Prefab>
+			</Prefabs>
+		</SpawnGroup>
+		<SpawnGroup>
+			<Id>
+				<TypeId>SpawnGroupDefinition</TypeId>
+				<SubtypeId>GVK-Alliance-Base-Spawngroup-KHAANEPH</SubtypeId>
+			</Id>
+			<Description>
+			[Modular Encounters SpawnGroup]
+			[IgnoreCleanupRules:true]
+			[ReplenishSystems:true]
+			[SpawnConditionsProfiles:GVK-Alliance-Base-SpawnCondition-KHAANEPH]
+			[ManipulationProfiles:GVK-Drone-All-Manipulation-Large3x3HeavyTurrets]
+			[ManipulationProfiles:GVK-Universal-Manipulation-DamageModifier25]
+			</Description>
+			<IsPirate>true</IsPirate>
+			<Frequency>5</Frequency>
+			<Prefabs>
+				<Prefab SubtypeId="NWM [GAAL] Dome">
+					<Position>
+						<X>0.0</X>
+						<Y>17</Y>
+						<Z>0.0</Z>
+					</Position>
+					<Speed>0</Speed>
+					<BeaconText>Outpost</BeaconText>
+					<Behaviour>GVK-Alliance-Base-Spawngroup-KHAANEPH</Behaviour>
+				</Prefab>
+			</Prefabs>
+		</SpawnGroup>
+		<SpawnGroup>
+			<Id>
+				<TypeId>SpawnGroupDefinition</TypeId>
+				<SubtypeId>GVK-Alliance-Outpost-Spawngroup-SOBAN</SubtypeId>
+			</Id>
+			<Description>
+			[Modular Encounters SpawnGroup]
+			[IgnoreCleanupRules:true]
+			[ReplenishSystems:true]
+			[SpawnConditionsProfiles:GVK-Alliance-Outpost-SpawnCondition-SOBAN]
+			[ManipulationProfiles:GVK-Universal-Manipulation-Large3x3StandardTurrets]
+			[ManipulationProfiles:GVK-PlanetaryInstallation-Medium-Manipulation-GAALSIENStructures]
+			</Description>
+			<IsPirate>true</IsPirate>
+			<Frequency>5</Frequency>
+			<Prefabs>
+				<Prefab SubtypeId="NAS Outpost">
+					<Position>
+						<X>0.0</X>
+						<Y>0.0</Y>
+						<Z>0.0</Z>
+					</Position>
+					<Speed>0</Speed>
+					<BeaconText>Base</BeaconText>
+					<Behaviour>GVK-Alliance-Outpost-Behavior-SOBAN</Behaviour>
+				</Prefab>
+			</Prefabs>
+		</SpawnGroup>
+		<SpawnGroup>
+			<Id>
+				<TypeId>SpawnGroupDefinition</TypeId>
+				<SubtypeId>GVK-Alliance-Base-Spawngroup-SOBAN</SubtypeId>
+			</Id>
+			<Description>
+			[Modular Encounters SpawnGroup]
+			[IgnoreCleanupRules:true]
+			[ReplenishSystems:true]
+			[SpawnConditionsProfiles:GVK-Alliance-Base-SpawnCondition-SOBAN]
+			[ManipulationProfiles:GVK-Drone-All-Manipulation-Large3x3HeavyTurrets]
+			[ManipulationProfiles:GVK-Universal-Manipulation-DamageModifier25]
+			</Description>
+			<IsPirate>true</IsPirate>
+			<Frequency>5</Frequency>
+			<Prefabs>
+				<Prefab SubtypeId="NWM [GAAL] Dome">
+					<Position>
+						<X>0.0</X>
+						<Y>17</Y>
+						<Z>0.0</Z>
+					</Position>
+					<Speed>0</Speed>
+					<BeaconText>Base</BeaconText>
+					<Behaviour>GVK-Alliance-Outpost-Behavior-SOBAN</Behaviour>
+				</Prefab>
+			</Prefabs>
+		</SpawnGroup>
+	</SpawnGroups>
+</Definitions>

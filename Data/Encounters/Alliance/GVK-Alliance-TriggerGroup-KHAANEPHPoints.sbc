@@ -1,0 +1,154 @@
+<?xml version="1.0"?>
+<Definitions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+	<EntityComponents>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-Homebase-TriggerGroup-KHAANEPHPoints</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI TriggerGroup]
+			[Triggers:GVK-Alliance-Homebase-Trigger-PointsFloor-KHAANEPH]
+			[Triggers:GVK-Alliance-Homebase-Trigger-PointsCeiling-KHAANEPH]
+			</Description>
+		</EntityComponent>
+		<!-- Trigger to set the floor for the points -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-Homebase-Trigger-PointsFloor-KHAANEPH</SubtypeId>
+			</Id>
+			<Description>
+			[MES AI Trigger]
+			[UseTrigger:false]
+			[Type:Timer]
+			[MinCooldownMs:10000]
+			[MaxCooldownMs:10001]
+			[StartsReady:false]
+			[MaxActions:-1]
+			[Actions:GVK-Alliance-Homebase-Action-PointsFloor-KHAANEPH]
+			[Conditions:GVK-Alliance-Homebase-Condition-PointsFloor-KHAANEPH]
+			[ConditionCheckResetsTimer:true]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-Homebase-Condition-PointsFloor-KHAANEPH</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Condition]
+			[UseConditions:true]
+			[MatchAnyCondition:false]
+			[CheckCustomSandboxCounters:true]
+			[CustomSandboxCounters:KHAANEPH_Points]
+			[CustomSandboxCountersTargets:0]
+			[SandboxCounterCompareTypes:Less]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-Homebase-Action-PointsFloor-KHAANEPH</SubtypeId>
+			</Id>
+			<Description>
+			[MES AI Action]
+			[SetSandboxCounters:KHAANEPH_Points]
+			[SetSandboxCountersValues:0]
+			[UseChatBroadcast:true]
+			[ChatData:GVK-Alliance-Homebase-Chat-PointsFloor-KHAANEPH]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-Homebase-Chat-PointsFloor-KHAANEPH</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Chat]
+			[UseChat:true]
+			[StartsReady:true]
+			[Chance:100]
+			[MaxChats:-1]
+			[BroadcastRandomly:false]
+			[Author:KHAANEPH]
+			[Color:White]
+			[ChatMessages:KHAANEPH Points held at 0.]
+			[ChatAudio:ArcHudGPSNotification2]
+			[BroadcastChatType:Both]
+			[SendToAllOnlinePlayers:true]
+			[IgnoreAntennaRequirement:true]
+			[IgnoredAntennaRangeOverride:100000]
+			</Description>
+		</EntityComponent>
+		<!-- Trigger to set a ceiling for the points -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-Homebase-Trigger-PointsCeiling-KHAANEPH</SubtypeId>
+			</Id>
+			<Description>
+			[MES AI Trigger]
+			[UseTrigger:true]
+			[Type:Timer]
+			[MinCooldownMs:10000]
+			[MaxCooldownMs:10001]
+			[StartsReady:false]
+			[MaxActions:-1]
+			[Actions:GVK-Alliance-Homebase-Action-PointsCeiling-KHAANEPH]
+			[Conditions:GVK-Alliance-Homebase-Condition-PointsCeiling-KHAANEPH]
+			[ConditionCheckResetsTimer:true]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-Homebase-Condition-PointsCeiling-KHAANEPH</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Condition]
+			[UseConditions:true]
+			[MatchAnyCondition:false]
+			[CheckCustomSandboxCounters:true]
+			[CustomSandboxCounters:KHAANEPH_Points]
+			[CustomSandboxCountersTargets:1200]
+			[SandboxCounterCompareTypes:Greater]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-Homebase-Action-PointsCeiling-KHAANEPH</SubtypeId>
+			</Id>
+			<Description>
+			[MES AI Action]
+			[SetSandboxCounters:KHAANEPH_Points]
+			[SetSandboxCountersValues:1200]
+			[UseChatBroadcast:true]
+			[ChatData:GVK-Alliance-Homebase-Chat-PointsCeiling-KHAANEPH]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-Homebase-Chat-PointsCeiling-KHAANEPH</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Chat]
+			[UseChat:true]
+			[StartsReady:true]
+			[Chance:100]
+			[MaxChats:-1]
+			[BroadcastRandomly:false]
+			[Author:KHAANEPH]
+			[Color:White]
+			[ChatMessages:KHAANEPH Points capped at 1200.]
+			[ChatAudio:ArcHudGPSNotification2]
+			[BroadcastChatType:Both]
+			[SendToAllOnlinePlayers:true]
+			[IgnoreAntennaRequirement:true]
+			[IgnoredAntennaRangeOverride:100000]
+			</Description>
+		</EntityComponent>
+	</EntityComponents>
+</Definitions>

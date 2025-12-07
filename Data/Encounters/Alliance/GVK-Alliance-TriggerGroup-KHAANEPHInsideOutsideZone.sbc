@@ -1,0 +1,597 @@
+<?xml version="1.0"?>
+<Definitions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+	<EntityComponents>
+		<!-- An MES bug is preventing this from working. InsideZone still succeeds if it is inside an inactive Zone.
+			 Also, MES zone radius actions are not functioning at all -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-TriggerGroup-KHAANEPHInsideOutsideZone</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI TriggerGroup]
+			[Triggers:GVK-Alliance-Outpost-Trigger-Outside10000Check-KHAANEPH]
+			[Triggers:GVK-Alliance-Outpost-Trigger-Outside20000Check-KHAANEPH]
+			[Triggers:GVK-Alliance-Outpost-Trigger-Outside30000Check-KHAANEPH]
+			[Triggers:GVK-Alliance-Outpost-Trigger-Outside40000Check-KHAANEPH]
+			[Triggers:GVK-Alliance-Outpost-Trigger-Outside50000Check-KHAANEPH]
+			[Triggers:GVK-Alliance-Outpost-Trigger-Inside10000Check-KHAANEPH]
+			[Triggers:GVK-Alliance-Outpost-Trigger-Inside20000Check-KHAANEPH]
+			[Triggers:GVK-Alliance-Outpost-Trigger-Inside30000Check-KHAANEPH]
+			[Triggers:GVK-Alliance-Outpost-Trigger-Inside40000Check-KHAANEPH]
+			[Triggers:GVK-Alliance-Outpost-Trigger-Inside50000Check-KHAANEPH]
+			[Triggers:GVK-Alliance-Outpost-Trigger-OutsideAllZones-KHAANEPH]
+			</Description>
+		</EntityComponent>
+		<!-- trigger to confirm it is Outside Zone 10000 -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-Outpost-Trigger-Outside10000Check-KHAANEPH</SubtypeId>
+			</Id>
+			<Description>
+			[MES AI Trigger]
+			[UseTrigger:true]
+			[Type:OutsideZone]
+			[MinCooldownMs:10000]
+			[MaxCooldownMs:10001]
+			[StartsReady:false]
+			[ZoneName:KHAANEPH_Zone_10000]
+			[Actions:GVK-Alliance-Outpost-Action-Outside10000Check-KHAANEPH]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-Outpost-Action-Outside10000Check-KHAANEPH</SubtypeId>
+			</Id>
+			<Description>
+			[MES AI Action]
+			[SetBooleansTrue:Zone10000Check]
+			[UseChatBroadcast:true]
+			[ChatData:GVK-Alliance-Outpost-Chat-Outside10000Check-KHAANEPH]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-Outpost-Chat-Outside10000Check-KHAANEPH</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Chat]
+			[UseChat:true]
+			[StartsReady:true]
+			[Chance:100]
+			[BroadcastRandomly:false]
+			[Author:Sensors]
+			[Color:Blue]
+			[ChatMessages:Outside 10000.]
+			[ChatAudio:ArcHudSensors]
+			[BroadcastChatType:Both]
+			[SendToAllOnlinePlayers:true]
+			[IgnoreAntennaRequirement:true]
+			[IgnoredAntennaRangeOverride:10000]
+			</Description>
+		</EntityComponent>
+		<!-- trigger to confirm it is Outside Zone 20000 -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-Outpost-Trigger-Outside20000Check-KHAANEPH</SubtypeId>
+			</Id>
+			<Description>
+			[MES AI Trigger]
+			[UseTrigger:true]
+			[Type:OutsideZone]
+			[MinCooldownMs:10000]
+			[MaxCooldownMs:10001]
+			[StartsReady:false]
+			[ZoneName:KHAANEPH_Zone_20000]
+			[Actions:GVK-Alliance-Outpost-Action-Outside20000Check-KHAANEPH]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-Outpost-Action-Outside20000Check-KHAANEPH</SubtypeId>
+			</Id>
+			<Description>
+			[MES AI Action]
+			[SetBooleansTrue:Zone20000Check]
+			[UseChatBroadcast:true]
+			[ChatData:GVK-Alliance-Outpost-Chat-Outside20000Check-KHAANEPH]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-Outpost-Chat-Outside20000Check-KHAANEPH</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Chat]
+			[UseChat:true]
+			[StartsReady:true]
+			[Chance:100]
+			[BroadcastRandomly:false]
+			[Author:Sensors]
+			[Color:Blue]
+			[ChatMessages:Outside 20000.]
+			[ChatAudio:ArcHudSensors]
+			[BroadcastChatType:Both]
+			[SendToAllOnlinePlayers:true]
+			[IgnoreAntennaRequirement:true]
+			[IgnoredAntennaRangeOverride:10000]
+			</Description>
+		</EntityComponent>
+		<!-- trigger to confirm it is Outside Zone 30000 -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-Outpost-Trigger-Outside30000Check-KHAANEPH</SubtypeId>
+			</Id>
+			<Description>
+			[MES AI Trigger]
+			[UseTrigger:true]
+			[Type:OutsideZone]
+			[MinCooldownMs:10000]
+			[MaxCooldownMs:10001]
+			[StartsReady:false]
+			[ZoneName:KHAANEPH_Zone_30000]
+			[Actions:GVK-Alliance-Outpost-Action-Outside30000Check-KHAANEPH]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-Outpost-Action-Outside30000Check-KHAANEPH</SubtypeId>
+			</Id>
+			<Description>
+			[MES AI Action]
+			[SetBooleansTrue:Zone30000Check]
+			[UseChatBroadcast:true]
+			[ChatData:GVK-Alliance-Outpost-Chat-Outside30000Check-KHAANEPH]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-Outpost-Chat-Outside30000Check-KHAANEPH</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Chat]
+			[UseChat:true]
+			[StartsReady:true]
+			[Chance:100]
+			[BroadcastRandomly:false]
+			[Author:Sensors]
+			[Color:Blue]
+			[ChatMessages:Outside 30000.]
+			[ChatAudio:ArcHudSensors]
+			[BroadcastChatType:Both]
+			[SendToAllOnlinePlayers:true]
+			[IgnoreAntennaRequirement:true]
+			[IgnoredAntennaRangeOverride:10000]
+			</Description>
+		</EntityComponent>
+		<!-- trigger to confirm it is Outside Zone 40000 -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-Outpost-Trigger-Outside40000Check-KHAANEPH</SubtypeId>
+			</Id>
+			<Description>
+			[MES AI Trigger]
+			[UseTrigger:true]
+			[Type:OutsideZone]
+			[MinCooldownMs:10000]
+			[MaxCooldownMs:10001]
+			[StartsReady:false]
+			[ZoneName:KHAANEPH_Zone_40000]
+			[Actions:GVK-Alliance-Outpost-Action-Outside40000Check-KHAANEPH]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-Outpost-Action-Outside40000Check-KHAANEPH</SubtypeId>
+			</Id>
+			<Description>
+			[MES AI Action]
+			[SetBooleansTrue:Zone40000Check]
+			[UseChatBroadcast:true]
+			[ChatData:GVK-Alliance-Outpost-Chat-Outside40000Check-KHAANEPH]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-Outpost-Chat-Outside40000Check-KHAANEPH</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Chat]
+			[UseChat:true]
+			[StartsReady:true]
+			[Chance:100]
+			[BroadcastRandomly:false]
+			[Author:Sensors]
+			[Color:Blue]
+			[ChatMessages:Outside 40000.]
+			[ChatAudio:ArcHudSensors]
+			[BroadcastChatType:Both]
+			[SendToAllOnlinePlayers:true]
+			[IgnoreAntennaRequirement:true]
+			[IgnoredAntennaRangeOverride:10000]
+			</Description>
+		</EntityComponent>
+		<!-- trigger to confirm it is Outside Zone 50000 -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-Outpost-Trigger-Outside50000Check-KHAANEPH</SubtypeId>
+			</Id>
+			<Description>
+			[MES AI Trigger]
+			[UseTrigger:true]
+			[Type:OutsideZone]
+			[MinCooldownMs:10000]
+			[MaxCooldownMs:10001]
+			[StartsReady:false]
+			[ZoneName:KHAANEPH_Zone_50000]
+			[Actions:GVK-Alliance-Outpost-Action-Outside50000Check-KHAANEPH]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-Outpost-Action-Outside50000Check-KHAANEPH</SubtypeId>
+			</Id>
+			<Description>
+			[MES AI Action]
+			[SetBooleansTrue:Zone50000Check]
+			[UseChatBroadcast:true]
+			[ChatData:GVK-Alliance-Outpost-Chat-Outside50000Check-KHAANEPH]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-Outpost-Chat-Outside50000Check-KHAANEPH</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Chat]
+			[UseChat:true]
+			[StartsReady:true]
+			[Chance:100]
+			[BroadcastRandomly:false]
+			[Author:Sensors]
+			[Color:Blue]
+			[ChatMessages:Outside 50000.]
+			[ChatAudio:ArcHudSensors]
+			[BroadcastChatType:Both]
+			[SendToAllOnlinePlayers:true]
+			[IgnoreAntennaRequirement:true]
+			[IgnoredAntennaRangeOverride:10000]
+			</Description>
+		</EntityComponent>
+		<!-- trigger to confirm it is inside Zone 10000 -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-Outpost-Trigger-Inside10000Check-KHAANEPH</SubtypeId>
+			</Id>
+			<Description>
+			[MES AI Trigger]
+			[UseTrigger:true]
+			[Type:InsideZone]
+			[MinCooldownMs:10000]
+			[MaxCooldownMs:10001]
+			[StartsReady:false]
+			[ZoneName:KHAANEPH_Zone_10000]
+			[Actions:GVK-Alliance-Outpost-Action-Inside10000Check-KHAANEPH]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-Outpost-Action-Inside10000Check-KHAANEPH</SubtypeId>
+			</Id>
+			<Description>
+			[MES AI Action]
+			[SetBooleansFalse:Zone10000Check]
+			[UseChatBroadcast:true]
+			[ChatData:GVK-Alliance-Outpost-Chat-Inside10000Check-KHAANEPH]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-Outpost-Chat-Inside10000Check-KHAANEPH</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Chat]
+			[UseChat:true]
+			[StartsReady:true]
+			[Chance:100]
+			[BroadcastRandomly:false]
+			[Author:Sensors]
+			[Color:Blue]
+			[ChatMessages:Inside 10000.]
+			[ChatAudio:ArcHudSensors]
+			[BroadcastChatType:Both]
+			[SendToAllOnlinePlayers:true]
+			[IgnoreAntennaRequirement:true]
+			[IgnoredAntennaRangeOverride:10000]
+			</Description>
+		</EntityComponent>
+		<!-- trigger to confirm it is inside Zone 20000 -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-Outpost-Trigger-Inside20000Check-KHAANEPH</SubtypeId>
+			</Id>
+			<Description>
+			[MES AI Trigger]
+			[UseTrigger:true]
+			[Type:InsideZone]
+			[MinCooldownMs:10000]
+			[MaxCooldownMs:10001]
+			[StartsReady:false]
+			[ZoneName:KHAANEPH_Zone_20000]
+			[Actions:GVK-Alliance-Outpost-Action-Inside20000Check-KHAANEPH]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-Outpost-Action-Inside20000Check-KHAANEPH</SubtypeId>
+			</Id>
+			<Description>
+			[MES AI Action]
+			[SetBooleansFalse:Zone20000Check]
+			[UseChatBroadcast:true]
+			[ChatData:GVK-Alliance-Outpost-Chat-Inside20000Check-KHAANEPH]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-Outpost-Chat-Inside20000Check-KHAANEPH</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Chat]
+			[UseChat:true]
+			[StartsReady:true]
+			[Chance:100]
+			[BroadcastRandomly:false]
+			[Author:Sensors]
+			[Color:Blue]
+			[ChatMessages:Inside 20000.]
+			[ChatAudio:ArcHudSensors]
+			[BroadcastChatType:Both]
+			[SendToAllOnlinePlayers:true]
+			[IgnoreAntennaRequirement:true]
+			[IgnoredAntennaRangeOverride:10000]
+			</Description>
+		</EntityComponent>
+		<!-- trigger to confirm it is inside Zone 30000 -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-Outpost-Trigger-Inside30000Check-KHAANEPH</SubtypeId>
+			</Id>
+			<Description>
+			[MES AI Trigger]
+			[UseTrigger:true]
+			[Type:InsideZone]
+			[MinCooldownMs:10000]
+			[MaxCooldownMs:10001]
+			[StartsReady:false]
+			[ZoneName:KHAANEPH_Zone_30000]
+			[Actions:GVK-Alliance-Outpost-Action-Inside30000Check-KHAANEPH]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-Outpost-Action-Inside30000Check-KHAANEPH</SubtypeId>
+			</Id>
+			<Description>
+			[MES AI Action]
+			[SetBooleansFalse:Zone30000Check]
+			[UseChatBroadcast:true]
+			[ChatData:GVK-Alliance-Outpost-Chat-Inside30000Check-KHAANEPH]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-Outpost-Chat-Inside30000Check-KHAANEPH</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Chat]
+			[UseChat:true]
+			[StartsReady:true]
+			[Chance:100]
+			[BroadcastRandomly:false]
+			[Author:Sensors]
+			[Color:Blue]
+			[ChatMessages:Inside 30000.]
+			[ChatAudio:ArcHudSensors]
+			[BroadcastChatType:Both]
+			[SendToAllOnlinePlayers:true]
+			[IgnoreAntennaRequirement:true]
+			[IgnoredAntennaRangeOverride:10000]
+			</Description>
+		</EntityComponent>
+		<!-- trigger to confirm it is inside Zone 40000 -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-Outpost-Trigger-Inside40000Check-KHAANEPH</SubtypeId>
+			</Id>
+			<Description>
+			[MES AI Trigger]
+			[UseTrigger:true]
+			[Type:InsideZone]
+			[MinCooldownMs:10000]
+			[MaxCooldownMs:10001]
+			[StartsReady:false]
+			[ZoneName:KHAANEPH_Zone_40000]
+			[Actions:GVK-Alliance-Outpost-Action-Inside40000Check-KHAANEPH]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-Outpost-Action-Inside40000Check-KHAANEPH</SubtypeId>
+			</Id>
+			<Description>
+			[MES AI Action]
+			[SetBooleansFalse:Zone40000Check]
+			[UseChatBroadcast:true]
+			[ChatData:GVK-Alliance-Outpost-Chat-Inside40000Check-KHAANEPH]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-Outpost-Chat-Inside40000Check-KHAANEPH</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Chat]
+			[UseChat:true]
+			[StartsReady:true]
+			[Chance:100]
+			[BroadcastRandomly:false]
+			[Author:Sensors]
+			[Color:Blue]
+			[ChatMessages:Inside 40000.]
+			[ChatAudio:ArcHudSensors]
+			[BroadcastChatType:Both]
+			[SendToAllOnlinePlayers:true]
+			[IgnoreAntennaRequirement:true]
+			[IgnoredAntennaRangeOverride:10000]
+			</Description>
+		</EntityComponent>
+		<!-- trigger to confirm it is inside Zone 50000 -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-Outpost-Trigger-Inside50000Check-KHAANEPH</SubtypeId>
+			</Id>
+			<Description>
+			[MES AI Trigger]
+			[UseTrigger:true]
+			[Type:InsideZone]
+			[MinCooldownMs:10000]
+			[MaxCooldownMs:10001]
+			[StartsReady:false]
+			[ZoneName:KHAANEPH_Zone_50000]
+			[Actions:GVK-Alliance-Outpost-Action-Inside50000Check-KHAANEPH]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-Outpost-Action-Inside50000Check-KHAANEPH</SubtypeId>
+			</Id>
+			<Description>
+			[MES AI Action]
+			[SetBooleansFalse:Zone50000Check]
+			[UseChatBroadcast:true]
+			[ChatData:GVK-Alliance-Outpost-Chat-Inside50000Check-KHAANEPH]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-Outpost-Chat-Inside50000Check-KHAANEPH</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Chat]
+			[UseChat:true]
+			[StartsReady:true]
+			[Chance:100]
+			[BroadcastRandomly:false]
+			[Author:Sensors]
+			[Color:Blue]
+			[ChatMessages:Inside 50000.]
+			[ChatAudio:ArcHudSensors]
+			[BroadcastChatType:Both]
+			[SendToAllOnlinePlayers:true]
+			[IgnoreAntennaRequirement:true]
+			[IgnoredAntennaRangeOverride:10000]
+			</Description>
+		</EntityComponent>
+		<!-- trigger to check all zone bools for despawn -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-Outpost-Trigger-OutsideAllZones-KHAANEPH</SubtypeId>
+			</Id>
+			<Description>
+			[MES AI Trigger]
+			[UseTrigger:true]
+			[Type:timer]
+			[MinCooldownMs:10000]
+			[MaxCooldownMs:10001]
+			[StartsReady:false]
+			[Actions:GVK-Alliance-Outpost-Action-OutsideAllZones-KHAANEPH]
+			[Conditions:GVK-Alliance-Outpost-Condition-OutsideAllZones-KHAANEPH]
+			[ConditionCheckResetsTimer:true]
+			</Description>
+		</EntityComponent>
+		<!-- if Zone bools are all true, then outside all zones, then despawn -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-Outpost-Condition-OutsideAllZones-KHAANEPH</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Condition]
+			[UseConditions:true]
+			[MatchAnyCondition:false]
+			[CheckTrueBooleans:true]
+			[TrueBooleans:Zone10000Check]
+			[TrueBooleans:Zone20000Check]
+			[TrueBooleans:Zone30000Check]
+			[TrueBooleans:Zone40000Check]
+			[TrueBooleans:Zone50000Check]
+			[AllowAnyTrueBoolean:false]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-Outpost-Action-OutsideAllZones-KHAANEPH</SubtypeId>
+			</Id>
+			<Description>
+			[MES AI Action]
+			[ForceDespawn:true]
+			[UseChatBroadcast:true]
+			[ChatData:GVK-Alliance-Outpost-Chat-OutsideAllZones-KHAANEPH]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-Outpost-Chat-OutsideAllZones-KHAANEPH</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Chat]
+			[UseChat:true]
+			[StartsReady:true]
+			[Chance:100]
+			[BroadcastRandomly:false]
+			[Author:Sensors]
+			[Color:Blue]
+			[ChatMessages:Outside all zones, despawning.]
+			[ChatAudio:ArcHudSensors]
+			[BroadcastChatType:Both]
+			[SendToAllOnlinePlayers:true]
+			[IgnoreAntennaRequirement:true]
+			[IgnoredAntennaRangeOverride:10000]
+			</Description>
+		</EntityComponent>
+	</EntityComponents>
+</Definitions>
