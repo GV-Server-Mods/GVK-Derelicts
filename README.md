@@ -30,20 +30,20 @@ Example: `GVK-Drone-Encounter-Behavior-ProductionCruiserHorsefly`
 
 Prefab naming:
 ```NCS	[NPC CargoShip]		"NCS [COALITION] Trader"
-NAS (NPC Alliance Station)  "NAS [KHAA] Carrier
-NCO	(NPC Convoy)		"NCO [COALITION] Cargo Cruiser"
-NDR	(NPC Drone)		"NDR [GAALSIEN] Salvager"
-NKO	(NPC KOTH)		"NKO [KOTH] Khar Toba"
-NMI	(NPC Mission)		"NMI [COALITION] Support Cruiser"
-NST	(NPC Static)		"NST [COALITION] South Signpost"
-NWL	(NPC Large Wreck)	"NWL [DERELICT] Mammoth"
-NWM	(NPC Med Wreck)		"NWM [GAALSIEN] Outpost"  
-NWS	(NPC Small Wreck)	"NWS [COALITION] Turtle"
-NTS	(NPC Trade Station)	"NTS [COALITION] Rusty's"
-NLO	(NPC Loot)		"NLO [COALITION] Cargo Drop"
+NAS (NPC Alliance Station)  "NAS [KHAA] Carrier"
+NCO	(NPC Convoy)	    	"NCO [COALITION] Cargo Cruiser"
+NDR	(NPC Drone)	        	"NDR [GAALSIEN] Salvager"
+NKO	(NPC KOTH)	        	"NKO [KOTH] Khar Toba"
+NMI	(NPC Mission)	    	"NMI [COALITION] Support Cruiser"
+NST	(NPC Static)	    	"NST [COALITION] South Signpost"
+NWL	(NPC Large Wreck)    	"NWL [DERELICT] Mammoth"
+NWM	(NPC Med Wreck)	    	"NWM [GAALSIEN] Outpost"  
+NWS	(NPC Small Wreck)    	"NWS [COALITION] Turtle"
+NTS	(NPC Trade Station)	    "NTS [COALITION] Rusty's"
+NLO	(NPC Loot)	        	"NLO [COALITION] Cargo Drop"
 
-NOU	(NPC Outpost)		Out of date
-NSN	(NPC Station)		Out of date
+NOU	(NPC Outpost)	    	Out of date
+NSN	(NPC Station)	    	Out of date
 ```
 
 ## Thanks Yous:
