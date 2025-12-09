@@ -1,0 +1,431 @@
+<?xml version="1.0"?>
+<Definitions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+	<EntityComponents>
+		<!-- Behavior for Trade Stations -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-Outpost-Behavior-KHAANEPH</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Behavior]
+			[BehaviorName:Passive]
+			[UseRetreatTimer:false]
+			[UseNoTargetTimer:false]
+			[UsePlayerDistanceTimer:false]
+			[TargetData:GVK-Universal-Target-EnemyGrids2km]
+			[Triggers:GVK-Alliance-Outpost-Trigger-Spawned-KHAANEPH]
+			[Triggers:GVK-Alliance-Outpost-Trigger-BeaconDisabled-KHAANEPH]
+			[Triggers:GVK-Alliance-Outpost-Trigger-Compromised-KHAANEPH]
+			[Triggers:GVK-Alliance-Outpost-Trigger-Despawn-KHAANEPH]
+			[Triggers:GVK-Alliance-Outpost-Trigger-DespawnMES-KHAANEPH]
+			[Triggers:GVK-Alliance-Outpost-Trigger-Attacked-KHAANEPH]
+			[Triggers:GVK-Alliance-Outpost-Trigger-DefensesPlayerNear-KHAANEPH]
+			[Triggers:GVK-Alliance-Outpost-Trigger-DefensesDamage-KHAANEPH]
+			[Triggers:GVK-Alliance-Outpost-Trigger-DefensesManual-KHAANEPH]
+			[RemoteControlCode:GVK-Alliance-Outpost]
+			BountyOnKill=200000;
+			</Description>
+		</EntityComponent>
+		<!-- Trigger sequence to create a safezone on trade station spawn -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-Outpost-Trigger-Spawned-KHAANEPH</SubtypeId>
+			</Id>
+			<Description>
+			[MES AI Trigger]
+			[UseTrigger:true]
+			[Type:Timer]
+			[StartsReady:true]
+			[MaxActions:1]
+			[Actions:GVK-Alliance-Outpost-Action-Spawned-KHAANEPH]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-Outpost-Action-Spawned-KHAANEPH</SubtypeId>
+			</Id>
+			<Description>
+			[MES AI Action]
+			[UseChatBroadcast:true]
+			[ChatData:GVK-Alliance-Outpost-Chat-Spawned-KHAANEPH]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-Outpost-Chat-Spawned-KHAANEPH</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Chat]
+			[UseChat:true]
+			[StartsReady:true]
+			[Chance:100]
+			[MaxChats:1]
+			[BroadcastRandomly:false]
+			[Author:Sensors]
+			[Color:Blue]
+			[ChatMessages:New KHAANEPH Outpost constructed.]
+			[ChatAudio:ArcHudSensors]
+			[BroadcastChatType:Both]
+			[SendToAllOnlinePlayers:true]
+			[IgnoreAntennaRequirement:true]
+			[IgnoredAntennaRangeOverride:10000]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-Outpost-Trigger-BeaconDisabled-KHAANEPH</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Trigger]
+			[Type:Timer]
+			[UseTrigger:true]
+			[MinCooldownMs:10000]
+			[MaxCooldownMs:10000]
+			[StartsReady:false]
+			[Conditions:GVK-Alliance-Outpost-Condition-BeaconDisabled-KHAANEPH]
+			[ActionExecution:All]
+			[Actions:GVK-Alliance-Outpost-Action-Compromised-KHAANEPH]
+			[Actions:GVK-Universal-Action-Disabled]
+			[Actions:GVK-Universal-Action-SmallExplosionEffects]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-Outpost-Condition-BeaconDisabled-KHAANEPH</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Condition]
+			[UseConditions:true]
+			[MatchAnyCondition:false]
+			[UseRequiredFunctionalBlocks:true]
+			[RequiredNoneFunctionalBlockNames:Proprietary Beacon]
+			[RequiredNoneFunctionalBlockNames:Outpost]
+			[RequiredNoneFunctionalBlockNames:Base]
+			</Description>
+		</EntityComponent>
+		<!-- trigger to adjust points if destroyed -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-Outpost-Trigger-Compromised-KHAANEPH</SubtypeId>
+			</Id>
+			<Description>
+			[MES AI Trigger]
+			[UseTrigger:true]
+			[Type:Compromised]
+			[StartsReady:true]
+			[MaxActions:1]
+			[Actions:GVK-Alliance-Outpost-Action-Compromised-KHAANEPH]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-Outpost-Action-Compromised-KHAANEPH</SubtypeId>
+			</Id>
+			<Description>
+			[MES AI Action]
+			[DecreaseSandboxCounters:KHAANEPH_Points]
+			[DecreaseSandboxCountersAmount:5]
+			[IncreaseSandboxCounters:SOBAN_Points]
+			[IncreaseSandboxCountersAmount:5]
+			[DisableTriggers:true]
+			[DisableTriggerNames:GVK-Alliance-Outpost-Trigger-BeaconDisabled-KHAANEPH]
+			[DisableTriggerNames:GVK-Alliance-Outpost-Trigger-Compromised-KHAANEPH]
+			[DisableTriggerNames:GVK-Alliance-Outpost-Trigger-Despawn-KHAANEPH]
+			[DisableTriggerNames:GVK-Alliance-Outpost-Trigger-DespawnMES-KHAANEPH]
+			[TerminateBehavior:true]
+			[UseChatBroadcast:true]
+			[ChatData:GVK-Alliance-Outpost-Chat-Compromised-KHAANEPH]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-Outpost-Chat-Compromised-KHAANEPH</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Chat]
+			[UseChat:true]
+			[StartsReady:true]
+			[Chance:100]
+			[MaxChats:1]
+			[BroadcastRandomly:false]
+			[Author:Sensors]
+			[Color:Blue]
+			[ChatMessages:KHAANEPH Outpost destroyed.]
+			[ChatAudio:ArcHudSensors]
+			[BroadcastChatType:Both]
+			[SendToAllOnlinePlayers:true]
+			[IgnoreAntennaRequirement:true]
+			[IgnoredAntennaRangeOverride:100000]
+			</Description>
+		</EntityComponent>
+		<!-- trigger to adjust points if destroyed -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-Outpost-Trigger-Despawn-KHAANEPH</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Trigger]
+			[Type:Despawn]
+			[UseTrigger:true]
+			[MaxActions:1]
+			[ActionExecution:All]
+			[Actions:GVK-Alliance-Outpost-Action-Despawned-KHAANEPH]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-Outpost-Trigger-DespawnMES-KHAANEPH</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Trigger]
+			[Type:DespawnMES]
+			[UseTrigger:true]
+			[MaxActions:1]
+			[ActionExecution:All]
+			[Actions:GVK-Alliance-Outpost-Action-Despawned-KHAANEPH]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-Outpost-Action-Despawned-KHAANEPH</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Action]
+			[DecreaseSandboxCounters:KHAANEPH_Points]
+			[DecreaseSandboxCountersAmount:5]
+			[UseChatBroadcast:true]
+			[ChatData:GVK-Alliance-Outpost-Chat-Despawned-KHAANEPH]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-Outpost-Chat-Despawned-KHAANEPH</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Chat]
+			[UseChat:true]
+			[StartsReady:true]
+			[Chance:100]
+			[MaxChats:1]
+			[BroadcastRandomly:false]
+			[Author:Sensors]
+			[Color:Blue]
+			[ChatMessages:KHAANEPH Outpost lost.]
+			[ChatAudio:ArcHudSensors]
+			[BroadcastChatType:Both]
+			[SendToAllOnlinePlayers:true]
+			[IgnoreAntennaRequirement:true]
+			[IgnoredAntennaRangeOverride:9999999]
+			</Description>
+		</EntityComponent>
+		<!-- trigger to adjust reputation when attacked -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-Outpost-Trigger-Attacked-KHAANEPH</SubtypeId>
+			</Id>
+			<Description>
+			[MES AI Trigger]
+			[UseTrigger:true]
+			[Type:Damage]
+			[MinCooldownMs:5000]
+			[MaxCooldownMs:5001]
+			[StartsReady:true]
+			[DamageTypes:Any]
+			[Actions:GVK-Alliance-Outpost-Action-Attacked-KHAANEPH]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-Outpost-Action-Attacked-KHAANEPH</SubtypeId>
+			</Id>
+			<Description>
+			[MES AI Action]
+			[ChangeAttackerReputation:true]
+			[ChangeAttackerReputationFaction:KHAANEPH]
+			[ChangeAttackerReputationAmount:-10]
+			[ChangeAttackerReputationFaction:SOBAN]
+			[ChangeAttackerReputationAmount:5]
+			[ReputationChangesForAllAttackPlayerFactionMembers:true]
+			[UseChatBroadcast:false]
+			[ChatData:GVK-Alliance-Outpost-Chat-Attacked-KHAANEPH]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-Outpost-Chat-Attacked-KHAANEPH</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Chat]
+			[UseChat:true]
+			[StartsReady:true]
+			[Chance:100]
+			[BroadcastRandomly:false]
+			[Author:Sensors]
+			[Color:Blue]
+			[ChatMessages:KHAANEPH Outpost under attack.]
+			[ChatAudio:ArcHudSensors]
+			[BroadcastChatType:Both]
+			[SendToAllOnlinePlayers:true]
+			[IgnoreAntennaRequirement:true]
+			[IgnoredAntennaRangeOverride:10000]
+			</Description>
+		</EntityComponent>
+		<!-- Trigger Sequence for Medium Defenses -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-Outpost-Trigger-DefensesPlayerNear-KHAANEPH</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Trigger]
+			[UseTrigger:true]
+			[Type:PlayerNear]
+			[TargetDistance:2000]
+			[StartsReady:true]
+			[MinCooldownMs:300000]
+			[MaxCooldownMs:300001]
+			[ActionExecution:All]
+			[Actions:GVK-Alliance-Outpost-Action-DefensesTrigger-KHAANEPH]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-Outpost-Trigger-DefensesDamage-KHAANEPH</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Trigger]
+			[UseTrigger:true]
+			[Type:Damage]
+			[DamageTypes:Any]
+			[StartsReady:true]
+			[MinCooldownMs:300000]
+			[MaxCooldownMs:300001]
+			[ActionExecution:All]
+			[Actions:GVK-Alliance-Outpost-Action-DefensesTrigger-KHAANEPH]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-Outpost-Action-DefensesTrigger-KHAANEPH</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Action]
+			[Chance:100]
+			[ManuallyActivateTrigger:true]
+			[ManuallyActivatedTriggerNames:GVK-Alliance-Outpost-Trigger-DefensesManual-KHAANEPH]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-Outpost-Trigger-DefensesManual-KHAANEPH</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Trigger]
+			[UseTrigger:true]
+			[Type:Manual]
+			[StartsReady:true]
+			[ActionExecution:All]
+			[Actions:GVK-Alliance-Outpost-Action-DefensesManual-KHAANEPH]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-Outpost-Action-DefensesManual-KHAANEPH</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Action]
+			[Chance:100]
+			[CreateKnownPlayerArea:true]
+			[KnownPlayerAreaRadius:3000]
+			[KnownPlayerAreaTimer:300000]
+			[KnownPlayerAreaMaxSpawns:5]
+			[SpawnEncounter:true]
+			[Spawner:GVK-Alliance-Outpost-Spawner-DefenseDroneSmall-KHAANEPH]
+			[Spawner:GVK-Alliance-Outpost-Spawner-DefenseDroneMedium-KHAANEPH]
+			[UseChatBroadcast:true]
+			[ChatData:GVK-Alliance-Outpost-Chat-Defenses-KHAANEPH]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-Outpost-Spawner-DefenseDroneSmall-KHAANEPH</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Spawn]
+			[UseSpawn:true]
+			[SpawningType:CustomSpawn]
+			[StartsReady:true]
+			[ProcessAsAdminSpawn:true]
+			[SpawnGroups:GVK-Drone-Defense-SpawnGroup-KHAANEPH-SmallHoverSingle]
+			[MinDistance:100]
+			[MaxDistance:300]
+			[MinAltitude:50]
+			[MaxAltitude:51]
+			[InheritNpcAltitude:true]
+			[IgnoreSafetyChecks:true]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-Outpost-Spawner-DefenseDroneMedium-KHAANEPH</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Spawn]
+			[UseSpawn:true]
+			[SpawningType:CustomSpawn]
+			[StartsReady:true]
+			[ProcessAsAdminSpawn:false]
+			[SpawnGroups:GVK-Drone-Defense-SpawnGroup-KHAANEPH-MediumHoverLight]
+			[MinDistance:100]
+			[MaxDistance:300]
+			[MinAltitude:50]
+			[MaxAltitude:51]
+			[InheritNpcAltitude:true]
+			[IgnoreSafetyChecks:true]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-Outpost-Chat-Defenses-KHAANEPH</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Chat]
+			[UseChat:true]
+			[StartsReady:true]
+			[Chance:100]
+			[BroadcastRandomly:false]
+			[Author:KHAANEPH]
+			[Color:White]
+			[ChatMessages:Enemies detected.]
+			[ChatAudio:ArcHudGPSNotification2]
+			[BroadcastChatType:Both]
+			[SendToAllOnlinePlayers:true]
+			[IgnoreAntennaRequirement:true]
+			[IgnoredAntennaRangeOverride:10000]
+			</Description>
+		</EntityComponent>
+	</EntityComponents>
+</Definitions>
