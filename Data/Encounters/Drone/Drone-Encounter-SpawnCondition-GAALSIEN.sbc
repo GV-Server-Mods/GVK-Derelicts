@@ -1,0 +1,247 @@
+<?xml version="1.0"?>
+<Definitions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+	<EntityComponents>
+		<!-- Update GVK-Drone-Encounter-Condition-IsDroneEncounter when making changes here -->
+		<!-- This spawns 1 Hover Salvager in Z1 thru Z3-->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Drone-Encounter-SpawnCondition-GAALSIEN-Salvager</SubtypeId>
+			</Id>
+			<Description>
+			[MES Spawn Conditions]
+			[DroneEncounter:true]
+			[FailedDroneSpawnResetsPlayerTime:false]
+			[MinDroneDistance:2000]
+			[MaxDroneDistance:4500]
+			[MinDroneAltitude:30]
+			[MaxDroneAltitude:40]
+			[FactionOwner:GAALSIEN]
+			[ReactorsOn:true]
+			[ForceStaticGrid:false]
+			[SkipVoxelSpawnChecks:true]
+			[SkipGridSpawnChecks:false]
+			[ZoneConditions:GVK-Universal-ZoneConditions-WreckZone123]
+ 			[PrefabSpawningMode:Random]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Drone-Encounter-SpawnCondition-GAALSIEN-Salvager-WreckSpawn</SubtypeId>
+			</Id>
+			<Description>
+			[MES Spawn Conditions]
+			[RivalAiAtmosphericSpawn:true]
+			[FactionOwner:GAALSIEN]
+			[ReactorsOn:true]
+			[SkipVoxelSpawnChecks:true]
+			[SkipGridSpawnChecks:true]
+ 			[PrefabSpawningMode:Random]
+			[ZoneConditions:GVK-Universal-ZoneConditions-WreckZone123]
+			</Description>
+		</EntityComponent>
+		<!-- This spawns 1 small flyer ONLY in Z2 -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Drone-Encounter-SpawnCondition-GAALSIEN-SmallFlyerSingle</SubtypeId>
+			</Id>
+			<Description>
+			[MES Spawn Conditions]
+			[DroneEncounter:true]
+			[FailedDroneSpawnResetsPlayerTime:false]
+			[MinDroneDistance:3500]
+			[MaxDroneDistance:5000]
+			[MinDroneAltitude:200]
+			[MaxDroneAltitude:500]
+			[FactionOwner:GAALSIEN]
+			[ReactorsOn:true]
+			[ForceStaticGrid:false]
+			[SkipVoxelSpawnChecks:true]
+			[SkipGridSpawnChecks:false]
+			[ZoneConditions:GVK-Universal-ZoneConditions-WreckZone2Only]
+			[UseThreatLevelCheck:false]
+			[ThreatLevelCheckRange:2000]
+			[ThreatIncludeOtherNpcOwners:false]
+			[ThreatScoreMinimum:250]
+			[ThreatScoreMaximum:99999999]
+ 			[PrefabSpawningMode:Random]
+			</Description>
+		</EntityComponent>
+		<!-- This spawns 1 small Hover ONLY in Z2 -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Drone-Encounter-SpawnCondition-GAALSIEN-SmallHoverSingle</SubtypeId>
+			</Id>
+			<Description>
+			[MES Spawn Conditions]
+			[DroneEncounter:true]
+			[FailedDroneSpawnResetsPlayerTime:false]
+			[MinDroneDistance:3500]
+			[MaxDroneDistance:5000]
+			[MinDroneAltitude:30]
+			[MaxDroneAltitude:40]
+			[FactionOwner:GAALSIEN]
+			[ReactorsOn:true]
+			[ForceStaticGrid:false]
+			[SkipVoxelSpawnChecks:true]
+			[SkipGridSpawnChecks:false]
+			[ZoneConditions:GVK-Universal-ZoneConditions-WreckZone2Only]
+			[UseThreatLevelCheck:false]
+			[ThreatLevelCheckRange:2000]
+			[ThreatIncludeOtherNpcOwners:false]
+			[ThreatScoreMinimum:250]
+			[ThreatScoreMaximum:99999999]
+ 			[PrefabSpawningMode:Random]
+			</Description>
+		</EntityComponent>
+		<!-- This spawns 1 medium Hover in Z2 and Z3-->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Drone-Encounter-SpawnCondition-GAALSIEN-MediumHoverSingle</SubtypeId>
+			</Id>
+			<Description>
+			[MES Spawn Conditions]
+			[DroneEncounter:true]
+			[FailedDroneSpawnResetsPlayerTime:false]
+			[MinDroneDistance:3500]
+			[MaxDroneDistance:5000]
+			[MinDroneAltitude:30]
+			[MaxDroneAltitude:40]
+			[FactionOwner:GAALSIEN]
+			[ReactorsOn:true]
+			[ForceStaticGrid:false]
+			[SkipVoxelSpawnChecks:false]
+			[SkipGridSpawnChecks:false]
+			[ZoneConditions:GVK-Universal-ZoneConditions-WreckZone23]
+			[UseThreatLevelCheck:false]
+			[ThreatLevelCheckRange:2000]
+			[ThreatIncludeOtherNpcOwners:false]
+			[ThreatScoreMinimum:250]
+			[ThreatScoreMaximum:99999999]
+ 			[PrefabSpawningMode:Random]
+			</Description>
+		</EntityComponent>
+		<!-- This spawns 2 small flyers ONLY in Z3 -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Drone-Encounter-SpawnCondition-GAALSIEN-SmallFlyerSquad</SubtypeId>
+			</Id>
+			<Description>
+			[MES Spawn Conditions]
+			[DroneEncounter:true]
+			[FailedDroneSpawnResetsPlayerTime:false]
+			[MinDroneDistance:3500]
+			[MaxDroneDistance:5000]
+			[MinDroneAltitude:200]
+			[MaxDroneAltitude:500]
+			[FactionOwner:GAALSIEN]
+			[ReactorsOn:true]
+			[ForceStaticGrid:false]
+			[SkipVoxelSpawnChecks:true]
+			[SkipGridSpawnChecks:false]
+			[ZoneConditions:GVK-Universal-ZoneConditions-WreckZone3Only]
+			[UseThreatLevelCheck:false]
+			[ThreatLevelCheckRange:2000]
+			[ThreatIncludeOtherNpcOwners:false]
+			[ThreatScoreMinimum:250]
+			[ThreatScoreMaximum:99999999]
+ 			[PrefabSpawningMode:RandomFixedCount]
+			[PrefabFixedCount:2]
+			[PrefabOffsetOverrides:{X:25 Y:0 Z:0}]
+			[PrefabOffsetOverrides:{X:-25 Y:0 Z:0}]
+			</Description>
+		</EntityComponent>
+		<!-- This spawns 1 Medium flyer in Z3 -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Drone-Encounter-SpawnCondition-GAALSIEN-MediumFlyerSingle</SubtypeId>
+			</Id>
+			<Description>
+			[MES Spawn Conditions]
+			[DroneEncounter:true]
+			[FailedDroneSpawnResetsPlayerTime:false]
+			[MinDroneDistance:3500]
+			[MaxDroneDistance:5000]
+			[MinDroneAltitude:200]
+			[MaxDroneAltitude:400]
+			[FactionOwner:GAALSIEN]
+			[ReactorsOn:true]
+			[ForceStaticGrid:false]
+			[SkipVoxelSpawnChecks:false]
+			[SkipGridSpawnChecks:false]
+			[ZoneConditions:GVK-Universal-ZoneConditions-WreckZone3Only]
+			[UseThreatLevelCheck:false]
+			[ThreatLevelCheckRange:2000]
+			[ThreatIncludeOtherNpcOwners:false]
+			[ThreatScoreMinimum:250]
+			[ThreatScoreMaximum:99999999]
+ 			[PrefabSpawningMode:Random]
+			</Description>
+		</EntityComponent>
+		<!-- This spawns 1 large hover ONLY in Z3 -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Drone-Encounter-SpawnCondition-GAALSIEN-LargeHoverSingle</SubtypeId>
+			</Id>
+			<Description>
+			[MES Spawn Conditions]
+			[DroneEncounter:true]
+			[FailedDroneSpawnResetsPlayerTime:false]
+			[MinDroneDistance:3500]
+			[MaxDroneDistance:5000]
+			[MinDroneAltitude:30]
+			[MaxDroneAltitude:40]
+			[FactionOwner:GAALSIEN]
+			[ReactorsOn:true]
+			[ForceStaticGrid:false]
+			[SkipVoxelSpawnChecks:false]
+			[SkipGridSpawnChecks:false]
+			[ZoneConditions:GVK-Universal-ZoneConditions-WreckZone3Only]
+			[UseThreatLevelCheck:false]
+			[ThreatLevelCheckRange:2000]
+			[ThreatIncludeOtherNpcOwners:false]
+			[ThreatScoreMinimum:250]
+			[ThreatScoreMaximum:99999999]
+ 			[PrefabSpawningMode:Random]
+			</Description>
+		</EntityComponent>
+		<!-- This spawns 2 small hovers ONLY in Z3 -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Drone-Encounter-SpawnCondition-SmallHoverSquad</SubtypeId>
+			</Id>
+			<Description>
+			[MES Spawn Conditions]
+			[DroneEncounter:true]
+			[FailedDroneSpawnResetsPlayerTime:false]
+			[MinDroneDistance:3500]
+			[MaxDroneDistance:5000]
+			[MinDroneAltitude:30]
+			[MaxDroneAltitude:40]
+			[FactionOwner:GAALSIEN]
+			[ReactorsOn:true]
+			[ForceStaticGrid:false]
+			[SkipVoxelSpawnChecks:true]
+			[SkipGridSpawnChecks:false]
+			[ZoneConditions:GVK-Universal-ZoneConditions-WreckZone3Only]
+			[UseThreatLevelCheck:false]
+			[ThreatLevelCheckRange:2000]
+			[ThreatIncludeOtherNpcOwners:false]
+			[ThreatScoreMinimum:250]
+			[ThreatScoreMaximum:99999999]
+ 			[PrefabSpawningMode:RandomFixedCount]
+			[PrefabFixedCount:2]
+			[PrefabOffsetOverrides:{X:25 Y:0 Z:0}]
+			[PrefabOffsetOverrides:{X:-25 Y:0 Z:0}]
+			</Description>
+		</EntityComponent>
+	</EntityComponents>
+</Definitions>

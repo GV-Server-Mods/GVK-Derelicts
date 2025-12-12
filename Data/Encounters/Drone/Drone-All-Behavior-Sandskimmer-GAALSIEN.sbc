@@ -1,0 +1,35 @@
+<?xml version="1.0"?>
+<Definitions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+	<EntityComponents>
+		<!-- SmallHoverHorseFighter Behavior -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Drone-All-Behavior-Sandskimmer-GAALSIEN</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Behavior]
+			[BehaviorName:Patrol]
+			[WeaponSystem:GVK-Universal-Weapons-All]
+			[UsePlayerDistanceTimer:true]
+			[PlayerDistanceTimerTrigger:900]
+			[PlayerDistanceTrigger:3000]
+			[UseNoTargetTimer:true]
+			[NoTargetTimerTrigger:900]
+			[UseRetreatTimer:false]
+			[HorseFighterTimeApproaching:10]
+			[HorseFighterTimeEngaging:10]
+			[TargetData:GVK-Universal-Target-EnemyGrids2km]
+			[AutopilotData:GVK-Drone-All-Autopilot-Sandskimmer-Patrol]
+			[SecondaryAutopilotData:GVK-Drone-All-Autopilot-Sandskimmer-HorseFighter]
+			[Triggers:GVK-Drone-All-Trigger-TargetAttacker]
+			[Triggers:GVK-Drone-All-Trigger-TurretTarget]
+			[Triggers:GVK-Drone-All-Trigger-WeaponsToMaxRange]
+			[TriggerGroups:GVK-Drone-Encounter-TriggerGroup-InactivityRetreat]
+			[TriggerGroups:GVK-Drone-All-TriggerGroup-PatrolHorseFighter]
+			[TriggerGroups:GVK-Drone-All-TriggerGroup-SmallHoverDefeated]
+			BountyOnKill=500000;
+			</Description>
+		</EntityComponent>
+	</EntityComponents>
+</Definitions>

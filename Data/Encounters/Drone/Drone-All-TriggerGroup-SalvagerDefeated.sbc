@@ -4,13 +4,13 @@
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Drone-All-TriggerGroup-GAALSIENSalvagerDefeated</SubtypeId>
+				<SubtypeId>GVK-Drone-All-TriggerGroup-SalvagerDefeated</SubtypeId>
 			</Id>
 			<Description>
 			[RivalAI TriggerGroup]
-			[Triggers:GVK-Drone-All-ManualTrigger-GAALSIENSalvagerDefeated]
-			[Triggers:GVK-Drone-All-Trigger-GAALSIENSalvagerCompromised]			
-			[Triggers:GVK-Drone-All-Trigger-GAALSIENSalvagerBeaconDisabled]			
+			[Triggers:GVK-Drone-All-ManualTrigger-SalvagerDefeated]
+			[Triggers:GVK-Drone-All-Trigger-SalvagerCompromised]			
+			[Triggers:GVK-Drone-All-Trigger-SalvagerBeaconDisabled]			
 			</Description>
 		</EntityComponent>
 		<!-- Manual Trigger sequence Medium NPC is defeated through Compromised, Beacon, or NoWeapon (instant delete) -->
@@ -18,7 +18,7 @@
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Drone-All-ManualTrigger-GAALSIENSalvagerDefeated</SubtypeId>
+				<SubtypeId>GVK-Drone-All-ManualTrigger-SalvagerDefeated</SubtypeId>
 			</Id>
 			<Description>
 			[RivalAI Trigger]
@@ -27,7 +27,7 @@
 			[StartsReady:true]
 			[MaxActions:1]
 			[ActionExecution:All]
-			[Actions:GVK-Drone-All-Action-GAALSIENSalvagerDefeated]
+			[Actions:GVK-Drone-All-Action-SalvagerDefeated]
 			[Actions:GVK-Universal-Action-MediumBlueExplosionEffects]
 			[Actions:GVK-Universal-Action-Disabled]
 			</Description>
@@ -35,15 +35,15 @@
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Drone-All-Action-GAALSIENSalvagerDefeated</SubtypeId>
+				<SubtypeId>GVK-Drone-All-Action-SalvagerDefeated</SubtypeId>
 			</Id>
 			<Description>
 			[RivalAI Action]
 			[UseChatBroadcast:true]
-			[ChatData:GVK-Drone-All-Chat-GAALSIENSalvagerDefeated]
+			[ChatData:GVK-Drone-All-Chat-SalvagerDefeated]
 			[DisableTriggers:true]
-			[DisableTriggerNames:GVK-Drone-All-Trigger-GAALSIENSalvagerCompromised]			
-			[DisableTriggerNames:GVK-Drone-All-Trigger-GAALSIENSalvagerBeaconDisabled]			
+			[DisableTriggerNames:GVK-Drone-All-Trigger-SalvagerCompromised]			
+			[DisableTriggerNames:GVK-Drone-All-Trigger-SalvagerBeaconDisabled]			
 			[TerminateBehavior:true]
 			[ForceDespawn:false]
 			</Description>
@@ -51,7 +51,7 @@
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Drone-All-Chat-GAALSIENSalvagerDefeated</SubtypeId>
+				<SubtypeId>GVK-Drone-All-Chat-SalvagerDefeated</SubtypeId>
 			</Id>
 			<Description>
 			[RivalAI Chat]
@@ -74,12 +74,12 @@
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Drone-All-Action-ManualTriggerGAALSIENSalvagerDefeated</SubtypeId>
+				<SubtypeId>GVK-Drone-All-Action-ManualTriggerSalvagerDefeated</SubtypeId>
 			</Id>
 			<Description>
 			[RivalAI Action]
 			[ManuallyActivateTrigger:true]
-			[ManuallyActivatedTriggerNames:GVK-Drone-All-ManualTrigger-GAALSIENSalvagerDefeated]
+			[ManuallyActivatedTriggerNames:GVK-Drone-All-ManualTrigger-SalvagerDefeated]
 			[ForceManualTriggerActivation:true]
 			</Description>
 		</EntityComponent>
@@ -87,7 +87,7 @@
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Drone-All-Trigger-GAALSIENSalvagerCompromised</SubtypeId>
+				<SubtypeId>GVK-Drone-All-Trigger-SalvagerCompromised</SubtypeId>
 			</Id>
 			<Description>
 			[RivalAI Trigger]
@@ -96,14 +96,14 @@
 			[StartsReady:true]
 			[MaxActions:1]
 			[ActionExecution:All]
-			[Actions:GVK-Drone-All-Action-ManualTriggerGAALSIENSalvagerDefeated]
+			[Actions:GVK-Drone-All-Action-ManualTriggerSalvagerDefeated]
 			</Description>
 		</EntityComponent>
 		<!-- Trigger sequence when Medium NPC Beacon is disabled -->
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Drone-All-Trigger-GAALSIENSalvagerBeaconDisabled</SubtypeId>
+				<SubtypeId>GVK-Drone-All-Trigger-SalvagerBeaconDisabled</SubtypeId>
 			</Id>
 			<Description>
 			[RivalAI Trigger]
@@ -113,7 +113,7 @@
 			[Conditions:GVK-Universal-Condition-AllBeaconsDisabled]
 			[MaxActions:1]
 			[ActionExecution:All]
-			[Actions:GVK-Drone-All-Action-ManualTriggerGAALSIENSalvagerDefeated]
+			[Actions:GVK-Drone-All-Action-ManualTriggerSalvagerDefeated]
 			</Description>
 		</EntityComponent>
 	</EntityComponents>

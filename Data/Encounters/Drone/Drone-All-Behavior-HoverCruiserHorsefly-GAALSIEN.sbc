@@ -1,0 +1,37 @@
+<?xml version="1.0"?>
+<Definitions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+	<EntityComponents>
+		<!-- HoverCruiserHorsefly Behavior -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Drone-All-Behavior-HoverCruiserHorsefly-GAALSIEN</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Behavior]
+			[BehaviorName:Patrol]
+			[WeaponSystem:GVK-Universal-Weapons-All]
+			[UsePlayerDistanceTimer:true]
+			[PlayerDistanceTimerTrigger:900]
+			[PlayerDistanceTrigger:3000]
+			[UseNoTargetTimer:false]
+			[UseRetreatTimer:false]
+			[TargetData:GVK-Universal-Target-EnemyGrids2km]
+			[AutopilotData:GVK-Drone-All-Autopilot-HoverCruiserHorsefly-Passive]
+			[SecondaryAutopilotData:GVK-Drone-All-Autopilot-HoverCruiserHorsefly-Aggressive]
+			[TertiaryAutopilotData:GVK-Drone-All-Autopilot-HoverCruiserHorsefly-Stop]
+			[Triggers:GVK-Universal-Trigger-GAALSIEN-TargetAcquiredChatter]
+			[Triggers:GVK-Drone-All-Trigger-TargetAttacker]
+			[Triggers:GVK-Drone-All-Trigger-TurretTarget]
+			[Triggers:GVK-Drone-All-Trigger-WeaponsToMaxRange]
+			[Triggers:GVK-Universal-Trigger-JetpackInhibitor]
+			[Triggers:GVK-Drone-All-Trigger-SpawnInterceptorSingle]
+			[Triggers:GVK-Drone-Encounter-Trigger-SpawnAnyCOALITIONAttackers]
+			[TriggerGroups:GVK-Drone-Encounter-TriggerGroup-InactivityRetreat]
+			[TriggerGroups:GVK-Drone-All-TriggerGroup-LargeHoverDefeated]
+			[TriggerGroups:GVK-Drone-All-TriggerGroup-PatrolHorsefly]
+			BountyOnKill=3000000;
+			</Description>
+		</EntityComponent>
+	</EntityComponents>
+</Definitions>

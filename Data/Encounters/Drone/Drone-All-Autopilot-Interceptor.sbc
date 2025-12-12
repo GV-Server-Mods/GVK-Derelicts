@@ -1,48 +1,11 @@
 <?xml version="1.0"?>
 <Definitions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
 	<EntityComponents>
-		<!-- SmallFlyer-Interceptor Patrol to Hosrefly Behavior -->
-		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
-			<Id>
-				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Drone-Behavior-SmallPatrolHorseflyInterceptor</SubtypeId>
-			</Id>
-			<Description>
-			[RivalAI Behavior]
-			[BehaviorName:Patrol]
-			[UseStaticGuns:true]
-			[UseTurrets:true]
-			[MaxStaticWeaponRange:-1]
-			[WeaponMaxAngleFromTarget:180]
-			[UseAmmoReplenish:true]
-			[AmmoReplenishClipAmount:10]
-			[MaxAmmoReplenishments:99999999]
-			[UsePlayerDistanceTimer:true]
-			[PlayerDistanceTimerTrigger:900]
-			[PlayerDistanceTrigger:3000]
-			[UseNoTargetTimer:true]
-			[NoTargetTimerTrigger:900]
-			[UseRetreatTimer:false]
-			[TargetData:GVK-Universal-Target-EnemyGrids2km]
-			[AutopilotData:GVK-Drone-Autopilot-SmallPatrolHorseflyInterceptor-Passive]
-			[SecondaryAutopilotData:GVK-Drone-Autopilot-SmallPatrolHorseflyInterceptor-Aggressive]
-			[WeaponSystem:GVK-Universal-Weapons-Static90]
-			[Triggers:GVK-Drone-All-Trigger-BarrelRoll]
-			[Triggers:GVK-Drone-All-Trigger-TargetAttacker]
-			[Triggers:GVK-Drone-All-Trigger-WeaponsToMaxRange]
-			[Triggers:GVK-Universal-Trigger-GAALSIEN-TargetAcquiredChatter]
-			[Triggers:GVK-Drone-Encounter-Trigger-SpawnSmallCOALITIONAttackers]
-			[TriggerGroups:GVK-Drone-Encounter-TriggerGroup-InactivityRetreat]
-			[TriggerGroups:GVK-Drone-All-TriggerGroup-PatrolHorsefly]
-			[TriggerGroups:GVK-Drone-All-TriggerGroup-SmallFlyerDefeated]
-			BountyOnKill=500000;
-			</Description>
-		</EntityComponent>
 		<!-- SmallFlyer-Interceptor Passive Autopilot -->
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Drone-Autopilot-SmallPatrolHorseflyInterceptor-Passive</SubtypeId>
+				<SubtypeId>GVK-Drone-Autopilot-Interceptor-Passive</SubtypeId>
 			</Id>
 			<Description>
 			[RivalAI Autopilot]
@@ -78,7 +41,7 @@
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Drone-Autopilot-SmallPatrolHorseflyInterceptor-Aggressive</SubtypeId>
+				<SubtypeId>GVK-Drone-Autopilot-Interceptor-Aggressive</SubtypeId>
 			</Id>
 			<Description>
 			[RivalAI Autopilot]

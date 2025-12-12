@@ -1,45 +1,10 @@
 <Definitions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
 	<EntityComponents>
-		<!-- SmallHoverHorseFighter Behavior -->
-		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
-			<Id>
-				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Drone-All-Behavior-SmallHoverHorseFighter</SubtypeId>
-			</Id>
-			<Description>
-			[RivalAI Behavior]
-			[BehaviorName:Patrol]
-			[UseStaticGuns:true]
-			[UseTurrets:true]
-			[MaxStaticWeaponRange:-1]
-			[WeaponMaxAngleFromTarget:180]
-			[UseAmmoReplenish:true]
-			[AmmoReplenishClipAmount:10]
-			[MaxAmmoReplenishments:99999999]
-			[UsePlayerDistanceTimer:true]
-			[PlayerDistanceTimerTrigger:900]
-			[PlayerDistanceTrigger:3000]
-			[UseNoTargetTimer:true]
-			[NoTargetTimerTrigger:900]
-			[UseRetreatTimer:false]
-			[HorseFighterTimeApproaching:10]
-			[HorseFighterTimeEngaging:10]
-			[TargetData:GVK-Universal-Target-EnemyGrids2km]
-			[AutopilotData:GVK-Drone-All-Autopilot-SmallHoverHorseFighter-Patrol]
-			[SecondaryAutopilotData:GVK-Drone-All-Autopilot-SmallHoverHorseFighter-HorseFighter]
-			[Triggers:GVK-Drone-All-Trigger-TargetAttacker]
-			[Triggers:GVK-Drone-All-Trigger-WeaponsToMaxRange]
-			[TriggerGroups:GVK-Drone-Encounter-TriggerGroup-InactivityRetreat]
-			[TriggerGroups:GVK-Drone-All-TriggerGroup-PatrolHorseFighter]
-			[TriggerGroups:GVK-Drone-All-TriggerGroup-SmallHoverDefeated]
-			BountyOnKill=500000;
-			</Description>
-		</EntityComponent>
 		<!-- SmallHoverHorseFighter Autopilot -->
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Drone-All-Autopilot-SmallHoverHorseFighter-Patrol</SubtypeId>
+				<SubtypeId>GVK-Drone-All-Autopilot-Sandskimmer-Patrol</SubtypeId>
 			</Id>
 			<Description>
 			[RivalAI Autopilot]
@@ -79,7 +44,7 @@
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Drone-All-Autopilot-SmallHoverHorseFighter-HorseFighter</SubtypeId>
+				<SubtypeId>GVK-Drone-All-Autopilot-Sandskimmer-HorseFighter</SubtypeId>
 			</Id>
 			<Description>
 			[RivalAI Autopilot]

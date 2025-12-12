@@ -1,27 +1,25 @@
 <?xml version="1.0"?>
 <Definitions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
 	<EntityComponents>
-		<!-- Flyers add the crashed trigger -->
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Drone-All-TriggerGroup-SmallCOALITIONFlyerDefeated</SubtypeId>
+				<SubtypeId>GVK-Drone-All-TriggerGroup-SmallRoverDefeated</SubtypeId>
 			</Id>
 			<Description>
 			[RivalAI TriggerGroup]
-			[Triggers:GVK-Drone-All-ManualTrigger-SmallCOALITIONFlyerDefeated]
-			[Triggers:GVK-Drone-All-Trigger-SmallCOALITIONFlyerCrashed]			
-			[Triggers:GVK-Drone-All-Trigger-SmallCOALITIONFlyerCompromised]			
-			[Triggers:GVK-Drone-All-Trigger-SmallCOALITIONFlyerBeaconDisabled]			
-			[Triggers:GVK-Drone-All-Trigger-SmallCOALITIONFlyerNoWeapon]			
+			[Triggers:GVK-Drone-All-ManualTrigger-SmallRoverDefeated]
+			[Triggers:GVK-Drone-All-Trigger-SmallRoverCompromised]			
+			[Triggers:GVK-Drone-All-Trigger-SmallRoverBeaconDisabled]			
+			[Triggers:GVK-Drone-All-Trigger-SmallRoverNoWeapon]			
 			</Description>
 		</EntityComponent>
-		<!-- Manual Trigger sequence small NPC is defeated through Compromised, Beacon, Crashed or NoWeapon (instant delete) -->
+		<!-- Manual Trigger sequence small NPC is defeated through Compromised, Beacon, or NoWeapon (instant delete) -->
 		<!-- this is used to prevent multiple different defeated actions running at the same time -->
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Drone-All-ManualTrigger-SmallCOALITIONFlyerDefeated</SubtypeId>
+				<SubtypeId>GVK-Drone-All-ManualTrigger-SmallRoverDefeated</SubtypeId>
 			</Id>
 			<Description>
 			[RivalAI Trigger]
@@ -30,24 +28,24 @@
 			[StartsReady:true]
 			[MaxActions:1]
 			[ActionExecution:All]
-			[Actions:GVK-Drone-All-Action-SmallCOALITIONFlyerDefeated]
+			[Actions:GVK-Universal-Action-EditableOnCompromised]
+			[Actions:GVK-Drone-All-Action-SmallRoverDefeated]
 			[Actions:GVK-Universal-Action-SmallExplosionEffects]
 			</Description>
 		</EntityComponent>
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Drone-All-Action-SmallCOALITIONFlyerDefeated</SubtypeId>
+				<SubtypeId>GVK-Drone-All-Action-SmallRoverDefeated</SubtypeId>
 			</Id>
 			<Description>
 			[RivalAI Action]
 			[UseChatBroadcast:true]
-			[ChatData:GVK-Drone-All-Chat-SmallCOALITIONFlyerDefeated]
+			[ChatData:GVK-Drone-All-Chat-SmallRoverDefeated]
 			[DisableTriggers:true]
-			[DisableTriggerNames:GVK-Drone-All-Trigger-SmallCOALITIONFlyerCrashed]			
-			[DisableTriggerNames:GVK-Drone-All-Trigger-SmallCOALITIONFlyerCompromised]			
-			[DisableTriggerNames:GVK-Drone-All-Trigger-SmallCOALITIONFlyerBeaconDisabled]			
-			[DisableTriggerNames:GVK-Drone-All-Trigger-SmallCOALITIONFlyerNoWeapon]			
+			[DisableTriggerNames:GVK-Drone-All-Trigger-SmallRoverCompromised]			
+			[DisableTriggerNames:GVK-Drone-All-Trigger-SmallRoverBeaconDisabled]			
+			[DisableTriggerNames:GVK-Drone-All-Trigger-SmallRoverNoWeapon]			
 			[TerminateBehavior:true]
 			[ForceDespawn:true]
 			</Description>
@@ -55,7 +53,7 @@
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Drone-All-Chat-SmallCOALITIONFlyerDefeated</SubtypeId>
+				<SubtypeId>GVK-Drone-All-Chat-SmallRoverDefeated</SubtypeId>
 			</Id>
 			<Description>
 			[RivalAI Chat]
@@ -66,7 +64,7 @@
 			[BroadcastRandomly:true]
 			[Author:Sensors]
 			[Color:Blue]
-			[ChatMessages:{Faction} aircraft destroyed.]
+			[ChatMessages:{Faction} Craft destroyed.]
 			[ChatAudio:ArcHudSensors]
 			[BroadcastChatType:Notify]
 			[SendToAllOnlinePlayers:false]
@@ -74,52 +72,16 @@
 			[IgnoredAntennaRangeOverride:10000]
 			</Description>
 		</EntityComponent>
-		<!-- Trigger sequence when small NPC crashes into the ground (instant delete) -->
+		<!-- shared action since compromised/nobeacon/noweapon would be identical -->
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Drone-All-Trigger-SmallCOALITIONFlyerCrashed</SubtypeId>
-			</Id>
-			<Description>
-			[RivalAI Trigger]
-			[Type:Timer]
-			[UseTrigger:true]
-			[StartsReady:false]
-			[MinCooldownMs:5000]
-			[MaxCooldownMs:5001]
-			[MaxActions:1]
-			[Conditions:GVK-Drone-All-Condition-SmallCOALITIONFlyerCrashed]
-			[ActionExecution:All]
-			[Actions:GVK-Drone-All-Action-ManualTriggerSmallCOALITIONFlyerDefeated]
-			</Description>
-		</EntityComponent>
-		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
-			<Id>
-				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Drone-All-Condition-SmallCOALITIONFlyerCrashed</SubtypeId>
-			</Id>
-			<Description>
-			[RivalAI Condition]
-			[UseConditions:true]
-			[MatchAnyCondition:false]
-			[CheckGridSpeed:true]
-			[MinGridSpeed:0]
-			[MaxGridSpeed:10]
-			[AltitudeCheck:true]
-			[MinAltitude:-999999]
-			[MaxAltitude:7]
-			</Description>
-		</EntityComponent>
-		<!-- shared action since compromised/crashed/nobeacon/noweapon would be identical -->
-		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
-			<Id>
-				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Drone-All-Action-ManualTriggerSmallCOALITIONFlyerDefeated</SubtypeId>
+				<SubtypeId>GVK-Drone-All-Action-ManualTriggerSmallRoverDefeated</SubtypeId>
 			</Id>
 			<Description>
 			[RivalAI Action]
 			[ManuallyActivateTrigger:true]
-			[ManuallyActivatedTriggerNames:GVK-Drone-All-ManualTrigger-SmallCOALITIONFlyerDefeated]
+			[ManuallyActivatedTriggerNames:GVK-Drone-All-ManualTrigger-SmallRoverDefeated]
 			[ForceManualTriggerActivation:true]
 			</Description>
 		</EntityComponent>
@@ -127,7 +89,7 @@
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Drone-All-Trigger-SmallCOALITIONFlyerCompromised</SubtypeId>
+				<SubtypeId>GVK-Drone-All-Trigger-SmallRoverCompromised</SubtypeId>
 			</Id>
 			<Description>
 			[RivalAI Trigger]
@@ -136,14 +98,14 @@
 			[StartsReady:true]
 			[MaxActions:1]
 			[ActionExecution:All]
-			[Actions:GVK-Drone-All-Action-ManualTriggerSmallCOALITIONFlyerDefeated]
+			[Actions:GVK-Drone-All-Action-ManualTriggerSmallRoverDefeated]
 			</Description>
 		</EntityComponent>
 		<!-- Trigger sequence when small NPC Beacon is disabled -->
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Drone-All-Trigger-SmallCOALITIONFlyerBeaconDisabled</SubtypeId>
+				<SubtypeId>GVK-Drone-All-Trigger-SmallRoverBeaconDisabled</SubtypeId>
 			</Id>
 			<Description>
 			[RivalAI Trigger]
@@ -153,14 +115,14 @@
 			[Conditions:GVK-Universal-Condition-AllBeaconsDisabled]
 			[MaxActions:1]
 			[ActionExecution:All]
-			[Actions:GVK-Drone-All-Action-ManualTriggerSmallCOALITIONFlyerDefeated]
+			[Actions:GVK-Drone-All-Action-ManualTriggerSmallRoverDefeated]
 			</Description>
 		</EntityComponent>
 		<!-- Random chance to ram or die when out of weapons -->
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Drone-All-Trigger-SmallCOALITIONFlyerNoWeapon</SubtypeId>
+				<SubtypeId>GVK-Drone-All-Trigger-SmallRoverNoWeapon</SubtypeId>
 			</Id>
 			<Description>
 			[RivalAI Trigger]
@@ -171,14 +133,14 @@
 			[MaxCooldownMs:10001]
 			[MaxActions:1]
 			[ActionExecution:Random]
-			[Actions:GVK-Drone-All-Action-SmallCOALITIONFlyerNoWeapon]
-			[Actions:GVK-Drone-All-Action-ManualTriggerSmallCOALITIONFlyerDefeated]
+			[Actions:GVK-Drone-All-Action-SmallRoverNoWeapon]
+			[Actions:GVK-Drone-All-Action-ManualTriggerSmallRoverDefeated]
 			</Description>
 		</EntityComponent>
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Drone-All-Action-SmallCOALITIONFlyerNoWeapon</SubtypeId>
+				<SubtypeId>GVK-Drone-All-Action-SmallRoverNoWeapon</SubtypeId>
 			</Id>
 			<Description>
 			[RivalAI Action]

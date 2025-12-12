@@ -1,0 +1,39 @@
+<?xml version="1.0"?>
+<Definitions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+	<EntityComponents>
+		<!-- COALITION Strike Fighter Behavior -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Drone-All-Behavior-StrikeFighter-COALITION</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Behavior]
+			[BehaviorName:Patrol]
+			[WeaponSystem:GVK-Universal-Weapons-Static90]
+			[UsePlayerDistanceTimer:true]
+			[PlayerDistanceTimerTrigger:900]
+			[PlayerDistanceTrigger:3000]
+			[UseNoTargetTimer:true]
+			[NoTargetTimerTrigger:900]
+			[UseRetreatTimer:false]
+			[HorseFighterTimeApproaching:10]
+			[HorseFighterTimeEngaging:10]
+			[TargetData:GVK-Universal-Target-EnemyGAALSIENBeacon]
+			[AutopilotData:GVK-Drone-All-Autopilot-StrikeFighter-Patrol]
+			[SecondaryAutopilotData:GVK-Drone-All-Autopilot-StrikeFighter-Strike]
+			[Triggers:GVK-Universal-Trigger-TargetAcquiredChatter]
+			[Triggers:GVK-Universal-Trigger-NoTargetsChatter]
+			[Triggers:GVK-Drone-All-Trigger-TargetAttacker]
+			[Triggers:GVK-Drone-All-Trigger-TurretTarget]
+			[Triggers:GVK-Drone-All-Trigger-WeaponsToMaxRange]
+			[Triggers:GVK-Drone-All-Trigger-BarrelRoll]
+			[Triggers:GVK-Universal-Trigger-UneditableOnSpawn]
+			[Triggers:GVK-Drone-Encounter-Trigger-SpawnSmallGAALSIENAttackers]
+			[TriggerGroups:GVK-Drone-Encounter-TriggerGroup-InactivityRetreat]
+			[TriggerGroups:GVK-Drone-All-TriggerGroup-PatrolStrike]
+			[TriggerGroups:GVK-Drone-All-TriggerGroup-SmallFlyerDefeated]
+			</Description>
+		</EntityComponent>
+	</EntityComponents>
+</Definitions>

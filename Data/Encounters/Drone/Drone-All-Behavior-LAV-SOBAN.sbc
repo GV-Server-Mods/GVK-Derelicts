@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<Definitions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+	<EntityComponents>
+		<!-- LAV Hover Drone Behavior -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Drone-All-Behavior-LAV-SOBAN</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Behavior]
+			[BehaviorName:Patrol]
+			[UsePlayerDistanceTimer:true]
+			[PlayerDistanceTimerTrigger:1800]
+			[PlayerDistanceTrigger:4000]
+			[UseNoTargetTimer:false]
+			[UseRetreatTimer:true]
+			[RetreatTimerTrigger:1800]
+			[RetreatDespawnDistance:2000]
+			[AutopilotData:GVK-Drone-All-Autopilot-LAV]
+			[TargetData:GVK-Universal-Target-EnemyGrids2km]
+			[Triggers:GVK-Universal-Trigger-TargetAcquiredChatter]
+			[Triggers:GVK-Universal-Trigger-NoTargetsChatter]
+			[Triggers:GVK-Drone-All-Trigger-TargetAttacker]
+			[Triggers:GVK-Drone-All-Trigger-TurretTarget]
+			[Triggers:GVK-Drone-All-Trigger-WeaponsToMaxRange]
+			[TriggerGroups:GVK-Drone-All-TriggerGroup-SmallRoverDefeated]
+			[TriggerGroups:GVK-Alliance-TriggerGroup-PointsDroneSmall-SOBAN]
+			BountyOnKill=500000;
+			</Description>
+		</EntityComponent>
+	</EntityComponents>
+</Definitions>
