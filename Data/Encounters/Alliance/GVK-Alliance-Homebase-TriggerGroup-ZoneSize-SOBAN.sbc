@@ -4,25 +4,25 @@
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Alliance-Homebase-TriggerGroup-KHAANEPHZones</SubtypeId>
+				<SubtypeId>GVK-Alliance-Homebase-TriggerGroup-ZoneSize-SOBAN</SubtypeId>
 			</Id>
 			<Description>
 			[RivalAI TriggerGroup]
-			[Triggers:GVK-Alliance-Homebase-Trigger-EnableZone20000-KHAANEPH]
-			[Triggers:GVK-Alliance-Homebase-Trigger-DisableZone20000-KHAANEPH]
-			[Triggers:GVK-Alliance-Homebase-Trigger-EnableZone30000-KHAANEPH]
-			[Triggers:GVK-Alliance-Homebase-Trigger-DisableZone30000-KHAANEPH]
-			[Triggers:GVK-Alliance-Homebase-Trigger-EnableZone40000-KHAANEPH]
-			[Triggers:GVK-Alliance-Homebase-Trigger-DisableZone40000-KHAANEPH]
-			[Triggers:GVK-Alliance-Homebase-Trigger-EnableZone50000-KHAANEPH]
-			[Triggers:GVK-Alliance-Homebase-Trigger-DisableZone50000-KHAANEPH]
+			[Triggers:GVK-Alliance-Homebase-Trigger-EnableZone20000-SOBAN]
+			[Triggers:GVK-Alliance-Homebase-Trigger-DisableZone20000-SOBAN]
+			[Triggers:GVK-Alliance-Homebase-Trigger-EnableZone30000-SOBAN]
+			[Triggers:GVK-Alliance-Homebase-Trigger-DisableZone30000-SOBAN]
+			[Triggers:GVK-Alliance-Homebase-Trigger-EnableZone40000-SOBAN]
+			[Triggers:GVK-Alliance-Homebase-Trigger-DisableZone40000-SOBAN]
+			[Triggers:GVK-Alliance-Homebase-Trigger-EnableZone50000-SOBAN]
+			[Triggers:GVK-Alliance-Homebase-Trigger-DisableZone50000-SOBAN]
 			</Description>
 		</EntityComponent>
 		<!-- Trigger to check and enable 2000m Alliance Zone -->
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Alliance-Homebase-Trigger-EnableZone20000-KHAANEPH</SubtypeId>
+				<SubtypeId>GVK-Alliance-Homebase-Trigger-EnableZone20000-SOBAN</SubtypeId>
 			</Id>
 			<Description>
 			[MES AI Trigger]
@@ -32,24 +32,24 @@
 			[MaxCooldownMs:10001]
 			[StartsReady:false]
 			[MaxActions:-1]
-			[Actions:GVK-Alliance-Homebase-Action-EnableZone20000-KHAANEPH]
-			[Conditions:GVK-Alliance-Homebase-Condition-EnableZone20000-KHAANEPH]
+			[Actions:GVK-Alliance-Homebase-Action-EnableZone20000-SOBAN]
+			[Conditions:GVK-Alliance-Homebase-Condition-EnableZone20000-SOBAN]
 			[ConditionCheckResetsTimer:true]
-			[ToggleWithTriggerProfile:GVK-Alliance-Homebase-Trigger-DisableZone20000-KHAANEPH]
+			[ToggleWithTriggerProfile:GVK-Alliance-Homebase-Trigger-DisableZone20000-SOBAN]
 			[ToggledProfileResetsCooldown:true]
 			</Description>
 		</EntityComponent>
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Alliance-Homebase-Condition-EnableZone20000-KHAANEPH</SubtypeId>
+				<SubtypeId>GVK-Alliance-Homebase-Condition-EnableZone20000-SOBAN</SubtypeId>
 			</Id>
 			<Description>
 			[RivalAI Condition]
 			[UseConditions:true]
 			[MatchAnyCondition:false]
 			[CheckCustomSandboxCounters:true]
-			[CustomSandboxCounters:KHAANEPH_Points]
+			[CustomSandboxCounters:SOBAN_Points]
 			[CustomSandboxCountersTargets:100]
 			[SandboxCounterCompareTypes:GreaterOrEqual]
 			</Description>
@@ -57,24 +57,24 @@
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Alliance-Homebase-Action-EnableZone20000-KHAANEPH</SubtypeId>
+				<SubtypeId>GVK-Alliance-Homebase-Action-EnableZone20000-SOBAN</SubtypeId>
 			</Id>
 			<Description>
 			[MES AI Action]
 			[ChangeZoneAtPosition:true]
-			[ZoneName:KHAANEPH_Zone_20000]
+			[ZoneName:SOBAN_Zone_20000]
 			[ZoneToggleActive:true]
 			[ZoneToggleActiveMode:true]
 			[ZoneRadiusChangeType:Set]
 			[ZoneRadiusChangeAmount:20000]
 			[UseChatBroadcast:true]
-			[ChatData:GVK-Alliance-Homebase-Chat-EnableZone20000-KHAANEPH]
+			[ChatData:GVK-Alliance-Homebase-Chat-EnableZone20000-SOBAN]
 			</Description>
 		</EntityComponent>
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Alliance-Homebase-Chat-EnableZone20000-KHAANEPH</SubtypeId>
+				<SubtypeId>GVK-Alliance-Homebase-Chat-EnableZone20000-SOBAN</SubtypeId>
 			</Id>
 			<Description>
 			[RivalAI Chat]
@@ -83,7 +83,7 @@
 			[Chance:100]
 			[MaxChats:-1]
 			[BroadcastRandomly:false]
-			[Author:KHAANEPH]
+			[Author:SOBAN]
 			[Color:White]
 			[ChatMessages:Zone 2000 enabled.]
 			[ChatAudio:ArcHudGPSNotification2]
@@ -97,7 +97,7 @@
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Alliance-Homebase-Trigger-DisableZone20000-KHAANEPH</SubtypeId>
+				<SubtypeId>GVK-Alliance-Homebase-Trigger-DisableZone20000-SOBAN</SubtypeId>
 			</Id>
 			<Description>
 			[MES AI Trigger]
@@ -107,24 +107,24 @@
 			[MaxCooldownMs:10001]
 			[StartsReady:false]
 			[MaxActions:-1]
-			[Actions:GVK-Alliance-Homebase-Action-DisableZone20000-KHAANEPH]
-			[Conditions:GVK-Alliance-Homebase-Condition-DisableZone20000-KHAANEPH]
+			[Actions:GVK-Alliance-Homebase-Action-DisableZone20000-SOBAN]
+			[Conditions:GVK-Alliance-Homebase-Condition-DisableZone20000-SOBAN]
 			[ConditionCheckResetsTimer:true]
-			[ToggleWithTriggerProfile:GVK-Alliance-Homebase-Trigger-EnableZone20000-KHAANEPH]
+			[ToggleWithTriggerProfile:GVK-Alliance-Homebase-Trigger-EnableZone20000-SOBAN]
 			[ToggledProfileResetsCooldown:true]
 			</Description>
 		</EntityComponent>
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Alliance-Homebase-Condition-DisableZone20000-KHAANEPH</SubtypeId>
+				<SubtypeId>GVK-Alliance-Homebase-Condition-DisableZone20000-SOBAN</SubtypeId>
 			</Id>
 			<Description>
 			[RivalAI Condition]
 			[UseConditions:true]
 			[MatchAnyCondition:false]
 			[CheckCustomSandboxCounters:true]
-			[CustomSandboxCounters:KHAANEPH_Points]
+			[CustomSandboxCounters:SOBAN_Points]
 			[CustomSandboxCountersTargets:100]
 			[SandboxCounterCompareTypes:Less]
 			</Description>
@@ -132,24 +132,24 @@
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Alliance-Homebase-Action-DisableZone20000-KHAANEPH</SubtypeId>
+				<SubtypeId>GVK-Alliance-Homebase-Action-DisableZone20000-SOBAN</SubtypeId>
 			</Id>
 			<Description>
 			[MES AI Action]
 			[ChangeZoneAtPosition:true]
-			[ZoneName:KHAANEPH_Zone_20000]
+			[ZoneName:SOBAN_Zone_20000]
 			[ZoneToggleActive:true]
 			[ZoneToggleActiveMode:false]
 			[ZoneRadiusChangeType:Set]
 			[ZoneRadiusChangeAmount:1]
 			[UseChatBroadcast:true]
-			[ChatData:GVK-Alliance-Homebase-Chat-DisableZone20000-KHAANEPH]
+			[ChatData:GVK-Alliance-Homebase-Chat-DisableZone20000-SOBAN]
 			</Description>
 		</EntityComponent>
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Alliance-Homebase-Chat-DisableZone20000-KHAANEPH</SubtypeId>
+				<SubtypeId>GVK-Alliance-Homebase-Chat-DisableZone20000-SOBAN</SubtypeId>
 			</Id>
 			<Description>
 			[RivalAI Chat]
@@ -158,7 +158,7 @@
 			[Chance:100]
 			[MaxChats:-1]
 			[BroadcastRandomly:false]
-			[Author:KHAANEPH]
+			[Author:SOBAN]
 			[Color:White]
 			[ChatMessages:Zone 2000 disabled.]
 			[ChatAudio:ArcHudGPSNotification2]
@@ -172,7 +172,7 @@
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Alliance-Homebase-Trigger-EnableZone30000-KHAANEPH</SubtypeId>
+				<SubtypeId>GVK-Alliance-Homebase-Trigger-EnableZone30000-SOBAN</SubtypeId>
 			</Id>
 			<Description>
 			[MES AI Trigger]
@@ -182,24 +182,24 @@
 			[MaxCooldownMs:10001]
 			[StartsReady:false]
 			[MaxActions:-1]
-			[Actions:GVK-Alliance-Homebase-Action-EnableZone30000-KHAANEPH]
-			[Conditions:GVK-Alliance-Homebase-Condition-EnableZone30000-KHAANEPH]
+			[Actions:GVK-Alliance-Homebase-Action-EnableZone30000-SOBAN]
+			[Conditions:GVK-Alliance-Homebase-Condition-EnableZone30000-SOBAN]
 			[ConditionCheckResetsTimer:true]
-			[ToggleWithTriggerProfile:GVK-Alliance-Homebase-Trigger-DisableZone30000-KHAANEPH]
+			[ToggleWithTriggerProfile:GVK-Alliance-Homebase-Trigger-DisableZone30000-SOBAN]
 			[ToggledProfileResetsCooldown:true]
 			</Description>
 		</EntityComponent>
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Alliance-Homebase-Condition-EnableZone30000-KHAANEPH</SubtypeId>
+				<SubtypeId>GVK-Alliance-Homebase-Condition-EnableZone30000-SOBAN</SubtypeId>
 			</Id>
 			<Description>
 			[RivalAI Condition]
 			[UseConditions:true]
 			[MatchAnyCondition:false]
 			[CheckCustomSandboxCounters:true]
-			[CustomSandboxCounters:KHAANEPH_Points]
+			[CustomSandboxCounters:SOBAN_Points]
 			[CustomSandboxCountersTargets:300]
 			[SandboxCounterCompareTypes:GreaterOrEqual]
 			</Description>
@@ -207,24 +207,24 @@
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Alliance-Homebase-Action-EnableZone30000-KHAANEPH</SubtypeId>
+				<SubtypeId>GVK-Alliance-Homebase-Action-EnableZone30000-SOBAN</SubtypeId>
 			</Id>
 			<Description>
 			[MES AI Action]
 			[ChangeZoneAtPosition:true]
-			[ZoneName:KHAANEPH_Zone_30000]
+			[ZoneName:SOBAN_Zone_30000]
 			[ZoneToggleActive:true]
 			[ZoneToggleActiveMode:true]
 			[ZoneRadiusChangeType:Set]
 			[ZoneRadiusChangeAmount:30000]
 			[UseChatBroadcast:true]
-			[ChatData:GVK-Alliance-Homebase-Chat-EnableZone30000-KHAANEPH]
+			[ChatData:GVK-Alliance-Homebase-Chat-EnableZone30000-SOBAN]
 			</Description>
 		</EntityComponent>
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Alliance-Homebase-Chat-EnableZone30000-KHAANEPH</SubtypeId>
+				<SubtypeId>GVK-Alliance-Homebase-Chat-EnableZone30000-SOBAN</SubtypeId>
 			</Id>
 			<Description>
 			[RivalAI Chat]
@@ -233,7 +233,7 @@
 			[Chance:100]
 			[MaxChats:-1]
 			[BroadcastRandomly:false]
-			[Author:KHAANEPH]
+			[Author:SOBAN]
 			[Color:White]
 			[ChatMessages:Zone 3000 enabled.]
 			[ChatAudio:ArcHudGPSNotification2]
@@ -247,7 +247,7 @@
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Alliance-Homebase-Trigger-DisableZone30000-KHAANEPH</SubtypeId>
+				<SubtypeId>GVK-Alliance-Homebase-Trigger-DisableZone30000-SOBAN</SubtypeId>
 			</Id>
 			<Description>
 			[MES AI Trigger]
@@ -257,24 +257,24 @@
 			[MaxCooldownMs:10001]
 			[StartsReady:false]
 			[MaxActions:-1]
-			[Actions:GVK-Alliance-Homebase-Action-DisableZone30000-KHAANEPH]
-			[Conditions:GVK-Alliance-Homebase-Condition-DisableZone30000-KHAANEPH]
+			[Actions:GVK-Alliance-Homebase-Action-DisableZone30000-SOBAN]
+			[Conditions:GVK-Alliance-Homebase-Condition-DisableZone30000-SOBAN]
 			[ConditionCheckResetsTimer:true]
-			[ToggleWithTriggerProfile:GVK-Alliance-Homebase-Trigger-EnableZone30000-KHAANEPH]
+			[ToggleWithTriggerProfile:GVK-Alliance-Homebase-Trigger-EnableZone30000-SOBAN]
 			[ToggledProfileResetsCooldown:true]
 			</Description>
 		</EntityComponent>
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Alliance-Homebase-Condition-DisableZone30000-KHAANEPH</SubtypeId>
+				<SubtypeId>GVK-Alliance-Homebase-Condition-DisableZone30000-SOBAN</SubtypeId>
 			</Id>
 			<Description>
 			[RivalAI Condition]
 			[UseConditions:true]
 			[MatchAnyCondition:false]
 			[CheckCustomSandboxCounters:true]
-			[CustomSandboxCounters:KHAANEPH_Points]
+			[CustomSandboxCounters:SOBAN_Points]
 			[CustomSandboxCountersTargets:300]
 			[SandboxCounterCompareTypes:Less]
 			</Description>
@@ -282,24 +282,24 @@
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Alliance-Homebase-Action-DisableZone30000-KHAANEPH</SubtypeId>
+				<SubtypeId>GVK-Alliance-Homebase-Action-DisableZone30000-SOBAN</SubtypeId>
 			</Id>
 			<Description>
 			[MES AI Action]
 			[ChangeZoneAtPosition:true]
-			[ZoneName:KHAANEPH_Zone_30000]
+			[ZoneName:SOBAN_Zone_30000]
 			[ZoneToggleActive:true]
 			[ZoneToggleActiveMode:false]
 			[ZoneRadiusChangeType:Set]
 			[ZoneRadiusChangeAmount:1]
 			[UseChatBroadcast:true]
-			[ChatData:GVK-Alliance-Homebase-Chat-DisableZone30000-KHAANEPH]
+			[ChatData:GVK-Alliance-Homebase-Chat-DisableZone30000-SOBAN]
 			</Description>
 		</EntityComponent>
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Alliance-Homebase-Chat-DisableZone30000-KHAANEPH</SubtypeId>
+				<SubtypeId>GVK-Alliance-Homebase-Chat-DisableZone30000-SOBAN</SubtypeId>
 			</Id>
 			<Description>
 			[RivalAI Chat]
@@ -308,7 +308,7 @@
 			[Chance:100]
 			[MaxChats:-1]
 			[BroadcastRandomly:false]
-			[Author:KHAANEPH]
+			[Author:SOBAN]
 			[Color:White]
 			[ChatMessages:Zone 3000 disabled.]
 			[ChatAudio:ArcHudGPSNotification2]
@@ -322,7 +322,7 @@
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Alliance-Homebase-Trigger-EnableZone40000-KHAANEPH</SubtypeId>
+				<SubtypeId>GVK-Alliance-Homebase-Trigger-EnableZone40000-SOBAN</SubtypeId>
 			</Id>
 			<Description>
 			[MES AI Trigger]
@@ -332,24 +332,24 @@
 			[MaxCooldownMs:10001]
 			[StartsReady:false]
 			[MaxActions:-1]
-			[Actions:GVK-Alliance-Homebase-Action-EnableZone40000-KHAANEPH]
-			[Conditions:GVK-Alliance-Homebase-Condition-EnableZone40000-KHAANEPH]
+			[Actions:GVK-Alliance-Homebase-Action-EnableZone40000-SOBAN]
+			[Conditions:GVK-Alliance-Homebase-Condition-EnableZone40000-SOBAN]
 			[ConditionCheckResetsTimer:true]
-			[ToggleWithTriggerProfile:GVK-Alliance-Homebase-Trigger-DisableZone40000-KHAANEPH]
+			[ToggleWithTriggerProfile:GVK-Alliance-Homebase-Trigger-DisableZone40000-SOBAN]
 			[ToggledProfileResetsCooldown:true]
 			</Description>
 		</EntityComponent>
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Alliance-Homebase-Condition-EnableZone40000-KHAANEPH</SubtypeId>
+				<SubtypeId>GVK-Alliance-Homebase-Condition-EnableZone40000-SOBAN</SubtypeId>
 			</Id>
 			<Description>
 			[RivalAI Condition]
 			[UseConditions:true]
 			[MatchAnyCondition:false]
 			[CheckCustomSandboxCounters:true]
-			[CustomSandboxCounters:KHAANEPH_Points]
+			[CustomSandboxCounters:SOBAN_Points]
 			[CustomSandboxCountersTargets:600]
 			[SandboxCounterCompareTypes:GreaterOrEqual]
 			</Description>
@@ -357,24 +357,24 @@
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Alliance-Homebase-Action-EnableZone40000-KHAANEPH</SubtypeId>
+				<SubtypeId>GVK-Alliance-Homebase-Action-EnableZone40000-SOBAN</SubtypeId>
 			</Id>
 			<Description>
 			[MES AI Action]
 			[ChangeZoneAtPosition:true]
-			[ZoneName:KHAANEPH_Zone_40000]
+			[ZoneName:SOBAN_Zone_40000]
 			[ZoneToggleActive:true]
 			[ZoneToggleActiveMode:true]
 			[ZoneRadiusChangeType:Set]
 			[ZoneRadiusChangeAmount:40000]
 			[UseChatBroadcast:true]
-			[ChatData:GVK-Alliance-Homebase-Chat-EnableZone40000-KHAANEPH]
+			[ChatData:GVK-Alliance-Homebase-Chat-EnableZone40000-SOBAN]
 			</Description>
 		</EntityComponent>
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Alliance-Homebase-Chat-EnableZone40000-KHAANEPH</SubtypeId>
+				<SubtypeId>GVK-Alliance-Homebase-Chat-EnableZone40000-SOBAN</SubtypeId>
 			</Id>
 			<Description>
 			[RivalAI Chat]
@@ -383,7 +383,7 @@
 			[Chance:100]
 			[MaxChats:-1]
 			[BroadcastRandomly:false]
-			[Author:KHAANEPH]
+			[Author:SOBAN]
 			[Color:White]
 			[ChatMessages:Zone 4000 enabled.]
 			[ChatAudio:ArcHudGPSNotification2]
@@ -397,7 +397,7 @@
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Alliance-Homebase-Trigger-DisableZone40000-KHAANEPH</SubtypeId>
+				<SubtypeId>GVK-Alliance-Homebase-Trigger-DisableZone40000-SOBAN</SubtypeId>
 			</Id>
 			<Description>
 			[MES AI Trigger]
@@ -407,24 +407,24 @@
 			[MaxCooldownMs:10001]
 			[StartsReady:false]
 			[MaxActions:-1]
-			[Actions:GVK-Alliance-Homebase-Action-DisableZone40000-KHAANEPH]
-			[Conditions:GVK-Alliance-Homebase-Condition-DisableZone40000-KHAANEPH]
+			[Actions:GVK-Alliance-Homebase-Action-DisableZone40000-SOBAN]
+			[Conditions:GVK-Alliance-Homebase-Condition-DisableZone40000-SOBAN]
 			[ConditionCheckResetsTimer:true]
-			[ToggleWithTriggerProfile:GVK-Alliance-Homebase-Trigger-EnableZone40000-KHAANEPH]
+			[ToggleWithTriggerProfile:GVK-Alliance-Homebase-Trigger-EnableZone40000-SOBAN]
 			[ToggledProfileResetsCooldown:true]
 			</Description>
 		</EntityComponent>
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Alliance-Homebase-Condition-DisableZone40000-KHAANEPH</SubtypeId>
+				<SubtypeId>GVK-Alliance-Homebase-Condition-DisableZone40000-SOBAN</SubtypeId>
 			</Id>
 			<Description>
 			[RivalAI Condition]
 			[UseConditions:true]
 			[MatchAnyCondition:false]
 			[CheckCustomSandboxCounters:true]
-			[CustomSandboxCounters:KHAANEPH_Points]
+			[CustomSandboxCounters:SOBAN_Points]
 			[CustomSandboxCountersTargets:600]
 			[SandboxCounterCompareTypes:Less]
 			</Description>
@@ -432,24 +432,24 @@
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Alliance-Homebase-Action-DisableZone40000-KHAANEPH</SubtypeId>
+				<SubtypeId>GVK-Alliance-Homebase-Action-DisableZone40000-SOBAN</SubtypeId>
 			</Id>
 			<Description>
 			[MES AI Action]
 			[ChangeZoneAtPosition:true]
-			[ZoneName:KHAANEPH_Zone_40000]
+			[ZoneName:SOBAN_Zone_40000]
 			[ZoneToggleActive:true]
 			[ZoneToggleActiveMode:false]
 			[ZoneRadiusChangeType:Set]
 			[ZoneRadiusChangeAmount:1]
 			[UseChatBroadcast:true]
-			[ChatData:GVK-Alliance-Homebase-Chat-DisableZone40000-KHAANEPH]
+			[ChatData:GVK-Alliance-Homebase-Chat-DisableZone40000-SOBAN]
 			</Description>
 		</EntityComponent>
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Alliance-Homebase-Chat-DisableZone40000-KHAANEPH</SubtypeId>
+				<SubtypeId>GVK-Alliance-Homebase-Chat-DisableZone40000-SOBAN</SubtypeId>
 			</Id>
 			<Description>
 			[RivalAI Chat]
@@ -458,7 +458,7 @@
 			[Chance:100]
 			[MaxChats:-1]
 			[BroadcastRandomly:false]
-			[Author:KHAANEPH]
+			[Author:SOBAN]
 			[Color:White]
 			[ChatMessages:Zone 4000 disabled.]
 			[ChatAudio:ArcHudGPSNotification2]
@@ -472,7 +472,7 @@
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Alliance-Homebase-Trigger-EnableZone50000-KHAANEPH</SubtypeId>
+				<SubtypeId>GVK-Alliance-Homebase-Trigger-EnableZone50000-SOBAN</SubtypeId>
 			</Id>
 			<Description>
 			[MES AI Trigger]
@@ -482,24 +482,24 @@
 			[MaxCooldownMs:10001]
 			[StartsReady:false]
 			[MaxActions:-1]
-			[Actions:GVK-Alliance-Homebase-Action-EnableZone50000-KHAANEPH]
-			[Conditions:GVK-Alliance-Homebase-Condition-EnableZone50000-KHAANEPH]
+			[Actions:GVK-Alliance-Homebase-Action-EnableZone50000-SOBAN]
+			[Conditions:GVK-Alliance-Homebase-Condition-EnableZone50000-SOBAN]
 			[ConditionCheckResetsTimer:true]
-			[ToggleWithTriggerProfile:GVK-Alliance-Homebase-Trigger-DisableZone50000-KHAANEPH]
+			[ToggleWithTriggerProfile:GVK-Alliance-Homebase-Trigger-DisableZone50000-SOBAN]
 			[ToggledProfileResetsCooldown:true]
 			</Description>
 		</EntityComponent>
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Alliance-Homebase-Condition-EnableZone50000-KHAANEPH</SubtypeId>
+				<SubtypeId>GVK-Alliance-Homebase-Condition-EnableZone50000-SOBAN</SubtypeId>
 			</Id>
 			<Description>
 			[RivalAI Condition]
 			[UseConditions:true]
 			[MatchAnyCondition:false]
 			[CheckCustomSandboxCounters:true]
-			[CustomSandboxCounters:KHAANEPH_Points]
+			[CustomSandboxCounters:SOBAN_Points]
 			[CustomSandboxCountersTargets:1000]
 			[SandboxCounterCompareTypes:GreaterOrEqual]
 			</Description>
@@ -507,24 +507,24 @@
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Alliance-Homebase-Action-EnableZone50000-KHAANEPH</SubtypeId>
+				<SubtypeId>GVK-Alliance-Homebase-Action-EnableZone50000-SOBAN</SubtypeId>
 			</Id>
 			<Description>
 			[MES AI Action]
 			[ChangeZoneAtPosition:true]
-			[ZoneName:KHAANEPH_Zone_50000]
+			[ZoneName:SOBAN_Zone_50000]
 			[ZoneToggleActive:true]
 			[ZoneToggleActiveMode:true]
 			[ZoneRadiusChangeType:Set]
 			[ZoneRadiusChangeAmount:50000]
 			[UseChatBroadcast:true]
-			[ChatData:GVK-Alliance-Homebase-Chat-EnableZone50000-KHAANEPH]
+			[ChatData:GVK-Alliance-Homebase-Chat-EnableZone50000-SOBAN]
 			</Description>
 		</EntityComponent>
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Alliance-Homebase-Chat-EnableZone50000-KHAANEPH</SubtypeId>
+				<SubtypeId>GVK-Alliance-Homebase-Chat-EnableZone50000-SOBAN</SubtypeId>
 			</Id>
 			<Description>
 			[RivalAI Chat]
@@ -533,7 +533,7 @@
 			[Chance:100]
 			[MaxChats:-1]
 			[BroadcastRandomly:false]
-			[Author:KHAANEPH]
+			[Author:SOBAN]
 			[Color:White]
 			[ChatMessages:Zone 5000 enabled.]
 			[ChatAudio:ArcHudGPSNotification2]
@@ -547,7 +547,7 @@
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Alliance-Homebase-Trigger-DisableZone50000-KHAANEPH</SubtypeId>
+				<SubtypeId>GVK-Alliance-Homebase-Trigger-DisableZone50000-SOBAN</SubtypeId>
 			</Id>
 			<Description>
 			[MES AI Trigger]
@@ -557,24 +557,24 @@
 			[MaxCooldownMs:10001]
 			[StartsReady:false]
 			[MaxActions:-1]
-			[Actions:GVK-Alliance-Homebase-Action-DisableZone50000-KHAANEPH]
-			[Conditions:GVK-Alliance-Homebase-Condition-DisableZone50000-KHAANEPH]
+			[Actions:GVK-Alliance-Homebase-Action-DisableZone50000-SOBAN]
+			[Conditions:GVK-Alliance-Homebase-Condition-DisableZone50000-SOBAN]
 			[ConditionCheckResetsTimer:true]
-			[ToggleWithTriggerProfile:GVK-Alliance-Homebase-Trigger-EnableZone50000-KHAANEPH]
+			[ToggleWithTriggerProfile:GVK-Alliance-Homebase-Trigger-EnableZone50000-SOBAN]
 			[ToggledProfileResetsCooldown:true]
 			</Description>
 		</EntityComponent>
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Alliance-Homebase-Condition-DisableZone50000-KHAANEPH</SubtypeId>
+				<SubtypeId>GVK-Alliance-Homebase-Condition-DisableZone50000-SOBAN</SubtypeId>
 			</Id>
 			<Description>
 			[RivalAI Condition]
 			[UseConditions:true]
 			[MatchAnyCondition:false]
 			[CheckCustomSandboxCounters:true]
-			[CustomSandboxCounters:KHAANEPH_Points]
+			[CustomSandboxCounters:SOBAN_Points]
 			[CustomSandboxCountersTargets:1000]
 			[SandboxCounterCompareTypes:Less]
 			</Description>
@@ -582,24 +582,24 @@
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Alliance-Homebase-Action-DisableZone50000-KHAANEPH</SubtypeId>
+				<SubtypeId>GVK-Alliance-Homebase-Action-DisableZone50000-SOBAN</SubtypeId>
 			</Id>
 			<Description>
 			[MES AI Action]
 			[ChangeZoneAtPosition:true]
-			[ZoneName:KHAANEPH_Zone_50000]
+			[ZoneName:SOBAN_Zone_50000]
 			[ZoneToggleActive:true]
 			[ZoneToggleActiveMode:false]
 			[ZoneRadiusChangeType:Set]
 			[ZoneRadiusChangeAmount:1]
 			[UseChatBroadcast:true]
-			[ChatData:GVK-Alliance-Homebase-Chat-DisableZone50000-KHAANEPH]
+			[ChatData:GVK-Alliance-Homebase-Chat-DisableZone50000-SOBAN]
 			</Description>
 		</EntityComponent>
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Alliance-Homebase-Chat-DisableZone50000-KHAANEPH</SubtypeId>
+				<SubtypeId>GVK-Alliance-Homebase-Chat-DisableZone50000-SOBAN</SubtypeId>
 			</Id>
 			<Description>
 			[RivalAI Chat]
@@ -608,7 +608,7 @@
 			[Chance:100]
 			[MaxChats:-1]
 			[BroadcastRandomly:false]
-			[Author:KHAANEPH]
+			[Author:SOBAN]
 			[Color:White]
 			[ChatMessages:Zone 5000 disabled.]
 			[ChatAudio:ArcHudGPSNotification2]

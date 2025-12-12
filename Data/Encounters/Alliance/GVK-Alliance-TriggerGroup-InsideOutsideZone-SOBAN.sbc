@@ -6,56 +6,56 @@
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Alliance-TriggerGroup-KHAANEPHInsideOutsideZone</SubtypeId>
+				<SubtypeId>GVK-Alliance-TriggerGroup-InsideOutsideZone-SOBAN</SubtypeId>
 			</Id>
 			<Description>
 			[RivalAI TriggerGroup]
-			[Triggers:GVK-Alliance-Outpost-Trigger-Outside10000Check-KHAANEPH]
-			[Triggers:GVK-Alliance-Outpost-Trigger-Outside20000Check-KHAANEPH]
-			[Triggers:GVK-Alliance-Outpost-Trigger-Outside30000Check-KHAANEPH]
-			[Triggers:GVK-Alliance-Outpost-Trigger-Outside40000Check-KHAANEPH]
-			[Triggers:GVK-Alliance-Outpost-Trigger-Outside50000Check-KHAANEPH]
-			[Triggers:GVK-Alliance-Outpost-Trigger-Inside10000Check-KHAANEPH]
-			[Triggers:GVK-Alliance-Outpost-Trigger-Inside20000Check-KHAANEPH]
-			[Triggers:GVK-Alliance-Outpost-Trigger-Inside30000Check-KHAANEPH]
-			[Triggers:GVK-Alliance-Outpost-Trigger-Inside40000Check-KHAANEPH]
-			[Triggers:GVK-Alliance-Outpost-Trigger-Inside50000Check-KHAANEPH]
-			[Triggers:GVK-Alliance-Outpost-Trigger-OutsideAllZones-KHAANEPH]
+			[Triggers:GVK-Alliance-Outpost-Trigger-Outside10000Check-SOBAN]
+			[Triggers:GVK-Alliance-Outpost-Trigger-Outside20000Check-SOBAN]
+			[Triggers:GVK-Alliance-Outpost-Trigger-Outside30000Check-SOBAN]
+			[Triggers:GVK-Alliance-Outpost-Trigger-Outside40000Check-SOBAN]
+			[Triggers:GVK-Alliance-Outpost-Trigger-Outside50000Check-SOBAN]
+			[Triggers:GVK-Alliance-Outpost-Trigger-Inside10000Check-SOBAN]
+			[Triggers:GVK-Alliance-Outpost-Trigger-Inside20000Check-SOBAN]
+			[Triggers:GVK-Alliance-Outpost-Trigger-Inside30000Check-SOBAN]
+			[Triggers:GVK-Alliance-Outpost-Trigger-Inside40000Check-SOBAN]
+			[Triggers:GVK-Alliance-Outpost-Trigger-Inside50000Check-SOBAN]
+			[Triggers:GVK-Alliance-Outpost-Trigger-OutsideAllZones-SOBAN]
 			</Description>
 		</EntityComponent>
 		<!-- trigger to confirm it is Outside Zone 10000 -->
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Alliance-Outpost-Trigger-Outside10000Check-KHAANEPH</SubtypeId>
+				<SubtypeId>GVK-Alliance-Outpost-Trigger-Outside10000Check-SOBAN</SubtypeId>
 			</Id>
 			<Description>
 			[MES AI Trigger]
 			[UseTrigger:true]
-			[Type:OutsideZone]
+			[Type:OutsideActiveZone]
 			[MinCooldownMs:10000]
 			[MaxCooldownMs:10001]
 			[StartsReady:false]
-			[ZoneName:KHAANEPH_Zone_10000]
-			[Actions:GVK-Alliance-Outpost-Action-Outside10000Check-KHAANEPH]
+			[ZoneName:SOBAN_Zone_10000]
+			[Actions:GVK-Alliance-Outpost-Action-Outside10000Check-SOBAN]
 			</Description>
 		</EntityComponent>
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Alliance-Outpost-Action-Outside10000Check-KHAANEPH</SubtypeId>
+				<SubtypeId>GVK-Alliance-Outpost-Action-Outside10000Check-SOBAN</SubtypeId>
 			</Id>
 			<Description>
 			[MES AI Action]
 			[SetBooleansTrue:Zone10000Check]
-			[UseChatBroadcast:true]
-			[ChatData:GVK-Alliance-Outpost-Chat-Outside10000Check-KHAANEPH]
+			[UseChatBroadcast:false]
+			[ChatData:GVK-Alliance-Outpost-Chat-Outside10000Check-SOBAN]
 			</Description>
 		</EntityComponent>
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Alliance-Outpost-Chat-Outside10000Check-KHAANEPH</SubtypeId>
+				<SubtypeId>GVK-Alliance-Outpost-Chat-Outside10000Check-SOBAN</SubtypeId>
 			</Id>
 			<Description>
 			[RivalAI Chat]
@@ -65,7 +65,7 @@
 			[BroadcastRandomly:false]
 			[Author:Sensors]
 			[Color:Blue]
-			[ChatMessages:Outside 10000.]
+			[ChatMessages:Outside Active 10000.]
 			[ChatAudio:ArcHudSensors]
 			[BroadcastChatType:Both]
 			[SendToAllOnlinePlayers:true]
@@ -77,35 +77,35 @@
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Alliance-Outpost-Trigger-Outside20000Check-KHAANEPH</SubtypeId>
+				<SubtypeId>GVK-Alliance-Outpost-Trigger-Outside20000Check-SOBAN</SubtypeId>
 			</Id>
 			<Description>
 			[MES AI Trigger]
 			[UseTrigger:true]
-			[Type:OutsideZone]
+			[Type:OutsideActiveZone]
 			[MinCooldownMs:10000]
 			[MaxCooldownMs:10001]
 			[StartsReady:false]
-			[ZoneName:KHAANEPH_Zone_20000]
-			[Actions:GVK-Alliance-Outpost-Action-Outside20000Check-KHAANEPH]
+			[ZoneName:SOBAN_Zone_20000]
+			[Actions:GVK-Alliance-Outpost-Action-Outside20000Check-SOBAN]
 			</Description>
 		</EntityComponent>
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Alliance-Outpost-Action-Outside20000Check-KHAANEPH</SubtypeId>
+				<SubtypeId>GVK-Alliance-Outpost-Action-Outside20000Check-SOBAN</SubtypeId>
 			</Id>
 			<Description>
 			[MES AI Action]
 			[SetBooleansTrue:Zone20000Check]
-			[UseChatBroadcast:true]
-			[ChatData:GVK-Alliance-Outpost-Chat-Outside20000Check-KHAANEPH]
+			[UseChatBroadcast:false]
+			[ChatData:GVK-Alliance-Outpost-Chat-Outside20000Check-SOBAN]
 			</Description>
 		</EntityComponent>
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Alliance-Outpost-Chat-Outside20000Check-KHAANEPH</SubtypeId>
+				<SubtypeId>GVK-Alliance-Outpost-Chat-Outside20000Check-SOBAN</SubtypeId>
 			</Id>
 			<Description>
 			[RivalAI Chat]
@@ -115,7 +115,7 @@
 			[BroadcastRandomly:false]
 			[Author:Sensors]
 			[Color:Blue]
-			[ChatMessages:Outside 20000.]
+			[ChatMessages:Outside Active 20000.]
 			[ChatAudio:ArcHudSensors]
 			[BroadcastChatType:Both]
 			[SendToAllOnlinePlayers:true]
@@ -127,35 +127,35 @@
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Alliance-Outpost-Trigger-Outside30000Check-KHAANEPH</SubtypeId>
+				<SubtypeId>GVK-Alliance-Outpost-Trigger-Outside30000Check-SOBAN</SubtypeId>
 			</Id>
 			<Description>
 			[MES AI Trigger]
 			[UseTrigger:true]
-			[Type:OutsideZone]
+			[Type:OutsideActiveZone]
 			[MinCooldownMs:10000]
 			[MaxCooldownMs:10001]
 			[StartsReady:false]
-			[ZoneName:KHAANEPH_Zone_30000]
-			[Actions:GVK-Alliance-Outpost-Action-Outside30000Check-KHAANEPH]
+			[ZoneName:SOBAN_Zone_30000]
+			[Actions:GVK-Alliance-Outpost-Action-Outside30000Check-SOBAN]
 			</Description>
 		</EntityComponent>
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Alliance-Outpost-Action-Outside30000Check-KHAANEPH</SubtypeId>
+				<SubtypeId>GVK-Alliance-Outpost-Action-Outside30000Check-SOBAN</SubtypeId>
 			</Id>
 			<Description>
 			[MES AI Action]
 			[SetBooleansTrue:Zone30000Check]
-			[UseChatBroadcast:true]
-			[ChatData:GVK-Alliance-Outpost-Chat-Outside30000Check-KHAANEPH]
+			[UseChatBroadcast:false]
+			[ChatData:GVK-Alliance-Outpost-Chat-Outside30000Check-SOBAN]
 			</Description>
 		</EntityComponent>
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Alliance-Outpost-Chat-Outside30000Check-KHAANEPH</SubtypeId>
+				<SubtypeId>GVK-Alliance-Outpost-Chat-Outside30000Check-SOBAN</SubtypeId>
 			</Id>
 			<Description>
 			[RivalAI Chat]
@@ -165,7 +165,7 @@
 			[BroadcastRandomly:false]
 			[Author:Sensors]
 			[Color:Blue]
-			[ChatMessages:Outside 30000.]
+			[ChatMessages:Outside Active 30000.]
 			[ChatAudio:ArcHudSensors]
 			[BroadcastChatType:Both]
 			[SendToAllOnlinePlayers:true]
@@ -177,35 +177,35 @@
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Alliance-Outpost-Trigger-Outside40000Check-KHAANEPH</SubtypeId>
+				<SubtypeId>GVK-Alliance-Outpost-Trigger-Outside40000Check-SOBAN</SubtypeId>
 			</Id>
 			<Description>
 			[MES AI Trigger]
 			[UseTrigger:true]
-			[Type:OutsideZone]
+			[Type:OutsideActiveZone]
 			[MinCooldownMs:10000]
 			[MaxCooldownMs:10001]
 			[StartsReady:false]
-			[ZoneName:KHAANEPH_Zone_40000]
-			[Actions:GVK-Alliance-Outpost-Action-Outside40000Check-KHAANEPH]
+			[ZoneName:SOBAN_Zone_40000]
+			[Actions:GVK-Alliance-Outpost-Action-Outside40000Check-SOBAN]
 			</Description>
 		</EntityComponent>
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Alliance-Outpost-Action-Outside40000Check-KHAANEPH</SubtypeId>
+				<SubtypeId>GVK-Alliance-Outpost-Action-Outside40000Check-SOBAN</SubtypeId>
 			</Id>
 			<Description>
 			[MES AI Action]
 			[SetBooleansTrue:Zone40000Check]
-			[UseChatBroadcast:true]
-			[ChatData:GVK-Alliance-Outpost-Chat-Outside40000Check-KHAANEPH]
+			[UseChatBroadcast:false]
+			[ChatData:GVK-Alliance-Outpost-Chat-Outside40000Check-SOBAN]
 			</Description>
 		</EntityComponent>
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Alliance-Outpost-Chat-Outside40000Check-KHAANEPH</SubtypeId>
+				<SubtypeId>GVK-Alliance-Outpost-Chat-Outside40000Check-SOBAN</SubtypeId>
 			</Id>
 			<Description>
 			[RivalAI Chat]
@@ -215,7 +215,7 @@
 			[BroadcastRandomly:false]
 			[Author:Sensors]
 			[Color:Blue]
-			[ChatMessages:Outside 40000.]
+			[ChatMessages:Outside Active 40000.]
 			[ChatAudio:ArcHudSensors]
 			[BroadcastChatType:Both]
 			[SendToAllOnlinePlayers:true]
@@ -227,35 +227,35 @@
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Alliance-Outpost-Trigger-Outside50000Check-KHAANEPH</SubtypeId>
+				<SubtypeId>GVK-Alliance-Outpost-Trigger-Outside50000Check-SOBAN</SubtypeId>
 			</Id>
 			<Description>
 			[MES AI Trigger]
 			[UseTrigger:true]
-			[Type:OutsideZone]
+			[Type:OutsideActiveZone]
 			[MinCooldownMs:10000]
 			[MaxCooldownMs:10001]
 			[StartsReady:false]
-			[ZoneName:KHAANEPH_Zone_50000]
-			[Actions:GVK-Alliance-Outpost-Action-Outside50000Check-KHAANEPH]
+			[ZoneName:SOBAN_Zone_50000]
+			[Actions:GVK-Alliance-Outpost-Action-Outside50000Check-SOBAN]
 			</Description>
 		</EntityComponent>
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Alliance-Outpost-Action-Outside50000Check-KHAANEPH</SubtypeId>
+				<SubtypeId>GVK-Alliance-Outpost-Action-Outside50000Check-SOBAN</SubtypeId>
 			</Id>
 			<Description>
 			[MES AI Action]
 			[SetBooleansTrue:Zone50000Check]
-			[UseChatBroadcast:true]
-			[ChatData:GVK-Alliance-Outpost-Chat-Outside50000Check-KHAANEPH]
+			[UseChatBroadcast:false]
+			[ChatData:GVK-Alliance-Outpost-Chat-Outside50000Check-SOBAN]
 			</Description>
 		</EntityComponent>
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Alliance-Outpost-Chat-Outside50000Check-KHAANEPH</SubtypeId>
+				<SubtypeId>GVK-Alliance-Outpost-Chat-Outside50000Check-SOBAN</SubtypeId>
 			</Id>
 			<Description>
 			[RivalAI Chat]
@@ -265,7 +265,7 @@
 			[BroadcastRandomly:false]
 			[Author:Sensors]
 			[Color:Blue]
-			[ChatMessages:Outside 50000.]
+			[ChatMessages:Outside Active 50000.]
 			[ChatAudio:ArcHudSensors]
 			[BroadcastChatType:Both]
 			[SendToAllOnlinePlayers:true]
@@ -277,35 +277,35 @@
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Alliance-Outpost-Trigger-Inside10000Check-KHAANEPH</SubtypeId>
+				<SubtypeId>GVK-Alliance-Outpost-Trigger-Inside10000Check-SOBAN</SubtypeId>
 			</Id>
 			<Description>
 			[MES AI Trigger]
 			[UseTrigger:true]
-			[Type:InsideZone]
+			[Type:InsideActiveZone]
 			[MinCooldownMs:10000]
 			[MaxCooldownMs:10001]
 			[StartsReady:false]
-			[ZoneName:KHAANEPH_Zone_10000]
-			[Actions:GVK-Alliance-Outpost-Action-Inside10000Check-KHAANEPH]
+			[ZoneName:SOBAN_Zone_10000]
+			[Actions:GVK-Alliance-Outpost-Action-Inside10000Check-SOBAN]
 			</Description>
 		</EntityComponent>
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Alliance-Outpost-Action-Inside10000Check-KHAANEPH</SubtypeId>
+				<SubtypeId>GVK-Alliance-Outpost-Action-Inside10000Check-SOBAN</SubtypeId>
 			</Id>
 			<Description>
 			[MES AI Action]
 			[SetBooleansFalse:Zone10000Check]
-			[UseChatBroadcast:true]
-			[ChatData:GVK-Alliance-Outpost-Chat-Inside10000Check-KHAANEPH]
+			[UseChatBroadcast:false]
+			[ChatData:GVK-Alliance-Outpost-Chat-Inside10000Check-SOBAN]
 			</Description>
 		</EntityComponent>
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Alliance-Outpost-Chat-Inside10000Check-KHAANEPH</SubtypeId>
+				<SubtypeId>GVK-Alliance-Outpost-Chat-Inside10000Check-SOBAN</SubtypeId>
 			</Id>
 			<Description>
 			[RivalAI Chat]
@@ -327,35 +327,35 @@
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Alliance-Outpost-Trigger-Inside20000Check-KHAANEPH</SubtypeId>
+				<SubtypeId>GVK-Alliance-Outpost-Trigger-Inside20000Check-SOBAN</SubtypeId>
 			</Id>
 			<Description>
 			[MES AI Trigger]
 			[UseTrigger:true]
-			[Type:InsideZone]
+			[Type:InsideActiveZone]
 			[MinCooldownMs:10000]
 			[MaxCooldownMs:10001]
 			[StartsReady:false]
-			[ZoneName:KHAANEPH_Zone_20000]
-			[Actions:GVK-Alliance-Outpost-Action-Inside20000Check-KHAANEPH]
+			[ZoneName:SOBAN_Zone_20000]
+			[Actions:GVK-Alliance-Outpost-Action-Inside20000Check-SOBAN]
 			</Description>
 		</EntityComponent>
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Alliance-Outpost-Action-Inside20000Check-KHAANEPH</SubtypeId>
+				<SubtypeId>GVK-Alliance-Outpost-Action-Inside20000Check-SOBAN</SubtypeId>
 			</Id>
 			<Description>
 			[MES AI Action]
 			[SetBooleansFalse:Zone20000Check]
-			[UseChatBroadcast:true]
-			[ChatData:GVK-Alliance-Outpost-Chat-Inside20000Check-KHAANEPH]
+			[UseChatBroadcast:false]
+			[ChatData:GVK-Alliance-Outpost-Chat-Inside20000Check-SOBAN]
 			</Description>
 		</EntityComponent>
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Alliance-Outpost-Chat-Inside20000Check-KHAANEPH</SubtypeId>
+				<SubtypeId>GVK-Alliance-Outpost-Chat-Inside20000Check-SOBAN</SubtypeId>
 			</Id>
 			<Description>
 			[RivalAI Chat]
@@ -377,35 +377,35 @@
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Alliance-Outpost-Trigger-Inside30000Check-KHAANEPH</SubtypeId>
+				<SubtypeId>GVK-Alliance-Outpost-Trigger-Inside30000Check-SOBAN</SubtypeId>
 			</Id>
 			<Description>
 			[MES AI Trigger]
 			[UseTrigger:true]
-			[Type:InsideZone]
+			[Type:InsideActiveZone]
 			[MinCooldownMs:10000]
 			[MaxCooldownMs:10001]
 			[StartsReady:false]
-			[ZoneName:KHAANEPH_Zone_30000]
-			[Actions:GVK-Alliance-Outpost-Action-Inside30000Check-KHAANEPH]
+			[ZoneName:SOBAN_Zone_30000]
+			[Actions:GVK-Alliance-Outpost-Action-Inside30000Check-SOBAN]
 			</Description>
 		</EntityComponent>
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Alliance-Outpost-Action-Inside30000Check-KHAANEPH</SubtypeId>
+				<SubtypeId>GVK-Alliance-Outpost-Action-Inside30000Check-SOBAN</SubtypeId>
 			</Id>
 			<Description>
 			[MES AI Action]
 			[SetBooleansFalse:Zone30000Check]
-			[UseChatBroadcast:true]
-			[ChatData:GVK-Alliance-Outpost-Chat-Inside30000Check-KHAANEPH]
+			[UseChatBroadcast:false]
+			[ChatData:GVK-Alliance-Outpost-Chat-Inside30000Check-SOBAN]
 			</Description>
 		</EntityComponent>
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Alliance-Outpost-Chat-Inside30000Check-KHAANEPH</SubtypeId>
+				<SubtypeId>GVK-Alliance-Outpost-Chat-Inside30000Check-SOBAN</SubtypeId>
 			</Id>
 			<Description>
 			[RivalAI Chat]
@@ -427,35 +427,35 @@
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Alliance-Outpost-Trigger-Inside40000Check-KHAANEPH</SubtypeId>
+				<SubtypeId>GVK-Alliance-Outpost-Trigger-Inside40000Check-SOBAN</SubtypeId>
 			</Id>
 			<Description>
 			[MES AI Trigger]
 			[UseTrigger:true]
-			[Type:InsideZone]
+			[Type:InsideActiveZone]
 			[MinCooldownMs:10000]
 			[MaxCooldownMs:10001]
 			[StartsReady:false]
-			[ZoneName:KHAANEPH_Zone_40000]
-			[Actions:GVK-Alliance-Outpost-Action-Inside40000Check-KHAANEPH]
+			[ZoneName:SOBAN_Zone_40000]
+			[Actions:GVK-Alliance-Outpost-Action-Inside40000Check-SOBAN]
 			</Description>
 		</EntityComponent>
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Alliance-Outpost-Action-Inside40000Check-KHAANEPH</SubtypeId>
+				<SubtypeId>GVK-Alliance-Outpost-Action-Inside40000Check-SOBAN</SubtypeId>
 			</Id>
 			<Description>
 			[MES AI Action]
 			[SetBooleansFalse:Zone40000Check]
-			[UseChatBroadcast:true]
-			[ChatData:GVK-Alliance-Outpost-Chat-Inside40000Check-KHAANEPH]
+			[UseChatBroadcast:false]
+			[ChatData:GVK-Alliance-Outpost-Chat-Inside40000Check-SOBAN]
 			</Description>
 		</EntityComponent>
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Alliance-Outpost-Chat-Inside40000Check-KHAANEPH</SubtypeId>
+				<SubtypeId>GVK-Alliance-Outpost-Chat-Inside40000Check-SOBAN</SubtypeId>
 			</Id>
 			<Description>
 			[RivalAI Chat]
@@ -477,35 +477,35 @@
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Alliance-Outpost-Trigger-Inside50000Check-KHAANEPH</SubtypeId>
+				<SubtypeId>GVK-Alliance-Outpost-Trigger-Inside50000Check-SOBAN</SubtypeId>
 			</Id>
 			<Description>
 			[MES AI Trigger]
 			[UseTrigger:true]
-			[Type:InsideZone]
+			[Type:InsideActiveZone]
 			[MinCooldownMs:10000]
 			[MaxCooldownMs:10001]
 			[StartsReady:false]
-			[ZoneName:KHAANEPH_Zone_50000]
-			[Actions:GVK-Alliance-Outpost-Action-Inside50000Check-KHAANEPH]
+			[ZoneName:SOBAN_Zone_50000]
+			[Actions:GVK-Alliance-Outpost-Action-Inside50000Check-SOBAN]
 			</Description>
 		</EntityComponent>
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Alliance-Outpost-Action-Inside50000Check-KHAANEPH</SubtypeId>
+				<SubtypeId>GVK-Alliance-Outpost-Action-Inside50000Check-SOBAN</SubtypeId>
 			</Id>
 			<Description>
 			[MES AI Action]
 			[SetBooleansFalse:Zone50000Check]
-			[UseChatBroadcast:true]
-			[ChatData:GVK-Alliance-Outpost-Chat-Inside50000Check-KHAANEPH]
+			[UseChatBroadcast:false]
+			[ChatData:GVK-Alliance-Outpost-Chat-Inside50000Check-SOBAN]
 			</Description>
 		</EntityComponent>
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Alliance-Outpost-Chat-Inside50000Check-KHAANEPH</SubtypeId>
+				<SubtypeId>GVK-Alliance-Outpost-Chat-Inside50000Check-SOBAN</SubtypeId>
 			</Id>
 			<Description>
 			[RivalAI Chat]
@@ -527,17 +527,18 @@
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Alliance-Outpost-Trigger-OutsideAllZones-KHAANEPH</SubtypeId>
+				<SubtypeId>GVK-Alliance-Outpost-Trigger-OutsideAllZones-SOBAN</SubtypeId>
 			</Id>
 			<Description>
 			[MES AI Trigger]
 			[UseTrigger:true]
-			[Type:timer]
-			[MinCooldownMs:10000]
-			[MaxCooldownMs:10001]
+			[Type:Timer]
+			[MinCooldownMs:300000]
+			[MaxCooldownMs:300001]
 			[StartsReady:false]
-			[Actions:GVK-Alliance-Outpost-Action-OutsideAllZones-KHAANEPH]
-			[Conditions:GVK-Alliance-Outpost-Condition-OutsideAllZones-KHAANEPH]
+			[Actions:GVK-Alliance-Outpost-Action-OutsideAllZones-SOBAN]
+			[Actions:GVK-Universal-Action-MediumExplosionEffects]
+			[Conditions:GVK-Alliance-Outpost-Condition-OutsideAllZones-SOBAN]
 			[ConditionCheckResetsTimer:true]
 			</Description>
 		</EntityComponent>
@@ -545,7 +546,7 @@
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Alliance-Outpost-Condition-OutsideAllZones-KHAANEPH</SubtypeId>
+				<SubtypeId>GVK-Alliance-Outpost-Condition-OutsideAllZones-SOBAN</SubtypeId>
 			</Id>
 			<Description>
 			[RivalAI Condition]
@@ -563,19 +564,19 @@
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Alliance-Outpost-Action-OutsideAllZones-KHAANEPH</SubtypeId>
+				<SubtypeId>GVK-Alliance-Outpost-Action-OutsideAllZones-SOBAN</SubtypeId>
 			</Id>
 			<Description>
 			[MES AI Action]
 			[ForceDespawn:true]
 			[UseChatBroadcast:true]
-			[ChatData:GVK-Alliance-Outpost-Chat-OutsideAllZones-KHAANEPH]
+			[ChatData:GVK-Alliance-Outpost-Chat-OutsideAllZones-SOBAN]
 			</Description>
 		</EntityComponent>
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Alliance-Outpost-Chat-OutsideAllZones-KHAANEPH</SubtypeId>
+				<SubtypeId>GVK-Alliance-Outpost-Chat-OutsideAllZones-SOBAN</SubtypeId>
 			</Id>
 			<Description>
 			[RivalAI Chat]
@@ -585,12 +586,12 @@
 			[BroadcastRandomly:false]
 			[Author:Sensors]
 			[Color:Blue]
-			[ChatMessages:Outside all zones, despawning.]
+			[ChatMessages:A {faction} outpost has been lost.]
 			[ChatAudio:ArcHudSensors]
 			[BroadcastChatType:Both]
-			[SendToAllOnlinePlayers:true]
+			[SendToAllOnlinePlayers:false]
 			[IgnoreAntennaRequirement:true]
-			[IgnoredAntennaRangeOverride:10000]
+			[IgnoredAntennaRangeOverride:5000]
 			</Description>
 		</EntityComponent>
 	</EntityComponents>

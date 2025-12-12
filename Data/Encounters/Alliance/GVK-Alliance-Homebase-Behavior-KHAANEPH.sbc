@@ -15,8 +15,8 @@
 			[UsePlayerDistanceTimer:false]
 			[Triggers:GVK-Alliance-Homebase-Trigger-CreateSandboxCounter-KHAANEPH]
 			[Triggers:GVK-Alliance-Homebase-Trigger-CreateSafeZone-KHAANEPH]
-			[TriggerGroups:GVK-Alliance-Homebase-TriggerGroup-KHAANEPHPoints]
-			[TriggerGroups:GVK-Alliance-Homebase-TriggerGroup-KHAANEPHZones]
+			[TriggerGroups:GVK-Alliance-Homebase-TriggerGroup-PointsLimits-KHAANEPH]
+			[TriggerGroups:GVK-Alliance-Homebase-TriggerGroup-ZoneSize-KHAANEPH]
 			[RemoteControlCode:GVK-Static]
 			</Description>
 		</EntityComponent>
@@ -84,17 +84,15 @@
 			[Shape:Sphere]
 			[Radius:0]
 			[RadiusFromParentEntity:true]
-			[ParentEntityRadiusMultiplier:1]
+			[ParentEntityRadiusMultiplier:10]
 			[Enabled:true]
 			[LinkToParentEntity:true]
 			[IsVisible:false]
 			[Color:{X:0 Y:0 Z:0}]
-			[Texture:SafeZone_Texture_Rain]
+			[Texture:Clear (Transparent)]
 			[FactionAccess:Blacklist]
-			[GridAccess:Blacklist]
+			[GridAccess:Whitelist]
 			[PlayerAccess:Blacklist]
-			[AllowedActions:LandingGearLock]
-			[AllowedActions:ConvertToStation]
 			</Description>
 		</EntityComponent>
 		<!-- Trigger sequence for Trade Station to send relative waypoint to listening Cargo Ship (not currently used)
