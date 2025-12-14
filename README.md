@@ -55,6 +55,8 @@ NSN	(NPC Station)	    	Out of date
 
 ## Thanks Yous:
 Nekron910 https://steamcommunity.com/sharedfiles/filedetails/?id=2650194963&tscn=1643638039
+Engineered Coffee https://steamcommunity.com/id/EngineeredCoffee/myworkshopfiles/
+Rayman11NL https://steamcommunity.com/profiles/76561198210730607/myworkshopfiles/
 
 # Notes
 1. Chat SendToAllPlayers will also be received by SEDB when set to send server messages.
