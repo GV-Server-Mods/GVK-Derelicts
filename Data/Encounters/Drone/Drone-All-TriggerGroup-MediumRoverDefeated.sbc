@@ -4,14 +4,14 @@
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Drone-All-TriggerGroup-MediumHoverDefeated</SubtypeId>
+				<SubtypeId>GVK-Drone-All-TriggerGroup-MediumRoverDefeated</SubtypeId>
 			</Id>
 			<Description>
 			[RivalAI TriggerGroup]
-			[Triggers:GVK-Drone-All-ManualTrigger-MediumHoverDefeated]
-			[Triggers:GVK-Drone-All-Trigger-MediumHoverCompromised]			
-			[Triggers:GVK-Drone-All-Trigger-MediumHoverBeaconDisabled]			
-			[Triggers:GVK-Drone-All-Trigger-MediumHoverNoWeapon]			
+			[Triggers:GVK-Drone-All-ManualTrigger-MediumRoverDefeated]
+			[Triggers:GVK-Drone-All-Trigger-MediumRoverCompromised]			
+			[Triggers:GVK-Drone-All-Trigger-MediumRoverBeaconDisabled]			
+			[Triggers:GVK-Drone-All-Trigger-MediumRoverNoWeapon]			
 			</Description>
 		</EntityComponent>
 		<!-- Manual Trigger sequence Medium NPC is defeated through Compromised, Beacon, or NoWeapon (instant delete) -->
@@ -19,7 +19,7 @@
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Drone-All-ManualTrigger-MediumHoverDefeated</SubtypeId>
+				<SubtypeId>GVK-Drone-All-ManualTrigger-MediumRoverDefeated</SubtypeId>
 			</Id>
 			<Description>
 			[RivalAI Trigger]
@@ -28,24 +28,24 @@
 			[StartsReady:true]
 			[MaxActions:1]
 			[ActionExecution:All]
-			[Actions:GVK-Drone-All-Action-MediumHoverDefeated]
-			[Actions:GVK-Universal-Action-MediumBlueExplosionEffects]
+			[Actions:GVK-Drone-All-Action-MediumRoverDefeated]
+			[Actions:GVK-Universal-Action-MediumExplosionEffects]
 			[Actions:GVK-Universal-Action-Disabled]
 			</Description>
 		</EntityComponent>
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Drone-All-Action-MediumHoverDefeated</SubtypeId>
+				<SubtypeId>GVK-Drone-All-Action-MediumRoverDefeated</SubtypeId>
 			</Id>
 			<Description>
 			[RivalAI Action]
 			[UseChatBroadcast:true]
-			[ChatData:GVK-Drone-All-Chat-MediumHoverDefeated]
+			[ChatData:GVK-Drone-All-Chat-MediumRoverDefeated]
 			[DisableTriggers:true]
-			[DisableTriggerNames:GVK-Drone-All-Trigger-MediumHoverCompromised]			
-			[DisableTriggerNames:GVK-Drone-All-Trigger-MediumHoverBeaconDisabled]			
-			[DisableTriggerNames:GVK-Drone-All-Trigger-MediumHoverNoWeapon]			
+			[DisableTriggerNames:GVK-Drone-All-Trigger-MediumRoverCompromised]			
+			[DisableTriggerNames:GVK-Drone-All-Trigger-MediumRoverBeaconDisabled]			
+			[DisableTriggerNames:GVK-Drone-All-Trigger-MediumRoverNoWeapon]			
 			[TerminateBehavior:true]
 			[ForceDespawn:false]
 			</Description>
@@ -53,7 +53,7 @@
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Drone-All-Chat-MediumHoverDefeated</SubtypeId>
+				<SubtypeId>GVK-Drone-All-Chat-MediumRoverDefeated</SubtypeId>
 			</Id>
 			<Description>
 			[RivalAI Chat]
@@ -64,7 +64,7 @@
 			[BroadcastRandomly:true]
 			[Author:Sensors]
 			[Color:Blue]
-			[ChatMessages:{Faction} craft destroyed.]
+			[ChatMessages:{Faction} vehicle destroyed.]
 			[ChatAudio:ArcHudSensors]
 			[BroadcastChatType:Notify]
 			[SendToAllOnlinePlayers:false]
@@ -81,7 +81,7 @@
 			<Description>
 			[RivalAI Action]
 			[ManuallyActivateTrigger:true]
-			[ManuallyActivatedTriggerNames:GVK-Drone-All-ManualTrigger-MediumHoverDefeated]
+			[ManuallyActivatedTriggerNames:GVK-Drone-All-ManualTrigger-MediumRoverDefeated]
 			[ForceManualTriggerActivation:true]
 			</Description>
 		</EntityComponent>
@@ -89,7 +89,7 @@
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Drone-All-Trigger-MediumHoverCompromised</SubtypeId>
+				<SubtypeId>GVK-Drone-All-Trigger-MediumRoverCompromised</SubtypeId>
 			</Id>
 			<Description>
 			[RivalAI Trigger]
@@ -105,7 +105,7 @@
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Drone-All-Trigger-MediumHoverBeaconDisabled</SubtypeId>
+				<SubtypeId>GVK-Drone-All-Trigger-MediumRoverBeaconDisabled</SubtypeId>
 			</Id>
 			<Description>
 			[RivalAI Trigger]
@@ -122,7 +122,7 @@
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Drone-All-Trigger-MediumHoverNoWeapon</SubtypeId>
+				<SubtypeId>GVK-Drone-All-Trigger-MediumRoverNoWeapon</SubtypeId>
 			</Id>
 			<Description>
 			[RivalAI Trigger]
@@ -133,14 +133,14 @@
 			[MaxCooldownMs:10001]
 			[MaxActions:1]
 			[ActionExecution:Random]
-			[Actions:GVK-Drone-All-Action-MediumHoverNoWeapon]
+			[Actions:GVK-Drone-All-Action-MediumRoverNoWeapon]
 			[Actions:GVK-Drone-All-Action-ManualTriggerMediumHoverDefeated]
 			</Description>
 		</EntityComponent>
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Drone-All-Action-MediumHoverNoWeapon</SubtypeId>
+				<SubtypeId>GVK-Drone-All-Action-MediumRoverNoWeapon</SubtypeId>
 			</Id>
 			<Description>
 			[RivalAI Action]
