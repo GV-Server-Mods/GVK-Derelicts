@@ -1,0 +1,74 @@
+<?xml version="1.0"?>
+<Definitions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+	<EntityComponents>
+		<!-- Behavior for Trade Stations -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-SupplyDepot-Behavior</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Behavior]
+			[BehaviorName:Passive]
+			[UseRetreatTimer:false]
+			[UseNoTargetTimer:false]
+			[UsePlayerDistanceTimer:false]
+			[TargetData:GVK-Universal-Target-EnemyGrids2km]
+			[TriggerGroups:GVK-Alliance-TriggerGroup-SupplyDepotKHAANEPHZone]
+			[TriggerGroups:GVK-Alliance-TriggerGroup-SupplyDepotSOBANZone]
+			[Triggers:GVK-Alliance-SupplyDepot-Trigger-CreateSafeZone]
+			[RemoteControlCode:GVK-Alliance-SupplyDepot]
+			</Description>
+		</EntityComponent>
+		<!-- Trigger sequence to create a safezone on trade station spawn -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-SupplyDepot-Trigger-CreateSafeZone</SubtypeId>
+			</Id>
+			<Description>
+			[MES AI Trigger]
+			[UseTrigger:true]
+			[Type:Session]
+			[StartsReady:true]
+			[MaxActions:-1]
+			[Actions:GVK-Alliance-SupplyDepot-Action-CreateSafeZone]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-SupplyDepot-Action-CreateSafeZone</SubtypeId>
+			</Id>
+			<Description>
+			[MES AI Action]
+			[CreateSafeZone:true]
+			[SafeZoneProfile:GVK-Alliance-SupplyDepot-SafeZone]
+			[LinkSafeZoneToRemoteControl:true]
+			[SafeZonePositionGridCenter:true]
+			[SafeZonePositionTerrainSurface:true]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-SupplyDepot-SafeZone</SubtypeId>
+			</Id>
+			<Description>
+			[MES SafeZone]
+			[Shape:Sphere]
+			[Radius:0]
+			[RadiusFromParentEntity:true]
+			[ParentEntityRadiusMultiplier:2]
+			[Enabled:true]
+			[LinkToParentEntity:true]
+			[IsVisible:false]
+			[Color:{X:0 Y:0 Z:0}]
+			[Texture:Clear (Transparent)]
+			[FactionAccess:Blacklist]
+			[GridAccess:Whitelist]
+			[PlayerAccess:Blacklist]
+			</Description>
+		</EntityComponent>
+	</EntityComponents>
+</Definitions>
