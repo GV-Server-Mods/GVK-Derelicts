@@ -119,7 +119,7 @@
 			[Actions:GVK-Drone-All-Action-ManualTriggerLargeRoverDefeated]
 			</Description>
 		</EntityComponent>
-		<!-- Random chance to retreat or do nothing when out of weapons -->
+		<!-- Random chance to retreat or do nothing when out of weapons (this seems broken on some rovers) -->
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
@@ -128,7 +128,7 @@
 			<Description>
 			[RivalAI Trigger]
 			[Type:NoWeapon]
-			[UseTrigger:true]
+			[UseTrigger:false]
 			[StartsReady:false]
 			[MinCooldownMs:10000]
 			[MaxCooldownMs:10001]
