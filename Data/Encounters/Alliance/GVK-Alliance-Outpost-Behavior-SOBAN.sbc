@@ -23,10 +23,11 @@
 			[Triggers:GVK-Alliance-Outpost-Trigger-DefensesPlayerNear-SOBAN]
 			[Triggers:GVK-Alliance-Outpost-Trigger-DefensesDamage-SOBAN]
 			[Triggers:GVK-Alliance-Outpost-Trigger-DefensesManual-SOBAN]
-			[TriggerGroups:GVK-Alliance-TriggerGroup-InsideOutsideZone-SOBAN]
+			[Triggers:GVK-Alliance-Outpost-Trigger-KPLManual-SOBAN]
+			[TriggerGroups:GVK-Alliance-TriggerGroup-OutpostInsideOutsideZone-SOBAN]
 			[TriggerGroups:GVK-Alliance-TriggerGroup-PointsOutpost-SOBAN]
 			[RemoteControlCode:GVK-Alliance-Outpost]
-			BountyOnKill=200000;
+			BountyOnKill=1000000;
 			</Description>
 		</EntityComponent>
 		<!-- Trigger sequence to create a safezone on trade station spawn -->
@@ -300,8 +301,8 @@
 			[Type:PlayerNear]
 			[TargetDistance:2000]
 			[StartsReady:true]
-			[MinCooldownMs:300000]
-			[MaxCooldownMs:300001]
+			[MinCooldownMs:30000]
+			[MaxCooldownMs:30001]
 			[ActionExecution:All]
 			[Actions:GVK-Alliance-Outpost-Action-DefensesTrigger-SOBAN]
 			</Description>
@@ -317,8 +318,8 @@
 			[Type:Damage]
 			[DamageTypes:Any]
 			[StartsReady:true]
-			[MinCooldownMs:300000]
-			[MaxCooldownMs:300001]
+			[MinCooldownMs:30000]
+			[MaxCooldownMs:30001]
 			[ActionExecution:All]
 			[Actions:GVK-Alliance-Outpost-Action-DefensesTrigger-SOBAN]
 			</Description>
@@ -332,7 +333,39 @@
 			[RivalAI Action]
 			[Chance:100]
 			[ManuallyActivateTrigger:true]
+			[ManuallyActivatedTriggerNames:GVK-Alliance-Outpost-Trigger-KPLManual-SOBAN]
 			[ManuallyActivatedTriggerNames:GVK-Alliance-Outpost-Trigger-DefensesManual-SOBAN]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-Outpost-Trigger-KPLManual-SOBAN</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Trigger]
+			[UseTrigger:true]
+			[Type:Manual]
+			[StartsReady:true]
+			[MinCooldownMs:1800001]
+			[MaxCooldownMs:1800002]
+			[ActionExecution:All]
+			[Actions:GVK-Alliance-Outpost-Action-KPLManual-SOBAN]
+			</Description>
+		</EntityComponent>
+		<!-- KPL duration 30 minutes -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-Outpost-Action-KPLManual-SOBAN</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Action]
+			[Chance:100]
+			[CreateKnownPlayerArea:true]
+			[KnownPlayerAreaRadius:3000]
+			[KnownPlayerAreaTimer:30]
+			[KnownPlayerAreaMaxSpawns:4]
 			</Description>
 		</EntityComponent>
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
@@ -345,6 +378,8 @@
 			[UseTrigger:true]
 			[Type:Manual]
 			[StartsReady:true]
+			[MinCooldownMs:30000]
+			[MaxCooldownMs:30001]
 			[ActionExecution:All]
 			[Actions:GVK-Alliance-Outpost-Action-DefensesManual-SOBAN]
 			</Description>
@@ -357,13 +392,8 @@
 			<Description>
 			[RivalAI Action]
 			[Chance:100]
-			[CreateKnownPlayerArea:true]
-			[KnownPlayerAreaRadius:3000]
-			[KnownPlayerAreaTimer:300000]
-			[KnownPlayerAreaMaxSpawns:5]
 			[SpawnEncounter:true]
-			[Spawner:GVK-Alliance-Outpost-Spawner-DefenseDroneSmall-SOBAN]
-			[Spawner:GVK-Alliance-Outpost-Spawner-DefenseDroneMedium-SOBAN]
+			[Spawner:GVK-Alliance-Outpost-Spawner-Defenses-SOBAN]
 			[UseChatBroadcast:true]
 			[ChatData:GVK-Alliance-Outpost-Chat-Defenses-SOBAN]
 			</Description>
@@ -371,7 +401,7 @@
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Alliance-Outpost-Spawner-DefenseDroneSmall-SOBAN</SubtypeId>
+				<SubtypeId>GVK-Alliance-Outpost-Spawner-Defenses-SOBAN</SubtypeId>
 			</Id>
 			<Description>
 			[RivalAI Spawn]
@@ -379,33 +409,15 @@
 			[SpawningType:CustomSpawn]
 			[StartsReady:true]
 			[ProcessAsAdminSpawn:true]
-			[SpawnGroups:GVK-Drone-Defense-SpawnGroup-SOBAN-SmallHoverSingle]
-			[MinDistance:100]
-			[MaxDistance:300]
-			[MinAltitude:50]
-			[MaxAltitude:51]
-			[InheritNpcAltitude:true]
-			[IgnoreSafetyChecks:true]
-			</Description>
-		</EntityComponent>
-		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
-			<Id>
-				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Alliance-Outpost-Spawner-DefenseDroneMedium-SOBAN</SubtypeId>
-			</Id>
-			<Description>
-			[RivalAI Spawn]
-			[UseSpawn:true]
-			[SpawningType:CustomSpawn]
-			[StartsReady:true]
-			[ProcessAsAdminSpawn:false]
-			[SpawnGroups:GVK-Drone-Defense-SpawnGroup-SOBAN-MediumHoverLight]
-			[MinDistance:100]
-			[MaxDistance:300]
-			[MinAltitude:50]
-			[MaxAltitude:51]
-			[InheritNpcAltitude:true]
-			[IgnoreSafetyChecks:true]
+			[SpawnGroups:GVK-Drone-Defense-SpawnGroup-SOBAN-LAVSquad]
+			[SpawnGroups:GVK-Drone-Defense-SpawnGroup-SOBAN-StrikeFighterSingle]
+			[SpawnGroups:GVK-Drone-Defense-SpawnGroup-SOBAN-BaserunnerLight]
+			[MinDistance:500]
+			[MaxDistance:700]
+			[MinAltitude:30]
+			[MaxAltitude:31]
+			[InheritNpcAltitude:false]
+			[IgnoreSafetyChecks:false]
 			</Description>
 		</EntityComponent>
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
@@ -416,10 +428,12 @@
 			<Description>
 			[RivalAI Chat]
 			[UseChat:true]
+			[MinTime:120]
+			[MaxTime:121]
 			[StartsReady:true]
 			[Chance:100]
 			[BroadcastRandomly:false]
-			[Author:SOBAN]
+			[Author:{Faction} Outpost]
 			[Color:White]
 			[ChatMessages:Enemies detected.]
 			[ChatAudio:ArcHudGPSNotification2]

@@ -19,8 +19,8 @@
 				<SubtypeId>GVK-Alliance-Homebase-Trigger-PointsFloor-SOBAN</SubtypeId>
 			</Id>
 			<Description>
-			[MES AI Trigger]
-			[UseTrigger:false]
+			[RivalAI Trigger]
+			[UseTrigger:true]
 			[Type:Timer]
 			[MinCooldownMs:10000]
 			[MaxCooldownMs:10001]
@@ -42,8 +42,8 @@
 			[MatchAnyCondition:false]
 			[CheckCustomSandboxCounters:true]
 			[CustomSandboxCounters:SOBAN_Points]
-			[CustomSandboxCountersTargets:0]
-			[SandboxCounterCompareTypes:Less]
+			[CustomSandboxCountersTargets:-1]
+			[SandboxCounterCompareTypes:LessOrEqual]
 			</Description>
 		</EntityComponent>
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
@@ -52,9 +52,8 @@
 				<SubtypeId>GVK-Alliance-Homebase-Action-PointsFloor-SOBAN</SubtypeId>
 			</Id>
 			<Description>
-			[MES AI Action]
-			[SetSandboxCounters:SOBAN_Points]
-			[SetSandboxCountersValues:0]
+			[RivalAI Action]
+			[ResetSandboxCounters:SOBAN_Points]
 			[UseChatBroadcast:true]
 			[ChatData:GVK-Alliance-Homebase-Chat-PointsFloor-SOBAN]
 			</Description>
@@ -88,7 +87,7 @@
 				<SubtypeId>GVK-Alliance-Homebase-Trigger-PointsCeiling-SOBAN</SubtypeId>
 			</Id>
 			<Description>
-			[MES AI Trigger]
+			[RivalAI Trigger]
 			[UseTrigger:true]
 			[Type:Timer]
 			[MinCooldownMs:10000]
@@ -121,7 +120,7 @@
 				<SubtypeId>GVK-Alliance-Homebase-Action-PointsCeiling-SOBAN</SubtypeId>
 			</Id>
 			<Description>
-			[MES AI Action]
+			[RivalAI Action]
 			[SetSandboxCounters:SOBAN_Points]
 			[SetSandboxCountersValues:1200]
 			[UseChatBroadcast:true]

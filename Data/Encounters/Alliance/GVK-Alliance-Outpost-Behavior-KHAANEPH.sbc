@@ -23,10 +23,11 @@
 			[Triggers:GVK-Alliance-Outpost-Trigger-DefensesPlayerNear-KHAANEPH]
 			[Triggers:GVK-Alliance-Outpost-Trigger-DefensesDamage-KHAANEPH]
 			[Triggers:GVK-Alliance-Outpost-Trigger-DefensesManual-KHAANEPH]
-			[TriggerGroups:GVK-Alliance-TriggerGroup-InsideOutsideZone-KHAANEPH]
+			[Triggers:GVK-Alliance-Outpost-Trigger-KPLManual-KHAANEPH]
+			[TriggerGroups:GVK-Alliance-TriggerGroup-OutpostInsideOutsideZone-KHAANEPH]
 			[TriggerGroups:GVK-Alliance-TriggerGroup-PointsOutpost-KHAANEPH]
 			[RemoteControlCode:GVK-Alliance-Outpost]
-			BountyOnKill=200000;
+			BountyOnKill=1000000;
 			</Description>
 		</EntityComponent>
 		<!-- Trigger sequence to create a safezone on trade station spawn -->
@@ -300,8 +301,8 @@
 			[Type:PlayerNear]
 			[TargetDistance:2000]
 			[StartsReady:true]
-			[MinCooldownMs:300000]
-			[MaxCooldownMs:300001]
+			[MinCooldownMs:30000]
+			[MaxCooldownMs:30001]
 			[ActionExecution:All]
 			[Actions:GVK-Alliance-Outpost-Action-DefensesTrigger-KHAANEPH]
 			</Description>
@@ -317,8 +318,8 @@
 			[Type:Damage]
 			[DamageTypes:Any]
 			[StartsReady:true]
-			[MinCooldownMs:300000]
-			[MaxCooldownMs:300001]
+			[MinCooldownMs:30000]
+			[MaxCooldownMs:30001]
 			[ActionExecution:All]
 			[Actions:GVK-Alliance-Outpost-Action-DefensesTrigger-KHAANEPH]
 			</Description>
@@ -332,7 +333,39 @@
 			[RivalAI Action]
 			[Chance:100]
 			[ManuallyActivateTrigger:true]
+			[ManuallyActivatedTriggerNames:GVK-Alliance-Outpost-Trigger-KPLManual-KHAANEPH]
 			[ManuallyActivatedTriggerNames:GVK-Alliance-Outpost-Trigger-DefensesManual-KHAANEPH]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-Outpost-Trigger-KPLManual-KHAANEPH</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Trigger]
+			[UseTrigger:true]
+			[Type:Manual]
+			[StartsReady:true]
+			[MinCooldownMs:1800001]
+			[MaxCooldownMs:1800002]
+			[ActionExecution:All]
+			[Actions:GVK-Alliance-Outpost-Action-KPLManual-KHAANEPH]
+			</Description>
+		</EntityComponent>
+		<!-- KPL duration 30 minutes -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-Outpost-Action-KPLManual-KHAANEPH</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Action]
+			[Chance:100]
+			[CreateKnownPlayerArea:true]
+			[KnownPlayerAreaRadius:3000]
+			[KnownPlayerAreaTimer:30]
+			[KnownPlayerAreaMaxSpawns:4]
 			</Description>
 		</EntityComponent>
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
@@ -345,8 +378,8 @@
 			[UseTrigger:true]
 			[Type:Manual]
 			[StartsReady:true]
-			[MinCooldownMs:300000]
-			[MaxCooldownMs:300001]
+			[MinCooldownMs:30000]
+			[MaxCooldownMs:30001]
 			[ActionExecution:All]
 			[Actions:GVK-Alliance-Outpost-Action-DefensesManual-KHAANEPH]
 			</Description>
@@ -359,13 +392,8 @@
 			<Description>
 			[RivalAI Action]
 			[Chance:100]
-			[CreateKnownPlayerArea:true]
-			[KnownPlayerAreaRadius:3000]
-			[KnownPlayerAreaTimer:300000]
-			[KnownPlayerAreaMaxSpawns:5]
 			[SpawnEncounter:true]
-			[Spawner:GVK-Alliance-Outpost-Spawner-DefenseDroneSmall-KHAANEPH]
-			[Spawner:GVK-Alliance-Outpost-Spawner-DefenseDroneMedium-KHAANEPH]
+			[Spawner:GVK-Alliance-Outpost-Spawner-Defenses-KHAANEPH]
 			[UseChatBroadcast:true]
 			[ChatData:GVK-Alliance-Outpost-Chat-Defenses-KHAANEPH]
 			</Description>
@@ -373,7 +401,7 @@
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Alliance-Outpost-Spawner-DefenseDroneSmall-KHAANEPH</SubtypeId>
+				<SubtypeId>GVK-Alliance-Outpost-Spawner-Defenses-KHAANEPH</SubtypeId>
 			</Id>
 			<Description>
 			[RivalAI Spawn]
@@ -381,32 +409,14 @@
 			[SpawningType:CustomSpawn]
 			[StartsReady:true]
 			[ProcessAsAdminSpawn:true]
-			[SpawnGroups:GVK-Drone-Defense-SpawnGroup-KHAANEPH-SmallHoverSingle]
-			[MinDistance:100]
-			[MaxDistance:300]
-			[MinAltitude:50]
-			[MaxAltitude:51]
-			[InheritNpcAltitude:true]
-			[IgnoreSafetyChecks:true]
-			</Description>
-		</EntityComponent>
-		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
-			<Id>
-				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Alliance-Outpost-Spawner-DefenseDroneMedium-KHAANEPH</SubtypeId>
-			</Id>
-			<Description>
-			[RivalAI Spawn]
-			[UseSpawn:true]
-			[SpawningType:CustomSpawn]
-			[StartsReady:true]
-			[ProcessAsAdminSpawn:false]
+			[SpawnGroups:GVK-Drone-Defense-SpawnGroup-KHAANEPH-InterceptorSingle]
+			[SpawnGroups:GVK-Drone-Defense-SpawnGroup-KHAANEPH-SandskimmerSquad]
 			[SpawnGroups:GVK-Drone-Defense-SpawnGroup-KHAANEPH-MediumHoverLight]
-			[MinDistance:100]
-			[MaxDistance:300]
+			[MinDistance:500]
+			[MaxDistance:700]
 			[MinAltitude:50]
 			[MaxAltitude:51]
-			[InheritNpcAltitude:true]
+			[InheritNpcAltitude:false]
 			[IgnoreSafetyChecks:true]
 			</Description>
 		</EntityComponent>
@@ -421,7 +431,7 @@
 			[StartsReady:true]
 			[Chance:100]
 			[BroadcastRandomly:false]
-			[Author:KHAANEPH]
+			[Author:{Faction} Outpost]
 			[Color:White]
 			[ChatMessages:Enemies detected.]
 			[ChatAudio:ArcHudGPSNotification2]

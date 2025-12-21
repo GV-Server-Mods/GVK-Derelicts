@@ -19,8 +19,8 @@
 				<SubtypeId>GVK-Alliance-Homebase-Trigger-PointsFloor-KHAANEPH</SubtypeId>
 			</Id>
 			<Description>
-			[MES AI Trigger]
-			[UseTrigger:false]
+			[RivalAI Trigger]
+			[UseTrigger:true]
 			[Type:Timer]
 			[MinCooldownMs:10000]
 			[MaxCooldownMs:10001]
@@ -42,8 +42,8 @@
 			[MatchAnyCondition:false]
 			[CheckCustomSandboxCounters:true]
 			[CustomSandboxCounters:KHAANEPH_Points]
-			[CustomSandboxCountersTargets:0]
-			[SandboxCounterCompareTypes:Less]
+			[CustomSandboxCountersTargets:-1]
+			[SandboxCounterCompareTypes:LessOrEqual]
 			</Description>
 		</EntityComponent>
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
@@ -52,9 +52,8 @@
 				<SubtypeId>GVK-Alliance-Homebase-Action-PointsFloor-KHAANEPH</SubtypeId>
 			</Id>
 			<Description>
-			[MES AI Action]
-			[SetSandboxCounters:KHAANEPH_Points]
-			[SetSandboxCountersValues:0]
+			[RivalAI Action]
+			[ResetSandboxCounters:KHAANEPH_Points]
 			[UseChatBroadcast:true]
 			[ChatData:GVK-Alliance-Homebase-Chat-PointsFloor-KHAANEPH]
 			</Description>
@@ -88,7 +87,7 @@
 				<SubtypeId>GVK-Alliance-Homebase-Trigger-PointsCeiling-KHAANEPH</SubtypeId>
 			</Id>
 			<Description>
-			[MES AI Trigger]
+			[RivalAI Trigger]
 			[UseTrigger:true]
 			[Type:Timer]
 			[MinCooldownMs:10000]
@@ -121,7 +120,7 @@
 				<SubtypeId>GVK-Alliance-Homebase-Action-PointsCeiling-KHAANEPH</SubtypeId>
 			</Id>
 			<Description>
-			[MES AI Action]
+			[RivalAI Action]
 			[SetSandboxCounters:KHAANEPH_Points]
 			[SetSandboxCountersValues:1200]
 			[UseChatBroadcast:true]
