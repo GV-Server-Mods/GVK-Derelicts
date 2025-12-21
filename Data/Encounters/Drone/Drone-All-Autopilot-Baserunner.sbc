@@ -5,15 +5,49 @@
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Drone-All-Autopilot-Baserunner</SubtypeId>
+				<SubtypeId>GVK-Drone-All-Autopilot-Baserunner-Passive</SubtypeId>
 			</Id>
 			<Description>
 			[RivalAI Autopilot]
 			[UseVelocityCollisionEvasion:false]
-			[RotationMultiplier:5]
+			[RotationMultiplier:7]
 			[LimitRotationSpeed:true]
 			[MaxRotationMagnitude:1.5]
-			[FlyLevelWithGravity:true]
+			[FlyLevelWithGravity:false]
+			[LevelWithGravityWhenIdle:false]
+			[IdealPlanetAltitude:7.25]
+			[AltitudeTolerance:75]
+			[WaypointWaitTimeTrigger:1]
+			[WaypointAbandonTimeTrigger:15]
+			[WaypointTolerance:75]
+			[IdealMinSpeed:25]
+			[IdealMaxSpeed:25]
+			[MaxSpeedTolerance:5]
+			[WaypointWaitTimeTrigger:0]
+			[OffsetPlanetMinDistFromTarget:500]
+			[OffsetPlanetMaxDistFromTarget:701]
+			[OffsetPlanetMinTargetAltitude:5]
+			[OffsetPlanetMaxTargetAltitude:7]
+			[DisableInertiaDampeners:true]
+			[MinimumPlanetAltitude:-100]
+			[UseSurfaceHoverThrustMode:true]
+			[HoverPathStepDistance:76]
+			[AngleAllowedForForwardThrust:120]
+			[MaxVelocityAngleForSpeedControl:180]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Drone-All-Autopilot-Baserunner-Aggressive</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Autopilot]
+			[UseVelocityCollisionEvasion:false]
+			[RotationMultiplier:7]
+			[LimitRotationSpeed:true]
+			[MaxRotationMagnitude:1.5]
+			[FlyLevelWithGravity:false]
 			[LevelWithGravityWhenIdle:false]
 			[IdealPlanetAltitude:7.25]
 			[AltitudeTolerance:100]
@@ -30,7 +64,7 @@
 			[OffsetPlanetMaxTargetAltitude:7]
 			[DisableInertiaDampeners:true]
 			[MinimumPlanetAltitude:-100]
-			[UseSurfaceHoverThrustMode:false]
+			[UseSurfaceHoverThrustMode:true]
 			[HoverPathStepDistance:101]
 			[AngleAllowedForForwardThrust:120]
 			[MaxVelocityAngleForSpeedControl:180]

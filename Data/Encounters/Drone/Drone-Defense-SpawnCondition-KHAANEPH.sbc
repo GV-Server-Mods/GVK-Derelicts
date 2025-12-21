@@ -4,11 +4,15 @@
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Drone-Defense-SpawnCondition-KHAANEPH-SmallFlyerSingle</SubtypeId>
+				<SubtypeId>GVK-Drone-Defense-SpawnCondition-KHAANEPH-InterceptorSingle</SubtypeId>
 			</Id>
 			<Description>
 			[MES Spawn Conditions]
 			[RivalAiAnySpawn:true]
+			[UseKnownPlayerLocations:true]
+			[KnownPlayerLocationMustMatchFaction:true]
+			[KnownPlayerLocationMinSpawnedEncounters:-1]
+			[KnownPlayerLocationMaxSpawnedEncounters:-1]
 			[FactionOwner:KHAANEPH]
 			[ReactorsOn:true]
 			[SkipVoxelSpawnChecks:true]
@@ -19,11 +23,15 @@
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Drone-Defense-SpawnCondition-KHAANEPH-SmallFlyerSquad</SubtypeId>
+				<SubtypeId>GVK-Drone-Defense-SpawnCondition-KHAANEPH-InterceptorSquad</SubtypeId>
 			</Id>
 			<Description>
 			[MES Spawn Conditions]
 			[RivalAiAnySpawn:true]
+			[UseKnownPlayerLocations:true]
+			[KnownPlayerLocationMustMatchFaction:true]
+			[KnownPlayerLocationMinSpawnedEncounters:-1]
+			[KnownPlayerLocationMaxSpawnedEncounters:-1]
 			[FactionOwner:KHAANEPH]
 			[ReactorsOn:true]
 			[SkipVoxelSpawnChecks:true]
@@ -37,11 +45,15 @@
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Drone-Defense-SpawnCondition-KHAANEPH-SmallHoverSingle</SubtypeId>
+				<SubtypeId>GVK-Drone-Defense-SpawnCondition-KHAANEPH-SandskimmerSingle</SubtypeId>
 			</Id>
 			<Description>
 			[MES Spawn Conditions]
 			[RivalAiAnySpawn:true]
+			[UseKnownPlayerLocations:true]
+			[KnownPlayerLocationMustMatchFaction:true]
+			[KnownPlayerLocationMinSpawnedEncounters:-1]
+			[KnownPlayerLocationMaxSpawnedEncounters:-1]
 			[FactionOwner:KHAANEPH]
 			[ReactorsOn:true]
 			[SkipVoxelSpawnChecks:true]
@@ -52,11 +64,15 @@
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Drone-Defense-SpawnCondition-KHAANEPH-LightSandskimmerSquad</SubtypeId>
+				<SubtypeId>GVK-Drone-Defense-SpawnCondition-KHAANEPH-SandskimmerSquad</SubtypeId>
 			</Id>
 			<Description>
 			[MES Spawn Conditions]
 			[RivalAiAnySpawn:true]
+			[UseKnownPlayerLocations:true]
+			[KnownPlayerLocationMustMatchFaction:true]
+			[KnownPlayerLocationMinSpawnedEncounters:-1]
+			[KnownPlayerLocationMaxSpawnedEncounters:-1]
 			[FactionOwner:KHAANEPH]
 			[ReactorsOn:true]
 			[SkipVoxelSpawnChecks:true]
@@ -70,29 +86,15 @@
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Drone-Defense-SpawnCondition-KHAANEPH-SmallHoverSquad</SubtypeId>
+				<SubtypeId>GVK-Drone-Defense-SpawnCondition-KHAANEPH-MediumHover</SubtypeId>
 			</Id>
 			<Description>
 			[MES Spawn Conditions]
 			[RivalAiAnySpawn:true]
-			[FactionOwner:KHAANEPH]
-			[ReactorsOn:true]
-			[SkipVoxelSpawnChecks:true]
-			[SkipGridSpawnChecks:true]
- 			[PrefabSpawningMode:RandomFixedCount]
-			[PrefabFixedCount:2]
-			[PrefabOffsetOverrides:{X:25 Y:0 Z:0}]
-			[PrefabOffsetOverrides:{X:-25 Y:0 Z:0}]
-			</Description>
-		</EntityComponent>
-		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
-			<Id>
-				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Drone-Defense-SpawnCondition-KHAANEPH-MediumFlyer</SubtypeId>
-			</Id>
-			<Description>
-			[MES Spawn Conditions]
-			[RivalAiAnySpawn:true]
+			[UseKnownPlayerLocations:true]
+			[KnownPlayerLocationMustMatchFaction:true]
+			[KnownPlayerLocationMinSpawnedEncounters:-1]
+			[KnownPlayerLocationMaxSpawnedEncounters:-1]
 			[FactionOwner:KHAANEPH]
 			[ReactorsOn:true]
 			[SkipVoxelSpawnChecks:true]
@@ -103,11 +105,15 @@
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Drone-Defense-SpawnCondition-KHAANEPH-MediumHoverSingle</SubtypeId>
+				<SubtypeId>GVK-Drone-Defense-SpawnCondition-KHAANEPH-LargeHover</SubtypeId>
 			</Id>
 			<Description>
 			[MES Spawn Conditions]
 			[RivalAiAnySpawn:true]
+			[UseKnownPlayerLocations:true]
+			[KnownPlayerLocationMustMatchFaction:true]
+			[KnownPlayerLocationMinSpawnedEncounters:-1]
+			[KnownPlayerLocationMaxSpawnedEncounters:-1]
 			[FactionOwner:KHAANEPH]
 			[ReactorsOn:true]
 			[SkipVoxelSpawnChecks:true]
@@ -115,14 +121,24 @@
  			[PrefabSpawningMode:Random]
 			</Description>
 		</EntityComponent>
+		<!-- Test for DroneEncounter spawning...Doesn't work in behavior spawners -->
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Drone-Defense-SpawnCondition-KHAANEPH-LargeHoverSingle</SubtypeId>
+				<SubtypeId>GVK-Drone-Encounter-SpawnCondition-KHAANEPH</SubtypeId>
 			</Id>
 			<Description>
 			[MES Spawn Conditions]
-			[RivalAiAnySpawn:true]
+			[DroneEncounter:true]
+			[MinDroneDistance:900]
+			[MaxDroneDistance:1200]
+			[MinDroneAltitude:50]
+			[MaxDroneAltitude:51]
+			[DroneInheritsSourceAltitude:false]
+			[UseKnownPlayerLocations:true]
+			[KnownPlayerLocationMustMatchFaction:true]
+			[KnownPlayerLocationMinSpawnedEncounters:-1]
+			[KnownPlayerLocationMaxSpawnedEncounters:-1]
 			[FactionOwner:KHAANEPH]
 			[ReactorsOn:true]
 			[SkipVoxelSpawnChecks:true]
