@@ -1,0 +1,508 @@
+<?xml version="1.0"?>
+<Definitions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+	<EntityComponents>
+		<!-- An MES bug is preventing this from working. InsideZone still succeeds if it is inside an inactive Zone.
+			 Also, MES zone radius actions are not functioning at all -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-TriggerGroup-SupplyDepotZone</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI TriggerGroup]
+			[Triggers:GVK-Alliance-SupplyDepot-Trigger-Inside10000Check-KHAANEPH]
+			[Triggers:GVK-Alliance-SupplyDepot-Trigger-Inside20000Check-KHAANEPH]
+			[Triggers:GVK-Alliance-SupplyDepot-Trigger-Inside30000Check-KHAANEPH]
+			[Triggers:GVK-Alliance-SupplyDepot-Trigger-Inside40000Check-KHAANEPH]
+			[Triggers:GVK-Alliance-SupplyDepot-Trigger-Inside50000Check-KHAANEPH]
+			[Triggers:GVK-Alliance-SupplyDepot-ManualTrigger-InsideZone-KHAANEPH]
+			[Triggers:GVK-Alliance-SupplyDepot-Trigger-Inside10000Check-SOBAN]
+			[Triggers:GVK-Alliance-SupplyDepot-Trigger-Inside20000Check-SOBAN]
+			[Triggers:GVK-Alliance-SupplyDepot-Trigger-Inside30000Check-SOBAN]
+			[Triggers:GVK-Alliance-SupplyDepot-Trigger-Inside40000Check-SOBAN]
+			[Triggers:GVK-Alliance-SupplyDepot-Trigger-Inside50000Check-SOBAN]
+			[Triggers:GVK-Alliance-SupplyDepot-ManualTrigger-InsideZone-SOBAN]
+			[Triggers:GVK-Alliance-SupplyDepot-Trigger-ResetOwnership]
+			[Triggers:GVK-Alliance-SupplyDepot-Trigger-SpawnLoot]
+			</Description>
+		</EntityComponent>
+		<!-- trigger to confirm it is inside Zone 10000 -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-SupplyDepot-Trigger-Inside10000Check-KHAANEPH</SubtypeId>
+			</Id>
+			<Description>
+			[MES AI Trigger]
+			[UseTrigger:true]
+			[Type:InsideActiveZone]
+			[MinCooldownMs:10000]
+			[MaxCooldownMs:10001]
+			[StartsReady:false]
+			[ZoneName:KHAANEPH_Zone_10000]
+			[Actions:GVK-Alliance-SupplyDepot-Action-InsideZonesCheck-KHAANEPH]
+			</Description>
+		</EntityComponent>
+		<!-- trigger to confirm it is inside Zone 20000 -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-SupplyDepot-Trigger-Inside20000Check-KHAANEPH</SubtypeId>
+			</Id>
+			<Description>
+			[MES AI Trigger]
+			[UseTrigger:true]
+			[Type:InsideActiveZone]
+			[MinCooldownMs:10000]
+			[MaxCooldownMs:10001]
+			[StartsReady:false]
+			[ZoneName:KHAANEPH_Zone_20000]
+			[Actions:GVK-Alliance-SupplyDepot-Action-InsideZonesCheck-KHAANEPH]
+			</Description>
+		</EntityComponent>
+		<!-- trigger to confirm it is inside Zone 30000 -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-SupplyDepot-Trigger-Inside30000Check-KHAANEPH</SubtypeId>
+			</Id>
+			<Description>
+			[MES AI Trigger]
+			[UseTrigger:true]
+			[Type:InsideActiveZone]
+			[MinCooldownMs:10000]
+			[MaxCooldownMs:10001]
+			[StartsReady:false]
+			[ZoneName:KHAANEPH_Zone_30000]
+			[Actions:GVK-Alliance-SupplyDepot-Action-InsideZonesCheck-KHAANEPH]
+			</Description>
+		</EntityComponent>
+		<!-- trigger to confirm it is inside Zone 40000 -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-SupplyDepot-Trigger-Inside40000Check-KHAANEPH</SubtypeId>
+			</Id>
+			<Description>
+			[MES AI Trigger]
+			[UseTrigger:true]
+			[Type:InsideActiveZone]
+			[MinCooldownMs:10000]
+			[MaxCooldownMs:10001]
+			[StartsReady:false]
+			[ZoneName:KHAANEPH_Zone_40000]
+			[Actions:GVK-Alliance-SupplyDepot-Action-InsideZonesCheck-KHAANEPH]
+			</Description>
+		</EntityComponent>
+		<!-- trigger to confirm it is inside Zone 50000 -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-SupplyDepot-Trigger-Inside50000Check-KHAANEPH</SubtypeId>
+			</Id>
+			<Description>
+			[MES AI Trigger]
+			[UseTrigger:true]
+			[Type:InsideActiveZone]
+			[MinCooldownMs:10000]
+			[MaxCooldownMs:10001]
+			[StartsReady:false]
+			[ZoneName:KHAANEPH_Zone_50000]
+			[Actions:GVK-Alliance-SupplyDepot-Action-InsideZonesCheck-KHAANEPH]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-SupplyDepot-Action-InsideZonesCheck-KHAANEPH</SubtypeId>
+			</Id>
+			<Description>
+			[MES AI Action]
+			[ManuallyActivateTrigger:true]
+			[ManuallyActivatedTriggerNames:GVK-Alliance-SupplyDepot-ManualTrigger-InsideZone-KHAANEPH]
+			</Description>
+		</EntityComponent>
+		<!-- trigger to confirm it is inside Zone 50000 -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-SupplyDepot-ManualTrigger-InsideZone-KHAANEPH</SubtypeId>
+			</Id>
+			<Description>
+			[MES AI Trigger]
+			[UseTrigger:true]
+			[Type:Manual]
+			[MinCooldownMs:5000]
+			[MaxCooldownMs:5001]
+			[StartsReady:true]
+			[Actions:GVK-Alliance-SupplyDepot-Action-InsideZone-KHAANEPH]
+			[Actions:GVK-Alliance-SupplyDepot-Action-SetOwnership-KHAANEPH]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-SupplyDepot-Action-InsideZone-KHAANEPH</SubtypeId>
+			</Id>
+			<Description>
+			[MES AI Action]
+			[ResetCooldownTimeOfTriggers:true]
+			[ResetTriggerCooldownNames:GVK-Alliance-SupplyDepot-Trigger-ResetOwnership]
+			[ResetTriggerCooldownNames:GVK-Alliance-SupplyDepot-Trigger-SpawnLoot]
+			[EnableTriggers:true]
+			[EnableTriggerNames:GVK-Alliance-SupplyDepot-Trigger-ResetOwnership]
+			[EnableTriggerNames:GVK-Alliance-SupplyDepot-Trigger-SpawnLoot]
+			[DisableTriggers:true]
+			[DisableTriggerNames:GVK-Alliance-SupplyDepot-ManualTrigger-InsideZone-SOBAN]
+			[UseChatBroadcast:true]
+			[ChatData:GVK-Alliance-SupplyDepot-Chat-InsideZone-KHAANEPH]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-SupplyDepot-Chat-InsideZone-KHAANEPH</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Chat]
+			[UseChat:true]
+			[StartsReady:true]
+			[Chance:100]
+			[BroadcastRandomly:false]
+			[Author:Sensors]
+			[Color:Blue]
+			[ChatMessages:Inside KHAANEPH Zones.]
+			[ChatAudio:ArcHudSensors]
+			[BroadcastChatType:Both]
+			[SendToAllOnlinePlayers:true]
+			[IgnoreAntennaRequirement:true]
+			[IgnoredAntennaRangeOverride:10000]
+			</Description>
+		</EntityComponent>
+		<!-- trigger to reset ownership to neutral if not in an KHAANEPH Zone -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-SupplyDepot-Trigger-ResetOwnership</SubtypeId>
+			</Id>
+			<Description>
+			[MES AI Trigger]
+			[UseTrigger:false]
+			[Type:Timer]
+			[MinCooldownMs:20000]
+			[MaxCooldownMs:20001]
+			[StartsReady:false]
+			[Actions:GVK-Alliance-SupplyDepot-Action-OutsideAllZones]
+			[Actions:GVK-Universal-Action-LargeExplosionEffects]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-SupplyDepot-Action-SetOwnership-KHAANEPH</SubtypeId>
+			</Id>
+			<Description>
+			[MES AI Action]
+			[ChangeBlockOwnership:true]
+			[OwnershipBlockNames:NPC Block]
+			[OwnershipBlockFactions:KHAANEPH]
+			[OwnershipBlockNames:NPC Beacon]
+			[OwnershipBlockFactions:KHAANEPH]
+			[OwnershipBlockNames:Supply Depot]
+			[OwnershipBlockFactions:KHAANEPH]
+			[RecolorGrid:true]
+			[OldBlockColors:{X:0.0195 Y:-0.8 Z:-0.15}]
+			[NewBlockColors:{X:0.0583333336 Y:0.2 Z:-0.2}]
+			[OldBlockColors:{X:0.075 Y:-0.8 Z:-0.02}]
+			[NewBlockColors:{X:0.158333331 Y:-0.48 Z:0.12}]
+			[OldBlockColors:{X:0 Y:-0.8 Z:-0.3}]
+			[NewBlockColors:{X:0.05 Y:0.1 Z:0.11}]
+			[OldBlockColors:{X:0.0194444451 Y:0.04 Z:0.38}]
+			[NewBlockColors:{X:0.0583333336 Y:0.2 Z:-0.2}]
+			[OldBlockColors:{X:0.075 Y:-0.8 Z:0.32}]
+			[NewBlockColors:{X:0.158333331 Y:-0.48 Z:0.12}]
+			[OldBlockColors:{X:0.803 Y:-0.8 Z:-0.3}]
+			[NewBlockColors:{X:0.05 Y:0.1 Z:0.11}]
+			[NewBlockSkins:Battered_Armor]
+			</Description>
+		</EntityComponent>
+		<!-- Triggers to detect SOBAN Zones -->
+		<!-- trigger to confirm it is inside Zone 10000 -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-SupplyDepot-Trigger-Inside10000Check-SOBAN</SubtypeId>
+			</Id>
+			<Description>
+			[MES AI Trigger]
+			[UseTrigger:true]
+			[Type:InsideActiveZone]
+			[MinCooldownMs:10000]
+			[MaxCooldownMs:10001]
+			[StartsReady:false]
+			[ZoneName:SOBAN_Zone_10000]
+			[Actions:GVK-Alliance-SupplyDepot-Action-InsideZonesCheck-SOBAN]
+			</Description>
+		</EntityComponent>
+		<!-- trigger to confirm it is inside Zone 20000 -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-SupplyDepot-Trigger-Inside20000Check-SOBAN</SubtypeId>
+			</Id>
+			<Description>
+			[MES AI Trigger]
+			[UseTrigger:true]
+			[Type:InsideActiveZone]
+			[MinCooldownMs:10000]
+			[MaxCooldownMs:10001]
+			[StartsReady:false]
+			[ZoneName:SOBAN_Zone_20000]
+			[Actions:GVK-Alliance-SupplyDepot-Action-InsideZonesCheck-SOBAN]
+			</Description>
+		</EntityComponent>
+		<!-- trigger to confirm it is inside Zone 30000 -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-SupplyDepot-Trigger-Inside30000Check-SOBAN</SubtypeId>
+			</Id>
+			<Description>
+			[MES AI Trigger]
+			[UseTrigger:true]
+			[Type:InsideActiveZone]
+			[MinCooldownMs:10000]
+			[MaxCooldownMs:10001]
+			[StartsReady:false]
+			[ZoneName:SOBAN_Zone_30000]
+			[Actions:GVK-Alliance-SupplyDepot-Action-InsideZonesCheck-SOBAN]
+			</Description>
+		</EntityComponent>
+		<!-- trigger to confirm it is inside Zone 40000 -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-SupplyDepot-Trigger-Inside40000Check-SOBAN</SubtypeId>
+			</Id>
+			<Description>
+			[MES AI Trigger]
+			[UseTrigger:true]
+			[Type:InsideActiveZone]
+			[MinCooldownMs:10000]
+			[MaxCooldownMs:10001]
+			[StartsReady:false]
+			[ZoneName:SOBAN_Zone_40000]
+			[Actions:GVK-Alliance-SupplyDepot-Action-InsideZonesCheck-SOBAN]
+			</Description>
+		</EntityComponent>
+		<!-- trigger to confirm it is inside Zone 50000 -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-SupplyDepot-Trigger-Inside50000Check-SOBAN</SubtypeId>
+			</Id>
+			<Description>
+			[MES AI Trigger]
+			[UseTrigger:true]
+			[Type:InsideActiveZone]
+			[MinCooldownMs:10000]
+			[MaxCooldownMs:10001]
+			[StartsReady:false]
+			[ZoneName:SOBAN_Zone_50000]
+			[Actions:GVK-Alliance-SupplyDepot-Action-InsideZonesCheck-SOBAN]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-SupplyDepot-Action-InsideZonesCheck-SOBAN</SubtypeId>
+			</Id>
+			<Description>
+			[MES AI Action]
+			[ManuallyActivateTrigger:true]
+			[ManuallyActivatedTriggerNames:GVK-Alliance-SupplyDepot-ManualTrigger-InsideZone-SOBAN]
+			</Description>
+		</EntityComponent>
+		<!-- trigger to confirm it is inside Zone 50000 -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-SupplyDepot-ManualTrigger-InsideZone-SOBAN</SubtypeId>
+			</Id>
+			<Description>
+			[MES AI Trigger]
+			[UseTrigger:true]
+			[Type:Manual]
+			[MinCooldownMs:5000]
+			[MaxCooldownMs:5001]
+			[StartsReady:true]
+			[Actions:GVK-Alliance-SupplyDepot-Action-InsideZone-SOBAN]
+			[Actions:GVK-Alliance-SupplyDepot-Action-SetOwnership-SOBAN]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-SupplyDepot-Action-InsideZone-SOBAN</SubtypeId>
+			</Id>
+			<Description>
+			[MES AI Action]
+			[ResetCooldownTimeOfTriggers:true]
+			[ResetTriggerCooldownNames:GVK-Alliance-SupplyDepot-Trigger-ResetOwnership]
+			[ResetTriggerCooldownNames:GVK-Alliance-SupplyDepot-Trigger-SpawnLoot]
+			[EnableTriggers:true]
+			[EnableTriggerNames:GVK-Alliance-SupplyDepot-Trigger-ResetOwnership]
+			[EnableTriggerNames:GVK-Alliance-SupplyDepot-Trigger-SpawnLoot]
+			[DisableTriggers:true]
+			[DisableTriggerNames:GVK-Alliance-SupplyDepot-ManualTrigger-InsideZone-KHAANEPH]
+			[UseChatBroadcast:true]
+			[ChatData:GVK-Alliance-SupplyDepot-Chat-InsideZone-SOBAN]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-SupplyDepot-Chat-InsideZone-SOBAN</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Chat]
+			[UseChat:true]
+			[StartsReady:true]
+			[Chance:100]
+			[BroadcastRandomly:false]
+			[Author:Sensors]
+			[Color:Blue]
+			[ChatMessages:Inside SOBAN Zones.]
+			[ChatAudio:ArcHudSensors]
+			[BroadcastChatType:Both]
+			[SendToAllOnlinePlayers:true]
+			[IgnoreAntennaRequirement:true]
+			[IgnoredAntennaRangeOverride:10000]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-SupplyDepot-Action-SetOwnership-SOBAN</SubtypeId>
+			</Id>
+			<Description>
+			[MES AI Action]
+			[ChangeBlockOwnership:true]
+			[OwnershipBlockNames:NPC Block]
+			[OwnershipBlockFactions:SOBAN]
+			[OwnershipBlockNames:NPC Beacon]
+			[OwnershipBlockFactions:SOBAN]
+			[OwnershipBlockNames:Supply Depot]
+			[OwnershipBlockFactions:SOBAN]
+			[RecolorGrid:true]
+			[OldBlockColors:{X:0.0195 Y:-0.8 Z:-0.15}]
+			[NewBlockColors:{X:0.0194444451 Y:0.04 Z:0.38}]
+			[OldBlockColors:{X:0.075 Y:-0.8 Z:-0.02}]
+			[NewBlockColors:{X:0.075 Y:-0.8 Z:0.32}]
+			[OldBlockColors:{X:0.803 Y:-0.8 Z:-0.3}]
+			[NewBlockColors:{X:0 Y:-0.8 Z:-0.3}]
+			[OldBlockColors:{X:0.0583333336 Y:0.2 Z:-0.2}]
+			[NewBlockColors:{X:0.0194444451 Y:0.04 Z:0.38}]
+			[OldBlockColors:{X:0.158333331 Y:-0.48 Z:0.12}]
+			[NewBlockColors:{X:0.075 Y:-0.8 Z:0.32}]
+			[OldBlockColors:{X:0.05 Y:0.1 Z:0.11}]
+			[NewBlockColors:{X:0 Y:-0.8 Z:-0.3}]
+			[NewBlockSkins:SciFi_Armor]
+			</Description>
+		</EntityComponent>
+
+		<!-- Action for outside all zones to set color and ownership to neutral -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-SupplyDepot-Action-OutsideAllZones</SubtypeId>
+			</Id>
+			<Description>
+			[MES AI Action]
+			[EnableTriggers:true]
+			[EnableTriggerNames:GVK-Alliance-SupplyDepot-ManualTrigger-InsideZone-KHAANEPH]
+			[EnableTriggerNames:GVK-Alliance-SupplyDepot-ManualTrigger-InsideZone-SOBAN]
+			[DisableTriggers:true]
+			[DisableTriggerNames:GVK-Alliance-SupplyDepot-Trigger-ResetOwnership]
+			[DisableTriggerNames:GVK-Alliance-SupplyDepot-Trigger-SpawnLoot]
+			[ChangeBlockOwnership:true]
+			[OwnershipBlockNames:NPC Block]
+			[OwnershipBlockFactions:UNKN]
+			[OwnershipBlockNames:NPC Beacon]
+			[OwnershipBlockFactions:UNKN]
+			[OwnershipBlockNames:Supply Depot]
+			[OwnershipBlockFactions:UNKN]
+			[RecolorGrid:true]
+			[OldBlockColors:{X:0.0583333336 Y:0.2 Z:-0.2}]
+			[NewBlockColors:{X:0.0195 Y:-0.8 Z:-0.15}]
+			[OldBlockColors:{X:0.158333331 Y:-0.48 Z:0.12}]
+			[NewBlockColors:{X:0.075 Y:-0.8 Z:-0.02}]
+			[OldBlockColors:{X:0.05 Y:0.1 Z:0.11}]
+			[NewBlockColors:{X:0.803 Y:-0.8 Z:-0.3}]
+			[OldBlockColors:{X:0.0194444451 Y:0.04 Z:0.38}]
+			[NewBlockColors:{X:0.0195 Y:-0.8 Z:-0.15}]
+			[OldBlockColors:{X:0.075 Y:-0.8 Z:0.32}]
+			[NewBlockColors:{X:0.075 Y:-0.8 Z:-0.02}]
+			[OldBlockColors:{X:0 Y:-0.8 Z:-0.3}]
+			[NewBlockColors:{X:0.803 Y:-0.8 Z:-0.3}]
+			[NewBlockSkins:Battered_Armor]
+			[UseChatBroadcast:true]
+			</Description>
+		</EntityComponent>
+		<!-- Trigger to restock shared cargos every 6 hours 21,600,000 ms -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-SupplyDepot-Trigger-SpawnLoot</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Trigger]
+			[Type:Timer]
+			[MinCooldownMs:21600000]
+			[MaxCooldownMs:21600001]
+			[UseTrigger:false]
+			[StartsReady:true]
+			[MaxActions:-1]
+			[ActionExecution:All]
+			[Actions:GVK-Alliance-SupplyDepot-Action-SpawnLoot]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-SupplyDepot-Action-SpawnLoot</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Action]
+			[Chance:100]
+			[ApplyContainerTypeToInventoryBlock:true]
+			[ContainerTypeBlockNames:Shared Cargo Container]
+			[ContainerTypeSubtypeIds:Kharak_Loot_Large]
+			[UseChatBroadcast:true]
+			[ChatData:GVK-Alliance-SupplyDepot-Chat-SpawnLoot]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-SupplyDepot-Chat-SpawnLoot</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Chat]
+			[UseChat:true]
+			[StartsReady:true]
+			[Chance:100]
+			[MaxChats:1]
+			[BroadcastRandomly:false]
+			[Author:Sensors]
+			[Color:Blue]
+			[ChatMessages:{Faction} supply depot has been restocked.]
+			[ChatAudio:ArcHudGPSNotification2]
+			[BroadcastChatType:Chat]
+			[SendToAllOnlinePlayers:true]
+			[IgnoreAntennaRequirement:true]
+			[IgnoredAntennaRangeOverride:10000]
+		  </Description>
+		</EntityComponent>
+	</EntityComponents>
+</Definitions>
