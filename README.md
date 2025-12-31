@@ -36,18 +36,19 @@ Example: `GVK-Drone-Encounter-Behavior-ProductionCruiserHorsefly`
 
 
 Prefab naming:
-```NCS	[NPC CargoShip]		"NCS [COALITION] Trader"
+- Only use the 4-letter tag for prefab names to reduce text spill in targeting.
+```NCS	[NPC CargoShip]		"NCS [COAL] Trader"
 NAS (NPC Alliance Station)  "NAS [KHAA] Carrier"
-NCO	(NPC Convoy)	    	"NCO [COALITION] Cargo Cruiser"
-NDR	(NPC Drone)	        	"NDR [GAALSIEN] Salvager"
+NCO	(NPC Convoy)	    	"NCO [COAL] Cargo Cruiser"
+NDR	(NPC Drone)	        	"NDR [GAAL] Salvager"
 NKO	(NPC KOTH)	        	"NKO [KOTH] Khar Toba"
-NMI	(NPC Mission)	    	"NMI [COALITION] Support Cruiser"
-NST	(NPC Static)	    	"NST [COALITION] South Signpost"
-NWL	(NPC Large Wreck)    	"NWL [DERELICT] Mammoth"
-NWM	(NPC Med Wreck)	    	"NWM [GAALSIEN] Outpost"  
-NWS	(NPC Small Wreck)    	"NWS [COALITION] Turtle"
-NTS	(NPC Trade Station)	    "NTS [COALITION] Rusty's"
-NLO	(NPC Loot)	        	"NLO [COALITION] Cargo Drop"
+NMI	(NPC Mission)	    	"NMI [COAL] Support Cruiser"
+NST	(NPC Static)	    	"NST [COAL] South Signpost"
+NWL	(NPC Large Wreck)    	"NWL [DERE] Mammoth"
+NWM	(NPC Med Wreck)	    	"NWM [GAAL] Outpost"  
+NWS	(NPC Small Wreck)    	"NWS [COAL] Turtle"
+NTS	(NPC Trade Station)	    "NTS [COAL] Rusty's"
+NLO	(NPC Loot)	        	"NLO [COAL] Cargo Drop"
 
 NOU	(NPC Outpost)	    	Out of date
 NSN	(NPC Station)	    	Out of date
@@ -82,3 +83,5 @@ NSN	(NPC Station)	    	Out of date
 21. NPCs are awful at aiming at targets. Use Keen AI blocks instead of RAI autopilot if accuracy is critical.
 22. `ProcessAsAdminSpawn:true` is available for Spawner profiles to bypass some restrictions.
 23. Use `[IgnoreCleanupRules:true]` on all NPCs with aggressive MES CleanUp settings to help delete debris that doesn't have an active RAI block.
+24. Use `DebugMessage: enter text here` in action profiles for a quick way to send a message to chat for testing purposes.
+25. Do not use RazeBlocks on an RAI remote control block; doing so can cause a crash at UpdateShape() if the block is split from its parent grid.
