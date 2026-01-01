@@ -83,5 +83,5 @@ NSN	(NPC Station)	    	Out of date
 21. NPCs are awful at aiming at targets. Use Keen AI blocks instead of RAI autopilot if accuracy is critical.
 22. `ProcessAsAdminSpawn:true` is available for Spawner profiles to bypass some restrictions.
 23. Use `[IgnoreCleanupRules:true]` on all NPCs with aggressive MES CleanUp settings to help delete debris that doesn't have an active RAI block.
-24. Use `DebugMessage: enter text here` in action profiles for a quick way to send a message to chat for testing purposes.
+24. Use `[DebugMessage: enter text here]` in action profiles for a quick way to send a message to chat for testing purposes.
 25. Do not use RazeBlocks on an RAI remote control block; doing so can cause a crash at UpdateShape() if the block is split from its parent grid.
