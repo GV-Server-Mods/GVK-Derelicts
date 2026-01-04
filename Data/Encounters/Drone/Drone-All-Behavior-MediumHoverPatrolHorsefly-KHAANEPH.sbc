@@ -20,15 +20,43 @@
 			[TargetData:GVK-Universal-Target-EnemyGrids2km]
 			[AutopilotData:GVK-Drone-All-Autopilot-MediumHoverPatrolHorsefly-Passive]
 			[SecondaryAutopilotData:GVK-Drone-All-Autopilot-MediumHoverPatrolHorsefly-Aggressive]
+			[Triggers:GVK-Drone-All-Trigger-Init-MediumHoverPatrolHorsefly-KHAANEPH]
 			[Triggers:GVK-Universal-Trigger-TargetAcquiredChatter]
 			[Triggers:GVK-Universal-Trigger-NoTargetsChatter]
 			[Triggers:GVK-Drone-All-Trigger-TargetAttacker]
 			[Triggers:GVK-Drone-All-Trigger-TurretTarget]
 			[Triggers:GVK-Drone-All-Trigger-WeaponsToMaxRange]
 			[TriggerGroups:GVK-Drone-All-TriggerGroup-PatrolHorsefly]
-			[TriggerGroups:GVK-Drone-All-TriggerGroup-MediumHoverDefeated]
-			[TriggerGroups:GVK-Alliance-TriggerGroup-PointsDroneMedium-KHAANEPH]
+			[TriggerGroups:GVK-Alliance-TriggerGroup-ReceiveTargets]
+			[TriggerGroups:GVK-Universal-TriggerGroup-DefeatedAndAttacked]
 			BountyOnKill=1000000;
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Drone-All-Trigger-Init-MediumHoverPatrolHorsefly-KHAANEPH</SubtypeId>
+			</Id>
+			<Description>
+			[MES AI Trigger]
+			[UseTrigger:true]
+			[Type:Timer]
+			[StartsReady:true]
+			[MaxActions:1]
+			[ActionExecution:All]
+			[Actions:GVK-Drone-All-Action-Init-MediumHoverPatrolHorsefly-KHAANEPH]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Drone-All-Action-Init-MediumHoverPatrolHorsefly-KHAANEPH</SubtypeId>
+			</Id>
+			<Description>
+			[MES AI Action]
+			[SetCustomStrings:true]
+			[CustomStrings:EncounterType,DroneMedium]
+			[CustomStrings:EncounterDisplayName,craft]
 			</Description>
 		</EntityComponent>
 	</EntityComponents>

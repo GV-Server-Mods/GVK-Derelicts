@@ -20,16 +20,45 @@
 			[AutopilotData:GVK-Drone-All-Autopilot-HoverCruiserHorsefly-Passive]
 			[SecondaryAutopilotData:GVK-Drone-All-Autopilot-HoverCruiserHorsefly-Aggressive]
 			[TertiaryAutopilotData:GVK-Drone-All-Autopilot-HoverCruiserHorsefly-Stop]
-			[Triggers:GVK-Universal-Trigger-TargetAcquiredChatter]
-			[Triggers:GVK-Universal-Trigger-NoTargetsChatter]
+			[Triggers:GVK-Drone-All-Trigger-Init-HoverCruiserHorsefly-COALITION]
 			[Triggers:GVK-Drone-All-Trigger-TargetAttacker]
 			[Triggers:GVK-Drone-All-Trigger-TurretTarget]
 			[Triggers:GVK-Drone-All-Trigger-WeaponsToMaxRange]
 			[Triggers:GVK-Universal-Trigger-UneditableOnSpawn]
+			[Triggers:GVK-Universal-Trigger-TargetAcquiredChatter]
+			[Triggers:GVK-Universal-Trigger-NoTargetsChatter]
 			[TriggerGroups:GVK-Drone-Encounter-TriggerGroup-InactivityRetreat]
 			[TriggerGroups:GVK-Drone-All-TriggerGroup-PlayerNearStop]
-			[TriggerGroups:GVK-Drone-All-TriggerGroup-LargeHoverDefeated]
 			[TriggerGroups:GVK-Drone-All-TriggerGroup-PatrolHorseflyKPL]
+			[TriggerGroups:GVK-Alliance-TriggerGroup-ReceiveTargets]
+			[TriggerGroups:GVK-Universal-TriggerGroup-DefeatedAndAttacked]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Drone-All-Trigger-Init-HoverCruiserHorsefly-COALITION</SubtypeId>
+			</Id>
+			<Description>
+			[MES AI Trigger]
+			[UseTrigger:true]
+			[Type:Timer]
+			[StartsReady:true]
+			[MaxActions:1]
+			[ActionExecution:All]
+			[Actions:GVK-Drone-All-Action-Init-HoverCruiserHorsefly-COALITION]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Drone-All-Action-Init-HoverCruiserHorsefly-COALITION</SubtypeId>
+			</Id>
+			<Description>
+			[MES AI Action]
+			[SetCustomStrings:true]
+			[CustomStrings:EncounterType,DroneLarge]
+			[CustomStrings:EncounterDisplayName,cruiser]
 			</Description>
 		</EntityComponent>
 	</EntityComponents>

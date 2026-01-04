@@ -17,14 +17,17 @@
 			[UseRetreatTimer:true]
 			[RetreatTimerTrigger:1800]
 			[RetreatDespawnDistance:2000]
-			[AutopilotData:GVK-Drone-All-Autopilot-LAV]
 			[TargetData:GVK-Universal-Target-EnemyGrids2km]
+			[AutopilotData:GVK-Drone-All-Autopilot-LAV-Passive]
+			[SecondaryAutopilotData:GVK-Drone-All-Autopilot-LAV-Aggressive]
+			[TertiaryAutopilotData:GVK-Drone-All-Autopilot-LAV-BigAirTime]
 			[Triggers:GVK-Universal-Trigger-UneditableOnSpawn]
 			[Triggers:GVK-Drone-Encounter-LAV-COALITION-Trigger-PlayerNear]
 			[Triggers:GVK-Universal-Trigger-TargetAcquiredChatter]
 			[Triggers:GVK-Universal-Trigger-NoTargetsChatter]
 			[TriggerGroups:GVK-Drone-Encounter-TriggerGroup-InactivityRetreat]
-			[TriggerGroups:GVK-Drone-All-TriggerGroup-SmallRoverDefeated]
+			[TriggerGroups:GVK-Universal-TriggerGroup-DefeatedAndAttacked]
+			[TriggerGroups:GVK-Alliance-TriggerGroup-ReceiveTargets]
 			</Description>
 		</EntityComponent>
 		<!-- Trigger sequence for LAV to spawn enemies when player is near -->

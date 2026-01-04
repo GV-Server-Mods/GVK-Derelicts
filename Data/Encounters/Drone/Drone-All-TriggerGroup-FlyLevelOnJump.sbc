@@ -25,9 +25,11 @@
 			[UseTrigger:true]
 			[Type:Timer]
 			[StartsReady:false]
-			[MinCooldownMs:2000]
-			[MaxCooldownMs:2001]
+			[MinCooldownMs:1000]
+			[MaxCooldownMs:1001]
 			[Actions:GVK-Drone-All-FlyLevelOnJump-Action-AboveAltitude]
+			[ToggleWithTriggerProfile:GVK-Drone-All-FlyLevelOnJump-Trigger-BelowAltitude]
+			[ToggledProfileResetsCooldown:true]
 			[Conditions:GVK-Drone-All-FlyLevelOnJump-Condition-AboveAltitude]
 			[ConditionCheckResetsTimer:true]
 			</Description>
@@ -52,36 +54,10 @@
 			</Id>
 			<Description>
 			[RivalAI Action]
-			[ChangeAutopilotProfile:true]
-			[AutopilotProfile:Tertiary]
-			[EnableTriggers:true]
-			[EnableTriggerNames:GVK-Drone-All-FlyLevelOnJump-Trigger-BelowAltitude]
-			[ResetCooldownTimeOfTriggers:true]
-			[ResetTriggerCooldownNames:GVK-Drone-All-FlyLevelOnJump-Trigger-BelowAltitude]
-			[UseChatBroadcast:false]
-			[ChatData:GVK-Drone-All-FlyLevelOnJump-Chat-AboveAltitude]
-			</Description>
-		</EntityComponent>
-		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
-			<Id>
-				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Drone-All-FlyLevelOnJump-Chat-AboveAltitude</SubtypeId>
-			</Id>
-			<Description>
-			[RivalAI Chat]
-			[UseChat:true]
-			[StartsReady:true]
-			[Chance:100]
-			[MaxChats:1]
-			[BroadcastRandomly:false]
-			[Author:{Grid}]
-			[Color:White]
-			[ChatMessages:Above Altitude.]
-			[ChatAudio:ArcHudSensors]
-			[BroadcastChatType:Both]
-			[SendToAllOnlinePlayers:true]
-			[IgnoreAntennaRequirement:true]
-			[IgnoredAntennaRangeOverride:100000]
+			[//DebugMessage:Trigger AboveAltitude]
+			[StopAllThrust:true]
+			[//ChangeAutopilotProfile:true]
+			[//AutopilotProfile:Tertiary]
 			</Description>
 		</EntityComponent>
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
@@ -94,9 +70,11 @@
 			[UseTrigger:false]
 			[Type:Timer]
 			[StartsReady:false]
-			[MinCooldownMs:2000]
-			[MaxCooldownMs:2001]
+			[MinCooldownMs:1000]
+			[MaxCooldownMs:1001]
 			[Actions:GVK-Drone-All-FlyLevelOnJump-Action-BelowAltitude]
+			[ToggleWithTriggerProfile:GVK-Drone-All-FlyLevelOnJump-Trigger-AboveAltitude]
+			[ToggledProfileResetsCooldown:true]
 			[Conditions:GVK-Drone-All-FlyLevelOnJump-Condition-BelowAltitude]
 			[ConditionCheckResetsTimer:true]
 			</Description>
@@ -121,32 +99,10 @@
 			</Id>
 			<Description>
 			[RivalAI Action]
-			[ChangeAutopilotProfile:true]
-			[AutopilotProfile:Secondary]
-			[UseChatBroadcast:false]
-			[ChatData:GVK-Drone-All-FlyLevelOnJump-Chat-BelowAltitude]
-			</Description>
-		</EntityComponent>
-		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
-			<Id>
-				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Drone-All-FlyLevelOnJump-Chat-BelowAltitude</SubtypeId>
-			</Id>
-			<Description>
-			[RivalAI Chat]
-			[UseChat:true]
-			[StartsReady:true]
-			[Chance:100]
-			[MaxChats:1]
-			[BroadcastRandomly:false]
-			[Author:LAV]
-			[Color:White]
-			[ChatMessages:Below Altitude.]
-			[ChatAudio:ArcHudSensors]
-			[BroadcastChatType:Both]
-			[SendToAllOnlinePlayers:true]
-			[IgnoreAntennaRequirement:true]
-			[IgnoredAntennaRangeOverride:100000]
+			[//DebugMessage:Trigger BelowAltitude]
+			[StopAllThrust:false]
+			[//ChangeAutopilotProfile:true]
+			[//AutopilotProfile:Secondary]
 			</Description>
 		</EntityComponent>
 	</EntityComponents>

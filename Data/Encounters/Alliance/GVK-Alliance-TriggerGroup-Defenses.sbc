@@ -1,0 +1,260 @@
+<?xml version="1.0"?>
+<Definitions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+	<EntityComponents>
+		<!-- Behavior for Trade Stations -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-TriggerGroup-SpawnDefenses</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI TriggerGroup]
+			[Triggers:GVK-Alliance-Trigger-DefensesInit]
+			[Triggers:GVK-Alliance-Trigger-DefensesPlayerNear]
+			[Triggers:GVK-Alliance-Trigger-DefensesDamage]
+			[Triggers:GVK-Alliance-Trigger-DefensesManual]
+			[Triggers:GVK-Alliance-Trigger-DefensesResetCounter]
+			[Triggers:GVK-Alliance-Trigger-DefensesManualSpawn-AllianceBase]
+			[Triggers:GVK-Alliance-Trigger-DefensesManualSpawn-AllianceOutpost]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-Trigger-DefensesInit</SubtypeId>
+			</Id>
+			<Description>
+			[MES AI Trigger]
+			[UseTrigger:true]
+			[Type:Timer]
+			[StartsReady:true]
+			[MaxActions:1]
+			[Actions:GVK-Alliance-Action-DefensesResetCounter]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-Trigger-DefensesPlayerNear</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Trigger]
+			[UseTrigger:true]
+			[Type:PlayerNear]
+			[TargetDistance:2000]
+			[StartsReady:true]
+			[MinCooldownMs:10000]
+			[MaxCooldownMs:10001]
+			[ActionExecution:All]
+			[Actions:GVK-Alliance-Action-DefensesTrigger]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-Trigger-DefensesDamage</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Trigger]
+			[UseTrigger:true]
+			[Type:Damage]
+			[DamageTypes:Any]
+			[StartsReady:true]
+			[MinCooldownMs:10000]
+			[MaxCooldownMs:10001]
+			[ActionExecution:All]
+			[Actions:GVK-Alliance-Action-DefensesTrigger]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-Action-DefensesTrigger</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Action]
+			[//DebugMessage:DefensesTrigger]
+			[ManuallyActivateTrigger:true]
+			[ManuallyActivatedTriggerNames:GVK-Alliance-Trigger-DefensesManual]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-Trigger-DefensesResetCounter</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Trigger]
+			[UseTrigger:true]
+			[Type:Timer]
+			[StartsReady:false]
+			[MinCooldownMs:1800001]
+			[MaxCooldownMs:1800002]
+			[ActionExecution:All]
+			[Actions:GVK-Alliance-Action-DefensesResetCounter]
+			</Description>
+		</EntityComponent>
+		<!-- KPL duration 30 minutes -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-Action-DefensesResetCounter</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Action]
+			[//DebugMessage:DefensesResetCounter]
+			[ResetCounters:DefenseSpawn_Counter]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-Trigger-DefensesManual</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Trigger]
+			[UseTrigger:true]
+			[Type:Manual]
+			[StartsReady:true]
+			[MinCooldownMs:30000]
+			[MaxCooldownMs:30001]
+			[ActionExecution:All]
+			[Actions:GVK-Alliance-Action-DefensesManual]
+			[Conditions:GVK-Alliance-Condition-DefensesManual]
+			[ConditionCheckResetsTimer:true]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-Condition-DefensesManual</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Condition]
+			[UseConditions:true]
+			[MatchAnyCondition:false]
+			[CheckCustomCounters:true]
+			[CustomCounters:DefenseSpawn_Counter]
+			[CustomCountersVariables:{DefenseSpawn_Limit}]
+			[CounterCompareTypes:Less]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-Action-DefensesManual</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Action]
+			[//DebugMessage:DefensesManual]
+			[IncreaseCounters:DefenseSpawn_Counter]
+			[ManuallyActivateTrigger:true]
+			[ManuallyActivatedTriggerNames:GVK-Alliance-Trigger-DefensesManualSpawn-{EncounterType}]
+			[UseChatBroadcast:true]
+			[ChatData:GVK-Alliance-EncounterType-Chat-Defenses-Faction]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-Trigger-DefensesManualSpawn-AllianceBase</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Trigger]
+			[UseTrigger:true]
+			[Type:Manual]
+			[StartsReady:false]
+			[ActionExecution:All]
+			[Actions:GVK-Alliance-Action-DefensesManualSpawn-AllianceBase]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-Action-DefensesManualSpawn-AllianceBase</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Action]
+			[//DebugMessage:DefensesManualSpawn-AllianceBase]
+			[SpawnEncounter:true]
+			[Spawner:GVK-Alliance-Spawner-Defenses-AllianceBase]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-Spawner-Defenses-AllianceBase</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Spawn]
+			[UseSpawn:true]
+			[SpawningType:CustomSpawn]
+			[StartsReady:true]
+			[ProcessAsAdminSpawn:true]
+			[SpawnGroups:GVK-Drone-Defense-SpawnGroup-{Faction}-BaserunnerHeavy]
+			[SpawnGroups:GVK-Drone-Defense-SpawnGroup-{Faction}-LargeHover]
+			[SpawnGroups:GVK-Drone-Defense-SpawnGroup-{Faction}-LargeRover]
+			[SpawnGroups:GVK-Drone-Defense-SpawnGroup-{Faction}-InterceptorSquad]
+			[SpawnGroups:GVK-Drone-Defense-SpawnGroup-{Faction}-MediumHoverHeavy]
+			[SpawnGroups:GVK-Drone-Defense-SpawnGroup-{Faction}-LargeHover]
+			[MinDistance:500]
+			[MaxDistance:700]
+			[MinAltitude:50]
+			[MaxAltitude:51]
+			[InheritNpcAltitude:false]
+			[IgnoreSafetyChecks:false]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-Trigger-DefensesManualSpawn-AllianceOutpost</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Trigger]
+			[UseTrigger:true]
+			[Type:Manual]
+			[StartsReady:false]
+			[ActionExecution:All]
+			[Actions:GVK-Alliance-Action-DefensesManualSpawn-AllianceOutpost]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-Action-DefensesManualSpawn-AllianceOutpost</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Action]
+			[//DebugMessage:DefensesManualSpawn-AllianceOutpost]
+			[SpawnEncounter:true]
+			[Spawner:GVK-Alliance-Spawner-Defenses-AllianceOutpost]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-Spawner-Defenses-AllianceOutpost</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Spawn]
+			[UseSpawn:true]
+			[SpawningType:CustomSpawn]
+			[StartsReady:true]
+			[ProcessAsAdminSpawn:true]
+			[SpawnGroups:GVK-Drone-Defense-SpawnGroup-{Faction}-InterceptorSingle]
+			[SpawnGroups:GVK-Drone-Defense-SpawnGroup-{Faction}-SandskimmerSquad]
+			[SpawnGroups:GVK-Drone-Defense-SpawnGroup-{Faction}-MediumHoverLight]
+			[SpawnGroups:GVK-Drone-Defense-SpawnGroup-{Faction}-LAVSquad]
+			[SpawnGroups:GVK-Drone-Defense-SpawnGroup-{Faction}-StrikeFighterSingle]
+			[SpawnGroups:GVK-Drone-Defense-SpawnGroup-{Faction}-BaserunnerLight]
+			[MinDistance:500]
+			[MaxDistance:700]
+			[MinAltitude:50]
+			[MaxAltitude:51]
+			[InheritNpcAltitude:false]
+			[IgnoreSafetyChecks:false]
+			</Description>
+		</EntityComponent>
+	</EntityComponents>
+</Definitions>

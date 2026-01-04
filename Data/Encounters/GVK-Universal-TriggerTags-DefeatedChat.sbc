@@ -1,0 +1,292 @@
+<?xml version="1.0"?>
+<Definitions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+	<EntityComponents>
+		<!--
+		
+		EncounterTypes:
+		- Base				Faction Base
+		- Outpost			Faction Outpost
+		- DroneLarge		Faction Large Drone
+		- DroneMedium		Facion Medium Drone
+		- DroneSmall		FactionSmall Drone
+		- WreckLarge		Large Signal
+		- WreckMedium		Medium Signal
+		- WreckSmall		Medium Signal
+				
+		TODO: Switch to dialogue banks for more variety
+				
+		Tags:GVK-Universal-TriggerTags-DefeatedChat-{EncounterType}
+		Tags:GVK-Universal-TriggerTags-DespawnedChat-{EncounterType}
+		
+		Note: Drones don't have DespawnChat
+
+		-->
+		
+		<!-- Defeated Chats -->
+		<!-- Base -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Universal-TriggerTags-DefeatedChat-AllianceBase</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Trigger]
+			[UseTrigger:true]
+			[Tags:GVK-Universal-TriggerTags-DefeatedChat-AllianceBase]
+			[Type:Manual]
+			[StartsReady:true]
+			[Actions:GVK-Universal-Action-DefeatedChat-All]
+			</Description>
+		</EntityComponent>
+		<!-- Outpost -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Universal-TriggerTags-DefeatedChat-AllianceOutpost</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Trigger]
+			[UseTrigger:true]
+			[Tags:GVK-Universal-TriggerTags-DefeatedChat-AllianceOutpost]
+			[Type:Manual]
+			[StartsReady:true]
+			[Actions:GVK-Universal-Action-DefeatedChat-All]
+			</Description>
+		</EntityComponent>
+		<!-- DroneLarge -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Universal-TriggerTags-DefeatedChat-DroneLarge</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Trigger]
+			[UseTrigger:true]
+			[Tags:GVK-Universal-TriggerTags-DefeatedChat-DroneLarge]
+			[Type:Manual]
+			[StartsReady:true]
+			[Actions:GVK-Universal-Action-DefeatedChat-All]
+			</Description>
+		</EntityComponent>
+		<!-- DroneMedium -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Universal-TriggerTags-DefeatedChat-DroneMedium</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Trigger]
+			[UseTrigger:true]
+			[Tags:GVK-Universal-TriggerTags-DefeatedChat-DroneMedium]
+			[Type:Manual]
+			[StartsReady:true]
+			[Actions:GVK-Universal-Action-DefeatedChat-All]
+			</Description>
+		</EntityComponent>
+		<!-- DroneSmall -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Universal-TriggerTags-DefeatedChat-DroneSmall</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Trigger]
+			[UseTrigger:true]
+			[Tags:GVK-Universal-TriggerTags-DefeatedChat-DroneSmall]
+			[Type:Manual]
+			[StartsReady:true]
+			[Actions:GVK-Universal-Action-DefeatedChat-All]
+			</Description>
+		</EntityComponent>
+		<!-- WreckLarge -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Universal-TriggerTags-DefeatedChat-WreckLarge</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Trigger]
+			[UseTrigger:true]
+			[Tags:GVK-Universal-TriggerTags-DefeatedChat-WreckLarge]
+			[Type:Manual]
+			[StartsReady:true]
+			[Actions:GVK-Universal-Action-DefeatedChat-All]
+			</Description>
+		</EntityComponent>
+		<!-- WreckMedium -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Universal-TriggerTags-DefeatedChat-WreckMedium</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Trigger]
+			[UseTrigger:true]
+			[Tags:GVK-Universal-TriggerTags-DefeatedChat-WreckMedium]
+			[Type:Manual]
+			[StartsReady:true]
+			[Actions:GVK-Universal-Action-DefeatedChat-All]
+			</Description>
+		</EntityComponent>
+		<!-- WreckSmall -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Universal-TriggerTags-DefeatedChat-WreckSmall</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Trigger]
+			[UseTrigger:true]
+			[Tags:GVK-Universal-TriggerTags-DefeatedChat-WreckSmall]
+			[Type:Manual]
+			[StartsReady:true]
+			[Actions:GVK-Universal-Action-DefeatedChat-All]
+			</Description>
+		</EntityComponent>
+		<!-- Despawned Chats -->
+		<!-- Base -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Universal-TriggerTags-DespawnedChat-AllianceBase</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Trigger]
+			[UseTrigger:true]
+			[Tags:GVK-Universal-TriggerTags-DespawnedChat-AllianceBase]
+			[Type:Manual]
+			[StartsReady:true]
+			[Actions:GVK-Universal-Action-DespawnedChat-Structure]
+			</Description>
+		</EntityComponent>
+		<!-- Outpost -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Universal-TriggerTags-DespawnedChat-AllianceOutpost</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Trigger]
+			[UseTrigger:true]
+			[Tags:GVK-Universal-TriggerTags-DespawnedChat-AllianceOutpost]
+			[Type:Manual]
+			[StartsReady:true]
+			[Actions:GVK-Universal-Action-DespawnedChat-Structure]
+			</Description>
+		</EntityComponent>
+		<!-- WreckLarge -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Universal-TriggerTags-DespawnedChat-WreckLarge</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Trigger]
+			[UseTrigger:true]
+			[Tags:GVK-Universal-TriggerTags-DespawnedChat-WreckLarge]
+			[Type:Manual]
+			[StartsReady:true]
+			[Actions:GVK-Universal-Action-DespawnedChat-Structure]
+			</Description>
+		</EntityComponent>
+		<!-- WreckMedium -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Universal-TriggerTags-DespawnedChat-WreckMedium</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Trigger]
+			[UseTrigger:true]
+			[Tags:GVK-Universal-TriggerTags-DespawnedChat-WreckMedium]
+			[Type:Manual]
+			[StartsReady:true]
+			[Actions:GVK-Universal-Action-DespawnedChat-Structure]
+			</Description>
+		</EntityComponent>
+		<!-- WreckSmall -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Universal-TriggerTags-DespawnedChat-WreckSmall</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Trigger]
+			[UseTrigger:true]
+			[Tags:GVK-Universal-TriggerTags-DespawnedChat-WreckSmall]
+			[Type:Manual]
+			[StartsReady:true]
+			[Actions:GVK-Universal-Action-DespawnedChat-Structure]
+			</Description>
+		</EntityComponent>
+		<!-- Action and Common Chat messages -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Universal-Action-DefeatedChat-All</SubtypeId>
+			</Id>
+			<Description>
+			[MES AI Action]
+			[//DebugMessage:DefeatedChat-All]
+			[UseChatBroadcast:true]
+			[ChatData:GVK-Universal-Chat-DefeatedChat-All]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Universal-Chat-DefeatedChat-All</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Chat]
+			[UseChat:true]
+			[StartsReady:true]
+			[Chance:100]
+			[MaxChats:1]
+			[BroadcastRandomly:false]
+			[Author:Sensors]
+			[Color:Blue]
+			[ChatMessages:{Faction} {EncounterDisplayName} destroyed.]
+			[ChatAudio:ArcHudSensors]
+			[BroadcastChatType:Both]
+			[SendToAllOnlinePlayers:true]
+			[IgnoreAntennaRequirement:true]
+			[IgnoredAntennaRangeOverride:100000]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Universal-Action-DespawnedChat-Structure</SubtypeId>
+			</Id>
+			<Description>
+			[MES AI Action]
+			[//DebugMessage:DespawnedChat-Structure]
+			[UseChatBroadcast:true]
+			[ChatData:GVK-Universal-Chat-DespawnedChat-Structure]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Universal-Chat-DespawnedChat-Structure</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Chat]
+			[UseChat:true]
+			[StartsReady:true]
+			[Chance:100]
+			[MaxChats:1]
+			[BroadcastRandomly:false]
+			[Author:Sensors]
+			[Color:Blue]
+			[ChatMessages:{Faction} {EncounterDisplayName} lost.]
+			[ChatAudio:ArcHudSensors]
+			[BroadcastChatType:Both]
+			[SendToAllOnlinePlayers:true]
+			[IgnoreAntennaRequirement:true]
+			[IgnoredAntennaRangeOverride:100000]
+			</Description>
+		</EntityComponent>
+	</EntityComponents>
+</Definitions>

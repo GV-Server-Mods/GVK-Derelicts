@@ -22,6 +22,7 @@
 			[AutopilotData:GVK-Drone-All-Autopilot-HoverCruiserHorsefly-Passive]
 			[SecondaryAutopilotData:GVK-Drone-All-Autopilot-Honorguard-Aggressive]
 			[TertiaryAutopilotData:GVK-Drone-All-Autopilot-Honorguard-Tertiary]
+			[Triggers:GVK-Drone-All-Trigger-Init-Honorguard-KHAANEPH]
 			[Triggers:GVK-Universal-Trigger-TargetAcquiredChatter]
 			[Triggers:GVK-Universal-Trigger-NoTargetsChatter]
 			[Triggers:GVK-Drone-All-Trigger-TargetAttacker]
@@ -29,9 +30,36 @@
 			[Triggers:GVK-Drone-All-Trigger-WeaponsToMaxRange]
 			[TriggerGroups:GVK-Drone-All-TriggerGroup-AimAtTargetAngle]
 			[TriggerGroups:GVK-Drone-All-TriggerGroup-PatrolFighter]
-			[TriggerGroups:GVK-Drone-All-TriggerGroup-LargeHoverDefeated]
-			[TriggerGroups:GVK-Alliance-TriggerGroup-PointsDroneLarge-KHAANEPH]
+			[TriggerGroups:GVK-Alliance-TriggerGroup-ReceiveTargets]
+			[TriggerGroups:GVK-Universal-TriggerGroup-DefeatedAndAttacked]
 			BountyOnKill=3000000;
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Drone-All-Trigger-Init-Honorguard-KHAANEPH</SubtypeId>
+			</Id>
+			<Description>
+			[MES AI Trigger]
+			[UseTrigger:true]
+			[Type:Timer]
+			[StartsReady:true]
+			[MaxActions:1]
+			[ActionExecution:All]
+			[Actions:GVK-Drone-All-Action-Init-Honorguard-KHAANEPH]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Drone-All-Action-Init-Honorguard-KHAANEPH</SubtypeId>
+			</Id>
+			<Description>
+			[MES AI Action]
+			[SetCustomStrings:true]
+			[CustomStrings:EncounterType,DroneLarge]
+			[CustomStrings:EncounterDisplayName,Honorguard]
 			</Description>
 		</EntityComponent>
 	</EntityComponents>

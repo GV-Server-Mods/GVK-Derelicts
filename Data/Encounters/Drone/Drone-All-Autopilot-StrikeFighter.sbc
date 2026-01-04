@@ -1,3 +1,4 @@
+<?xml version="1.0"?>
 <Definitions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
 	<EntityComponents>
 		<!-- SmallFlyerHorseFighter Autopilot -->
@@ -9,7 +10,9 @@
 			<Description>
 			[RivalAI Autopilot]
 			[WaypointAbandonTimeTrigger:15]
-			[RotationMultiplier:0.25]
+			[RotationMultiplierPitch:0.5]
+			[RotationMultiplierYaw:0.1]
+			[RotationMultiplierRoll:1]
 			[LimitRotationSpeed:true]
 			[MaxRotationMagnitude:1]
 			[FlyLevelWithGravity:false]
@@ -29,7 +32,7 @@
 			[OffsetPlanetMinTargetAltitude:250]
 			[OffsetPlanetMaxTargetAltitude:300]
 			[AngleAllowedForForwardThrust:180]
-			[MaxVelocityAngleForSpeedControl:180]
+			[MaxVelocityAngleForSpeedControl:1000]
 			</Description>
 		</EntityComponent>
 		<!-- SmallFlyerHorseFighter Autopilot -->
@@ -46,7 +49,9 @@
 			[StrikeEngageUseSafePlanetPathing:false]
 			[StrikeEngageUseCollisionEvasion:false]
 			[WaypointAbandonTimeTrigger:60]
-			[RotationMultiplier:1]
+			[RotationMultiplierPitch:0.5]
+			[RotationMultiplierYaw:0.1]
+			[RotationMultiplierRoll:1]
 			[LimitRotationSpeed:false]
 			[MaxRotationMagnitude:1]
 			[DisableInertiaDampeners:false]
@@ -67,7 +72,7 @@
 			[OffsetPlanetMinTargetAltitude:-100]
 			[OffsetPlanetMaxTargetAltitude:100]
 			[AngleAllowedForForwardThrust:180]
-			[MaxVelocityAngleForSpeedControl:180]
+			[MaxVelocityAngleForSpeedControl:1000]
 			</Description>
 		</EntityComponent>
 	</EntityComponents>

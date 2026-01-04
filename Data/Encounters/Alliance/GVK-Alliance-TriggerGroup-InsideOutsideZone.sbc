@@ -1,0 +1,379 @@
+<?xml version="1.0"?>
+<Definitions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+	<EntityComponents>
+		<!-- An MES bug is preventing this from working. InsideZone still succeeds if it is inside an inactive Zone.
+			 Also, MES zone radius actions are not functioning at all -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-TriggerGroup-InsideOutsideZone</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI TriggerGroup]
+			[Triggers:GVK-Alliance-Trigger-Outside10000Check]
+			[Triggers:GVK-Alliance-Trigger-Outside20000Check]
+			[Triggers:GVK-Alliance-Trigger-Outside30000Check]
+			[Triggers:GVK-Alliance-Trigger-Outside40000Check]
+			[Triggers:GVK-Alliance-Trigger-Outside50000Check]
+			[Triggers:GVK-Alliance-Trigger-Inside10000Check]
+			[Triggers:GVK-Alliance-Trigger-Inside20000Check]
+			[Triggers:GVK-Alliance-Trigger-Inside30000Check]
+			[Triggers:GVK-Alliance-Trigger-Inside40000Check]
+			[Triggers:GVK-Alliance-Trigger-Inside50000Check]
+			[Triggers:GVK-Alliance-Trigger-OutsideAllZones]
+			</Description>
+		</EntityComponent>
+		<!-- trigger to confirm it is Outside Zone 10000 -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-Trigger-Outside10000Check</SubtypeId>
+			</Id>
+			<Description>
+			[MES AI Trigger]
+			[UseTrigger:true]
+			[Type:OutsideActiveZone]
+			[MinCooldownMs:10000]
+			[MaxCooldownMs:10001]
+			[StartsReady:false]
+			[ZoneName:{Faction}_Zone_10000]
+			[Actions:GVK-Alliance-Action-Outside10000Check]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-Action-Outside10000Check</SubtypeId>
+			</Id>
+			<Description>
+			[MES AI Action]
+			[//DebugMessage:Trigger Outside10000Check]
+			[SetBooleansTrue:Zone10000Check]
+			</Description>
+		</EntityComponent>
+		<!-- trigger to confirm it is Outside Zone 20000 -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-Trigger-Outside20000Check</SubtypeId>
+			</Id>
+			<Description>
+			[MES AI Trigger]
+			[UseTrigger:true]
+			[Type:OutsideActiveZone]
+			[MinCooldownMs:10000]
+			[MaxCooldownMs:10001]
+			[StartsReady:false]
+			[ZoneName:{Faction}_Zone_20000]
+			[Actions:GVK-Alliance-Action-Outside20000Check]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-Action-Outside20000Check</SubtypeId>
+			</Id>
+			<Description>
+			[MES AI Action]
+			[//DebugMessage:Trigger Outside20000Check]
+			[SetBooleansTrue:Zone20000Check]
+			</Description>
+		</EntityComponent>
+		<!-- trigger to confirm it is Outside Zone 30000 -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-Trigger-Outside30000Check</SubtypeId>
+			</Id>
+			<Description>
+			[MES AI Trigger]
+			[UseTrigger:true]
+			[Type:OutsideActiveZone]
+			[MinCooldownMs:10000]
+			[MaxCooldownMs:10001]
+			[StartsReady:false]
+			[ZoneName:{Faction}_Zone_30000]
+			[Actions:GVK-Alliance-Action-Outside30000Check]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-Action-Outside30000Check</SubtypeId>
+			</Id>
+			<Description>
+			[MES AI Action]
+			[//DebugMessage:Trigger Outside30000Check]
+			[SetBooleansTrue:Zone30000Check]
+			</Description>
+		</EntityComponent>
+		<!-- trigger to confirm it is Outside Zone 40000 -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-Trigger-Outside40000Check</SubtypeId>
+			</Id>
+			<Description>
+			[MES AI Trigger]
+			[UseTrigger:true]
+			[Type:OutsideActiveZone]
+			[MinCooldownMs:10000]
+			[MaxCooldownMs:10001]
+			[StartsReady:false]
+			[ZoneName:{Faction}_Zone_40000]
+			[Actions:GVK-Alliance-Action-Outside40000Check]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-Action-Outside40000Check</SubtypeId>
+			</Id>
+			<Description>
+			[MES AI Action]
+			[//DebugMessage:Trigger Outside40000Check]
+			[SetBooleansTrue:Zone40000Check]
+			</Description>
+		</EntityComponent>
+		<!-- trigger to confirm it is Outside Zone 50000 -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-Trigger-Outside50000Check</SubtypeId>
+			</Id>
+			<Description>
+			[MES AI Trigger]
+			[UseTrigger:true]
+			[Type:OutsideActiveZone]
+			[MinCooldownMs:10000]
+			[MaxCooldownMs:10001]
+			[StartsReady:false]
+			[ZoneName:{Faction}_Zone_50000]
+			[Actions:GVK-Alliance-Action-Outside50000Check]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-Action-Outside50000Check</SubtypeId>
+			</Id>
+			<Description>
+			[MES AI Action]
+			[//DebugMessage:Trigger Outside50000Check]
+			[SetBooleansTrue:Zone50000Check]
+			</Description>
+		</EntityComponent>
+		<!-- trigger to confirm it is inside Zone 10000 -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-Trigger-Inside10000Check</SubtypeId>
+			</Id>
+			<Description>
+			[MES AI Trigger]
+			[UseTrigger:true]
+			[Type:InsideActiveZone]
+			[MinCooldownMs:10000]
+			[MaxCooldownMs:10001]
+			[StartsReady:false]
+			[ZoneName:{Faction}_Zone_10000]
+			[Actions:GVK-Alliance-Action-Inside10000Check]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-Action-Inside10000Check</SubtypeId>
+			</Id>
+			<Description>
+			[MES AI Action]
+			[//DebugMessage:Trigger Inside10000Check]
+			[SetBooleansFalse:Zone10000Check]
+			</Description>
+		</EntityComponent>
+		<!-- trigger to confirm it is inside Zone 20000 -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-Trigger-Inside20000Check</SubtypeId>
+			</Id>
+			<Description>
+			[MES AI Trigger]
+			[UseTrigger:true]
+			[Type:InsideActiveZone]
+			[MinCooldownMs:10000]
+			[MaxCooldownMs:10001]
+			[StartsReady:false]
+			[ZoneName:{Faction}_Zone_20000]
+			[Actions:GVK-Alliance-Action-Inside20000Check]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-Action-Inside20000Check</SubtypeId>
+			</Id>
+			<Description>
+			[MES AI Action]
+			[//DebugMessage:Trigger Inside20000Check]
+			[SetBooleansFalse:Zone20000Check]
+			</Description>
+		</EntityComponent>
+		<!-- trigger to confirm it is inside Zone 30000 -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-Trigger-Inside30000Check</SubtypeId>
+			</Id>
+			<Description>
+			[MES AI Trigger]
+			[UseTrigger:true]
+			[Type:InsideActiveZone]
+			[MinCooldownMs:10000]
+			[MaxCooldownMs:10001]
+			[StartsReady:false]
+			[ZoneName:{Faction}_Zone_30000]
+			[Actions:GVK-Alliance-Action-Inside30000Check]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-Action-Inside30000Check</SubtypeId>
+			</Id>
+			<Description>
+			[MES AI Action]
+			[//DebugMessage:Trigger Inside30000Check]
+			[SetBooleansFalse:Zone30000Check]
+			</Description>
+		</EntityComponent>
+		<!-- trigger to confirm it is inside Zone 40000 -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-Trigger-Inside40000Check</SubtypeId>
+			</Id>
+			<Description>
+			[MES AI Trigger]
+			[UseTrigger:true]
+			[Type:InsideActiveZone]
+			[MinCooldownMs:10000]
+			[MaxCooldownMs:10001]
+			[StartsReady:false]
+			[ZoneName:{Faction}_Zone_40000]
+			[Actions:GVK-Alliance-Action-Inside40000Check]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-Action-Inside40000Check</SubtypeId>
+			</Id>
+			<Description>
+			[MES AI Action]
+			[//DebugMessage:Trigger Inside40000Check]
+			[SetBooleansFalse:Zone40000Check]
+			</Description>
+		</EntityComponent>
+		<!-- trigger to confirm it is inside Zone 50000 -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-Trigger-Inside50000Check</SubtypeId>
+			</Id>
+			<Description>
+			[MES AI Trigger]
+			[UseTrigger:true]
+			[Type:InsideActiveZone]
+			[MinCooldownMs:10000]
+			[MaxCooldownMs:10001]
+			[StartsReady:false]
+			[ZoneName:{Faction}_Zone_50000]
+			[Actions:GVK-Alliance-Action-Inside50000Check]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-Action-Inside50000Check</SubtypeId>
+			</Id>
+			<Description>
+			[MES AI Action]
+			[//DebugMessage:Trigger Inside50000Check]
+			[SetBooleansFalse:Zone50000Check]
+			</Description>
+		</EntityComponent>
+		<!-- trigger to check all zone bools for despawn -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-Trigger-OutsideAllZones</SubtypeId>
+			</Id>
+			<Description>
+			[MES AI Trigger]
+			[UseTrigger:true]
+			[Type:Timer]
+			[MinCooldownMs:300000]
+			[MaxCooldownMs:300001]
+			[StartsReady:false]
+			[Actions:GVK-Alliance-Action-OutsideAllZones]
+			[Actions:GVK-Universal-Action-LargeExplosionEffects]
+			[Conditions:GVK-Alliance-Condition-OutsideAllZones]
+			[ConditionCheckResetsTimer:true]
+			</Description>
+		</EntityComponent>
+		<!-- if Zone bools are all true, then outside all zones, then despawn -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-Condition-OutsideAllZones</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Condition]
+			[UseConditions:true]
+			[MatchAnyCondition:false]
+			[CheckTrueBooleans:true]
+			[TrueBooleans:Zone10000Check]
+			[TrueBooleans:Zone20000Check]
+			[TrueBooleans:Zone30000Check]
+			[TrueBooleans:Zone40000Check]
+			[TrueBooleans:Zone50000Check]
+			[AllowAnyTrueBoolean:false]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-Action-OutsideAllZones</SubtypeId>
+			</Id>
+			<Description>
+			[MES AI Action]
+			[//DebugMessage:Trigger OutsideAllZones]
+			[ForceDespawn:true]
+			[UseChatBroadcast:true]
+			[ChatData:GVK-Alliance-Chat-OutsideAllZones]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-Chat-OutsideAllZones</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Chat]
+			[UseChat:true]
+			[StartsReady:true]
+			[Chance:100]
+			[BroadcastRandomly:false]
+			[Author:Sensors]
+			[Color:Blue]
+			[ChatMessages:A {Faction} {EncounterDisplayName} was abandoned.]
+			[ChatAudio:ArcHudSensors]
+			[BroadcastChatType:Both]
+			[SendToAllOnlinePlayers:false]
+			[IgnoreAntennaRequirement:true]
+			[IgnoredAntennaRangeOverride:5000]
+			</Description>
+		</EntityComponent>
+	</EntityComponents>
+</Definitions>

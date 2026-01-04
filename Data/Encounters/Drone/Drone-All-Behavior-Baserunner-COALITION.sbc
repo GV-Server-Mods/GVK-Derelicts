@@ -5,27 +5,58 @@
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Drone-All-Behavior-Baserunner</SubtypeId>
+				<SubtypeId>GVK-Drone-All-Behavior-Baserunner-COALITION</SubtypeId>
 			</Id>
 			<Description>
 			[RivalAI Behavior]
 			[BehaviorName:Patrol]
+			[WeaponSystem:GVK-Universal-Weapons-All]
 			[UsePlayerDistanceTimer:true]
-			[PlayerDistanceTimerTrigger:1800]
-			[PlayerDistanceTrigger:4000]
+			[PlayerDistanceTimerTrigger:900]
+			[PlayerDistanceTrigger:3000]
 			[UseNoTargetTimer:false]
-			[UseRetreatTimer:true]
-			[RetreatTimerTrigger:1800]
-			[RetreatDespawnDistance:2000]
-			[AutopilotData:GVK-Drone-All-Autopilot-Baserunner]
+			[NoTargetTimerTrigger:900]
+			[UseRetreatTimer:false]
+			[AutopilotData:GVK-Drone-All-Autopilot-Baserunner-Passive]
+			[SecondaryAutopilotData:GVK-Drone-All-Autopilot-Baserunner-Aggressive]
 			[TargetData:GVK-Universal-Target-EnemyGrids2km]
+			[Triggers:GVK-Drone-All-Trigger-Init-Baserunner-COALITION]
 			[Triggers:GVK-Universal-Trigger-UneditableOnSpawn]
 			[Triggers:GVK-Universal-Trigger-TargetAcquiredChatter]
 			[Triggers:GVK-Universal-Trigger-NoTargetsChatter]
 			[Triggers:GVK-Drone-All-Trigger-TargetAttacker]
 			[Triggers:GVK-Drone-All-Trigger-TurretTarget]
 			[Triggers:GVK-Drone-All-Trigger-WeaponsToMaxRange]
-			[TriggerGroups:GVK-Drone-All-TriggerGroup-MediumRoverDefeated]
+			[TriggerGroups:GVK-Drone-All-TriggerGroup-PatrolHorsefly]
+			[TriggerGroups:GVK-Alliance-TriggerGroup-ReceiveTargets]
+			[TriggerGroups:GVK-Universal-TriggerGroup-DefeatedAndAttackedAircraft]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Drone-All-Trigger-Init-Baserunner-COALITION</SubtypeId>
+			</Id>
+			<Description>
+			[MES AI Trigger]
+			[UseTrigger:true]
+			[Type:Timer]
+			[StartsReady:true]
+			[MaxActions:1]
+			[ActionExecution:All]
+			[Actions:GVK-Drone-All-Action-Init-Baserunner-COALITION]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Drone-All-Action-Init-Baserunner-COALITION</SubtypeId>
+			</Id>
+			<Description>
+			[MES AI Action]
+			[SetCustomStrings:true]
+			[CustomStrings:EncounterType,DroneMedium]
+			[CustomStrings:EncounterDisplayName,vehicle]
 			</Description>
 		</EntityComponent>
 	</EntityComponents>

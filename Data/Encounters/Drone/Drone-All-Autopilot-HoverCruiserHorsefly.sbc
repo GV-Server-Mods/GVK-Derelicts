@@ -14,13 +14,15 @@
 			[LimitRotationSpeed:true]
 			[MaxRotationMagnitude:0.25]
 			[DisableInertiaDampeners:false]
-			[FlyLevelWithGravity:true]
-			[LevelWithGravityWhenIdle:true]
-			[IdealPlanetAltitude:10]
+			[FlyLevelWithGravity:false]
+			[LevelWithGravityWhenIdle:false]
+			[WaypointTolerance:75]
+			[UseSurfaceHoverThrustMode:true]
+			[HoverPathStepDistance:76]
+			[IdealPlanetAltitude:20]
 			[MinimumPlanetAltitude:0]
 			[AltitudeTolerance:5000]
 			[WaypointAbandonTimeTrigger:15]
-			[WaypointTolerance:100]
 			[IdealMinSpeed:35]
 			[IdealMaxSpeed:40]
 			[MaxSpeedTolerance:5]
@@ -28,10 +30,11 @@
 			[OffsetPlanetMaxDistFromTarget:601]
 			[OffsetPlanetMinTargetAltitude:10]
 			[OffsetPlanetMaxTargetAltitude:15]
+			[OffsetMaxAngleFromTarget:90]
 			[ReverseOffsetDistAltAboveHeight:false]
 			[ReverseOffsetHeight:0]
 			[AngleAllowedForForwardThrust:120]
-			[MaxVelocityAngleForSpeedControl:180]
+			[MaxVelocityAngleForSpeedControl:1000]
 			</Description>
 		</EntityComponent>
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
@@ -46,9 +49,12 @@
 			[LimitRotationSpeed:true]
 			[MaxRotationMagnitude:0.25]
 			[DisableInertiaDampeners:false]
-			[FlyLevelWithGravity:true]
-			[LevelWithGravityWhenIdle:true]
-			[IdealPlanetAltitude:10]
+			[FlyLevelWithGravity:false]
+			[LevelWithGravityWhenIdle:false]
+			[WaypointTolerance:100]
+			[UseSurfaceHoverThrustMode:true]
+			[HoverPathStepDistance:101]
+			[IdealPlanetAltitude:20]
 			[MinimumPlanetAltitude:0]
 			[AltitudeTolerance:5000]
 			[CollisionEvasionWaypointDistance:300]
@@ -56,7 +62,6 @@
 			[CollisionEvasionResumeTime:10]
 			[CollisionEvasionWaypointCalculatedAwayFromEntity:true]
 			[WaypointAbandonTimeTrigger:20]
-			[WaypointTolerance:150]
 			[IdealMinSpeed:35]
 			[IdealMaxSpeed:100]
 			[MaxSpeedTolerance:10]
@@ -64,10 +69,11 @@
 			[OffsetPlanetMaxDistFromTarget:2000]
 			[OffsetPlanetMinTargetAltitude:10]
 			[OffsetPlanetMaxTargetAltitude:15]
+			[OffsetMaxAngleFromTarget:90]
 			[ReverseOffsetDistAltAboveHeight:false]
 			[ReverseOffsetHeight:0]
 			[AngleAllowedForForwardThrust:120]
-			[MaxVelocityAngleForSpeedControl:180]
+			[MaxVelocityAngleForSpeedControl:1000]
 			</Description>
 		</EntityComponent>
 		<!-- Full stop tertiary autopilot mode -->
@@ -98,7 +104,7 @@
 			[OffsetPlanetMinTargetAltitude:14]
 			[OffsetPlanetMaxTargetAltitude:15]
 			[AngleAllowedForForwardThrust:0]
-			[MaxVelocityAngleForSpeedControl:180]
+			[MaxVelocityAngleForSpeedControl:1000]
 			</Description>
 		</EntityComponent>
 	</EntityComponents>

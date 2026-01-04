@@ -1,0 +1,78 @@
+<?xml version="1.0"?>
+<Definitions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+	<EntityComponents>
+		<!--
+		
+		Factions:
+		- SOBAN
+		- KHAANEPH
+				
+		Tags:GVK-Alliance-TriggerTags-Reputation-{Faction}
+
+		-->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-TriggerTags-Reputation-KHAANEPH</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Trigger]
+			[UseTrigger:true]
+			[Tags:GVK-Alliance-TriggerTags-Reputation-KHAANEPH]
+			[Type:Manual]
+			[StartsReady:true]
+			[ActionExecution:All]
+			[Actions:GVK-Alliance-Action-Reputation-KHAANEPH]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-Action-Reputation-KHAANEPH</SubtypeId>
+			</Id>
+			<Description>
+			[MES AI Action]
+			[ChangeAttackerReputation:true]
+			[ChangeAttackerReputationFaction:KHAANEPH]
+			[ChangeAttackerReputationAmount:-10]
+			[ChangeAttackerReputationFaction:SOBAN]
+			[ChangeAttackerReputationAmount:5]
+			[ReputationChangesForAllAttackPlayerFactionMembers:true]
+			[UseChatBroadcast:false]
+			[ChatData:GVK-Alliance-EncounterType-Chat-Attacked-Faction]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-TriggerTags-Reputation-SOBAN</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Trigger]
+			[UseTrigger:true]
+			[Tags:GVK-Alliance-TriggerTags-Reputation-SOBAN]
+			[Type:Manual]
+			[StartsReady:true]
+			[ActionExecution:All]
+			[Actions:GVK-Alliance-Action-Reputation-SOBAN]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-Action-Reputation-SOBAN</SubtypeId>
+			</Id>
+			<Description>
+			[MES AI Action]
+			[ChangeAttackerReputation:true]
+			[ChangeAttackerReputationFaction:SOBAN]
+			[ChangeAttackerReputationAmount:-10]
+			[ChangeAttackerReputationFaction:KHAANEPH]
+			[ChangeAttackerReputationAmount:5]
+			[ReputationChangesForAllAttackPlayerFactionMembers:true]
+			[UseChatBroadcast:false]
+			[ChatData:GVK-Alliance-EncounterType-Chat-Attacked-Faction]
+			</Description>
+		</EntityComponent>
+	</EntityComponents>
+</Definitions>

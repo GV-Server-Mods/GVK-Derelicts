@@ -22,6 +22,7 @@
 			[TargetData:GVK-Universal-Target-EnemyGrids2km]
 			[AutopilotData:GVK-Drone-All-Autopilot-StrikeFighter-Patrol]
 			[SecondaryAutopilotData:GVK-Drone-All-Autopilot-StrikeFighter-Strike]
+			[Triggers:GVK-Drone-All-Trigger-Init-StrikeFighter-SOBAN]
 			[Triggers:GVK-Universal-Trigger-TargetAcquiredChatter]
 			[Triggers:GVK-Universal-Trigger-NoTargetsChatter]
 			[Triggers:GVK-Drone-All-Trigger-TargetAttacker]
@@ -29,9 +30,36 @@
 			[Triggers:GVK-Drone-All-Trigger-WeaponsToMaxRange]
 			[Triggers:GVK-Drone-All-Trigger-BarrelRoll]
 			[TriggerGroups:GVK-Drone-All-TriggerGroup-PatrolStrike]
-			[TriggerGroups:GVK-Drone-All-TriggerGroup-SmallFlyerDefeated]
-			[TriggerGroups:GVK-Alliance-TriggerGroup-PointsDroneSmall-SOBAN]
+			[TriggerGroups:GVK-Alliance-TriggerGroup-ReceiveTargets]
+			[TriggerGroups:GVK-Universal-TriggerGroup-DefeatedAndAttackedAircraft]
 			BountyOnKill=500000;
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Drone-All-Trigger-Init-StrikeFighter-SOBAN</SubtypeId>
+			</Id>
+			<Description>
+			[MES AI Trigger]
+			[UseTrigger:true]
+			[Type:Timer]
+			[StartsReady:true]
+			[MaxActions:1]
+			[ActionExecution:All]
+			[Actions:GVK-Drone-All-Action-Init-StrikeFighter-SOBAN]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Drone-All-Action-Init-StrikeFighter-SOBAN</SubtypeId>
+			</Id>
+			<Description>
+			[MES AI Action]
+			[SetCustomStrings:true]
+			[CustomStrings:EncounterType,DroneSmall]
+			[CustomStrings:EncounterDisplayName,aircraft]
 			</Description>
 		</EntityComponent>
 	</EntityComponents>

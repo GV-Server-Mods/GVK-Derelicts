@@ -24,12 +24,14 @@
 			[RequiredNoneFunctionalBlockNames:Player KOTH]
 			[RequiredNoneFunctionalBlockNames:Distress Signal]
 			[RequiredNoneFunctionalBlockNames:Downed Salvager]
+			[RequiredNoneFunctionalBlockNames:Base]
 			[MatchAnyCondition:false]
 			[CheckForBlocksOfType:true]
 			[BlocksOfType:MyObjectBuilder_Beacon]
 			[UseFailCondition:true]
 			</Description>
 		</EntityComponent>
+		<!-- Condition for no functional beacons, this may be abusable if players place their own beacons first -->
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>

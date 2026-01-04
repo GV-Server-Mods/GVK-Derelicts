@@ -1,3 +1,4 @@
+<?xml version="1.0"?>
 <Definitions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
 	<EntityComponents>
 		<!-- SmallHoverHorseFighter Autopilot -->
@@ -8,14 +9,18 @@
 			</Id>
 			<Description>
 			[RivalAI Autopilot]
+			[UseVelocityCollisionEvasion:false]
+			[UseProjectileLeadPrediction:false]
 			[RotationMultiplier:0.75]
 			[DisableInertiaDampeners:false]
-			[FlyLevelWithGravity:true]
-			[LevelWithGravityWhenIdle:true]
+			[FlyLevelWithGravity:false]
+			[LevelWithGravityWhenIdle:false]
+			[WaypointTolerance:75]
+			[UseSurfaceHoverThrustMode:true]
+			[HoverPathStepDistance:76]
 			[IdealPlanetAltitude:5]
 			[MinimumPlanetAltitude:3]
 			[AltitudeTolerance:10]
-			[WaypointTolerance:50]
 			[RamMinDurationMs:0]
 			[RamMaxDurationMs:0]
 			[IdealMinSpeed:39]
@@ -26,6 +31,7 @@
 			[OffsetPlanetMaxDistFromTarget:700]
 			[OffsetPlanetMinTargetAltitude:3]
 			[OffsetPlanetMaxTargetAltitude:4]
+			[OffsetMaxAngleFromTarget:90]
 			[WaypointWaitTimeTrigger:0]
 			[WaypointAbandonTimeTrigger:10]
 			[AllowStrafing:true]
@@ -37,7 +43,7 @@
 			[StrafeMinimumTargetDistance:500]
 			[StrafeMinimumSafeAngleFromTarget:25]
 			[AngleAllowedForForwardThrust:180]
-			[MaxVelocityAngleForSpeedControl:180]
+			[MaxVelocityAngleForSpeedControl:1000]
 			</Description>
 		</EntityComponent>
 		<!-- SmallHoverHorseFighter Autopilot -->
@@ -48,14 +54,18 @@
 			</Id>
 			<Description>
 			[RivalAI Autopilot]
+			[UseVelocityCollisionEvasion:false]
+			[UseProjectileLeadPrediction:false]
 			[RotationMultiplier:0.75]
 			[DisableInertiaDampeners:false]
-			[FlyLevelWithGravity:true]
-			[LevelWithGravityWhenIdle:true]
+			[FlyLevelWithGravity:false]
+			[LevelWithGravityWhenIdle:false]
+			[WaypointTolerance:100]
+			[UseSurfaceHoverThrustMode:true]
+			[HoverPathStepDistance:101]
 			[IdealPlanetAltitude:5]
 			[MinimumPlanetAltitude:3]
 			[AltitudeTolerance:10]
-			[WaypointTolerance:50]
 			[RamMinDurationMs:6000]
 			[RamMaxDurationMs:6001]
 			[IdealMinSpeed:40]
@@ -66,6 +76,7 @@
 			[OffsetPlanetMaxDistFromTarget:700]
 			[OffsetPlanetMinTargetAltitude:3]
 			[OffsetPlanetMaxTargetAltitude:4]
+			[OffsetMaxAngleFromTarget:90]
 			[WaypointWaitTimeTrigger:0]
 			[WaypointAbandonTimeTrigger:30]
 			[AllowStrafing:true]
@@ -77,7 +88,7 @@
 			[StrafeMinimumTargetDistance:500]
 			[StrafeMinimumSafeAngleFromTarget:25]
 			[AngleAllowedForForwardThrust:180]
-			[MaxVelocityAngleForSpeedControl:180]
+			[MaxVelocityAngleForSpeedControl:1000]
 			</Description>
 		</EntityComponent>
 	</EntityComponents>

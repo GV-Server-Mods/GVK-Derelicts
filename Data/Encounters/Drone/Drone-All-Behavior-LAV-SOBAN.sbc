@@ -21,6 +21,7 @@
 			[AutopilotData:GVK-Drone-All-Autopilot-LAV-Passive]
 			[SecondaryAutopilotData:GVK-Drone-All-Autopilot-LAV-Aggressive]
 			[TertiaryAutopilotData:GVK-Drone-All-Autopilot-LAV-BigAirTime]
+			[Triggers:GVK-Drone-All-Trigger-Init-LAV-SOBAN]
 			[Triggers:GVK-Universal-Trigger-TargetAcquiredChatter]
 			[Triggers:GVK-Universal-Trigger-NoTargetsChatter]
 			[Triggers:GVK-Drone-All-Trigger-TargetAttacker]
@@ -28,9 +29,36 @@
 			[Triggers:GVK-Drone-All-Trigger-WeaponsToMaxRange]
 			[TriggerGroups:GVK-Drone-All-TriggerGroup-PatrolHorsefly]
 			[TriggerGroups:GVK-Drone-All-TriggerGroup-FlyLevelOnJump]
-			[TriggerGroups:GVK-Drone-All-TriggerGroup-SmallRoverDefeated]
-			[TriggerGroups:GVK-Alliance-TriggerGroup-PointsDroneSmall-SOBAN]
+			[TriggerGroups:GVK-Alliance-TriggerGroup-ReceiveTargets]
+			[TriggerGroups:GVK-Universal-TriggerGroup-DefeatedAndAttacked]
 			BountyOnKill=500000;
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Drone-All-Trigger-Init-LAV-SOBAN</SubtypeId>
+			</Id>
+			<Description>
+			[MES AI Trigger]
+			[UseTrigger:true]
+			[Type:Timer]
+			[StartsReady:true]
+			[MaxActions:1]
+			[ActionExecution:All]
+			[Actions:GVK-Drone-All-Action-Init-LAV-SOBAN]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Drone-All-Action-Init-LAV-SOBAN</SubtypeId>
+			</Id>
+			<Description>
+			[MES AI Action]
+			[SetCustomStrings:true]
+			[CustomStrings:EncounterType,DroneSmall]
+			[CustomStrings:EncounterDisplayName,vehicle]
 			</Description>
 		</EntityComponent>
 	</EntityComponents>

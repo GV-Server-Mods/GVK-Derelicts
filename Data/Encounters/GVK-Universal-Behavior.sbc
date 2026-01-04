@@ -432,6 +432,7 @@
 			</Id>
 			<Description>
 			[RivalAI Action]
+			[//DebugMessage:SmallExplosionEffects]
 			[PlayParticleEffectAtRemote:true]
 			[ParticleEffectId:BlockDestroyedExplosion_Large3X]
 			[ParticleEffectOffset:{X:0.0 Y:0.0 Z:0.0}]
@@ -463,6 +464,7 @@
 			</Id>
 			<Description>
 			[RivalAI Action]
+			[//DebugMessage:MediumExplosionEffects]
 			[PlayParticleEffectAtRemote:true]
 			[ParticleEffectId:Explosion_Warhead_30]
 			[ParticleEffectOffset:{X:0.0 Y:0.0 Z:0.0}]
@@ -494,6 +496,7 @@
 			</Id>
 			<Description>
 			[RivalAI Action]
+			[//DebugMessage:LargeExplosionEffects]
 			[PlayParticleEffectAtRemote:true]
 			[ParticleEffectId:Explosion_Warhead_50]
 			[ParticleEffectOffset:{X:0.0 Y:0.0 Z:0.0}]
@@ -526,6 +529,7 @@
 			</Id>
 			<Description>
 			[RivalAI Action]
+			[//DebugMessage:SmallBlueExplosionEffects]
 			[PlayParticleEffectAtRemote:true]
 			[ParticleEffectId:BlockDestroyedExplosion_Large3X_Blue]
 			[ParticleEffectOffset:{X:0.0 Y:0.0 Z:0.0}]
@@ -557,6 +561,7 @@
 			</Id>
 			<Description>
 			[RivalAI Action]
+			[//DebugMessage:MediumBlueExplosionEffects]
 			[PlayParticleEffectAtRemote:true]
 			[ParticleEffectId:Explosion_Warhead_30_Blue]
 			[ParticleEffectOffset:{X:0.0 Y:0.0 Z:0.0}]
@@ -588,6 +593,7 @@
 			</Id>
 			<Description>
 			[RivalAI Action]
+			[//DebugMessage:LargeBlueExplosionEffects]
 			[PlayParticleEffectAtRemote:true]
 			[ParticleEffectId:Explosion_Warhead_50_Blue]
 			[ParticleEffectOffset:{X:0.0 Y:0.0 Z:0.0}]
@@ -606,6 +612,7 @@
 			</Id>
 			<Description>
 			[RivalAI Action]
+			[//DebugMessage:Universal-Action-Disabled]
 			[EnableBlocks:true]
 			[EnableBlockNames:Magnetic Plate]
 			[EnableBlockStates:On]
@@ -617,8 +624,6 @@
 			[InertiaDampenersEnable:false]
 			[RazeBlocksOfType:true]
 			[RazeBlocksTypes:MyObjectBuilder_Beacon/ZoneBlock]
-			[RazeBlocksTypes:MyObjectBuilder_RemoteControl/RivalAIRemoteControlLarge]
-			[RazeBlocksTypes:MyObjectBuilder_RemoteControl/RivalAIRemoteControlSmall]
 			[RazeBlocksTypes:MyObjectBuilder_Beacon/SmallBlockBeacon]
 			[RazeBlocksTypes:MyObjectBuilder_Beacon/LargeBlockBeacon]
 			[RazeBlocksTypes:MyObjectBuilder_Beacon/SmallBlockBeacon_NPC]
@@ -681,12 +686,44 @@
 			</Id>
 			<Description>
 			[RivalAI Action]
+			[//DebugMessage:PublicSpawnPoint]
 			[ChangeBlocksShareModeAll:true]
 			[BlockNamesShareModeAll:PublicSpawnPoint]
 			[ChangeBlockOnwership:true]
 			[OnwershipBlockNames:PublicSpawnPoint]
 			[OwnershipBlockFactions:COALITION]
 			[OwnershipBlockShareMode:All]
+			</Description>
+		</EntityComponent>
+		<!-- Generic conditions -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Universal-Condition-Crashed</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Condition]
+			[UseConditions:true]
+			[MatchAnyCondition:false]
+			[CheckGridSpeed:true]
+			[MinGridSpeed:0]
+			[MaxGridSpeed:10]
+			[AltitudeCheck:true]
+			[MinAltitude:-999999]
+			[MaxAltitude:7]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Universal-Condition-GridSizeSmall</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Condition]
+			[UseConditions:true]
+			[MatchAnyCondition:false]
+			[CheckGridSize:true]
+			[GridSizeLarge:false]
 			</Description>
 		</EntityComponent>
 	</EntityComponents>

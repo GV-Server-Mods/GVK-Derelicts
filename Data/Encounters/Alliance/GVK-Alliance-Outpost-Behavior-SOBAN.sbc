@@ -14,27 +14,19 @@
 			[UseNoTargetTimer:false]
 			[UsePlayerDistanceTimer:false]
 			[TargetData:GVK-Universal-Target-EnemyGrids2km]
-			[Triggers:GVK-Alliance-Outpost-Trigger-Spawned-SOBAN]
-			[Triggers:GVK-Alliance-Outpost-Trigger-BeaconDisabled-SOBAN]
-			[Triggers:GVK-Alliance-Outpost-Trigger-Compromised-SOBAN]
-			[Triggers:GVK-Alliance-Outpost-Trigger-Despawn-SOBAN]
-			[Triggers:GVK-Alliance-Outpost-Trigger-DespawnMES-SOBAN]
-			[Triggers:GVK-Alliance-Outpost-Trigger-Attacked-SOBAN]
-			[Triggers:GVK-Alliance-Outpost-Trigger-DefensesPlayerNear-SOBAN]
-			[Triggers:GVK-Alliance-Outpost-Trigger-DefensesDamage-SOBAN]
-			[Triggers:GVK-Alliance-Outpost-Trigger-DefensesManual-SOBAN]
-			[Triggers:GVK-Alliance-Outpost-Trigger-KPLManual-SOBAN]
-			[TriggerGroups:GVK-Alliance-TriggerGroup-OutpostInsideOutsideZone-SOBAN]
-			[TriggerGroups:GVK-Alliance-TriggerGroup-PointsOutpost-SOBAN]
+			[Triggers:GVK-Alliance-Outpost-Trigger-Init-SOBAN]
+			[TriggerGroups:GVK-Alliance-TriggerGroup-SpawnDefenses]
+			[TriggerGroups:GVK-Alliance-TriggerGroup-InsideOutsideZone]
+			[TriggerGroups:GVK-Alliance-TriggerGroup-SendTargets]
+			[TriggerGroups:GVK-Universal-TriggerGroup-DefeatedAndAttacked]
 			[RemoteControlCode:GVK-Alliance-Outpost]
 			BountyOnKill=1000000;
 			</Description>
 		</EntityComponent>
-		<!-- Trigger sequence to create a safezone on trade station spawn -->
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Alliance-Outpost-Trigger-Spawned-SOBAN</SubtypeId>
+				<SubtypeId>GVK-Alliance-Outpost-Trigger-Init-SOBAN</SubtypeId>
 			</Id>
 			<Description>
 			[MES AI Trigger]
@@ -42,405 +34,25 @@
 			[Type:Timer]
 			[StartsReady:true]
 			[MaxActions:1]
-			[Actions:GVK-Alliance-Outpost-Action-Spawned-SOBAN]
+			[ActionExecution:All]
+			[Actions:GVK-Alliance-Outpost-Action-Init-SOBAN]
 			</Description>
 		</EntityComponent>
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Alliance-Outpost-Action-Spawned-SOBAN</SubtypeId>
+				<SubtypeId>GVK-Alliance-Outpost-Action-Init-SOBAN</SubtypeId>
 			</Id>
 			<Description>
 			[MES AI Action]
+			[//DebugMessage:Init-Baserunner-SOBAN]
+			[SetCustomStrings:true]
+			[CustomStrings:EncounterType,AllianceOutpost]
+			[CustomStrings:EncounterDisplayName,Outpost]
+			[SetCustomCountersVariables:true]
+			[CustomCountersVariables:DefenseSpawn_Limit,4]
 			[UseChatBroadcast:true]
-			[ChatData:GVK-Alliance-Outpost-Chat-Spawned-SOBAN]
-			</Description>
-		</EntityComponent>
-		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
-			<Id>
-				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Alliance-Outpost-Chat-Spawned-SOBAN</SubtypeId>
-			</Id>
-			<Description>
-			[RivalAI Chat]
-			[UseChat:true]
-			[StartsReady:true]
-			[Chance:100]
-			[MaxChats:1]
-			[BroadcastRandomly:false]
-			[Author:Sensors]
-			[Color:Blue]
-			[ChatMessages:New SOBAN Outpost constructed.]
-			[ChatAudio:ArcHudSensors]
-			[BroadcastChatType:Both]
-			[SendToAllOnlinePlayers:true]
-			[IgnoreAntennaRequirement:true]
-			[IgnoredAntennaRangeOverride:10000]
-			</Description>
-		</EntityComponent>
-		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
-			<Id>
-				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Alliance-Outpost-Trigger-BeaconDisabled-SOBAN</SubtypeId>
-			</Id>
-			<Description>
-			[RivalAI Trigger]
-			[Type:Timer]
-			[UseTrigger:true]
-			[MinCooldownMs:10000]
-			[MaxCooldownMs:10000]
-			[StartsReady:false]
-			[Conditions:GVK-Alliance-Outpost-Condition-BeaconDisabled-SOBAN]
-			[ActionExecution:All]
-			[Actions:GVK-Alliance-Outpost-Action-Compromised-SOBAN]
-			[Actions:GVK-Universal-Action-Disabled]
-			[Actions:GVK-Universal-Action-SmallExplosionEffects]
-			</Description>
-		</EntityComponent>
-		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
-			<Id>
-				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Alliance-Outpost-Condition-BeaconDisabled-SOBAN</SubtypeId>
-			</Id>
-			<Description>
-			[RivalAI Condition]
-			[UseConditions:true]
-			[MatchAnyCondition:false]
-			[UseRequiredFunctionalBlocks:true]
-			[RequiredNoneFunctionalBlockNames:Proprietary Beacon]
-			[RequiredNoneFunctionalBlockNames:Outpost]
-			[RequiredNoneFunctionalBlockNames:Base]
-			</Description>
-		</EntityComponent>
-		<!-- trigger to adjust points if destroyed -->
-		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
-			<Id>
-				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Alliance-Outpost-Trigger-Compromised-SOBAN</SubtypeId>
-			</Id>
-			<Description>
-			[MES AI Trigger]
-			[UseTrigger:true]
-			[Type:Compromised]
-			[StartsReady:true]
-			[MaxActions:1]
-			[Actions:GVK-Alliance-Outpost-Action-Compromised-SOBAN]
-			</Description>
-		</EntityComponent>
-		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
-			<Id>
-				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Alliance-Outpost-Action-Compromised-SOBAN</SubtypeId>
-			</Id>
-			<Description>
-			[MES AI Action]
-			[DecreaseSandboxCounters:SOBAN_Points]
-			[DecreaseSandboxCountersAmount:5]
-			[IncreaseSandboxCounters:KHAANEPH_Points]
-			[IncreaseSandboxCountersAmount:5]
-			[DisableTriggers:true]
-			[DisableTriggerNames:GVK-Alliance-Outpost-Trigger-BeaconDisabled-SOBAN]
-			[DisableTriggerNames:GVK-Alliance-Outpost-Trigger-Compromised-SOBAN]
-			[DisableTriggerNames:GVK-Alliance-Outpost-Trigger-Despawn-SOBAN]
-			[DisableTriggerNames:GVK-Alliance-Outpost-Trigger-DespawnMES-SOBAN]
-			[TerminateBehavior:true]
-			[UseChatBroadcast:true]
-			[ChatData:GVK-Alliance-Outpost-Chat-Compromised-SOBAN]
-			</Description>
-		</EntityComponent>
-		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
-			<Id>
-				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Alliance-Outpost-Chat-Compromised-SOBAN</SubtypeId>
-			</Id>
-			<Description>
-			[RivalAI Chat]
-			[UseChat:true]
-			[StartsReady:true]
-			[Chance:100]
-			[MaxChats:1]
-			[BroadcastRandomly:false]
-			[Author:Sensors]
-			[Color:Blue]
-			[ChatMessages:SOBAN Outpost destroyed.]
-			[ChatAudio:ArcHudSensors]
-			[BroadcastChatType:Both]
-			[SendToAllOnlinePlayers:true]
-			[IgnoreAntennaRequirement:true]
-			[IgnoredAntennaRangeOverride:100000]
-			</Description>
-		</EntityComponent>
-		<!-- trigger to adjust points if destroyed -->
-		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
-			<Id>
-				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Alliance-Outpost-Trigger-Despawn-SOBAN</SubtypeId>
-			</Id>
-			<Description>
-			[RivalAI Trigger]
-			[Type:Despawn]
-			[UseTrigger:true]
-			[MaxActions:1]
-			[ActionExecution:All]
-			[Actions:GVK-Alliance-Outpost-Action-Despawned-SOBAN]
-			</Description>
-		</EntityComponent>
-		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
-			<Id>
-				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Alliance-Outpost-Trigger-DespawnMES-SOBAN</SubtypeId>
-			</Id>
-			<Description>
-			[RivalAI Trigger]
-			[Type:DespawnMES]
-			[UseTrigger:true]
-			[MaxActions:1]
-			[ActionExecution:All]
-			[Actions:GVK-Alliance-Outpost-Action-Despawned-SOBAN]
-			</Description>
-		</EntityComponent>
-		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
-			<Id>
-				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Alliance-Outpost-Action-Despawned-SOBAN</SubtypeId>
-			</Id>
-			<Description>
-			[RivalAI Action]
-			[DecreaseSandboxCounters:SOBAN_Points]
-			[DecreaseSandboxCountersAmount:5]
-			[UseChatBroadcast:true]
-			[ChatData:GVK-Alliance-Outpost-Chat-Despawned-SOBAN]
-			</Description>
-		</EntityComponent>
-		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
-			<Id>
-				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Alliance-Outpost-Chat-Despawned-SOBAN</SubtypeId>
-			</Id>
-			<Description>
-			[RivalAI Chat]
-			[UseChat:true]
-			[StartsReady:true]
-			[Chance:100]
-			[MaxChats:1]
-			[BroadcastRandomly:false]
-			[Author:Sensors]
-			[Color:Blue]
-			[ChatMessages:SOBAN Outpost lost.]
-			[ChatAudio:ArcHudSensors]
-			[BroadcastChatType:Both]
-			[SendToAllOnlinePlayers:true]
-			[IgnoreAntennaRequirement:true]
-			[IgnoredAntennaRangeOverride:9999999]
-			</Description>
-		</EntityComponent>
-		<!-- trigger to adjust reputation when attacked -->
-		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
-			<Id>
-				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Alliance-Outpost-Trigger-Attacked-SOBAN</SubtypeId>
-			</Id>
-			<Description>
-			[MES AI Trigger]
-			[UseTrigger:true]
-			[Type:Damage]
-			[MinCooldownMs:5000]
-			[MaxCooldownMs:5001]
-			[StartsReady:true]
-			[DamageTypes:Any]
-			[Actions:GVK-Alliance-Outpost-Action-Attacked-SOBAN]
-			</Description>
-		</EntityComponent>
-		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
-			<Id>
-				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Alliance-Outpost-Action-Attacked-SOBAN</SubtypeId>
-			</Id>
-			<Description>
-			[MES AI Action]
-			[ChangeAttackerReputation:true]
-			[ChangeAttackerReputationFaction:SOBAN]
-			[ChangeAttackerReputationAmount:-10]
-			[ChangeAttackerReputationFaction:KHAANEPH]
-			[ChangeAttackerReputationAmount:5]
-			[ReputationChangesForAllAttackPlayerFactionMembers:true]
-			[UseChatBroadcast:false]
-			[ChatData:GVK-Alliance-Outpost-Chat-Attacked-SOBAN]
-			</Description>
-		</EntityComponent>
-		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
-			<Id>
-				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Alliance-Outpost-Chat-Attacked-SOBAN</SubtypeId>
-			</Id>
-			<Description>
-			[RivalAI Chat]
-			[UseChat:true]
-			[StartsReady:true]
-			[Chance:100]
-			[BroadcastRandomly:false]
-			[Author:Sensors]
-			[Color:Blue]
-			[ChatMessages:SOBAN Outpost under attack.]
-			[ChatAudio:ArcHudSensors]
-			[BroadcastChatType:Both]
-			[SendToAllOnlinePlayers:true]
-			[IgnoreAntennaRequirement:true]
-			[IgnoredAntennaRangeOverride:10000]
-			</Description>
-		</EntityComponent>
-		<!-- Trigger Sequence for Medium Defenses -->
-		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
-			<Id>
-				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Alliance-Outpost-Trigger-DefensesPlayerNear-SOBAN</SubtypeId>
-			</Id>
-			<Description>
-			[RivalAI Trigger]
-			[UseTrigger:true]
-			[Type:PlayerNear]
-			[TargetDistance:2000]
-			[StartsReady:true]
-			[MinCooldownMs:30000]
-			[MaxCooldownMs:30001]
-			[ActionExecution:All]
-			[Actions:GVK-Alliance-Outpost-Action-DefensesTrigger-SOBAN]
-			</Description>
-		</EntityComponent>
-		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
-			<Id>
-				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Alliance-Outpost-Trigger-DefensesDamage-SOBAN</SubtypeId>
-			</Id>
-			<Description>
-			[RivalAI Trigger]
-			[UseTrigger:true]
-			[Type:Damage]
-			[DamageTypes:Any]
-			[StartsReady:true]
-			[MinCooldownMs:30000]
-			[MaxCooldownMs:30001]
-			[ActionExecution:All]
-			[Actions:GVK-Alliance-Outpost-Action-DefensesTrigger-SOBAN]
-			</Description>
-		</EntityComponent>
-		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
-			<Id>
-				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Alliance-Outpost-Action-DefensesTrigger-SOBAN</SubtypeId>
-			</Id>
-			<Description>
-			[RivalAI Action]
-			[Chance:100]
-			[ManuallyActivateTrigger:true]
-			[ManuallyActivatedTriggerNames:GVK-Alliance-Outpost-Trigger-KPLManual-SOBAN]
-			[ManuallyActivatedTriggerNames:GVK-Alliance-Outpost-Trigger-DefensesManual-SOBAN]
-			</Description>
-		</EntityComponent>
-		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
-			<Id>
-				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Alliance-Outpost-Trigger-KPLManual-SOBAN</SubtypeId>
-			</Id>
-			<Description>
-			[RivalAI Trigger]
-			[UseTrigger:true]
-			[Type:Manual]
-			[StartsReady:true]
-			[MinCooldownMs:1800001]
-			[MaxCooldownMs:1800002]
-			[ActionExecution:All]
-			[Actions:GVK-Alliance-Outpost-Action-KPLManual-SOBAN]
-			</Description>
-		</EntityComponent>
-		<!-- KPL duration 30 minutes -->
-		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
-			<Id>
-				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Alliance-Outpost-Action-KPLManual-SOBAN</SubtypeId>
-			</Id>
-			<Description>
-			[RivalAI Action]
-			[Chance:100]
-			[CreateKnownPlayerArea:true]
-			[KnownPlayerAreaRadius:3000]
-			[KnownPlayerAreaTimer:30]
-			[KnownPlayerAreaMaxSpawns:4]
-			</Description>
-		</EntityComponent>
-		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
-			<Id>
-				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Alliance-Outpost-Trigger-DefensesManual-SOBAN</SubtypeId>
-			</Id>
-			<Description>
-			[RivalAI Trigger]
-			[UseTrigger:true]
-			[Type:Manual]
-			[StartsReady:true]
-			[MinCooldownMs:30000]
-			[MaxCooldownMs:30001]
-			[ActionExecution:All]
-			[Actions:GVK-Alliance-Outpost-Action-DefensesManual-SOBAN]
-			</Description>
-		</EntityComponent>
-		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
-			<Id>
-				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Alliance-Outpost-Action-DefensesManual-SOBAN</SubtypeId>
-			</Id>
-			<Description>
-			[RivalAI Action]
-			[Chance:100]
-			[SpawnEncounter:true]
-			[Spawner:GVK-Alliance-Outpost-Spawner-Defenses-SOBAN]
-			[UseChatBroadcast:true]
-			[ChatData:GVK-Alliance-Outpost-Chat-Defenses-SOBAN]
-			</Description>
-		</EntityComponent>
-		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
-			<Id>
-				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Alliance-Outpost-Spawner-Defenses-SOBAN</SubtypeId>
-			</Id>
-			<Description>
-			[RivalAI Spawn]
-			[UseSpawn:true]
-			[SpawningType:CustomSpawn]
-			[StartsReady:true]
-			[ProcessAsAdminSpawn:true]
-			[SpawnGroups:GVK-Drone-Defense-SpawnGroup-SOBAN-LAVSquad]
-			[SpawnGroups:GVK-Drone-Defense-SpawnGroup-SOBAN-StrikeFighterSingle]
-			[SpawnGroups:GVK-Drone-Defense-SpawnGroup-SOBAN-BaserunnerLight]
-			[MinDistance:500]
-			[MaxDistance:700]
-			[MinAltitude:30]
-			[MaxAltitude:31]
-			[InheritNpcAltitude:false]
-			[IgnoreSafetyChecks:false]
-			</Description>
-		</EntityComponent>
-		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
-			<Id>
-				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Alliance-Outpost-Chat-Defenses-SOBAN</SubtypeId>
-			</Id>
-			<Description>
-			[RivalAI Chat]
-			[UseChat:true]
-			[MinTime:120]
-			[MaxTime:121]
-			[StartsReady:true]
-			[Chance:100]
-			[BroadcastRandomly:false]
-			[Author:{Faction} Outpost]
-			[Color:White]
-			[ChatMessages:Enemies detected.]
-			[ChatAudio:ArcHudGPSNotification2]
-			[BroadcastChatType:Both]
-			[SendToAllOnlinePlayers:true]
-			[IgnoreAntennaRequirement:true]
-			[IgnoredAntennaRangeOverride:10000]
+			[ChatData:GVK-Alliance-EncounterType-Chat-Spawned-Faction]
 			</Description>
 		</EntityComponent>
 	</EntityComponents>

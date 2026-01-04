@@ -25,7 +25,8 @@
 			[Triggers:GVK-Drone-Encounter-Salvager-COALITION-Trigger-PlayerNear]
 			[TriggerGroups:GVK-Drone-All-TriggerGroup-FrontSensorStop]
 			[TriggerGroups:GVK-Drone-Encounter-TriggerGroup-InactivityRetreat]
-			[TriggerGroups:GVK-Drone-All-TriggerGroup-SmallRoverDefeated]
+			[TriggerGroups:GVK-Universal-TriggerGroup-DefeatedAndAttacked]
+			[TriggerGroups:GVK-Alliance-TriggerGroup-SendTargets]
 			</Description>
 		</EntityComponent>
 		<!-- Salvager at wrecks does not spawn attacker sandskimmers -->
@@ -51,7 +52,8 @@
 			[Triggers:GVK-Universal-Trigger-UneditableOnSpawn]
 			[TriggerGroups:GVK-Drone-All-TriggerGroup-FrontSensorStop]
 			[TriggerGroups:GVK-Drone-Encounter-TriggerGroup-InactivityRetreat]
-			[TriggerGroups:GVK-Drone-All-TriggerGroup-SmallRoverDefeated]
+			[TriggerGroups:GVK-Universal-TriggerGroup-DefeatedAndAttacked]
+			[TriggerGroups:GVK-Alliance-TriggerGroup-SendTargets]
 			</Description>
 		</EntityComponent>
 		<!-- Salvager Patrol Autopilot -->
@@ -83,7 +85,7 @@
 			[OffsetPlanetMinTargetAltitude:9]
 			[OffsetPlanetMaxTargetAltitude:10]
 			[AngleAllowedForForwardThrust:45]
-			[MaxVelocityAngleForSpeedControl:180]
+			[MaxVelocityAngleForSpeedControl:1000]
 			</Description>
 		</EntityComponent>
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
@@ -115,7 +117,7 @@
 			[OffsetPlanetMinTargetAltitude:13]
 			[OffsetPlanetMaxTargetAltitude:14]
 			[AngleAllowedForForwardThrust:0]
-			[MaxVelocityAngleForSpeedControl:180]
+			[MaxVelocityAngleForSpeedControl:1000]
 			</Description>
 		</EntityComponent>
 		<!-- Trigger sequence for Salvager to spawn enemies when player is near -->

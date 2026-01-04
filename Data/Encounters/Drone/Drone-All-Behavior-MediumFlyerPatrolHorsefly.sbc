@@ -20,81 +20,43 @@
 			[TargetData:GVK-Universal-Target-EnemyGrids2km]
 			[AutopilotData:GVK-Drone-Autopilot-MediumFlyerPatrolHorsefly-Passive]
 			[SecondaryAutopilotData:GVK-Drone-Autopilot-MediumFlyerPatrolHorsefly-Aggressive]
-			[WeaponSystem:GVK-Universal-Weapons-Static90]
+			[Triggers:GVK-Drone-All-Trigger-Init-MediumFlyerPatrolHorsefly]
 			[Triggers:GVK-Drone-All-Trigger-TargetAttacker]
 			[Triggers:GVK-Drone-All-Trigger-WeaponsToMaxRange]
 			[Triggers:GVK-Universal-Trigger-GAALSIEN-TargetAcquiredChatter]
 			[Triggers:GVK-Drone-Encounter-Trigger-SpawnSmallCOALITIONAttackers]
 			[TriggerGroups:GVK-Drone-Encounter-TriggerGroup-InactivityRetreat]
 			[TriggerGroups:GVK-Drone-All-TriggerGroup-PatrolHorseflyKPL]
-			[TriggerGroups:GVK-Drone-All-TriggerGroup-MediumFlyerDefeated]
+			[TriggerGroups:GVK-Alliance-TriggerGroup-ReceiveTargets]
+			[TriggerGroups:GVK-Universal-TriggerGroup-DefeatedAndAttackedAircraft]
 			BountyOnKill=1500000;
 			</Description>
 		</EntityComponent>
-		<!-- SmallFlyer-Interceptor Passive Autopilot -->
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Drone-Autopilot-MediumFlyerPatrolHorsefly-Passive</SubtypeId>
+				<SubtypeId>GVK-Drone-All-Trigger-Init-MediumFlyerPatrolHorsefly</SubtypeId>
 			</Id>
 			<Description>
-			[RivalAI Autopilot]
-			[RotationMultiplier:0.5]
-			[LimitRotationSpeed:true]
-			[MaxRotationMagnitude:0.75]
-			[DisableInertiaDampeners:false]
-			[FlyLevelWithGravity:false]
-			[LevelWithGravityWhenIdle:true]
-			[IdealPlanetAltitude:400]
-			[MinimumPlanetAltitude:250]
-			[AltitudeTolerance:50]
-			[WaypointTolerance:100]
-			[IdealMinSpeed:39]
-			[IdealMaxSpeed:50]
-			[SlowDownOnWaypointApproach:false]
-			[WaypointWaitTimeTrigger:0]
-			[MaxSpeedTolerance:10]
-			[WaypointAbandonTimeTrigger:6]
-			[OffsetPlanetMinDistFromTarget:600]
-			[OffsetPlanetMaxDistFromTarget:601]
-			[OffsetPlanetMinTargetAltitude:500]
-			[OffsetPlanetMaxTargetAltitude:600]
-			[AngleAllowedForForwardThrust:180]
-			[MaxVelocityAngleForSpeedControl:180]
+			[MES AI Trigger]
+			[UseTrigger:true]
+			[Type:Timer]
+			[StartsReady:true]
+			[MaxActions:1]
+			[ActionExecution:All]
+			[Actions:GVK-Drone-All-Action-Init-MediumFlyerPatrolHorsefly]
 			</Description>
 		</EntityComponent>
-		<!-- MediumFlyerHorsefly Autopilot -->
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Drone-Autopilot-MediumFlyerPatrolHorsefly-Aggressive</SubtypeId>
+				<SubtypeId>GVK-Drone-All-Action-Init-MediumFlyerPatrolHorsefly</SubtypeId>
 			</Id>
 			<Description>
-			[RivalAI Autopilot]
-			[UseVelocityCollisionEvasion:true]
-			[RotationMultiplier:2]
-			[LimitRotationSpeed:true]
-			[MaxRotationMagnitude:0.75]
-			[DisableInertiaDampeners:false]
-			[FlyLevelWithGravity:false]
-			[LevelWithGravityWhenIdle:false]
-			[IdealPlanetAltitude:500]
-			[MinimumPlanetAltitude:400]
-			[AltitudeTolerance:50]
-			[CollisionEvasionWaypointCalculatedAwayFromEntity:true]
-			[WaypointTolerance:250]
-			[IdealMinSpeed:50]
-			[IdealMaxSpeed:100]
-			[WaypointWaitTimeTrigger:0]
-			[WaypointAbandonTimeTrigger:60]
-			[OffsetSpaceMinDistFromTarget:900]
-			[OffsetSpaceMaxDistFromTarget:1200]
-			[OffsetPlanetMinDistFromTarget:800]
-			[OffsetPlanetMaxDistFromTarget:1200]
-			[OffsetPlanetMinTargetAltitude:-100]
-			[OffsetPlanetMaxTargetAltitude:100]
-			[AngleAllowedForForwardThrust:180]
-			[MaxVelocityAngleForSpeedControl:180]
+			[MES AI Action]
+			[SetCustomStrings:true]
+			[CustomStrings:EncounterType,DroneMedium]
+			[CustomStrings:EncounterDisplayName,aircraft]
 			</Description>
 		</EntityComponent>
 	</EntityComponents>
