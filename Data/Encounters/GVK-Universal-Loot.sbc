@@ -14,6 +14,7 @@
 			[ContainerBlockTypes:MyObjectBuilder_CargoContainer/LargeBlockSmallContainer]
 			[ContainerBlockTypes:MyObjectBuilder_CargoContainer/LargeBlockLargeContainer]
 			[ContainerBlockTypes:MyObjectBuilder_CargoContainer/LargeBlockLargeIndustrialContainer]
+			[ContainerBlockTypes:MyObjectBuilder_CargoContainer/SmallBlockModularContainer]
 			[ContainerTypes:Kharak_Loot_Small]
 			[MinBlocks:4]
 			[MaxBlocks:6]
@@ -34,6 +35,7 @@
 			[ContainerBlockTypes:MyObjectBuilder_CargoContainer/LargeBlockSmallContainer]
 			[ContainerBlockTypes:MyObjectBuilder_CargoContainer/LargeBlockLargeContainer]
 			[ContainerBlockTypes:MyObjectBuilder_CargoContainer/LargeBlockLargeIndustrialContainer]
+			[ContainerBlockTypes:MyObjectBuilder_CargoContainer/SmallBlockModularContainer]
 			[ContainerTypes:Kharak_Loot_Medium]
 			[MinBlocks:8]
 			[MaxBlocks:12]
@@ -54,6 +56,7 @@
 			[ContainerBlockTypes:MyObjectBuilder_CargoContainer/LargeBlockSmallContainer]
 			[ContainerBlockTypes:MyObjectBuilder_CargoContainer/LargeBlockLargeContainer]
 			[ContainerBlockTypes:MyObjectBuilder_CargoContainer/LargeBlockLargeIndustrialContainer]
+			[ContainerBlockTypes:MyObjectBuilder_CargoContainer/SmallBlockModularContainer]
 			[ContainerTypes:Kharak_Loot_Large]
 			[MinBlocks:16]
 			[MaxBlocks:20]
@@ -74,6 +77,7 @@
 			[ContainerBlockTypes:MyObjectBuilder_CargoContainer/LargeBlockSmallContainer]
 			[ContainerBlockTypes:MyObjectBuilder_CargoContainer/LargeBlockLargeContainer]
 			[ContainerBlockTypes:MyObjectBuilder_CargoContainer/LargeBlockLargeIndustrialContainer]
+			[ContainerBlockTypes:MyObjectBuilder_CargoContainer/SmallBlockModularContainer]
 			[ContainerTypes:Kharak_Loot_Large]
 			[MinBlocks:20]
 			[MaxBlocks:24]
@@ -98,15 +102,23 @@
 			[ContainerBlockTypes:MyObjectBuilder_CubeBlock/LargeBarrelThree]
 			[ContainerBlockTypes:MyObjectBuilder_CubeBlock/LargeBarrelStack]
 			[ContainerBlockTypes:MyObjectBuilder_TerminalBlock/LargeCrate]
-			[ContainerTypes:GVK-ContainerTypes-Consumable]
+			[ContainerBlockTypes:MyObjectBuilder_CubeBlock/LargeStorageBin1]
+			[ContainerBlockTypes:MyObjectBuilder_CubeBlock/LargeStorageBin2]
+			[ContainerBlockTypes:MyObjectBuilder_CubeBlock/LargeStorageBin3]
+			[ContainerBlockTypes:MyObjectBuilder_CubeBlock/StorageShelf1]
+			[ContainerBlockTypes:MyObjectBuilder_CubeBlock/StorageShelf2]
+			[ContainerBlockTypes:MyObjectBuilder_CubeBlock/StorageShelf3]
+			[ContainerBlockTypes:MyObjectBuilder_CubeBlock/LargeBlockCargoTerminal
+			[ContainerBlockTypes:MyObjectBuilder_CubeBlock/LargeBlockCargoTerminalHalf
+			[ContainerTypes:Consumables]
 			[ContainerTypes:GVK-ContainerTypes-Mixed1]
 			[ContainerTypes:GVK-ContainerTypes-Mixed2]
 			[ContainerTypes:GVK-ContainerTypes-Mixed3]
 			[ContainerTypes:GVK-ContainerTypes-Mixed4]
 			[ContainerTypes:GVK-ContainerTypes-ComponentBasic]
 			[ContainerTypes:GVK-ContainerTypes-IngotBasic]
-			[MinBlocks:3]
-			[MaxBlocks:6]
+			[MinBlocks:4]
+			[MaxBlocks:10]
 			</Description>
 		</EntityComponent>
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
@@ -118,9 +130,12 @@
 			[MES Loot]
 			[ContainerBlockTypes:MyObjectBuilder_OxygenGenerator/OxygenGeneratorSmall]
 			[ContainerBlockTypes:MyObjectBuilder_OxygenGenerator/OxygenGenerator]
+			[ContainerBlockTypes:MyObjectBuilder_OxygenGenerator/LargeBlockOxygenGeneratorLab]
+			[ContainerBlockTypes:MyObjectBuilder_OxygenGenerator/SmallBlockOxygenGeneratorLab]
+			[ContainerBlockTypes:MyObjectBuilder_OxygenGenerator/IrrigationSystem]
 			[ContainerTypes:GVK-ContainerTypes-H2Generator]
-			[MinBlocks:1]
-			[MaxBlocks:4]
+			[MinBlocks:3]
+			[MaxBlocks:6]
 			</Description>
 		</EntityComponent>
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
@@ -133,12 +148,13 @@
 			[ContainerBlockTypes:MyObjectBuilder_Assembler/BasicAssembler]
 			[ContainerBlockTypes:MyObjectBuilder_Assembler/LargeAssembler]
 			[ContainerBlockTypes:MyObjectBuilder_Assembler/LargeAssemblerIndustrial]
+			[ContainerBlockTypes:MyObjectBuilder_Assembler/LargePrototechAssembler]
 			[ContainerTypes:GVK-ContainerTypes-IngotBasic]
 			[ContainerTypes:GVK-ContainerTypes-IngotExotic]
 			[ContainerTypes:GVK-ContainerTypes-ComponentBasic]
 			[ContainerTypes:GVK-ContainerTypes-ComponentAdvanced]
-			[MinBlocks:1]
-			[MaxBlocks:4]
+			[MinBlocks:2]
+			[MaxBlocks:5]
 			</Description>
 		</EntityComponent>
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
@@ -151,12 +167,13 @@
 			[ContainerBlockTypes:MyObjectBuilder_Refinery/Blast Furnace]
 			[ContainerBlockTypes:MyObjectBuilder_Refinery/LargeRefinery]
 			[ContainerBlockTypes:MyObjectBuilder_Refinery/LargeRefineryIndustrial]
+			[ContainerBlockTypes:MyObjectBuilder_Refinery/LargePrototechRefinery]
 			[ContainerTypes:GVK-ContainerTypes-OreBasic]
 			[ContainerTypes:GVK-ContainerTypes-OreExotic]
 			[ContainerTypes:GVK-ContainerTypes-IngotBasic]
 			[ContainerTypes:GVK-ContainerTypes-IngotExotic]
-			[MinBlocks:1]
-			[MaxBlocks:4]
+			[MinBlocks:2]
+			[MaxBlocks:5]
 			</Description>
 		</EntityComponent>
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
@@ -166,13 +183,35 @@
 			</Id>
 			<Description>
 			[MES Loot]
-			[ContainerBlockTypes:MyObjectBuilder_Cockpit/SmallBlockCockpit]
+			[ContainerBlockTypes:MyObjectBuilder_Cockpit/LargeBlockCockpit]
 			[ContainerBlockTypes:MyObjectBuilder_Cockpit/LargeBlockCockpitSeat]
+			[ContainerBlockTypes:MyObjectBuilder_Cockpit/SmallBlockCockpit]
+			[ContainerBlockTypes:MyObjectBuilder_Cockpit/DBSmallBlockFighterCockpit]
+			[ContainerBlockTypes:MyObjectBuilder_Cockpit/CockpitOpen]
+			[ContainerBlockTypes:MyObjectBuilder_Cockpit/RoverCockpit]
+			[ContainerBlockTypes:MyObjectBuilder_Cockpit/OpenCockpitSmall]
+			[ContainerBlockTypes:MyObjectBuilder_Cockpit/OpenCockpitLarge]
+			[ContainerBlockTypes:MyObjectBuilder_Cockpit/SmallBlockCockpitIndustrial]
+			[ContainerBlockTypes:MyObjectBuilder_Cockpit/LargeBlockCockpitIndustrial]
 			[ContainerBlockTypes:MyObjectBuilder_Cockpit/BuggyCockpit]
+			[ContainerBlockTypes:MyObjectBuilder_Cockpit/SmallBlockFlushCockpit]
+			[ContainerBlockTypes:MyObjectBuilder_Cockpit/SmallBlockCapCockpit]
+			[ContainerBlockTypes:MyObjectBuilder_Cockpit/LargeBlockConsoleModuleInvertedCorner]
+			[ContainerBlockTypes:MyObjectBuilder_Cockpit/LargeBlockConsoleModuleScreens]
+			[ContainerBlockTypes:MyObjectBuilder_Cockpit/SmallBlockStandingCockpit]
+			[ContainerBlockTypes:MyObjectBuilder_Cockpit/LargeBlockStandingCockpit]
+			[ContainerBlockTypes:MyObjectBuilder_Cockpit/LargeBlockModularBridgeCockpit]
+			[ContainerBlockTypes:MyObjectBuilder_Cockpit/SpeederCockpit]
+			[ContainerBlockTypes:MyObjectBuilder_Cockpit/SpeederCockpitCompact]
+			[ContainerBlockTypes:MyObjectBuilder_Cockpit/LargeBlockCaptainDesk]
+			[ContainerBlockTypes:MyObjectBuilder_Cockpit/LargeBlockSuspendedControlSeat]
+			[ContainerBlockTypes:MyObjectBuilder_Cockpit/LargeBlockSuspendedControlSeatB]
+			[ContainerBlockTypes:MyObjectBuilder_Cockpit/SmallBlockSuspendedControlSeat]
+			[ContainerBlockTypes:MyObjectBuilder_Cockpit/SmallBlockSuspendedControlSeatB]
 			[ContainerTypes:GVK-ContainerTypes-PistolWeapon]
 			[ContainerTypes:GVK-ContainerTypes-RifleWeapon1]
 			[ContainerTypes:GVK-ContainerTypes-RifleWeapon2]
-			[ContainerTypes:GVK-ContainerTypes-Consumable]
+			[ContainerTypes:Consumables]
 			[MinBlocks:1]
 			[MaxBlocks:3]
 			</Description>
@@ -184,6 +223,7 @@
 			</Id>
 			<Description>
 			[MES Loot]
+			[ContainerBlockTypes:MyObjectBuilder_CargoContainer/LargeBlockLockers]
 			[ContainerBlockTypes:MyObjectBuilder_CargoContainer/LargeBlockLockerRoom]
 			[ContainerBlockTypes:MyObjectBuilder_CargoContainer/LargeBlockLockerRoomCorner]
 			[ContainerBlockTypes:MyObjectBuilder_CargoContainer/LargeBlockWeaponRack]
@@ -194,8 +234,8 @@
 			[ContainerTypes:GVK-ContainerTypes-RifleWeapon2]
 			[ContainerTypes:GVK-ContainerTypes-LauncherWeapon1]
 			[ContainerTypes:GVK-ContainerTypes-LauncherWeapon2]
-			[MinBlocks:2]
-			[MaxBlocks:3]
+			[MinBlocks:4]
+			[MaxBlocks:8]
 			</Description>
 		</EntityComponent>
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
@@ -208,10 +248,42 @@
 			[ContainerBlockTypes:MyObjectBuilder_CargoContainer/LargeBlockLockers]
 			[ContainerBlockTypes:MyObjectBuilder_CargoContainer/LargeBlockInsetBookshelf]
 			[ContainerBlockTypes:MyObjectBuilder_InteriorLight/LargeBlockInsetKitchen]
-			[ContainerBlockTypes:MyObjectBuilder_InteriorLight/LargeBlockInsetKitchen]
-			[ContainerTypes:GVK-ContainerTypes-RifleWeapons-1]
-			[MinBlocks:1]
-			[MaxBlocks:3]
+			[ContainerBlockTypes:MyObjectBuilder_SurvivalKit/SurvivalKitLargeReskin]
+			[ContainerBlockTypes:MyObjectBuilder_SurvivalKit/SurvivalKitLarge]
+			[ContainerBlockTypes:MyObjectBuilder_SurvivalKit/SurvivalKitSmallReskin]
+			[ContainerBlockTypes:MyObjectBuilder_CargoContainer/LargeBlockLabCabinet]
+			[ContainerBlockTypes:MyObjectBuilder_CargoContainer/LargeBlockLabCornerDesk]
+			[ContainerBlockTypes:MyObjectBuilder_TerminalBlock/LargeFreezer]
+			[ContainerBlockTypes:MyObjectBuilder_Cockpit/LargeBlockLabDeskSeat]
+			[ContainerBlockTypes:MyObjectBuilder_LightingBlock/LightCorridorNarrowStowage]
+			[ContainerBlockTypes:MyObjectBuilder_Assembler/FoodProcessor]
+			[ContainerTypes:Consumables]
+			[ContainerTypes:FoodItems]
+			[ContainerTypes:SpoiledFoodItems]
+			[ContainerTypes:SmallStash]
+			[MinBlocks:5]
+			[MaxBlocks:15]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Universal-Loot-Beds</SubtypeId>
+			</Id>
+			<Description>
+			[MES Loot]
+			[ContainerBlockTypes:MyObjectBuilder_CryoChamber/LargeBlockHalfBed]
+			[ContainerBlockTypes:MyObjectBuilder_CryoChamber/LargeBlockHalfBedOffset]
+			[ContainerBlockTypes:MyObjectBuilder_CryoChamber/LargeBlockInsetBed]
+			[ContainerBlockTypes:MyObjectBuilder_CryoChamber/SmallBlockBunkBed]
+			[ContainerBlockTypes:MyObjectBuilder_CryoChamber/LargeBlockBed]
+			[ContainerBlockTypes:MyObjectBuilder_CryoChamber/LargeBlockCryoLabVat]
+			[ContainerBlockTypes:MyObjectBuilder_CryoChamber/LargeBlockCryoRoom]
+			[ContainerBlockTypes:MyObjectBuilder_CryoChamber/LargeBlockCryoChamber]
+			[ContainerTypes:SmallStash]
+			[ContainerTypes:FoodItems]
+			[MinBlocks:2]
+			[MaxBlocks:6]
 			</Description>
 		</EntityComponent>
 	</EntityComponents>
