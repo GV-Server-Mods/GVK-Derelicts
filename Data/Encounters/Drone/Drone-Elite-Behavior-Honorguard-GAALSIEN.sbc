@@ -1,0 +1,77 @@
+<?xml version="1.0"?>
+<Definitions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+	<EntityComponents>
+		<!-- Hongorguard Behavior -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Drone-Elite-Behavior-Hongorguard-GAALSIEN</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Behavior]
+			[BehaviorName:Patrol]
+			[WeaponSystem:GVK-Universal-Weapons-Static06]
+			[HorseFighterTimeApproaching:30]
+			[HorseFighterTimeEngaging:30]
+			[UsePlayerDistanceTimer:true]
+			[PlayerDistanceTimerTrigger:900]
+			[PlayerDistanceTrigger:3000]
+			[UseNoTargetTimer:false]
+			[NoTargetTimerTrigger:900]
+			[UseRetreatTimer:false]
+			[TargetData:GVK-Universal-Target-EnemyGrids2km]
+			[AutopilotData:GVK-Drone-All-Autopilot-HoverCruiserHorsefly-Passive]
+			[SecondaryAutopilotData:GVK-Drone-All-Autopilot-Honorguard-Aggressive]
+			[TertiaryAutopilotData:GVK-Drone-All-Autopilot-Honorguard-Tertiary]
+			[Triggers:GVK-Drone-Elite-Trigger-Init-Hongorguard-GAALSIEN]
+			[Triggers:GVK-Drone-Elite-Trigger-SpawnMediumEscorts-GAALSIEN]
+			[Triggers:GVK-Universal-Trigger-TargetAcquiredChatter-GAALSIEN]
+			[Triggers:GVK-Universal-Trigger-NoTargetsChatter]
+			[Triggers:GVK-Drone-All-Trigger-TargetAttacker]
+			[Triggers:GVK-Drone-All-Trigger-TurretTarget]
+			[Triggers:GVK-Drone-All-Trigger-WeaponsToMaxRange]
+			[Triggers:GVK-Universal-Trigger-JetpackInhibitor]
+			[Triggers:GVK-Drone-All-Trigger-SpawnInterceptorSingle-GAALSIEN]
+			[Triggers:GVK-Drone-Encounter-Trigger-SpawnAnyCOALITIONAttackers]
+			[TriggerGroups:GVK-Drone-Encounter-TriggerGroup-InactivityRetreat]
+			[TriggerGroups:GVK-Drone-All-TriggerGroup-AimAtTargetAngle]
+			[TriggerGroups:GVK-Drone-All-TriggerGroup-PatrolFighterKPL]
+			[TriggerGroups:GVK-ConvoySystem-Leader-TriggerGroup]
+			[TriggerGroups:GVK-Alliance-TriggerGroup-ReceiveTargets]
+			[TriggerGroups:GVK-Universal-TriggerGroup-DefeatedAndAttacked]
+			[EscortOffsets:{X:150 Y:0 Z:0}]
+			[EscortOffsets:{X:-150 Y:0 Z:0}]
+			BountyOnKill=50000000;
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Drone-Elite-Trigger-Init-Hongorguard-GAALSIEN</SubtypeId>
+			</Id>
+			<Description>
+			[MES AI Trigger]
+			[UseTrigger:true]
+			[Type:Timer]
+			[StartsReady:true]
+			[MaxActions:1]
+			[ActionExecution:All]
+			[Actions:GVK-Drone-Elite-Action-Init-Hongorguard-GAALSIEN]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Drone-Elite-Action-Init-Hongorguard-GAALSIEN</SubtypeId>
+			</Id>
+			<Description>
+			[MES AI Action]
+			[SetCustomStrings:true]
+			[CustomStrings:EncounterType,DroneElite]
+			[CustomStrings:EncounterDisplayName,Elite Honorguard]
+			[UseChatBroadcast:true]
+			[ChatData:GVK-Drone-Elite-Chat-Spawned]
+			</Description>
+		</EntityComponent>
+	</EntityComponents>
+</Definitions>

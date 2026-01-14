@@ -9,88 +9,15 @@
 		- NPC Disable
 		- Reputation
 		- Defeated/Despawned Chats
-		- Aircraft crashed (incomplete)
-		- Instant delete small grid
-		
-		TODO: Figure out a better way to handle aircraft to combine TriggerGroups
+		- Crashed (if GVK_MobilityType_Aircraft true)
+		- Instant delete (if small grid true)
 			
 		-->
+
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
 				<SubtypeId>GVK-Universal-TriggerGroup-DefeatedAndAttacked</SubtypeId>
-			</Id>
-			<Description>
-			[RivalAI TriggerGroup]
-			[Triggers:GVK-Universal-Trigger-DefeatedBeaconDisabled]
-			[Triggers:GVK-Universal-Trigger-DefeatedCompromised]
-			[Triggers:GVK-Universal-ManualTrigger-DefeatedCompromised]
-			[Triggers:GVK-Universal-Trigger-DefeatedDespawn]
-			[Triggers:GVK-Universal-Trigger-DefeatedDespawnMES]
-			[Triggers:GVK-Universal-ManualTrigger-DefeatedDespawned]
-			[Triggers:GVK-Alliance-Trigger-AttackedReputation]
-			[Triggers:GVK-Universal-TriggerTags-AttemptSmallDespawn]
-			[Triggers:GVK-Universal-TriggerTags-Disabled]
-			[Triggers:GVK-Universal-TriggerTags-DefeatedChat-AllianceBase]
-			[Triggers:GVK-Universal-TriggerTags-DefeatedChat-AllianceOutpost]
-			[Triggers:GVK-Universal-TriggerTags-DefeatedChat-DroneLarge]
-			[Triggers:GVK-Universal-TriggerTags-DefeatedChat-DroneMedium]
-			[Triggers:GVK-Universal-TriggerTags-DefeatedChat-DroneSmall]
-			[Triggers:GVK-Universal-TriggerTags-DefeatedChat-WreckLarge]
-			[Triggers:GVK-Universal-TriggerTags-DefeatedChat-WreckMedium]
-			[Triggers:GVK-Universal-TriggerTags-DefeatedChat-WreckSmall]
-			[Triggers:GVK-Universal-TriggerTags-DespawnedChat-AllianceBase]
-			[Triggers:GVK-Universal-TriggerTags-DespawnedChat-AllianceOutpost]
-			[Triggers:GVK-Universal-TriggerTags-DespawnedChat-WreckLarge]
-			[Triggers:GVK-Universal-TriggerTags-DespawnedChat-WreckMedium]
-			[Triggers:GVK-Universal-TriggerTags-DespawnedChat-WreckSmall]
-			[Triggers:GVK-Universal-TriggerTags-Explosions-AllianceBase-KHAANEPH]
-			[Triggers:GVK-Universal-TriggerTags-Explosions-AllianceBase-SOBAN]
-			[Triggers:GVK-Universal-TriggerTags-Explosions-AllianceOutpost-KHAANEPH]
-			[Triggers:GVK-Universal-TriggerTags-Explosions-AllianceOutpost-SOBAN]
-			[Triggers:GVK-Universal-TriggerTags-Explosions-DroneLarge-COALITION]
-			[Triggers:GVK-Universal-TriggerTags-Explosions-DroneLarge-GAALSIEN]
-			[Triggers:GVK-Universal-TriggerTags-Explosions-DroneLarge-KHAANEPH]
-			[Triggers:GVK-Universal-TriggerTags-Explosions-DroneLarge-SOBAN]
-			[Triggers:GVK-Universal-TriggerTags-Explosions-DroneMedium-COALITION]
-			[Triggers:GVK-Universal-TriggerTags-Explosions-DroneMedium-GAALSIEN]
-			[Triggers:GVK-Universal-TriggerTags-Explosions-DroneMedium-KHAANEPH]
-			[Triggers:GVK-Universal-TriggerTags-Explosions-DroneMedium-SOBAN]
-			[Triggers:GVK-Universal-TriggerTags-Explosions-DroneSmall-COALITION]
-			[Triggers:GVK-Universal-TriggerTags-Explosions-DroneSmall-GAALSIEN]
-			[Triggers:GVK-Universal-TriggerTags-Explosions-DroneSmall-KHAANEPH]
-			[Triggers:GVK-Universal-TriggerTags-Explosions-DroneSmall-SOBAN]
-			[Triggers:GVK-Universal-TriggerTags-Explosions-WreckLarge-COALITION]
-			[Triggers:GVK-Universal-TriggerTags-Explosions-WreckLarge-DERELICT]
-			[Triggers:GVK-Universal-TriggerTags-Explosions-WreckLarge-GAALSIEN]
-			[Triggers:GVK-Universal-TriggerTags-Explosions-WreckMedium-COALITION]
-			[Triggers:GVK-Universal-TriggerTags-Explosions-WreckMedium-DERELICT]
-			[Triggers:GVK-Universal-TriggerTags-Explosions-WreckMedium-GAALSIEN]
-			[Triggers:GVK-Universal-TriggerTags-Explosions-WreckSmall-COALITION]
-			[Triggers:GVK-Universal-TriggerTags-Explosions-WreckSmall-DERELICT]
-			[Triggers:GVK-Universal-TriggerTags-Explosions-WreckSmall-GAALSIEN]
-			[Triggers:GVK-Alliance-TriggerTags-PointsCompromised-AllianceBase-KHAANEPH]
-			[Triggers:GVK-Alliance-TriggerTags-PointsCompromised-AllianceBase-SOBAN]
-			[Triggers:GVK-Alliance-TriggerTags-PointsCompromised-AllianceOutpost-KHAANEPH]
-			[Triggers:GVK-Alliance-TriggerTags-PointsCompromised-AllianceOutpost-SOBAN]
-			[Triggers:GVK-Alliance-TriggerTags-PointsCompromised-DroneLarge-KHAANEPH]
-			[Triggers:GVK-Alliance-TriggerTags-PointsCompromised-DroneLarge-SOBAN]
-			[Triggers:GVK-Alliance-TriggerTags-PointsCompromised-DroneMedium-KHAANEPH]
-			[Triggers:GVK-Alliance-TriggerTags-PointsCompromised-DroneMedium-SOBAN]
-			[Triggers:GVK-Alliance-TriggerTags-PointsCompromised-DroneSmall-KHAANEPH]
-			[Triggers:GVK-Alliance-TriggerTags-PointsCompromised-DroneSmall-SOBAN]
-			[Triggers:GVK-Alliance-TriggerTags-PointsDespawned-AllianceBase-KHAANEPH]
-			[Triggers:GVK-Alliance-TriggerTags-PointsDespawned-AllianceBase-SOBAN]
-			[Triggers:GVK-Alliance-TriggerTags-PointsDespawned-AllianceOutpost-KHAANEPH]
-			[Triggers:GVK-Alliance-TriggerTags-PointsDespawned-AllianceOutpost-SOBAN]
-			[Triggers:GVK-Alliance-TriggerTags-Reputation-KHAANEPH]
-			[Triggers:GVK-Alliance-TriggerTags-Reputation-SOBAN]
-			</Description>
-		</EntityComponent>
-		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
-			<Id>
-				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Universal-TriggerGroup-DefeatedAndAttackedAircraft</SubtypeId>
 			</Id>
 			<Description>
 			[RivalAI TriggerGroup]
@@ -106,6 +33,7 @@
 			[Triggers:GVK-Universal-TriggerTags-Disabled]
 			[Triggers:GVK-Universal-TriggerTags-DefeatedChat-AllianceBase]
 			[Triggers:GVK-Universal-TriggerTags-DefeatedChat-AllianceOutpost]
+			[Triggers:GVK-Universal-TriggerTags-DefeatedChat-DroneElite]
 			[Triggers:GVK-Universal-TriggerTags-DefeatedChat-DroneLarge]
 			[Triggers:GVK-Universal-TriggerTags-DefeatedChat-DroneMedium]
 			[Triggers:GVK-Universal-TriggerTags-DefeatedChat-DroneSmall]
@@ -121,6 +49,9 @@
 			[Triggers:GVK-Universal-TriggerTags-Explosions-AllianceBase-SOBAN]
 			[Triggers:GVK-Universal-TriggerTags-Explosions-AllianceOutpost-KHAANEPH]
 			[Triggers:GVK-Universal-TriggerTags-Explosions-AllianceOutpost-SOBAN]
+			[Triggers:GVK-Universal-TriggerTags-Explosions-DroneElite-GAALSIEN]
+			[Triggers:GVK-Universal-TriggerTags-Explosions-DroneElite-KHAANEPH]
+			[Triggers:GVK-Universal-TriggerTags-Explosions-DroneElite-SOBAN]
 			[Triggers:GVK-Universal-TriggerTags-Explosions-DroneLarge-COALITION]
 			[Triggers:GVK-Universal-TriggerTags-Explosions-DroneLarge-GAALSIEN]
 			[Triggers:GVK-Universal-TriggerTags-Explosions-DroneLarge-KHAANEPH]
@@ -146,6 +77,8 @@
 			[Triggers:GVK-Alliance-TriggerTags-PointsCompromised-AllianceBase-SOBAN]
 			[Triggers:GVK-Alliance-TriggerTags-PointsCompromised-AllianceOutpost-KHAANEPH]
 			[Triggers:GVK-Alliance-TriggerTags-PointsCompromised-AllianceOutpost-SOBAN]
+			[Triggers:GVK-Alliance-TriggerTags-PointsCompromised-DroneElite-KHAANEPH]
+			[Triggers:GVK-Alliance-TriggerTags-PointsCompromised-DroneElite-SOBAN]
 			[Triggers:GVK-Alliance-TriggerTags-PointsCompromised-DroneLarge-KHAANEPH]
 			[Triggers:GVK-Alliance-TriggerTags-PointsCompromised-DroneLarge-SOBAN]
 			[Triggers:GVK-Alliance-TriggerTags-PointsCompromised-DroneMedium-KHAANEPH]
@@ -218,7 +151,7 @@
 			[MES AI Action]
 			[//DebugMessage:Action-DefeatedCompromised]
 			[ManuallyActivateTrigger:true]
-			[ManuallyActivatedTriggerNames:GVK-Universal-ManualTrigger-DefeatedCompromised]
+			[ManuallyActivatedTriggerTags:GVK-Universal-TriggerTags-Compromised]
 			</Description>
 		</EntityComponent>
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
@@ -230,6 +163,7 @@
 			[MES AI Trigger]
 			[UseTrigger:true]
 			[Type:Manual]
+			[Tags:GVK-Universal-TriggerTags-Compromised]
 			[StartsReady:true]
 			[MaxActions:1]
 			[ActionExecution:All]
@@ -353,8 +287,6 @@
 			[//DebugMessage:AttackedReputation]
 			[ManuallyActivateTrigger:true]
 			[ManuallyActivatedTriggerTags:GVK-Alliance-TriggerTags-Reputation-{Faction}]
-			[UseChatBroadcast:false]
-			[ChatData:GVK-Alliance-EncounterType-Chat-Attacked-Faction]
 			</Description>
 		</EntityComponent>
 	</EntityComponents>

@@ -5,7 +5,7 @@
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Boss-SpawnCondition-GAALSIEN-LargeHoverSingle</SubtypeId>
+				<SubtypeId>GVK-Boss-SpawnCondition-GAALSIEN-LargeHoverSingle_Old</SubtypeId>
 			</Id>
 			<Description>
 			[MES Spawn Conditions]
@@ -19,6 +19,7 @@
 			[MinSpawnFromPlanetSurface:-1]
 			[MaxSpawnFromPlanetSurface:1000]
 			[ReactorsOn:true]
+			[DoNotForceStaticGrid:true]
 			[ForceStaticGrid:false]
 			[SkipVoxelSpawnChecks:true]
 			[SkipGridSpawnChecks:true]
@@ -29,6 +30,98 @@
 			[ThreatScoreMaximum:99999999]
  			[PrefabSpawningMode:Random]
 			[RemoteControlCode:GVK-Boss]
+			[ZoneConditions:GVK-Universal-ZoneConditions-WreckZone23]
+			</Description>
+		</EntityComponent>
+		<!-- This spawns 1 large hover ONLY in Z3 -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Boss-SpawnCondition-GAALSIEN-LargeCruiserSingle</SubtypeId>
+			</Id>
+			<Description>
+			[MES Spawn Conditions]
+			[PlanetaryInstallation:true]
+			[PlanetaryInstallationType:Medium]
+			[FactionOwner:GAALSIEN]
+			[MinSpawnFromPlanetSurface:-1]
+			[MaxSpawnFromPlanetSurface:1000]
+			[ReactorsOn:true]
+			[DoNotForceStaticGrid:true]
+			[ForceStaticGrid:false]
+			[SkipVoxelSpawnChecks:true]
+			[SkipGridSpawnChecks:true]
+			[UseThreatLevelCheck:false]
+			[ThreatLevelCheckRange:2000]
+			[ThreatIncludeOtherNpcOwners:false]
+			[ThreatScoreMinimum:250]
+			[ThreatScoreMaximum:99999999]
+ 			[PrefabSpawningMode:Random]
+			[RemoteControlCode:GVK-Boss]
+			[ZoneConditions:GVK-Universal-ZoneConditions-WreckZone23]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Boss-SpawnCondition-KHAANEPH-LargeCruiserSingle</SubtypeId>
+			</Id>
+			<Description>
+			[MES Spawn Conditions]
+			[PlanetaryInstallation:true]
+			[PlanetaryInstallationType:Medium]
+			[FactionOwner:KHAANEPH]
+			[MinSpawnFromPlanetSurface:-1]
+			[MaxSpawnFromPlanetSurface:1000]
+			[ReactorsOn:true]
+			[DoNotForceStaticGrid:true]
+			[ForceStaticGrid:false]
+			[SkipVoxelSpawnChecks:true]
+			[SkipGridSpawnChecks:true]
+			[UseThreatLevelCheck:false]
+			[ThreatLevelCheckRange:2000]
+			[ThreatIncludeOtherNpcOwners:false]
+			[ThreatScoreMinimum:250]
+			[ThreatScoreMaximum:99999999]
+ 			[PrefabSpawningMode:Random]
+			[RemoteControlCode:GVK-Boss]
+			[ZoneConditions:GVK-Alliance-ZoneConditions-KHAANEPH-10000]
+			[ZoneConditions:GVK-Alliance-ZoneConditions-KHAANEPH-20000]
+			[ZoneConditions:GVK-Alliance-ZoneConditions-KHAANEPH-30000]
+			[ZoneConditions:GVK-Alliance-ZoneConditions-KHAANEPH-40000]
+			[ZoneConditions:GVK-Alliance-ZoneConditions-KHAANEPH-50000]
+			[ZoneConditions:GVK-Universal-ZoneConditions-WreckZone23]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Boss-SpawnCondition-SOBAN-LargeCruiserSingle</SubtypeId>
+			</Id>
+			<Description>
+			[MES Spawn Conditions]
+			[PlanetaryInstallation:true]
+			[PlanetaryInstallationType:Medium]
+			[FactionOwner:SOBAN]
+			[MinSpawnFromPlanetSurface:-1]
+			[MaxSpawnFromPlanetSurface:1000]
+			[ReactorsOn:true]
+			[DoNotForceStaticGrid:true]
+			[ForceStaticGrid:false]
+			[SkipVoxelSpawnChecks:true]
+			[SkipGridSpawnChecks:true]
+			[UseThreatLevelCheck:false]
+			[ThreatLevelCheckRange:2000]
+			[ThreatIncludeOtherNpcOwners:false]
+			[ThreatScoreMinimum:250]
+			[ThreatScoreMaximum:99999999]
+ 			[PrefabSpawningMode:Random]
+			[RemoteControlCode:GVK-Boss]
+			[ZoneConditions:GVK-Alliance-ZoneConditions-SOBAN-10000]
+			[ZoneConditions:GVK-Alliance-ZoneConditions-SOBAN-20000]
+			[ZoneConditions:GVK-Alliance-ZoneConditions-SOBAN-30000]
+			[ZoneConditions:GVK-Alliance-ZoneConditions-SOBAN-40000]
+			[ZoneConditions:GVK-Alliance-ZoneConditions-SOBAN-50000]
 			[ZoneConditions:GVK-Universal-ZoneConditions-WreckZone23]
 			</Description>
 		</EntityComponent>

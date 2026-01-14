@@ -6,6 +6,7 @@
 		EncounterTypes:
 		- Base				Faction Base
 		- Outpost			Faction Outpost
+		- DroneElite		Faction Elite Drone
 		- DroneLarge		Faction Large Drone
 		- DroneMedium		Facion Medium Drone
 		- DroneSmall		FactionSmall Drone
@@ -14,6 +15,7 @@
 		- WreckSmall		Medium Signal
 				
 		TODO: Switch to dialogue banks for more variety
+		TODO: Probably no need for {EncounterType} since it all uses 1 chat except for ship and structure
 				
 		Tags:GVK-Universal-TriggerTags-DefeatedChat-{EncounterType}
 		Tags:GVK-Universal-TriggerTags-DespawnedChat-{EncounterType}
@@ -48,6 +50,21 @@
 			[RivalAI Trigger]
 			[UseTrigger:true]
 			[Tags:GVK-Universal-TriggerTags-DefeatedChat-AllianceOutpost]
+			[Type:Manual]
+			[StartsReady:true]
+			[Actions:GVK-Universal-Action-DefeatedChat-All]
+			</Description>
+		</EntityComponent>
+		<!-- DroneElite -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Universal-TriggerTags-DefeatedChat-DroneElite</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Trigger]
+			[UseTrigger:true]
+			[Tags:GVK-Universal-TriggerTags-DefeatedChat-DroneElite]
 			[Type:Manual]
 			[StartsReady:true]
 			[Actions:GVK-Universal-Action-DefeatedChat-All]

@@ -11,7 +11,11 @@
 			[RivalAI Autopilot]
 			[UseVelocityCollisionEvasion:false]
 			[UseProjectileLeadPrediction:false]
-			[RotationMultiplier:0.5]
+			[RotationMultiplierPitch:0.05]
+			[RotationMultiplierYaw:2]
+			[RotationMultiplierRoll:1]
+			[LimitRotationSpeed:true]
+			[MaxRotationMagnitude:0.5]
 			[FlyLevelWithGravity:false]
 			[LevelWithGravityWhenIdle:false]
 			[WaypointTolerance:75]
@@ -20,7 +24,8 @@
 			[IdealPlanetAltitude:17]
 			[MinimumPlanetAltitude:0]
 			[AltitudeTolerance:5000]
-			[WaypointAbandonTimeTrigger:10]
+			[WaypointWaitTimeTrigger:10]
+			[WaypointAbandonTimeTrigger:20]
 			[IdealMinSpeed:35]
 			[IdealMaxSpeed:40]
 			[MaxSpeedTolerance:10]
@@ -31,6 +36,9 @@
 			[OffsetMaxAngleFromTarget:90]
 			[AngleAllowedForForwardThrust:120]
 			[MaxVelocityAngleForSpeedControl:1000]
+			[EscortUsesRelativeDampening:true]
+			[EscortSpeedMatchMinDistance:0]
+			[EscortSpeedMatchMaxDistance:25]
 			</Description>
 		</EntityComponent>
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
@@ -42,7 +50,11 @@
 			[RivalAI Autopilot]
 			[UseVelocityCollisionEvasion:false]
 			[UseProjectileLeadPrediction:false]
-			[RotationMultiplier:0.5]
+			[RotationMultiplierPitch:0.05]
+			[RotationMultiplierYaw:2]
+			[RotationMultiplierRoll:1]
+			[LimitRotationSpeed:true]
+			[MaxRotationMagnitude:0.5]
 			[FlyLevelWithGravity:false]
 			[LevelWithGravityWhenIdle:false]
 			[WaypointTolerance:100]
@@ -51,6 +63,7 @@
 			[IdealPlanetAltitude:17]
 			[MinimumPlanetAltitude:0]
 			[AltitudeTolerance:5000]
+			[WaypointWaitTimeTrigger:10]
 			[WaypointAbandonTimeTrigger:20]
 			[IdealMinSpeed:35]
 			[IdealMaxSpeed:100]
@@ -62,6 +75,9 @@
 			[OffsetMaxAngleFromTarget:90]
 			[AngleAllowedForForwardThrust:120]
 			[MaxVelocityAngleForSpeedControl:1000]
+			[EscortUsesRelativeDampening:true]
+			[EscortSpeedMatchMinDistance:0]
+			[EscortSpeedMatchMaxDistance:50]
 			</Description>
 		</EntityComponent>
 	</EntityComponents>

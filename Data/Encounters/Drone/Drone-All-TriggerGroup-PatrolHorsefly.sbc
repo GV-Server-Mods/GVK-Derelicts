@@ -27,9 +27,11 @@
 			[RivalAI Trigger]
 			[UseTrigger:true]
 			[Type:Manual]
+			[Tags:GVK-TriggerTags-LeaderDead]
 			[StartsReady:true]
 			[MinCooldownMs:5000]
 			[MaxCooldownMs:5001]
+			[Conditions:GVK-Drone-All-Condition-NotEscortRole]
 			[Actions:GVK-Drone-All-PatrolHorsefly-Action-SwitchToHorsefly]
 			[ToggleWithTriggerProfile:GVK-Drone-All-PatrolHorsefly-ManualTrigger-SwitchToPatrol]
 			</Description>
@@ -41,34 +43,13 @@
 			</Id>
 			<Description>
 			[RivalAI Action]
+			[//DebugMessage:Action-SwitchToHorsefly]
 			[ChangeBehaviorSubclass:true]
 			[NewBehaviorSubclass:Horsefly]
 			[ChangeAutopilotProfile:true]
 			[AutopilotProfile:Secondary]
-			[UseChatBroadcast:false]
-			[ChatData:GVK-Drone-All-PatrolHorsefly-Chat-SwitchToHorsefly]
-			</Description>
-		</EntityComponent>
-		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
-			<Id>
-				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Drone-All-PatrolHorsefly-Chat-SwitchToHorsefly</SubtypeId>
-			</Id>
-			<Description>
-			[RivalAI Chat]
-			[UseChat:true]
-			[StartsReady:true]
-			[Chance:100]
-			[MaxChats:1]
-			[BroadcastRandomly:false]
-			[Author:{GridName}]
-			[Color:White]
-			[ChatMessages:Switching to Horsefly.]
-			[ChatAudio:ArcHudSensors]
-			[BroadcastChatType:Both]
-			[SendToAllOnlinePlayers:true]
-			[IgnoreAntennaRequirement:true]
-			[IgnoredAntennaRangeOverride:100000]
+			[DisableTriggers:false]
+			[DisableTriggerTags:GVK-TriggerTags-AvailableToEscort]
 			</Description>
 		</EntityComponent>
 		<!-- should start false since it already spawns in Patrol mode -->
@@ -81,7 +62,9 @@
 			[RivalAI Trigger]
 			[UseTrigger:false]
 			[Type:Manual]
+			[Tags:GVK-TriggerTags-LeaderDead]
 			[StartsReady:true]
+			[Conditions:GVK-Drone-All-Condition-NotEscortRole]
 			[Actions:GVK-Drone-All-PatrolHorsefly-Action-SwitchToPatrol]
 			[ToggleWithTriggerProfile:GVK-Drone-All-PatrolHorsefly-ManualTrigger-SwitchToHorsefly]
 			</Description>
@@ -93,34 +76,13 @@
 			</Id>
 			<Description>
 			[RivalAI Action]
+			[//DebugMessage:Action-SwitchToPatrol]
 			[ChangeBehaviorSubclass:true]
 			[NewBehaviorSubclass:Patrol]
 			[ChangeAutopilotProfile:true]
 			[AutopilotProfile:Primary]
-			[UseChatBroadcast:false]
-			[ChatData:GVK-Drone-All-PatrolHorsefly-Chat-SwitchToPatrol]
-			</Description>
-		</EntityComponent>
-		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
-			<Id>
-				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Drone-All-PatrolHorsefly-Chat-SwitchToPatrol</SubtypeId>
-			</Id>
-			<Description>
-			[RivalAI Chat]
-			[UseChat:true]
-			[StartsReady:true]
-			[Chance:100]
-			[MaxChats:1]
-			[BroadcastRandomly:false]
-			[Author:{GridName}]
-			[Color:White]
-			[ChatMessages:Switching to Patrol.]
-			[ChatAudio:ArcHudSensors]
-			[BroadcastChatType:Both]
-			[SendToAllOnlinePlayers:true]
-			[IgnoreAntennaRequirement:true]
-			[IgnoredAntennaRangeOverride:100000]
+			[EnableTriggers:false]
+			[EnableTriggerTags:GVK-TriggerTags-AvailableToEscort]
 			</Description>
 		</EntityComponent>
 		<!-- When target in 2km, become aggressive -->
@@ -147,32 +109,9 @@
 			</Id>
 			<Description>
 			[RivalAI Action]
+			[//DebugMessage:Action-TargetNear]
 			[ManuallyActivateTrigger:true]
 			[ManuallyActivatedTriggerNames:GVK-Drone-All-PatrolHorsefly-ManualTrigger-SwitchToHorsefly]
-			[UseChatBroadcast:false]
-			[ChatData:GVK-Drone-All-PatrolHorsefly-Chat-TargetNear]
-			</Description>
-		</EntityComponent>
-		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
-			<Id>
-				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Drone-All-PatrolHorsefly-Chat-TargetNear</SubtypeId>
-			</Id>
-			<Description>
-			[RivalAI Chat]
-			[UseChat:true]
-			[StartsReady:true]
-			[Chance:100]
-			[MaxChats:1]
-			[BroadcastRandomly:false]
-			[Author:{GridName}]
-			[Color:White]
-			[ChatMessages:Target Near.]
-			[ChatAudio:ArcHudSensors]
-			[BroadcastChatType:Both]
-			[SendToAllOnlinePlayers:true]
-			[IgnoreAntennaRequirement:true]
-			[IgnoredAntennaRangeOverride:100000]
 			</Description>
 		</EntityComponent>
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
@@ -216,6 +155,7 @@
 			</Id>
 			<Description>
 			[RivalAI Action]
+			[//DebugMessage:Action-TargetFar or LostTarget]
 			[EnableTriggers:true]
 			[ManuallyActivateTrigger:true]
 			[ManuallyActivatedTriggerNames:GVK-Drone-All-PatrolHorsefly-ManualTrigger-SwitchToPatrol]
