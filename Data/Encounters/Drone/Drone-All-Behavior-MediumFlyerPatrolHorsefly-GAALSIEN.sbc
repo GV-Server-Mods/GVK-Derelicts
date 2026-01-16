@@ -5,26 +5,20 @@
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Drone-All-Behavior-MediumFlyerPatrolHorsefly</SubtypeId>
+				<SubtypeId>GVK-Drone-All-Behavior-MediumFlyerPatrolHorsefly-GAALSIEN</SubtypeId>
 			</Id>
 			<Description>
 			[RivalAI Behavior]
 			[BehaviorName:Patrol]
 			[WeaponSystem:GVK-Universal-Weapons-All]
-			[UsePlayerDistanceTimer:true]
-			[PlayerDistanceTimerTrigger:900]
-			[PlayerDistanceTrigger:3000]
-			[UseNoTargetTimer:true]
-			[NoTargetTimerTrigger:900]
+			[UsePlayerDistanceTimer:false]
+			[UseNoTargetTimer:false]
 			[UseRetreatTimer:false]
 			[TargetData:GVK-Universal-Target-EnemyGrids2km]
 			[AutopilotData:GVK-Drone-Autopilot-MediumFlyerPatrolHorsefly-Passive]
 			[SecondaryAutopilotData:GVK-Drone-Autopilot-MediumFlyerPatrolHorsefly-Aggressive]
-			[Triggers:GVK-Drone-All-Trigger-Init-MediumFlyerPatrolHorsefly]
-			[Triggers:GVK-Drone-All-Trigger-TargetAttacker]
-			[Triggers:GVK-Drone-All-Trigger-WeaponsToMaxRange]
-			[Triggers:GVK-Universal-Trigger-TargetAcquiredChatter-GAALSIEN]
-			[Triggers:GVK-Drone-Encounter-Trigger-SpawnSmallCOALITIONAttackers]
+			[Triggers:GVK-Drone-All-Trigger-Init-MediumFlyerPatrolHorsefly-GAALSIEN]
+			[TriggerGroups:GVK-Drone-All-TriggerGroup-DroneDefaults-MediumDrone]
 			[TriggerGroups:GVK-Drone-Encounter-TriggerGroup-InactivityRetreat]
 			[TriggerGroups:GVK-Drone-All-TriggerGroup-PatrolHorseflyKPL]
 			[TriggerGroups:GVK-Alliance-TriggerGroup-ReceiveTargets]
@@ -35,7 +29,7 @@
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Drone-All-Trigger-Init-MediumFlyerPatrolHorsefly</SubtypeId>
+				<SubtypeId>GVK-Drone-All-Trigger-Init-MediumFlyerPatrolHorsefly-GAALSIEN</SubtypeId>
 			</Id>
 			<Description>
 			[MES AI Trigger]
@@ -44,13 +38,13 @@
 			[StartsReady:true]
 			[MaxActions:1]
 			[ActionExecution:All]
-			[Actions:GVK-Drone-All-Action-Init-MediumFlyerPatrolHorsefly]
+			[Actions:GVK-Drone-All-Action-Init-MediumFlyerPatrolHorsefly-GAALSIEN]
 			</Description>
 		</EntityComponent>
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Drone-All-Action-Init-MediumFlyerPatrolHorsefly</SubtypeId>
+				<SubtypeId>GVK-Drone-All-Action-Init-MediumFlyerPatrolHorsefly-GAALSIEN</SubtypeId>
 			</Id>
 			<Description>
 			[MES AI Action]

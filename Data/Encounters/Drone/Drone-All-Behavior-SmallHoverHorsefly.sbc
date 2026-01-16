@@ -5,28 +5,22 @@
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Drone-All-Behavior-SmallHoverHorsefly</SubtypeId>
+				<SubtypeId>GVK-Drone-All-Behavior-SmallHoverHorsefly-GAALSIEN</SubtypeId>
 			</Id>
 			<Description>
 			[RivalAI Behavior]
 			[BehaviorName:Patrol]
 			[WeaponSystem:GVK-Universal-Weapons-All]
-			[UsePlayerDistanceTimer:true]
-			[PlayerDistanceTimerTrigger:900]
-			[PlayerDistanceTrigger:3000]
-			[UseNoTargetTimer:true]
-			[NoTargetTimerTrigger:900]
+			[UsePlayerDistanceTimer:false]
+			[UseNoTargetTimer:false]
 			[UseRetreatTimer:false]
 			[TargetData:GVK-Universal-Target-EnemyGrids2km]
 			[AutopilotData:GVK-Drone-All-Autopilot-SmallHoverHorsefly-Patrol]
 			[SecondaryAutopilotData:GVK-Drone-All-Autopilot-SmallHoverHorsefly-Horsefly]
-			[Triggers:GVK-Drone-All-Trigger-Init-SmallHoverHorsefly]
-			[Triggers:GVK-Drone-All-Trigger-TargetAttacker]
-			[Triggers:GVK-Drone-All-Trigger-TurretTarget]
-			[Triggers:GVK-Drone-All-Trigger-WeaponsToMaxRange]
-			[Triggers:GVK-Universal-Trigger-TargetAcquiredChatter-GAALSIEN]
-			[TriggerGroups:GVK-Drone-Encounter-TriggerGroup-InactivityRetreat]
+			[Triggers:GVK-Drone-All-Trigger-Init-SmallHoverHorsefly-GAALSIEN]
+			[TriggerGroups:GVK-Drone-All-TriggerGroup-DroneDefaults-SmallDrone-GAALSIEN]
 			[TriggerGroups:GVK-Drone-All-TriggerGroup-PatrolHorseflyKPL]
+			[TriggerGroups:GVK-Drone-Encounter-TriggerGroup-InactivityRetreat]
 			[TriggerGroups:GVK-ConvoySystem-Escort-TriggerGroup]
 			[TriggerGroups:GVK-Alliance-TriggerGroup-ReceiveTargets]
 			[TriggerGroups:GVK-Universal-TriggerGroup-DefeatedAndAttacked]
@@ -36,7 +30,7 @@
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Drone-All-Trigger-Init-SmallHoverHorsefly</SubtypeId>
+				<SubtypeId>GVK-Drone-All-Trigger-Init-SmallHoverHorsefly-GAALSIEN</SubtypeId>
 			</Id>
 			<Description>
 			[MES AI Trigger]
@@ -45,13 +39,13 @@
 			[StartsReady:true]
 			[MaxActions:1]
 			[ActionExecution:All]
-			[Actions:GVK-Drone-All-Action-Init-SmallHoverHorsefly]
+			[Actions:GVK-Drone-All-Action-Init-SmallHoverHorsefly-GAALSIEN]
 			</Description>
 		</EntityComponent>
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Drone-All-Action-Init-SmallHoverHorsefly</SubtypeId>
+				<SubtypeId>GVK-Drone-All-Action-Init-SmallHoverHorsefly-GAALSIEN</SubtypeId>
 			</Id>
 			<Description>
 			[MES AI Action]

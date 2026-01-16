@@ -21,6 +21,8 @@
 			</Id>
 			<Description>
 			[RivalAI TriggerGroup]
+			[Triggers:GVK-Universal-Trigger-AttackerIsNeutralPlayer]
+			[Triggers:GVK-Universal-Trigger-AttackerIsEnemyPlayer]
 			[Triggers:GVK-Universal-Trigger-DefeatedBeaconDisabled]
 			[Triggers:GVK-Universal-Trigger-DefeatedCompromised]
 			[Triggers:GVK-Universal-Trigger-DefeatedCrashed]
@@ -91,6 +93,76 @@
 			[Triggers:GVK-Alliance-TriggerTags-PointsDespawned-AllianceOutpost-SOBAN]
 			[Triggers:GVK-Alliance-TriggerTags-Reputation-KHAANEPH]
 			[Triggers:GVK-Alliance-TriggerTags-Reputation-SOBAN]
+			</Description>
+		</EntityComponent>
+		<!-- Check if NPC has been damaged by an neutral player (primarily for alliance point changes) -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Universal-Trigger-AttackerIsNeutralPlayer</SubtypeId>
+			</Id>
+			<Description>
+			[MES AI Trigger]
+			[UseTrigger:true]
+			[Type:Damage]
+			[MinCooldownMs:1000]
+			[MaxCooldownMs:1001]
+			[MaxActions:1]
+			[StartsReady:true]
+			[DamageTypes:Any]
+			[ExcludedDamageTypes:Environment]
+			[ExcludedDamageTypes:Fire]
+			[ExcludedDamageTypes:Fall]
+			[ExcludedDamageTypes:Thruster]
+			[Conditions:GVK-Universal-Condition-AttackerIsNeutralPlayer]
+			[ActionExecution:All]
+			[Actions:GVK-Universal-Action-AttackerIsNeutralPlayer]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Universal-Action-AttackerIsNeutralPlayer</SubtypeId>
+			</Id>
+			<Description>
+			[MES AI Action]
+			[DebugMessage:AttackerIsNeutralPlayer]
+			[SetBooleansTrue:DamagedByNeutralPlayer]
+			</Description>
+		</EntityComponent>
+		<!-- Check if NPC has been damaged by an enemy player (primarily for alliance point changes) -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Universal-Trigger-AttackerIsEnemyPlayer</SubtypeId>
+			</Id>
+			<Description>
+			[MES AI Trigger]
+			[UseTrigger:true]
+			[Type:Damage]
+			[MinCooldownMs:1000]
+			[MaxCooldownMs:1001]
+			[MaxActions:1]
+			[StartsReady:true]
+			[DamageTypes:Any]
+			[ExcludedDamageTypes:Environment]
+			[ExcludedDamageTypes:Fire]
+			[ExcludedDamageTypes:Fall]
+			[ExcludedDamageTypes:Thruster]
+			[Conditions:GVK-Universal-Condition-AttackerIsEnemyPlayer]
+			[ActionExecution:All]
+			[Actions:GVK-Universal-Action-AttackerIsEnemyPlayer]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Universal-Action-AttackerIsEnemyPlayer</SubtypeId>
+			</Id>
+			<Description>
+			[MES AI Action]
+			[DebugMessage:AttackerIsEnemyPlayer]
+			[SetBooleansTrue:DamagedByEnemyPlayer]
 			</Description>
 		</EntityComponent>
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
@@ -253,40 +325,6 @@
 			[ManuallyActivateTrigger:true]
 			[ManuallyActivatedTriggerTags:GVK-Alliance-TriggerTags-PointsDespawned-{EncounterType}-{Faction}]
 			[ManuallyActivatedTriggerTags:GVK-Universal-TriggerTags-DespawnedChat-{EncounterType}]
-			</Description>
-		</EntityComponent>
-		<!-- trigger to adjust reputation when attacked -->
-		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
-			<Id>
-				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Alliance-Trigger-AttackedReputation</SubtypeId>
-			</Id>
-			<Description>
-			[MES AI Trigger]
-			[UseTrigger:true]
-			[Type:Damage]
-			[MinCooldownMs:5000]
-			[MaxCooldownMs:5001]
-			[StartsReady:true]
-			[DamageTypes:Any]
-			[ExcludedDamageTypes:Environment]
-			[ExcludedDamageTypes:Fire]
-			[ExcludedDamageTypes:Fall]
-			[ExcludedDamageTypes:Thruster]
-			[ActionExecution:All]
-			[Actions:GVK-Alliance-Action-AttackedReputation]
-			</Description>
-		</EntityComponent>
-		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
-			<Id>
-				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Alliance-Action-AttackedReputation</SubtypeId>
-			</Id>
-			<Description>
-			[MES AI Action]
-			[//DebugMessage:AttackedReputation]
-			[ManuallyActivateTrigger:true]
-			[ManuallyActivatedTriggerTags:GVK-Alliance-TriggerTags-Reputation-{Faction}]
 			</Description>
 		</EntityComponent>
 	</EntityComponents>

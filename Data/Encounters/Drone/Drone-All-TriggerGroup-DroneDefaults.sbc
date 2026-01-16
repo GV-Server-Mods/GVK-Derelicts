@@ -1,0 +1,160 @@
+<?xml version="1.0"?>
+<Definitions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+	<EntityComponents>
+		<!-- 
+		
+		TriggerGroups available:
+			[TriggerGroups:GVK-Drone-All-TriggerGroup-DroneDefaults-SmallDrone]
+			[TriggerGroups:GVK-Drone-All-TriggerGroup-DroneDefaults-SmallDrone-COALITION]
+			[TriggerGroups:GVK-Drone-All-TriggerGroup-DroneDefaults-SmallDrone-GAALSIEN]
+			[TriggerGroups:GVK-Drone-All-TriggerGroup-DroneDefaults-MediumDrone]
+			[TriggerGroups:GVK-Drone-All-TriggerGroup-DroneDefaults-MediumDrone-COALITION]
+			[TriggerGroups:GVK-Drone-All-TriggerGroup-DroneDefaults-MediumDrone-GAALSIEN]
+			[TriggerGroups:GVK-Drone-All-TriggerGroup-DroneDefaults-LargeDrone]
+			[TriggerGroups:GVK-Drone-All-TriggerGroup-DroneDefaults-LargeDrone-COALITION]
+			[TriggerGroups:GVK-Drone-All-TriggerGroup-DroneDefaults-LargeDrone-GAALSIEN]
+		
+		These are standard triggers used on all drones
+		
+		TODO:
+			- Switch to message banks so separate triggers are not needed for GAALSIEN chats
+			- use IdsReplacer to incorporate flexible spawn options using CustomText from behavior Inits
+		
+		-->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Drone-All-TriggerGroup-DroneDefaults-SmallDrone</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI TriggerGroup]
+			[Triggers:GVK-Drone-All-Trigger-TargetAttacker]
+			[Triggers:GVK-Drone-All-Trigger-TurretTarget]
+			[Triggers:GVK-Drone-All-Trigger-WeaponsToMaxRange]
+			[Triggers:GVK-Drone-All-Trigger-BarrelRoll]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Drone-All-TriggerGroup-DroneDefaults-SmallDrone-COALITION</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI TriggerGroup]
+			[Triggers:GVK-Drone-All-Trigger-TargetAttacker]
+			[Triggers:GVK-Drone-All-Trigger-TurretTarget]
+			[Triggers:GVK-Drone-All-Trigger-WeaponsToMaxRange]
+			[Triggers:GVK-Drone-All-Trigger-BarrelRoll]
+			[Triggers:GVK-Drone-Encounter-Trigger-SpawnSmallGAALSIENAttackers]
+			[Triggers:GVK-Universal-Trigger-UneditableOnSpawn]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Drone-All-TriggerGroup-DroneDefaults-SmallDrone-GAALSIEN</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI TriggerGroup]
+			[Triggers:GVK-Drone-All-Trigger-TargetAttacker]
+			[Triggers:GVK-Drone-All-Trigger-TurretTarget]
+			[Triggers:GVK-Drone-All-Trigger-WeaponsToMaxRange]
+			[Triggers:GVK-Drone-All-Trigger-BarrelRoll]
+			[Triggers:GVK-Drone-Encounter-Trigger-SpawnSmallCOALITIONAttackers]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Drone-All-TriggerGroup-DroneDefaults-MediumDrone</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI TriggerGroup]
+			[Triggers:GVK-Drone-All-Trigger-TargetAttacker]
+			[Triggers:GVK-Drone-All-Trigger-TurretTarget]
+			[Triggers:GVK-Drone-All-Trigger-WeaponsToMaxRange]
+			[Triggers:GVK-Universal-Trigger-NoTargetsChatter]
+			[Triggers:GVK-Universal-Trigger-TargetAcquiredChatter]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Drone-All-TriggerGroup-DroneDefaults-MediumDrone-COALITION</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI TriggerGroup]
+			[Triggers:GVK-Drone-All-Trigger-TargetAttacker]
+			[Triggers:GVK-Drone-All-Trigger-TurretTarget]
+			[Triggers:GVK-Drone-All-Trigger-WeaponsToMaxRange]
+			[Triggers:GVK-Universal-Trigger-NoTargetsChatter]
+			[Triggers:GVK-Universal-Trigger-TargetAcquiredChatter]
+			[Triggers:GVK-Drone-Encounter-Trigger-SpawnSmallGAALSIENAttackers]
+			[Triggers:GVK-Universal-Trigger-UneditableOnSpawn]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Drone-All-TriggerGroup-DroneDefaults-MediumDrone-GAALSIEN</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI TriggerGroup]
+			[Triggers:GVK-Drone-All-Trigger-TargetAttacker]
+			[Triggers:GVK-Drone-All-Trigger-TurretTarget]
+			[Triggers:GVK-Drone-All-Trigger-WeaponsToMaxRange]
+			[Triggers:GVK-Universal-Trigger-NoTargetsChatter]
+			[Triggers:GVK-Universal-Trigger-TargetAcquiredChatter]
+			[Triggers:GVK-Drone-Encounter-Trigger-SpawnSmallCOALITIONAttackers]
+			[Triggers:GVK-Universal-Trigger-UneditableOnSpawn]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Drone-All-TriggerGroup-DroneDefaults-LargeDrone</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI TriggerGroup]
+			[Triggers:GVK-Drone-All-Trigger-TargetAttacker]
+			[Triggers:GVK-Drone-All-Trigger-TurretTarget]
+			[Triggers:GVK-Drone-All-Trigger-WeaponsToMaxRange]
+			[Triggers:GVK-Universal-Trigger-NoTargetsChatter]
+			[Triggers:GVK-Universal-Trigger-TargetAcquiredChatter]
+			[Triggers:GVK-Universal-Trigger-JetpackInhibitor]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Drone-All-TriggerGroup-DroneDefaults-LargeDrone-COALITION</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI TriggerGroup]
+			[Triggers:GVK-Drone-All-Trigger-TargetAttacker]
+			[Triggers:GVK-Drone-All-Trigger-TurretTarget]
+			[Triggers:GVK-Drone-All-Trigger-WeaponsToMaxRange]
+			[Triggers:GVK-Universal-Trigger-NoTargetsChatter]
+			[Triggers:GVK-Universal-Trigger-TargetAcquiredChatter]
+			[Triggers:GVK-Drone-Encounter-Trigger-SpawnAnyGAALSIENAttackers]
+			[Triggers:GVK-Universal-Trigger-UneditableOnSpawn]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Drone-All-TriggerGroup-DroneDefaults-LargeDrone-GAALSIEN</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI TriggerGroup]
+			[Triggers:GVK-Drone-All-Trigger-TargetAttacker]
+			[Triggers:GVK-Drone-All-Trigger-TurretTarget]
+			[Triggers:GVK-Drone-All-Trigger-WeaponsToMaxRange]
+			[Triggers:GVK-Universal-Trigger-NoTargetsChatter]
+			[Triggers:GVK-Universal-Trigger-TargetAcquiredChatter-GAALSIEN]
+			[Triggers:GVK-Universal-Trigger-JetpackInhibitor]
+			[Triggers:GVK-Drone-Encounter-Trigger-SpawnAnyCOALITIONAttackers]
+			</Description>
+		</EntityComponent>
+	</EntityComponents>
+</Definitions>

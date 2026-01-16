@@ -5,30 +5,24 @@
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Drone-All-Behavior-LargeFlyerHorseFighter</SubtypeId>
+				<SubtypeId>GVK-Drone-All-Behavior-LargeFlyerHorseFighter-GAALSIEN</SubtypeId>
 			</Id>
 			<Description>
 			[RivalAI Behavior]
 			[BehaviorName:Patrol]
 			[WeaponSystem:GVK-Universal-Weapons-Static06]
-			[UsePlayerDistanceTimer:true]
-			[PlayerDistanceTimerTrigger:900]
-			[PlayerDistanceTrigger:3000]
-			[UseNoTargetTimer:true]
-			[NoTargetTimerTrigger:900]
-			[UseRetreatTimer:false]
 			[HorseFighterTimeApproaching:10]
 			[HorseFighterTimeEngaging:10]
+			[UsePlayerDistanceTimer:false]
+			[UseNoTargetTimer:false]
+			[UseRetreatTimer:false]
 			[TargetData:GVK-Universal-Target-EnemyGrids2km]
 			[AutopilotData:GVK-Drone-All-Autopilot-LargeFlyerHorseFighter-Patrol]
 			[SecondaryAutopilotData:GVK-Drone-All-Autopilot-LargeFlyerHorseFighter-HorseFighter]
-			[Triggers:GVK-Drone-All-Trigger-Init-LargeFlyerHorseFighter]
-			[Triggers:GVK-Drone-All-Trigger-TargetAttacker]
-			[Triggers:GVK-Drone-All-Trigger-WeaponsToMaxRange]
-			[Triggers:GVK-Universal-Trigger-TargetAcquiredChatter-GAALSIEN]
-			[Triggers:GVK-Drone-Encounter-Trigger-SpawnSmallCOALITIONAttackers]
-			[TriggerGroups:GVK-Drone-Encounter-TriggerGroup-InactivityRetreat]
+			[Triggers:GVK-Drone-All-Trigger-Init-LargeFlyerHorseFighter-GAALSIEN]
+			[TriggerGroups:GVK-Drone-All-TriggerGroup-DroneDefaults-LargeDrone-GAALSIEN]
 			[TriggerGroups:GVK-Drone-All-TriggerGroup-PatrolHorseFighterKPL]
+			[TriggerGroups:GVK-Drone-Encounter-TriggerGroup-InactivityRetreat]
 			[TriggerGroups:GVK-Alliance-TriggerGroup-ReceiveTargets]
 			[TriggerGroups:GVK-Universal-TriggerGroup-DefeatedAndAttacked]
 			BountyOnKill=1500000;
@@ -37,7 +31,7 @@
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Drone-All-Trigger-Init-LargeFlyerHorseFighter</SubtypeId>
+				<SubtypeId>GVK-Drone-All-Trigger-Init-LargeFlyerHorseFighter-GAALSIEN</SubtypeId>
 			</Id>
 			<Description>
 			[MES AI Trigger]
@@ -46,13 +40,13 @@
 			[StartsReady:true]
 			[MaxActions:1]
 			[ActionExecution:All]
-			[Actions:GVK-Drone-All-Action-Init-LargeFlyerHorseFighter]
+			[Actions:GVK-Drone-All-Action-Init-LargeFlyerHorseFighter-GAALSIEN]
 			</Description>
 		</EntityComponent>
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Drone-All-Action-Init-LargeFlyerHorseFighter</SubtypeId>
+				<SubtypeId>GVK-Drone-All-Action-Init-LargeFlyerHorseFighter-GAALSIEN</SubtypeId>
 			</Id>
 			<Description>
 			[MES AI Action]

@@ -1,39 +1,31 @@
 <?xml version="1.0"?>
 <Definitions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
 	<EntityComponents>
-		<!-- ProductionCruiser Behavior -->
+		<!-- Boss Variant -->
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Drone-Elite-Behavior-ProductionCruiser-GAALSIEN</SubtypeId>
+				<SubtypeId>GVK-Drone-Elite-Behavior-HoverCruiserHorsefly-SOBAN</SubtypeId>
 			</Id>
 			<Description>
 			[RivalAI Behavior]
 			[BehaviorName:Patrol]
 			[WeaponSystem:GVK-Universal-Weapons-All]
-			[UsePlayerDistanceTimer:true]
-			[PlayerDistanceTimerTrigger:900]
-			[PlayerDistanceTrigger:3000]
+			[UsePlayerDistanceTimer:false]
 			[UseNoTargetTimer:false]
-			[NoTargetTimerTrigger:900]
 			[UseRetreatTimer:false]
 			[TargetData:GVK-Universal-Target-EnemyGrids2km]
 			[AutopilotData:GVK-Drone-All-Autopilot-HoverCruiserHorsefly-Passive]
 			[SecondaryAutopilotData:GVK-Drone-All-Autopilot-HoverCruiserHorsefly-Aggressive]
-			[Triggers:GVK-Drone-Elite-Trigger-Init-ProductionCruiser-GAALSIEN]
-			[Triggers:GVK-Drone-Elite-Trigger-SpawnMediumEscorts-GAALSIEN]
-			[Triggers:GVK-Universal-Trigger-TargetAcquiredChatter]
-			[Triggers:GVK-Universal-Trigger-NoTargetsChatter]
-			[Triggers:GVK-Drone-All-Trigger-TargetAttacker]
-			[Triggers:GVK-Drone-All-Trigger-TurretTarget]
-			[Triggers:GVK-Drone-All-Trigger-WeaponsToMaxRange]
-			[Triggers:GVK-Universal-Trigger-JetpackInhibitor]
-			[Triggers:GVK-Drone-All-Trigger-ProductionCruiserSpawnFighters-GAALSIEN]
-			[Triggers:GVK-Drone-Encounter-Trigger-SpawnAnyCOALITIONAttackers]
-			[TriggerGroups:GVK-Drone-Encounter-TriggerGroup-InactivityRetreat]
+			[TertiaryAutopilotData:GVK-Drone-All-Autopilot-HoverCruiserHorsefly-Stop]
+			[Triggers:GVK-Drone-Elite-Trigger-Init-HoverCruiserHorsefly-SOBAN]
+			[Triggers:GVK-Drone-Elite-Trigger-SpawnMediumEscorts-SOBAN]
+			[Triggers:GVK-Drone-All-Trigger-SpawnStrikeFighterSingle-SOBAN]
+			[TriggerGroups:GVK-Drone-All-TriggerGroup-DroneDefaults-LargeDrone]
 			[TriggerGroups:GVK-Drone-All-TriggerGroup-PatrolHorseflyKPL]
-			[TriggerGroups:GVK-ConvoySystem-Leader-TriggerGroup]
+			[TriggerGroups:GVK-Drone-Encounter-TriggerGroup-InactivityRetreat]
 			[TriggerGroups:GVK-Alliance-TriggerGroup-ReceiveTargets]
+			[TriggerGroups:GVK-ConvoySystem-Leader-TriggerGroup]
 			[TriggerGroups:GVK-Universal-TriggerGroup-DefeatedAndAttacked]
 			[EscortOffsets:{X:150 Y:0 Z:0}]
 			[EscortOffsets:{X:-150 Y:0 Z:0}]
@@ -43,7 +35,7 @@
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Drone-Elite-Trigger-Init-ProductionCruiser-GAALSIEN</SubtypeId>
+				<SubtypeId>GVK-Drone-Elite-Trigger-Init-HoverCruiserHorsefly-SOBAN</SubtypeId>
 			</Id>
 			<Description>
 			[MES AI Trigger]
@@ -52,13 +44,13 @@
 			[StartsReady:true]
 			[MaxActions:1]
 			[ActionExecution:All]
-			[Actions:GVK-Drone-Elite-Action-Init-ProductionCruiser-GAALSIEN]
+			[Actions:GVK-Drone-Elite-Action-Init-HoverCruiserHorsefly-SOBAN]
 			</Description>
 		</EntityComponent>
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Drone-Elite-Action-Init-ProductionCruiser-GAALSIEN</SubtypeId>
+				<SubtypeId>GVK-Drone-Elite-Action-Init-HoverCruiserHorsefly-SOBAN</SubtypeId>
 			</Id>
 			<Description>
 			[MES AI Action]

@@ -10,6 +10,40 @@
 		Tags:GVK-Alliance-TriggerTags-Reputation-{Faction}
 
 		-->
+		<!-- trigger to adjust reputation when attacked -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-Trigger-AttackedReputation</SubtypeId>
+			</Id>
+			<Description>
+			[MES AI Trigger]
+			[UseTrigger:true]
+			[Type:Damage]
+			[MinCooldownMs:5000]
+			[MaxCooldownMs:5001]
+			[StartsReady:true]
+			[DamageTypes:Any]
+			[ExcludedDamageTypes:Environment]
+			[ExcludedDamageTypes:Fire]
+			[ExcludedDamageTypes:Fall]
+			[ExcludedDamageTypes:Thruster]
+			[ActionExecution:All]
+			[Actions:GVK-Alliance-Action-AttackedReputation]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-Action-AttackedReputation</SubtypeId>
+			</Id>
+			<Description>
+			[MES AI Action]
+			[//DebugMessage:AttackedReputation]
+			[ManuallyActivateTrigger:true]
+			[ManuallyActivatedTriggerTags:GVK-Alliance-TriggerTags-Reputation-{Faction}]
+			</Description>
+		</EntityComponent>
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>

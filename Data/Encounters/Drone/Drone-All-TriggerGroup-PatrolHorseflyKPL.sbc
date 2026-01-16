@@ -31,6 +31,7 @@
 			[RivalAI Trigger]
 			[UseTrigger:true]
 			[Type:Manual]
+			[Tags:GVK-TriggerTags-LeaderDead]
 			[StartsReady:true]
 			[MinCooldownMs:5000]
 			[MaxCooldownMs:5001]
@@ -49,6 +50,8 @@
 			[NewBehaviorSubclass:Horsefly]
 			[ChangeAutopilotProfile:true]
 			[AutopilotProfile:Secondary]
+			[DisableTriggers:false]
+			[DisableTriggerTags:GVK-TriggerTags-AvailableToEscort]
 			</Description>
 		</EntityComponent>
 		<!-- should start false since it already spawns in Patrol mode -->
@@ -61,7 +64,9 @@
 			[RivalAI Trigger]
 			[UseTrigger:false]
 			[Type:Manual]
+			[Tags:GVK-TriggerTags-LeaderDead]
 			[StartsReady:true]
+			[Conditions:GVK-Drone-All-Condition-NotEscortRole]
 			[Actions:GVK-Drone-All-PatrolHorseflyKPL-Action-SwitchToPatrol]
 			[ToggleWithTriggerProfile:GVK-Drone-All-PatrolHorseflyKPL-ManualTrigger-SwitchToHorsefly]
 			</Description>
@@ -77,6 +82,8 @@
 			[NewBehaviorSubclass:Patrol]
 			[ChangeAutopilotProfile:true]
 			[AutopilotProfile:Primary]
+			[EnableTriggers:false]
+			[EnableTriggerTags:GVK-TriggerTags-AvailableToEscort]
 			</Description>
 		</EntityComponent>
 		<!-- When target in 2km, become aggressive and create KPL if not in KPL -->

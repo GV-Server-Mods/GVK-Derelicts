@@ -31,6 +31,78 @@
 			[UseFailCondition:true]
 			</Description>
 		</EntityComponent>
+		<!-- Condition to check if attacker is neutral player -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Universal-Condition-AttackerIsNeutralPlayer</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Condition]
+			[UseConditions:true]
+			[MatchAnyCondition:false]
+			[IsAttackerNeutral:true]
+			[CheckIfDamagerIsPlayer:true]
+			</Description>
+		</EntityComponent>
+		<!-- Condition to check if attacker is enemy player -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Universal-Condition-AttackerIsEnemyPlayer</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Condition]
+			[UseConditions:true]
+			[MatchAnyCondition:false]
+			[IsAttackerHostile:true]
+			[CheckIfDamagerIsPlayer:true]
+			</Description>
+		</EntityComponent>
+		<!-- Condition to check if previously damaged by neutral player -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Universal-Condition-DamagedByNeutralPlayer</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Condition]
+			[UseConditions:true]
+			[MatchAnyCondition:false]
+			[CheckTrueBooleans:true]
+			[TrueBooleans:DamagedByNeutralPlayer]
+			</Description>
+		</EntityComponent>
+		<!-- Condition to check if previously damaged by enemy player -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Universal-Condition-DamagedByEnemyPlayer</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Condition]
+			[UseConditions:true]
+			[MatchAnyCondition:false]
+			[CheckTrueBooleans:true]
+			[TrueBooleans:DamagedByEnemyPlayer]
+			</Description>
+		</EntityComponent>
+		<!-- Condition to check if previously damaged by non-friendly player -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Universal-Condition-DamagedByNonFriendlyPlayer</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Condition]
+			[UseConditions:true]
+			[MatchAnyCondition:true]
+			[CheckTrueBooleans:true]
+			[TrueBooleans:DamagedByNeutralPlayer]
+			[TrueBooleans:DamagedByEnemyPlayer]
+			[AllowAnyTrueBoolean:true]
+			</Description>
+		</EntityComponent>
 		<!-- Condition for no functional beacons, this may be abusable if players place their own beacons first -->
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>

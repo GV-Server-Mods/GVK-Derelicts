@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <Definitions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
 	<EntityComponents>
-		<!-- Action group to do a barrel roll -->
+		<!-- Action group to do a barrel roll if GVK_MobilityType_Aircraft is true-->
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
@@ -16,6 +16,7 @@
 			[MaxCooldownMs:60000]
 			[StartsReady:true]
 			[MaxActions:-1]
+			[Conditions:GVK-Universal-Condition-IsAircraftMobilityType]
 			[Actions:GVK-Drone-All-Action-BarrelRoll]
 			</Description>
 		</EntityComponent>
