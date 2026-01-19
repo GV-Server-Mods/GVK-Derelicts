@@ -1,0 +1,35 @@
+<?xml version="1.0"?>
+<Definitions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+	<EntityComponents>
+		<!-- trigger to confirm it is inside Zone 0 -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Universal-Trigger-DespawnInZ0</SubtypeId>
+			</Id>
+			<Description>
+			[MES AI Trigger]
+			[UseTrigger:true]
+			[Type:InsideActiveZone]
+			[MinCooldownMs:10000]
+			[MaxCooldownMs:10001]
+			[MaxActions:1]
+			[StartsReady:true]
+			[ZoneName:Zone 0]
+			[ConditionCheckResetsTimer:true]
+			[Actions:GVK-Universal-Action-DespawnInZ0]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Universal-Action-DespawnInZ0</SubtypeId>
+			</Id>
+			<Description>
+			[MES AI Action]
+			[DebugMessage:Inside Z0]
+			[ForceDespawn:true]
+			</Description>
+		</EntityComponent>
+	</EntityComponents>
+</Definitions>
