@@ -8,64 +8,128 @@
 		- KHAANEPH
 				
 		Tags:GVK-Alliance-TriggerTags-Reputation-{Faction}
+		
+		TODO: If IdsReplacer gets added to EnableTriggerTags, then remove extra triggers for enabling respective faction's trigger.
+			[EnableTriggers:true]
+			[EnableTriggerTags:GVK-Alliance-TriggerTags-AttackedReputation-{Faction}]
+			
+		Notes: This uses IdsReplacer to run an action to enable relation changes for the appropriate faction
 
 		-->
 		<!-- trigger to adjust reputation when attacked -->
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Alliance-Trigger-AttackedReputation</SubtypeId>
+				<SubtypeId>GVK-Alliance-Trigger-AttackedReputation-Init</SubtypeId>
 			</Id>
 			<Description>
 			[MES AI Trigger]
 			[UseTrigger:true]
+			[Type:Timer]
+			[MinCooldownMs:1000]
+			[MaxCooldownMs:1001]
+			[StartsReady:true]
+			[MaxActions:1]
+			[ActionExecution:All]
+			[Actions:GVK-Alliance-Action-AttackedReputation-Init]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-Action-AttackedReputation-Init</SubtypeId>
+			</Id>
+			<Description>
+			[MES AI Action]
+			[//DebugMessage:AttackedReputation-Init-{Faction} Step 1]
+			[ManuallyActivateTrigger:true]
+			[ManuallyActivatedTriggerNames:GVK-Alliance-ManualTrigger-AttackedReputation-Init-{Faction}]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-ManualTrigger-AttackedReputation-Init-KHAANEPH</SubtypeId>
+			</Id>
+			<Description>
+			[MES AI Trigger]
+			[UseTrigger:true]
+			[Type:Manual]
+			[StartsReady:true]
+			[MaxActions:1]
+			[ActionExecution:All]
+			[Actions:GVK-Alliance-Action-AttackedReputation-Init-KHAANEPH]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-Action-AttackedReputation-Init-KHAANEPH</SubtypeId>
+			</Id>
+			<Description>
+			[MES AI Action]
+			[//DebugMessage:AttackedReputation-Init-{Faction} Step 2]
+			[EnableTriggers:true]
+			[EnableTriggerNames:GVK-Alliance-TriggerTags-AttackedReputation-KHAANEPH]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-ManualTrigger-AttackedReputation-Init-SOBAN</SubtypeId>
+			</Id>
+			<Description>
+			[MES AI Trigger]
+			[UseTrigger:true]
+			[Type:Manual]
+			[StartsReady:true]
+			[MaxActions:1]
+			[ActionExecution:All]
+			[Actions:GVK-Alliance-Action-AttackedReputation-Init-SOBAN]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-Action-AttackedReputation-Init-SOBAN</SubtypeId>
+			</Id>
+			<Description>
+			[MES AI Action]
+			[//DebugMessage:AttackedReputation-Init-{Faction} Step 2]
+			[EnableTriggers:true]
+			[EnableTriggerNames:GVK-Alliance-TriggerTags-AttackedReputation-SOBAN]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-TriggerTags-AttackedReputation-KHAANEPH</SubtypeId>
+			</Id>
+			<Description>
+			[MES AI Trigger]
+			[UseTrigger:false]
+			[Tags:GVK-Alliance-TriggerTags-AttackedReputation-KHAANEPH]
 			[Type:Damage]
 			[MinCooldownMs:5000]
 			[MaxCooldownMs:5001]
 			[StartsReady:true]
 			[DamageTypes:Any]
-			[ExcludedDamageTypes:Environment]
-			[ExcludedDamageTypes:Fire]
-			[ExcludedDamageTypes:Fall]
-			[ExcludedDamageTypes:Thruster]
+			[//ExcludedDamageTypes:Environment]
+			[//ExcludedDamageTypes:Fire]
+			[//ExcludedDamageTypes:Fall]
+			[//ExcludedDamageTypes:Thruster]
 			[ActionExecution:All]
-			[Actions:GVK-Alliance-Action-AttackedReputation]
+			[Actions:GVK-Alliance-Action-AttackedReputation-KHAANEPH]
 			</Description>
 		</EntityComponent>
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Alliance-Action-AttackedReputation</SubtypeId>
+				<SubtypeId>GVK-Alliance-Action-AttackedReputation-KHAANEPH</SubtypeId>
 			</Id>
 			<Description>
 			[MES AI Action]
-			[//DebugMessage:AttackedReputation]
-			[ManuallyActivateTrigger:true]
-			[ManuallyActivatedTriggerTags:GVK-Alliance-TriggerTags-Reputation-{Faction}]
-			</Description>
-		</EntityComponent>
-		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
-			<Id>
-				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Alliance-TriggerTags-Reputation-KHAANEPH</SubtypeId>
-			</Id>
-			<Description>
-			[RivalAI Trigger]
-			[UseTrigger:true]
-			[Tags:GVK-Alliance-TriggerTags-Reputation-KHAANEPH]
-			[Type:Manual]
-			[StartsReady:true]
-			[ActionExecution:All]
-			[Actions:GVK-Alliance-Action-Reputation-KHAANEPH]
-			</Description>
-		</EntityComponent>
-		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
-			<Id>
-				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Alliance-Action-Reputation-KHAANEPH</SubtypeId>
-			</Id>
-			<Description>
-			[MES AI Action]
+			[//DebugMessage:AttackedReputation-KHAANEPH]
 			[ChangeAttackerReputation:true]
 			[ChangeAttackerReputationFaction:KHAANEPH]
 			[ChangeAttackerReputationAmount:-10]
@@ -79,25 +143,33 @@
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Alliance-TriggerTags-Reputation-SOBAN</SubtypeId>
+				<SubtypeId>GVK-Alliance-TriggerTags-AttackedReputation-SOBAN</SubtypeId>
 			</Id>
 			<Description>
-			[RivalAI Trigger]
-			[UseTrigger:true]
-			[Tags:GVK-Alliance-TriggerTags-Reputation-SOBAN]
-			[Type:Manual]
+			[MES AI Trigger]
+			[Tags:GVK-Alliance-TriggerTags-AttackedReputation-SOBAN]
+			[UseTrigger:false]
+			[Type:Damage]
+			[MinCooldownMs:5000]
+			[MaxCooldownMs:5001]
 			[StartsReady:true]
+			[DamageTypes:Any]
+			[//ExcludedDamageTypes:Environment]
+			[//ExcludedDamageTypes:Fire]
+			[//ExcludedDamageTypes:Fall]
+			[//ExcludedDamageTypes:Thruster]
 			[ActionExecution:All]
-			[Actions:GVK-Alliance-Action-Reputation-SOBAN]
+			[Actions:GVK-Alliance-Action-AttackedReputation-SOBAN]
 			</Description>
 		</EntityComponent>
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Alliance-Action-Reputation-SOBAN</SubtypeId>
+				<SubtypeId>GVK-Alliance-Action-AttackedReputation-SOBAN</SubtypeId>
 			</Id>
 			<Description>
 			[MES AI Action]
+			[//DebugMessage:AttackedReputation-SOBAN]
 			[ChangeAttackerReputation:true]
 			[ChangeAttackerReputationFaction:SOBAN]
 			[ChangeAttackerReputationAmount:-10]
