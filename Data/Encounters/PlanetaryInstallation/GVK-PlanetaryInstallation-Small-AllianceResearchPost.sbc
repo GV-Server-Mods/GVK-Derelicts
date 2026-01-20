@@ -1,0 +1,412 @@
+<?xml version="1.0"?>
+<Definitions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+	<EntityComponents>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-PlanetaryInstallation-Small-Behavior-AllianceResearchPost</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Behavior]
+			[BehaviorName:Passive]
+			[WeaponSystem:GVK-Universal-Weapons-All]
+			[UsePlayerDistanceTimer:false]
+			[UseRetreatTimer:false]
+			[UseNoTargetTimer:false]
+			[TargetData:GVK-Universal-Target-EnemyGrids2km]
+			[Triggers:GVK-Drone-All-Trigger-TargetAttacker]
+			[Triggers:GVK-Drone-All-Trigger-TurretTarget]
+			[Triggers:GVK-Drone-All-Trigger-WeaponsToMaxRange]
+			[Triggers:GVK-Universal-Trigger-UneditableOnSpawn]
+			[Triggers:GVK-PlanetaryInstallation-Small-Trigger-AllianceResearchPostInit]
+			[Triggers:GVK-PlanetaryInstallation-Small-Trigger-AllianceResearchPostButtonPress1]
+			[Triggers:GVK-PlanetaryInstallation-Small-Trigger-AllianceResearchPostButtonPress2]
+			[Triggers:GVK-PlanetaryInstallation-Small-Trigger-AllianceResearchPostButtonPress3]
+			[Triggers:GVK-PlanetaryInstallation-Small-Trigger-AllianceResearchPostUploadComplete]
+			[Triggers:GVK-PlanetaryInstallation-Small-Trigger-AllianceResearchPostDisabled]
+			[TriggerGroups:GVK-Universal-TriggerGroup-DefeatedAndAttacked]
+			[TriggerGroups:GVK-Alliance-TriggerGroup-SendTargets]
+			</Description>
+		</EntityComponent>
+		<!-- Trigger sequence when Wreck Spawns -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-PlanetaryInstallation-Small-Trigger-AllianceResearchPostInit</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Trigger]
+			[Type:Session]
+			[UseTrigger:true]
+			[StartsReady:true]
+			[MaxActions:1]
+			[Actions:GVK-PlanetaryInstallation-Small-Action-AllianceResearchPostInit]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-PlanetaryInstallation-Small-Action-AllianceResearchPostInit</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Action]
+			[//DebugMessage:AllianceResearchPostInit]
+			[Chance:100]
+			[SetCustomStrings:true]
+			[CustomStrings:EncounterType,AllianceResearchLab]
+			[CustomStrings:EncounterDisplayName,Research Lab]
+			[UseChatBroadcast:true]
+			[ChatData:GVK-PlanetaryInstallation-Small-Chat-AllianceResearchPostInit]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-PlanetaryInstallation-Small-Chat-AllianceResearchPostInit</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Chat]
+			[UseChat:true]
+			[StartsReady:true]
+			[Chance:100]
+			[MaxChats:1]
+			[BroadcastRandomly:false]
+			[Author:Sensors]
+			[Color:Blue]
+			[ChatMessages:A nearby research lab is not connected to a network.]
+			[ChatAudio:ArcHudSensors]
+			[BroadcastChatType:Both]
+			[SendToAllOnlinePlayers:true]
+			[IgnoreAntennaRequirement:true]
+			[IgnoredAntennaRangeOverride:100000]
+		  </Description>
+		</EntityComponent>
+		<!-- Trigger when activation button 0 is pressed KHAANEPH-->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-PlanetaryInstallation-Small-Trigger-AllianceResearchPostButtonPress1</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Trigger]
+			[Type:ButtonPress]
+			[MinCooldownMs:3000]
+			[MaxCooldownMs:3001]
+			[UseTrigger:true]
+			[StartsReady:true]
+			[MaxActions:-1]
+			[ButtonPanelName:NPC Button]
+			[ButtonPanelIndex:0]
+			[ActionExecution:All]
+			[Actions:GVK-PlanetaryInstallation-Small-Action-AllianceResearchPostButtonPress1]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-PlanetaryInstallation-Small-Action-AllianceResearchPostButtonPress1</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Action]
+			[//DebugMessage:AllianceResearchPostButtonPress1]
+			[Chance:100]
+			[SetCustomStrings:true]
+			[CustomStrings:SelectedFaction,KHAANEPH]
+			[TriggerTimerBlocks:true]
+			[TimerBlockNames:NPC Timer Start]
+			[ApplyLcdChanges:true]
+			[LcdTextTemplateFile:AllianceResearchPostButtonPress1.xml]
+			[LcdBlockNames:NPC Button]
+			[LcdTemplateIndexes:0]
+			[ResetCooldownTimeOfTriggers:true]
+			[ResetTriggerCooldownNames:GVK-PlanetaryInstallation-Small-Trigger-AllianceResearchPostUploadComplete]
+			[EnableTriggers:true]
+			[EnableTriggerNames:GVK-PlanetaryInstallation-Small-Trigger-AllianceResearchPostButtonPress3]
+			[EnableTriggerNames:GVK-PlanetaryInstallation-Small-Trigger-AllianceResearchPostUploadComplete]
+			[DisableTriggers:true]
+			[DisableTriggerNames:GVK-PlanetaryInstallation-Small-Trigger-AllianceResearchPostButtonPress1]
+			[DisableTriggerNames:GVK-PlanetaryInstallation-Small-Trigger-AllianceResearchPostButtonPress2]
+			[UseChatBroadcast:true]
+			[ChatData:GVK-PlanetaryInstallation-Small-Chat-AllianceResearchPostButtonPress1]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-PlanetaryInstallation-Small-Chat-AllianceResearchPostButtonPress1</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Chat]
+			[UseChat:true]
+			[StartsReady:true]
+			[Chance:100]
+			[MaxChats:-1]
+			[BroadcastRandomly:false]
+			[Author:Research Lab Computer]
+			[Color:White]
+			[ChatMessages:Established connection to KHAANEPH, uploading data.]
+			[ChatAudio:ArcHudGPSNotification2]
+			[BroadcastChatType:Chat]
+			[SendToAllOnlinePlayers:false]
+			[IgnoreAntennaRequirement:true]
+			[IgnoredAntennaRangeOverride:10000]
+		  </Description>
+		</EntityComponent>
+		<!-- Trigger when activation button 1 is pressed SOBAN -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-PlanetaryInstallation-Small-Trigger-AllianceResearchPostButtonPress2</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Trigger]
+			[Type:ButtonPress]
+			[MinCooldownMs:5000]
+			[MaxCooldownMs:5001]
+			[UseTrigger:true]
+			[StartsReady:true]
+			[MaxActions:-1]
+			[ButtonPanelName:NPC Button]
+			[ButtonPanelIndex:1]
+			[ActionExecution:All]
+			[Actions:GVK-PlanetaryInstallation-Small-Action-AllianceResearchPostButtonPress2]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-PlanetaryInstallation-Small-Action-AllianceResearchPostButtonPress2</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Action]
+			[//DebugMessage:AllianceResearchPostButtonPress2]
+			[Chance:100]
+			[SetCustomStrings:true]
+			[CustomStrings:SelectedFaction,SOBAN]
+			[TriggerTimerBlocks:true]
+			[TimerBlockNames:NPC Timer Start]
+			[ApplyLcdChanges:true]
+			[LcdTextTemplateFile:AllianceResearchPostButtonPress2.xml]
+			[LcdBlockNames:NPC Button]
+			[LcdTemplateIndexes:0]
+			[ResetCooldownTimeOfTriggers:true]
+			[ResetTriggerCooldownNames:GVK-PlanetaryInstallation-Small-Trigger-AllianceResearchPostUploadComplete]
+			[EnableTriggers:true]
+			[EnableTriggerNames:GVK-PlanetaryInstallation-Small-Trigger-AllianceResearchPostButtonPress3]
+			[EnableTriggerNames:GVK-PlanetaryInstallation-Small-Trigger-AllianceResearchPostUploadComplete]
+			[DisableTriggers:true]
+			[DisableTriggerNames:GVK-PlanetaryInstallation-Small-Trigger-AllianceResearchPostButtonPress1]
+			[DisableTriggerNames:GVK-PlanetaryInstallation-Small-Trigger-AllianceResearchPostButtonPress2]
+			[UseChatBroadcast:true]
+			[ChatData:GVK-PlanetaryInstallation-Small-Chat-AllianceResearchPostButtonPress2]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-PlanetaryInstallation-Small-Chat-AllianceResearchPostButtonPress2</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Chat]
+			[UseChat:true]
+			[StartsReady:true]
+			[Chance:100]
+			[MaxChats:-1]
+			[BroadcastRandomly:false]
+			[Author:Research Lab Computer]
+			[Color:White]
+			[ChatMessages:Established connection to SOBAN, uploading data.]
+			[ChatAudio:ArcHudGPSNotification2]
+			[BroadcastChatType:Chat]
+			[SendToAllOnlinePlayers:false]
+			[IgnoreAntennaRequirement:true]
+			[IgnoredAntennaRangeOverride:10000]
+		  </Description>
+		</EntityComponent>
+		<!-- Trigger when activation button 2 is pressed Reset -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-PlanetaryInstallation-Small-Trigger-AllianceResearchPostButtonPress3</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Trigger]
+			[Type:ButtonPress]
+			[MinCooldownMs:5000]
+			[MaxCooldownMs:5001]
+			[UseTrigger:false]
+			[StartsReady:true]
+			[MaxActions:-1]
+			[ButtonPanelName:NPC Button]
+			[ButtonPanelIndex:2]
+			[ActionExecution:All]
+			[Actions:GVK-PlanetaryInstallation-Small-Action-AllianceResearchPostButtonPress3]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-PlanetaryInstallation-Small-Action-AllianceResearchPostButtonPress3</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Action]
+			[//DebugMessage:AllianceResearchPostButtonPress3]
+			[Chance:100]
+			[TriggerTimerBlocks:true]
+			[TimerBlockNames:NPC Timer Reset]
+			[ApplyLcdChanges:true]
+			[LcdTextTemplateFile:AllianceResearchPostButtonPress3.xml]
+			[LcdBlockNames:NPC Button]
+			[LcdTemplateIndexes:0]
+			[EnableTriggers:true]
+			[EnableTriggerNames:GVK-PlanetaryInstallation-Small-Trigger-AllianceResearchPostButtonPress1]
+			[EnableTriggerNames:GVK-PlanetaryInstallation-Small-Trigger-AllianceResearchPostButtonPress2]
+			[DisableTriggers:true]
+			[DisableTriggerNames:GVK-PlanetaryInstallation-Small-Trigger-AllianceResearchPostButtonPress3]
+			[DisableTriggerNames:GVK-PlanetaryInstallation-Small-Trigger-AllianceResearchPostUploadComplete]
+			[UseChatBroadcast:true]
+			[ChatData:GVK-PlanetaryInstallation-Small-Chat-AllianceResearchPostButtonPress3]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-PlanetaryInstallation-Small-Chat-AllianceResearchPostButtonPress3</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Chat]
+			[UseChat:true]
+			[StartsReady:true]
+			[Chance:100]
+			[MaxChats:-1]
+			[BroadcastRandomly:false]
+			[Author:Research Lab Computer]
+			[Color:White]
+			[ChatMessages:Connection reset, upload canceled.]
+			[ChatAudio:ArcHudGPSNotification2]
+			[BroadcastChatType:Chat]
+			[SendToAllOnlinePlayers:false]
+			[IgnoreAntennaRequirement:true]
+			[IgnoredAntennaRangeOverride:10000]
+		  </Description>
+		</EntityComponent>
+		<!-- Trigger to count down to complete -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-PlanetaryInstallation-Small-Trigger-AllianceResearchPostUploadComplete</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Trigger]
+			[Type:Timer]
+			[MinCooldownMs:5000]
+			[MaxCooldownMs:5001]
+			[UseTrigger:false]
+			[StartsReady:false]
+			[MaxActions:1]
+			[ActionExecution:All]
+			[Actions:GVK-PlanetaryInstallation-Small-Action-AllianceResearchPostUploadComplete]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-PlanetaryInstallation-Small-Action-AllianceResearchPostUploadComplete</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Action]
+			[//DebugMessage:{EncounterType} {SelectedFaction} Completed]
+			[Chance:100]
+			[ApplyLcdChanges:true]
+			[LcdTextTemplateFile:AllianceResearchPostComplete.xml]
+			[LcdBlockNames:NPC Button]
+			[LcdTemplateIndexes:0]
+			[TriggerTimerBlocks:true]
+			[TimerBlockNames:NPC Timer Complete]
+			[EnableBlocks:true]
+			[EnableBlockNames:NPC Button]
+			[EnableBlockStates:Off]
+			[ManuallyActivateTrigger:true]
+			[ManuallyActivatedTriggerTags:GVK-Alliance-TriggerTags-PointsAwarded-{EncounterType}-{SelectedFaction}]
+			[DisableTriggers:true]
+			[DisableTriggerNames:GVK-PlanetaryInstallation-Small-Trigger-AllianceResearchPostInit]
+			[DisableTriggerNames:GVK-PlanetaryInstallation-Small-Trigger-AllianceResearchPostButtonPress1]
+			[DisableTriggerNames:GVK-PlanetaryInstallation-Small-Trigger-AllianceResearchPostButtonPress2]
+			[DisableTriggerNames:GVK-PlanetaryInstallation-Small-Trigger-AllianceResearchPostButtonPress3]
+			[DisableTriggerNames:GVK-PlanetaryInstallation-Small-Trigger-AllianceResearchPostUploadComplete]
+			[UseChatBroadcast:true]
+			[ChatData:GVK-PlanetaryInstallation-Small-Chat-AllianceResearchPostUploadComplete]
+			[TerminateBehavior:true]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-PlanetaryInstallation-Small-Chat-AllianceResearchPostUploadComplete</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Chat]
+			[UseChat:true]
+			[StartsReady:true]
+			[Chance:100]
+			[MaxChats:-1]
+			[BroadcastRandomly:false]
+			[Author:Research Lab Computer]
+			[Color:White]
+			[ChatMessages:Upload to {SelectedFaction} complete, shutting down.]
+			[ChatAudio:ArcHudGPSNotification2]
+			[BroadcastChatType:Chat]
+			[SendToAllOnlinePlayers:false]
+			[IgnoreAntennaRequirement:true]
+			[IgnoredAntennaRangeOverride:10000]
+		  </Description>
+		</EntityComponent>
+		<!-- Condition for no functional beacons, this may be abusable if players place their own beacons first -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-PlanetaryInstallation-Small-Trigger-AllianceResearchPostDisabled</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Trigger]
+			[Type:Timer]
+			[MinCooldownMs:5000]
+			[MaxCooldownMs:5001]
+			[UseTrigger:true]
+			[StartsReady:false]
+			[MaxActions:1]
+			[Conditions:GVK-PlanetaryInstallation-Small-Condition-AllianceResearchPostDisabled]
+			[ActionExecution:All]
+			[Actions:GVK-PlanetaryInstallation-Small-Action-AllianceResearchPostDisabled]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-PlanetaryInstallation-Small-Condition-AllianceResearchPostDisabled</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Condition]
+			[UseConditions:true]
+			[MatchAnyCondition:true]
+			[CheckForBlocksOfType:true]
+			[BlocksOfType:MyObjectBuilder_RadioAntenna]
+			[BlocksOfType:MyObjectBuilder_ButtonPanel]
+			[UseFailCondition:true]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-PlanetaryInstallation-Small-Action-AllianceResearchPostDisabled</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Action]
+			[DebugMessage:AllianceResearchPostDisabled]
+			[Chance:100]
+			[ManuallyActivateTrigger:true]
+			[ManuallyActivatedTriggerTags:GVK-Universal-TriggerTags-DefeatedChat-WreckSmall]
+			</Description>
+		</EntityComponent>
+	</EntityComponents>
+</Definitions>

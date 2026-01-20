@@ -6,6 +6,7 @@
 		EncounterTypes:
 		- Base:				50 points
 		- Outpost:			10 points
+		- Research Lab:		3 points
 		- Elite Drones: 	15 points
 		- Large Drones: 	4 points
 		- Medium Drones: 	2 points
@@ -17,11 +18,14 @@
 		
 		TODO: Consolidate Faction-unique triggers when IdsReplacer is added to SandboxCounters functions.
 		
-		Tags:GVK-Alliance-TriggerTags-PointsCompromised-{EncounterType}-{Faction}
-		Tags:GVK-Alliance-TriggerTags-PointsDespawned-{EncounterType}-{Faction}
+		[Tags:GVK-Alliance-TriggerTags-PointsCompromised-{EncounterType}-{Faction}]
+		[Tags:GVK-Alliance-TriggerTags-PointsDespawned-{EncounterType}-{Faction}]
+		[Tags:GVK-Alliance-TriggerTags-PointsAwarded-{EncounterType}-{Faction}]
 		
-		Note: Drones don't have deduct points on despawn.
-		Note: All check if previously damaged by an enemy or neutral player.
+		Notes:
+			- Drones don't have deduct points on despawn.
+			- ResearchLab only has PointsAwarded
+			- All check if previously damaged by an enemy or neutral player.
 
 		-->
 		
@@ -106,6 +110,7 @@
 			[Tags:GVK-Alliance-TriggerTags-PointsCompromised-AllianceBase-SOBAN]
 			[Type:Manual]
 			[StartsReady:true]
+			[Conditions:GVK-Universal-Condition-DamagedByNonFriendlyPlayer]
 			[ActionExecution:All]
 			[Actions:GVK-Alliance-Action-PointsCompromised-AllianceBase-SOBAN]
 			</Description>
@@ -244,6 +249,7 @@
 			[Tags:GVK-Alliance-TriggerTags-PointsCompromised-AllianceOutpost-SOBAN]
 			[Type:Manual]
 			[StartsReady:true]
+			[Conditions:GVK-Universal-Condition-DamagedByNonFriendlyPlayer]
 			[ActionExecution:All]
 			[Actions:GVK-Alliance-Action-PointsCompromised-AllianceOutpost-SOBAN]
 			</Description>
@@ -301,6 +307,71 @@
 			[ChatData:GVK-Alliance-Chat-PointsAdjustDespawned]
 			</Description>
 		</EntityComponent>
+		<!-- ResearchLab -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-TriggerTags-PointsAwarded-AllianceResearchLab-KHAANEPH</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Trigger]
+			[UseTrigger:true]
+			[Tags:GVK-Alliance-TriggerTags-PointsAwarded-AllianceResearchLab-KHAANEPH]
+			[Type:Manual]
+			[StartsReady:true]
+			[ActionExecution:All]
+			[Actions:GVK-Alliance-Action-PointsAwarded-AllianceResearchLab-KHAANEPH]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-Action-PointsAwarded-AllianceResearchLab-KHAANEPH</SubtypeId>
+			</Id>
+			<Description>
+			[MES AI Action]
+			[//DebugMessage:PointsAwarded-AllianceResearchLab-KHAANEPH]
+			[SetCustomStrings:true]
+			[CustomStrings:IncreaseFactionName,KHAANEPH]
+			[CustomStrings:IncreaseFactionAmount,3]
+			[IncreaseSandboxCounters:KHAANEPH_Points]
+			[IncreaseSandboxCountersAmount:3]
+			[UseChatBroadcast:true]
+			[ChatData:GVK-Alliance-Chat-PointsAdjustAwarded]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-TriggerTags-PointsAwarded-AllianceResearchLab-SOBAN</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Trigger]
+			[UseTrigger:true]
+			[Tags:GVK-Alliance-TriggerTags-PointsAwarded-AllianceResearchLab-SOBAN]
+			[Type:Manual]
+			[StartsReady:true]
+			[ActionExecution:All]
+			[Actions:GVK-Alliance-Action-PointsAwarded-AllianceResearchLab-SOBAN]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-Action-PointsAwarded-AllianceResearchLab-SOBAN</SubtypeId>
+			</Id>
+			<Description>
+			[MES AI Action]
+			[//DebugMessage:PointsAwarded-AllianceResearchLab-SOBAN]
+			[SetCustomStrings:true]
+			[CustomStrings:IncreaseFactionName,SOBAN]
+			[CustomStrings:IncreaseFactionAmount,3]
+			[IncreaseSandboxCounters:SOBAN_Points]
+			[IncreaseSandboxCountersAmount:3]
+			[UseChatBroadcast:true]
+			[ChatData:GVK-Alliance-Chat-PointsAdjustAwarded]
+			</Description>
+		</EntityComponent>
 		<!-- Elite Drones -->
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
@@ -350,6 +421,7 @@
 			[Tags:GVK-Alliance-TriggerTags-PointsCompromised-DroneElite-SOBAN]
 			[Type:Manual]
 			[StartsReady:true]
+			[Conditions:GVK-Universal-Condition-DamagedByNonFriendlyPlayer]
 			[ActionExecution:All]
 			[Actions:GVK-Alliance-Action-PointsCompromised-DroneElite-SOBAN]
 			</Description>
@@ -424,6 +496,7 @@
 			[Tags:GVK-Alliance-TriggerTags-PointsCompromised-DroneLarge-SOBAN]
 			[Type:Manual]
 			[StartsReady:true]
+			[Conditions:GVK-Universal-Condition-DamagedByNonFriendlyPlayer]
 			[ActionExecution:All]
 			[Actions:GVK-Alliance-Action-PointsCompromised-DroneLarge-SOBAN]
 			</Description>
@@ -498,6 +571,7 @@
 			[Tags:GVK-Alliance-TriggerTags-PointsCompromised-DroneMedium-SOBAN]
 			[Type:Manual]
 			[StartsReady:true]
+			[Conditions:GVK-Universal-Condition-DamagedByNonFriendlyPlayer]
 			[ActionExecution:All]
 			[Actions:GVK-Alliance-Action-PointsCompromised-DroneMedium-SOBAN]
 			</Description>
@@ -572,6 +646,7 @@
 			[Tags:GVK-Alliance-TriggerTags-PointsCompromised-DroneSmall-SOBAN]
 			[Type:Manual]
 			[StartsReady:true]
+			[Conditions:GVK-Universal-Condition-DamagedByNonFriendlyPlayer]
 			[ActionExecution:All]
 			[Actions:GVK-Alliance-Action-PointsCompromised-DroneSmall-SOBAN]
 			</Description>
@@ -635,6 +710,28 @@
 			[Author:Sensors]
 			[Color:Blue]
 			[ChatMessages:{DecreaseFactionName} -{DecreaseFactionAmount}.]
+			[ChatAudio:ArcHudSensors]
+			[BroadcastChatType:Both]
+			[SendToAllOnlinePlayers:true]
+			[IgnoreAntennaRequirement:true]
+			[IgnoredAntennaRangeOverride:100000]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-Chat-PointsAdjustAwarded</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Chat]
+			[UseChat:true]
+			[StartsReady:true]
+			[Chance:100]
+			[MaxChats:1]
+			[BroadcastRandomly:false]
+			[Author:Sensors]
+			[Color:Blue]
+			[ChatMessages:{IncreaseFactionName} +{IncreaseFactionAmount}.]
 			[ChatAudio:ArcHudSensors]
 			[BroadcastChatType:Both]
 			[SendToAllOnlinePlayers:true]

@@ -319,6 +319,34 @@
 		<SpawnGroup>
 			<Id>
 				<TypeId>SpawnGroupDefinition</TypeId>
+				<SubtypeId>GVK-PlanetaryInstallation-SpawnGroup-Small-AllianceResearch</SubtypeId>
+			</Id>
+			<Description>
+			[Modular Encounters SpawnGroup]
+			[IgnoreCleanupRules:true]
+			[ReplenishSystems:true]
+			[SpawnConditionsProfiles:GVK-PlanetaryInstallation-Small-SpawnCondition-Building-UNKN]
+			[ManipulationProfiles:GVK-PlanetaryInstallation-Large-Manipulation-COALITIONStructures]
+			[ManipulationProfiles:GVK-Universal-Manipulation-DamageModifier25]
+			</Description>
+			<IsPirate>true</IsPirate>
+			<Frequency>0.4</Frequency>
+			<Prefabs>
+				<Prefab SubtypeId="NWS [UNKN] Research Lab 1">
+					<Position>
+						<X>0.0</X>
+						<Y>-10</Y>
+						<Z>0.0</Z>
+					</Position>
+					<Speed>0</Speed>
+					<BeaconText>Research Lab</BeaconText>
+					<Behaviour>GVK-PlanetaryInstallation-Small-Behavior-AllianceResearchPost</Behaviour>
+				</Prefab>
+			</Prefabs>
+		</SpawnGroup>
+		<SpawnGroup>
+			<Id>
+				<TypeId>SpawnGroupDefinition</TypeId>
 				<SubtypeId>GVK-Alliance-SupplyDepot-SpawnGroup</SubtypeId> <!-- GPS:Khaaneph Base:20802.09:21835.64:57944.6:#FFFFA900: -->
 			</Id>
 			<Description>
