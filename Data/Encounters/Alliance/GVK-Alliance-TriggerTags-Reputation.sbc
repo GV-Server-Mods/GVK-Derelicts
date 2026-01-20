@@ -42,62 +42,8 @@
 			<Description>
 			[MES AI Action]
 			[//DebugMessage:AttackedReputation-Init-{Faction} Step 1]
-			[ManuallyActivateTrigger:true]
-			[ManuallyActivatedTriggerNames:GVK-Alliance-ManualTrigger-AttackedReputation-Init-{Faction}]
-			</Description>
-		</EntityComponent>
-		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
-			<Id>
-				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Alliance-ManualTrigger-AttackedReputation-Init-KHAANEPH</SubtypeId>
-			</Id>
-			<Description>
-			[MES AI Trigger]
-			[UseTrigger:true]
-			[Type:Manual]
-			[StartsReady:true]
-			[MaxActions:1]
-			[ActionExecution:All]
-			[Actions:GVK-Alliance-Action-AttackedReputation-Init-KHAANEPH]
-			</Description>
-		</EntityComponent>
-		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
-			<Id>
-				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Alliance-Action-AttackedReputation-Init-KHAANEPH</SubtypeId>
-			</Id>
-			<Description>
-			[MES AI Action]
-			[//DebugMessage:AttackedReputation-Init-{Faction} Step 2]
 			[EnableTriggers:true]
-			[EnableTriggerNames:GVK-Alliance-TriggerTags-AttackedReputation-KHAANEPH]
-			</Description>
-		</EntityComponent>
-		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
-			<Id>
-				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Alliance-ManualTrigger-AttackedReputation-Init-SOBAN</SubtypeId>
-			</Id>
-			<Description>
-			[MES AI Trigger]
-			[UseTrigger:true]
-			[Type:Manual]
-			[StartsReady:true]
-			[MaxActions:1]
-			[ActionExecution:All]
-			[Actions:GVK-Alliance-Action-AttackedReputation-Init-SOBAN]
-			</Description>
-		</EntityComponent>
-		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
-			<Id>
-				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Alliance-Action-AttackedReputation-Init-SOBAN</SubtypeId>
-			</Id>
-			<Description>
-			[MES AI Action]
-			[//DebugMessage:AttackedReputation-Init-{Faction} Step 2]
-			[EnableTriggers:true]
-			[EnableTriggerNames:GVK-Alliance-TriggerTags-AttackedReputation-SOBAN]
+			[EnableTriggerTags:GVK-Alliance-TriggerTags-AttackedReputation-{Faction}]
 			</Description>
 		</EntityComponent>
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
