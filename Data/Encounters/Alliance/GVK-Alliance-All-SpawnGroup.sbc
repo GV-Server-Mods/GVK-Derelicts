@@ -319,13 +319,13 @@
 		<SpawnGroup>
 			<Id>
 				<TypeId>SpawnGroupDefinition</TypeId>
-				<SubtypeId>GVK-PlanetaryInstallation-SpawnGroup-Small-AllianceResearch</SubtypeId>
+				<SubtypeId>GVK-Alliance-ResearchLab-SpawnGroup</SubtypeId>
 			</Id>
 			<Description>
 			[Modular Encounters SpawnGroup]
 			[IgnoreCleanupRules:true]
 			[ReplenishSystems:true]
-			[SpawnConditionsProfiles:GVK-PlanetaryInstallation-Small-SpawnCondition-Building-UNKN]
+			[SpawnConditionsProfiles:GVK-Alliance-ResearchLab-SpawnCondition]
 			[ManipulationProfiles:GVK-PlanetaryInstallation-Large-Manipulation-COALITIONStructures]
 			[ManipulationProfiles:GVK-Universal-Manipulation-DamageModifier25]
 			</Description>
@@ -335,12 +335,22 @@
 				<Prefab SubtypeId="NWS [UNKN] Research Lab 1">
 					<Position>
 						<X>0.0</X>
-						<Y>-10</Y>
+						<Y>4</Y>
 						<Z>0.0</Z>
 					</Position>
 					<Speed>0</Speed>
 					<BeaconText>Research Lab</BeaconText>
-					<Behaviour>GVK-PlanetaryInstallation-Small-Behavior-AllianceResearchPost</Behaviour>
+					<Behaviour>GVK-Alliance-ResearchLab-Behavior</Behaviour>
+				</Prefab>
+				<Prefab SubtypeId="NWS [UNKN] Research Lab 2">
+					<Position>
+						<X>0.0</X>
+						<Y>-15</Y>
+						<Z>0.0</Z>
+					</Position>
+					<Speed>0</Speed>
+					<BeaconText>Research Lab</BeaconText>
+					<Behaviour>GVK-Alliance-ResearchLab-Behavior</Behaviour>
 				</Prefab>
 			</Prefabs>
 		</SpawnGroup>
