@@ -85,3 +85,7 @@ NSN	(NPC Station)	    	Out of date
 23. Use `[IgnoreCleanupRules:true]` on all NPCs with aggressive MES CleanUp settings to help delete debris that doesn't have an active RAI block.
 24. Use `[DebugMessage: enter text here]` in action profiles for a quick way to send a message to chat for testing purposes.
 25. Do not use RazeBlocks on an RAI remote control block; doing so can cause a crash at UpdateShape() if the block is split from its parent grid.
+
+## Helpful MES examples:
+- Enenra's MSB https://github.com/enenra/mes-shared-behaviors
+- Enenra's GFA https://github.com/enenra/gfa/tree/86dab4803276eda74a3359e10cf5e93d9eef6301/GFA%20-%20MES%20Utilities/Content
