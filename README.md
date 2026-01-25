@@ -64,7 +64,7 @@ Additional Bool:
 ## Encounter Types for custom string inits:
 | EncounterType  | EncounterDisplayName | DefenseSpawn_Limit | GVK_MobilityType_Aircraft |
 | --- | --- | --- | --- |
-| CustomStrings | CustomStrings | CustomCountersVariables |  |
+| CustomStrings | CustomStrings | CustomCountersVariables | SetBooleansTrue |
 | **Alliance**  |  |  |  |
 | - AllianceBase  | Base  | 8 |  |
 | - AllianceOutpost | Outpost | 4 |  |
