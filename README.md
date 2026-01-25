@@ -53,6 +53,39 @@ NLO	(NPC Loot)	        	"NLO [COAL] Cargo Drop"
 NOU	(NPC Outpost)	    	Out of date
 NSN	(NPC Station)	    	Out of date
 ```
+## All behavior inits:
+`[CustomStrings:EncounterType,DroneSmall]`
+
+`[CustomStrings:EncounterDisplayName,aircraft]`
+
+Additional Bool:
+`[SetBooleansTrue:GVK_MobilityType_Aircraft]`
+
+## Encounter Types for custom string inits:
+| EncounterType  | EncounterDisplayName | DefenseSpawn_Limit | GVK_MobilityType_Aircraft |
+| --- | --- | --- | --- |
+| CustomStrings | CustomStrings | CustomCountersVariables |  |
+| **Alliance**  |  |  |  |
+| - AllianceBase  | Base  | 8 |  |
+| - AllianceOutpost | Outpost | 4 |  |
+| **Wrecks** |  |  |
+| - WreckLarge | large signal* | 8 |  |
+| - WreckMedium | medium signal* | 4 |  |
+| - WreckSmall | small signal | 0 |  |
+| **Drones** |  |  |
+| - DroneElite | Elite cruiser* |  |  |
+| - DroneLarge | cruiser* |  |  |
+| - DroneMedium | craft* |  | true* |
+| - DroneSmall | craft* |  | true* |
+
+## Factions:
+- KHAANEPH
+- GAALSIEN
+- COALITION
+- SOBAN
+- DERELICT
+
+
 
 ## Thanks Yous:
 - Nekron910 https://steamcommunity.com/sharedfiles/filedetails/?id=2650194963&tscn=1643638039
