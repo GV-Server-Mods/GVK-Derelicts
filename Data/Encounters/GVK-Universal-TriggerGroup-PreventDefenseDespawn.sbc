@@ -1,0 +1,161 @@
+<?xml version="1.0"?>
+<Definitions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+	<EntityComponents>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Universal-TriggerGroup-SendDefenseHeartbeat</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI TriggerGroup]
+			[Triggers:GVK-Universal-Trigger-SendDefenseHeartbeat]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Universal-TriggerGroup-ReceiveDefenseHeartbeat</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI TriggerGroup]
+			[Triggers:GVK-Universal-Trigger-ReceiveDefenseHeartbeat]
+			[Triggers:GVK-Universal-Trigger-RetreatNoTarget]
+			[Triggers:GVK-Universal-Trigger-RetreatTimer]			
+			</Description>
+		</EntityComponent>
+		<!-- 
+			
+			Trigger sequence for faction structure to send a heartbeat command to prevent defenses from despawning
+
+		-->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Universal-Trigger-SendDefenseHeartbeat</SubtypeId>
+			</Id>
+			<Description>
+			[MES AI Trigger]
+			[UseTrigger:true]
+			[Type:Timer]
+			[StartsReady:false]
+			[MinCooldownMs:30000]
+			[MaxCooldownMs:30001]
+			[MaxActions:-1]
+			[ActionExecution:All]
+			[Actions:GVK-Universal-Action-SendDefenseHeartbeat]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Universal-Action-SendDefenseHeartbeat</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Action]
+			[DebugMessage:SendDefenseHeartbeat]
+			[BroadcastCommandProfiles:true]
+			[CommandProfileIds:GVK-Universal-Command-SendDefenseHeartbeat]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Universal-Command-SendDefenseHeartbeat</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Command]
+			[CommandCode:DefenseHeartbeat]
+			[SingleRecipient:false]
+			[MatchSenderReceiverOwners:true]
+			[IgnoreAntennaRequirement:true]
+			[IgnoreReceiverAntennaRequirement:true]
+			[Radius:4000]
+			[SendDamagerEntityId:true]
+			[CommandDelayTicks:60]
+			</Description>
+		</EntityComponent>
+		<!-- 
+		
+		Trigger sequence add NoTarget and Timer despawn triggers, and reset them if they receive
+			the receive heartbeat command from a nearby faction structure.
+		
+		-->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Universal-Trigger-ReceiveDefenseHeartbeat</SubtypeId>
+			</Id>
+			<Description>
+			[MES AI Trigger]
+			[UseTrigger:true]
+			[Type:CommandReceived]
+			[StartsReady:true]
+			[MinCooldownMs:15000]
+			[MaxCooldownMs:15001]
+			[CommandReceiveCode:DefenseHeartbeat]
+			[MaxActions:-1]
+			[ActionExecution:All]
+			[Actions:GVK-Universal-Action-ReceiveDefenseHeartbeat]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Universal-Action-ReceiveDefenseHeartbeat</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Action]
+			[DebugMessage:ReceiveDefenseHeartbeat]
+			[ResetCooldownTimeOfTriggers:true]
+			[ResetTriggerCooldownNames:GVK-Universal-Trigger-RetreatNoTarget]
+			[ResetTriggerCooldownNames:GVK-Universal-Trigger-RetreatTimer]
+			</Description>
+		</EntityComponent>
+		<!-- Trigger sequence to receive heartbeat command to reset despawn timer -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Universal-Trigger-RetreatNoTarget</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Trigger]
+			[Type:NoTarget]
+			[UseTrigger:true]
+			[StartsReady:false]
+			[MaxActions:1]
+			[ActionExecution:All]
+			[MinCooldownMs:1800000]
+			[MaxCooldownMs:1800001]
+			[Actions:GVK-Universal-Action-Retreat]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Universal-Trigger-RetreatTimer</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Trigger]
+			[Type:Timer]
+			[UseTrigger:true]
+			[StartsReady:false]
+			[MaxActions:1]
+			[ActionExecution:All]
+			[MinCooldownMs:21600000]
+			[MaxCooldownMs:21600001]
+			[Actions:GVK-Universal-Action-Retreat]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Universal-Action-Retreat</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Action]
+			[DebugMessage:GVK-Universal-Action-Retreat]
+			[Retreat:true]
+			</Description>
+		</EntityComponent>
+	</EntityComponents>
+</Definitions>

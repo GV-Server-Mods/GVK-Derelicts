@@ -4,30 +4,30 @@
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Alliance-TriggerGroup-SendTargets</SubtypeId>
+				<SubtypeId>GVK-Universal-TriggerGroup-SendTargets</SubtypeId>
 			</Id>
 			<Description>
 			[RivalAI TriggerGroup]
-			[Triggers:GVK-Alliance-Trigger-SendHighPriorityTarget]
-			[Triggers:GVK-Alliance-Trigger-SendLowPriorityTarget]
+			[Triggers:GVK-Universal-Trigger-SendHighPriorityTarget]
+			[Triggers:GVK-Universal-Trigger-SendLowPriorityTarget]
 			</Description>
 		</EntityComponent>
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Alliance-TriggerGroup-ReceiveTargets</SubtypeId>
+				<SubtypeId>GVK-Universal-TriggerGroup-ReceiveTargets</SubtypeId>
 			</Id>
 			<Description>
 			[RivalAI TriggerGroup]
-			[Triggers:GVK-Alliance-Trigger-ReceiveHighPriorityTarget]
-			[Triggers:GVK-Alliance-Trigger-ReceiveLowPriorityTarget]
+			[Triggers:GVK-Universal-Trigger-ReceiveHighPriorityTarget]
+			[Triggers:GVK-Universal-Trigger-ReceiveLowPriorityTarget]
 			</Description>
 		</EntityComponent>
 		<!-- Trigger sequence to send a priority target when damaged -->
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Alliance-Trigger-SendHighPriorityTarget</SubtypeId>
+				<SubtypeId>GVK-Universal-Trigger-SendHighPriorityTarget</SubtypeId>
 			</Id>
 			<Description>
 			[MES AI Trigger]
@@ -43,16 +43,16 @@
 			[ExcludedDamageTypes:Fall]
 			[ExcludedDamageTypes:Thruster]
 			[MaxActions:-1]
-			[Conditions:GVK-Alliance-Condition-SendHighPriorityTarget]
+			[Conditions:GVK-Universal-Condition-SendHighPriorityTarget]
 			[ConditionCheckResetsTimer:true]
 			[ActionExecution:All]
-			[Actions:GVK-Alliance-Action-SendHighPriorityTarget]
+			[Actions:GVK-Universal-Action-SendHighPriorityTarget]
 			</Description>
 		</EntityComponent>
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Alliance-Condition-SendHighPriorityTarget</SubtypeId>
+				<SubtypeId>GVK-Universal-Condition-SendHighPriorityTarget</SubtypeId>
 			</Id>
 			<Description>
 			[RivalAI Condition]
@@ -65,19 +65,19 @@
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Alliance-Action-SendHighPriorityTarget</SubtypeId>
+				<SubtypeId>GVK-Universal-Action-SendHighPriorityTarget</SubtypeId>
 			</Id>
 			<Description>
 			[RivalAI Action]
 			[//DebugMessage:SendHighPriorityTarget]
 			[BroadcastCommandProfiles:true]
-			[CommandProfileIds:GVK-Alliance-Command-HighPriorityTarget]
+			[CommandProfileIds:GVK-Universal-Command-HighPriorityTarget]
 			</Description>
 		</EntityComponent>
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Alliance-Command-HighPriorityTarget</SubtypeId>
+				<SubtypeId>GVK-Universal-Command-HighPriorityTarget</SubtypeId>
 			</Id>
 			<Description>
 			[RivalAI Command]
@@ -95,7 +95,7 @@
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Alliance-Trigger-SendLowPriorityTarget</SubtypeId>
+				<SubtypeId>GVK-Universal-Trigger-SendLowPriorityTarget</SubtypeId>
 			</Id>
 			<Description>
 			[MES AI Trigger]
@@ -106,25 +106,25 @@
 			[MaxCooldownMs:10001]
 			[MaxActions:-1]
 			[ActionExecution:All]
-			[Actions:GVK-Alliance-Action-SendLowPriorityTarget]
+			[Actions:GVK-Universal-Action-SendLowPriorityTarget]
 			</Description>
 		</EntityComponent>
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Alliance-Action-SendLowPriorityTarget</SubtypeId>
+				<SubtypeId>GVK-Universal-Action-SendLowPriorityTarget</SubtypeId>
 			</Id>
 			<Description>
 			[RivalAI Action]
 			[//DebugMessage:SendLowPriorityTarget]
 			[BroadcastCommandProfiles:true]
-			[CommandProfileIds:GVK-Alliance-Command-LowPriorityTarget]
+			[CommandProfileIds:GVK-Universal-Command-LowPriorityTarget]
 			</Description>
 		</EntityComponent>
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Alliance-Command-LowPriorityTarget</SubtypeId>
+				<SubtypeId>GVK-Universal-Command-LowPriorityTarget</SubtypeId>
 			</Id>
 			<Description>
 			[RivalAI Command]
@@ -142,7 +142,7 @@
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Alliance-Trigger-ReceiveHighPriorityTarget</SubtypeId>
+				<SubtypeId>GVK-Universal-Trigger-ReceiveHighPriorityTarget</SubtypeId>
 			</Id>
 			<Description>
 			[MES AI Trigger]
@@ -154,13 +154,13 @@
 			[CommandReceiveCode:HighPriorityTarget]
 			[MaxActions:-1]
 			[ActionExecution:All]
-			[Actions:GVK-Alliance-Action-ReceiveHighPriorityTarget]
+			[Actions:GVK-Universal-Action-ReceiveHighPriorityTarget]
 			</Description>
 		</EntityComponent>
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Alliance-Action-ReceiveHighPriorityTarget</SubtypeId>
+				<SubtypeId>GVK-Universal-Action-ReceiveHighPriorityTarget</SubtypeId>
 			</Id>
 			<Description>
 			[RivalAI Action]
@@ -173,7 +173,7 @@
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Alliance-Trigger-ReceiveLowPriorityTarget</SubtypeId>
+				<SubtypeId>GVK-Universal-Trigger-ReceiveLowPriorityTarget</SubtypeId>
 			</Id>
 			<Description>
 			[MES AI Trigger]
@@ -184,16 +184,16 @@
 			[MaxCooldownMs:10001]
 			[CommandReceiveCode:LowPriorityTarget]
 			[MaxActions:-1]
-			[Conditions:GVK-Alliance-Condition-ReceiveLowPriorityTarget]
+			[Conditions:GVK-Universal-Condition-ReceiveLowPriorityTarget]
 			[ConditionCheckResetsTimer:true]
 			[ActionExecution:All]
-			[Actions:GVK-Alliance-Action-ReceiveLowPriorityTarget]
+			[Actions:GVK-Universal-Action-ReceiveLowPriorityTarget]
 			</Description>
 		</EntityComponent>
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Alliance-Condition-ReceiveLowPriorityTarget</SubtypeId>
+				<SubtypeId>GVK-Universal-Condition-ReceiveLowPriorityTarget</SubtypeId>
 			</Id>
 			<Description>
 			[RivalAI Condition]
@@ -205,7 +205,7 @@
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Alliance-Action-ReceiveLowPriorityTarget</SubtypeId>
+				<SubtypeId>GVK-Universal-Action-ReceiveLowPriorityTarget</SubtypeId>
 			</Id>
 			<Description>
 			[RivalAI Action]
