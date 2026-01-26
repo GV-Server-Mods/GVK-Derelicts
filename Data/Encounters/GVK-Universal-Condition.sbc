@@ -23,6 +23,7 @@
 			[RequiredNoneFunctionalBlockNames:Outpost]
 			[RequiredNoneFunctionalBlockNames:Player KOTH]
 			[RequiredNoneFunctionalBlockNames:Distress Signal]
+			[RequiredNoneFunctionalBlockNames:Large Distress Signal]
 			[RequiredNoneFunctionalBlockNames:Downed Salvager]
 			[RequiredNoneFunctionalBlockNames:Base]
 			[MatchAnyCondition:false]
@@ -116,6 +117,20 @@
 			[CheckForBlocksOfType:true]
 			[BlocksOfType:MyObjectBuilder_Beacon]
 			[UseFailCondition:true]
+			</Description>
+		</EntityComponent>
+		<!-- Condition to check if an NPC received a command from its parent that spawned it -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Universal-Condition-ReceiveCommandFromParent</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Condition]
+			[UseConditions:true]
+			[MatchAnyCondition:false]
+			[CommandCheckFromParent:true]
+			[CommandFromParent:true]
 			</Description>
 		</EntityComponent>
 	</EntityComponents>

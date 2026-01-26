@@ -13,10 +13,12 @@
 			[UseRetreatTimer:false]
 			[UseNoTargetTimer:false]
 			[UsePlayerDistanceTimer:false]
-			[Triggers:GVK-Alliance-Homebase-Trigger-CreateSandboxCounter-KHAANEPH]
+			[TargetData:GVK-Universal-Target-EnemyGrids2km]
+			[Triggers:GVK-Alliance-Homebase-Trigger-Init-KHAANEPH]
 			[Triggers:GVK-Alliance-Homebase-Trigger-CreateSafeZone-KHAANEPH]
 			[TriggerGroups:GVK-Alliance-Homebase-TriggerGroup-PointsLimits-KHAANEPH]
 			[TriggerGroups:GVK-Alliance-Homebase-TriggerGroup-ZoneSize-KHAANEPH]
+			[TriggerGroups:GVK-Universal-TriggerGroup-SpawnDefenses]
 			[TriggerGroups:GVK-Universal-TriggerGroup-SendTargets]
 			[RemoteControlCode:GVK-Static]
 			</Description>
@@ -25,25 +27,30 @@
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Alliance-Homebase-Trigger-CreateSandboxCounter-KHAANEPH</SubtypeId>
+				<SubtypeId>GVK-Alliance-Homebase-Trigger-Init-KHAANEPH</SubtypeId>
 			</Id>
 			<Description>
 			[MES AI Trigger]
 			[UseTrigger:true]
-			[Type:Session]
+			[Type:Timer]
 			[StartsReady:true]
 			[MaxActions:1]
-			[Actions:GVK-Alliance-Homebase-Action-CreateSandboxCounter-KHAANEPH]
+			[Actions:GVK-Alliance-Homebase-Action-Init-KHAANEPH]
 			</Description>
 		</EntityComponent>
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Alliance-Homebase-Action-CreateSandboxCounter-KHAANEPH</SubtypeId>
+				<SubtypeId>GVK-Alliance-Homebase-Action-Init-KHAANEPH</SubtypeId>
 			</Id>
 			<Description>
 			[MES AI Action]
 			[ResetSandboxCounters:KHAANEPH_Points]
+			[SetCustomStrings:true]
+			[CustomStrings:EncounterType,AllianceBase]
+			[CustomStrings:EncounterDisplayName,Headquarters]
+			[SetCustomCountersVariables:true]
+			[CustomCountersVariables:DefenseSpawn_Limit,10]
 			</Description>
 		</EntityComponent>
 		<!-- Trigger sequence to create a safezone on trade station spawn -->
