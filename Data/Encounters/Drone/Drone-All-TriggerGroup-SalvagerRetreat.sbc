@@ -1,0 +1,134 @@
+<?xml version="1.0"?>
+<Definitions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+	<EntityComponents>
+		<!-- Trigger sequence for Salvager to run away when player is near -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Drone-All-TriggerGroup-SalvagerRetreat</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI TriggerGroup]
+			[Triggers:GVK-Drone-All-Trigger-SalvagerPlayerNear]			
+			[Triggers:GVK-Drone-All-Trigger-SalvagerTargetNear]			
+			[Triggers:GVK-Drone-All-Trigger-SalvagerDamage]			
+			[Triggers:GVK-Drone-All-ManualTrigger-SalvagerRetreat]			
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Drone-All-Trigger-SalvagerPlayerNear</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Trigger]
+			[Type:PlayerNear]
+			[UseTrigger:true]
+			[StartsReady:false]
+			[MinCooldownMs:2000]
+			[MaxCooldownMs:2001]
+			[TargetDistance:500]
+			[MaxActions:1]
+			[ActionExecution:All]
+			[Actions:GVK-Drone-All-Action-ManualTriggerSalvagerRetreat]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Drone-All-Trigger-SalvagerTargetNear</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Trigger]
+			[Type:TargetNear]
+			[UseTrigger:true]
+			[StartsReady:false]
+			[MinCooldownMs:2000]
+			[MaxCooldownMs:2001]
+			[TargetDistance:500]
+			[MaxActions:1]
+			[ActionExecution:All]
+			[Actions:GVK-Drone-All-Action-ManualTriggerSalvagerRetreat]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Drone-All-Trigger-SalvagerDamage</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Trigger]
+			[Type:Damage]
+			[UseTrigger:true]
+			[StartsReady:false]
+			[MinCooldownMs:2000]
+			[MaxCooldownMs:2001]
+			[DamageTypes:Any]
+			[MaxActions:1]
+			[ActionExecution:All]
+			[Actions:GVK-Drone-All-Action-ManualTriggerSalvagerRetreat]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Drone-All-Action-ManualTriggerSalvagerRetreat</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Action]
+			[ManuallyActivateTrigger:true]
+			[ManuallyActivatedTriggerNames:GVK-Drone-All-ManualTrigger-SalvagerRetreat]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Drone-All-ManualTrigger-SalvagerRetreat</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Trigger]
+			[UseTrigger:true]
+			[Type:Manual]
+			[StartsReady:true]
+			[MinCooldownMs:5000]
+			[MaxCooldownMs:5001]
+			[MaxActions:1]
+			[Actions:GVK-Drone-All-Action-SalvagerRetreat]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Drone-All-Action-SalvagerRetreat</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Action]
+			[Retreat:true]
+			[UseChatBroadcast:true]
+			[ChatData:GVK-Drone-All-Chat-SalvagerRetreat]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Drone-All-Chat-SalvagerRetreat</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Chat]
+			[UseChat:true]
+			[StartsReady:true]
+			[Chance:100]
+			[MaxChats:1]
+			[BroadcastRandomly:true]
+			[Author:{Faction} Salvager]
+			[Color:Red]
+			[ChatMessages:Enemy Detected, retreating immediately.]
+			[ChatAudio:ArcHudGPSNotification2]
+			[BroadcastChatType:Chat]
+			[SendToAllOnlinePlayers:false]
+			[IgnoreAntennaRequirement:true]
+			[IgnoredAntennaRangeOverride:9999999]
+			</Description>
+		</EntityComponent>
+	</EntityComponents>
+</Definitions>

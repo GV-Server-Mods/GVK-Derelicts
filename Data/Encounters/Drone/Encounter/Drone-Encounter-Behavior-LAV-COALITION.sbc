@@ -10,55 +10,49 @@
 			<Description>
 			[RivalAI Behavior]
 			[BehaviorName:Patrol]
-			[UsePlayerDistanceTimer:true]
-			[PlayerDistanceTimerTrigger:1800]
-			[PlayerDistanceTrigger:4000]
+			[WeaponSystem:GVK-Universal-Weapons-All]
+			[UsePlayerDistanceTimer:false]
 			[UseNoTargetTimer:false]
-			[UseRetreatTimer:true]
-			[RetreatTimerTrigger:1800]
-			[RetreatDespawnDistance:2000]
-			[AutopilotData:GVK-Drone-Encounter-Autopilot-LAV-COALITION]
+			[UseRetreatTimer:false]
 			[TargetData:GVK-Universal-Target-EnemyGrids2km]
-			[Triggers:GVK-Universal-Trigger-UneditableOnSpawn]
+			[AutopilotData:GVK-Drone-All-Autopilot-LAV-Passive]
+			[SecondaryAutopilotData:GVK-Drone-All-Autopilot-LAV-Aggressive]
+			[TertiaryAutopilotData:GVK-Drone-All-Autopilot-LAV-BigAirTime]
+			[Triggers:GVK-Drone-Encounter-Trigger-Init-LAV-COALITION]
 			[Triggers:GVK-Drone-Encounter-LAV-COALITION-Trigger-PlayerNear]
-			[Triggers:GVK-Universal-Trigger-COALITION-TargetAcquiredChatter]
-			[Triggers:GVK-Universal-Trigger-COALITION-NoTargetsChatter]
-			[TriggerGroups:GVK-Drone-Encounter-TriggerGroup-InactivityRetreat]
-			[TriggerGroups:GVK-Drone-All-TriggerGroup-SmallCOALITIONRoverDefeated]
+			[TriggerGroups:GVK-Drone-All-TriggerGroup-DroneDefaults-SmallDrone-COALITION]
+			[TriggerGroups:GVK-Drone-All-TriggerGroup-PatrolHorsefly]
+			[TriggerGroups:GVK-Drone-All-TriggerGroup-FlyLevelOnJump]
+			[TriggerGroups:GVK-Universal-TriggerGroup-ReceiveTargets]
+			[TriggerGroups:GVK-ConvoySystem-Escort-TriggerGroup]
+			[TriggerGroups:GVK-Universal-TriggerGroup-DefeatedAndAttacked]
 			</Description>
 		</EntityComponent>
-		<!-- LAV Patrol Autopilot -->
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Drone-Encounter-Autopilot-LAV-COALITION</SubtypeId>
+				<SubtypeId>GVK-Drone-Encounter-Trigger-Init-LAV-COALITION</SubtypeId>
 			</Id>
 			<Description>
-			[RivalAI Autopilot]
-			[UseVelocityCollisionEvasion:false]
-			[RotationMultiplier:5]
-			[LimitRotationSpeed:true]
-			[MaxRotationMagnitude:1.5]
-			[FlyLevelWithGravity:true]
-			[LevelWithGravityWhenIdle:true]
-			[IdealPlanetAltitude:2.75]
-			[AltitudeTolerance:100]
-			[WaypointAbandonTimeTrigger:10]
-			[WaypointTolerance:100]
-			[IdealMinSpeed:25]
-			[IdealMaxSpeed:50]
-			[MaxSpeedTolerance:5]
-			[WaypointWaitTimeTrigger:0]
-			[OffsetPlanetMinDistFromTarget:500]
-			[OffsetPlanetMaxDistFromTarget:501]
-			[OffsetPlanetMinTargetAltitude:2]
-			[OffsetPlanetMaxTargetAltitude:5]
-			[DisableInertiaDampeners:true]
-			[MinimumPlanetAltitude:-1]
-			[UseSurfaceHoverThrustMode:false]
-			[HoverPathStepDistance:50]
-			[AngleAllowedForForwardThrust:180]
-			[MaxVelocityAngleForSpeedControl:180]
+			[MES AI Trigger]
+			[UseTrigger:true]
+			[Type:Timer]
+			[StartsReady:true]
+			[MaxActions:1]
+			[ActionExecution:All]
+			[Actions:GVK-Drone-Encounter-Action-Init-LAV-COALITION]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Drone-Encounter-Action-Init-LAV-COALITION</SubtypeId>
+			</Id>
+			<Description>
+			[MES AI Action]
+			[SetCustomStrings:true]
+			[CustomStrings:EncounterType,DroneSmall]
+			[CustomStrings:EncounterDisplayName,vehicle]
 			</Description>
 		</EntityComponent>
 		<!-- Trigger sequence for LAV to spawn enemies when player is near -->
@@ -103,7 +97,7 @@
 			[Chance:100]
 			[MaxChats:1]
 			[BroadcastRandomly:true]
-			[Author:COALITION LAV]
+			[Author:{Faction} LAV]
 			[Color:White]
 			[ChatMessages:Enemies detected, requesting assistance!]
 			[ChatAudio:ArcHudGPSNotification2]

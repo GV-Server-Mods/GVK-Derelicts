@@ -1,0 +1,217 @@
+<?xml version="1.0"?>
+<Definitions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+	<EntityComponents>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Universal-TriggerGroup-SendTargets</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI TriggerGroup]
+			[Triggers:GVK-Universal-Trigger-SendHighPriorityTarget]
+			[Triggers:GVK-Universal-Trigger-SendLowPriorityTarget]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Universal-TriggerGroup-ReceiveTargets</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI TriggerGroup]
+			[Triggers:GVK-Universal-Trigger-ReceiveHighPriorityTarget]
+			[Triggers:GVK-Universal-Trigger-ReceiveLowPriorityTarget]
+			</Description>
+		</EntityComponent>
+		<!-- Trigger sequence to send a priority target when damaged -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Universal-Trigger-SendHighPriorityTarget</SubtypeId>
+			</Id>
+			<Description>
+			[MES AI Trigger]
+			[UseTrigger:true]
+			[Type:Damage]
+			[StartsReady:false]
+			[MinCooldownMs:10000]
+			[MaxCooldownMs:10001]
+			[DamageTypes:Any]
+			[ExcludedDamageTypes:Environment]
+			[ExcludedDamageTypes:Deformation]
+			[ExcludedDamageTypes:Fire]
+			[ExcludedDamageTypes:Fall]
+			[ExcludedDamageTypes:Thruster]
+			[MaxActions:-1]
+			[Conditions:GVK-Universal-Condition-SendHighPriorityTarget]
+			[ConditionCheckResetsTimer:true]
+			[ActionExecution:All]
+			[Actions:GVK-Universal-Action-SendHighPriorityTarget]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Universal-Condition-SendHighPriorityTarget</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Condition]
+			[UseConditions:true]
+			[MatchAnyCondition:true]
+			[IsAttackerHostile:true]
+			[IsAttackerNeutral:true]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Universal-Action-SendHighPriorityTarget</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Action]
+			[//DebugMessage:SendHighPriorityTarget]
+			[BroadcastCommandProfiles:true]
+			[CommandProfileIds:GVK-Universal-Command-HighPriorityTarget]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Universal-Command-HighPriorityTarget</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Command]
+			[CommandCode:HighPriorityTarget]
+			[SingleRecipient:false]
+			[MatchSenderReceiverOwners:true]
+			[IgnoreAntennaRequirement:true]
+			[IgnoreReceiverAntennaRequirement:true]
+			[Radius:4000]
+			[SendDamagerEntityId:true]
+			[CommandDelayTicks:360]
+			</Description>
+		</EntityComponent>
+		<!-- Trigger sequence to send an available target -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Universal-Trigger-SendLowPriorityTarget</SubtypeId>
+			</Id>
+			<Description>
+			[MES AI Trigger]
+			[UseTrigger:true]
+			[Type:HasTarget]
+			[StartsReady:true]
+			[MinCooldownMs:10000]
+			[MaxCooldownMs:10001]
+			[MaxActions:-1]
+			[ActionExecution:All]
+			[Actions:GVK-Universal-Action-SendLowPriorityTarget]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Universal-Action-SendLowPriorityTarget</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Action]
+			[//DebugMessage:SendLowPriorityTarget]
+			[BroadcastCommandProfiles:true]
+			[CommandProfileIds:GVK-Universal-Command-LowPriorityTarget]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Universal-Command-LowPriorityTarget</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Command]
+			[CommandCode:LowPriorityTarget]
+			[SingleRecipient:false]
+			[MatchSenderReceiverOwners:true]
+			[IgnoreAntennaRequirement:true]
+			[IgnoreReceiverAntennaRequirement:true]
+			[Radius:4000]
+			[SendTargetEntityId:true]
+			[CommandDelayTicks:360]
+			</Description>
+		</EntityComponent>
+		<!-- Trigger sequence to switch to high priority target -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Universal-Trigger-ReceiveHighPriorityTarget</SubtypeId>
+			</Id>
+			<Description>
+			[MES AI Trigger]
+			[UseTrigger:true]
+			[Type:CommandReceived]
+			[StartsReady:true]
+			[MinCooldownMs:30000]
+			[MaxCooldownMs:30001]
+			[CommandReceiveCode:HighPriorityTarget]
+			[MaxActions:-1]
+			[ActionExecution:All]
+			[Actions:GVK-Universal-Action-ReceiveHighPriorityTarget]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Universal-Action-ReceiveHighPriorityTarget</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Action]
+			[//DebugMessage:ReceiveHighPriorityTarget]
+			[SwitchToReceivedTarget:true]
+			[InheritLastAttackerFromCommand:true]
+			</Description>
+		</EntityComponent>
+		<!-- Trigger sequence to switch to low priority target if NoTarget -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Universal-Trigger-ReceiveLowPriorityTarget</SubtypeId>
+			</Id>
+			<Description>
+			[MES AI Trigger]
+			[UseTrigger:true]
+			[Type:CommandReceived]
+			[StartsReady:true]
+			[MinCooldownMs:10000]
+			[MaxCooldownMs:10001]
+			[CommandReceiveCode:LowPriorityTarget]
+			[MaxActions:-1]
+			[Conditions:GVK-Universal-Condition-ReceiveLowPriorityTarget]
+			[ConditionCheckResetsTimer:true]
+			[ActionExecution:All]
+			[Actions:GVK-Universal-Action-ReceiveLowPriorityTarget]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Universal-Condition-ReceiveLowPriorityTarget</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Condition]
+			[UseConditions:true]
+			[MatchAnyCondition:false]
+			[NoTarget:true]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Universal-Action-ReceiveLowPriorityTarget</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Action]
+			[//DebugMessage:ReceiveLowPriorityTarget]
+			[SwitchToReceivedTarget:true]
+			</Description>
+		</EntityComponent>
+	</EntityComponents>
+</Definitions>

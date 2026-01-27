@@ -1,0 +1,89 @@
+﻿<?xml version="1.0"?>
+<Definitions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+	<EntityComponents>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Store-TriggerGroup-UpdateStores</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI TriggerGroup]
+			[Triggers:GVK-Store-Trigger-UpdateStores-RegularStores]
+			[Triggers:GVK-Store-Trigger-UpdateStores-VehicleStores]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Store-Trigger-UpdateStores-RegularStores</SubtypeId>
+			</Id>
+			<Description>
+			[MES AI Trigger]
+			[UseTrigger:true]
+			[Type:Timer]
+			[MinCooldownMs:600000]
+			[MaxCooldownMs:600001]
+			[StartsReady:true]
+			[MaxActions:-1]
+			[Actions:GVK-Store-Action-UpdateStores-RegularStores]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Store-Action-UpdateStores-RegularStores</SubtypeId>
+			</Id>
+			<Description>
+			[MES AI Action]
+			[ApplyStoreProfiles:true]
+			[ClearStoreContentsFirst:true]
+			[StoreBlocks:Store-Rustys]
+			[StoreProfiles:GVK-Store-StoreProfile-Rustys]
+			[StoreBlocks:Store-Mastodon]
+			[StoreProfiles:GVK-Store-StoreProfile-Mastodon]
+			[StoreBlocks:Store-Sevastapol]
+			[StoreProfiles:GVK-Store-StoreProfile-Sevastapol]
+			[StoreBlocks:Store-Skyport]
+			[StoreProfiles:GVK-Store-StoreProfile-Skyport]
+			[StoreBlocks:Store-VendingMachine]
+			[StoreProfiles:GVK-Store-StoreProfile-VendingMachine]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Store-Trigger-UpdateStores-VehicleStores</SubtypeId>
+			</Id>
+			<Description>
+			[MES AI Trigger]
+			[UseTrigger:true]
+			[Type:Timer]
+			[MinCooldownMs:60000]
+			[MaxCooldownMs:60001]
+			[StartsReady:true]
+			[MaxActions:-1]
+			[ActionExecution:All]
+			[Actions:GVK-Store-Action-UpdateStores-VehicleStores]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Store-Action-UpdateStores-VehicleStores</SubtypeId>
+			</Id>
+			<Description>
+			[MES AI Action]
+			[ApplyStoreProfiles:true]
+			[ClearStoreContentsFirst:true]
+			[StoreBlocks:Store-SmallRovers]
+			[StoreProfiles:GVK-Store-StoreProfile-SmallRovers]
+			[StoreBlocks:Store-SmallVehicles]
+			[StoreProfiles:GVK-Store-StoreProfile-SmallVehicles]
+			[StoreBlocks:Store-Vehicles]
+			[StoreProfiles:GVK-Store-StoreProfile-AllVehicles]
+			[StoreBlocks:Store-Ammo]
+			[StoreProfiles:GVK-Store-StoreProfile-Ammo]
+			</Description>
+		</EntityComponent>
+	</EntityComponents>
+</Definitions>

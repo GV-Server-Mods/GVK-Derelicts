@@ -1,0 +1,177 @@
+<?xml version="1.0"?>
+<Definitions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+	<EntityComponents>
+		<!-- Behavior for Trade Stations -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-Homebase-Behavior-KHAANEPH</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Behavior]
+			[BehaviorName:Passive]
+			[UseRetreatTimer:false]
+			[UseNoTargetTimer:false]
+			[UsePlayerDistanceTimer:false]
+			[TargetData:GVK-Universal-Target-EnemyGrids2km]
+			[Triggers:GVK-Alliance-Homebase-Trigger-Init-KHAANEPH]
+			[Triggers:GVK-Alliance-Homebase-Trigger-CreateSafeZone-KHAANEPH]
+			[TriggerGroups:GVK-Alliance-Homebase-TriggerGroup-PointsLimits-KHAANEPH]
+			[TriggerGroups:GVK-Alliance-Homebase-TriggerGroup-ZoneSize-KHAANEPH]
+			[TriggerGroups:GVK-Universal-TriggerGroup-SpawnDefenses]
+			[TriggerGroups:GVK-Universal-TriggerGroup-SendTargets]
+			[RemoteControlCode:GVK-Static]
+			</Description>
+		</EntityComponent>
+		<!-- Trigger sequence to create a the alliance points counter -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-Homebase-Trigger-Init-KHAANEPH</SubtypeId>
+			</Id>
+			<Description>
+			[MES AI Trigger]
+			[UseTrigger:true]
+			[Type:Timer]
+			[StartsReady:true]
+			[MaxActions:1]
+			[Actions:GVK-Alliance-Homebase-Action-Init-KHAANEPH]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-Homebase-Action-Init-KHAANEPH</SubtypeId>
+			</Id>
+			<Description>
+			[MES AI Action]
+			[ResetSandboxCounters:KHAANEPH_Points]
+			[SetCustomStrings:true]
+			[CustomStrings:EncounterType,AllianceBase]
+			[CustomStrings:EncounterDisplayName,Headquarters]
+			[SetCustomCountersVariables:true]
+			[CustomCountersVariables:DefenseSpawn_Limit,10]
+			</Description>
+		</EntityComponent>
+		<!-- Trigger sequence to create a safezone on trade station spawn -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-Homebase-Trigger-CreateSafeZone-KHAANEPH</SubtypeId>
+			</Id>
+			<Description>
+			[MES AI Trigger]
+			[UseTrigger:true]
+			[Type:Session]
+			[StartsReady:true]
+			[MaxActions:-1]
+			[Actions:GVK-Alliance-Homebase-Action-CreateSafeZone-KHAANEPH]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-Homebase-Action-CreateSafeZone-KHAANEPH</SubtypeId>
+			</Id>
+			<Description>
+			[MES AI Action]
+			[CreateSafeZone:true]
+			[SafeZoneProfile:GVK-Alliance-Homebase-SafeZone-KHAANEPH]
+			[LinkSafeZoneToRemoteControl:true]
+			[SafeZonePositionGridCenter:true]
+			[SafeZonePositionTerrainSurface:true]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-Homebase-SafeZone-KHAANEPH</SubtypeId>
+			</Id>
+			<Description>
+			[MES SafeZone]
+			[Shape:Sphere]
+			[Radius:0]
+			[RadiusFromParentEntity:true]
+			[ParentEntityRadiusMultiplier:10]
+			[Enabled:true]
+			[LinkToParentEntity:true]
+			[IsVisible:false]
+			[Color:{X:0 Y:0 Z:0}]
+			[Texture:SafeZone_Texture_Restricted]
+			[FactionAccess:Blacklist]
+			[GridAccess:Whitelist]
+			[PlayerAccess:Blacklist]
+			</Description>
+		</EntityComponent>
+		<!-- Trigger sequence for Trade Station to send relative waypoint to listening Cargo Ship (not currently used)
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-Homebase-Trigger-SendWaypoint</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Trigger]
+			[Type:CommandReceived] 
+			[UseTrigger:true]
+			[StartsReady:true]
+			[MinCooldownMs:10000]
+			[MaxCooldownMs:10000]
+			[MaxActions:-1]
+			[CommandReceiveCode:CargoShip_RequestWaypoint]
+			[Actions:GVK-Alliance-Homebase-Action-SendWaypoint]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-Homebase-Action-SendWaypoint</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Action]
+			[BroadcastCommandProfiles:true]
+			[CommandProfileIds:GVK-Alliance-Homebase-Command-SendWaypoint]
+			[UseChatBroadcast:false]
+			[ChatData:GVK-Alliance-Homebase-Chat-SendWaypoint]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-Homebase-Command-SendWaypoint</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Command]
+			[CommandCode:CargoShip_ReceiveWaypoint]
+			[SingleRecipient:false]
+			[MatchSenderReceiverOwners:false]
+			[IgnoreAntennaRequirement:true]
+			[IgnoreReceiverAntennaRequirement:true]
+			[Radius:75000]
+			[SendWaypoint:true]
+			[Waypoint:GVK-Alliance-Homebase-Waypoint-RelativeRandom]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-Homebase-Chat-SendWaypoint</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Chat]
+			[UseChat:true]
+			[StartsReady:true]
+			[Chance:100]
+			[MaxChats:-1]
+			[BroadcastRandomly:false]
+			[Author:Trade Station]
+			[Color:White]
+			[ChatMessages:Sending Waypoint {GridName}]
+			[ChatAudio:GreetingSoundId-A]
+			[BroadcastChatType:Chat]
+			[SendToAllOnlinePlayers:false]
+			[IgnoreAntennaRequirement:true]
+			[IgnoredAntennaRangeOverride:9999999]
+			</Description>
+		</EntityComponent> -->
+	</EntityComponents>
+</Definitions>

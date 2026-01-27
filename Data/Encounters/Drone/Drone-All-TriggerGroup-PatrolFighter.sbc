@@ -1,9 +1,8 @@
 <?xml version="1.0"?>
 <Definitions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
 	<EntityComponents>
-		<!-- Drone Patrol/Fighter trigger group with 5km KPL and 2km targeting -->
+		<!-- Drone Patrol/Fighter trigger group without KPL (Soban and Khaaneph) -->
 		<!-- requires two autopilots: pimary passive and secondary aggressive -->
-		<!-- Known issue with KPLs disappearing without explaination, so KPL creation cooldown is lower -->
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
@@ -16,9 +15,6 @@
 			[Triggers:GVK-Drone-All-PatrolFighter-Trigger-TargetNear]
 			[Triggers:GVK-Drone-All-PatrolFighter-Trigger-LostTarget]
 			[Triggers:GVK-Drone-All-PatrolFighter-Trigger-TargetFar]
-			[Triggers:GVK-Drone-All-PatrolFighter-ManualTrigger-CreateKPL]
-			[Triggers:GVK-Drone-All-PatrolFighter-Trigger-CheckforKPL]
-			[Triggers:GVK-Drone-All-PatrolFighter-Trigger-KPLStatusBool]
 			</Description>
 		</EntityComponent>
 		<!-- manual triggers so multiple triggers can reference it without complications -->
@@ -79,7 +75,7 @@
 			[AutopilotProfile:Primary]
 			</Description>
 		</EntityComponent>
-		<!-- When target in 2km, become aggressive and create KPL if not in KPL -->
+		<!-- When target in 2km, become aggressive -->
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
@@ -106,137 +102,6 @@
 			[EnableTriggers:true]
 			[ManuallyActivateTrigger:true]
 			[ManuallyActivatedTriggerNames:GVK-Drone-All-PatrolFighter-ManualTrigger-SwitchToFighter]
-			[ManuallyActivatedTriggerNames:GVK-Drone-All-PatrolFighter-ManualTrigger-CreateKPL]
-			</Description>
-		</EntityComponent>
-		<!-- Check if still in KPL -->
-		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
-			<Id>
-				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Drone-All-PatrolFighter-Trigger-KPLStatusBool</SubtypeId>
-			</Id>
-			<Description>
-			[RivalAI Trigger]
-			[UseTrigger:true]
-			[Type:PlayerKnownLocation]
-			[StartsReady:true]
-			[MinCooldownMs:2000]
-			[MaxCooldownMs:2001]
-			[Actions:GVK-Drone-All-PatrolFighter-Action-InKPL]
-			[UseElseActions:true]
-			[ElseActions:GVK-Drone-All-PatrolFighter-Action-NotInKPL]
-			</Description>
-		</EntityComponent>
-		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
-			<Id>
-				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Drone-All-PatrolFighter-Action-InKPL</SubtypeId>
-			</Id>
-			<Description>
-			[RivalAI Action]
-			[SetBooleansTrue:NPCInKPL]
-			</Description>
-		</EntityComponent>
-		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
-			<Id>
-				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Drone-All-PatrolFighter-Action-NotInKPL</SubtypeId>
-			</Id>
-			<Description>
-			[RivalAI Action]
-			[SetBooleansFalse:NPCInKPL]
-			</Description>
-		</EntityComponent>
-		<!-- Create conditions for KPL status -->
-		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
-			<Id>
-				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Drone-All-PatrolFighter-Condition-NPCInKPLFlase</SubtypeId>
-			</Id>
-			<Description>
-			[RivalAI Condition]
-			[UseConditions:true]
-			[MatchAnyCondition:true]
-			[CheckTrueBooleans:true]
-			[TrueBooleans:NPCInKPL]
-			[UseFailCondition:true]
-			</Description>
-		</EntityComponent>
-		<!-- Create new KPL (if not already in KPL) -->
-		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
-			<Id>
-				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Drone-All-PatrolFighter-ManualTrigger-CreateKPL</SubtypeId>
-			</Id>
-			<Description>
-			[RivalAI Trigger]
-			[UseTrigger:true]
-			[Type:Manual]
-			[StartsReady:true]
-			[MinCooldownMs:20000]
-			[MaxCooldownMs:20001]
-			[Conditions:GVK-Drone-All-PatrolFighter-Condition-NPCInKPLFlase]
-			[Actions:GVK-Drone-All-PatrolFighter-Action-CreateKPL]
-			[ToggleWithTriggerProfile:GVK-Drone-All-PatrolFighter-Trigger-CheckforKPL]
-			</Description>
-		</EntityComponent>
-		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
-			<Id>
-				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Drone-All-PatrolFighter-Action-CreateKPL</SubtypeId>
-			</Id>
-			<Description>
-			[RivalAI Action]
-			[CreateKnownPlayerArea:true]
-			[KnownPlayerAreaRadius:4000]
-			[KnownPlayerAreaTimer:5]
-			[KnownPlayerAreaMaxSpawns:-1]
-			</Description>
-		</EntityComponent>
-		<!-- Check if still in KPL -->
-		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
-			<Id>
-				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Drone-All-PatrolFighter-Trigger-CheckforKPL</SubtypeId>
-			</Id>
-			<Description>
-			[RivalAI Trigger]
-			[UseTrigger:false]
-			[Type:PlayerKnownLocation]
-			[StartsReady:true]
-			[MinCooldownMs:10000]
-			[MaxCooldownMs:10001]
-			[Actions:GVK-Drone-All-PatrolFighter-Action-StillinKPL]
-			[UseElseActions:true]
-			[ElseActions:GVK-Drone-All-PatrolFighter-Action-NotinKPL]
-			</Description>
-		</EntityComponent>
-		<!-- If still in KPL then reset CreateKPL cooldown -->
-		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
-			<Id>
-				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Drone-All-PatrolFighter-Action-StillinKPL</SubtypeId>
-			</Id>
-			<Description>
-			[RivalAI Action]
-			[ResetCooldownTimeOfTriggers:true]
-			[ResetTriggerCooldownNames:GVK-Drone-All-PatrolFighter-ManualTrigger-CreateKPL]
-			</Description>
-		</EntityComponent>
-		<!-- If not in KPL, switch to patrol and return to origin -->
-		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
-			<Id>
-				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Drone-All-PatrolFighter-Action-NotinKPL</SubtypeId>
-			</Id>
-			<Description>
-			[RivalAI Action]
-			[ManuallyActivateTrigger:true]
-			[ManuallyActivatedTriggerNames:GVK-Drone-All-PatrolFighter-ManualTrigger-SwitchToPatrol]
-			[EnableTriggers:true]
-			[EnableTriggerNames:GVK-Drone-All-PatrolFighter-ManualTrigger-CreateKPL]
-			[DisableTriggers:true]
-			[DisableTriggerNames:GVK-Drone-All-PatrolFighter-Trigger-CheckforKPL]
 			</Description>
 		</EntityComponent>
 		<!-- If no/lost target, switch to patrol and return to origin -->

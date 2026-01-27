@@ -1,0 +1,62 @@
+<?xml version="1.0"?>
+<Definitions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+	<EntityComponents>
+		<!-- Honorguard Cruiser Fighter Behavior -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Drone-All-Behavior-Honorguard-KHAANEPH</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Behavior]
+			[BehaviorName:Patrol]
+			[WeaponSystem:GVK-Universal-Weapons-Static06]
+			[HorseFighterTimeApproaching:30]
+			[HorseFighterTimeEngaging:30]
+			[UsePlayerDistanceTimer:false]
+			[UseNoTargetTimer:false]
+			[UseRetreatTimer:false]
+			[TargetData:GVK-Universal-Target-EnemyGrids2km]
+			[AutopilotData:GVK-Drone-All-Autopilot-HoverCruiserHorsefly-Passive]
+			[SecondaryAutopilotData:GVK-Drone-All-Autopilot-Honorguard-Aggressive]
+			[TertiaryAutopilotData:GVK-Drone-All-Autopilot-Honorguard-Tertiary]
+			[Triggers:GVK-Drone-All-Trigger-Init-Honorguard-KHAANEPH]
+			[Triggers:GVK-Drone-All-Trigger-SpawnInterceptorSingle-KHAANEPH]
+			[TriggerGroups:GVK-Drone-All-TriggerGroup-DroneDefaults-LargeDrone]
+			[TriggerGroups:GVK-Drone-All-TriggerGroup-AimAtTargetAngle]
+			[TriggerGroups:GVK-Drone-All-TriggerGroup-PatrolFighterKPL]
+			[TriggerGroups:GVK-Universal-TriggerGroup-ReceiveTargets]
+			[TriggerGroups:GVK-ConvoySystem-Leader-TriggerGroup]
+			[TriggerGroups:GVK-Universal-TriggerGroup-DefeatedAndAttacked]
+			BountyOnKill=3000000;
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Drone-All-Trigger-Init-Honorguard-KHAANEPH</SubtypeId>
+			</Id>
+			<Description>
+			[MES AI Trigger]
+			[UseTrigger:true]
+			[Type:Timer]
+			[StartsReady:true]
+			[MaxActions:1]
+			[ActionExecution:All]
+			[Actions:GVK-Drone-All-Action-Init-Honorguard-KHAANEPH]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Drone-All-Action-Init-Honorguard-KHAANEPH</SubtypeId>
+			</Id>
+			<Description>
+			[MES AI Action]
+			[SetCustomStrings:true]
+			[CustomStrings:EncounterType,DroneLarge]
+			[CustomStrings:EncounterDisplayName,Honorguard]
+			</Description>
+		</EntityComponent>
+	</EntityComponents>
+</Definitions>

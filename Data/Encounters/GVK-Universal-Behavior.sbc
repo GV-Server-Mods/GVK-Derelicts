@@ -6,7 +6,7 @@
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Universal-Trigger-GAALSIEN-TargetAcquiredChatter</SubtypeId>
+				<SubtypeId>GVK-Universal-Trigger-TargetAcquiredChatter-GAALSIEN</SubtypeId>
 			</Id>
 			<Description>
 			[RivalAI Trigger]
@@ -31,7 +31,7 @@
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Universal-Trigger-COALITION-TargetAcquiredChatter</SubtypeId>
+				<SubtypeId>GVK-Universal-Trigger-TargetAcquiredChatter</SubtypeId>
 			</Id>
 			<Description>
 			[RivalAI Trigger]
@@ -39,24 +39,24 @@
 			[UseTrigger:true]
 			[StartsReady:true]
 			[MaxActions:1]
-			[Actions:GVK-Universal-Action-COALITION-TargetAcquiredChatter]
+			[Actions:GVK-Universal-Action-TargetAcquiredChatter]
 			</Description>
 		</EntityComponent>
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Universal-Action-COALITION-TargetAcquiredChatter</SubtypeId>
+				<SubtypeId>GVK-Universal-Action-TargetAcquiredChatter</SubtypeId>
 			</Id>
 			<Description>
 			[RivalAI Action]
 			[UseChatBroadcast:true]
-			[ChatData:GVK-Universal-Chat-COALITION-TargetAcquiredChatter]
+			[ChatData:GVK-Universal-Chat-TargetAcquiredChatter]
 			</Description>
 		</EntityComponent>
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Universal-Trigger-COALITION-NoTargetsChatter</SubtypeId>
+				<SubtypeId>GVK-Universal-Trigger-NoTargetsChatter</SubtypeId>
 			</Id>
 			<Description>
 			[RivalAI Trigger]
@@ -64,18 +64,18 @@
 			[UseTrigger:true]
 			[StartsReady:true]
 			[MaxActions:1]
-			[Actions:GVK-Universal-Action-COALITION-NoTargetsChatter]
+			[Actions:GVK-Universal-Action-NoTargetsChatter]
 			</Description>
 		</EntityComponent>
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Universal-Action-COALITION-NoTargetsChatter</SubtypeId>
+				<SubtypeId>GVK-Universal-Action-NoTargetsChatter</SubtypeId>
 			</Id>
 			<Description>
 			[RivalAI Action]
 			[UseChatBroadcast:true]
-			[ChatData:GVK-Universal-Chat-COALITION-NoTargetsChatter]
+			[ChatData:GVK-Universal-Chat-NoTargetsChatter]
 			</Description>
 		</EntityComponent>
 		<!-- Jetpack Inhibitor on Session (This appears to be broken in DS MP, players can glide long distances  -->
@@ -267,7 +267,7 @@
 			[RivalAI Chat]
 			[UseChat:true]
 			[StartsReady:true]
-			[Chance:50]
+			[Chance:20]
 			[BroadcastRandomly:true]
 			[SendToAllOnlinePlayers:false]
 			[IgnoreAntennaRequirement:true]
@@ -325,13 +325,13 @@
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Universal-Chat-COALITION-TargetAcquiredChatter</SubtypeId>
+				<SubtypeId>GVK-Universal-Chat-TargetAcquiredChatter</SubtypeId>
 			</Id>
 			<Description>
 			[RivalAI Chat]
 			[UseChat:true]
 			[StartsReady:true]
-			[Chance:50]
+			[Chance:20]
 			[BroadcastRandomly:true]
 			[SendToAllOnlinePlayers:false]
 			[IgnoreAntennaRequirement:true]
@@ -344,7 +344,7 @@
 			[ChatMessages:Target locked.]
 			[ChatAudio:ArcHudGPSNotification2]
 			[BroadcastChatType:Chat]
-			[ChatMessages:Don't let them near the Kapisi.]
+			[ChatMessages:Don't let them near the carrier.]
 			[ChatAudio:ArcHudGPSNotification2]
 			[BroadcastChatType:Chat]
 			[ChatMessages:We'll handle this.]
@@ -353,13 +353,13 @@
 			[ChatMessages:Engaging enemy.]
 			[ChatAudio:ArcHudGPSNotification2]
 			[BroadcastChatType:Chat]
-			[ChatMessages:Enemy GAALSIEN detected.]
+			[ChatMessages:Enemy detected.]
 			[ChatAudio:ArcHudGPSNotification2]
 			[BroadcastChatType:Chat]
-			[ChatMessages:COALITION Reinforcements have arrived.]
+			[ChatMessages:{Faction} Reinforcements have arrived.]
 			[ChatAudio:ArcHudGPSNotification2]
 			[BroadcastChatType:Chat]
-			[ChatMessages:We're from the COALITION and we're here to help.]
+			[ChatMessages:We're from the {Faction} and we're here to help.]
 			[ChatAudio:ArcHudGPSNotification2]
 			[BroadcastChatType:Chat]
 			[ChatMessages:We must find the primary anomaly.]
@@ -368,7 +368,7 @@
 			[ChatMessages:Protect the Jaraci Object.]
 			[ChatAudio:ArcHudGPSNotification2]
 			[BroadcastChatType:Chat]
-			[ChatMessages:For Kiith S'jet.]
+			[ChatMessages:For Kiith {Faction}.]
 			[ChatAudio:ArcHudGPSNotification2]
 			[BroadcastChatType:Chat]
 			[ChatMessages:Destroy the zealots.]
@@ -380,13 +380,13 @@
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Universal-Chat-COALITION-NoTargetsChatter</SubtypeId>
+				<SubtypeId>GVK-Universal-Chat-NoTargetsChatter</SubtypeId>
 			</Id>
 			<Description>
 			[RivalAI Chat]
 			[UseChat:true]
 			[StartsReady:true]
-			[Chance:50]
+			[Chance:20]
 			[BroadcastRandomly:true]
 			[SendToAllOnlinePlayers:false]
 			[IgnoreAntennaRequirement:true]
@@ -399,7 +399,7 @@
 			[ChatMessages:Searching for targets.]
 			[ChatAudio:ArcHudGPSNotification2]
 			[BroadcastChatType:Chat]
-			[ChatMessages:No GAALSIEN detected.]
+			[ChatMessages:No enemies detected.]
 			[ChatAudio:ArcHudGPSNotification2]
 			[BroadcastChatType:Chat]
 			[ChatMessages:I think we got them all.]
@@ -432,6 +432,7 @@
 			</Id>
 			<Description>
 			[RivalAI Action]
+			[//DebugMessage:SmallExplosionEffects]
 			[PlayParticleEffectAtRemote:true]
 			[ParticleEffectId:BlockDestroyedExplosion_Large3X]
 			[ParticleEffectOffset:{X:0.0 Y:0.0 Z:0.0}]
@@ -463,6 +464,7 @@
 			</Id>
 			<Description>
 			[RivalAI Action]
+			[//DebugMessage:MediumExplosionEffects]
 			[PlayParticleEffectAtRemote:true]
 			[ParticleEffectId:Explosion_Warhead_30]
 			[ParticleEffectOffset:{X:0.0 Y:0.0 Z:0.0}]
@@ -494,6 +496,7 @@
 			</Id>
 			<Description>
 			[RivalAI Action]
+			[//DebugMessage:LargeExplosionEffects]
 			[PlayParticleEffectAtRemote:true]
 			[ParticleEffectId:Explosion_Warhead_50]
 			[ParticleEffectOffset:{X:0.0 Y:0.0 Z:0.0}]
@@ -526,6 +529,7 @@
 			</Id>
 			<Description>
 			[RivalAI Action]
+			[//DebugMessage:SmallBlueExplosionEffects]
 			[PlayParticleEffectAtRemote:true]
 			[ParticleEffectId:BlockDestroyedExplosion_Large3X_Blue]
 			[ParticleEffectOffset:{X:0.0 Y:0.0 Z:0.0}]
@@ -557,6 +561,7 @@
 			</Id>
 			<Description>
 			[RivalAI Action]
+			[//DebugMessage:MediumBlueExplosionEffects]
 			[PlayParticleEffectAtRemote:true]
 			[ParticleEffectId:Explosion_Warhead_30_Blue]
 			[ParticleEffectOffset:{X:0.0 Y:0.0 Z:0.0}]
@@ -588,6 +593,7 @@
 			</Id>
 			<Description>
 			[RivalAI Action]
+			[//DebugMessage:LargeBlueExplosionEffects]
 			[PlayParticleEffectAtRemote:true]
 			[ParticleEffectId:Explosion_Warhead_50_Blue]
 			[ParticleEffectOffset:{X:0.0 Y:0.0 Z:0.0}]
@@ -606,6 +612,7 @@
 			</Id>
 			<Description>
 			[RivalAI Action]
+			[//DebugMessage:Universal-Action-Disabled]
 			[EnableBlocks:true]
 			[EnableBlockNames:Magnetic Plate]
 			[EnableBlockStates:On]
@@ -617,8 +624,6 @@
 			[InertiaDampenersEnable:false]
 			[RazeBlocksOfType:true]
 			[RazeBlocksTypes:MyObjectBuilder_Beacon/ZoneBlock]
-			[RazeBlocksTypes:MyObjectBuilder_RemoteControl/RivalAIRemoteControlLarge]
-			[RazeBlocksTypes:MyObjectBuilder_RemoteControl/RivalAIRemoteControlSmall]
 			[RazeBlocksTypes:MyObjectBuilder_Beacon/SmallBlockBeacon]
 			[RazeBlocksTypes:MyObjectBuilder_Beacon/LargeBlockBeacon]
 			[RazeBlocksTypes:MyObjectBuilder_Beacon/SmallBlockBeacon_NPC]
@@ -654,7 +659,6 @@
 			[BlockTypeToggles:Off]
 			[BlockTypesToToggle:MyObjectBuilder_SolarPanel/LargeBlockColorableSolarPanelCornerInverted]
 			[BlockTypeToggles:Off]
-			[TerminateBehavior:true]
 			[ForceDespawn:false]
 			</Description>
 		</EntityComponent>
@@ -682,12 +686,59 @@
 			</Id>
 			<Description>
 			[RivalAI Action]
+			[//DebugMessage:PublicSpawnPoint]
 			[ChangeBlocksShareModeAll:true]
 			[BlockNamesShareModeAll:PublicSpawnPoint]
 			[ChangeBlockOnwership:true]
 			[OnwershipBlockNames:PublicSpawnPoint]
 			[OwnershipBlockFactions:COALITION]
 			[OwnershipBlockShareMode:All]
+			</Description>
+		</EntityComponent>
+		<!-- Generic conditions -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Universal-Condition-Crashed</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Condition]
+			[UseConditions:true]
+			[MatchAnyCondition:false]
+			[CheckGridSpeed:true]
+			[MinGridSpeed:0]
+			[MaxGridSpeed:10]
+			[AltitudeCheck:true]
+			[MinAltitude:-999999]
+			[MaxAltitude:7]
+			[CheckTrueBooleans:true]
+			[TrueBooleans:GVK_MobilityType_Aircraft]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Universal-Condition-IsAircraftMobilityType</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Condition]
+			[UseConditions:true]
+			[MatchAnyCondition:false]
+			[CheckTrueBooleans:true]
+			[TrueBooleans:GVK_MobilityType_Aircraft]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Universal-Condition-GridSizeSmall</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Condition]
+			[UseConditions:true]
+			[MatchAnyCondition:false]
+			[CheckGridSize:true]
+			[GridSizeLarge:false]
 			</Description>
 		</EntityComponent>
 	</EntityComponents>

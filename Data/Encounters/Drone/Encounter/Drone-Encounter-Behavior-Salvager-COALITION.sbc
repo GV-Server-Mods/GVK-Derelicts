@@ -20,12 +20,12 @@
 			[AutopilotData:GVK-Drone-Encounter-Autopilot-Salvager-COALITION]
 			[SecondaryAutopilotData:GVK-Drone-Encounter-Autopilot-Salvager-COALITION]
 			[TertiaryAutopilotData:GVK-Drone-All-Autopilot-COALITION-Salvager-Stop]
-			[TargetData:TargetData:GVK-Universal-Target-EnemyGrids2km]
+			[TargetData:GVK-Universal-Target-EnemyGrids2km]
 			[Triggers:GVK-Universal-Trigger-UneditableOnSpawn]
 			[Triggers:GVK-Drone-Encounter-Salvager-COALITION-Trigger-PlayerNear]
 			[TriggerGroups:GVK-Drone-All-TriggerGroup-FrontSensorStop]
-			[TriggerGroups:GVK-Drone-Encounter-TriggerGroup-InactivityRetreat]
-			[TriggerGroups:GVK-Drone-All-TriggerGroup-SmallCOALITIONRoverDefeated]
+			[TriggerGroups:GVK-Universal-TriggerGroup-DefeatedAndAttacked]
+			[TriggerGroups:GVK-Universal-TriggerGroup-SendTargets]
 			</Description>
 		</EntityComponent>
 		<!-- Salvager at wrecks does not spawn attacker sandskimmers -->
@@ -47,11 +47,11 @@
 			[AutopilotData:GVK-Drone-Encounter-Autopilot-Salvager-COALITION]
 			[SecondaryAutopilotData:GVK-Drone-Encounter-Autopilot-Salvager-COALITION]
 			[TertiaryAutopilotData:GVK-Drone-All-Autopilot-COALITION-Salvager-Stop]
-			[TargetData:TargetData:GVK-Universal-Target-EnemyGrids2km]
+			[TargetData:GVK-Universal-Target-EnemyGrids2km]
 			[Triggers:GVK-Universal-Trigger-UneditableOnSpawn]
 			[TriggerGroups:GVK-Drone-All-TriggerGroup-FrontSensorStop]
-			[TriggerGroups:GVK-Drone-Encounter-TriggerGroup-InactivityRetreat]
-			[TriggerGroups:GVK-Drone-All-TriggerGroup-SmallCOALITIONRoverDefeated]
+			[TriggerGroups:GVK-Universal-TriggerGroup-DefeatedAndAttacked]
+			[TriggerGroups:GVK-Universal-TriggerGroup-SendTargets]
 			</Description>
 		</EntityComponent>
 		<!-- Salvager Patrol Autopilot -->
@@ -83,7 +83,7 @@
 			[OffsetPlanetMinTargetAltitude:9]
 			[OffsetPlanetMaxTargetAltitude:10]
 			[AngleAllowedForForwardThrust:45]
-			[MaxVelocityAngleForSpeedControl:180]
+			[MaxVelocityAngleForSpeedControl:1000]
 			</Description>
 		</EntityComponent>
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
@@ -115,7 +115,7 @@
 			[OffsetPlanetMinTargetAltitude:13]
 			[OffsetPlanetMaxTargetAltitude:14]
 			[AngleAllowedForForwardThrust:0]
-			[MaxVelocityAngleForSpeedControl:180]
+			[MaxVelocityAngleForSpeedControl:1000]
 			</Description>
 		</EntityComponent>
 		<!-- Trigger sequence for Salvager to spawn enemies when player is near -->

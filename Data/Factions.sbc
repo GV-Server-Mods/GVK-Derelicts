@@ -9,18 +9,26 @@
 				<TypeId>MyObjectBuilder_FactionDefinition</TypeId> <!--Do Not Edit-->
 				<SubtypeId>GVK_Coalition_Faction</SubtypeId> <!--Must Be Unique-->
 			</Id>
-			<DisplayName>Northern Coalition</DisplayName>
+			<DisplayName>Coalition</DisplayName>
 			<IsDefault>true</IsDefault>
 			<DefaultRelation>Neutral</DefaultRelation> <!--Enemies, Neutral, Friends-->
-			<DefaultRelationToPlayers>Neutral</DefaultRelationToPlayers> <!--Enemies, Neutral, Friends-->
+			<DefaultRelationToPlayers>Friends</DefaultRelationToPlayers> <!--Enemies, Neutral, Friends-->
 			<AcceptHumans>false</AcceptHumans>
 			<AutoAcceptMember>false</AutoAcceptMember>
 			<StartingBalance>1000000000000</StartingBalance>
 			<Type>Trader</Type> <!--None, Miner, Trader, Builder, PlayerMade-->
-			<DiscoveredByDefault>true</DiscoveredByDefault>
+			<DiscoveredByDefault>false</DiscoveredByDefault>
 			<StaticReputation>true</StaticReputation>
-			<StartingReputation>499</StartingReputation>
+			<EnableFriendlyFire>false</EnableFriendlyFire>
+			<StartingReputation>500</StartingReputation>
 			<FactionIcon>Textures\FactionLogo\Homeworld\Kiith_Coalition.dds</FactionIcon> <!--Game or Mod Path For Texture File-->
+            <BackgroundColor R="0" G="0" B="0" />
+            <IconColor R="255" G="255" B="255" />
+			<FactionIconWorkshopId>
+			  <!-- <Id>0</Id> -->
+			  <Id>2653133286</Id>
+			  <ServiceName>Steam</ServiceName>
+			</FactionIconWorkshopId>
 			<Description>Coalition of the Northern Kiithid</Description>
 		</Faction>
 		<Faction Tag="GAALSIEN" Founder="Khagaan">
@@ -38,8 +46,16 @@
 			<Type>Builder</Type> <!--None, Miner, Trader, Builder, PlayerMade-->
 			<DiscoveredByDefault>false</DiscoveredByDefault>
 			<StaticReputation>true</StaticReputation>
+			<EnableFriendlyFire>false</EnableFriendlyFire>
 			<StartingReputation>-1500</StartingReputation>
 			<FactionIcon>Textures\FactionLogo\Homeworld\Kiith_Gaalsien.dds</FactionIcon> <!--Game or Mod Path For Texture File-->
+            <BackgroundColor R="0" G="0" B="0" />
+            <IconColor R="255" G="255" B="255" />
+			<FactionIconWorkshopId>
+			  <!-- <Id>0</Id> -->
+			  <Id>2653133286</Id>
+			  <ServiceName>Steam</ServiceName>
+			</FactionIconWorkshopId>
 			<Description>Kiith Gaalsien</Description>
 		</Faction>
 		<Faction Tag="SOBAN" Founder="Soban the Red">
@@ -49,13 +65,23 @@
 			</Id>
 			<DisplayName>Soban</DisplayName>
 			<IsDefault>true</IsDefault>
-			<DefaultRelation>Neutral</DefaultRelation> <!--Enemies, Neutral, Friends-->
+			<DefaultRelation>Enemies</DefaultRelation> <!--Enemies, Neutral, Friends-->
+			<DefaultRelationToPlayers>Neutral</DefaultRelationToPlayers> <!--Enemies, Neutral, Friends-->
 			<AcceptHumans>false</AcceptHumans>
 			<AutoAcceptMember>false</AutoAcceptMember>
 			<StartingBalance>100000000000</StartingBalance>
 			<Type>Miner</Type> <!--None, Miner, Trader, Builder, PlayerMade-->
 			<DiscoveredByDefault>false</DiscoveredByDefault>
+			<EnableFriendlyFire>false</EnableFriendlyFire>
+			<StartingReputation>-1500</StartingReputation>
 			<FactionIcon>Textures\FactionLogo\Homeworld\Kiith_Soban.dds</FactionIcon> <!--Game or Mod Path For Texture File-->
+            <BackgroundColor R="0" G="0" B="0" />
+            <IconColor R="255" G="255" B="255" />
+			<FactionIconWorkshopId>
+			  <!-- <Id>0</Id> -->
+			  <Id>2653133286</Id>
+			  <ServiceName>Steam</ServiceName>
+			</FactionIconWorkshopId>
 			<Description>Kiith Soban</Description>
 		</Faction>
 		<Faction Tag="KHAANEPH" Founder="Scavengers">
@@ -65,14 +91,24 @@
 			</Id>
 			<DisplayName>Khaaneph</DisplayName>
 			<IsDefault>true</IsDefault>
-			<DefaultRelation>Neutral</DefaultRelation> <!--Enemies, Neutral, Friends-->
+			<DefaultRelation>Enemies</DefaultRelation> <!--Enemies, Neutral, Friends-->
+			<DefaultRelationToPlayers>Neutral</DefaultRelationToPlayers> <!--Enemies, Neutral, Friends-->
 			<AcceptHumans>false</AcceptHumans>
 			<AutoAcceptMember>false</AutoAcceptMember>
 			<StartingBalance>100000000000</StartingBalance>
 			<Type>Miner</Type> <!--None, Miner, Trader, Builder, PlayerMade-->
 			<DiscoveredByDefault>false</DiscoveredByDefault>
+			<EnableFriendlyFire>false</EnableFriendlyFire>
+			<StartingReputation>-1500</StartingReputation>
 			<FactionIcon>Textures\FactionLogo\Homeworld\Khaaneph.dds</FactionIcon> <!--Game or Mod Path For Texture File-->
-			<Description>Clanless scavengers from the southern deserts</Description>
+            <BackgroundColor R="0" G="0" B="0" />
+            <IconColor R="255" G="255" B="255" />
+			<FactionIconWorkshopId>
+			  <!-- <Id>0</Id> -->
+			  <Id>2653133286</Id>
+			  <ServiceName>Steam</ServiceName>
+			</FactionIconWorkshopId>
+		<Description>Clanless scavengers from the southern deserts</Description>
 		</Faction>
 		<Faction Tag="DERELICT" Founder="Unknown">
 			<Id>
@@ -88,11 +124,19 @@
 			<Type>Builder</Type> <!--None, Miner, Trader, Builder, PlayerMade-->
 			<DiscoveredByDefault>false</DiscoveredByDefault>
 			<StaticReputation>true</StaticReputation>
+			<EnableFriendlyFire>false</EnableFriendlyFire>
 			<StartingReputation>-1500</StartingReputation>
-			<FactionIcon>Textures\FactionLogo\PirateIcon.dds</FactionIcon> <!--Game or Mod Path For Texture File-->
+			<FactionIcon>Textures\FactionLogo\Homeworld\Unknown.dds</FactionIcon> <!--Game or Mod Path For Texture File-->
+            <BackgroundColor R="0" G="0" B="0" />
+            <IconColor R="255" G="255" B="255" />
+			<FactionIconWorkshopId>
+			  <!-- <Id>0</Id> -->
+			  <Id>2653133286</Id>
+			  <ServiceName>Steam</ServiceName>
+			</FactionIconWorkshopId>
 			<Description>Unknown origin</Description>
 		</Faction>
-		<Faction Tag="KOTH" Founder="Unknown">
+		<Faction Tag="KOTH" Founder="King of the Hill">
 			<Id>
 				<TypeId>MyObjectBuilder_FactionDefinition</TypeId> <!--Do Not Edit-->
 				<SubtypeId>GVK_KOTH_Faction</SubtypeId> <!--Must Be Unique-->
@@ -106,10 +150,72 @@
 			<StartingBalance>100000000000</StartingBalance>
 			<Type>None</Type> <!--None, Miner, Trader, Builder, PlayerMade-->
 			<StaticReputation>true</StaticReputation>
+			<EnableFriendlyFire>false</EnableFriendlyFire>
 			<StartingReputation>0</StartingReputation>
 			<DiscoveredByDefault>false</DiscoveredByDefault>
-			<FactionIcon>Textures\FactionLogo\PirateIcon.dds</FactionIcon> <!--Game or Mod Path For Texture File-->
+			<FactionIcon>Textures\FactionLogo\Homeworld\Unknown.dds</FactionIcon> <!--Game or Mod Path For Texture File-->
+            <BackgroundColor R="0" G="0" B="0" />
+            <IconColor R="255" G="255" B="255" />
+			<FactionIconWorkshopId>
+			  <!-- <Id>0</Id> -->
+			  <Id>2653133286</Id>
+			  <ServiceName>Steam</ServiceName>
+			</FactionIconWorkshopId>
 			<Description>Unknown origin</Description>
 		</Faction>
+		<!-- Added vanilla factions to set default false -->
+        <Faction Tag="SPRT" Founder="Space Pirates">
+            <Id>
+                <TypeId>MyObjectBuilder_FactionDefinition</TypeId>
+                <SubtypeId>SpacePirates</SubtypeId>
+            </Id>
+            <DisplayName>DisplayName_Faction_SpacePirates</DisplayName>
+            <IsDefault>false</IsDefault>
+            <AcceptHumans>false</AcceptHumans>
+            <AutoAcceptMember>false</AutoAcceptMember>
+            <StartingBalance>100000000</StartingBalance>
+            <DiscoveredByDefault>false</DiscoveredByDefault>
+            <Type>Pirate</Type>
+            <FactionIcon>Textures\FactionLogo\PirateIcon.dds</FactionIcon>
+            <Description>Description_Faction_Pirate</Description>
+        </Faction>     
+        <Faction Tag="FCTM" Founder="The Factorum">
+            <Id>
+                <TypeId>MyObjectBuilder_FactionDefinition</TypeId>
+                <SubtypeId>Factorum</SubtypeId>
+            </Id>
+            <DisplayName>DisplayName_Faction_Factorum</DisplayName>
+            <IsDefault>false</IsDefault>
+            <AcceptHumans>false</AcceptHumans>
+            <AutoAcceptMember>false</AutoAcceptMember>
+            <StartingBalance>0</StartingBalance>
+            <Type>None</Type>
+            <DiscoveredByDefault>false</DiscoveredByDefault>
+            <FactionIcon>Textures\FactionLogo\Factorum.dds</FactionIcon>
+            <StaticReputation>true</StaticReputation>
+            <StartingReputation>-1500</StartingReputation>
+            <Description>Description_Faction_Factorum</Description>
+            <BackgroundColor R="0" G="0" B="0" />
+            <IconColor R="255" G="255" B="255" />
+        </Faction>
+        <Faction Tag="UNKN" Founder="Unknown">
+            <Id>
+                <TypeId>MyObjectBuilder_FactionDefinition</TypeId>
+                <SubtypeId>Unknown</SubtypeId>
+            </Id>
+            <DisplayName>DisplayName_Faction_Unknown</DisplayName>
+            <IsDefault>false</IsDefault>
+            <AcceptHumans>false</AcceptHumans>
+            <AutoAcceptMember>false</AutoAcceptMember>
+            <StartingBalance>0</StartingBalance>
+            <Type>None</Type>
+            <DiscoveredByDefault>false</DiscoveredByDefault>
+            <FactionIcon>Textures\FactionLogo\Unknown.dds</FactionIcon>
+            <StaticReputation>true</StaticReputation>
+            <StartingReputation>0</StartingReputation>
+            <Description>Description_Faction_Unknown</Description>
+            <BackgroundColor R="0" G="0" B="0"  />
+            <IconColor R="255" G="255" B="255" />
+        </Faction>
 	</Factions>
 </Definitions>

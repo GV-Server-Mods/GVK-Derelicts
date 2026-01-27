@@ -1,0 +1,120 @@
+<?xml version="1.0"?>
+<Definitions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+	<EntityComponents>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Drone-All-TriggerGroup-SalvagerDefeated</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI TriggerGroup]
+			[Triggers:GVK-Drone-All-ManualTrigger-SalvagerDefeated]
+			[Triggers:GVK-Drone-All-Trigger-SalvagerCompromised]			
+			[Triggers:GVK-Drone-All-Trigger-SalvagerBeaconDisabled]			
+			</Description>
+		</EntityComponent>
+		<!-- Manual Trigger sequence Medium NPC is defeated through Compromised, Beacon, or NoWeapon (instant delete) -->
+		<!-- this is used to prevent multiple different defeated actions running at the same time -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Drone-All-ManualTrigger-SalvagerDefeated</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Trigger]
+			[Type:Compromised]
+			[UseTrigger:true]
+			[StartsReady:true]
+			[MaxActions:1]
+			[ActionExecution:All]
+			[Actions:GVK-Drone-All-Action-SalvagerDefeated]
+			[Actions:GVK-Universal-Action-MediumBlueExplosionEffects]
+			[Actions:GVK-Universal-Action-Disabled]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Drone-All-Action-SalvagerDefeated</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Action]
+			[UseChatBroadcast:true]
+			[ChatData:GVK-Drone-All-Chat-SalvagerDefeated]
+			[DisableTriggers:true]
+			[DisableTriggerNames:GVK-Drone-All-Trigger-SalvagerCompromised]			
+			[DisableTriggerNames:GVK-Drone-All-Trigger-SalvagerBeaconDisabled]			
+			[TerminateBehavior:true]
+			[ForceDespawn:false]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Drone-All-Chat-SalvagerDefeated</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Chat]
+			[UseChat:true]
+			[StartsReady:true]
+			[Chance:100]
+			[MaxChats:1]
+			[BroadcastRandomly:true]
+			[Author:Sensors]
+			[Color:Blue]
+			[ChatMessages:{Faction} Salvager disabled.]
+			[ChatAudio:ArcHudSensors]
+			[BroadcastChatType:Notify]
+			[SendToAllOnlinePlayers:false]
+			[IgnoreAntennaRequirement:true]
+			[IgnoredAntennaRangeOverride:10000]
+			</Description>
+		</EntityComponent>
+		<!-- shared action since compromised/nobeacon/noweapon would be identical -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Drone-All-Action-ManualTriggerSalvagerDefeated</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Action]
+			[ManuallyActivateTrigger:true]
+			[ManuallyActivatedTriggerNames:GVK-Drone-All-ManualTrigger-SalvagerDefeated]
+			[ForceManualTriggerActivation:true]
+			</Description>
+		</EntityComponent>
+		<!-- Trigger sequence when Medium NPC RAI Remote is disabled -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Drone-All-Trigger-SalvagerCompromised</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Trigger]
+			[Type:Compromised]
+			[UseTrigger:true]
+			[StartsReady:true]
+			[MaxActions:1]
+			[ActionExecution:All]
+			[Actions:GVK-Drone-All-Action-ManualTriggerSalvagerDefeated]
+			</Description>
+		</EntityComponent>
+		<!-- Trigger sequence when Medium NPC Beacon is disabled -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Drone-All-Trigger-SalvagerBeaconDisabled</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Trigger]
+			[Type:Timer]
+			[UseTrigger:true]
+			[StartsReady:true]
+			[Conditions:GVK-Universal-Condition-AllBeaconsDisabled]
+			[MaxActions:1]
+			[ActionExecution:All]
+			[Actions:GVK-Drone-All-Action-ManualTriggerSalvagerDefeated]
+			</Description>
+		</EntityComponent>
+	</EntityComponents>
+</Definitions>

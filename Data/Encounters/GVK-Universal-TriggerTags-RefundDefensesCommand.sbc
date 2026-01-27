@@ -1,0 +1,59 @@
+<?xml version="1.0"?>
+<Definitions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+	<EntityComponents>
+		<!--
+		
+		When called, send the command to refund a defense spawn on parent grid
+				
+		Tags used:GVK-Universal-TriggerTags-RefundDefensesCommand-{EncounterType}
+
+		-->
+		
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Universal-TriggerTags-RefundDefensesCommand</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Trigger]
+			[UseTrigger:true]
+			[Tags:GVK-Universal-TriggerTags-RefundDefensesCommand-DroneLarge]
+			[Tags:GVK-Universal-TriggerTags-RefundDefensesCommand-DroneMedium]
+			[Tags:GVK-Universal-TriggerTags-RefundDefensesCommand-DroneSmall]
+			[Type:Manual]
+			[StartsReady:true]
+			[ActionExecution:All]
+			[Actions:GVK-Universal-Action-RefundDefensesCommand]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Universal-Action-RefundDefensesCommand</SubtypeId>
+			</Id>
+			<Description>
+			[//DebugMessage:RefundDefensesCommand]
+			[RivalAI Action]
+			[ForceDespawn:true]
+			[BroadcastCommandProfiles:true]
+			[CommandProfileIds:GVK-Universal-Command-HighPriorityTarget]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Universal-Command-RefundDefensesCommand</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Command]
+			[CommandCode:DefensesRefundCounter]
+			[SingleRecipient:true]
+			[MatchSenderReceiverOwners:true]
+			[IgnoreAntennaRequirement:true]
+			[IgnoreReceiverAntennaRequirement:true]
+			[Radius:6000]
+			[CommandDelayTicks:1]
+			</Description>
+		</EntityComponent>
+	</EntityComponents>
+</Definitions>

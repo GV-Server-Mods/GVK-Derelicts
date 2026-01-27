@@ -10,13 +10,7 @@
 			<Description>
 			[RivalAI Behavior]
 			[BehaviorName:Escort]
-			[UseStaticGuns:true]
-			[UseTurrets:true]
-			[MaxStaticWeaponRange:-1]
-			[WeaponMaxAngleFromTarget:180]
-			[UseAmmoReplenish:true]
-			[AmmoReplenishClipAmount:10]
-			[MaxAmmoReplenishments:99999999]
+			[WeaponSystem:GVK-Universal-Weapons-All]
 			[UsePlayerDistanceTimer:true]
 			[PlayerDistanceTimerTrigger:1800]
 			[PlayerDistanceTrigger:5000]
@@ -30,8 +24,7 @@
 			[Triggers:GVK-Drone-All-Trigger-FireMissilesTimers]
 			[Triggers:GVK-Convoy-Escort-Trigger-RequestEscortSlot]
 			[Triggers:GVK-Convoy-Escort-Trigger-ReceiveScatterCommand]
-			[TriggerGroups:GVK-Drone-All-TriggerGroup-MediumHoverDefeated]
-			[TriggerGroups:GVK-Drone-Encounter-TriggerGroup-InactivityRetreat]
+			[TriggerGroups:GVK-Universal-TriggerGroup-DefeatedAndAttacked]
 			BountyOnKill=1000000;
 			</Description>
 		</EntityComponent>
@@ -44,13 +37,7 @@
 			<Description>
 			[RivalAI Behavior]
 			[BehaviorName:Escort]
-			[UseStaticGuns:true]
-			[UseTurrets:true]
-			[MaxStaticWeaponRange:-1]
-			[WeaponMaxAngleFromTarget:180]
-			[UseAmmoReplenish:true]
-			[AmmoReplenishClipAmount:10]
-			[MaxAmmoReplenishments:99999999]
+			[WeaponSystem:GVK-Universal-Weapons-All]
 			[UsePlayerDistanceTimer:true]
 			[PlayerDistanceTimerTrigger:1800]
 			[PlayerDistanceTrigger:5000]
@@ -64,8 +51,7 @@
 			[Triggers:GVK-Drone-All-Trigger-FireMissilesTimers]
 			[Triggers:GVK-Convoy-Escort-Trigger-RequestEscortSlot]
 			[Triggers:GVK-Convoy-Escort-Trigger-ReceiveScatterCommand]
-			[TriggerGroups:GVK-Drone-All-TriggerGroup-LargeHoverDefeated]
-			[TriggerGroups:GVK-Drone-Encounter-TriggerGroup-InactivityRetreat]
+			[TriggerGroups:GVK-Universal-TriggerGroup-DefeatedAndAttacked]
 			BountyOnKill=3000000;
 			</Description>
 		</EntityComponent>
@@ -94,7 +80,7 @@
 			[IdealMaxSpeed:75]
 			[MaxSpeedTolerance:5]
 			[AngleAllowedForForwardThrust:70]
-			[MaxVelocityAngleForSpeedControl:179]
+			[MaxVelocityAngleForSpeedControl:1000]
 			[EscortUsesRelativeDampening:true]
 			[EscortSpeedMatchMinDistance:1]
 			[EscortSpeedMatchMaxDistance:50]

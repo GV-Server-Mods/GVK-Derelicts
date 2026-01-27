@@ -1,0 +1,83 @@
+<?xml version="1.0"?>
+<Definitions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+	<EntityComponents>
+		<!-- SmallFlyer-Interceptor Passive Autopilot -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Drone-Autopilot-Interceptor-Passive</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Autopilot]
+			[RotationMultiplierPitch:0.5]
+			[RotationMultiplierYaw:0.1]
+			[RotationMultiplierRoll:1]
+			[LimitRotationSpeed:false]
+			[MaxRotationMagnitude:0.75]
+			[DisableInertiaDampeners:false]
+			[FlyLevelWithGravity:false]
+			[LevelWithGravityWhenIdle:true]
+			[IdealPlanetAltitude:300]
+			[MinimumPlanetAltitude:200]
+			[AltitudeTolerance:20]
+			[WaypointTolerance:100]
+			[BarrelRollMinDurationMs:0]
+			[BarrelRollMaxDurationMs:0]
+			[RamMinDurationMs:0]
+			[RamMaxDurationMs:0]
+			[IdealMinSpeed:39]
+			[IdealMaxSpeed:40]
+			[SlowDownOnWaypointApproach:true]
+			[WaypointWaitTimeTrigger:0]
+			[MaxSpeedTolerance:10]
+			[WaypointAbandonTimeTrigger:6]
+			[OffsetPlanetMinDistFromTarget:400]
+			[OffsetPlanetMaxDistFromTarget:500]
+			[OffsetPlanetMinTargetAltitude:300]
+			[OffsetPlanetMaxTargetAltitude:400]
+			[OffsetMaxAngleFromTarget:90]
+			[AngleAllowedForForwardThrust:180]
+			[MaxVelocityAngleForSpeedControl:1000]
+			</Description>
+		</EntityComponent>
+		<!-- SmallFlyer-Interceptor Aggressive Autopilot -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Drone-Autopilot-Interceptor-Aggressive</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Autopilot]
+			[RotationMultiplierPitch:0.5]
+			[RotationMultiplierYaw:0.1]
+			[RotationMultiplierRoll:1]
+			[LimitRotationSpeed:false]
+			[MaxRotationMagnitude:0.75]
+			[DisableInertiaDampeners:false]
+			[FlyLevelWithGravity:false]
+			[LevelWithGravityWhenIdle:false]
+			[IdealPlanetAltitude:500]
+			[MinimumPlanetAltitude:400]
+			[AltitudeTolerance:30]
+			[WaypointTolerance:200]
+			[BarrelRollMinDurationMs:4000]
+			[BarrelRollMaxDurationMs:5001]
+			[RamMinDurationMs:6000]
+			[RamMaxDurationMs:6001]
+			[IdealMinSpeed:70]
+			[IdealMaxSpeed:120]
+			[MaxSpeedTolerance:20]
+			[WaypointWaitTimeTrigger:0]
+			[WaypointAbandonTimeTrigger:30]
+			[OffsetPlanetMinDistFromTarget:500]
+			[OffsetPlanetMaxDistFromTarget:1500]
+			[OffsetPlanetMinTargetAltitude:-100]
+			[OffsetPlanetMaxTargetAltitude:100]
+			[OffsetMaxAngleFromTarget:90]
+			[MaxVerticalSpeed:-1]
+			[AngleAllowedForForwardThrust:180]
+			[MaxVelocityAngleForSpeedControl:1000]
+			</Description>
+		</EntityComponent>
+	</EntityComponents>
+</Definitions>

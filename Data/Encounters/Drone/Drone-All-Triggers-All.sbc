@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <Definitions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
 	<EntityComponents>
-		<!-- Action group to do a barrel roll -->
+		<!-- Action group to do a barrel roll if GVK_MobilityType_Aircraft is true-->
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
@@ -16,6 +16,7 @@
 			[MaxCooldownMs:60000]
 			[StartsReady:true]
 			[MaxActions:-1]
+			[Conditions:GVK-Universal-Condition-IsAircraftMobilityType]
 			[Actions:GVK-Drone-All-Action-BarrelRoll]
 			</Description>
 		</EntityComponent>
@@ -69,7 +70,6 @@
 			[StartsReady:true]
 			[MinCooldownMs:30000]
 			[MaxCooldownMs:30000]
-			[DamageTypes:Any]
 			[Actions:GVK-Drone-All-Action-TurretTarget]
 			</Description>
 		</EntityComponent>
@@ -280,7 +280,7 @@
 			[MaxActions:1]
 			[MinCooldownMs:5000]
 			[MaxCooldownMs:5001]
-			[Conditions:GVK-Drone-Encounter-Condition-IsDroneEncounter]
+			[//Conditions:GVK-Drone-Encounter-Condition-IsDroneEncounter]
 			[Actions:GVK-Drone-Encounter-Action-SpawnAnyCOALITIONAttackers]
 			</Description>
 		</EntityComponent>
@@ -331,7 +331,7 @@
 			[MaxActions:1]
 			[MinCooldownMs:5000]
 			[MaxCooldownMs:5001]
-			[Conditions:GVK-Drone-Encounter-Condition-IsDroneEncounter]
+			[//Conditions:GVK-Drone-Encounter-Condition-IsDroneEncounter]
 			[Actions:GVK-Drone-Encounter-Action-SpawnSmallCOALITIONAttackers]
 			</Description>
 		</EntityComponent>
@@ -368,6 +368,7 @@
 			[IgnoreSafetyChecks:true]
 			</Description>
 		</EntityComponent>
+		<!-- unused - sequence to spawn enemy gaalsien -->
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
@@ -479,7 +480,7 @@
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Drone-All-Trigger-SpawnInterceptorSingle</SubtypeId>
+				<SubtypeId>GVK-Drone-All-Trigger-SpawnInterceptorSingle-GAALSIEN</SubtypeId>
 			</Id>
 			<Description>
 			[RivalAI Trigger]
@@ -490,27 +491,27 @@
 			[MaxActions:1]
 			[MinCooldownMs:10000]
 			[MaxCooldownMs:10001]
-			[Actions:GVK-Drone-All-Action-SpawnInterceptorSingle]
+			[Actions:GVK-Drone-All-Action-SpawnInterceptorSingle-GAALSIEN]
 			</Description>
 		</EntityComponent>
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Drone-All-Action-SpawnInterceptorSingle</SubtypeId>
+				<SubtypeId>GVK-Drone-All-Action-SpawnInterceptorSingle-GAALSIEN</SubtypeId>
 			</Id>
 			<Description>
 			[RivalAI Action]
 			[Chance:50]
 			[SpawnEncounter:true]
-			[Spawner:GVK-Drone-All-Spawner-SpawnInterceptorSingle]
+			[Spawner:GVK-Drone-All-Spawner-SpawnInterceptorSingle-GAALSIEN]
 			[UseChatBroadcast:true]
-			[ChatData:GVK-Drone-All-Chat-SpawnInterceptorSingle]
+			[ChatData:GVK-Drone-All-Chat-SpawnInterceptorSingle-GAALSIEN]
 			</Description>
 		</EntityComponent>
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Drone-All-Spawner-SpawnInterceptorSingle</SubtypeId>
+				<SubtypeId>GVK-Drone-All-Spawner-SpawnInterceptorSingle-GAALSIEN</SubtypeId>
 			</Id>
 			<Description>
 			[RivalAI Spawn]
@@ -530,7 +531,7 @@
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Drone-All-Chat-SpawnInterceptorSingle</SubtypeId>
+				<SubtypeId>GVK-Drone-All-Chat-SpawnInterceptorSingle-GAALSIEN</SubtypeId>
 			</Id>
 			<Description>
 			[RivalAI Chat]
@@ -538,7 +539,7 @@
 			[StartsReady:true]
 			[Chance:50]
 			[BroadcastRandomly:false]
-			[Author:GAALSIEN Interceptor]
+			[Author:{Faction} Interceptor]
 			[Color:Red]
 			[ChatMessages:Air support inbound.]
 			[ChatAudio:GreetingSoundId-A]
@@ -546,6 +547,328 @@
 			[SendToAllOnlinePlayers:false]
 			[IgnoreAntennaRequirement:true]
 			[IgnoredAntennaRangeOverride:9999999]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Drone-All-Trigger-SpawnInterceptorSingle-KHAANEPH</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Trigger]
+			[Type:PlayerNear]
+			[UseTrigger:true]
+			[TargetDistance:1500]
+			[StartsReady:false]
+			[MaxActions:1]
+			[MinCooldownMs:10000]
+			[MaxCooldownMs:10001]
+			[Actions:GVK-Drone-All-Action-SpawnInterceptorSingle-KHAANEPH]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Drone-All-Action-SpawnInterceptorSingle-KHAANEPH</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Action]
+			[Chance:50]
+			[SpawnEncounter:true]
+			[Spawner:GVK-Drone-All-Spawner-SpawnInterceptorSingle-KHAANEPH]
+			[UseChatBroadcast:true]
+			[ChatData:GVK-Drone-All-Chat-SpawnInterceptorSingle-KHAANEPH]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Drone-All-Spawner-SpawnInterceptorSingle-KHAANEPH</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Spawn]
+			[UseSpawn:true]
+			[SpawningType:CustomSpawn]
+			[StartsReady:true]
+			[MinDistance:600]
+			[MaxDistance:800]
+			[MinAltitude:50]
+			[MaxAltitude:100]
+			[InheritNpcAltitude:false]
+			[SpawnGroups:GVK-Drone-Defense-SpawnGroup-KHAANEPH-InterceptorSingle]
+			[ProcessAsAdminSpawn:false]
+			[IgnoreSafetyChecks:true]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Drone-All-Chat-SpawnInterceptorSingle-KHAANEPH</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Chat]
+			[UseChat:true]
+			[StartsReady:true]
+			[Chance:50]
+			[BroadcastRandomly:false]
+			[Author:{Faction} Interceptor]
+			[Color:Red]
+			[ChatMessages:Air support inbound.]
+			[ChatAudio:GreetingSoundId-A]
+			[BroadcastChatType:Chat]
+			[SendToAllOnlinePlayers:false]
+			[IgnoreAntennaRequirement:true]
+			[IgnoredAntennaRangeOverride:9999999]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Drone-All-Trigger-SpawnStrikeFighterSingle-SOBAN</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Trigger]
+			[Type:PlayerNear]
+			[UseTrigger:true]
+			[TargetDistance:1500]
+			[StartsReady:false]
+			[MaxActions:1]
+			[MinCooldownMs:10000]
+			[MaxCooldownMs:10001]
+			[Actions:GVK-Drone-All-Action-SpawnStrikeFighterSingle-SOBAN]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Drone-All-Action-SpawnStrikeFighterSingle-SOBAN</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Action]
+			[Chance:50]
+			[SpawnEncounter:true]
+			[Spawner:GVK-Drone-All-Spawner-SpawnStrikeFighterSingle-SOBAN]
+			[UseChatBroadcast:true]
+			[ChatData:GVK-Drone-All-Chat-SpawnStrikeFighterSingle-SOBAN]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Drone-All-Spawner-SpawnStrikeFighterSingle-SOBAN</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Spawn]
+			[UseSpawn:true]
+			[SpawningType:CustomSpawn]
+			[StartsReady:true]
+			[MinDistance:600]
+			[MaxDistance:800]
+			[MinAltitude:50]
+			[MaxAltitude:100]
+			[InheritNpcAltitude:false]
+			[SpawnGroups:GVK-Drone-Defense-SpawnGroup-SOBAN-StrikeFighterSingle]
+			[ProcessAsAdminSpawn:false]
+			[IgnoreSafetyChecks:true]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Drone-All-Chat-SpawnStrikeFighterSingle-SOBAN</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Chat]
+			[UseChat:true]
+			[StartsReady:true]
+			[Chance:50]
+			[BroadcastRandomly:false]
+			[Author:{Faction} Strike Fighter]
+			[Color:Red]
+			[ChatMessages:Air support inbound.]
+			[ChatAudio:GreetingSoundId-A]
+			[BroadcastChatType:Chat]
+			[SendToAllOnlinePlayers:false]
+			[IgnoreAntennaRequirement:true]
+			[IgnoredAntennaRangeOverride:9999999]
+			</Description>
+		</EntityComponent>
+		<!-- Spawn two Khaaneph Escorts -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Drone-Elite-Trigger-SpawnMediumEscorts-KHAANEPH</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Trigger]
+			[Type:PlayerNear]
+			[UseTrigger:true]
+			[TargetDistance:3000]
+			[StartsReady:false]
+			[MaxActions:2]
+			[MinCooldownMs:2000]
+			[MaxCooldownMs:2001]
+			[Actions:GVK-Drone-Elite-Action-SpawnMediumEscorts-KHAANEPH]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Drone-Elite-Action-SpawnMediumEscorts-KHAANEPH</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Action]
+			[Chance:100]
+			[SpawnEncounter:true]
+			[Spawner:GVK-Drone-Elite-Spawner-SpawnMediumEscorts-KHAANEPH]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Drone-Elite-Spawner-SpawnMediumEscorts-KHAANEPH</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Spawn]
+			[UseSpawn:true]
+			[SpawningType:CustomSpawn]
+			[StartsReady:true]
+			[MinDistance:200]
+			[MaxDistance:201]
+			[MinAltitude:25]
+			[MaxAltitude:26]
+			[InheritNpcAltitude:false]
+			[SpawnGroups:GVK-Drone-Defense-SpawnGroup-KHAANEPH-MediumHoverHeavy]
+			[ProcessAsAdminSpawn:false]
+			[IgnoreSafetyChecks:true]
+			</Description>
+		</EntityComponent>
+		<!-- Spawn two GAALSIEN Escorts -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Drone-Elite-Trigger-SpawnMediumEscorts-GAALSIEN</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Trigger]
+			[Type:PlayerNear]
+			[UseTrigger:true]
+			[TargetDistance:3000]
+			[StartsReady:false]
+			[MaxActions:2]
+			[MinCooldownMs:2000]
+			[MaxCooldownMs:2001]
+			[Actions:GVK-Drone-Elite-Action-SpawnMediumEscorts-GAALSIEN]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Drone-Elite-Action-SpawnMediumEscorts-GAALSIEN</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Action]
+			[Chance:100]
+			[SpawnEncounter:true]
+			[Spawner:GVK-Drone-Elite-Spawner-SpawnMediumEscorts-GAALSIEN]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Drone-Elite-Spawner-SpawnMediumEscorts-GAALSIEN</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Spawn]
+			[UseSpawn:true]
+			[SpawningType:CustomSpawn]
+			[StartsReady:true]
+			[MinDistance:200]
+			[MaxDistance:201]
+			[MinAltitude:25]
+			[MaxAltitude:26]
+			[InheritNpcAltitude:false]
+			[SpawnGroups:GVK-Drone-Defense-SpawnGroup-GAALSIEN-MediumHoverHeavy]
+			[ProcessAsAdminSpawn:false]
+			[IgnoreSafetyChecks:true]
+			</Description>
+		</EntityComponent>
+		<!-- Spawn two SOBAN Escorts -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Drone-Elite-Trigger-SpawnMediumEscorts-SOBAN</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Trigger]
+			[Type:PlayerNear]
+			[UseTrigger:true]
+			[TargetDistance:3000]
+			[StartsReady:false]
+			[MaxActions:2]
+			[MinCooldownMs:2000]
+			[MaxCooldownMs:2001]
+			[Actions:GVK-Drone-Elite-Action-SpawnMediumEscorts-SOBAN]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Drone-Elite-Action-SpawnMediumEscorts-SOBAN</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Action]
+			[Chance:100]
+			[SpawnEncounter:true]
+			[Spawner:GVK-Drone-Elite-Spawner-SpawnMediumEscorts-SOBAN]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Drone-Elite-Spawner-SpawnMediumEscorts-SOBAN</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Spawn]
+			[UseSpawn:true]
+			[SpawningType:CustomSpawn]
+			[StartsReady:true]
+			[MinDistance:200]
+			[MaxDistance:201]
+			[MinAltitude:25]
+			[MaxAltitude:26]
+			[InheritNpcAltitude:false]
+			[SpawnGroups:GVK-Drone-Defense-SpawnGroup-SOBAN-BaserunnerHeavy]
+			[ProcessAsAdminSpawn:false]
+			[IgnoreSafetyChecks:true]
+			</Description>
+		</EntityComponent>
+		<!-- Condition check Drone isn't currently an escort -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Drone-All-Condition-NotEscortRole</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Condition]
+			[UseConditions:true]
+			[MatchAnyCondition:false]
+			[CheckFalseBooleans:true]
+			[FalseBooleans:GVK_Role_Escort]
+			</Description>
+		</EntityComponent>
+		<!-- Check if command is from newly assigned parent -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Drone-All-Condition-CommandFromAssignedLeader</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Condition]
+			[UseConditions:true]
+			[MatchAnyCondition:false]
+			[CommandCheckFromParent:true]
+			[CommandFromParent:true]
 			</Description>
 		</EntityComponent>
 	</EntityComponents>
