@@ -1,0 +1,136 @@
+<?xml version="1.0"?>
+<Definitions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+	<EntityComponents>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-PlanetaryInstallation-Small-Behavior</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Behavior]
+			[BehaviorName:Passive]
+			[UseRetreatTimer:false]
+			[UseNoTargetTimer:false]
+			[UsePlayerDistanceTimer:true]
+			[PlayerDistanceTimerTrigger:1800]
+			[PlayerDistanceTrigger:2000]
+			[UseNoTargetTimer:false]
+			[UseRetreatTimer:false]
+			[TargetData:GVK-Universal-Target-EnemyGrids2km]
+			[Triggers:GVK-Drone-All-Trigger-WeaponsToMaxRange]
+			[Triggers:GVK-PlanetaryInstallation-Small-Trigger-Init]
+			[Triggers:GVK-PlanetaryInstallation-Small-Trigger-SalvagerPlayerNear]
+			[Triggers:GVK-Universal-Trigger-DespawnInZ0]
+			[TriggerGroups:GVK-Universal-TriggerGroup-DefeatedAndAttacked]
+			[RemoteControlCode:GVK-SmallDerelict]
+			BountyOnKill=200000;
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-PlanetaryInstallation-Small-Trigger-Init</SubtypeId>
+			</Id>
+			<Description>
+			[MES AI Trigger]
+			[UseTrigger:true]
+			[Type:Timer]
+			[StartsReady:true]
+			[MaxActions:1]
+			[ActionExecution:All]
+			[Actions:GVK-PlanetaryInstallation-Small-Action-Init]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-PlanetaryInstallation-Small-Action-Init</SubtypeId>
+			</Id>
+			<Description>
+			[MES AI Action]
+			[SetCustomStrings:true]
+			[CustomStrings:EncounterType,WreckSmall]
+			[CustomStrings:EncounterDisplayName,Small signal]
+			[SetCustomCountersVariables:true]
+			[CustomCountersVariables:DefenseSpawn_Limit,0]
+			[UseChatBroadcast:true]
+			[ChatData:GVK-PlanetaryInstallation-Small-Chat-Init]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-PlanetaryInstallation-Small-Chat-Init</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Chat]
+			[UseChat:true]
+			[StartsReady:true]
+			[Chance:100]
+			[MaxChats:1]
+			[BroadcastRandomly:false]
+			[IgnoreAntennaRequirement:true]
+			[IgnoredAntennaRangeOverride:6000]
+			[Author:Sensors]
+			[Color:Blue]
+			[ChatMessages:{EncounterDisplayName} detected.]
+			[ChatAudio:ArcHudSensors]
+			[BroadcastChatType:Both]
+			[SendToAllOnlinePlayers:false]
+			</Description>
+		</EntityComponent>
+		<!-- Trigger Sequence for Small Salvager Spawn -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-PlanetaryInstallation-Small-Trigger-SalvagerPlayerNear</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Trigger]
+			[UseTrigger:true]
+			[Type:PlayerNear]
+			[TargetDistance:2000]
+			[StartsReady:true]
+			[MinCooldownMs:15000]
+			[MaxCooldownMs:15001]
+			[MaxActions:1]
+			[ActionExecution:All]
+			[Actions:GVK-PlanetaryInstallation-Small-Action-SalvagerPlayerNear]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-PlanetaryInstallation-Small-Action-SalvagerPlayerNear</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Action]
+			[Chance:30]
+			[SpawnEncounter:true]
+			[Spawner:GVK-PlanetaryInstallation-Small-Spawner-SalvagerPlayerNear]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-PlanetaryInstallation-Small-Spawner-SalvagerPlayerNear</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Spawn]
+			[UseSpawn:true]
+			[SpawningType:CustomSpawn]
+			[StartsReady:true]
+			[ProcessAsAdminSpawn:false]
+			[MaxSpawns:1]
+			[SpawnGroups:GVK-Drone-Encounter-SpawnGroup-COALITION-Salvager-WreckSpawn]
+			[SpawnGroups:GVK-Drone-Encounter-SpawnGroup-GAALSIEN-Salvager-WreckSpawn]
+			[MinDistance:50]
+			[MaxDistance:100]
+			[MinAltitude:20]
+			[MaxAltitude:21]
+			[InheritNpcAltitude:true]
+			[IgnoreSafetyChecks:true]
+			</Description>
+		</EntityComponent>
+	</EntityComponents>
+</Definitions>
