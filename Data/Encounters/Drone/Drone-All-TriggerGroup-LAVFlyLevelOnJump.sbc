@@ -6,19 +6,19 @@
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Drone-All-TriggerGroup-FlyLevelOnJump</SubtypeId>
+				<SubtypeId>GVK-Drone-All-TriggerGroup-LAVFlyLevelOnJump</SubtypeId>
 			</Id>
 			<Description>
 			[RivalAI TriggerGroup]
-			[Triggers:GVK-Drone-All-FlyLevelOnJump-Trigger-AboveAltitude]
-			[Triggers:GVK-Drone-All-FlyLevelOnJump-Trigger-BelowAltitude]
+			[Triggers:GVK-Drone-All-LAVFlyLevelOnJump-Trigger-AboveAltitude]
+			[Triggers:GVK-Drone-All-LAVFlyLevelOnJump-Trigger-BelowAltitude]
 			</Description>
 		</EntityComponent>
 		<!-- Check for large altitude gain -->
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Drone-All-FlyLevelOnJump-Trigger-AboveAltitude</SubtypeId>
+				<SubtypeId>GVK-Drone-All-LAVFlyLevelOnJump-Trigger-AboveAltitude</SubtypeId>
 			</Id>
 			<Description>
 			[RivalAI Trigger]
@@ -27,17 +27,17 @@
 			[StartsReady:false]
 			[MinCooldownMs:1000]
 			[MaxCooldownMs:1001]
-			[Actions:GVK-Drone-All-FlyLevelOnJump-Action-AboveAltitude]
-			[ToggleWithTriggerProfile:GVK-Drone-All-FlyLevelOnJump-Trigger-BelowAltitude]
+			[Actions:GVK-Drone-All-LAVFlyLevelOnJump-Action-AboveAltitude]
+			[ToggleWithTriggerProfile:GVK-Drone-All-LAVFlyLevelOnJump-Trigger-BelowAltitude]
 			[ToggledProfileResetsCooldown:true]
-			[Conditions:GVK-Drone-All-FlyLevelOnJump-Condition-AboveAltitude]
+			[Conditions:GVK-Drone-All-LAVFlyLevelOnJump-Condition-AboveAltitude]
 			[ConditionCheckResetsTimer:true]
 			</Description>
 		</EntityComponent>
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Drone-All-FlyLevelOnJump-Condition-AboveAltitude</SubtypeId>
+				<SubtypeId>GVK-Drone-All-LAVFlyLevelOnJump-Condition-AboveAltitude</SubtypeId>
 			</Id>
 			<Description>
 			[RivalAI Condition]
@@ -50,20 +50,20 @@
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Drone-All-FlyLevelOnJump-Action-AboveAltitude</SubtypeId>
+				<SubtypeId>GVK-Drone-All-LAVFlyLevelOnJump-Action-AboveAltitude</SubtypeId>
 			</Id>
 			<Description>
 			[RivalAI Action]
 			[//DebugMessage:Trigger AboveAltitude]
 			[StopAllThrust:true]
-			[//ChangeAutopilotProfile:true]
-			[//AutopilotProfile:Tertiary]
+			[ChangeAutopilotProfile:true]
+			[AutopilotProfile:Tertiary]
 			</Description>
 		</EntityComponent>
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Drone-All-FlyLevelOnJump-Trigger-BelowAltitude</SubtypeId>
+				<SubtypeId>GVK-Drone-All-LAVFlyLevelOnJump-Trigger-BelowAltitude</SubtypeId>
 			</Id>
 			<Description>
 			[RivalAI Trigger]
@@ -72,17 +72,17 @@
 			[StartsReady:false]
 			[MinCooldownMs:1000]
 			[MaxCooldownMs:1001]
-			[Actions:GVK-Drone-All-FlyLevelOnJump-Action-BelowAltitude]
-			[ToggleWithTriggerProfile:GVK-Drone-All-FlyLevelOnJump-Trigger-AboveAltitude]
+			[Actions:GVK-Drone-All-LAVFlyLevelOnJump-Action-BelowAltitude]
+			[ToggleWithTriggerProfile:GVK-Drone-All-LAVFlyLevelOnJump-Trigger-AboveAltitude]
 			[ToggledProfileResetsCooldown:true]
-			[Conditions:GVK-Drone-All-FlyLevelOnJump-Condition-BelowAltitude]
+			[Conditions:GVK-Drone-All-LAVFlyLevelOnJump-Condition-BelowAltitude]
 			[ConditionCheckResetsTimer:true]
 			</Description>
 		</EntityComponent>
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Drone-All-FlyLevelOnJump-Condition-BelowAltitude</SubtypeId>
+				<SubtypeId>GVK-Drone-All-LAVFlyLevelOnJump-Condition-BelowAltitude</SubtypeId>
 			</Id>
 			<Description>
 			[RivalAI Condition]
@@ -95,14 +95,14 @@
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Drone-All-FlyLevelOnJump-Action-BelowAltitude</SubtypeId>
+				<SubtypeId>GVK-Drone-All-LAVFlyLevelOnJump-Action-BelowAltitude</SubtypeId>
 			</Id>
 			<Description>
 			[RivalAI Action]
 			[//DebugMessage:Trigger BelowAltitude]
 			[StopAllThrust:false]
-			[//ChangeAutopilotProfile:true]
-			[//AutopilotProfile:Secondary]
+			[ChangeAutopilotProfile:true]
+			[AutopilotProfile:Secondary]
 			</Description>
 		</EntityComponent>
 	</EntityComponents>

@@ -1,0 +1,116 @@
+<?xml version="1.0"?>
+<Definitions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+	<EntityComponents>
+		<!-- Failsafe trigger for when ground NPCs decide to fly off into the sky -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Drone-All-TriggerGroup-FlyAwayFailsafe</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI TriggerGroup]
+			[Triggers:GVK-Drone-All-FlyAwayFailsafe-Trigger-AboveAltitude]
+			[Triggers:GVK-Drone-All-FlyAwayFailsafe-Trigger-BelowAltitude]
+			</Description>
+		</EntityComponent>
+		<!-- Check for large altitude gain -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Drone-All-FlyAwayFailsafe-Trigger-AboveAltitude</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Trigger]
+			[UseTrigger:true]
+			[Type:Timer]
+			[StartsReady:false]
+			[MinCooldownMs:3000]
+			[MaxCooldownMs:3001]
+			[Actions:GVK-Drone-All-FlyAwayFailsafe-Action-AboveAltitude]
+			[ToggleWithTriggerProfile:GVK-Drone-All-FlyAwayFailsafe-Trigger-BelowAltitude]
+			[ToggledProfileResetsCooldown:true]
+			[Conditions:GVK-Drone-All-FlyAwayFailsafe-Condition-AboveAltitude]
+			[ConditionCheckResetsTimer:true]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Drone-All-FlyAwayFailsafe-Condition-AboveAltitude</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Condition]
+			[UseConditions:true]
+			[MatchAnyCondition:false]
+			[AltitudeCheck:true]
+			[MinAltitude:100]
+			[MaxAltitude:999999]
+			[CheckGridSpeed:true]
+			[MinGridSpeed:50]
+			[MaxGridSpeed:200]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Drone-All-FlyAwayFailsafe-Action-AboveAltitude</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Action]
+			[//DebugMessage:Trigger AboveAltitude]
+			[ChangeBehaviorSubclass:true]
+			[NewBehaviorSubclass:Patrol]
+			[StopAllThrust:true]
+			[ChangeAutopilotProfile:true]
+			[AutopilotProfile:Primary]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Drone-All-FlyAwayFailsafe-Trigger-BelowAltitude</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Trigger]
+			[UseTrigger:false]
+			[Type:Timer]
+			[StartsReady:false]
+			[MinCooldownMs:1000]
+			[MaxCooldownMs:1001]
+			[Actions:GVK-Drone-All-FlyAwayFailsafe-Action-BelowAltitude]
+			[ToggleWithTriggerProfile:GVK-Drone-All-FlyAwayFailsafe-Trigger-AboveAltitude]
+			[ToggledProfileResetsCooldown:true]
+			[Conditions:GVK-Drone-All-FlyAwayFailsafe-Condition-BelowAltitude]
+			[ConditionCheckResetsTimer:true]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Drone-All-FlyAwayFailsafe-Condition-BelowAltitude</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Condition]
+			[UseConditions:true]
+			[AltitudeCheck:true]
+			[MinAltitude:-1]
+			[MaxAltitude:99]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Drone-All-FlyAwayFailsafe-Action-BelowAltitude</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Action]
+			[//DebugMessage:Trigger BelowAltitude]
+			[ChangeBehaviorSubclass:true]
+			[NewBehaviorSubclass:Patrol]
+			[StopAllThrust:false]
+			[ChangeAutopilotProfile:true]
+			[AutopilotProfile:Primary]
+			</Description>
+		</EntityComponent>
+	</EntityComponents>
+</Definitions>
