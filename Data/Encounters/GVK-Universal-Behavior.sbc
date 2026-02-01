@@ -741,5 +741,90 @@
 			[GridSizeLarge:false]
 			</Description>
 		</EntityComponent>
+		<!-- Action group to set turrets to max range because of a bug in MES right now -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Universal-Trigger-WeaponsToMaxRange</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Trigger]
+			[UseTrigger:true]
+			[Type:Timer]
+			[StartsReady:false]
+			[MinCooldownMs:3000]
+			[MaxCooldownMs:3001]
+			[MaxActions:2]
+			[Actions:GVK-Universal-Action-WeaponsToMaxRange]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Universal-Action-WeaponsToMaxRange</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Action]
+			[//DebugMessage:WeaponsToMaxRange]
+			[SetWeaponsToMaxRange:true]
+			</Description>
+		</EntityComponent>
+		<!-- Action group to engage enemy upon taking damage -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Universal-Trigger-TargetAttacker</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Trigger]
+			[UseTrigger:true]
+			[Type:Damage]
+			[StartsReady:true]
+			[MinCooldownMs:30000]
+			[MaxCooldownMs:30001]
+			[DamageTypes:Any]
+			[MaxActions:-1]
+			[Actions:GVK-Universal-Action-TargetAttacker]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Universal-Action-TargetAttacker</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Action]
+			[//DebugMessage:TargetAttacker]
+			[SwitchToReceivedTarget:true]
+			</Description>
+		</EntityComponent>
+		<!-- Action group to engage enemy when turret has a target -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Universal-Trigger-TurretTarget</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Trigger]
+			[UseTrigger:true]
+			[Type:TurretTarget]
+			[StartsReady:true]
+			[MinCooldownMs:30000]
+			[MaxCooldownMs:30001]
+			[MaxActions:-1]
+			[Actions:GVK-Universal-Action-TurretTarget]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Universal-Action-TurretTarget</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Action]
+			[//DebugMessage:TurretTarget]
+			[SwitchToReceivedTarget:true]
+			</Description>
+		</EntityComponent>
 	</EntityComponents>
 </Definitions>
