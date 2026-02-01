@@ -348,7 +348,7 @@
 					<BeaconText>Stryker ICV</BeaconText>
 					<Behaviour>GVK-Drone-All-Behavior-SmallHoverHorsefly-GAALSIEN</Behaviour>
 				</Prefab>
-				<Prefab SubtypeId="NDR [GAAL] Heavy Sandskimmer">
+				<Prefab SubtypeId="NDR [GAAL] Sandskimmer">
 					<Position>
 						<X>0.0</X>
 						<Y>30</Y>
@@ -359,6 +359,44 @@
 					<Behaviour>GVK-Drone-All-Behavior-Sandskimmer-GAALSIEN</Behaviour>
 				</Prefab>
 			</Prefabs>
+		</SpawnGroup>		
+		<SpawnGroup>
+			<Id>
+				<TypeId>SpawnGroupDefinition</TypeId>
+				<SubtypeId>GVK-Drone-Encounter-SpawnGroup-GAALSIEN-Sandskimmer</SubtypeId>
+			</Id>
+			<Description>
+			[Modular Encounters SpawnGroup]
+			[IgnoreCleanupRules:true]
+			[ReplenishSystems:true]
+			[ManipulationProfiles:GVK-Drone-All-Manipulation-Hover]
+			[SpawnConditionsProfiles:GVK-Drone-Encounter-SpawnCondition-GAALSIEN-SmallHoverSingle]
+			[SpawnConditionsProfiles:GVK-Drone-Encounter-SpawnCondition-GAALSIEN-SmallHoverSquad]
+			</Description>
+			<IsPirate>true</IsPirate>
+			<Frequency>0.1</Frequency>
+			<Prefabs>
+				<Prefab SubtypeId="NDR [GAAL] Sandskimmer">
+					<Position>
+						<X>0.0</X>
+						<Y>30</Y>
+						<Z>0.0</Z>
+					</Position>
+					<Speed>0</Speed>
+					<BeaconText>Sandskimmer</BeaconText>
+					<Behaviour>GVK-Drone-All-Behavior-Sandskimmer-GAALSIEN</Behaviour>
+				</Prefab>
+			</Prefabs>
+				<Prefab SubtypeId="NDR [GAAL] Sandskimmer">
+					<Position>
+						<X>0.0</X>
+						<Y>30</Y>
+						<Z>0.0</Z>
+					</Position>
+					<Speed>0</Speed>
+					<BeaconText>Sandskimmer</BeaconText>
+					<Behaviour>GVK-Drone-All-Behavior-Sandskimmer-GAALSIEN</Behaviour>
+				</Prefab>
 		</SpawnGroup>		
 		<!-- NDR Medium Light Hover Single -->
 		<SpawnGroup>

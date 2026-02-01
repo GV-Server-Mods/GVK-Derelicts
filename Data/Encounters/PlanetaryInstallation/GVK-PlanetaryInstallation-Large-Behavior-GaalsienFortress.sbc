@@ -1,7 +1,12 @@
 <?xml version="1.0"?>
 <Definitions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
 	<EntityComponents>
-		<!-- Horsefly Rover Carrier Behavior for Season 2 Event-->
+		<!-- 
+		
+			TODO:
+				- Configure to use DefeatedAndAttacked, needs init trigger.
+		
+		-->
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
@@ -32,6 +37,7 @@
 			[Triggers:GVK-Drone-All-Trigger-FireMissilesTimers]
 			[Triggers:GVK-Universal-Trigger-DespawnInZ0]
 			[TriggerGroups:GVK-Universal-TriggerGroup-SendTargets]
+			[Triggergroups:GVK-Universal-TriggerGroup-DefeatedAndAttacked]
 			[RemoteControlCode:GVK-LargeDerelict]
 			BountyOnKill=20000000;
 			</Description>
@@ -101,7 +107,7 @@
 			[MinCooldownMs:10000]
 			[MaxCooldownMs:10000]
 			[StartsReady:false]
-			[Conditions:GVK-PlanetaryInstallation-All-Condition-BeaconDisabled]				  
+			[Conditions:GVK-Universal-Condition-BeaconDisabled-WIP]				  
 			[ActionExecution:All]
 			[Actions:GVK-PlanetaryInstallation-GAALSIENFortress-Action-Compromised]
 			[Actions:GVK-PlanetaryInstallation-Large-Action-DefensesTrigger]
@@ -181,8 +187,8 @@
 			[Chance:100]
 			[MaxChats:1]
 			[BroadcastRandomly:false]
-			[Author:COALITION]
-			[Color:White]
+			[Author:{Faction}]
+			[Color:{PlayerRelation}]
 			[ChatMessages:GAALSIEN base destroyed]
 			[ChatAudio:ArcHudGPSNotification2]
 			[BroadcastChatType:Both]

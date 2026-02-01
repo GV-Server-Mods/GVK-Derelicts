@@ -1,6 +1,12 @@
 <?xml version="1.0"?>
 <Definitions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
 	<EntityComponents>
+		<!-- 
+		
+			TODO:
+				- Configure to use DefeatedAndAttacked, needs init trigger.
+		
+		-->
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
@@ -30,6 +36,7 @@
 			[Triggers:GVK-PlanetaryInstallation-Medium-Trigger-COALITIONWreckSpawnsManual]
 			[Triggers:GVK-Universal-Trigger-DespawnInZ0]
 			[TriggerGroups:GVK-Universal-TriggerGroup-SendTargets]
+			[Triggergroups:GVK-Universal-TriggerGroup-DefeatedAndAttacked]
 			</Description>
 		</EntityComponent>
 		<!-- Trigger sequence when Wreck Spawns -->
@@ -73,8 +80,8 @@
 			[Chance:100]
 			[MaxChats:1]
 			[BroadcastRandomly:false]
-			[Author:COALITION]
-			[Color:White]
+			[Author:{Faction}]
+			[Color:{PlayerRelation}]
 			[ChatMessages:Friendly forces requesting assistance!]
 			[GPSLabel:Distress Signal]
 			[ChatAudio:ArcHudGPSNotification2]
@@ -97,11 +104,11 @@
 			[MinCooldownMs:10000]
 			[MaxCooldownMs:10000]
 			[StartsReady:false]
-			[Conditions:GVK-PlanetaryInstallation-All-Condition-BeaconDisabled]				  
+			[Conditions:GVK-Universal-Condition-BeaconDisabled-WIP]				  
 			[MaxActions:1]
 			[ActionExecution:All]
 			[Actions:GVK-PlanetaryInstallation-Medium-Action-COALITIONWreckCompromised]
-			[Actions:GVK-PlanetaryInstallation-All-Action-CompromisedGeneric]
+			[//Actions:GVK-PlanetaryInstallation-All-Action-CompromisedGeneric]
 			[Actions:GVK-PlanetaryInstallation-Medium-Action-COALITIONWreckSpawns]
 			[Actions:GVK-Universal-Action-EditableOnCompromised]
 			[Actions:GVK-Universal-Action-Disabled]
@@ -121,7 +128,7 @@
 			[MaxActions:1]
 			[ActionExecution:All]
 			[Actions:GVK-PlanetaryInstallation-Medium-Action-COALITIONWreckCompromised]
-			[Actions:GVK-PlanetaryInstallation-All-Action-CompromisedGeneric]
+			[//Actions:GVK-PlanetaryInstallation-All-Action-CompromisedGeneric]
 			[Actions:GVK-PlanetaryInstallation-Medium-Action-COALITIONWreckSpawns]
 			[Actions:GVK-Universal-Action-EditableOnCompromised]
 			[Actions:GVK-Universal-Action-Disabled]
@@ -141,7 +148,7 @@
 			[MaxActions:1]
 			[ActionExecution:All]
 			[Actions:GVK-PlanetaryInstallation-Medium-Action-COALITIONWreckCompromised]
-			[Actions:GVK-PlanetaryInstallation-All-Action-CompromisedGeneric]
+			[//Actions:GVK-PlanetaryInstallation-All-Action-CompromisedGeneric]
 			[Actions:GVK-Universal-Action-EditableOnCompromised]
 			</Description>
 		</EntityComponent>
@@ -158,7 +165,7 @@
 			[MaxActions:1]
 			[ActionExecution:All]
 			[Actions:GVK-PlanetaryInstallation-Medium-Action-COALITIONWreckCompromised]
-			[Actions:GVK-PlanetaryInstallation-All-Action-CompromisedGeneric]
+			[//Actions:GVK-PlanetaryInstallation-All-Action-CompromisedGeneric]
 			[Actions:GVK-Universal-Action-EditableOnCompromised]
 			</Description>
 		</EntityComponent>
@@ -249,8 +256,8 @@
 			[BroadcastRandomly:false]
 			[IgnoreAntennaRequirement:true]
 			[IgnoredAntennaRangeOverride:5000]
-			[Author:COALITION]
-			[Color:White]
+			[Author:{Faction}]
+			[Color:{PlayerRelation}]
 			[ChatMessages:Enemy GAALSIEN forces still in range.]
 			[ChatAudio:ArcHudGPSNotification2]
 			[BroadcastChatType:Both]
@@ -323,8 +330,8 @@
 			[Chance:100]
 			[MaxChats:1]
 			[BroadcastRandomly:false]
-			[Author:COALITION]
-			[Color:White]
+			[Author:{Faction}]
+			[Color:{PlayerRelation}]
 			[ChatMessages:Thanks for the assistance, reward drop in-bound.]
 			[ChatAudio:ArcHudGPSNotification2]
 			[BroadcastChatType:Both]
