@@ -57,7 +57,28 @@
 			[SetCustomCountersVariables:true]
 			[CustomCountersVariables:DefenseSpawn_Limit,8]
 			[UseChatBroadcast:true]
-			[ChatData:GVK-PlanetaryInstallation-Large-Chat-Init]
+			[ChatData:GVK-PlanetaryInstallation-Large-Chat-GAALSIENBaseInit]
+			</Description>
+		</EntityComponent>
+		<!-- Unique chat just for this encounter -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-PlanetaryInstallation-Large-Chat-GAALSIENBaseInit</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Chat]
+			[UseChat:true]
+			[StartsReady:true]
+			[Chance:100]
+			[MaxChats:1]
+			[BroadcastRandomly:false]
+			[Author:Sensors]
+			[Color:Blue]
+			[ChatMessages:{Faction} {EncounterDisplayName} detected.]
+			[ChatAudio:ArcHudSensors]
+			[BroadcastChatType:Both]
+			[SendToAllOnlinePlayers:true]
 			</Description>
 		</EntityComponent>
 	</EntityComponents>
