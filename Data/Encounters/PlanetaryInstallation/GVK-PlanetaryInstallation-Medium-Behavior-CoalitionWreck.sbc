@@ -24,7 +24,8 @@
 			[TargetData:GVK-Universal-Target-EnemyGAALSIENBeacon]
 			[Triggers:GVK-Universal-Trigger-UneditableOnSpawn]
 			[Triggers:GVK-Universal-Trigger-WeaponsToMaxRange]
-			[Triggers:GVK-PlanetaryInstallation-Medium-Trigger-COALITIONWreckInit]
+			[Triggers:GVK-PlanetaryInstallation-Medium-Trigger-COALITIONWreckInit1]
+			[Triggers:GVK-PlanetaryInstallation-Medium-Trigger-COALITIONWreckInit2]
 			[Triggers:GVK-PlanetaryInstallation-Medium-Trigger-COALITIONWreckBeaconDisabled]
 			[Triggers:GVK-PlanetaryInstallation-Medium-Trigger-COALITIONWreckDespawn]
 			[Triggers:GVK-PlanetaryInstallation-Medium-Trigger-COALITIONWreckDespawnMES]
@@ -42,40 +43,39 @@
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-PlanetaryInstallation-Medium-Trigger-COALITIONWreckInit</SubtypeId>
+				<SubtypeId>GVK-PlanetaryInstallation-Medium-Trigger-COALITIONWreckInit1</SubtypeId>
 			</Id>
 			<Description>
 			[MES AI Trigger]
 			[UseTrigger:true]
-			[Type:Timer]
+			[Type:Session]
 			[StartsReady:true]
-			[MaxActions:1]
+			[MaxActions:-1]
 			[ActionExecution:All]
-			[Actions:GVK-PlanetaryInstallation-Medium-Action-COALITIONWreckInit]
+			[Actions:GVK-PlanetaryInstallation-Medium-Action-COALITIONWreckInit1]
 			</Description>
 		</EntityComponent>
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-PlanetaryInstallation-Medium-Action-COALITIONWreckInit</SubtypeId>
+				<SubtypeId>GVK-PlanetaryInstallation-Medium-Action-COALITIONWreckInit1</SubtypeId>
 			</Id>
 			<Description>
 			[MES AI Action]
-			[ResetSandboxCounters:SandboxCounter_MediumDistressSpawns]
 			[SetCustomStrings:true]
 			[CustomStrings:EncounterType,WreckMedium]
 			[CustomStrings:EncounterDisplayName,Distress Signal]
 			[SetCustomCountersVariables:true]
 			[CustomCountersVariables:DefenseSpawn_Limit,6]
 			[UseChatBroadcast:true]
-			[ChatData:GVK-PlanetaryInstallation-Medium-Chat-COALITIONWreckInit]
+			[ChatData:GVK-PlanetaryInstallation-Medium-Chat-COALITIONWreckInit1]
 			</Description>
 		</EntityComponent>
 		<!-- Unique chat just for this encounter -->
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-PlanetaryInstallation-Medium-Chat-COALITIONWreckInit</SubtypeId>
+				<SubtypeId>GVK-PlanetaryInstallation-Medium-Chat-COALITIONWreckInit1</SubtypeId>
 			</Id>
 			<Description>
 			[RivalAI Chat]
@@ -93,6 +93,32 @@
 			[SendToAllOnlinePlayers:false]
 			[IgnoreAntennaRequirement:true]
 			[IgnoredAntennaRangeOverride:40000]
+			</Description>
+		</EntityComponent>
+		<!-- Separate 1-time init needed that only runs once since Sandbox Counters persist correctly and shoulnd't be reset -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-PlanetaryInstallation-Medium-Trigger-COALITIONWreckInit2</SubtypeId>
+			</Id>
+			<Description>
+			[MES AI Trigger]
+			[UseTrigger:true]
+			[Type:Timer]
+			[StartsReady:true]
+			[MaxActions:1]
+			[ActionExecution:All]
+			[Actions:GVK-PlanetaryInstallation-Medium-Action-COALITIONWreckInit2]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-PlanetaryInstallation-Medium-Action-COALITIONWreckInit2</SubtypeId>
+			</Id>
+			<Description>
+			[MES AI Action]
+			[ResetSandboxCounters:SandboxCounter_MediumDistressSpawns]
 			</Description>
 		</EntityComponent>
 		<!-- Trigger sequences for Wreck to die -->
