@@ -93,7 +93,7 @@
 		<SpawnGroup>
 			<Id>
 				<TypeId>SpawnGroupDefinition</TypeId>
-				<SubtypeId>GVK-Alliance-Homebase-SpawnGroup-KHAANEPH</SubtypeId> <!-- GPS:Soban Base:45883.26:50407.31:12499.57:#FFFFA900: -->
+				<SubtypeId>GVK-Alliance-Homebase-SpawnGroup-KHAANEPHa</SubtypeId> <!-- GPS:Soban Base:45883.26:50407.31:12499.57:#FFFFA900: -->
 			</Id>
 			<Description>
 			[Modular Encounters SpawnGroup]
@@ -137,7 +137,7 @@
 		<SpawnGroup>
 			<Id>
 				<TypeId>SpawnGroupDefinition</TypeId>
-				<SubtypeId>GVK-Alliance-Homebase-SpawnGroup-SOBAN</SubtypeId> <!-- GPS:Soban Base:45883.26:50407.31:12499.57:#FFFFA900: -->
+				<SubtypeId>GVK-Alliance-Homebase-SpawnGroup-SOBANa</SubtypeId> <!-- GPS:Soban Base:45883.26:50407.31:12499.57:#FFFFA900: -->
 			</Id>
 			<Description>
 			[Modular Encounters SpawnGroup]
@@ -357,7 +357,7 @@
 		<SpawnGroup>
 			<Id>
 				<TypeId>SpawnGroupDefinition</TypeId>
-				<SubtypeId>GVK-Alliance-SupplyDepot-SpawnGroup</SubtypeId> <!-- GPS:Khaaneph Base:20802.09:21835.64:57944.6:#FFFFA900: -->
+				<SubtypeId>GVK-Alliance-SupplyDepot1-SpawnGroup</SubtypeId>
 			</Id>
 			<Description>
 			[Modular Encounters SpawnGroup]
@@ -366,16 +366,16 @@
 			[InitializeStoreBlocks:false]
 			[ReactorsOn:true]
 			[ForceStaticGrid:true]
-			[TriggerCoords:{X:34358.6139553066 Y:6393.79790824823 Z:46450.4859227907}]
+			[TriggerCoords:{X:13607.6734909198 Y:28582.0708191201 Z:10272.3025435916}]
 			[TriggerRadius:30000]
 			[IgnoreCleanupRules:true]
 			[ReplenishSystems:true]
 			[SkipVoxelSpawnChecks:true]
 			[SkipGridSpawnChecks:true]
 			[ForceExactPositionAndOrientation:true]
-			[StaticEncounterCoords:{X:34358.6139553066 Y:6393.79790824823 Z:46450.4859227907}]
-			[StaticEncounterForward:{X:-0.0257949270959223 Y:0.465895296319303 Z:0.88446378931173}]
-			[StaticEncounterUp:{X:0.0488958147676195 Y:-0.883111201323009 Z:0.466608835531479}]
+			[StaticEncounterCoords:{X:13607.6734909198 Y:28582.0708191201 Z:10272.3025435916}]
+			[StaticEncounterForward:{X:-0.351103517607922 Y:0.92895830517635 Z:0.117314905989081}]
+			[StaticEncounterUp:{X:-0.637519066961951 Y:-0.145405931291848 Z:-0.756588761749151}]
 			[ManipulationProfiles:GVK-Alliance-SupplyDepot-Manipulation]
 			[ManipulationProfiles:GVK-Alliance-ToNeutralColor-Manipulation]
 			[UseRivalAi:true]
@@ -387,7 +387,52 @@
 			<IsPirate>true</IsPirate>
 			<Frequency>5.0</Frequency>
 			<Prefabs>
-				<Prefab SubtypeId="NAS Supply Depot">
+				<Prefab SubtypeId="NST [UNKN] Supply Depot">
+					<Position>
+						<X>0.0</X>
+						<Y>0.0</Y>
+						<Z>0.0</Z>
+					</Position>
+					<Speed>0</Speed>
+					<BeaconText>Supply Depot</BeaconText>
+					<Behaviour>GVK-Alliance-SupplyDepot-Behavior</Behaviour>
+				</Prefab>
+			</Prefabs>
+		</SpawnGroup>
+		<SpawnGroup>
+			<Id>
+				<TypeId>SpawnGroupDefinition</TypeId>
+				<SubtypeId>GVK-Alliance-SupplyDepot2-SpawnGroup</SubtypeId>
+			</Id>
+			<Description>
+			[Modular Encounters SpawnGroup]
+			[StaticEncounter:true]
+			[FactionOwner:UNKN]
+			[InitializeStoreBlocks:false]
+			[ReactorsOn:true]
+			[ForceStaticGrid:true]
+			[TriggerCoords:{X:6168.79563440722 Y:23361.3259277877 Z:23110.6152101687}]
+			[TriggerRadius:30000]
+			[IgnoreCleanupRules:true]
+			[ReplenishSystems:true]
+			[SkipVoxelSpawnChecks:true]
+			[SkipGridSpawnChecks:true]
+			[ForceExactPositionAndOrientation:true]
+			[StaticEncounterCoords:{X:6168.79563440722 Y:23361.3259277877 Z:23110.6152101687}]
+			[StaticEncounterForward:{X:-0.404980003816759 Y:0.226752057662022 Z:0.885762214623438}]
+			[StaticEncounterUp:{X:-0.890968444728444 Y:-0.315438981723435 Z:-0.326609061888155}]
+			[ManipulationProfiles:GVK-Alliance-SupplyDepot-Manipulation]
+			[ManipulationProfiles:GVK-Alliance-ToNeutralColor-Manipulation]
+			[UseRivalAi:true]
+			[UseRemoteControlCodeRestrictions:true]
+			[RemoteControlCode:GVK-Static]
+			[RemoteControlCodeMinDistance:500]
+			[RemoteControlCodeMaxDistance:-1]
+			</Description>
+			<IsPirate>true</IsPirate>
+			<Frequency>5.0</Frequency>
+			<Prefabs>
+				<Prefab SubtypeId="NST [UNKN] Supply Depot">
 					<Position>
 						<X>0.0</X>
 						<Y>0.0</Y>

@@ -16,12 +16,14 @@
 			[Triggers:GVK-Alliance-SupplyDepot-Trigger-Inside40000Check-KHAANEPH]
 			[Triggers:GVK-Alliance-SupplyDepot-Trigger-Inside50000Check-KHAANEPH]
 			[Triggers:GVK-Alliance-SupplyDepot-ManualTrigger-InsideZone-KHAANEPH]
+			[Triggers:GVK-Alliance-SupplyDepot-ManualTrigger-OwnerChangeChat-KHAANEPH]
 			[Triggers:GVK-Alliance-SupplyDepot-Trigger-Inside10000Check-SOBAN]
 			[Triggers:GVK-Alliance-SupplyDepot-Trigger-Inside20000Check-SOBAN]
 			[Triggers:GVK-Alliance-SupplyDepot-Trigger-Inside30000Check-SOBAN]
 			[Triggers:GVK-Alliance-SupplyDepot-Trigger-Inside40000Check-SOBAN]
 			[Triggers:GVK-Alliance-SupplyDepot-Trigger-Inside50000Check-SOBAN]
 			[Triggers:GVK-Alliance-SupplyDepot-ManualTrigger-InsideZone-SOBAN]
+			[Triggers:GVK-Alliance-SupplyDepot-ManualTrigger-OwnerChangeChat-SOBAN]
 			[Triggers:GVK-Alliance-SupplyDepot-Trigger-ResetOwnership]
 			[Triggers:GVK-Alliance-SupplyDepot-Trigger-SpawnLoot]
 			</Description>
@@ -36,8 +38,8 @@
 			[MES AI Trigger]
 			[UseTrigger:true]
 			[Type:InsideActiveZone]
-			[MinCooldownMs:10000]
-			[MaxCooldownMs:10001]
+			[MinCooldownMs:30000]
+			[MaxCooldownMs:30001]
 			[StartsReady:false]
 			[ZoneName:KHAANEPH_Zone_10000]
 			[Actions:GVK-Alliance-SupplyDepot-Action-InsideZonesCheck-KHAANEPH]
@@ -53,8 +55,8 @@
 			[MES AI Trigger]
 			[UseTrigger:true]
 			[Type:InsideActiveZone]
-			[MinCooldownMs:10000]
-			[MaxCooldownMs:10001]
+			[MinCooldownMs:30000]
+			[MaxCooldownMs:30001]
 			[StartsReady:false]
 			[ZoneName:KHAANEPH_Zone_20000]
 			[Actions:GVK-Alliance-SupplyDepot-Action-InsideZonesCheck-KHAANEPH]
@@ -70,8 +72,8 @@
 			[MES AI Trigger]
 			[UseTrigger:true]
 			[Type:InsideActiveZone]
-			[MinCooldownMs:10000]
-			[MaxCooldownMs:10001]
+			[MinCooldownMs:30000]
+			[MaxCooldownMs:30001]
 			[StartsReady:false]
 			[ZoneName:KHAANEPH_Zone_30000]
 			[Actions:GVK-Alliance-SupplyDepot-Action-InsideZonesCheck-KHAANEPH]
@@ -87,8 +89,8 @@
 			[MES AI Trigger]
 			[UseTrigger:true]
 			[Type:InsideActiveZone]
-			[MinCooldownMs:10000]
-			[MaxCooldownMs:10001]
+			[MinCooldownMs:30000]
+			[MaxCooldownMs:30001]
 			[StartsReady:false]
 			[ZoneName:KHAANEPH_Zone_40000]
 			[Actions:GVK-Alliance-SupplyDepot-Action-InsideZonesCheck-KHAANEPH]
@@ -104,8 +106,8 @@
 			[MES AI Trigger]
 			[UseTrigger:true]
 			[Type:InsideActiveZone]
-			[MinCooldownMs:10000]
-			[MaxCooldownMs:10001]
+			[MinCooldownMs:30000]
+			[MaxCooldownMs:30001]
 			[StartsReady:false]
 			[ZoneName:KHAANEPH_Zone_50000]
 			[Actions:GVK-Alliance-SupplyDepot-Action-InsideZonesCheck-KHAANEPH]
@@ -120,6 +122,7 @@
 			[MES AI Action]
 			[ManuallyActivateTrigger:true]
 			[ManuallyActivatedTriggerNames:GVK-Alliance-SupplyDepot-ManualTrigger-InsideZone-KHAANEPH]
+			[ManuallyActivatedTriggerNames:GVK-Alliance-SupplyDepot-ManualTrigger-OwnerChangeChat-KHAANEPH]
 			</Description>
 		</EntityComponent>
 		<!-- trigger to confirm it is inside Zone 50000 -->
@@ -132,9 +135,11 @@
 			[MES AI Trigger]
 			[UseTrigger:true]
 			[Type:Manual]
-			[MinCooldownMs:5000]
-			[MaxCooldownMs:5001]
 			[StartsReady:true]
+			[MinCooldownMs:15000]
+			[MaxCooldownMs:15001]
+			[MaxActions:-1]
+			[ActionExecution:All]
 			[Actions:GVK-Alliance-SupplyDepot-Action-InsideZone-KHAANEPH]
 			[Actions:GVK-Alliance-SupplyDepot-Action-SetOwnership-KHAANEPH]
 			</Description>
@@ -146,6 +151,7 @@
 			</Id>
 			<Description>
 			[MES AI Action]
+			[//DebugMessage:InsideZone-KHAANEPH]
 			[ResetCooldownTimeOfTriggers:true]
 			[ResetTriggerCooldownNames:GVK-Alliance-SupplyDepot-Trigger-ResetOwnership]
 			[ResetTriggerCooldownNames:GVK-Alliance-SupplyDepot-Trigger-SpawnLoot]
@@ -154,46 +160,6 @@
 			[EnableTriggerNames:GVK-Alliance-SupplyDepot-Trigger-SpawnLoot]
 			[DisableTriggers:true]
 			[DisableTriggerNames:GVK-Alliance-SupplyDepot-ManualTrigger-InsideZone-SOBAN]
-			[UseChatBroadcast:true]
-			[ChatData:GVK-Alliance-SupplyDepot-Chat-InsideZone-KHAANEPH]
-			</Description>
-		</EntityComponent>
-		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
-			<Id>
-				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Alliance-SupplyDepot-Chat-InsideZone-KHAANEPH</SubtypeId>
-			</Id>
-			<Description>
-			[RivalAI Chat]
-			[UseChat:true]
-			[StartsReady:true]
-			[Chance:100]
-			[BroadcastRandomly:false]
-			[Author:Sensors]
-			[Color:Blue]
-			[ChatMessages:Inside KHAANEPH Zones.]
-			[ChatAudio:ArcHudSensors]
-			[BroadcastChatType:Both]
-			[SendToAllOnlinePlayers:true]
-			[IgnoreAntennaRequirement:true]
-			[IgnoredAntennaRangeOverride:10000]
-			</Description>
-		</EntityComponent>
-		<!-- trigger to reset ownership to neutral if not in an KHAANEPH Zone -->
-		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
-			<Id>
-				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Alliance-SupplyDepot-Trigger-ResetOwnership</SubtypeId>
-			</Id>
-			<Description>
-			[MES AI Trigger]
-			[UseTrigger:false]
-			[Type:Timer]
-			[MinCooldownMs:20000]
-			[MaxCooldownMs:20001]
-			[StartsReady:false]
-			[Actions:GVK-Alliance-SupplyDepot-Action-OutsideAllZones]
-			[Actions:GVK-Universal-Action-LargeExplosionEffects]
 			</Description>
 		</EntityComponent>
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
@@ -203,6 +169,7 @@
 			</Id>
 			<Description>
 			[MES AI Action]
+			[//DebugMessage:SetOwnership-KHAANEPH]
 			[ChangeBlockOwnership:true]
 			[OwnershipBlockNames:NPC Block]
 			[OwnershipBlockFactions:KHAANEPH]
@@ -226,6 +193,36 @@
 			[NewBlockSkins:Battered_Armor]
 			</Description>
 		</EntityComponent>
+		<!-- separate trigger that runs once when changing ownership from neutral to KHAANEPH for chat message -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-SupplyDepot-ManualTrigger-OwnerChangeChat-KHAANEPH</SubtypeId>
+			</Id>
+			<Description>
+			[MES AI Trigger]
+			[UseTrigger:true]
+			[Type:Manual]
+			[StartsReady:true]
+			[MaxActions:-1]
+			[ActionExecution:All]
+			[Actions:GVK-Alliance-SupplyDepot-Action-OwnerChangeChat-KHAANEPH]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-SupplyDepot-Action-OwnerChangeChat-KHAANEPH</SubtypeId>
+			</Id>
+			<Description>
+			[MES AI Action]
+			[//DebugMessage:OwnerChangeChat-KHAANEPH]
+			[DisableTriggers:true]
+			[DisableTriggerNames:GVK-Alliance-SupplyDepot-ManualTrigger-OwnerChangeChat-KHAANEPH]
+			[UseChatBroadcast:true]
+			[ChatData:GVK-Alliance-SupplyDepot-Chat-OwnerChangeChat]
+			</Description>
+		</EntityComponent>
 		<!-- Triggers to detect SOBAN Zones -->
 		<!-- trigger to confirm it is inside Zone 10000 -->
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
@@ -237,8 +234,8 @@
 			[MES AI Trigger]
 			[UseTrigger:true]
 			[Type:InsideActiveZone]
-			[MinCooldownMs:10000]
-			[MaxCooldownMs:10001]
+			[MinCooldownMs:30000]
+			[MaxCooldownMs:30001]
 			[StartsReady:false]
 			[ZoneName:SOBAN_Zone_10000]
 			[Actions:GVK-Alliance-SupplyDepot-Action-InsideZonesCheck-SOBAN]
@@ -254,8 +251,8 @@
 			[MES AI Trigger]
 			[UseTrigger:true]
 			[Type:InsideActiveZone]
-			[MinCooldownMs:10000]
-			[MaxCooldownMs:10001]
+			[MinCooldownMs:30000]
+			[MaxCooldownMs:30001]
 			[StartsReady:false]
 			[ZoneName:SOBAN_Zone_20000]
 			[Actions:GVK-Alliance-SupplyDepot-Action-InsideZonesCheck-SOBAN]
@@ -271,8 +268,8 @@
 			[MES AI Trigger]
 			[UseTrigger:true]
 			[Type:InsideActiveZone]
-			[MinCooldownMs:10000]
-			[MaxCooldownMs:10001]
+			[MinCooldownMs:30000]
+			[MaxCooldownMs:30001]
 			[StartsReady:false]
 			[ZoneName:SOBAN_Zone_30000]
 			[Actions:GVK-Alliance-SupplyDepot-Action-InsideZonesCheck-SOBAN]
@@ -288,8 +285,8 @@
 			[MES AI Trigger]
 			[UseTrigger:true]
 			[Type:InsideActiveZone]
-			[MinCooldownMs:10000]
-			[MaxCooldownMs:10001]
+			[MinCooldownMs:30000]
+			[MaxCooldownMs:30001]
 			[StartsReady:false]
 			[ZoneName:SOBAN_Zone_40000]
 			[Actions:GVK-Alliance-SupplyDepot-Action-InsideZonesCheck-SOBAN]
@@ -305,8 +302,8 @@
 			[MES AI Trigger]
 			[UseTrigger:true]
 			[Type:InsideActiveZone]
-			[MinCooldownMs:10000]
-			[MaxCooldownMs:10001]
+			[MinCooldownMs:30000]
+			[MaxCooldownMs:30001]
 			[StartsReady:false]
 			[ZoneName:SOBAN_Zone_50000]
 			[Actions:GVK-Alliance-SupplyDepot-Action-InsideZonesCheck-SOBAN]
@@ -321,6 +318,7 @@
 			[MES AI Action]
 			[ManuallyActivateTrigger:true]
 			[ManuallyActivatedTriggerNames:GVK-Alliance-SupplyDepot-ManualTrigger-InsideZone-SOBAN]
+			[ManuallyActivatedTriggerNames:GVK-Alliance-SupplyDepot-ManualTrigger-OwnerChangeChat-SOBAN]
 			</Description>
 		</EntityComponent>
 		<!-- trigger to confirm it is inside Zone 50000 -->
@@ -333,9 +331,11 @@
 			[MES AI Trigger]
 			[UseTrigger:true]
 			[Type:Manual]
-			[MinCooldownMs:5000]
-			[MaxCooldownMs:5001]
+			[MinCooldownMs:15000]
+			[MaxCooldownMs:15001]
 			[StartsReady:true]
+			[MaxActions:-1]
+			[ActionExecution:All]
 			[Actions:GVK-Alliance-SupplyDepot-Action-InsideZone-SOBAN]
 			[Actions:GVK-Alliance-SupplyDepot-Action-SetOwnership-SOBAN]
 			</Description>
@@ -347,6 +347,9 @@
 			</Id>
 			<Description>
 			[MES AI Action]
+			[//DebugMessage:InsideZone-SOBAN]
+			[SetBooleansTrue:OwnerSOBAN]
+			[SetBooleansFlase:OwnerKHAANEPH]
 			[ResetCooldownTimeOfTriggers:true]
 			[ResetTriggerCooldownNames:GVK-Alliance-SupplyDepot-Trigger-ResetOwnership]
 			[ResetTriggerCooldownNames:GVK-Alliance-SupplyDepot-Trigger-SpawnLoot]
@@ -355,29 +358,6 @@
 			[EnableTriggerNames:GVK-Alliance-SupplyDepot-Trigger-SpawnLoot]
 			[DisableTriggers:true]
 			[DisableTriggerNames:GVK-Alliance-SupplyDepot-ManualTrigger-InsideZone-KHAANEPH]
-			[UseChatBroadcast:true]
-			[ChatData:GVK-Alliance-SupplyDepot-Chat-InsideZone-SOBAN]
-			</Description>
-		</EntityComponent>
-		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
-			<Id>
-				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Alliance-SupplyDepot-Chat-InsideZone-SOBAN</SubtypeId>
-			</Id>
-			<Description>
-			[RivalAI Chat]
-			[UseChat:true]
-			[StartsReady:true]
-			[Chance:100]
-			[BroadcastRandomly:false]
-			[Author:Sensors]
-			[Color:Blue]
-			[ChatMessages:Inside SOBAN Zones.]
-			[ChatAudio:ArcHudSensors]
-			[BroadcastChatType:Both]
-			[SendToAllOnlinePlayers:true]
-			[IgnoreAntennaRequirement:true]
-			[IgnoredAntennaRangeOverride:10000]
 			</Description>
 		</EntityComponent>
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
@@ -387,6 +367,7 @@
 			</Id>
 			<Description>
 			[MES AI Action]
+			[//DebugMessage:SetOwnership-SOBAN]
 			[ChangeBlockOwnership:true]
 			[OwnershipBlockNames:NPC Block]
 			[OwnershipBlockFactions:SOBAN]
@@ -410,7 +391,53 @@
 			[NewBlockSkins:SciFi_Armor]
 			</Description>
 		</EntityComponent>
-
+		<!-- separate trigger that runs once when changing ownership from neutral to KHAANEPH for chat message -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-SupplyDepot-ManualTrigger-OwnerChangeChat-SOBAN</SubtypeId>
+			</Id>
+			<Description>
+			[MES AI Trigger]
+			[UseTrigger:true]
+			[Type:Manual]
+			[StartsReady:true]
+			[MaxActions:-1]
+			[ActionExecution:All]
+			[Actions:GVK-Alliance-SupplyDepot-Action-OwnerChangeChat-SOBAN]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-SupplyDepot-Action-OwnerChangeChat-SOBAN</SubtypeId>
+			</Id>
+			<Description>
+			[MES AI Action]
+			[//DebugMessage:OwnerChangeChat-SOBAN]
+			[DisableTriggers:true]
+			[DisableTriggerNames:GVK-Alliance-SupplyDepot-ManualTrigger-OwnerChangeChat-SOBAN]
+			[UseChatBroadcast:true]
+			[ChatData:GVK-Alliance-SupplyDepot-Chat-OwnerChangeChat]
+			</Description>
+		</EntityComponent>
+		<!-- trigger to reset ownership to neutral if not in any Zone -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-SupplyDepot-Trigger-ResetOwnership</SubtypeId>
+			</Id>
+			<Description>
+			[MES AI Trigger]
+			[UseTrigger:false]
+			[Type:Timer]
+			[MinCooldownMs:60000]
+			[MaxCooldownMs:60001]
+			[StartsReady:false]
+			[Actions:GVK-Alliance-SupplyDepot-Action-OutsideAllZones]
+			[Actions:GVK-Universal-Action-LargeExplosionEffects]
+			</Description>
+		</EntityComponent>
 		<!-- Action for outside all zones to set color and ownership to neutral -->
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
@@ -419,9 +446,12 @@
 			</Id>
 			<Description>
 			[MES AI Action]
+			[//DebugMessage:OutsideAllZones]
 			[EnableTriggers:true]
 			[EnableTriggerNames:GVK-Alliance-SupplyDepot-ManualTrigger-InsideZone-KHAANEPH]
 			[EnableTriggerNames:GVK-Alliance-SupplyDepot-ManualTrigger-InsideZone-SOBAN]
+			[EnableTriggerNames:GVK-Alliance-SupplyDepot-ManualTrigger-OwnerChangeChat-KHAANEPH]
+			[EnableTriggerNames:GVK-Alliance-SupplyDepot-ManualTrigger-OwnerChangeChat-SOBAN]
 			[DisableTriggers:true]
 			[DisableTriggerNames:GVK-Alliance-SupplyDepot-Trigger-ResetOwnership]
 			[DisableTriggerNames:GVK-Alliance-SupplyDepot-Trigger-SpawnLoot]
@@ -447,6 +477,7 @@
 			[NewBlockColors:{X:0.803 Y:-0.8 Z:-0.3}]
 			[NewBlockSkins:Battered_Armor]
 			[UseChatBroadcast:true]
+			[ChatData:GVK-Alliance-SupplyDepot-Chat-OwnerLostChat]
 			</Description>
 		</EntityComponent>
 		<!-- Trigger to restock shared cargos every 6 hours 21,600,000 ms -->
@@ -497,6 +528,50 @@
 			[Author:Sensors]
 			[Color:Blue]
 			[ChatMessages:{Faction} supply depot has been restocked.]
+			[ChatAudio:ArcHudGPSNotification2]
+			[BroadcastChatType:Chat]
+			[SendToAllOnlinePlayers:true]
+			[IgnoreAntennaRequirement:true]
+			[IgnoredAntennaRangeOverride:10000]
+		  </Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-SupplyDepot-Chat-OwnerChangeChat</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Chat]
+			[UseChat:true]
+			[StartsReady:true]
+			[Chance:100]
+			[MaxChats:-1]
+			[BroadcastRandomly:false]
+			[Author:Sensors]
+			[Color:Blue]
+			[ChatMessages:{Faction} has taken control of a Supply Depot.]
+			[ChatAudio:ArcHudGPSNotification2]
+			[BroadcastChatType:Chat]
+			[SendToAllOnlinePlayers:true]
+			[IgnoreAntennaRequirement:true]
+			[IgnoredAntennaRangeOverride:10000]
+		  </Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-SupplyDepot-Chat-OwnerLostChat</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Chat]
+			[UseChat:true]
+			[StartsReady:true]
+			[Chance:100]
+			[MaxChats:-1]
+			[BroadcastRandomly:false]
+			[Author:Sensors]
+			[Color:Blue]
+			[ChatMessages:A supply depot is no longer under allaince control.]
 			[ChatAudio:ArcHudGPSNotification2]
 			[BroadcastChatType:Chat]
 			[SendToAllOnlinePlayers:true]
