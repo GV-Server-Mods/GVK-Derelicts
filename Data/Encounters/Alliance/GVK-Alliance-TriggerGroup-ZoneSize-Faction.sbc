@@ -16,6 +16,8 @@
 			[Triggers:GVK-Alliance-Homebase-Trigger-DisableZone40000-KHAANEPH]
 			[Triggers:GVK-Alliance-Homebase-Trigger-EnableZone50000-KHAANEPH]
 			[Triggers:GVK-Alliance-Homebase-Trigger-DisableZone50000-KHAANEPH]
+			[Triggers:GVK-Alliance-Homebase-Trigger-EnableZone55000-KHAANEPH]
+			[Triggers:GVK-Alliance-Homebase-Trigger-DisableZone55000-KHAANEPH]
 			</Description>
 		</EntityComponent>
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
@@ -33,9 +35,11 @@
 			[Triggers:GVK-Alliance-Homebase-Trigger-DisableZone40000-SOBAN]
 			[Triggers:GVK-Alliance-Homebase-Trigger-EnableZone50000-SOBAN]
 			[Triggers:GVK-Alliance-Homebase-Trigger-DisableZone50000-SOBAN]
+			[Triggers:GVK-Alliance-Homebase-Trigger-EnableZone55000-SOBAN]
+			[Triggers:GVK-Alliance-Homebase-Trigger-DisableZone55000-SOBAN]
 			</Description>
 		</EntityComponent>
-		<!-- Trigger to check and enable 2000m KHAANEPH Zone -->
+		<!-- Trigger to check and enable 20000m KHAANEPH Zone -->
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
@@ -67,11 +71,11 @@
 			[MatchAnyCondition:false]
 			[CheckCustomSandboxCounters:true]
 			[CustomSandboxCounters:KHAANEPH_Points]
-			[CustomSandboxCountersTargets:100]
+			[CustomSandboxCountersTargets:200]
 			[SandboxCounterCompareTypes:GreaterOrEqual]
 			</Description>
 		</EntityComponent>
-		<!-- Trigger to check and disable 2000m KHAANEPH Zone -->
+		<!-- Trigger to check and disable 20000m KHAANEPH Zone -->
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
@@ -103,11 +107,11 @@
 			[MatchAnyCondition:false]
 			[CheckCustomSandboxCounters:true]
 			[CustomSandboxCounters:KHAANEPH_Points]
-			[CustomSandboxCountersTargets:100]
+			[CustomSandboxCountersTargets:200]
 			[SandboxCounterCompareTypes:Less]
 			</Description>
 		</EntityComponent>
-		<!-- Trigger to check and enable 3000m KHAANEPH Zone -->
+		<!-- Trigger to check and enable 30000m KHAANEPH Zone -->
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
@@ -139,11 +143,11 @@
 			[MatchAnyCondition:false]
 			[CheckCustomSandboxCounters:true]
 			[CustomSandboxCounters:KHAANEPH_Points]
-			[CustomSandboxCountersTargets:300]
+			[CustomSandboxCountersTargets:400]
 			[SandboxCounterCompareTypes:GreaterOrEqual]
 			</Description>
 		</EntityComponent>
-		<!-- Trigger to check and disable 3000m KHAANEPH Zone -->
+		<!-- Trigger to check and disable 30000m KHAANEPH Zone -->
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
@@ -175,11 +179,11 @@
 			[MatchAnyCondition:false]
 			[CheckCustomSandboxCounters:true]
 			[CustomSandboxCounters:KHAANEPH_Points]
-			[CustomSandboxCountersTargets:300]
+			[CustomSandboxCountersTargets:400]
 			[SandboxCounterCompareTypes:Less]
 			</Description>
 		</EntityComponent>
-		<!-- Trigger to check and enable 4000m KHAANEPH Zone -->
+		<!-- Trigger to check and enable 40000m KHAANEPH Zone -->
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
@@ -215,7 +219,7 @@
 			[SandboxCounterCompareTypes:GreaterOrEqual]
 			</Description>
 		</EntityComponent>
-		<!-- Trigger to check and disable 4000m KHAANEPH Zone -->
+		<!-- Trigger to check and disable 40000m KHAANEPH Zone -->
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
@@ -251,7 +255,7 @@
 			[SandboxCounterCompareTypes:Less]
 			</Description>
 		</EntityComponent>
-		<!-- Trigger to check and enable 5000m Alliance Zone -->
+		<!-- Trigger to check and enable 50000m Alliance Zone -->
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
@@ -283,11 +287,11 @@
 			[MatchAnyCondition:false]
 			[CheckCustomSandboxCounters:true]
 			[CustomSandboxCounters:KHAANEPH_Points]
-			[CustomSandboxCountersTargets:1000]
+			[CustomSandboxCountersTargets:800]
 			[SandboxCounterCompareTypes:GreaterOrEqual]
 			</Description>
 		</EntityComponent>
-		<!-- Trigger to check and disable 5000m Alliance Zone -->
+		<!-- Trigger to check and disable 50000m Alliance Zone -->
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
@@ -319,11 +323,83 @@
 			[MatchAnyCondition:false]
 			[CheckCustomSandboxCounters:true]
 			[CustomSandboxCounters:KHAANEPH_Points]
+			[CustomSandboxCountersTargets:800]
+			[SandboxCounterCompareTypes:Less]
+			</Description>
+		</EntityComponent>
+		<!-- Trigger to check and enable 55000m Alliance Zone -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-Homebase-Trigger-EnableZone55000-KHAANEPH</SubtypeId>
+			</Id>
+			<Description>
+			[MES AI Trigger]
+			[UseTrigger:true]
+			[Type:Timer]
+			[MinCooldownMs:10000]
+			[MaxCooldownMs:10001]
+			[StartsReady:false]
+			[MaxActions:-1]
+			[Actions:GVK-Alliance-Homebase-Action-EnableZone55000-Faction]
+			[Conditions:GVK-Alliance-Homebase-Condition-EnableZone55000-KHAANEPH]
+			[ConditionCheckResetsTimer:true]
+			[ToggleWithTriggerProfile:GVK-Alliance-Homebase-Trigger-DisableZone55000-KHAANEPH]
+			[ToggledProfileResetsCooldown:true]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-Homebase-Condition-EnableZone55000-KHAANEPH</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Condition]
+			[UseConditions:true]
+			[MatchAnyCondition:false]
+			[CheckCustomSandboxCounters:true]
+			[CustomSandboxCounters:KHAANEPH_Points]
+			[CustomSandboxCountersTargets:1000]
+			[SandboxCounterCompareTypes:GreaterOrEqual]
+			</Description>
+		</EntityComponent>
+		<!-- Trigger to check and disable 55000m Alliance Zone -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-Homebase-Trigger-DisableZone55000-KHAANEPH</SubtypeId>
+			</Id>
+			<Description>
+			[MES AI Trigger]
+			[UseTrigger:false]
+			[Type:Timer]
+			[MinCooldownMs:10000]
+			[MaxCooldownMs:10001]
+			[StartsReady:false]
+			[MaxActions:-1]
+			[Actions:GVK-Alliance-Homebase-Action-DisableZone55000-Faction]
+			[Conditions:GVK-Alliance-Homebase-Condition-DisableZone55000-KHAANEPH]
+			[ConditionCheckResetsTimer:true]
+			[ToggleWithTriggerProfile:GVK-Alliance-Homebase-Trigger-EnableZone55000-KHAANEPH]
+			[ToggledProfileResetsCooldown:true]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-Homebase-Condition-DisableZone55000-KHAANEPH</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Condition]
+			[UseConditions:true]
+			[MatchAnyCondition:false]
+			[CheckCustomSandboxCounters:true]
+			[CustomSandboxCounters:KHAANEPH_Points]
 			[CustomSandboxCountersTargets:1000]
 			[SandboxCounterCompareTypes:Less]
 			</Description>
 		</EntityComponent>
-		<!-- Trigger to check and enable 2000m KHAANEPH Zone -->
+		<!-- Trigger to check and enable 20000m KHAANEPH Zone -->
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
@@ -355,11 +431,11 @@
 			[MatchAnyCondition:false]
 			[CheckCustomSandboxCounters:true]
 			[CustomSandboxCounters:SOBAN_Points]
-			[CustomSandboxCountersTargets:100]
+			[CustomSandboxCountersTargets:200]
 			[SandboxCounterCompareTypes:GreaterOrEqual]
 			</Description>
 		</EntityComponent>
-		<!-- Trigger to check and disable 2000m SOBAN Zone -->
+		<!-- Trigger to check and disable 20000m SOBAN Zone -->
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
@@ -391,11 +467,11 @@
 			[MatchAnyCondition:false]
 			[CheckCustomSandboxCounters:true]
 			[CustomSandboxCounters:SOBAN_Points]
-			[CustomSandboxCountersTargets:100]
+			[CustomSandboxCountersTargets:200]
 			[SandboxCounterCompareTypes:Less]
 			</Description>
 		</EntityComponent>
-		<!-- Trigger to check and enable 3000m SOBAN Zone -->
+		<!-- Trigger to check and enable 30000m SOBAN Zone -->
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
@@ -427,11 +503,11 @@
 			[MatchAnyCondition:false]
 			[CheckCustomSandboxCounters:true]
 			[CustomSandboxCounters:SOBAN_Points]
-			[CustomSandboxCountersTargets:300]
+			[CustomSandboxCountersTargets:400]
 			[SandboxCounterCompareTypes:GreaterOrEqual]
 			</Description>
 		</EntityComponent>
-		<!-- Trigger to check and disable 3000m SOBAN Zone -->
+		<!-- Trigger to check and disable 30000m SOBAN Zone -->
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
@@ -463,11 +539,11 @@
 			[MatchAnyCondition:false]
 			[CheckCustomSandboxCounters:true]
 			[CustomSandboxCounters:SOBAN_Points]
-			[CustomSandboxCountersTargets:300]
+			[CustomSandboxCountersTargets:400]
 			[SandboxCounterCompareTypes:Less]
 			</Description>
 		</EntityComponent>
-		<!-- Trigger to check and enable 4000m SOBAN Zone -->
+		<!-- Trigger to check and enable 40000m SOBAN Zone -->
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
@@ -503,7 +579,7 @@
 			[SandboxCounterCompareTypes:GreaterOrEqual]
 			</Description>
 		</EntityComponent>
-		<!-- Trigger to check and disable 4000m SOBAN Zone -->
+		<!-- Trigger to check and disable 40000m SOBAN Zone -->
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
@@ -539,7 +615,7 @@
 			[SandboxCounterCompareTypes:Less]
 			</Description>
 		</EntityComponent>
-		<!-- Trigger to check and enable 5000m Alliance Zone -->
+		<!-- Trigger to check and enable 50000m Alliance Zone -->
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
@@ -571,11 +647,11 @@
 			[MatchAnyCondition:false]
 			[CheckCustomSandboxCounters:true]
 			[CustomSandboxCounters:SOBAN_Points]
-			[CustomSandboxCountersTargets:1000]
+			[CustomSandboxCountersTargets:800]
 			[SandboxCounterCompareTypes:GreaterOrEqual]
 			</Description>
 		</EntityComponent>
-		<!-- Trigger to check and disable 5000m Alliance Zone -->
+		<!-- Trigger to check and disable 50000m Alliance Zone -->
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
@@ -600,6 +676,78 @@
 			<Id>
 				<TypeId>Inventory</TypeId>
 				<SubtypeId>GVK-Alliance-Homebase-Condition-DisableZone50000-SOBAN</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Condition]
+			[UseConditions:true]
+			[MatchAnyCondition:false]
+			[CheckCustomSandboxCounters:true]
+			[CustomSandboxCounters:SOBAN_Points]
+			[CustomSandboxCountersTargets:800]
+			[SandboxCounterCompareTypes:Less]
+			</Description>
+		</EntityComponent>
+		<!-- Trigger to check and enable 55000m Alliance Zone -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-Homebase-Trigger-EnableZone55000-SOBAN</SubtypeId>
+			</Id>
+			<Description>
+			[MES AI Trigger]
+			[UseTrigger:true]
+			[Type:Timer]
+			[MinCooldownMs:10000]
+			[MaxCooldownMs:10001]
+			[StartsReady:false]
+			[MaxActions:-1]
+			[Actions:GVK-Alliance-Homebase-Action-EnableZone55000-Faction]
+			[Conditions:GVK-Alliance-Homebase-Condition-EnableZone55000-SOBAN]
+			[ConditionCheckResetsTimer:true]
+			[ToggleWithTriggerProfile:GVK-Alliance-Homebase-Trigger-DisableZone55000-SOBAN]
+			[ToggledProfileResetsCooldown:true]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-Homebase-Condition-EnableZone55000-SOBAN</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Condition]
+			[UseConditions:true]
+			[MatchAnyCondition:false]
+			[CheckCustomSandboxCounters:true]
+			[CustomSandboxCounters:SOBAN_Points]
+			[CustomSandboxCountersTargets:1000]
+			[SandboxCounterCompareTypes:GreaterOrEqual]
+			</Description>
+		</EntityComponent>
+		<!-- Trigger to check and disable 55000m Alliance Zone -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-Homebase-Trigger-DisableZone55000-SOBAN</SubtypeId>
+			</Id>
+			<Description>
+			[MES AI Trigger]
+			[UseTrigger:false]
+			[Type:Timer]
+			[MinCooldownMs:10000]
+			[MaxCooldownMs:10001]
+			[StartsReady:false]
+			[MaxActions:-1]
+			[Actions:GVK-Alliance-Homebase-Action-DisableZone55000-Faction]
+			[Conditions:GVK-Alliance-Homebase-Condition-DisableZone55000-SOBAN]
+			[ConditionCheckResetsTimer:true]
+			[ToggleWithTriggerProfile:GVK-Alliance-Homebase-Trigger-EnableZone55000-SOBAN]
+			[ToggledProfileResetsCooldown:true]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-Homebase-Condition-DisableZone55000-SOBAN</SubtypeId>
 			</Id>
 			<Description>
 			[RivalAI Condition]
@@ -775,6 +923,48 @@
 			[ZoneRadiusChangeAmount:1]
 			[SetCustomStrings:true]
 			[CustomStrings:FactionZoneRadius,40]
+			[CustomStrings:FactionZoneStatus,decreased]
+			[UseChatBroadcast:true]
+			[ChatData:GVK-Alliance-Homebase-Chat-FactionZoneStatus]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-Homebase-Action-EnableZone55000-Faction</SubtypeId>
+			</Id>
+			<Description>
+			[MES AI Action]
+			[//DebugMessage:EnableZone55000]
+			[ChangeZoneAtPosition:true]
+			[ZoneName:{Faction}_Zone_55000]
+			[ZoneToggleActive:true]
+			[ZoneToggleActiveMode:true]
+			[ZoneRadiusChangeType:Set]
+			[ZoneRadiusChangeAmount:55000]
+			[SetCustomStrings:true]
+			[CustomStrings:FactionZoneRadius,55]
+			[CustomStrings:FactionZoneStatus,increased]
+			[UseChatBroadcast:true]
+			[ChatData:GVK-Alliance-Homebase-Chat-FactionZoneStatus]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-Homebase-Action-DisableZone55000-Faction</SubtypeId>
+			</Id>
+			<Description>
+			[MES AI Action]
+			[//DebugMessage:DisableZone55000]
+			[ChangeZoneAtPosition:true]
+			[ZoneName:{Faction}_Zone_55000]
+			[ZoneToggleActive:true]
+			[ZoneToggleActiveMode:false]
+			[ZoneRadiusChangeType:Set]
+			[ZoneRadiusChangeAmount:1]
+			[SetCustomStrings:true]
+			[CustomStrings:FactionZoneRadius,50]
 			[CustomStrings:FactionZoneStatus,decreased]
 			[UseChatBroadcast:true]
 			[ChatData:GVK-Alliance-Homebase-Chat-FactionZoneStatus]

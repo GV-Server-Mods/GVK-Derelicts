@@ -15,6 +15,7 @@
 			[Triggers:GVK-Alliance-SupplyDepot-Trigger-Inside30000Check-KHAANEPH]
 			[Triggers:GVK-Alliance-SupplyDepot-Trigger-Inside40000Check-KHAANEPH]
 			[Triggers:GVK-Alliance-SupplyDepot-Trigger-Inside50000Check-KHAANEPH]
+			[Triggers:GVK-Alliance-SupplyDepot-Trigger-Inside55000Check-KHAANEPH]
 			[Triggers:GVK-Alliance-SupplyDepot-ManualTrigger-InsideZone-KHAANEPH]
 			[Triggers:GVK-Alliance-SupplyDepot-ManualTrigger-OwnerChangeChat-KHAANEPH]
 			[Triggers:GVK-Alliance-SupplyDepot-Trigger-Inside10000Check-SOBAN]
@@ -22,6 +23,7 @@
 			[Triggers:GVK-Alliance-SupplyDepot-Trigger-Inside30000Check-SOBAN]
 			[Triggers:GVK-Alliance-SupplyDepot-Trigger-Inside40000Check-SOBAN]
 			[Triggers:GVK-Alliance-SupplyDepot-Trigger-Inside50000Check-SOBAN]
+			[Triggers:GVK-Alliance-SupplyDepot-Trigger-Inside55000Check-SOBAN]
 			[Triggers:GVK-Alliance-SupplyDepot-ManualTrigger-InsideZone-SOBAN]
 			[Triggers:GVK-Alliance-SupplyDepot-ManualTrigger-OwnerChangeChat-SOBAN]
 			[Triggers:GVK-Alliance-SupplyDepot-Trigger-ResetOwnership]
@@ -110,6 +112,23 @@
 			[MaxCooldownMs:30001]
 			[StartsReady:false]
 			[ZoneName:KHAANEPH_Zone_50000]
+			[Actions:GVK-Alliance-SupplyDepot-Action-InsideZonesCheck-KHAANEPH]
+			</Description>
+		</EntityComponent>
+		<!-- trigger to confirm it is inside Zone 50000 -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-SupplyDepot-Trigger-Inside55000Check-KHAANEPH</SubtypeId>
+			</Id>
+			<Description>
+			[MES AI Trigger]
+			[UseTrigger:true]
+			[Type:InsideActiveZone]
+			[MinCooldownMs:30000]
+			[MaxCooldownMs:30001]
+			[StartsReady:false]
+			[ZoneName:KHAANEPH_Zone_55000]
 			[Actions:GVK-Alliance-SupplyDepot-Action-InsideZonesCheck-KHAANEPH]
 			</Description>
 		</EntityComponent>
@@ -306,6 +325,23 @@
 			[MaxCooldownMs:30001]
 			[StartsReady:false]
 			[ZoneName:SOBAN_Zone_50000]
+			[Actions:GVK-Alliance-SupplyDepot-Action-InsideZonesCheck-SOBAN]
+			</Description>
+		</EntityComponent>
+		<!-- trigger to confirm it is inside Zone 55000 -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-SupplyDepot-Trigger-Inside55000Check-SOBAN</SubtypeId>
+			</Id>
+			<Description>
+			[MES AI Trigger]
+			[UseTrigger:true]
+			[Type:InsideActiveZone]
+			[MinCooldownMs:30000]
+			[MaxCooldownMs:30001]
+			[StartsReady:false]
+			[ZoneName:SOBAN_Zone_55000]
 			[Actions:GVK-Alliance-SupplyDepot-Action-InsideZonesCheck-SOBAN]
 			</Description>
 		</EntityComponent>
