@@ -1,15 +1,8 @@
 <?xml version="1.0"?>
 <Definitions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
 	<EntityComponents>
-		<!-- 
-		
-			Route A, Crossroads to Sevastapol
-			Cargo Ship Behavior for land rover following roads
-			Use alternate spawning method in Canyon Route Zone
-				GPS:Canyon Route:32649.04:36654.43:62459.73:#FF75C9F1:
-				26.45km
-
-		-->	
+		<!-- Route A, Crossroads to Sevastapol -->
+		<!-- Cargo Ship Behavior for land rover following roads -->
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
@@ -664,60 +657,6 @@
 			[EnableBlockStates:On]
 			[EnableTriggers:true]
 			[EnableTriggerNames:GVK-CargoShip-Land-COALITION-Trigger-EscortEnemySpawnsZ1]
-			</Description>
-		</EntityComponent>
-		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
-			<Id>
-				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-CargoShip-Land-COALITION-Trigger-EscortInsideCanyonZone</SubtypeId>
-			</Id>
-			<Description>
-			[RivalAI Trigger]
-			[UseTrigger:true]
-			[Type:InsideZone]
-			[ZoneName:EscortCanyon]
-			[StartsReady:false]
-			[MinCooldownMs:10000]
-			[MaxCooldownMs:10001]
-			[MaxActions:-1]
-			[Actions:GVK-CargoShip-Land-COALITION-Action-EscortInsideZ1]
-			</Description>
-		</EntityComponent>
-		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
-			<Id>
-				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-CargoShip-Land-COALITION-Action-EscortInsideZ1</SubtypeId>
-			</Id>
-			<Description>
-			[RivalAI Action]
-			[SetBooleansTrue:InCanyonZone]
-			</Description>
-		</EntityComponent>
-		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
-			<Id>
-				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-CargoShip-Land-COALITION-Trigger-EscortInsideCanyonZone</SubtypeId>
-			</Id>
-			<Description>
-			[RivalAI Trigger]
-			[UseTrigger:true]
-			[Type:OutsideZone]
-			[ZoneName:EscortCanyon]
-			[StartsReady:false]
-			[MinCooldownMs:10000]
-			[MaxCooldownMs:10001]
-			[MaxActions:-1]
-			[Actions:GVK-CargoShip-Land-COALITION-Action-EscortInsideZ1]
-			</Description>
-		</EntityComponent>
-		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
-			<Id>
-				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-CargoShip-Land-COALITION-Action-EscortInsideZ1</SubtypeId>
-			</Id>
-			<Description>
-			[RivalAI Action]
-			[SetBooleansFalse:InCanyonZone]
 			</Description>
 		</EntityComponent>
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
