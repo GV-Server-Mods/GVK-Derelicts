@@ -34,7 +34,7 @@
 			[Triggers:GVK-Universal-Trigger-EditableOnCompromised]
 			[Triggers:GVK-Universal-Trigger-TargetAttacker]
 			[Triggers:GVK-Universal-Trigger-TurretTarget]
-			[Triggers:GVK-Universal-Trigger-WeaponsToMaxRange]
+			[//Triggers:GVK-Universal-Trigger-WeaponsToMaxRange]
 			[Triggers:GVK-CargoShip-Land-COALITION-Trigger-EscortOnSpawnA]
 			[Triggers:GVK-CargoShip-Land-COALITION-Trigger-EscortAddWaypointsA]
 			[Triggers:GVK-CargoShip-Land-COALITION-Trigger-EscortHorizonAngleHigh]
@@ -46,12 +46,17 @@
 			[Triggers:GVK-CargoShip-Land-COALITION-Trigger-EscortPlayerNear]
 			[Triggers:GVK-CargoShip-Land-COALITION-Trigger-EscortPlayerStillNear]
 			[Triggers:GVK-CargoShip-Land-COALITION-Trigger-EscortPlayerNotNear]
+			[Triggers:GVK-CargoShip-Land-COALITION-Trigger-EscortInsideCanyonZone]
+			[Triggers:GVK-CargoShip-Land-COALITION-Trigger-EscortOutsideCanyonZone]
 			[Triggers:GVK-CargoShip-Land-COALITION-Trigger-EscortInsideZ1]
 			[Triggers:GVK-CargoShip-Land-COALITION-Trigger-EscortEnemySpawnsZ1]
+			[Triggers:GVK-CargoShip-Land-COALITION-Trigger-EscortEnemySpawnsZ1Canyon]
 			[Triggers:GVK-CargoShip-Land-COALITION-Trigger-EscortInsideZ2]
 			[Triggers:GVK-CargoShip-Land-COALITION-Trigger-EscortEnemySpawnsZ2]
+			[Triggers:GVK-CargoShip-Land-COALITION-Trigger-EscortEnemySpawnsZ2Canyon]
 			[Triggers:GVK-CargoShip-Land-COALITION-Trigger-EscortInsideZ3]
 			[Triggers:GVK-CargoShip-Land-COALITION-Trigger-EscortEnemySpawnsZ3]
+			[Triggers:GVK-CargoShip-Land-COALITION-Trigger-EscortEnemySpawnsZ3Canyon]
 			[Triggers:GVK-CargoShip-Land-COALITION-Trigger-EscortSuccessTargetA]
 			[Triggers:GVK-CargoShip-Land-COALITION-Trigger-EscortSuccessCounterA]
 			[RemoteControlCode:COALITIONRouteA]
@@ -149,6 +154,23 @@
 			[MaxVelocityAngleForSpeedControl:1000]
 			</Description>
 		</EntityComponent>		
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-CargoShip-Land-COALITION-Waypoint-EscortEnemySpawnsCanyon</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Waypoint]
+			[Waypoint:RelativeOffset]
+			[RelativeEntity:Self]
+			[Offset:{X:700 Y:50 Z:-700}]
+			[MinDistance:0]
+			[MaxDistance:300]
+			[MinAltitude:30]
+			[MaxAltitude:40]
+			[InheritRelativeAltitude:true]
+			</Description>
+		</EntityComponent>
 		<!-- Trigger when Cargo Ship Spawns -->
 		<!-- Escort chat when spawned -->
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
@@ -175,10 +197,10 @@
 			</Id>
 			<Description>
 			[RivalAI Action]
+			[DebugMessage:EscortOnSpawnA]
 			[Chance:100]
 			[ChangeAutopilotProfile:true]
 			[AutopilotProfile:Secondary]
-			[SetWeaponsToMaxRange:true]
 			[ResetCounters:WaypointCounter]
 			[DisableTriggers:true]
 			[DisableTriggerNames:GVK-CargoShip-Land-COALITION-Trigger-EscortHorizonAngleHigh]
@@ -233,6 +255,7 @@
 			</Id>
 			<Description>
 			[RivalAI Action]
+			[DebugMessage:EscortAddWaypointsA]
 			[AddWaypoints:true]
 			[WaypointsToAdd:GVK-Convoy-WaypointStatic-LandRouteA03]
 			[WaypointsToAdd:GVK-Convoy-WaypointStatic-LandRouteA04]
@@ -391,6 +414,7 @@
 			</Id>
 			<Description>
 			[RivalAI Action]
+			[DebugMessage:EscortHorizonAngleHigh]
 			[Chance:100]
 			[ChangeAutopilotProfile:true]
 			[AutopilotProfile:Tertiary]
@@ -403,6 +427,7 @@
 			</Id>
 			<Description>
 			[RivalAI Action]
+			[//DebugMessage:EscortHorizonAngleLow]
 			[Chance:100]
 			[ChangeAutopilotProfile:true]
 			[AutopilotProfile:Primary]
@@ -480,6 +505,7 @@
 			</Id>
 			<Description>
 			[RivalAI Action]
+			[//DebugMessage:EscortCompromised]
 			[TriggerTimerBlocks:true]
 			[TimerBlockNames:NPC Timer E-brake]
 			[EnableBlocks:true]
@@ -497,10 +523,13 @@
 			[DisableTriggerNames:GVK-CargoShip-Land-COALITION-Trigger-EscortPlayerNotNear]
 			[DisableTriggerNames:GVK-CargoShip-Land-COALITION-Trigger-EscortInsideZ1]
 			[DisableTriggerNames:GVK-CargoShip-Land-COALITION-Trigger-EscortEnemySpawnsZ1]
+			[DisableTriggerNames:GVK-CargoShip-Land-COALITION-Trigger-EscortEnemySpawnsZ1Canyon]
 			[DisableTriggerNames:GVK-CargoShip-Land-COALITION-Trigger-EscortInsideZ2]
 			[DisableTriggerNames:GVK-CargoShip-Land-COALITION-Trigger-EscortEnemySpawnsZ2]
+			[DisableTriggerNames:GVK-CargoShip-Land-COALITION-Trigger-EscortEnemySpawnsZ2Canyon]
 			[DisableTriggerNames:GVK-CargoShip-Land-COALITION-Trigger-EscortInsideZ3]
 			[DisableTriggerNames:GVK-CargoShip-Land-COALITION-Trigger-EscortEnemySpawnsZ3]
+			[DisableTriggerNames:GVK-CargoShip-Land-COALITION-Trigger-EscortEnemySpawnsZ3Canyon]
 			[DisableTriggerNames:GVK-CargoShip-Land-COALITION-Trigger-EscortAttacked]
 			[UseChatBroadcast:true]
 			[ChatData:GVK-CargoShip-Land-COALITION-Chat-EscortCompromised]
@@ -608,6 +637,7 @@
 			</Id>
 			<Description>
 			[RivalAI Action]
+			[//DebugMessage:EscortAttacked]
 			[UseChatBroadcast:true]
 			[ChatData:GVK-CargoShip-Land-COALITION-Chat-EscortAttacked]
 			</Description>
@@ -659,11 +689,13 @@
 			</Id>
 			<Description>
 			[RivalAI Action]
+			[//DebugMessage:EscortInsideZ1]
 			[EnableBlocks:true]
 			[EnableBlockNames:NPC Weapon]
 			[EnableBlockStates:On]
 			[EnableTriggers:true]
 			[EnableTriggerNames:GVK-CargoShip-Land-COALITION-Trigger-EscortEnemySpawnsZ1]
+			[EnableTriggerNames:GVK-CargoShip-Land-COALITION-Trigger-EscortEnemySpawnsZ1Canyon]
 			</Description>
 		</EntityComponent>
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
@@ -675,51 +707,55 @@
 			[RivalAI Trigger]
 			[UseTrigger:true]
 			[Type:InsideZone]
-			[ZoneName:EscortCanyon]
+			[ZoneName:RouteASpawnZones]
 			[StartsReady:false]
-			[MinCooldownMs:10000]
-			[MaxCooldownMs:10001]
+			[MinCooldownMs:5000]
+			[MaxCooldownMs:5001]
 			[MaxActions:-1]
-			[Actions:GVK-CargoShip-Land-COALITION-Action-EscortInsideZ1]
+			[Actions:GVK-CargoShip-Land-COALITION-Action-EscortInsideCanyonZone]
 			</Description>
 		</EntityComponent>
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-CargoShip-Land-COALITION-Action-EscortInsideZ1</SubtypeId>
+				<SubtypeId>GVK-CargoShip-Land-COALITION-Action-EscortInsideCanyonZone</SubtypeId>
 			</Id>
 			<Description>
 			[RivalAI Action]
+			[//DebugMessage:EscortInsideCanyonZone]
 			[SetBooleansTrue:InCanyonZone]
 			</Description>
 		</EntityComponent>
+		<!-- Check if inside Canyon Zones and set bool true -->
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-CargoShip-Land-COALITION-Trigger-EscortInsideCanyonZone</SubtypeId>
+				<SubtypeId>GVK-CargoShip-Land-COALITION-Trigger-EscortOutsideCanyonZone</SubtypeId>
 			</Id>
 			<Description>
 			[RivalAI Trigger]
 			[UseTrigger:true]
 			[Type:OutsideZone]
-			[ZoneName:EscortCanyon]
+			[ZoneName:RouteASpawnZones]
 			[StartsReady:false]
-			[MinCooldownMs:10000]
-			[MaxCooldownMs:10001]
+			[MinCooldownMs:5000]
+			[MaxCooldownMs:5001]
 			[MaxActions:-1]
-			[Actions:GVK-CargoShip-Land-COALITION-Action-EscortInsideZ1]
+			[Actions:GVK-CargoShip-Land-COALITION-Action-EscortOutsideCanyonZone]
 			</Description>
 		</EntityComponent>
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-CargoShip-Land-COALITION-Action-EscortInsideZ1</SubtypeId>
+				<SubtypeId>GVK-CargoShip-Land-COALITION-Action-EscortOutsideCanyonZone</SubtypeId>
 			</Id>
 			<Description>
 			[RivalAI Action]
+			[DebugMessage:EscortOutsideCanyonZone]
 			[SetBooleansFalse:InCanyonZone]
 			</Description>
 		</EntityComponent>
+		<!-- Default spawn method in Z1 and not in a Canyon Zone -->
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
@@ -734,7 +770,22 @@
 			[MinCooldownMs:100000]
 			[MaxCooldownMs:100001]
 			[MaxActions:30]
+			[Conditions:GVK-CargoShip-Land-COALITION-Condition-EscortEnemySpawns]
 			[Actions:GVK-CargoShip-Land-COALITION-Action-EscortEnemySpawnsZ1]
+			</Description>
+		</EntityComponent>
+		<!-- check that it ISNT in a canyon route zone, should result true most of the time -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-CargoShip-Land-COALITION-Condition-EscortEnemySpawns</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Condition]
+			[UseConditions:true]
+			[MatchAnyCondition:true]
+			[CheckFalseBooleans:true]
+			[FalseBooleans:InCanyonZone]
 			</Description>
 		</EntityComponent>
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
@@ -744,6 +795,7 @@
 			</Id>
 			<Description>
 			[RivalAI Action]
+			[DebugMessage:EscortEnemySpawnsZ1]
 			[Chance:100]
 			[SpawnEncounter:true]
 			[Spawner:GVK-CargoShip-Land-COALITION-Spawner-EscortEnemySpawnsZ1]
@@ -774,7 +826,77 @@
 			[IgnoreSafetyChecks:true]
 			</Description>
 		</EntityComponent>
-		<!-- Trigger Sequence enemy spawns Zone 2-->
+		<!-- Alternate spawn method in Z1 while in a Canyon Zone -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-CargoShip-Land-COALITION-Trigger-EscortEnemySpawnsZ1Canyon</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Trigger]
+			[UseTrigger:false]
+			[Type:PlayerNear]
+			[TargetDistance:2000]
+			[StartsReady:false]
+			[MinCooldownMs:10000]
+			[MaxCooldownMs:10001]
+			[MaxActions:30]
+			[Conditions:GVK-CargoShip-Land-COALITION-Condition-EscortEnemySpawnsCanyon]
+			[Actions:GVK-CargoShip-Land-COALITION-Action-EscortEnemySpawnsZ1Canyon]
+			</Description>
+		</EntityComponent>
+		<!-- check that it IS in a canyon route zone, should result true most of the time -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-CargoShip-Land-COALITION-Condition-EscortEnemySpawnsCanyon</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Condition]
+			[UseConditions:true]
+			[MatchAnyCondition:true]
+			[CheckTrueBooleans:true]
+			[TrueBooleans:InCanyonZone]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-CargoShip-Land-COALITION-Action-EscortEnemySpawnsZ1Canyon</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Action]
+			[DebugMessage:EscortEnemySpawnsZ1Canyon]
+			[Chance:100]
+			[SpawnEncounter:true]
+			[Spawner:GVK-CargoShip-Land-COALITION-Spawner-EscortEnemySpawnsZ1Canyon]
+			[UseChatBroadcast:true]
+			[ChatData:GVK-CargoShip-Land-COALITION-Chat-EscortEnemySpawns]
+			</Description>
+		</EntityComponent>
+		<!-- These are slightly different spawn groups than the default defense drones -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-CargoShip-Land-COALITION-Spawner-EscortEnemySpawnsZ1Canyon</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Spawn]
+			[UseSpawn:true]
+			[SpawningType:CustomSpawn]
+			[StartsReady:true]
+			[ProcessAsAdminSpawn:true]
+			[UseWaypoint:true]
+			[Waypoint:GVK-CargoShip-Land-COALITION-Waypoint-EscortEnemySpawnsCanyon]
+			[MaxSpawns:-1]
+			[SpawnGroups:GVK-Drone-Defense-SpawnGroup-GAALSIEN-SmallFlyerSingle]
+			[SpawnGroups:GVK-Drone-Defense-SpawnGroup-GAALSIEN-InterceptorSingle]
+			[SpawnGroups:GVK-Drone-Defense-SpawnGroup-GAALSIEN-LightSandskimmerSquad]
+			[InheritNpcAltitude:true]
+			[IgnoreSafetyChecks:true]
+			</Description>
+		</EntityComponent>
+		<!-- Default Trigger Sequence enemy spawns Zone 2-->
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
@@ -799,12 +921,16 @@
 			</Id>
 			<Description>
 			[RivalAI Action]
+			[DebugMessage:EscortInsideZ2]
 			[EnableTriggers:true]
 			[EnableTriggerNames:GVK-CargoShip-Land-COALITION-Trigger-EscortEnemySpawnsZ2]
+			[EnableTriggerNames:GVK-CargoShip-Land-COALITION-Trigger-EscortEnemySpawnsZ2Canyon]
 			[DisableTriggers:true]
 			[DisableTriggerNames:GVK-CargoShip-Land-COALITION-Trigger-EscortEnemySpawnsZ1]
+			[DisableTriggerNames:GVK-CargoShip-Land-COALITION-Trigger-EscortEnemySpawnsZ1Canyon]
 			</Description>
 		</EntityComponent>
+		<!-- Default spawn in Z2 -->
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
@@ -819,6 +945,7 @@
 			[MinCooldownMs:100000]
 			[MaxCooldownMs:100001]
 			[MaxActions:30]
+			[Conditions:GVK-CargoShip-Land-COALITION-Condition-EscortEnemySpawns]
 			[Actions:GVK-CargoShip-Land-COALITION-Action-EscortEnemySpawnsZ2]
 			</Description>
 		</EntityComponent>
@@ -829,6 +956,7 @@
 			</Id>
 			<Description>
 			[RivalAI Action]
+			[DebugMessage:EscortEnemySpawnsZ2]
 			[Chance:100]
 			[SpawnEncounter:true]
 			[Spawner:GVK-CargoShip-Land-COALITION-Spawner-EscortEnemySpawnsZ2]
@@ -858,6 +986,60 @@
 			[IgnoreSafetyChecks:true]
 			</Description>
 		</EntityComponent>
+		<!-- Alternate spawn in Z2 along canyon -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-CargoShip-Land-COALITION-Trigger-EscortEnemySpawnsZ2Canyon</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Trigger]
+			[UseTrigger:false]
+			[Type:PlayerNear]
+			[TargetDistance:2000]
+			[StartsReady:false]
+			[MinCooldownMs:10000]
+			[MaxCooldownMs:10001]
+			[MaxActions:30]
+			[Conditions:GVK-CargoShip-Land-COALITION-Condition-EscortEnemySpawnsCanyon]
+			[Actions:GVK-CargoShip-Land-COALITION-Action-EscortEnemySpawnsZ2Canyon]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-CargoShip-Land-COALITION-Action-EscortEnemySpawnsZ2Canyon</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Action]
+			[DebugMessage:EscortEnemySpawnsZ2Canyon]
+			[Chance:100]
+			[SpawnEncounter:true]
+			[Spawner:GVK-CargoShip-Land-COALITION-Spawner-EscortEnemySpawnsZ2Canyon]
+			[UseChatBroadcast:true]
+			[ChatData:GVK-CargoShip-Land-COALITION-Chat-EscortEnemySpawns]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-CargoShip-Land-COALITION-Spawner-EscortEnemySpawnsZ2Canyon</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Spawn]
+			[UseSpawn:true]
+			[SpawningType:CustomSpawn]
+			[StartsReady:true]
+			[ProcessAsAdminSpawn:true]
+			[UseWaypoint:true]
+			[Waypoint:GVK-CargoShip-Land-COALITION-Waypoint-EscortEnemySpawnsCanyon]
+			[MaxSpawns:-1]
+			[SpawnGroups:GVK-Drone-Defense-SpawnGroup-GAALSIEN-InterceptorSquad]
+			[SpawnGroups:GVK-Drone-Defense-SpawnGroup-GAALSIEN-MediumHoverLight]
+			[InheritNpcAltitude:true]
+			[IgnoreSafetyChecks:true]
+			</Description>
+		</EntityComponent>
 		<!-- Trigger Sequence enemy spawns Zone 3-->
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
@@ -883,12 +1065,16 @@
 			</Id>
 			<Description>
 			[RivalAI Action]
+			[DebugMessage:EscortInsideZ3]
 			[EnableTriggers:true]
 			[EnableTriggerNames:GVK-CargoShip-Land-COALITION-Trigger-EscortEnemySpawnsZ3]
+			[EnableTriggerNames:GVK-CargoShip-Land-COALITION-Trigger-EscortEnemySpawnsZ3Canyon]
 			[DisableTriggers:true]
 			[DisableTriggerNames:GVK-CargoShip-Land-COALITION-Trigger-EscortEnemySpawnsZ2]
+			[DisableTriggerNames:GVK-CargoShip-Land-COALITION-Trigger-EscortEnemySpawnsZ2Canyon]
 			</Description>
 		</EntityComponent>
+		<!-- Default spawns in Z3 -->
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
@@ -903,6 +1089,7 @@
 			[MinCooldownMs:100000]
 			[MaxCooldownMs:100001]
 			[MaxActions:30]
+			[Conditions:GVK-CargoShip-Land-COALITION-Condition-EscortEnemySpawns]
 			[Actions:GVK-CargoShip-Land-COALITION-Action-EscortEnemySpawnsZ3]
 			</Description>
 		</EntityComponent>
@@ -913,6 +1100,7 @@
 			</Id>
 			<Description>
 			[RivalAI Action]
+			[DebugMessage:EscortEnemySpawnsZ3]
 			[Chance:100]
 			[SpawnEncounter:true]
 			[Spawner:GVK-CargoShip-Land-COALITION-Spawner-EscortEnemySpawnsZ3]
@@ -939,6 +1127,61 @@
 			[MaxDistance:1000]
 			[MinAltitude:50]
 			[MaxAltitude:51]
+			[InheritNpcAltitude:true]
+			[IgnoreSafetyChecks:true]
+			</Description>
+		</EntityComponent>
+		<!-- Alternate spawns in Z3 along canyon-->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-CargoShip-Land-COALITION-Trigger-EscortEnemySpawnsZ3Canyon</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Trigger]
+			[UseTrigger:false]
+			[Type:PlayerNear]
+			[TargetDistance:2000]
+			[StartsReady:false]
+			[MinCooldownMs:10000]
+			[MaxCooldownMs:10001]
+			[MaxActions:30]
+			[Conditions:GVK-CargoShip-Land-COALITION-Condition-EscortEnemySpawnsCanyon]
+			[Actions:GVK-CargoShip-Land-COALITION-Action-EscortEnemySpawnsZ3Canyon]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-CargoShip-Land-COALITION-Action-EscortEnemySpawnsZ3Canyon</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Action]
+			[DebugMessage:EscortEnemySpawnsZ3Canyon]
+			[Chance:100]
+			[SpawnEncounter:true]
+			[Spawner:GVK-CargoShip-Land-COALITION-Spawner-EscortEnemySpawnsZ3Canyon]
+			[UseChatBroadcast:true]
+			[ChatData:GVK-CargoShip-Land-COALITION-Chat-EscortEnemySpawns]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-CargoShip-Land-COALITION-Spawner-EscortEnemySpawnsZ3Canyon</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Spawn]
+			[UseSpawn:true]
+			[SpawningType:CustomSpawn]
+			[StartsReady:true]
+			[ProcessAsAdminSpawn:true]
+			[UseWaypoint:true]
+			[Waypoint:GVK-CargoShip-Land-COALITION-Waypoint-EscortEnemySpawnsCanyon]
+			[MaxSpawns:-1]
+			[SpawnGroups:GVK-Drone-Defense-SpawnGroup-GAALSIEN-MediumFlyer]
+			[SpawnGroups:GVK-Drone-Defense-SpawnGroup-GAALSIEN-MediumHoverHeavy]
+			[SpawnGroups:GVK-Drone-Defense-SpawnGroup-GAALSIEN-LargeHover]
 			[InheritNpcAltitude:true]
 			[IgnoreSafetyChecks:true]
 			</Description>
@@ -989,6 +1232,7 @@
 			</Id>
 			<Description>
 			[RivalAI Action]
+			[DebugMessage:EscortPlayerNear]
 			[ChangeAutopilotProfile:true]
 			[AutopilotProfile:Primary]
 			[EnableBlocks:true]
@@ -1051,6 +1295,7 @@
 			</Id>
 			<Description>
 			[RivalAI Action]
+			[DebugMessage:EscortPlayerStillNear]
 			[EnableTriggers:true]
 			[EnableTriggerNames:GVK-CargoShip-Land-COALITION-Trigger-EscortPlayerNotNear]
 			[ResetCooldownTimeOfTriggers:true]
@@ -1080,6 +1325,7 @@
 			</Id>
 			<Description>
 			[RivalAI Action]
+			[DebugMessage:EscortPlayerNotNear]
 			[ChangeAutopilotProfile:true]
 			[AutopilotProfile:Secondary]
 			[EnableBlocks:true]
@@ -1178,6 +1424,7 @@
 			</Id>
 			<Description>
 			[RivalAI Action]
+			[DebugMessage:EscortSuccessA]
 			[Chance:100]
 			[UseChatBroadcast:true]
 			[ChatData:GVK-CargoShip-Land-COALITION-Chat-EscortSuccessA]
@@ -1191,10 +1438,13 @@
 			[DisableTriggerNames:GVK-CargoShip-Land-COALITION-Trigger-EscortPlayerNotNear]
 			[DisableTriggerNames:GVK-CargoShip-Land-COALITION-Trigger-EscortInsideZ1]
 			[DisableTriggerNames:GVK-CargoShip-Land-COALITION-Trigger-EscortEnemySpawnsZ1]
+			[DisableTriggerNames:GVK-CargoShip-Land-COALITION-Trigger-EscortEnemySpawnsZ1Canyon]
 			[DisableTriggerNames:GVK-CargoShip-Land-COALITION-Trigger-EscortInsideZ2]
 			[DisableTriggerNames:GVK-CargoShip-Land-COALITION-Trigger-EscortEnemySpawnsZ2]
+			[DisableTriggerNames:GVK-CargoShip-Land-COALITION-Trigger-EscortEnemySpawnsZ2Canyon]
 			[DisableTriggerNames:GVK-CargoShip-Land-COALITION-Trigger-EscortInsideZ3]
 			[DisableTriggerNames:GVK-CargoShip-Land-COALITION-Trigger-EscortEnemySpawnsZ3]
+			[DisableTriggerNames:GVK-CargoShip-Land-COALITION-Trigger-EscortEnemySpawnsZ3Canyon]
 			[DisableTriggerNames:GVK-CargoShip-Land-COALITION-Trigger-EscortAttacked]
 			[DisableTriggerNames:GVK-CargoShip-Land-COALITION-Trigger-EscortBeaconDisabled]
 			[DisableTriggerNames:GVK-CargoShip-Land-COALITION-Trigger-EscortCompromised]
