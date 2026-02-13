@@ -60,6 +60,22 @@
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Universal-Waypoint-DefensesManualSpawn</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Waypoint]
+			[Waypoint:RelativeRandom]
+			[RelativeEntity:Target]
+			[MinDistance:800]
+			[MaxDistance:1200]
+			[MinAltitude:30]
+			[MaxAltitude:31]
+			[InheritRelativeAltitude:true]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
 				<SubtypeId>GVK-Universal-Trigger-DefensesInit</SubtypeId>
 			</Id>
 			<Description>
@@ -328,6 +344,8 @@
 			[UseSpawn:true]
 			[SpawningType:CustomSpawn]
 			[StartsReady:true]
+			[UseWaypoint:true]
+			[Waypoint:GVK-Universal-Waypoint-DefensesManualSpawn]
 			[ProcessAsAdminSpawn:true]
 			[SpawnGroups:GVK-Drone-Defense-SpawnGroup-GAALSIEN-LargeHover]
 			[SpawnGroups:GVK-Drone-Defense-SpawnGroup-GAALSIEN-LargeHover]
@@ -379,6 +397,8 @@
 			[UseSpawn:true]
 			[SpawningType:CustomSpawn]
 			[StartsReady:true]
+			[UseWaypoint:true]
+			[Waypoint:GVK-Universal-Waypoint-DefensesManualSpawn]
 			[ProcessAsAdminSpawn:true]
 			[SpawnGroups:GVK-Drone-Defense-SpawnGroup-GAALSIEN-InterceptorSingle]
 			[SpawnGroups:GVK-Drone-Defense-SpawnGroup-GAALSIEN-SandskimmerSquad]
@@ -427,6 +447,8 @@
 			[UseSpawn:true]
 			[SpawningType:CustomSpawn]
 			[StartsReady:true]
+			[UseWaypoint:true]
+			[Waypoint:GVK-Universal-Waypoint-DefensesManualSpawn]
 			[ProcessAsAdminSpawn:true]
 			[SpawnGroups:GVK-Drone-Defense-SpawnGroup-GAALSIEN-SandskimmerSquad]
 			[MinDistance:500]
