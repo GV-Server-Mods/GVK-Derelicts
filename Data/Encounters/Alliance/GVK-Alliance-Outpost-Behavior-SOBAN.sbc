@@ -13,8 +13,9 @@
 			[UseRetreatTimer:false]
 			[UseNoTargetTimer:false]
 			[UsePlayerDistanceTimer:false]
-			[TargetData:GVK-Universal-Target-EnemyGrids2km]
-			[Triggers:GVK-Drone-All-Trigger-WeaponsToMaxRange]
+			[TargetData:GVK-Universal-Target-EnemyPlayerAndGrid3km]
+			[Triggers:GVK-Universal-Trigger-WeaponsToMaxRange]
+			[Triggers:GVK-Universal-Trigger-DespawnInZ0]
 			[Triggers:GVK-Alliance-Outpost-Trigger-Init-SOBAN]
 			[TriggerGroups:GVK-Universal-TriggerGroup-SpawnDefenses]
 			[TriggerGroups:GVK-Alliance-TriggerGroup-InsideOutsideZone]
@@ -32,9 +33,9 @@
 			<Description>
 			[MES AI Trigger]
 			[UseTrigger:true]
-			[Type:Timer]
+			[Type:Session]
 			[StartsReady:true]
-			[MaxActions:1]
+			[MaxActions:-1]
 			[ActionExecution:All]
 			[Actions:GVK-Alliance-Outpost-Action-Init-SOBAN]
 			</Description>
@@ -46,12 +47,12 @@
 			</Id>
 			<Description>
 			[MES AI Action]
-			[//DebugMessage:Init-Baserunner-SOBAN]
+			[//DebugMessage:Init-Outpost-SOBAN]
 			[SetCustomStrings:true]
 			[CustomStrings:EncounterType,AllianceOutpost]
 			[CustomStrings:EncounterDisplayName,Outpost]
 			[SetCustomCountersVariables:true]
-			[CustomCountersVariables:DefenseSpawn_Limit,4]
+			[CustomCountersVariables:DefenseSpawn_Limit,6]
 			[UseChatBroadcast:true]
 			[ChatData:GVK-Alliance-EncounterType-Chat-Spawned-Faction]
 			</Description>

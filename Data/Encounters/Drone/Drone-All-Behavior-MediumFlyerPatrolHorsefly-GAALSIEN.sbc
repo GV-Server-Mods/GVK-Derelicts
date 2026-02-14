@@ -11,7 +11,9 @@
 			[RivalAI Behavior]
 			[BehaviorName:Patrol]
 			[WeaponSystem:GVK-Universal-Weapons-All]
-			[UsePlayerDistanceTimer:false]
+			[UsePlayerDistanceTimer:true]
+			[PlayerDistanceTimerTrigger:240]
+			[PlayerDistanceTrigger:4000]
 			[UseNoTargetTimer:false]
 			[UseRetreatTimer:false]
 			[TargetData:GVK-Universal-Target-EnemyGrids2km]
@@ -33,9 +35,9 @@
 			<Description>
 			[MES AI Trigger]
 			[UseTrigger:true]
-			[Type:Timer]
+			[Type:Session]
 			[StartsReady:true]
-			[MaxActions:1]
+			[MaxActions:-1]
 			[ActionExecution:All]
 			[Actions:GVK-Drone-All-Action-Init-MediumFlyerPatrolHorsefly-GAALSIEN]
 			</Description>

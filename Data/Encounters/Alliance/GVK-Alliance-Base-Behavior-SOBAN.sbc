@@ -13,8 +13,9 @@
 			[UseRetreatTimer:false]
 			[UseNoTargetTimer:false]
 			[UsePlayerDistanceTimer:false]
-			[TargetData:GVK-Universal-Target-EnemyGrids2km]
-			[Triggers:GVK-Drone-All-Trigger-WeaponsToMaxRange]
+			[TargetData:GVK-Universal-Target-EnemyPlayerAndGrid3km]
+			[Triggers:GVK-Universal-Trigger-WeaponsToMaxRange]
+			[Triggers:GVK-Universal-Trigger-DespawnInZ0]
 			[Triggers:GVK-Alliance-Base-Trigger-Init-SOBAN]
 			[TriggerGroups:GVK-Universal-TriggerGroup-SpawnDefenses]
 			[TriggerGroups:GVK-Alliance-TriggerGroup-InsideOutsideZone]
@@ -32,9 +33,9 @@
 			<Description>
 			[MES AI Trigger]
 			[UseTrigger:true]
-			[Type:Timer]
+			[Type:Session]
 			[StartsReady:true]
-			[MaxActions:1]
+			[MaxActions:-1]
 			[ActionExecution:All]
 			[Actions:GVK-Alliance-Base-Action-Spawned-SOBAN]
 			</Description>

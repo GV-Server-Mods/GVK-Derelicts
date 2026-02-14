@@ -1,8 +1,15 @@
 <?xml version="1.0"?>
 <Definitions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
 	<EntityComponents>
-		<!-- Route A, Crossroads to Sevastapol -->
-		<!-- Cargo Ship Behavior for land rover following roads -->
+		<!-- 
+		
+			Route A, Crossroads to Sevastapol
+			Cargo Ship Behavior for land rover following roads
+			Use alternate spawning method in Canyon Route Zone
+				GPS:Canyon Route:32649.04:36654.43:62459.73:#FF75C9F1:
+				26.45km
+
+		-->	
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
@@ -25,9 +32,9 @@
 			[TargetData:GVK-Universal-Target-COALITIONTradeStation]
 			[Triggers:GVK-Universal-Trigger-UneditableOnSpawn]
 			[Triggers:GVK-Universal-Trigger-EditableOnCompromised]
-			[Triggers:GVK-Drone-All-Trigger-TargetAttacker]
-			[Triggers:GVK-Drone-All-Trigger-TurretTarget]
-			[Triggers:GVK-Drone-All-Trigger-WeaponsToMaxRange]
+			[Triggers:GVK-Universal-Trigger-TargetAttacker]
+			[Triggers:GVK-Universal-Trigger-TurretTarget]
+			[//Triggers:GVK-Universal-Trigger-WeaponsToMaxRange]
 			[Triggers:GVK-CargoShip-Land-COALITION-Trigger-EscortOnSpawnA]
 			[Triggers:GVK-CargoShip-Land-COALITION-Trigger-EscortAddWaypointsA]
 			[Triggers:GVK-CargoShip-Land-COALITION-Trigger-EscortHorizonAngleHigh]
@@ -39,12 +46,17 @@
 			[Triggers:GVK-CargoShip-Land-COALITION-Trigger-EscortPlayerNear]
 			[Triggers:GVK-CargoShip-Land-COALITION-Trigger-EscortPlayerStillNear]
 			[Triggers:GVK-CargoShip-Land-COALITION-Trigger-EscortPlayerNotNear]
+			[Triggers:GVK-CargoShip-Land-COALITION-Trigger-EscortInsideCanyonZone]
+			[Triggers:GVK-CargoShip-Land-COALITION-Trigger-EscortOutsideCanyonZone]
 			[Triggers:GVK-CargoShip-Land-COALITION-Trigger-EscortInsideZ1]
 			[Triggers:GVK-CargoShip-Land-COALITION-Trigger-EscortEnemySpawnsZ1]
+			[Triggers:GVK-CargoShip-Land-COALITION-Trigger-EscortEnemySpawnsZ1Canyon]
 			[Triggers:GVK-CargoShip-Land-COALITION-Trigger-EscortInsideZ2]
 			[Triggers:GVK-CargoShip-Land-COALITION-Trigger-EscortEnemySpawnsZ2]
+			[Triggers:GVK-CargoShip-Land-COALITION-Trigger-EscortEnemySpawnsZ2Canyon]
 			[Triggers:GVK-CargoShip-Land-COALITION-Trigger-EscortInsideZ3]
 			[Triggers:GVK-CargoShip-Land-COALITION-Trigger-EscortEnemySpawnsZ3]
+			[Triggers:GVK-CargoShip-Land-COALITION-Trigger-EscortEnemySpawnsZ3Canyon]
 			[Triggers:GVK-CargoShip-Land-COALITION-Trigger-EscortSuccessTargetA]
 			[Triggers:GVK-CargoShip-Land-COALITION-Trigger-EscortSuccessCounterA]
 			[RemoteControlCode:COALITIONRouteA]
@@ -142,6 +154,23 @@
 			[MaxVelocityAngleForSpeedControl:1000]
 			</Description>
 		</EntityComponent>		
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-CargoShip-Land-COALITION-Waypoint-EscortEnemySpawnsCanyon</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Waypoint]
+			[Waypoint:RelativeOffset]
+			[RelativeEntity:Self]
+			[Offset:{X:700 Y:50 Z:-700}]
+			[MinDistance:0]
+			[MaxDistance:300]
+			[MinAltitude:30]
+			[MaxAltitude:40]
+			[InheritRelativeAltitude:true]
+			</Description>
+		</EntityComponent>
 		<!-- Trigger when Cargo Ship Spawns -->
 		<!-- Escort chat when spawned -->
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
@@ -168,10 +197,10 @@
 			</Id>
 			<Description>
 			[RivalAI Action]
+			[//DebugMessage:EscortOnSpawnA]
 			[Chance:100]
 			[ChangeAutopilotProfile:true]
 			[AutopilotProfile:Secondary]
-			[SetWeaponsToMaxRange:true]
 			[ResetCounters:WaypointCounter]
 			[DisableTriggers:true]
 			[DisableTriggerNames:GVK-CargoShip-Land-COALITION-Trigger-EscortHorizonAngleHigh]
@@ -191,9 +220,9 @@
 			[Chance:100]
 			[MaxChats:1]
 			[BroadcastRandomly:false]
-			[Author:COALITION]
-			[Color:White]
-			[ChatMessages:A Transport is ready for escort from Crossroads to Sevastopol (Difficult).]
+			[Author:{Faction}]
+			[Color:{PlayerRelation}]
+			[ChatMessages:A transport is ready for escort from Crossroads to Sevastopol (Difficult).]
 			[ChatAudio:ArcHudGPSNotification2]
 			[BroadcastChatType:Both]
 			[SendToAllOnlinePlayers:true]
@@ -212,9 +241,9 @@
 			[Type:Timer]
 			[UseTrigger:true]
 			[StartsReady:false]
-			[MaxActions:1]
-			[MinCooldownMs:5000]
-			[MaxCooldownMs:5000]
+			[MaxActions:2]
+			[MinCooldownMs:3000]
+			[MaxCooldownMs:3001]
 			[ActionExecution:All]
 			[Actions:GVK-CargoShip-Land-COALITION-Action-EscortAddWaypointsA]
 			</Description>
@@ -226,95 +255,96 @@
 			</Id>
 			<Description>
 			[RivalAI Action]
+			[//DebugMessage:EscortAddWaypointsA]
 			[AddWaypoints:true]
-			[WaypointsToAdd:GVK-Convoy-StaticRandom-LandRouteA03]
-			[WaypointsToAdd:GVK-Convoy-StaticRandom-LandRouteA04]
-			[WaypointsToAdd:GVK-Convoy-StaticRandom-LandRouteA05]
-			[WaypointsToAdd:GVK-Convoy-StaticRandom-LandRouteA05a]
-			[WaypointsToAdd:GVK-Convoy-StaticRandom-LandRouteA06]
-			[WaypointsToAdd:GVK-Convoy-StaticRandom-LandRouteA07]
-			[WaypointsToAdd:GVK-Convoy-StaticRandom-LandRouteA08]
-			[WaypointsToAdd:GVK-Convoy-StaticRandom-LandRouteA09]
-			[WaypointsToAdd:GVK-Convoy-StaticRandom-LandRouteA10]
-			[WaypointsToAdd:GVK-Convoy-StaticRandom-LandRouteA11]
-			[WaypointsToAdd:GVK-Convoy-StaticRandom-LandRouteA12]
-			[WaypointsToAdd:GVK-Convoy-StaticRandom-LandRouteA12a]
-			[WaypointsToAdd:GVK-Convoy-StaticRandom-LandRouteA12b]
-			[WaypointsToAdd:GVK-Convoy-StaticRandom-LandRouteA13]
-			[WaypointsToAdd:GVK-Convoy-StaticRandom-LandRouteA14]
-			[WaypointsToAdd:GVK-Convoy-StaticRandom-LandRouteA15]
-			[WaypointsToAdd:GVK-Convoy-StaticRandom-LandRouteA16]
-			[WaypointsToAdd:GVK-Convoy-StaticRandom-LandRouteA17]
-			[WaypointsToAdd:GVK-Convoy-StaticRandom-LandRouteA18]
-			[WaypointsToAdd:GVK-Convoy-StaticRandom-LandRouteA19]
-			[WaypointsToAdd:GVK-Convoy-StaticRandom-LandRouteA20]
-			[WaypointsToAdd:GVK-Convoy-StaticRandom-LandRouteA21]
-			[WaypointsToAdd:GVK-Convoy-StaticRandom-LandRouteA22]
-			[WaypointsToAdd:GVK-Convoy-StaticRandom-LandRouteA23]
-			[WaypointsToAdd:GVK-Convoy-StaticRandom-LandRouteA24]
-			[WaypointsToAdd:GVK-Convoy-StaticRandom-LandRouteA25]
-			[WaypointsToAdd:GVK-Convoy-StaticRandom-LandRouteA26]
-			[WaypointsToAdd:GVK-Convoy-StaticRandom-LandRouteA27]
-			[WaypointsToAdd:GVK-Convoy-StaticRandom-LandRouteA28]
-			[WaypointsToAdd:GVK-Convoy-StaticRandom-LandRouteA29]
-			[WaypointsToAdd:GVK-Convoy-StaticRandom-LandRouteA30]
-			[WaypointsToAdd:GVK-Convoy-StaticRandom-LandRouteA31]
-			[WaypointsToAdd:GVK-Convoy-StaticRandom-LandRouteA32]
-			[WaypointsToAdd:GVK-Convoy-StaticRandom-LandRouteA33]
-			[WaypointsToAdd:GVK-Convoy-StaticRandom-LandRouteA34]
-			[WaypointsToAdd:GVK-Convoy-StaticRandom-LandRouteA35]
-			[WaypointsToAdd:GVK-Convoy-StaticRandom-LandRouteA36]
-			[WaypointsToAdd:GVK-Convoy-StaticRandom-LandRouteA37]
-			[WaypointsToAdd:GVK-Convoy-StaticRandom-LandRouteA38]
-			[WaypointsToAdd:GVK-Convoy-StaticRandom-LandRouteA39]
-			[WaypointsToAdd:GVK-Convoy-StaticRandom-LandRouteA40]
-			[WaypointsToAdd:GVK-Convoy-StaticRandom-LandRouteA41]
-			[WaypointsToAdd:GVK-Convoy-StaticRandom-LandRouteA42]
-			[WaypointsToAdd:GVK-Convoy-StaticRandom-LandRouteA43]
-			[WaypointsToAdd:GVK-Convoy-StaticRandom-LandRouteA44]
-			[WaypointsToAdd:GVK-Convoy-StaticRandom-LandRouteA45]
-			[WaypointsToAdd:GVK-Convoy-StaticRandom-LandRouteA46]
-			[WaypointsToAdd:GVK-Convoy-StaticRandom-LandRouteA47]
-			[WaypointsToAdd:GVK-Convoy-StaticRandom-LandRouteA48]
-			[WaypointsToAdd:GVK-Convoy-StaticRandom-LandRouteA49]
-			[WaypointsToAdd:GVK-Convoy-StaticRandom-LandRouteA50]
-			[WaypointsToAdd:GVK-Convoy-StaticRandom-LandRouteA51]
-			[WaypointsToAdd:GVK-Convoy-StaticRandom-LandRouteA52]
-			[WaypointsToAdd:GVK-Convoy-StaticRandom-LandRouteA53]
-			[WaypointsToAdd:GVK-Convoy-StaticRandom-LandRouteA54]
-			[WaypointsToAdd:GVK-Convoy-StaticRandom-LandRouteA55]
-			[WaypointsToAdd:GVK-Convoy-StaticRandom-LandRouteA56]
-			[WaypointsToAdd:GVK-Convoy-StaticRandom-LandRouteA57]
-			[WaypointsToAdd:GVK-Convoy-StaticRandom-LandRouteA58]
-			[WaypointsToAdd:GVK-Convoy-StaticRandom-LandRouteA59]
-			[WaypointsToAdd:GVK-Convoy-StaticRandom-LandRouteA60]
-			[WaypointsToAdd:GVK-Convoy-StaticRandom-LandRouteA61]
-			[WaypointsToAdd:GVK-Convoy-StaticRandom-LandRouteA62]
-			[WaypointsToAdd:GVK-Convoy-StaticRandom-LandRouteA63]
-			[WaypointsToAdd:GVK-Convoy-StaticRandom-LandRouteA64]
-			[WaypointsToAdd:GVK-Convoy-StaticRandom-LandRouteA65]
-			[WaypointsToAdd:GVK-Convoy-StaticRandom-LandRouteA66]
-			[WaypointsToAdd:GVK-Convoy-StaticRandom-LandRouteA67]
-			[WaypointsToAdd:GVK-Convoy-StaticRandom-LandRouteA68]
-			[WaypointsToAdd:GVK-Convoy-StaticRandom-LandRouteA69]
-			[WaypointsToAdd:GVK-Convoy-StaticRandom-LandRouteA70]
-			[WaypointsToAdd:GVK-Convoy-StaticRandom-LandRouteA71]
-			[WaypointsToAdd:GVK-Convoy-StaticRandom-LandRouteA72]
-			[WaypointsToAdd:GVK-Convoy-StaticRandom-LandRouteA73]
-			[WaypointsToAdd:GVK-Convoy-StaticRandom-LandRouteA74]
-			[WaypointsToAdd:GVK-Convoy-StaticRandom-LandRouteA75]
-			[WaypointsToAdd:GVK-Convoy-StaticRandom-LandRouteA76]
-			[WaypointsToAdd:GVK-Convoy-StaticRandom-LandRouteA77]
-			[WaypointsToAdd:GVK-Convoy-StaticRandom-LandRouteA78]
-			[WaypointsToAdd:GVK-Convoy-StaticRandom-LandRouteA79]
-			[WaypointsToAdd:GVK-Convoy-StaticRandom-LandRouteA80]
-			[WaypointsToAdd:GVK-Convoy-StaticRandom-LandRouteA82]
-			[WaypointsToAdd:GVK-Convoy-StaticRandom-LandRouteA83]
-			[WaypointsToAdd:GVK-Convoy-StaticRandom-LandRouteA84]
-			[WaypointsToAdd:GVK-Convoy-StaticRandom-LandRouteA85]
-			[WaypointsToAdd:GVK-Convoy-StaticRandom-LandRouteA86]
-			[WaypointsToAdd:GVK-Convoy-StaticRandom-LandRouteA87]
-			[WaypointsToAdd:GVK-Convoy-StaticRandom-LandRouteA88]
+			[WaypointsToAdd:GVK-Convoy-WaypointStatic-LandRouteA03]
+			[WaypointsToAdd:GVK-Convoy-WaypointStatic-LandRouteA04]
+			[WaypointsToAdd:GVK-Convoy-WaypointStatic-LandRouteA05]
+			[WaypointsToAdd:GVK-Convoy-WaypointStatic-LandRouteA05a]
+			[WaypointsToAdd:GVK-Convoy-WaypointStatic-LandRouteA06]
+			[WaypointsToAdd:GVK-Convoy-WaypointStatic-LandRouteA07]
+			[WaypointsToAdd:GVK-Convoy-WaypointStatic-LandRouteA08]
+			[WaypointsToAdd:GVK-Convoy-WaypointStatic-LandRouteA09]
+			[WaypointsToAdd:GVK-Convoy-WaypointStatic-LandRouteA10]
+			[WaypointsToAdd:GVK-Convoy-WaypointStatic-LandRouteA11]
+			[WaypointsToAdd:GVK-Convoy-WaypointStatic-LandRouteA12]
+			[WaypointsToAdd:GVK-Convoy-WaypointStatic-LandRouteA12a]
+			[WaypointsToAdd:GVK-Convoy-WaypointStatic-LandRouteA12b]
+			[WaypointsToAdd:GVK-Convoy-WaypointStatic-LandRouteA13]
+			[WaypointsToAdd:GVK-Convoy-WaypointStatic-LandRouteA14]
+			[WaypointsToAdd:GVK-Convoy-WaypointStatic-LandRouteA15]
+			[WaypointsToAdd:GVK-Convoy-WaypointStatic-LandRouteA16]
+			[WaypointsToAdd:GVK-Convoy-WaypointStatic-LandRouteA17]
+			[WaypointsToAdd:GVK-Convoy-WaypointStatic-LandRouteA18]
+			[WaypointsToAdd:GVK-Convoy-WaypointStatic-LandRouteA19]
+			[WaypointsToAdd:GVK-Convoy-WaypointStatic-LandRouteA20]
+			[WaypointsToAdd:GVK-Convoy-WaypointStatic-LandRouteA21]
+			[WaypointsToAdd:GVK-Convoy-WaypointStatic-LandRouteA22]
+			[WaypointsToAdd:GVK-Convoy-WaypointStatic-LandRouteA23]
+			[WaypointsToAdd:GVK-Convoy-WaypointStatic-LandRouteA24]
+			[WaypointsToAdd:GVK-Convoy-WaypointStatic-LandRouteA25]
+			[WaypointsToAdd:GVK-Convoy-WaypointStatic-LandRouteA26]
+			[WaypointsToAdd:GVK-Convoy-WaypointStatic-LandRouteA27]
+			[WaypointsToAdd:GVK-Convoy-WaypointStatic-LandRouteA28]
+			[WaypointsToAdd:GVK-Convoy-WaypointStatic-LandRouteA29]
+			[WaypointsToAdd:GVK-Convoy-WaypointStatic-LandRouteA30]
+			[WaypointsToAdd:GVK-Convoy-WaypointStatic-LandRouteA31]
+			[WaypointsToAdd:GVK-Convoy-WaypointStatic-LandRouteA32]
+			[WaypointsToAdd:GVK-Convoy-WaypointStatic-LandRouteA33]
+			[WaypointsToAdd:GVK-Convoy-WaypointStatic-LandRouteA34]
+			[WaypointsToAdd:GVK-Convoy-WaypointStatic-LandRouteA35]
+			[WaypointsToAdd:GVK-Convoy-WaypointStatic-LandRouteA36]
+			[WaypointsToAdd:GVK-Convoy-WaypointStatic-LandRouteA37]
+			[WaypointsToAdd:GVK-Convoy-WaypointStatic-LandRouteA38]
+			[WaypointsToAdd:GVK-Convoy-WaypointStatic-LandRouteA39]
+			[WaypointsToAdd:GVK-Convoy-WaypointStatic-LandRouteA40]
+			[WaypointsToAdd:GVK-Convoy-WaypointStatic-LandRouteA41]
+			[WaypointsToAdd:GVK-Convoy-WaypointStatic-LandRouteA42]
+			[WaypointsToAdd:GVK-Convoy-WaypointStatic-LandRouteA43]
+			[WaypointsToAdd:GVK-Convoy-WaypointStatic-LandRouteA44]
+			[WaypointsToAdd:GVK-Convoy-WaypointStatic-LandRouteA45]
+			[WaypointsToAdd:GVK-Convoy-WaypointStatic-LandRouteA46]
+			[WaypointsToAdd:GVK-Convoy-WaypointStatic-LandRouteA47]
+			[WaypointsToAdd:GVK-Convoy-WaypointStatic-LandRouteA48]
+			[WaypointsToAdd:GVK-Convoy-WaypointStatic-LandRouteA49]
+			[WaypointsToAdd:GVK-Convoy-WaypointStatic-LandRouteA50]
+			[WaypointsToAdd:GVK-Convoy-WaypointStatic-LandRouteA51]
+			[WaypointsToAdd:GVK-Convoy-WaypointStatic-LandRouteA52]
+			[WaypointsToAdd:GVK-Convoy-WaypointStatic-LandRouteA53]
+			[WaypointsToAdd:GVK-Convoy-WaypointStatic-LandRouteA54]
+			[WaypointsToAdd:GVK-Convoy-WaypointStatic-LandRouteA55]
+			[WaypointsToAdd:GVK-Convoy-WaypointStatic-LandRouteA56]
+			[WaypointsToAdd:GVK-Convoy-WaypointStatic-LandRouteA57]
+			[WaypointsToAdd:GVK-Convoy-WaypointStatic-LandRouteA58]
+			[WaypointsToAdd:GVK-Convoy-WaypointStatic-LandRouteA59]
+			[WaypointsToAdd:GVK-Convoy-WaypointStatic-LandRouteA60]
+			[WaypointsToAdd:GVK-Convoy-WaypointStatic-LandRouteA61]
+			[WaypointsToAdd:GVK-Convoy-WaypointStatic-LandRouteA62]
+			[WaypointsToAdd:GVK-Convoy-WaypointStatic-LandRouteA63]
+			[WaypointsToAdd:GVK-Convoy-WaypointStatic-LandRouteA64]
+			[WaypointsToAdd:GVK-Convoy-WaypointStatic-LandRouteA65]
+			[WaypointsToAdd:GVK-Convoy-WaypointStatic-LandRouteA66]
+			[WaypointsToAdd:GVK-Convoy-WaypointStatic-LandRouteA67]
+			[WaypointsToAdd:GVK-Convoy-WaypointStatic-LandRouteA68]
+			[WaypointsToAdd:GVK-Convoy-WaypointStatic-LandRouteA69]
+			[WaypointsToAdd:GVK-Convoy-WaypointStatic-LandRouteA70]
+			[WaypointsToAdd:GVK-Convoy-WaypointStatic-LandRouteA71]
+			[WaypointsToAdd:GVK-Convoy-WaypointStatic-LandRouteA72]
+			[WaypointsToAdd:GVK-Convoy-WaypointStatic-LandRouteA73]
+			[WaypointsToAdd:GVK-Convoy-WaypointStatic-LandRouteA74]
+			[WaypointsToAdd:GVK-Convoy-WaypointStatic-LandRouteA75]
+			[WaypointsToAdd:GVK-Convoy-WaypointStatic-LandRouteA76]
+			[WaypointsToAdd:GVK-Convoy-WaypointStatic-LandRouteA77]
+			[WaypointsToAdd:GVK-Convoy-WaypointStatic-LandRouteA78]
+			[WaypointsToAdd:GVK-Convoy-WaypointStatic-LandRouteA79]
+			[WaypointsToAdd:GVK-Convoy-WaypointStatic-LandRouteA80]
+			[WaypointsToAdd:GVK-Convoy-WaypointStatic-LandRouteA82]
+			[WaypointsToAdd:GVK-Convoy-WaypointStatic-LandRouteA83]
+			[WaypointsToAdd:GVK-Convoy-WaypointStatic-LandRouteA84]
+			[WaypointsToAdd:GVK-Convoy-WaypointStatic-LandRouteA85]
+			[WaypointsToAdd:GVK-Convoy-WaypointStatic-LandRouteA86]
+			[WaypointsToAdd:GVK-Convoy-WaypointStatic-LandRouteA87]
+			[WaypointsToAdd:GVK-Convoy-WaypointStatic-LandRouteA88]
 			[UseChatBroadcast:true]
 			[ChatData:GVK-CargoShip-Land-COALITION-Chat-EscortAddWaypointsA]
 			</Description>
@@ -384,6 +414,7 @@
 			</Id>
 			<Description>
 			[RivalAI Action]
+			[//DebugMessage:EscortHorizonAngleHigh]
 			[Chance:100]
 			[ChangeAutopilotProfile:true]
 			[AutopilotProfile:Tertiary]
@@ -396,6 +427,7 @@
 			</Id>
 			<Description>
 			[RivalAI Action]
+			[//DebugMessage:EscortHorizonAngleLow]
 			[Chance:100]
 			[ChangeAutopilotProfile:true]
 			[AutopilotProfile:Primary]
@@ -473,6 +505,7 @@
 			</Id>
 			<Description>
 			[RivalAI Action]
+			[//DebugMessage:EscortCompromised]
 			[TriggerTimerBlocks:true]
 			[TimerBlockNames:NPC Timer E-brake]
 			[EnableBlocks:true]
@@ -490,10 +523,13 @@
 			[DisableTriggerNames:GVK-CargoShip-Land-COALITION-Trigger-EscortPlayerNotNear]
 			[DisableTriggerNames:GVK-CargoShip-Land-COALITION-Trigger-EscortInsideZ1]
 			[DisableTriggerNames:GVK-CargoShip-Land-COALITION-Trigger-EscortEnemySpawnsZ1]
+			[DisableTriggerNames:GVK-CargoShip-Land-COALITION-Trigger-EscortEnemySpawnsZ1Canyon]
 			[DisableTriggerNames:GVK-CargoShip-Land-COALITION-Trigger-EscortInsideZ2]
 			[DisableTriggerNames:GVK-CargoShip-Land-COALITION-Trigger-EscortEnemySpawnsZ2]
+			[DisableTriggerNames:GVK-CargoShip-Land-COALITION-Trigger-EscortEnemySpawnsZ2Canyon]
 			[DisableTriggerNames:GVK-CargoShip-Land-COALITION-Trigger-EscortInsideZ3]
 			[DisableTriggerNames:GVK-CargoShip-Land-COALITION-Trigger-EscortEnemySpawnsZ3]
+			[DisableTriggerNames:GVK-CargoShip-Land-COALITION-Trigger-EscortEnemySpawnsZ3Canyon]
 			[DisableTriggerNames:GVK-CargoShip-Land-COALITION-Trigger-EscortAttacked]
 			[UseChatBroadcast:true]
 			[ChatData:GVK-CargoShip-Land-COALITION-Chat-EscortCompromised]
@@ -512,9 +548,9 @@
 			[Chance:100]
 			[MaxChats:1]
 			[BroadcastRandomly:false]
-			[Author:COALITION]
-			[Color:White]
-			[ChatMessages:A COALITION Transport has been Lost!]
+			[Author:{Faction}]
+			[Color:{PlayerRelation}]
+			[ChatMessages:An escort has been Lost!]
 			[ChatAudio:GreetingSoundId-A]
 			[BroadcastChatType:Chat]
 			[SendToAllOnlinePlayers:true]
@@ -544,33 +580,10 @@
 			</Id>
 			<Description>
 			[RivalAI Action]
+			[//DebugMessage:EscortArriveAtWaypoint]
 			[CancelWaitingAtWaypoint:true]
 			[SwitchToNextWaypoint:false]
 			[IncreaseCounters:WaypointCounter]
-			[UseChatBroadcast:false]
-			[ChatData:GVK-CargoShip-Land-COALITION-Chat-EscortArriveAtWaypoint]
-			</Description>
-		</EntityComponent>
-		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
-			<Id>
-				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-CargoShip-Land-COALITION-Chat-EscortArriveAtWaypoint</SubtypeId>
-			</Id>
-			<Description>
-			[RivalAI Chat]
-			[UseChat:true]
-			[StartsReady:true]
-			[Chance:100]
-			[MaxChats:-1]
-			[BroadcastRandomly:false]
-			[Author:COALITION Transport]
-			[Color:White]
-			[ChatMessages:Arrived at waypoint]
-			[ChatAudio:GreetingSoundId-A]
-			[BroadcastChatType:Chat]
-			[SendToAllOnlinePlayers:true]
-			[IgnoreAntennaRequirement:true]
-			[IgnoredAntennaRangeOverride:9999999]
 			</Description>
 		</EntityComponent>
 		<!-- Trigger sequence when Cargo Ship leaves a waypoint -->
@@ -595,30 +608,7 @@
 			</Id>
 			<Description>
 			[RivalAI Action]
-			[UseChatBroadcast:true]
-			[ChatData:GVK-CargoShip-Land-COALITION-Chat-EscortLeaveWaypoint]
-			</Description>
-		</EntityComponent>
-		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
-			<Id>
-				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-CargoShip-Land-COALITION-Chat-EscortLeaveWaypoint</SubtypeId>
-			</Id>
-			<Description>
-			[RivalAI Chat]
-			[UseChat:true]
-			[StartsReady:true]
-			[Chance:100]
-			[MaxChats:-1]
-			[BroadcastRandomly:false]
-			[Author:COALITION Transport]
-			[Color:White]
-			[ChatMessages:Heading to next destination]
-			[ChatAudio:GreetingSoundId-A]
-			[BroadcastChatType:Chat]
-			[SendToAllOnlinePlayers:true]
-			[IgnoreAntennaRequirement:true]
-			[IgnoredAntennaRangeOverride:9999999]
+			[//DebugMessage:EscortLeaveWaypoint]
 			</Description>
 		</EntityComponent>
 		<!-- Trigger sequence when attacked -->
@@ -647,6 +637,7 @@
 			</Id>
 			<Description>
 			[RivalAI Action]
+			[//DebugMessage:EscortAttacked]
 			[UseChatBroadcast:true]
 			[ChatData:GVK-CargoShip-Land-COALITION-Chat-EscortAttacked]
 			</Description>
@@ -663,9 +654,9 @@
 			[Chance:100]
 			[MaxChats:-1]
 			[BroadcastRandomly:false]
-			[Author:COALITION]
-			[Color:White]
-			[ChatMessages:COALITION Transport is under attack!]
+			[Author:{Faction}]
+			[Color:{PlayerRelation}]
+			[ChatMessages:Escort is under attack!]
 			[ChatAudio:GreetingSoundId-A]
 			[BroadcastChatType:Chat]
 			[SendToAllOnlinePlayers:true]
@@ -698,13 +689,73 @@
 			</Id>
 			<Description>
 			[RivalAI Action]
+			[//DebugMessage:EscortInsideZ1]
 			[EnableBlocks:true]
 			[EnableBlockNames:NPC Weapon]
 			[EnableBlockStates:On]
 			[EnableTriggers:true]
 			[EnableTriggerNames:GVK-CargoShip-Land-COALITION-Trigger-EscortEnemySpawnsZ1]
+			[EnableTriggerNames:GVK-CargoShip-Land-COALITION-Trigger-EscortEnemySpawnsZ1Canyon]
 			</Description>
 		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-CargoShip-Land-COALITION-Trigger-EscortInsideCanyonZone</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Trigger]
+			[UseTrigger:true]
+			[Type:InsideZone]
+			[ZoneName:RouteASpawnZones]
+			[StartsReady:false]
+			[MinCooldownMs:5000]
+			[MaxCooldownMs:5001]
+			[MaxActions:-1]
+			[Actions:GVK-CargoShip-Land-COALITION-Action-EscortInsideCanyonZone]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-CargoShip-Land-COALITION-Action-EscortInsideCanyonZone</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Action]
+			[//DebugMessage:EscortInsideCanyonZone]
+			[SetBooleansTrue:InCanyonZone]
+			</Description>
+		</EntityComponent>
+		<!-- Check if inside Canyon Zones and set bool true -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-CargoShip-Land-COALITION-Trigger-EscortOutsideCanyonZone</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Trigger]
+			[UseTrigger:true]
+			[Type:OutsideZone]
+			[ZoneName:RouteASpawnZones]
+			[StartsReady:false]
+			[MinCooldownMs:5000]
+			[MaxCooldownMs:5001]
+			[MaxActions:-1]
+			[Actions:GVK-CargoShip-Land-COALITION-Action-EscortOutsideCanyonZone]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-CargoShip-Land-COALITION-Action-EscortOutsideCanyonZone</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Action]
+			[//DebugMessage:EscortOutsideCanyonZone]
+			[SetBooleansFalse:InCanyonZone]
+			</Description>
+		</EntityComponent>
+		<!-- Default spawn method in Z1 and not in a Canyon Zone -->
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
@@ -716,10 +767,25 @@
 			[Type:PlayerNear]
 			[TargetDistance:2000]
 			[StartsReady:false]
-			[MinCooldownMs:100000]
-			[MaxCooldownMs:100001]
+			[MinCooldownMs:50000]
+			[MaxCooldownMs:50001]
 			[MaxActions:30]
+			[Conditions:GVK-CargoShip-Land-COALITION-Condition-EscortEnemySpawns]
 			[Actions:GVK-CargoShip-Land-COALITION-Action-EscortEnemySpawnsZ1]
+			</Description>
+		</EntityComponent>
+		<!-- check that it ISNT in a canyon route zone, should result true most of the time -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-CargoShip-Land-COALITION-Condition-EscortEnemySpawns</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Condition]
+			[UseConditions:true]
+			[MatchAnyCondition:true]
+			[CheckFalseBooleans:true]
+			[FalseBooleans:InCanyonZone]
 			</Description>
 		</EntityComponent>
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
@@ -729,6 +795,7 @@
 			</Id>
 			<Description>
 			[RivalAI Action]
+			[//DebugMessage:EscortEnemySpawnsZ1]
 			[Chance:100]
 			[SpawnEncounter:true]
 			[Spawner:GVK-CargoShip-Land-COALITION-Spawner-EscortEnemySpawnsZ1]
@@ -759,7 +826,77 @@
 			[IgnoreSafetyChecks:true]
 			</Description>
 		</EntityComponent>
-		<!-- Trigger Sequence enemy spawns Zone 2-->
+		<!-- Alternate spawn method in Z1 while in a Canyon Zone -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-CargoShip-Land-COALITION-Trigger-EscortEnemySpawnsZ1Canyon</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Trigger]
+			[UseTrigger:false]
+			[Type:PlayerNear]
+			[TargetDistance:2000]
+			[StartsReady:false]
+			[MinCooldownMs:50000]
+			[MaxCooldownMs:50001]
+			[MaxActions:30]
+			[Conditions:GVK-CargoShip-Land-COALITION-Condition-EscortEnemySpawnsCanyon]
+			[Actions:GVK-CargoShip-Land-COALITION-Action-EscortEnemySpawnsZ1Canyon]
+			</Description>
+		</EntityComponent>
+		<!-- check that it IS in a canyon route zone, should result true most of the time -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-CargoShip-Land-COALITION-Condition-EscortEnemySpawnsCanyon</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Condition]
+			[UseConditions:true]
+			[MatchAnyCondition:true]
+			[CheckTrueBooleans:true]
+			[TrueBooleans:InCanyonZone]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-CargoShip-Land-COALITION-Action-EscortEnemySpawnsZ1Canyon</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Action]
+			[//DebugMessage:EscortEnemySpawnsZ1Canyon]
+			[Chance:100]
+			[SpawnEncounter:true]
+			[Spawner:GVK-CargoShip-Land-COALITION-Spawner-EscortEnemySpawnsZ1Canyon]
+			[UseChatBroadcast:true]
+			[ChatData:GVK-CargoShip-Land-COALITION-Chat-EscortEnemySpawns]
+			</Description>
+		</EntityComponent>
+		<!-- These are slightly different spawn groups than the default defense drones -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-CargoShip-Land-COALITION-Spawner-EscortEnemySpawnsZ1Canyon</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Spawn]
+			[UseSpawn:true]
+			[SpawningType:CustomSpawn]
+			[StartsReady:true]
+			[ProcessAsAdminSpawn:true]
+			[UseWaypoint:true]
+			[Waypoint:GVK-CargoShip-Land-COALITION-Waypoint-EscortEnemySpawnsCanyon]
+			[MaxSpawns:-1]
+			[SpawnGroups:GVK-Drone-Defense-SpawnGroup-GAALSIEN-SmallFlyerSingle]
+			[SpawnGroups:GVK-Drone-Defense-SpawnGroup-GAALSIEN-InterceptorSingle]
+			[SpawnGroups:GVK-Drone-Defense-SpawnGroup-GAALSIEN-LightSandskimmerSquad]
+			[InheritNpcAltitude:true]
+			[IgnoreSafetyChecks:true]
+			</Description>
+		</EntityComponent>
+		<!-- Default Trigger Sequence enemy spawns Zone 2-->
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
@@ -784,12 +921,16 @@
 			</Id>
 			<Description>
 			[RivalAI Action]
+			[//DebugMessage:EscortInsideZ2]
 			[EnableTriggers:true]
 			[EnableTriggerNames:GVK-CargoShip-Land-COALITION-Trigger-EscortEnemySpawnsZ2]
+			[EnableTriggerNames:GVK-CargoShip-Land-COALITION-Trigger-EscortEnemySpawnsZ2Canyon]
 			[DisableTriggers:true]
 			[DisableTriggerNames:GVK-CargoShip-Land-COALITION-Trigger-EscortEnemySpawnsZ1]
+			[DisableTriggerNames:GVK-CargoShip-Land-COALITION-Trigger-EscortEnemySpawnsZ1Canyon]
 			</Description>
 		</EntityComponent>
+		<!-- Default spawn in Z2 -->
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
@@ -801,9 +942,10 @@
 			[Type:PlayerNear]
 			[TargetDistance:2000]
 			[StartsReady:false]
-			[MinCooldownMs:100000]
-			[MaxCooldownMs:100001]
+			[MinCooldownMs:50000]
+			[MaxCooldownMs:50001]
 			[MaxActions:30]
+			[Conditions:GVK-CargoShip-Land-COALITION-Condition-EscortEnemySpawns]
 			[Actions:GVK-CargoShip-Land-COALITION-Action-EscortEnemySpawnsZ2]
 			</Description>
 		</EntityComponent>
@@ -814,6 +956,7 @@
 			</Id>
 			<Description>
 			[RivalAI Action]
+			[//DebugMessage:EscortEnemySpawnsZ2]
 			[Chance:100]
 			[SpawnEncounter:true]
 			[Spawner:GVK-CargoShip-Land-COALITION-Spawner-EscortEnemySpawnsZ2]
@@ -843,6 +986,60 @@
 			[IgnoreSafetyChecks:true]
 			</Description>
 		</EntityComponent>
+		<!-- Alternate spawn in Z2 along canyon -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-CargoShip-Land-COALITION-Trigger-EscortEnemySpawnsZ2Canyon</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Trigger]
+			[UseTrigger:false]
+			[Type:PlayerNear]
+			[TargetDistance:2000]
+			[StartsReady:false]
+			[MinCooldownMs:50000]
+			[MaxCooldownMs:50001]
+			[MaxActions:30]
+			[Conditions:GVK-CargoShip-Land-COALITION-Condition-EscortEnemySpawnsCanyon]
+			[Actions:GVK-CargoShip-Land-COALITION-Action-EscortEnemySpawnsZ2Canyon]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-CargoShip-Land-COALITION-Action-EscortEnemySpawnsZ2Canyon</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Action]
+			[//DebugMessage:EscortEnemySpawnsZ2Canyon]
+			[Chance:100]
+			[SpawnEncounter:true]
+			[Spawner:GVK-CargoShip-Land-COALITION-Spawner-EscortEnemySpawnsZ2Canyon]
+			[UseChatBroadcast:true]
+			[ChatData:GVK-CargoShip-Land-COALITION-Chat-EscortEnemySpawns]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-CargoShip-Land-COALITION-Spawner-EscortEnemySpawnsZ2Canyon</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Spawn]
+			[UseSpawn:true]
+			[SpawningType:CustomSpawn]
+			[StartsReady:true]
+			[ProcessAsAdminSpawn:true]
+			[UseWaypoint:true]
+			[Waypoint:GVK-CargoShip-Land-COALITION-Waypoint-EscortEnemySpawnsCanyon]
+			[MaxSpawns:-1]
+			[SpawnGroups:GVK-Drone-Defense-SpawnGroup-GAALSIEN-InterceptorSquad]
+			[SpawnGroups:GVK-Drone-Defense-SpawnGroup-GAALSIEN-MediumHoverLight]
+			[InheritNpcAltitude:true]
+			[IgnoreSafetyChecks:true]
+			</Description>
+		</EntityComponent>
 		<!-- Trigger Sequence enemy spawns Zone 3-->
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
@@ -868,12 +1065,16 @@
 			</Id>
 			<Description>
 			[RivalAI Action]
+			[//DebugMessage:EscortInsideZ3]
 			[EnableTriggers:true]
 			[EnableTriggerNames:GVK-CargoShip-Land-COALITION-Trigger-EscortEnemySpawnsZ3]
+			[EnableTriggerNames:GVK-CargoShip-Land-COALITION-Trigger-EscortEnemySpawnsZ3Canyon]
 			[DisableTriggers:true]
 			[DisableTriggerNames:GVK-CargoShip-Land-COALITION-Trigger-EscortEnemySpawnsZ2]
+			[DisableTriggerNames:GVK-CargoShip-Land-COALITION-Trigger-EscortEnemySpawnsZ2Canyon]
 			</Description>
 		</EntityComponent>
+		<!-- Default spawns in Z3 -->
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
@@ -885,9 +1086,10 @@
 			[Type:PlayerNear]
 			[TargetDistance:2000]
 			[StartsReady:false]
-			[MinCooldownMs:100000]
-			[MaxCooldownMs:100001]
+			[MinCooldownMs:75000]
+			[MaxCooldownMs:75001]
 			[MaxActions:30]
+			[Conditions:GVK-CargoShip-Land-COALITION-Condition-EscortEnemySpawns]
 			[Actions:GVK-CargoShip-Land-COALITION-Action-EscortEnemySpawnsZ3]
 			</Description>
 		</EntityComponent>
@@ -898,6 +1100,7 @@
 			</Id>
 			<Description>
 			[RivalAI Action]
+			[//DebugMessage:EscortEnemySpawnsZ3]
 			[Chance:100]
 			[SpawnEncounter:true]
 			[Spawner:GVK-CargoShip-Land-COALITION-Spawner-EscortEnemySpawnsZ3]
@@ -924,6 +1127,61 @@
 			[MaxDistance:1000]
 			[MinAltitude:50]
 			[MaxAltitude:51]
+			[InheritNpcAltitude:true]
+			[IgnoreSafetyChecks:true]
+			</Description>
+		</EntityComponent>
+		<!-- Alternate spawns in Z3 along canyon-->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-CargoShip-Land-COALITION-Trigger-EscortEnemySpawnsZ3Canyon</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Trigger]
+			[UseTrigger:false]
+			[Type:PlayerNear]
+			[TargetDistance:2000]
+			[StartsReady:false]
+			[MinCooldownMs:75000]
+			[MaxCooldownMs:75001]
+			[MaxActions:30]
+			[Conditions:GVK-CargoShip-Land-COALITION-Condition-EscortEnemySpawnsCanyon]
+			[Actions:GVK-CargoShip-Land-COALITION-Action-EscortEnemySpawnsZ3Canyon]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-CargoShip-Land-COALITION-Action-EscortEnemySpawnsZ3Canyon</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Action]
+			[//DebugMessage:EscortEnemySpawnsZ3Canyon]
+			[Chance:100]
+			[SpawnEncounter:true]
+			[Spawner:GVK-CargoShip-Land-COALITION-Spawner-EscortEnemySpawnsZ3Canyon]
+			[UseChatBroadcast:true]
+			[ChatData:GVK-CargoShip-Land-COALITION-Chat-EscortEnemySpawns]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-CargoShip-Land-COALITION-Spawner-EscortEnemySpawnsZ3Canyon</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Spawn]
+			[UseSpawn:true]
+			[SpawningType:CustomSpawn]
+			[StartsReady:true]
+			[ProcessAsAdminSpawn:true]
+			[UseWaypoint:true]
+			[Waypoint:GVK-CargoShip-Land-COALITION-Waypoint-EscortEnemySpawnsCanyon]
+			[MaxSpawns:-1]
+			[SpawnGroups:GVK-Drone-Defense-SpawnGroup-GAALSIEN-MediumFlyer]
+			[SpawnGroups:GVK-Drone-Defense-SpawnGroup-GAALSIEN-MediumHoverHeavy]
+			[SpawnGroups:GVK-Drone-Defense-SpawnGroup-GAALSIEN-LargeHover]
 			[InheritNpcAltitude:true]
 			[IgnoreSafetyChecks:true]
 			</Description>
@@ -974,6 +1232,7 @@
 			</Id>
 			<Description>
 			[RivalAI Action]
+			[//DebugMessage:EscortPlayerNear]
 			[ChangeAutopilotProfile:true]
 			[AutopilotProfile:Primary]
 			[EnableBlocks:true]
@@ -1036,6 +1295,7 @@
 			</Id>
 			<Description>
 			[RivalAI Action]
+			[//DebugMessage:EscortPlayerStillNear]
 			[EnableTriggers:true]
 			[EnableTriggerNames:GVK-CargoShip-Land-COALITION-Trigger-EscortPlayerNotNear]
 			[ResetCooldownTimeOfTriggers:true]
@@ -1065,6 +1325,7 @@
 			</Id>
 			<Description>
 			[RivalAI Action]
+			[//DebugMessage:EscortPlayerNotNear]
 			[ChangeAutopilotProfile:true]
 			[AutopilotProfile:Secondary]
 			[EnableBlocks:true]
@@ -1163,6 +1424,7 @@
 			</Id>
 			<Description>
 			[RivalAI Action]
+			[//DebugMessage:EscortSuccessA]
 			[Chance:100]
 			[UseChatBroadcast:true]
 			[ChatData:GVK-CargoShip-Land-COALITION-Chat-EscortSuccessA]
@@ -1176,10 +1438,13 @@
 			[DisableTriggerNames:GVK-CargoShip-Land-COALITION-Trigger-EscortPlayerNotNear]
 			[DisableTriggerNames:GVK-CargoShip-Land-COALITION-Trigger-EscortInsideZ1]
 			[DisableTriggerNames:GVK-CargoShip-Land-COALITION-Trigger-EscortEnemySpawnsZ1]
+			[DisableTriggerNames:GVK-CargoShip-Land-COALITION-Trigger-EscortEnemySpawnsZ1Canyon]
 			[DisableTriggerNames:GVK-CargoShip-Land-COALITION-Trigger-EscortInsideZ2]
 			[DisableTriggerNames:GVK-CargoShip-Land-COALITION-Trigger-EscortEnemySpawnsZ2]
+			[DisableTriggerNames:GVK-CargoShip-Land-COALITION-Trigger-EscortEnemySpawnsZ2Canyon]
 			[DisableTriggerNames:GVK-CargoShip-Land-COALITION-Trigger-EscortInsideZ3]
 			[DisableTriggerNames:GVK-CargoShip-Land-COALITION-Trigger-EscortEnemySpawnsZ3]
+			[DisableTriggerNames:GVK-CargoShip-Land-COALITION-Trigger-EscortEnemySpawnsZ3Canyon]
 			[DisableTriggerNames:GVK-CargoShip-Land-COALITION-Trigger-EscortAttacked]
 			[DisableTriggerNames:GVK-CargoShip-Land-COALITION-Trigger-EscortBeaconDisabled]
 			[DisableTriggerNames:GVK-CargoShip-Land-COALITION-Trigger-EscortCompromised]
@@ -1206,9 +1471,9 @@
 			[Chance:100]
 			[MaxChats:1]
 			[BroadcastRandomly:false]
-			[Author:COALITION]
-			[Color:White]
-			[ChatMessages:Cargo Transport arrived safely at Sevastopol.]
+			[Author:{Faction}]
+			[Color:{PlayerRelation}]
+			[ChatMessages:Escort arrived safely at Sevastopol.]
 			[ChatAudio:ArcHudGPSNotification2]
 			[BroadcastChatType:Both]
 			[SendToAllOnlinePlayers:true]
@@ -1226,14 +1491,14 @@
 			[UseSpawn:true]
 			[SpawningType:CustomSpawn]
 			[StartsReady:true]
-			[ProcessAsAdminSpawn:false]
+			[ProcessAsAdminSpawn:true]
 			[MaxSpawns:1]
 			[SpawnGroups:GVK-Other-Loot-SpawnGroup-COALITION-CargoDrop4x]
 			[MinDistance:300]
 			[MaxDistance:400]
 			[MinAltitude:300]
 			[MaxAltitude:301]
-			[InheritNpcAltitude:true]
+			[InheritNpcAltitude:false]
 			[IgnoreSafetyChecks:true]
 			</Description>
 		</EntityComponent>

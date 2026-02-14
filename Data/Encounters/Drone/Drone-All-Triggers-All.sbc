@@ -30,85 +30,6 @@
 			[BarrelRoll:true]
 			</Description>
 		</EntityComponent>
-		<!-- Action group to engage enemy upon taking damage -->
-		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
-			<Id>
-				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Drone-All-Trigger-TargetAttacker</SubtypeId>
-			</Id>
-			<Description>
-			[RivalAI Trigger]
-			[UseTrigger:true]
-			[Type:Damage]
-			[StartsReady:true]
-			[MinCooldownMs:30000]
-			[MaxCooldownMs:30000]
-			[DamageTypes:Any]
-			[Actions:GVK-Drone-All-Action-TargetAttacker]
-			</Description>
-		</EntityComponent>
-		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
-			<Id>
-				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Drone-All-Action-TargetAttacker</SubtypeId>
-			</Id>
-			<Description>
-			[RivalAI Action]
-			[SwitchToReceivedTarget:true]
-			</Description>
-		</EntityComponent>
-		<!-- Action group to engage enemy when turret has a target -->
-		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
-			<Id>
-				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Drone-All-Trigger-TurretTarget</SubtypeId>
-			</Id>
-			<Description>
-			[RivalAI Trigger]
-			[UseTrigger:true]
-			[Type:TurretTarget]
-			[StartsReady:true]
-			[MinCooldownMs:30000]
-			[MaxCooldownMs:30000]
-			[Actions:GVK-Drone-All-Action-TurretTarget]
-			</Description>
-		</EntityComponent>
-		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
-			<Id>
-				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Drone-All-Action-TurretTarget</SubtypeId>
-			</Id>
-			<Description>
-			[RivalAI Action]
-			[SwitchToReceivedTarget:true]
-			</Description>
-		</EntityComponent>
-		<!-- Action group to set turrets to max range because of a bug in MES right now -->
-		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
-			<Id>
-				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Drone-All-Trigger-WeaponsToMaxRange</SubtypeId>
-			</Id>
-			<Description>
-			[RivalAI Trigger]
-			[UseTrigger:true]
-			[Type:Session]
-			[StartsReady:false]
-			[MinCooldownMs:5000]
-			[MaxCooldownMs:5000]
-			[Actions:GVK-Drone-All-Action-WeaponsToMaxRange]
-			</Description>
-		</EntityComponent>
-		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
-			<Id>
-				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Drone-All-Action-WeaponsToMaxRange</SubtypeId>
-			</Id>
-			<Description>
-			[RivalAI Action]
-			[SetWeaponsToMaxRange:true]
-			</Description>
-		</EntityComponent>
 		<!-- Action group to fire Fixed Rocket Timer Blocks because of a bug in WC2 right now -->
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
@@ -540,7 +461,7 @@
 			[Chance:50]
 			[BroadcastRandomly:false]
 			[Author:{Faction} Interceptor]
-			[Color:Red]
+			[Color:{PlayerRelation}]
 			[ChatMessages:Air support inbound.]
 			[ChatAudio:GreetingSoundId-A]
 			[BroadcastChatType:Chat]
@@ -612,7 +533,7 @@
 			[Chance:50]
 			[BroadcastRandomly:false]
 			[Author:{Faction} Interceptor]
-			[Color:Red]
+			[Color:{PlayerRelation}]
 			[ChatMessages:Air support inbound.]
 			[ChatAudio:GreetingSoundId-A]
 			[BroadcastChatType:Chat]
@@ -684,7 +605,7 @@
 			[Chance:50]
 			[BroadcastRandomly:false]
 			[Author:{Faction} Strike Fighter]
-			[Color:Red]
+			[Color:{PlayerRelation}]
 			[ChatMessages:Air support inbound.]
 			[ChatAudio:GreetingSoundId-A]
 			[BroadcastChatType:Chat]

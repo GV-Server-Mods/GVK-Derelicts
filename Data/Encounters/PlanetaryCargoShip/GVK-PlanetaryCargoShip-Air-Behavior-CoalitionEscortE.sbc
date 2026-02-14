@@ -25,9 +25,9 @@
 			[TargetData:GVK-Universal-Target-Sevastapol]
 			[Triggers:GVK-Universal-Trigger-UneditableOnSpawn]
 			[Triggers:GVK-Universal-Trigger-EditableOnCompromised]
-			[Triggers:GVK-Drone-All-Trigger-TargetAttacker]
-			[Triggers:GVK-Drone-All-Trigger-TurretTarget]
-			[Triggers:GVK-Drone-All-Trigger-WeaponsToMaxRange]
+			[Triggers:GVK-Universal-Trigger-TargetAttacker]
+			[Triggers:GVK-Universal-Trigger-TurretTarget]
+			[Triggers:GVK-Universal-Trigger-WeaponsToMaxRange]
 			[Triggers:GVK-CargoShip-Air-COALITION-Trigger-EscortOnSpawnE]
 			[Triggers:GVK-CargoShip-Air-COALITION-Trigger-EscortAddWaypointsE]
 			[Triggers:GVK-CargoShip-Air-COALITION-Trigger-EscortArriveAtSkyport]
@@ -170,9 +170,9 @@
 			[Chance:100]
 			[MaxChats:1]
 			[BroadcastRandomly:false]
-			[Author:COALITION]
-			[Color:White]
-			[ChatMessages:An Aerial Transport is ready for escort to Skyport and Sevastapol (Difficult).]
+			[Author:{Faction}]
+			[Color:{PlayerRelation}]
+			[ChatMessages:An aerial transport is ready for escort to Skyport and Sevastapol (Difficult).]
 			[ChatAudio:ArcHudGPSNotification2]
 			[BroadcastChatType:Both]
 			[SendToAllOnlinePlayers:true]
@@ -191,7 +191,7 @@
 			[Type:Timer]
 			[UseTrigger:true]
 			[StartsReady:false]
-			[MaxActions:1]
+			[MaxActions:2]
 			[MinCooldownMs:3000]
 			[MaxCooldownMs:3001]
 			[ActionExecution:All]
@@ -206,19 +206,19 @@
 			<Description>
 			[RivalAI Action]
 			[AddWaypoints:true]
-			[WaypointsToAdd:GVK-Convoy-Static-AirRouteE00]
-			[WaypointsToAdd:GVK-Convoy-Static-AirRouteE01]
-			[WaypointsToAdd:GVK-Convoy-Static-AirRouteE02]
-			[WaypointsToAdd:GVK-Convoy-Static-AirRouteE03]
-			[WaypointsToAdd:GVK-Convoy-Static-AirRouteE04]
-			[WaypointsToAdd:GVK-Convoy-Static-AirRouteE05]
-			[WaypointsToAdd:GVK-Convoy-Static-AirRouteE06]
-			[WaypointsToAdd:GVK-Convoy-Static-AirRouteE07]
-			[WaypointsToAdd:GVK-Convoy-Static-AirRouteE08]
-			[WaypointsToAdd:GVK-Convoy-Static-AirRouteE09]
-			[WaypointsToAdd:GVK-Convoy-Static-AirRouteE10]
-			[WaypointsToAdd:GVK-Convoy-Static-AirRouteE11]
-			[WaypointsToAdd:GVK-Convoy-Static-AirRouteE12]
+			[WaypointsToAdd:GVK-Convoy-WaypointStatic-AirRouteE00]
+			[WaypointsToAdd:GVK-Convoy-WaypointStatic-AirRouteE01]
+			[WaypointsToAdd:GVK-Convoy-WaypointStatic-AirRouteE02]
+			[WaypointsToAdd:GVK-Convoy-WaypointStatic-AirRouteE03]
+			[WaypointsToAdd:GVK-Convoy-WaypointStatic-AirRouteE04]
+			[WaypointsToAdd:GVK-Convoy-WaypointStatic-AirRouteE05]
+			[WaypointsToAdd:GVK-Convoy-WaypointStatic-AirRouteE06]
+			[WaypointsToAdd:GVK-Convoy-WaypointStatic-AirRouteE07]
+			[WaypointsToAdd:GVK-Convoy-WaypointStatic-AirRouteE08]
+			[WaypointsToAdd:GVK-Convoy-WaypointStatic-AirRouteE09]
+			[WaypointsToAdd:GVK-Convoy-WaypointStatic-AirRouteE10]
+			[WaypointsToAdd:GVK-Convoy-WaypointStatic-AirRouteE11]
+			[WaypointsToAdd:GVK-Convoy-WaypointStatic-AirRouteE12]
 			[UseChatBroadcast:true]
 			[ChatData:GVK-CargoShip-Air-COALITION-Chat-EscortAddWaypointsE]
 			</Description>
@@ -353,9 +353,9 @@
 			[Chance:100]
 			[MaxChats:1]
 			[BroadcastRandomly:false]
-			[Author:COALITION]
-			[Color:White]
-			[ChatMessages:A COALITION Transport has been Lost!]
+			[Author:{Faction}]
+			[Color:{PlayerRelation}]
+			[ChatMessages:Aerial escort has been Lost!]
 			[ChatAudio:GreetingSoundId-A]
 			[BroadcastChatType:Chat]
 			[SendToAllOnlinePlayers:true]
@@ -419,8 +419,8 @@
 			[Chance:100]
 			[MaxChats:-1]
 			[BroadcastRandomly:false]
-			[Author:COALITION Transport]
-			[Color:White]
+			[Author:{Faction} Aerial Escort]
+			[Color:{PlayerRelation}]
 			[ChatMessages:Arrived at Skyport. Heading to Sevastapol in 1 minute.]
 			[ChatAudio:GreetingSoundId-A]
 			[BroadcastChatType:Chat]
@@ -466,33 +466,10 @@
 			</Id>
 			<Description>
 			[RivalAI Action]
+			[//DebugMessage:EscortArriveAtWaypoint]
 			[CancelWaitingAtWaypoint:true]
 			[SwitchToNextWaypoint:false]
 			[IncreaseSandboxCounters:SandboxCounter_WaypointRouteE]
-			[UseChatBroadcast:false]
-			[ChatData:GVK-CargoShip-Air-COALITION-Chat-EscortArriveAtWaypoint]
-			</Description>
-		</EntityComponent>
-		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
-			<Id>
-				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-CargoShip-Air-COALITION-Chat-EscortArriveAtWaypoint</SubtypeId>
-			</Id>
-			<Description>
-			[RivalAI Chat]
-			[UseChat:true]
-			[StartsReady:true]
-			[Chance:100]
-			[MaxChats:-1]
-			[BroadcastRandomly:false]
-			[Author:COALITION Transport]
-			[Color:White]
-			[ChatMessages:Arrived at waypoint]
-			[ChatAudio:GreetingSoundId-A]
-			[BroadcastChatType:Chat]
-			[SendToAllOnlinePlayers:true]
-			[IgnoreAntennaRequirement:true]
-			[IgnoredAntennaRangeOverride:9999999]
 			</Description>
 		</EntityComponent>
 		<!-- Trigger sequence when Cargo Ship leaves a waypoint -->
@@ -517,30 +494,7 @@
 			</Id>
 			<Description>
 			[RivalAI Action]
-			[UseChatBroadcast:true]
-			[ChatData:GVK-CargoShip-Air-COALITION-Chat-EscortLeaveWaypoint]
-			</Description>
-		</EntityComponent>
-		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
-			<Id>
-				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-CargoShip-Air-COALITION-Chat-EscortLeaveWaypoint</SubtypeId>
-			</Id>
-			<Description>
-			[RivalAI Chat]
-			[UseChat:true]
-			[StartsReady:true]
-			[Chance:100]
-			[MaxChats:-1]
-			[BroadcastRandomly:false]
-			[Author:COALITION Transport]
-			[Color:White]
-			[ChatMessages:Heading to next destination]
-			[ChatAudio:GreetingSoundId-A]
-			[BroadcastChatType:Chat]
-			[SendToAllOnlinePlayers:true]
-			[IgnoreAntennaRequirement:true]
-			[IgnoredAntennaRangeOverride:9999999]
+			[//DebugMessage:EscortLeaveWaypoint]
 			</Description>
 		</EntityComponent>
 		<!-- Trigger sequence when attacked -->
@@ -585,9 +539,9 @@
 			[Chance:100]
 			[MaxChats:-1]
 			[BroadcastRandomly:false]
-			[Author:COALITION]
-			[Color:White]
-			[ChatMessages:COALITION Transport is under attack!]
+			[Author:{Faction}]
+			[Color:{PlayerRelation}]
+			[ChatMessages:Escort is under attack!]
 			[ChatAudio:GreetingSoundId-A]
 			[BroadcastChatType:Chat]
 			[SendToAllOnlinePlayers:true]
@@ -1157,9 +1111,9 @@
 			[Chance:100]
 			[MaxChats:1]
 			[BroadcastRandomly:false]
-			[Author:COALITION]
-			[Color:White]
-			[ChatMessages:Cargo Transport arrived safely at Sevastopol.]
+			[Author:{Faction}]
+			[Color:{PlayerRelation}]
+			[ChatMessages:Escort arrived safely at Sevastopol.]
 			[ChatAudio:ArcHudGPSNotification2]
 			[BroadcastChatType:Both]
 			[SendToAllOnlinePlayers:true]
@@ -1177,7 +1131,7 @@
 			[UseSpawn:true]
 			[SpawningType:CustomSpawn]
 			[StartsReady:true]
-			[ProcessAsAdminSpawn:false]
+			[ProcessAsAdminSpawn:true]
 			[MaxSpawns:1]
 			[SpawnGroups:GVK-Other-Loot-SpawnGroup-COALITION-CargoDrop4x]
 			[MinDistance:300]

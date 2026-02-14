@@ -1,6 +1,12 @@
 <?xml version="1.0"?>
 <Definitions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
 	<EntityComponents>
+		<!-- 
+		
+			TODO:
+				- Configure to use DefeatedAndAttacked, needs init trigger.
+		
+		-->
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
@@ -10,13 +16,16 @@
 			[RivalAI Behavior]
 			[BehaviorName:Passive]
 			[WeaponSystem:GVK-Universal-Weapons-All]
-			[UsePlayerDistanceTimer:false]
+			[UsePlayerDistanceTimer:true]
+			[PlayerDistanceTimerTrigger:2400]
+			[PlayerDistanceTrigger:4000]
 			[UseRetreatTimer:false]
 			[UseNoTargetTimer:false]
 			[TargetData:GVK-Universal-Target-EnemyGAALSIENBeacon]
 			[Triggers:GVK-Universal-Trigger-UneditableOnSpawn]
-			[Triggers:GVK-Drone-All-Trigger-WeaponsToMaxRange]
-			[Triggers:GVK-PlanetaryInstallation-Medium-Trigger-COALITIONWreckOnSpawn]
+			[Triggers:GVK-Universal-Trigger-WeaponsToMaxRange]
+			[Triggers:GVK-PlanetaryInstallation-Medium-Trigger-COALITIONWreckInit1]
+			[Triggers:GVK-PlanetaryInstallation-Medium-Trigger-COALITIONWreckInit2]
 			[Triggers:GVK-PlanetaryInstallation-Medium-Trigger-COALITIONWreckBeaconDisabled]
 			[Triggers:GVK-PlanetaryInstallation-Medium-Trigger-COALITIONWreckDespawn]
 			[Triggers:GVK-PlanetaryInstallation-Medium-Trigger-COALITIONWreckDespawnMES]
@@ -27,42 +36,46 @@
 			[Triggers:GVK-PlanetaryInstallation-Medium-Trigger-COALITIONWreckDamage]
 			[Triggers:GVK-PlanetaryInstallation-Medium-Trigger-COALITIONWreckSpawnsManual]
 			[Triggers:GVK-Universal-Trigger-DespawnInZ0]
-			[TriggerGroups:GVK-Universal-TriggerGroup-SendTargets]
+			[//TriggerGroups:GVK-Universal-TriggerGroup-SendTargets]
+			[//Triggergroups:GVK-Universal-TriggerGroup-DefeatedAndAttacked]
 			</Description>
 		</EntityComponent>
-		<!-- Trigger sequence when Wreck Spawns -->
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-PlanetaryInstallation-Medium-Trigger-COALITIONWreckOnSpawn</SubtypeId>
+				<SubtypeId>GVK-PlanetaryInstallation-Medium-Trigger-COALITIONWreckInit1</SubtypeId>
 			</Id>
 			<Description>
-			[RivalAI Trigger]
-			[Type:Session]
+			[MES AI Trigger]
 			[UseTrigger:true]
+			[Type:Session]
 			[StartsReady:true]
-			[MaxActions:1]
-			[Actions:GVK-PlanetaryInstallation-Medium-Action-COALITIONWreckOnSpawn]
+			[MaxActions:-1]
+			[ActionExecution:All]
+			[Actions:GVK-PlanetaryInstallation-Medium-Action-COALITIONWreckInit1]
 			</Description>
 		</EntityComponent>
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-PlanetaryInstallation-Medium-Action-COALITIONWreckOnSpawn</SubtypeId>
+				<SubtypeId>GVK-PlanetaryInstallation-Medium-Action-COALITIONWreckInit1</SubtypeId>
 			</Id>
 			<Description>
-			[RivalAI Action]
-			[Chance:100]
-			[SetWeaponsToMaxRange:true]
-			[ResetSandboxCounters:SandboxCounter_MediumDistressSpawns]
+			[MES AI Action]
+			[SetCustomStrings:true]
+			[CustomStrings:EncounterType,WreckMedium]
+			[CustomStrings:EncounterDisplayName,Distress Signal]
+			[SetCustomCountersVariables:true]
+			[CustomCountersVariables:DefenseSpawn_Limit,6]
 			[UseChatBroadcast:true]
-			[ChatData:GVK-PlanetaryInstallation-Medium-Chat-COALITIONWreckOnSpawn]
+			[ChatData:GVK-PlanetaryInstallation-Medium-Chat-COALITIONWreckInit1]
 			</Description>
 		</EntityComponent>
+		<!-- Unique chat just for this encounter -->
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-PlanetaryInstallation-Medium-Chat-COALITIONWreckOnSpawn</SubtypeId>
+				<SubtypeId>GVK-PlanetaryInstallation-Medium-Chat-COALITIONWreckInit1</SubtypeId>
 			</Id>
 			<Description>
 			[RivalAI Chat]
@@ -71,8 +84,8 @@
 			[Chance:100]
 			[MaxChats:1]
 			[BroadcastRandomly:false]
-			[Author:COALITION]
-			[Color:White]
+			[Author:{Faction}]
+			[Color:{PlayerRelation}]
 			[ChatMessages:Friendly forces requesting assistance!]
 			[GPSLabel:Distress Signal]
 			[ChatAudio:ArcHudGPSNotification2]
@@ -80,7 +93,33 @@
 			[SendToAllOnlinePlayers:false]
 			[IgnoreAntennaRequirement:true]
 			[IgnoredAntennaRangeOverride:40000]
-		  </Description>
+			</Description>
+		</EntityComponent>
+		<!-- Separate 1-time init needed that only runs once since Sandbox Counters persist correctly and shoulnd't be reset -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-PlanetaryInstallation-Medium-Trigger-COALITIONWreckInit2</SubtypeId>
+			</Id>
+			<Description>
+			[MES AI Trigger]
+			[UseTrigger:true]
+			[Type:Timer]
+			[StartsReady:true]
+			[MaxActions:1]
+			[ActionExecution:All]
+			[Actions:GVK-PlanetaryInstallation-Medium-Action-COALITIONWreckInit2]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-PlanetaryInstallation-Medium-Action-COALITIONWreckInit2</SubtypeId>
+			</Id>
+			<Description>
+			[MES AI Action]
+			[ResetSandboxCounters:SandboxCounter_MediumDistressSpawns]
+			</Description>
 		</EntityComponent>
 		<!-- Trigger sequences for Wreck to die -->
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
@@ -95,11 +134,11 @@
 			[MinCooldownMs:10000]
 			[MaxCooldownMs:10000]
 			[StartsReady:false]
-			[Conditions:GVK-PlanetaryInstallation-All-Condition-BeaconDisabled]				  
+			[Conditions:GVK-Universal-Condition-AllBeaconsDisabled]				  
 			[MaxActions:1]
 			[ActionExecution:All]
 			[Actions:GVK-PlanetaryInstallation-Medium-Action-COALITIONWreckCompromised]
-			[Actions:GVK-PlanetaryInstallation-All-Action-CompromisedGeneric]
+			[//Actions:GVK-PlanetaryInstallation-All-Action-CompromisedGeneric]
 			[Actions:GVK-PlanetaryInstallation-Medium-Action-COALITIONWreckSpawns]
 			[Actions:GVK-Universal-Action-EditableOnCompromised]
 			[Actions:GVK-Universal-Action-Disabled]
@@ -119,7 +158,7 @@
 			[MaxActions:1]
 			[ActionExecution:All]
 			[Actions:GVK-PlanetaryInstallation-Medium-Action-COALITIONWreckCompromised]
-			[Actions:GVK-PlanetaryInstallation-All-Action-CompromisedGeneric]
+			[//Actions:GVK-PlanetaryInstallation-All-Action-CompromisedGeneric]
 			[Actions:GVK-PlanetaryInstallation-Medium-Action-COALITIONWreckSpawns]
 			[Actions:GVK-Universal-Action-EditableOnCompromised]
 			[Actions:GVK-Universal-Action-Disabled]
@@ -139,7 +178,7 @@
 			[MaxActions:1]
 			[ActionExecution:All]
 			[Actions:GVK-PlanetaryInstallation-Medium-Action-COALITIONWreckCompromised]
-			[Actions:GVK-PlanetaryInstallation-All-Action-CompromisedGeneric]
+			[//Actions:GVK-PlanetaryInstallation-All-Action-CompromisedGeneric]
 			[Actions:GVK-Universal-Action-EditableOnCompromised]
 			</Description>
 		</EntityComponent>
@@ -156,7 +195,7 @@
 			[MaxActions:1]
 			[ActionExecution:All]
 			[Actions:GVK-PlanetaryInstallation-Medium-Action-COALITIONWreckCompromised]
-			[Actions:GVK-PlanetaryInstallation-All-Action-CompromisedGeneric]
+			[//Actions:GVK-PlanetaryInstallation-All-Action-CompromisedGeneric]
 			[Actions:GVK-Universal-Action-EditableOnCompromised]
 			</Description>
 		</EntityComponent>
@@ -247,8 +286,8 @@
 			[BroadcastRandomly:false]
 			[IgnoreAntennaRequirement:true]
 			[IgnoredAntennaRangeOverride:5000]
-			[Author:COALITION]
-			[Color:White]
+			[Author:{Faction}]
+			[Color:{PlayerRelation}]
 			[ChatMessages:Enemy GAALSIEN forces still in range.]
 			[ChatAudio:ArcHudGPSNotification2]
 			[BroadcastChatType:Both]
@@ -321,8 +360,8 @@
 			[Chance:100]
 			[MaxChats:1]
 			[BroadcastRandomly:false]
-			[Author:COALITION]
-			[Color:White]
+			[Author:{Faction}]
+			[Color:{PlayerRelation}]
 			[ChatMessages:Thanks for the assistance, reward drop in-bound.]
 			[ChatAudio:ArcHudGPSNotification2]
 			[BroadcastChatType:Both]
@@ -331,6 +370,7 @@
 			[IgnoredAntennaRangeOverride:40000]
 		  </Description>
 		</EntityComponent>
+		<!-- for some reason the loot spawns needed to be as an admin spawn -->
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
@@ -341,14 +381,14 @@
 			[UseSpawn:true]
 			[SpawningType:CustomSpawn]
 			[StartsReady:true]
-			[ProcessAsAdminSpawn:false]
+			[ProcessAsAdminSpawn:true]
 			[MaxSpawns:1]
 			[SpawnGroups:GVK-Other-Loot-SpawnGroup-COALITION-CargoDrop2x]
 			[MinDistance:300]
 			[MaxDistance:400]
 			[MinAltitude:300]
 			[MaxAltitude:301]
-			[InheritNpcAltitude:true]
+			[InheritNpcAltitude:false]
 			[IgnoreSafetyChecks:true]
 			</Description>
 		</EntityComponent>
@@ -430,7 +470,7 @@
 			[Spawner:GVK-PlanetaryInstallation-Medium-Spawner-COALITIONWreckDefenseDroneSmall]
 			[IncreaseSandboxCounters:SandboxCounter_MediumDistressSpawns]
 			[UseChatBroadcast:true]
-			[ChatData:GVK-PlanetaryInstallation-All-Chat-Defenses]
+			[ChatData:GVK-Universal-Chat-DefensesManual]
 			</Description>
 		</EntityComponent>
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">

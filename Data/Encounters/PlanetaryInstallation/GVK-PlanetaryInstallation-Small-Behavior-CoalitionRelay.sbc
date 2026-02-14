@@ -9,17 +9,19 @@
 			<Description>
 			[RivalAI Behavior]
 			[BehaviorName:Passive]
+			[UsePlayerDistanceTimer:true]
+			[PlayerDistanceTimerTrigger:1800]
+			[PlayerDistanceTrigger:2000]
 			[WeaponSystem:GVK-Universal-Weapons-All]
 			[UsePlayerDistanceTimer:false]
 			[UseRetreatTimer:false]
 			[UseNoTargetTimer:false]
 			[TargetData:GVK-Universal-Target-EnemyGrids2km]
 			[Triggers:GVK-Universal-Trigger-UneditableOnSpawn]
-			[Triggers:GVK-PlanetaryInstallation-All-Trigger-Despawn]
-			[Triggers:GVK-PlanetaryInstallation-All-Trigger-DespawnMES]
 			[Triggers:GVK-PlanetaryInstallation-Small-Trigger-COALITIONRelayOnSpawn]
 			[Triggers:GVK-PlanetaryInstallation-Small-Trigger-COALITIONRelayButtonPress]
 			[TriggerGroups:GVK-Universal-TriggerGroup-SendTargets]
+			[Triggergroups:GVK-Universal-TriggerGroup-DefeatedAndAttacked]
 			</Description>
 		</EntityComponent>
 		<!-- Trigger sequence when Wreck Spawns -->
@@ -61,8 +63,8 @@
 			[Chance:100]
 			[MaxChats:1]
 			[BroadcastRandomly:false]
-			[Author:COALITION]
-			[Color:White]
+			[Author:{Faction}]
+			[Color:{PlayerRelation}]
 			[ChatMessages:GAALSIEN units have disabled a comms relay, please assist!]
 			[ChatAudio:ArcHudGPSNotification2]
 			[BroadcastChatType:Chat]
@@ -89,8 +91,8 @@
 			[Actions:GVK-PlanetaryInstallation-Small-Action-COALITIONRelayButtonPress]
 			[Actions:GVK-PlanetaryInstallation-Small-Action-COALITIONRelayDefendersSpawn]
 			[Actions:GVK-PlanetaryInstallation-Small-Action-COALITIONRelayAttackersSpawn]
-			[Actions:GVK-PlanetaryInstallation-All-Action-CompromisedGeneric]
-			[Actions:GVK-Universal-Action-Disabled]
+			[//Actions:GVK-PlanetaryInstallation-All-Action-CompromisedGeneric]
+			[//Actions:GVK-Universal-Action-Disabled]
 			</Description>
 		</EntityComponent>
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
@@ -139,8 +141,6 @@
 			[RivalAI Action]
 			[Chance:50]
 			[DisableTriggers:true]
-			[DisableTriggerNames:GVK-PlanetaryInstallation-All-Trigger-Despawn]
-			[DisableTriggerNames:GVK-PlanetaryInstallation-All-Trigger-DespawnMES]
 			[DisableTriggerNames:GVK-PlanetaryInstallation-Small-Trigger-COALITIONRelayOnSpawn]
 			[DisableTriggerNames:GVK-PlanetaryInstallation-Small-Trigger-COALITIONRelayButtonPress]
 			[SpawnEncounter:true]
@@ -200,8 +200,6 @@
 			[RivalAI Action]
 			[Chance:50]
 			[DisableTriggers:true]
-			[DisableTriggerNames:GVK-PlanetaryInstallation-All-Trigger-Despawn]
-			[DisableTriggerNames:GVK-PlanetaryInstallation-All-Trigger-DespawnMES]
 			[DisableTriggerNames:GVK-PlanetaryInstallation-Small-Trigger-COALITIONRelayOnSpawn]
 			[DisableTriggerNames:GVK-PlanetaryInstallation-Small-Trigger-COALITIONRelayButtonPress]
 			[SpawnEncounter:true]

@@ -624,12 +624,12 @@
 			[InertiaDampenersEnable:false]
 			[RazeBlocksOfType:true]
 			[RazeBlocksTypes:MyObjectBuilder_Beacon/ZoneBlock]
-			[RazeBlocksTypes:MyObjectBuilder_Beacon/SmallBlockBeacon]
-			[RazeBlocksTypes:MyObjectBuilder_Beacon/LargeBlockBeacon]
-			[RazeBlocksTypes:MyObjectBuilder_Beacon/SmallBlockBeacon_NPC]
-			[RazeBlocksTypes:MyObjectBuilder_Beacon/LargeBlockBeacon_NPC]
-			[RazeBlocksTypes:MyObjectBuilder_Beacon/SmallBlockBeacon_NPCNoConceal]
-			[RazeBlocksTypes:MyObjectBuilder_Beacon/LargeBlockBeacon_NPCNoConceal]
+			[//RazeBlocksTypes:MyObjectBuilder_Beacon/SmallBlockBeacon]
+			[//RazeBlocksTypes:MyObjectBuilder_Beacon/LargeBlockBeacon]
+			[//RazeBlocksTypes:MyObjectBuilder_Beacon/SmallBlockBeacon_NPC]
+			[//RazeBlocksTypes:MyObjectBuilder_Beacon/LargeBlockBeacon_NPC]
+			[//RazeBlocksTypes:MyObjectBuilder_Beacon/SmallBlockBeacon_NPCNoConceal]
+			[//RazeBlocksTypes:MyObjectBuilder_Beacon/LargeBlockBeacon_NPCNoConceal]
 			[ToggleBlocksOfType:true]
 			[BlockTypesToToggle:MyObjectBuilder_Beacon/DisposableNpcBeaconSmall]
 			[BlockTypeToggles:Off]
@@ -659,6 +659,20 @@
 			[BlockTypeToggles:Off]
 			[BlockTypesToToggle:MyObjectBuilder_SolarPanel/LargeBlockColorableSolarPanelCornerInverted]
 			[BlockTypeToggles:Off]
+			[BlockTypesToToggle:MyObjectBuilder_Beacon/SmallBlockBeacon]
+			[BlockTypeToggles:Off]
+			[BlockTypesToToggle:MyObjectBuilder_Beacon/LargeBlockBeacon]
+			[BlockTypeToggles:Off]
+			[BlockTypesToToggle:MyObjectBuilder_Beacon/SmallBlockBeacon_NPC]
+			[BlockTypeToggles:Off]
+			[BlockTypesToToggle:MyObjectBuilder_Beacon/LargeBlockBeacon_NPC]
+			[BlockTypeToggles:Off]
+			[BlockTypesToToggle:MyObjectBuilder_Beacon/SmallBlockBeacon_NPCNoConceal]
+			[BlockTypeToggles:Off]
+			[BlockTypesToToggle:MyObjectBuilder_Beacon/LargeBlockBeacon_NPCNoConceal]
+			[BlockTypeToggles:Off]
+			[GridEditable:Yes]
+			[SubGridsEditable:Yes]
 			[ForceDespawn:false]
 			</Description>
 		</EntityComponent>
@@ -739,6 +753,91 @@
 			[MatchAnyCondition:false]
 			[CheckGridSize:true]
 			[GridSizeLarge:false]
+			</Description>
+		</EntityComponent>
+		<!-- Action group to set turrets to max range because of a bug in MES right now -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Universal-Trigger-WeaponsToMaxRange</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Trigger]
+			[UseTrigger:true]
+			[Type:Timer]
+			[StartsReady:false]
+			[MinCooldownMs:5000]
+			[MaxCooldownMs:5001]
+			[MaxActions:3]
+			[Actions:GVK-Universal-Action-WeaponsToMaxRange]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Universal-Action-WeaponsToMaxRange</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Action]
+			[//DebugMessage:WeaponsToMaxRange]
+			[SetWeaponsToMaxRange:true]
+			</Description>
+		</EntityComponent>
+		<!-- Action group to engage enemy upon taking damage -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Universal-Trigger-TargetAttacker</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Trigger]
+			[UseTrigger:true]
+			[Type:Damage]
+			[StartsReady:true]
+			[MinCooldownMs:30000]
+			[MaxCooldownMs:30001]
+			[DamageTypes:Any]
+			[MaxActions:-1]
+			[Actions:GVK-Universal-Action-TargetAttacker]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Universal-Action-TargetAttacker</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Action]
+			[//DebugMessage:TargetAttacker]
+			[SwitchToReceivedTarget:true]
+			</Description>
+		</EntityComponent>
+		<!-- Action group to engage enemy when turret has a target -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Universal-Trigger-TurretTarget</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Trigger]
+			[UseTrigger:true]
+			[Type:TurretTarget]
+			[StartsReady:true]
+			[MinCooldownMs:30000]
+			[MaxCooldownMs:30001]
+			[MaxActions:-1]
+			[Actions:GVK-Universal-Action-TurretTarget]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Universal-Action-TurretTarget</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Action]
+			[//DebugMessage:TurretTarget]
+			[SwitchToReceivedTarget:true]
 			</Description>
 		</EntityComponent>
 	</EntityComponents>

@@ -11,7 +11,9 @@
 			[RivalAI Behavior]
 			[BehaviorName:Patrol]
 			[WeaponSystem:GVK-Universal-Weapons-Static06]
-			[UsePlayerDistanceTimer:false]
+			[UsePlayerDistanceTimer:true]
+			[PlayerDistanceTimerTrigger:2400]
+			[PlayerDistanceTrigger:4000]
 			[UseNoTargetTimer:false]
 			[UseRetreatTimer:false]
 			[HorseFighterTimeApproaching:30]
@@ -31,6 +33,7 @@
 			[TriggerGroups:GVK-Universal-TriggerGroup-DefeatedAndAttacked]
 			[EscortOffsets:{X:150 Y:0 Z:0}]
 			[EscortOffsets:{X:-150 Y:0 Z:0}]
+			[RemoteControlCode:GVK-Boss]
 			BountyOnKill=50000000;
 			</Description>
 		</EntityComponent>
@@ -42,9 +45,9 @@
 			<Description>
 			[MES AI Trigger]
 			[UseTrigger:true]
-			[Type:Timer]
+			[Type:Session]
 			[StartsReady:true]
-			[MaxActions:1]
+			[MaxActions:-1]
 			[ActionExecution:All]
 			[Actions:GVK-Drone-Elite-Action-Init-Hongorguard-KHAANEPH]
 			</Description>
