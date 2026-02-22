@@ -6,35 +6,6 @@
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Universal-Dereliction-NonArmor-DamageOnly-Normal</SubtypeId>
-			</Id>
-			<Description>
-			[MES Dereliction]
-			[Blocks:MyObjectBuilder_Thrust/(null)]
-			[Blocks:MyObjectBuilder_Refinery/(null)]
-			[Blocks:MyObjectBuilder_OxygenGenerator/(null)]
-			[Blocks:MyObjectBuilder_UpgradeModule/(null)]
-			[Blocks:MyObjectBuilder_BatteryBlock/(null)]
-			[Blocks:MyObjectBuilder_HydrogenEngine/(null)]
-			[Blocks:MyObjectBuilder_Reactor/(null)]
-			[Blocks:MyObjectBuilder_Drill/(null)]
-			[Blocks:MyObjectBuilder_ShipGrinder/(null)]
-			[Blocks:MyObjectBuilder_ShipWelder/(null)]
-			[Blocks:MyObjectBuilder_Gyro/(null)]
-			[Blocks:MyObjectBuilder_OxygenTank/(null)]
-			[Blocks:MyObjectBuilder_Assembler/(null)]
-			[Blocks:MyObjectBuilder_Projector/(null)]
-			[Blocks:MyObjectBuilder_LargeTurretBase/(null)]
-			[Blocks:MyObjectBuilder_MotorSuspension/(null)]
-			[MatchOnlyTypeId:true]
-			[Chance:15]
-			[MinPercentage:10]
-			[MaxPercentage:75]
-			</Description>
-		</EntityComponent>
-		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
-			<Id>
-				<TypeId>Inventory</TypeId>
 				<SubtypeId>GVK-Universal-Dereliction-NonArmor-DamageOnly</SubtypeId>
 			</Id>
 			<Description>
@@ -59,6 +30,24 @@
 			[UseSeparatePercentages:true]
 			[MinIntegrityPercentage:40]
 			[MaxIntegrityPercentage:70]
+			[MinBuildPercentage:100]
+			[MaxBuildPercentage:100]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Universal-Dereliction-Vanilla-FullHealth</SubtypeId>
+			</Id>
+			<Description>
+			[MES Dereliction]
+			[Blocks:MyObjectBuilder_AirVent/(null)]
+			[Blocks:MyObjectBuilder_Door/(null)]
+			[MatchOnlyTypeId:true]
+			[Chance:100]
+			[UseSeparatePercentages:true]
+			[MinIntegrityPercentage:100]
+			[MaxIntegrityPercentage:100]
 			[MinBuildPercentage:100]
 			[MaxBuildPercentage:100]
 			</Description>
@@ -100,23 +89,6 @@
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Universal-Dereliction-Thrusters-DamageOnly</SubtypeId>
-			</Id>
-			<Description>
-			[MES Dereliction]
-			[Blocks:MyObjectBuilder_Thrust/(null)]
-			[MatchOnlyTypeId:true]
-			[Chance:50]
-			[UseSeparatePercentages:true]
-			[MinIntegrityPercentage:40]
-			[MaxIntegrityPercentage:70]
-			[MinBuildPercentage:20]
-			[MaxBuildPercentage:50]
-			</Description>
-		</EntityComponent>
-		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
-			<Id>
-				<TypeId>Inventory</TypeId>
 				<SubtypeId>GVK-Universal-Dereliction-DerelictTurrets-Functional</SubtypeId>
 			</Id>
 			<Description>
@@ -124,6 +96,7 @@
 			[Blocks:MyObjectBuilder_LargeGatlingTurret/(null)]
 			[Blocks:MyObjectBuilder_LargeMissileTurret/(null)]
 			[Blocks:MyObjectBuilder_InteriorTurret/(null)]
+			[Blocks:MyObjectBuilder_ConveyorSorter/(null)]
 			[MatchOnlyTypeId:true]
 			[Chance:100]
 			[UseSeparatePercentages:true]
@@ -143,13 +116,14 @@
 			[Blocks:MyObjectBuilder_LargeGatlingTurret/(null)]
 			[Blocks:MyObjectBuilder_LargeMissileTurret/(null)]
 			[Blocks:MyObjectBuilder_InteriorTurret/(null)]
+			[Blocks:MyObjectBuilder_ConveyorSorter/(null)]
 			[MatchOnlyTypeId:true]
 			[Chance:100]
 			[UseSeparatePercentages:true]
 			[MinIntegrityPercentage:1]
 			[MaxIntegrityPercentage:1]
-			[MinBuildPercentage:1]
-			[MaxBuildPercentage:1]
+			[MinBuildPercentage:100]
+			[MaxBuildPercentage:100]
 			</Description>
 		</EntityComponent>
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
@@ -180,8 +154,9 @@
 			[Blocks:MyObjectBuilder_LargeGatlingTurret/(null)]
 			[Blocks:MyObjectBuilder_LargeMissileTurret/(null)]
 			[Blocks:MyObjectBuilder_InteriorTurret/(null)]
+			[Blocks:MyObjectBuilder_ConveyorSorter/(null)]
 			[MatchOnlyTypeId:true]
-			[Chance:60]
+			[Chance:50]
 			[UseSeparatePercentages:true]
 			[MinIntegrityPercentage:0]
 			[MaxIntegrityPercentage:0]
@@ -198,7 +173,7 @@
 			[MES Dereliction]
 			[Blocks:MyObjectBuilder_SmallMissileLauncher/LargeMissileLauncher]
 			[MatchOnlyTypeId:true]
-			[Chance:100]
+			[Chance:60]
 			[UseSeparatePercentages:true]
 			[MinIntegrityPercentage:0]
 			[MaxIntegrityPercentage:0]

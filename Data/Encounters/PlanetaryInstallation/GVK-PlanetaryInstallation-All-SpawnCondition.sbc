@@ -21,6 +21,23 @@
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-PlanetaryInstallation-Small-SpawnCondition-Wreck-GAALSIEN</SubtypeId>
+			</Id>
+			<Description>
+			[MES Spawn Conditions]
+			[PlanetaryInstallation:true]
+			[PlanetaryInstallationType:Small]
+			[FactionOwner:GAALSIEN]
+			[ForceStaticGrid:true]
+			[RotateInstallations:{X:100 Y:100 Z:100},{X:100 Y:100 Z:100},{X:100 Y:100 Z:100}]
+			[ZoneConditions:GVK-Universal-ZoneConditions-WreckZone123]
+			[ZoneConditions:GVK-Universal-ZoneConditions-WreckZone23]
+			[ZoneConditions:GVK-Universal-ZoneConditions-WreckZone3Only]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
 				<SubtypeId>GVK-PlanetaryInstallation-Medium-SpawnCondition-Wreck-RANDOM</SubtypeId>
 			</Id>
 			<Description>
@@ -215,6 +232,27 @@
 			[RemoteControlCodeMinDistance:15000]
 			[RemoteControlCodeMaxDistance:-1]
 			[SandboxVariables:MediumWrecksEnabled]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-PlanetaryInstallation-Medium-SpawnCondition-Building-RANDOM</SubtypeId>
+			</Id>
+			<Description>
+			[MES Spawn Conditions]
+			[PlanetaryInstallation:true]
+			[PlanetaryInstallationType:Medium]
+			[FactionOwner:DERELICT]
+			[ForceStaticGrid:true]
+			[ZoneConditions:GVK-Universal-ZoneConditions-WreckZone23]
+			[ZoneConditions:GVK-Universal-ZoneConditions-WreckZone3Only]
+			[UseRemoteControlCodeRestrictions:true]
+			[RemoteControlCode:GVK-MediumDerelict]
+			[RemoteControlCodeMinDistance:15000]
+			[RemoteControlCodeMaxDistance:-1]
+			[SandboxVariables:MediumWrecksEnabled]
+			[UseRandomBuilderFaction:true]
 			</Description>
 		</EntityComponent>
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">

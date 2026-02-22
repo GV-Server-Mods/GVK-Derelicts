@@ -39,6 +39,7 @@
 			[MaxActions:-1]
 			[ActionExecution:All]
 			[Actions:GVK-PlanetaryInstallation-Medium-Action-Init]
+			[Actions:GVK-Universal-Action-DisableVanillaBlocks]
 			</Description>
 		</EntityComponent>
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
@@ -52,9 +53,17 @@
 			[CustomStrings:EncounterType,WreckMedium]
 			[CustomStrings:EncounterDisplayName,Medium signal]
 			[SetCustomCountersVariables:true]
-			[CustomCountersVariables:DefenseSpawn_Limit,4]
+			[CustomCountersVariables:DefenseSpawn_Limit,5]
 			[UseChatBroadcast:true]
 			[ChatData:GVK-PlanetaryInstallation-Medium-Chat-Init]
+			[ChangeAntennaRanges:true]
+			[AntennaNamesForRangeChange:NPC Disposable Beacon]
+			[AntennaNamesForRangeChange:Medium Signal]
+			[AntennaNamesForRangeChange:Compact Antenna]
+			[AntennaRangeChangeType:Set]
+			[AntennaRangeChangeAmount:10000]
+			[ChangeAntennaHudText:true]
+			[AntennaHudText: ]
 			</Description>
 		</EntityComponent>
 	</EntityComponents>

@@ -12,6 +12,8 @@
 			[NewBlock:MyObjectBuilder_RemoteControl/RivalAIRemoteControlLarge]
 			[OldBlock:MyObjectBuilder_Cockpit/LargeBlockCockpitIndustrial]
 			[NewBlock:MyObjectBuilder_RemoteControl/RivalAIRemoteControlLarge]
+			[OldBlock:MyObjectBuilder_FlightMovementBlock/LargeFlightMovement]
+			[NewBlock:MyObjectBuilder_RemoteControl/RivalAIRemoteControlLarge]
 			</Description>
 		</EntityComponent>
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
@@ -25,6 +27,31 @@
 			[NewBlock:MyObjectBuilder_MyProgrammableBlock/(null)]
 			[OldBlock:MyObjectBuilder_MyProgrammableBlock/LargeProgrammableBlock]
 			[NewBlock:MyObjectBuilder_MyProgrammableBlock/(null)]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Replacer-ConveyorToCargo</SubtypeId>
+			</Id>
+			<Description>
+			[MES Block Replacement]
+			[OldBlock:MyObjectBuilder_Conveyor/LargeBlockConveyor]
+			[NewBlock:MyObjectBuilder_CargoContainer/LargeBlockSmallContainer]
+			[OldBlock:MyObjectBuilder_ConveyorConnector/ConveyorTube]
+			[NewBlock:MyObjectBuilder_CargoContainer/LargeBlockSmallContainer]
+			[OldBlock:MyObjectBuilder_ConveyorConnector/ConveyorTubeDuct]
+			[NewBlock:MyObjectBuilder_CargoContainer/LargeBlockSmallContainer]
+			[OldBlock:MyObjectBuilder_FlightMovementBlock/LargeFlightMovement]
+			[NewBlock:MyObjectBuilder_CargoContainer/LargeBlockSmallContainer]
+			[OldBlock:MyObjectBuilder_OffensiveCombatBlock/LargeOffensiveCombat]
+			[NewBlock:MyObjectBuilder_CargoContainer/LargeBlockSmallContainer]
+			[OldBlock:MyObjectBuilder_DefensiveCombatBlock/LargeDefensiveCombat]
+			[NewBlock:MyObjectBuilder_CargoContainer/LargeBlockSmallContainer]
+			[OldBlock:MyObjectBuilder_BasicMissionBlock/LargeBasicMission]
+			[NewBlock:MyObjectBuilder_CargoContainer/LargeBlockSmallContainer]
+			[OldBlock:MyObjectBuilder_PathRecorderBlock/LargePathRecorderBlock]
+			[NewBlock:MyObjectBuilder_CargoContainer/LargeBlockSmallContainer]
 			</Description>
 		</EntityComponent>
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
@@ -302,6 +329,40 @@
 			[NewBlock:MyObjectBuilder_ConveyorSorter/GVK_GriffinMissileTurret_NPC]
 			[OldBlock:MyObjectBuilder_LargeMissileTurret/odin]
 			[NewBlock:MyObjectBuilder_LargeMissileTurret/odin_NPC]
+			</Description>
+		</EntityComponent>
+		<!-- Added this for now since MES doesn't include new Core Systems SciFi H2 thrusters -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Replacer-HydroThrusters</SubtypeId>
+			</Id>
+			<Description>
+			[MES Block Replacement]
+			[OldBlock:MyObjectBuilder_Thrust/SmallBlockSmallHydrogenThrust]
+			[NewBlock:MyObjectBuilder_Thrust/MES-NPC-Thrust-Hydro-SmallGrid-Small]
+			[OldBlock:MyObjectBuilder_Thrust/SmallBlockLargeHydrogenThrust]
+			[NewBlock:MyObjectBuilder_Thrust/MES-NPC-Thrust-Hydro-SmallGrid-Large]
+			[OldBlock:MyObjectBuilder_Thrust/LargeBlockSmallHydrogenThrust]
+			[NewBlock:MyObjectBuilder_Thrust/MES-NPC-Thrust-Hydro-LargeGrid-Small]
+			[OldBlock:MyObjectBuilder_Thrust/LargeBlockLargeHydrogenThrust]
+			[NewBlock:MyObjectBuilder_Thrust/MES-NPC-Thrust-Hydro-LargeGrid-Large]
+			[OldBlock:MyObjectBuilder_Thrust/SmallBlockSmallHydrogenThrustIndustrial]
+			[NewBlock:MyObjectBuilder_Thrust/MES-NPC-Thrust-IndustryHydro-SmallGrid-Small]
+			[OldBlock:MyObjectBuilder_Thrust/SmallBlockLargeHydrogenThrustIndustrial]
+			[NewBlock:MyObjectBuilder_Thrust/MES-NPC-Thrust-IndustryHydro-SmallGrid-Large]
+			[OldBlock:MyObjectBuilder_Thrust/LargeBlockSmallHydrogenThrustIndustrial]
+			[NewBlock:MyObjectBuilder_Thrust/MES-NPC-Thrust-IndustryHydro-LargeGrid-Small]
+			[OldBlock:MyObjectBuilder_Thrust/LargeBlockLargeHydrogenThrustIndustrial]
+			[NewBlock:MyObjectBuilder_Thrust/MES-NPC-Thrust-IndustryHydro-LargeGrid-Large]
+			[OldBlock:MyObjectBuilder_Thrust/SmallBlockSmallHydrogenThrustReskin]
+			[NewBlock:MyObjectBuilder_Thrust/MES-NPC-Thrust-Hydro-SmallGrid-Small]
+			[OldBlock:MyObjectBuilder_Thrust/SmallBlockLargeHydrogenThrustReskin]
+			[NewBlock:MyObjectBuilder_Thrust/MES-NPC-Thrust-Hydro-SmallGrid-Large]
+			[OldBlock:MyObjectBuilder_Thrust/LargeBlockSmallHydrogenThrustReskin]
+			[NewBlock:MyObjectBuilder_Thrust/MES-NPC-Thrust-Hydro-LargeGrid-Small]
+			[OldBlock:MyObjectBuilder_Thrust/LargeBlockLargeHydrogenThrustReskin]
+			[NewBlock:MyObjectBuilder_Thrust/MES-NPC-Thrust-Hydro-LargeGrid-Large]
 			</Description>
 		</EntityComponent>
 	</EntityComponents>
