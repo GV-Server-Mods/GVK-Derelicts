@@ -27,7 +27,9 @@
 			[Triggers:GVK-Alliance-SupplyDepot-ManualTrigger-InsideZone-SOBAN]
 			[Triggers:GVK-Alliance-SupplyDepot-ManualTrigger-OwnerChangeChat-SOBAN]
 			[Triggers:GVK-Alliance-SupplyDepot-Trigger-ResetOwnership]
+			[Triggers:GVK-Alliance-SupplyDepot-Trigger-RequestCargoShip]
 			[Triggers:GVK-Alliance-SupplyDepot-Trigger-SpawnLoot]
+			[Triggers:GVK-Alliance-SupplyDepot-Trigger-ReceiveWaypointRequest]
 			</Description>
 		</EntityComponent>
 		<!-- trigger to confirm it is inside Zone 10000 -->
@@ -175,7 +177,7 @@
 			[ResetTriggerCooldownNames:GVK-Alliance-SupplyDepot-Trigger-ResetOwnership]
 			[EnableTriggers:true]
 			[EnableTriggerNames:GVK-Alliance-SupplyDepot-Trigger-ResetOwnership]
-			[EnableTriggerNames:GVK-Alliance-SupplyDepot-Trigger-SpawnLoot]
+			[EnableTriggerNames:GVK-Alliance-SupplyDepot-Trigger-RequestCargoShip]
 			[DisableTriggers:true]
 			[DisableTriggerNames:GVK-Alliance-SupplyDepot-ManualTrigger-InsideZone-SOBAN]
 			</Description>
@@ -389,7 +391,7 @@
 			[ResetTriggerCooldownNames:GVK-Alliance-SupplyDepot-Trigger-ResetOwnership]
 			[EnableTriggers:true]
 			[EnableTriggerNames:GVK-Alliance-SupplyDepot-Trigger-ResetOwnership]
-			[EnableTriggerNames:GVK-Alliance-SupplyDepot-Trigger-SpawnLoot]
+			[EnableTriggerNames:GVK-Alliance-SupplyDepot-Trigger-RequestCargoShip]
 			[DisableTriggers:true]
 			[DisableTriggerNames:GVK-Alliance-SupplyDepot-ManualTrigger-InsideZone-KHAANEPH]
 			</Description>
@@ -488,7 +490,7 @@
 			[EnableTriggerNames:GVK-Alliance-SupplyDepot-ManualTrigger-OwnerChangeChat-SOBAN]
 			[DisableTriggers:true]
 			[DisableTriggerNames:GVK-Alliance-SupplyDepot-Trigger-ResetOwnership]
-			[DisableTriggerNames:GVK-Alliance-SupplyDepot-Trigger-SpawnLoot]
+			[DisableTriggerNames:GVK-Alliance-SupplyDepot-Trigger-RequestCargoShip]
 			[ChangeBlockOwnership:true]
 			[OwnershipBlockNames:NPC Block]
 			[OwnershipBlockFactions:UNKN]
@@ -514,7 +516,100 @@
 			[ChatData:GVK-Alliance-SupplyDepot-Chat-OwnerLostChat]
 			</Description>
 		</EntityComponent>
-		<!-- Trigger to restock shared cargos every 6 hours 21,600,000 ms -->
+		<!-- Trigger to request a cargo ship restock, every 3 hours 10,800,000 ms -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-SupplyDepot-Trigger-RequestCargoShip</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Trigger]
+			[Type:Timer]
+			[MinCooldownMs:10800000]
+			[MaxCooldownMs:10800001]
+			[UseTrigger:false]
+			[StartsReady:true]
+			[MaxActions:-1]
+			[ActionExecution:All]
+			[Actions:GVK-Alliance-SupplyDepot-Action-RequestCargoShip]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-SupplyDepot-Action-RequestCargoShip</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Action]
+			[//DebugMessage:RequestCargoShip] 
+			[BroadcastCommandProfiles:true]
+			[CommandProfileIds:GVK-Alliance-SupplyDepot-Command-RequestCargoShip]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-SupplyDepot-Command-RequestCargoShip</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Command]
+			[CommandCode:RequestCargoShip]
+			[SingleRecipient:true]
+			[MatchSenderReceiverOwners:true]
+			[IgnoreAntennaRequirement:true]
+			[IgnoreReceiverAntennaRequirement:true]
+			[Radius:75000]
+			</Description>
+		</EntityComponent>
+		<!-- Trigger to send waypoint when requested via command from cargo ship -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-SupplyDepot-Trigger-ReceiveWaypointRequest</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Trigger]
+			[Type:CommandReceived]
+			[MinCooldownMs:30000]
+			[MaxCooldownMs:30001]
+			[UseTrigger:true]
+			[StartsReady:true]
+			[CommandReceiveCode:CargoShipWaypointRequest]
+			[MaxActions:-1]
+			[ActionExecution:All]
+			[Actions:GVK-Alliance-SupplyDepot-Action-ReceiveWaypointRequest]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-SupplyDepot-Action-ReceiveWaypointRequest</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Action]
+			[DebugMessage:Sending Waypoint]
+			[BroadcastCommandProfiles:true]
+			[CommandProfileIds:GVK-Alliance-SupplyDepot-Command-ReceiveWaypointRequest]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-SupplyDepot-Command-ReceiveWaypointRequest</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Command]
+			[CommandCode:SupplyDepotWaypoint]
+			[SendWaypoint:true]
+			[Waypoint:GVK-Alliance-Waypoint-StaticRandom]
+			[SingleRecipient:true]
+			[MatchSenderReceiverOwners:true]
+			[IgnoreAntennaRequirement:true]
+			[IgnoreReceiverAntennaRequirement:true]
+			[Radius:75000]
+			</Description>
+		</EntityComponent>
+		<!-- Trigger to restock shared cargos when command received from nearby Cargo Ship -->
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
@@ -522,11 +617,12 @@
 			</Id>
 			<Description>
 			[RivalAI Trigger]
-			[Type:Timer]
-			[MinCooldownMs:21600000]
-			[MaxCooldownMs:21600001]
-			[UseTrigger:false]
+			[Type:CommandReceived]
+			[MinCooldownMs:30000]
+			[MaxCooldownMs:30001]
+			[UseTrigger:true]
 			[StartsReady:true]
+			[CommandReceiveCode:CargoShip_RestockSupplyDepot]
 			[MaxActions:-1]
 			[ActionExecution:All]
 			[Actions:GVK-Alliance-SupplyDepot-Action-SpawnLoot]
@@ -539,6 +635,7 @@
 			</Id>
 			<Description>
 			[RivalAI Action]
+			[DebugMessage:SpawnLoot]
 			[Chance:100]
 			[ApplyContainerTypeToInventoryBlock:true]
 			[ContainerTypeBlockNames:Shared Cargo Container]
@@ -559,9 +656,9 @@
 			[Chance:100]
 			[MaxChats:1]
 			[BroadcastRandomly:false]
-			[Author:Sensors]
-			[Color:Blue]
-			[ChatMessages:{Faction} supply depot has been restocked.]
+			[Author:{Faction}]
+			[Color:{PlayerRelation}]
+			[ChatMessages:Supply Depot has been restocked.]
 			[ChatAudio:ArcHudGPSNotification2]
 			[BroadcastChatType:Chat]
 			[SendToAllOnlinePlayers:true]
@@ -584,7 +681,7 @@
 			[Author:Sensors]
 			[Color:Blue]
 			[ChatMessages:{Faction} has taken control of a Supply Depot.]
-			[ChatAudio:ArcHudGPSNotification2]
+			[ChatAudio:ArcHudSensors]
 			[BroadcastChatType:Chat]
 			[SendToAllOnlinePlayers:true]
 			[IgnoreAntennaRequirement:true]
@@ -606,7 +703,7 @@
 			[Author:Sensors]
 			[Color:Blue]
 			[ChatMessages:A supply depot is no longer under allaince control.]
-			[ChatAudio:ArcHudGPSNotification2]
+			[ChatAudio:ArcHudSensors]
 			[BroadcastChatType:Chat]
 			[SendToAllOnlinePlayers:true]
 			[IgnoreAntennaRequirement:true]

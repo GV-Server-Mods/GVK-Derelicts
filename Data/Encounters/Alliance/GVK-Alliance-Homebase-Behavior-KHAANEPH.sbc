@@ -16,6 +16,8 @@
 			[TargetData:GVK-Universal-Target-EnemyPlayerAndGrid3km]
 			[Triggers:GVK-Alliance-Homebase-Trigger-Init1-KHAANEPH]
 			[Triggers:GVK-Alliance-Homebase-Trigger-Init2-KHAANEPH]
+			[Triggers:GVK-Alliance-Homebase-Trigger-SpawnCargoShip-KHAANEPH]
+			[Triggers:GVK-Alliance-Homebase-Trigger-ReceiveWaypointRequest]
 			[Triggers:GVK-Alliance-Homebase-Trigger-CreateSafeZone-KHAANEPH]
 			[TriggerGroups:GVK-Alliance-Homebase-TriggerGroup-PointsLimits-KHAANEPH]
 			[TriggerGroups:GVK-Alliance-Homebase-TriggerGroup-ZoneSize-KHAANEPH]
@@ -132,6 +134,104 @@
 			[FactionAccess:Whitelist]
 			[GridAccess:Whitelist]
 			[PlayerAccess:Whitelist]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-Homebase-Trigger-SpawnCargoShip-KHAANEPH</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Trigger]
+			[UseTrigger:true]
+			[Type:CommandReceived]
+			[StartsReady:true]
+			[CommandReceiveCode:RequestCargoShip]
+			[MinCooldownMs:300000]
+			[MaxCooldownMs:300001]
+			[MaxActions:-1]
+			[Actions:GVK-Alliance-Homebase-Action-SpawnCargoShip-KHAANEPH]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-Homebase-Action-SpawnCargoShip-KHAANEPH</SubtypeId>
+			</Id>
+			<Description>
+			[MES AI Action]
+			[//DebugMessage:SpawnCargoShip]
+			[SpawnEncounter:true]
+			[Spawner:GVK-Alliance-Homebase-Spawner-SpawnCargoShip-KHAANEPH]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-Homebase-Spawner-SpawnCargoShip-KHAANEPH</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Spawn]
+			[UseSpawn:true]
+			[SpawningType:CustomSpawn]
+			[StartsReady:true]
+			[ProcessAsAdminSpawn:false]
+			[MaxSpawns:-1]
+			[SpawnGroups:GVK-PlanetaryCargoShips-SpawnGroups-KHAANEPH-CargoShip1]
+			[MinDistance:300]
+			[MaxDistance:600]
+			[MinAltitude:100]
+			[MaxAltitude:200]
+			[InheritNpcAltitude:true]
+			[IgnoreSafetyChecks:true]
+			</Description>
+		</EntityComponent>
+		<!-- Trigger to send waypoint when requested via command from cargo ship -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-Homebase-Trigger-ReceiveWaypointRequest</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Trigger]
+			[Type:CommandReceived]
+			[MinCooldownMs:30000]
+			[MaxCooldownMs:30001]
+			[UseTrigger:true]
+			[StartsReady:true]
+			[CommandReceiveCode:CargoShipHQWaypointRequest]
+			[MaxActions:-1]
+			[ActionExecution:All]
+			[Actions:GVK-Alliance-Homebase-Action-ReceiveWaypointRequest]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-Homebase-Action-ReceiveWaypointRequest</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Action]
+			[DebugMessage:Sending Waypoint]
+			[BroadcastCommandProfiles:true]
+			[CommandProfileIds:GVK-Alliance-Homebase-Command-ReceiveWaypointRequest]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-Homebase-Command-ReceiveWaypointRequest</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Command]
+			[CommandCode:SupplyDepotWaypoint]
+			[SendWaypoint:true]
+			[Waypoint:GVK-Alliance-Waypoint-StaticRandom]
+			[SingleRecipient:true]
+			[MatchSenderReceiverOwners:true]
+			[IgnoreAntennaRequirement:true]
+			[IgnoreReceiverAntennaRequirement:true]
+			[Radius:75000]
 			</Description>
 		</EntityComponent>
 		<!-- Trigger sequence for Trade Station to send relative waypoint to listening Cargo Ship (not currently used)

@@ -5,9 +5,9 @@
 		
 		This TriggerGroup handles:
 			- Alliance points
+			- Alliance Reputation
 			- Explosions
 			- NPC Disable
-			- Reputation
 			- Defeated/Despawned Chats
 			- Crashed (if GVK_MobilityType_Aircraft true)
 			- Instant delete (if small grid true)
@@ -16,6 +16,11 @@
 			- CustomStrings {EncounterType} 
 			- CustomStrings {EncounterDisplayName}
 			- {Faction}
+			
+		Example tags for init trigger:
+			[CustomStrings:EncounterType,DroneMedium]
+			[CustomStrings:EncounterDisplayName,aircraft]
+			[SetBooleansTrue:GVK_MobilityType_Aircraft]
 
 		Optional:
 			- SetBooleansTrue {GVK_MobilityType_Aircraft}
@@ -45,6 +50,7 @@
 			[Triggers:GVK-Universal-TriggerTags-Disabled]
 			[Triggers:GVK-Universal-TriggerTags-DefeatedChat-AllianceBase]
 			[Triggers:GVK-Universal-TriggerTags-DefeatedChat-AllianceOutpost]
+			[Triggers:GVK-Universal-TriggerTags-DefeatedChat-CargoShip]
 			[Triggers:GVK-Universal-TriggerTags-DefeatedChat-DroneElite]
 			[Triggers:GVK-Universal-TriggerTags-DefeatedChat-DroneLarge]
 			[Triggers:GVK-Universal-TriggerTags-DefeatedChat-DroneMedium]
@@ -61,6 +67,8 @@
 			[Triggers:GVK-Universal-TriggerTags-Explosions-AllianceBase-SOBAN]
 			[Triggers:GVK-Universal-TriggerTags-Explosions-AllianceOutpost-KHAANEPH]
 			[Triggers:GVK-Universal-TriggerTags-Explosions-AllianceOutpost-SOBAN]
+			[Triggers:GVK-Universal-TriggerTags-Explosions-CargoShip-KHAANEPH]
+			[Triggers:GVK-Universal-TriggerTags-Explosions-CargoShip-SOBAN]
 			[Triggers:GVK-Universal-TriggerTags-Explosions-DroneElite-GAALSIEN]
 			[Triggers:GVK-Universal-TriggerTags-Explosions-DroneElite-KHAANEPH]
 			[Triggers:GVK-Universal-TriggerTags-Explosions-DroneElite-SOBAN]
@@ -90,6 +98,8 @@
 			[Triggers:GVK-Alliance-TriggerTags-PointsCompromised-AllianceBase-SOBAN]
 			[Triggers:GVK-Alliance-TriggerTags-PointsCompromised-AllianceOutpost-KHAANEPH]
 			[Triggers:GVK-Alliance-TriggerTags-PointsCompromised-AllianceOutpost-SOBAN]
+			[Triggers:GVK-Alliance-TriggerTags-PointsCompromised-CargoShip-KHAANEPH]
+			[Triggers:GVK-Alliance-TriggerTags-PointsCompromised-CargoShip-SOBAN]
 			[Triggers:GVK-Alliance-TriggerTags-PointsCompromised-DroneElite-KHAANEPH]
 			[Triggers:GVK-Alliance-TriggerTags-PointsCompromised-DroneElite-SOBAN]
 			[Triggers:GVK-Alliance-TriggerTags-PointsCompromised-DroneLarge-KHAANEPH]

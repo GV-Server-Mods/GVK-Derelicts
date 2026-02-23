@@ -6,6 +6,7 @@
 		EncounterTypes:
 		- Base				Faction Base
 		- Outpost			Faction Outpost
+		- CargoShip			Faction Cargo Ship
 		- DroneElite		Faction Elite Drone
 		- DroneLarge		Faction Large Drone
 		- DroneMedium		Facion Medium Drone
@@ -50,6 +51,21 @@
 			[RivalAI Trigger]
 			[UseTrigger:true]
 			[Tags:GVK-Universal-TriggerTags-DefeatedChat-AllianceOutpost]
+			[Type:Manual]
+			[StartsReady:true]
+			[Actions:GVK-Universal-Action-DefeatedChat-Large]
+			</Description>
+		</EntityComponent>
+		<!-- CargoShip -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Universal-TriggerTags-DefeatedChat-CargoShip</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Trigger]
+			[UseTrigger:true]
+			[Tags:GVK-Universal-TriggerTags-DefeatedChat-CargoShip]
 			[Type:Manual]
 			[StartsReady:true]
 			[Actions:GVK-Universal-Action-DefeatedChat-Large]

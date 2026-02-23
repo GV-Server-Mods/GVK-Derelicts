@@ -6,6 +6,7 @@
 		EncounterTypes:
 		- Base:				50 points
 		- Outpost:			10 points
+		- Cargo Ship:		10 points
 		- Research Lab:		3 points
 		- Elite Drones: 	15 points
 		- Large Drones: 	4 points
@@ -370,6 +371,81 @@
 			[IncreaseSandboxCountersAmount:3]
 			[UseChatBroadcast:true]
 			[ChatData:GVK-Alliance-Chat-PointsAdjustAwarded]
+			</Description>
+		</EntityComponent>
+		<!-- Cargo Ships -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-TriggerTags-PointsCompromised-CargoShip-KHAANEPH</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Trigger]
+			[UseTrigger:true]
+			[Tags:GVK-Alliance-TriggerTags-PointsCompromised-CargoShip-KHAANEPH]
+			[Type:Manual]
+			[StartsReady:true]
+			[Conditions:GVK-Universal-Condition-DamagedByNonFriendlyPlayer]
+			[ActionExecution:All]
+			[Actions:GVK-Alliance-Action-PointsCompromised-CargoShip-KHAANEPH]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-Action-PointsCompromised-CargoShip-KHAANEPH</SubtypeId>
+			</Id>
+			<Description>
+			[MES AI Action]
+			[//DebugMessage:PointsCompromised-CargoShip-KHAANEPH]
+			[SetCustomStrings:true]
+			[CustomStrings:DecreaseFactionName,KHAANEPH]
+			[CustomStrings:IncreaseFactionName,SOBAN]
+			[CustomStrings:DecreaseFactionAmount,10]
+			[CustomStrings:IncreaseFactionAmount,10]
+			[DecreaseSandboxCounters:KHAANEPH_Points]
+			[DecreaseSandboxCountersAmount:10]
+			[IncreaseSandboxCounters:SOBAN_Points]
+			[IncreaseSandboxCountersAmount:10]
+			[UseChatBroadcast:true]
+			[ChatData:GVK-Alliance-Chat-PointsAdjustCompromised]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-TriggerTags-PointsCompromised-CargoShip-SOBAN</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Trigger]
+			[UseTrigger:true]
+			[Tags:GVK-Alliance-TriggerTags-PointsCompromised-CargoShip-SOBAN]
+			[Type:Manual]
+			[StartsReady:true]
+			[Conditions:GVK-Universal-Condition-DamagedByNonFriendlyPlayer]
+			[ActionExecution:All]
+			[Actions:GVK-Alliance-Action-PointsCompromised-CargoShip-SOBAN]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-Action-PointsCompromised-CargoShip-SOBAN</SubtypeId>
+			</Id>
+			<Description>
+			[MES AI Action]
+			[//DebugMessage:PointsCompromised-CargoShip-SOBAN]
+			[SetCustomStrings:true]
+			[CustomStrings:DecreaseFactionName,SOBAN]
+			[CustomStrings:IncreaseFactionName,KHAANEPH]
+			[CustomStrings:DecreaseFactionAmount,10]
+			[CustomStrings:IncreaseFactionAmount,10]
+			[DecreaseSandboxCounters:SOBAN_Points]
+			[DecreaseSandboxCountersAmount:10]
+			[IncreaseSandboxCounters:KHAANEPH_Points]
+			[IncreaseSandboxCountersAmount:10]
+			[UseChatBroadcast:true]
+			[ChatData:GVK-Alliance-Chat-PointsAdjustCompromised]
 			</Description>
 		</EntityComponent>
 		<!-- Elite Drones -->

@@ -1,0 +1,34 @@
+<?xml version="1.0"?>
+<Definitions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+	<SpawnGroups>
+		<!-- NDR [COAL] Cargo Cruiser East Crossroads-Sevastopol-->
+		<SpawnGroup>
+			<Id>
+				<TypeId>SpawnGroupDefinition</TypeId>
+				<SubtypeId>GVK-PlanetaryCargoShip-Air-COALITION-SpawnGroup-EscortE</SubtypeId>
+			</Id>
+			<Description>
+			[Modular Encounters SpawnGroup]
+			[IgnoreCleanupRules:true]
+			[ReplenishSystems:true]
+			[SpawnConditionsProfiles:GVK-SpawnCondition-Land-CargoShip-COALITIONE]
+			[ManipulationProfiles:MES-Manipulation-RivalAi] 
+			[ManipulationProfiles:GVK-PlanetaryCargoShip-Air-Manipulation]
+			</Description>
+			<IsPirate>true</IsPirate>
+			<Frequency>0.1</Frequency>
+			<Prefabs>
+				<Prefab SubtypeId="NCS [COAL] Carryall">
+					<Position>
+						<X>80</X>
+						<Y>0.0</Y>
+						<Z>0.0</Z>
+					</Position>
+					<Speed>50</Speed>
+					<BeaconText>Aerial Escort (Sky-Sev)</BeaconText>
+					<Behaviour>GVK-CargoShip-Air-COALITION-Behavior-EscortE</Behaviour>
+				</Prefab>
+			</Prefabs>
+		</SpawnGroup>
+	</SpawnGroups>
+</Definitions>

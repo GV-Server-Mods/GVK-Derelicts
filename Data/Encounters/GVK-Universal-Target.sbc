@@ -316,5 +316,29 @@
 			[PrioritizeSpecifiedFactions:false]
 			</Description>
 		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Universal-Target-SupplyDepot</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Target]
+			[UseCustomTargeting:true]
+			[Target:Grid]
+			[UseTargetRefresh:false]
+			[TimeUntilNextRefresh:60]
+			[TimeUntilNextEvaluation:15]
+			[MaxDistance:2000]
+			[GetTargetBy:ClosestDistance]
+			[MatchAllFilters:Name]
+			[MatchAllFilters:Relation]
+			[MatchAllFilters:Powered]
+			[Names:Supply Depot]
+			[Relations:Faction]
+			[UsePartialNameMatching:true]
+			[GetTargetBy:ClosestDistance]
+			[PrioritizeSpecifiedFactions:false]
+			</Description>
+		</EntityComponent>
 	</EntityComponents>
 </Definitions>
