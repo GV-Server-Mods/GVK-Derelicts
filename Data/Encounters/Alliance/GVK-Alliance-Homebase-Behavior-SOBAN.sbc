@@ -16,6 +16,8 @@
 			[TargetData:GVK-Universal-Target-EnemyPlayerAndGrid3km]
 			[Triggers:GVK-Alliance-Homebase-Trigger-Init1-SOBAN]
 			[Triggers:GVK-Alliance-Homebase-Trigger-Init2-SOBAN]
+			[Triggers:GVK-Alliance-Homebase-Trigger-SpawnCargoShip-SOBAN]
+			[Triggers:GVK-Alliance-Homebase-Trigger-ReceiveWaypointRequest-SOBAN]
 			[Triggers:GVK-Alliance-Homebase-Trigger-CreateSafeZone-SOBAN]
 			[TriggerGroups:GVK-Alliance-Homebase-TriggerGroup-PointsLimits-SOBAN]
 			[TriggerGroups:GVK-Alliance-Homebase-TriggerGroup-ZoneSize-SOBAN]
@@ -134,75 +136,103 @@
 			[PlayerAccess:Whitelist]
 			</Description>
 		</EntityComponent>
-		<!-- Trigger sequence for Trade Station to send relative waypoint to listening Cargo Ship (not currently used)
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Alliance-Homebase-Trigger-SendWaypoint</SubtypeId>
+				<SubtypeId>GVK-Alliance-Homebase-Trigger-SpawnCargoShip-SOBAN</SubtypeId>
 			</Id>
 			<Description>
 			[RivalAI Trigger]
-			[Type:CommandReceived] 
 			[UseTrigger:true]
+			[Type:CommandReceived]
 			[StartsReady:true]
-			[MinCooldownMs:10000]
-			[MaxCooldownMs:10000]
+			[CommandReceiveCode:RequestCargoShip]
+			[MinCooldownMs:300000]
+			[MaxCooldownMs:300001]
 			[MaxActions:-1]
-			[CommandReceiveCode:CargoShip_RequestWaypoint]
-			[Actions:GVK-Alliance-Homebase-Action-SendWaypoint]
+			[Actions:GVK-Alliance-Homebase-Action-SpawnCargoShip-SOBAN]
 			</Description>
 		</EntityComponent>
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Alliance-Homebase-Action-SendWaypoint</SubtypeId>
+				<SubtypeId>GVK-Alliance-Homebase-Action-SpawnCargoShip-SOBAN</SubtypeId>
+			</Id>
+			<Description>
+			[MES AI Action]
+			[//DebugMessage:SpawnCargoShip]
+			[SpawnEncounter:true]
+			[Spawner:GVK-Alliance-Homebase-Spawner-SpawnCargoShip-SOBAN]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-Homebase-Spawner-SpawnCargoShip-SOBAN</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Spawn]
+			[UseSpawn:true]
+			[SpawningType:CustomSpawn]
+			[StartsReady:true]
+			[ProcessAsAdminSpawn:false]
+			[MaxSpawns:-1]
+			[SpawnGroups:GVK-PlanetaryCargoShips-SpawnGroups-SOBAN-CargoShip1]
+			[MinDistance:300]
+			[MaxDistance:600]
+			[MinAltitude:100]
+			[MaxAltitude:200]
+			[InheritNpcAltitude:true]
+			[IgnoreSafetyChecks:true]
+			</Description>
+		</EntityComponent>
+		<!-- Trigger to send waypoint when requested via command from cargo ship -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-Homebase-Trigger-ReceiveWaypointRequest-SOBAN</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Trigger]
+			[Type:CommandReceived]
+			[MinCooldownMs:30000]
+			[MaxCooldownMs:30001]
+			[UseTrigger:true]
+			[StartsReady:true]
+			[CommandReceiveCode:CargoShipHQWaypointRequest]
+			[MaxActions:-1]
+			[ActionExecution:All]
+			[Actions:GVK-Alliance-Homebase-Action-ReceiveWaypointRequest-SOBAN]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-Homebase-Action-ReceiveWaypointRequest-SOBAN</SubtypeId>
 			</Id>
 			<Description>
 			[RivalAI Action]
+			[//DebugMessage:Sending Waypoint]
 			[BroadcastCommandProfiles:true]
-			[CommandProfileIds:GVK-Alliance-Homebase-Command-SendWaypoint]
-			[UseChatBroadcast:false]
-			[ChatData:GVK-Alliance-Homebase-Chat-SendWaypoint]
+			[CommandProfileIds:GVK-Alliance-Homebase-Command-ReceiveWaypointRequest-SOBAN]
 			</Description>
 		</EntityComponent>
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Alliance-Homebase-Command-SendWaypoint</SubtypeId>
+				<SubtypeId>GVK-Alliance-Homebase-Command-ReceiveWaypointRequest-SOBAN</SubtypeId>
 			</Id>
 			<Description>
 			[RivalAI Command]
-			[CommandCode:CargoShip_ReceiveWaypoint]
-			[SingleRecipient:false]
-			[MatchSenderReceiverOwners:false]
+			[CommandCode:SupplyDepotWaypoint]
+			[SendWaypoint:true]
+			[Waypoint:GVK-Alliance-Waypoint-CargoShip]
+			[SingleRecipient:true]
+			[MatchSenderReceiverOwners:true]
 			[IgnoreAntennaRequirement:true]
 			[IgnoreReceiverAntennaRequirement:true]
 			[Radius:75000]
-			[SendWaypoint:true]
-			[Waypoint:GVK-Alliance-Homebase-Waypoint-RelativeRandom]
 			</Description>
 		</EntityComponent>
-		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
-			<Id>
-				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Alliance-Homebase-Chat-SendWaypoint</SubtypeId>
-			</Id>
-			<Description>
-			[RivalAI Chat]
-			[UseChat:true]
-			[StartsReady:true]
-			[Chance:100]
-			[MaxChats:-1]
-			[BroadcastRandomly:false]
-			[Author:Trade Station]
-			[Color:White]
-			[ChatMessages:Sending Waypoint {GridName}]
-			[ChatAudio:GreetingSoundId-A]
-			[BroadcastChatType:Chat]
-			[SendToAllOnlinePlayers:false]
-			[IgnoreAntennaRequirement:true]
-			[IgnoredAntennaRangeOverride:9999999]
-			</Description>
-		</EntityComponent> -->
 	</EntityComponents>
 </Definitions>

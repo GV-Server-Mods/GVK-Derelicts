@@ -17,7 +17,7 @@
 			[Triggers:GVK-Alliance-Homebase-Trigger-Init1-KHAANEPH]
 			[Triggers:GVK-Alliance-Homebase-Trigger-Init2-KHAANEPH]
 			[Triggers:GVK-Alliance-Homebase-Trigger-SpawnCargoShip-KHAANEPH]
-			[Triggers:GVK-Alliance-Homebase-Trigger-ReceiveWaypointRequest]
+			[Triggers:GVK-Alliance-Homebase-Trigger-ReceiveWaypointRequest-KHAANEPH]
 			[Triggers:GVK-Alliance-Homebase-Trigger-CreateSafeZone-KHAANEPH]
 			[TriggerGroups:GVK-Alliance-Homebase-TriggerGroup-PointsLimits-KHAANEPH]
 			[TriggerGroups:GVK-Alliance-Homebase-TriggerGroup-ZoneSize-KHAANEPH]
@@ -190,7 +190,7 @@
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Alliance-Homebase-Trigger-ReceiveWaypointRequest</SubtypeId>
+				<SubtypeId>GVK-Alliance-Homebase-Trigger-ReceiveWaypointRequest-KHAANEPH</SubtypeId>
 			</Id>
 			<Description>
 			[RivalAI Trigger]
@@ -202,31 +202,31 @@
 			[CommandReceiveCode:CargoShipHQWaypointRequest]
 			[MaxActions:-1]
 			[ActionExecution:All]
-			[Actions:GVK-Alliance-Homebase-Action-ReceiveWaypointRequest]
+			[Actions:GVK-Alliance-Homebase-Action-ReceiveWaypointRequest-KHAANEPH]
 			</Description>
 		</EntityComponent>
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Alliance-Homebase-Action-ReceiveWaypointRequest</SubtypeId>
+				<SubtypeId>GVK-Alliance-Homebase-Action-ReceiveWaypointRequest-KHAANEPH</SubtypeId>
 			</Id>
 			<Description>
 			[RivalAI Action]
-			[DebugMessage:Sending Waypoint]
+			[//DebugMessage:Sending Waypoint]
 			[BroadcastCommandProfiles:true]
-			[CommandProfileIds:GVK-Alliance-Homebase-Command-ReceiveWaypointRequest]
+			[CommandProfileIds:GVK-Alliance-Homebase-Command-ReceiveWaypointRequest-KHAANEPH]
 			</Description>
 		</EntityComponent>
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Alliance-Homebase-Command-ReceiveWaypointRequest</SubtypeId>
+				<SubtypeId>GVK-Alliance-Homebase-Command-ReceiveWaypointRequest-KHAANEPH</SubtypeId>
 			</Id>
 			<Description>
 			[RivalAI Command]
 			[CommandCode:SupplyDepotWaypoint]
 			[SendWaypoint:true]
-			[Waypoint:GVK-Alliance-Waypoint-StaticRandom]
+			[Waypoint:GVK-Alliance-Waypoint-CargoShip]
 			[SingleRecipient:true]
 			[MatchSenderReceiverOwners:true]
 			[IgnoreAntennaRequirement:true]
@@ -234,75 +234,5 @@
 			[Radius:75000]
 			</Description>
 		</EntityComponent>
-		<!-- Trigger sequence for Trade Station to send relative waypoint to listening Cargo Ship (not currently used)
-		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
-			<Id>
-				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Alliance-Homebase-Trigger-SendWaypoint</SubtypeId>
-			</Id>
-			<Description>
-			[RivalAI Trigger]
-			[Type:CommandReceived] 
-			[UseTrigger:true]
-			[StartsReady:true]
-			[MinCooldownMs:10000]
-			[MaxCooldownMs:10000]
-			[MaxActions:-1]
-			[CommandReceiveCode:CargoShip_RequestWaypoint]
-			[Actions:GVK-Alliance-Homebase-Action-SendWaypoint]
-			</Description>
-		</EntityComponent>
-		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
-			<Id>
-				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Alliance-Homebase-Action-SendWaypoint</SubtypeId>
-			</Id>
-			<Description>
-			[RivalAI Action]
-			[BroadcastCommandProfiles:true]
-			[CommandProfileIds:GVK-Alliance-Homebase-Command-SendWaypoint]
-			[UseChatBroadcast:false]
-			[ChatData:GVK-Alliance-Homebase-Chat-SendWaypoint]
-			</Description>
-		</EntityComponent>
-		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
-			<Id>
-				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Alliance-Homebase-Command-SendWaypoint</SubtypeId>
-			</Id>
-			<Description>
-			[RivalAI Command]
-			[CommandCode:CargoShip_ReceiveWaypoint]
-			[SingleRecipient:false]
-			[MatchSenderReceiverOwners:false]
-			[IgnoreAntennaRequirement:true]
-			[IgnoreReceiverAntennaRequirement:true]
-			[Radius:75000]
-			[SendWaypoint:true]
-			[Waypoint:GVK-Alliance-Homebase-Waypoint-RelativeRandom]
-			</Description>
-		</EntityComponent>
-		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
-			<Id>
-				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Alliance-Homebase-Chat-SendWaypoint</SubtypeId>
-			</Id>
-			<Description>
-			[RivalAI Chat]
-			[UseChat:true]
-			[StartsReady:true]
-			[Chance:100]
-			[MaxChats:-1]
-			[BroadcastRandomly:false]
-			[Author:Trade Station]
-			[Color:White]
-			[ChatMessages:Sending Waypoint {GridName}]
-			[ChatAudio:GreetingSoundId-A]
-			[BroadcastChatType:Chat]
-			[SendToAllOnlinePlayers:false]
-			[IgnoreAntennaRequirement:true]
-			[IgnoredAntennaRangeOverride:9999999]
-			</Description>
-		</EntityComponent> -->
 	</EntityComponents>
 </Definitions>
