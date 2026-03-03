@@ -41,7 +41,7 @@
 			[RetreatTimerTrigger:1800]
 			[RetreatDespawnDistance:2000]
 			[AutopilotData:GVK-Drone-Encounter-Autopilot-Salvager-COALITION]
-			[SecondaryAutopilotData:GVK-Drone-Encounter-Autopilot-Salvager-COALITION]
+			[SecondaryAutopilotData:GVK-Drone-Encounter-Autopilot-Salvager-COALITION-Secondary]
 			[TertiaryAutopilotData:GVK-Drone-All-Autopilot-COALITION-Salvager-Stop]
 			[TargetData:GVK-Universal-Target-EnemyGrids2km]
 			[Triggers:GVK-Universal-Trigger-UneditableOnSpawn]
@@ -60,7 +60,9 @@
 			[RivalAI Autopilot]
 			[UseVelocityCollisionEvasion:false]
 			[CollisionEvasionWaypointCalculatedAwayFromEntity:true]
-			[RotationMultiplier:1]
+			[RotationMultiplierPitch:0.25]
+			[RotationMultiplierYaw:1]
+			[RotationMultiplierRoll:1]
 			[LimitRotationSpeed:true]
 			[MaxRotationMagnitude:0.25]
 			[FlyLevelWithGravity:false]
@@ -73,12 +75,47 @@
 			[IdealPlanetAltitude:13]
 			[IdealMinSpeed:25]
 			[IdealMaxSpeed:30]
+			[MaxSpeedTolerance:5]
 			[WaypointWaitTimeTrigger:10]
 			[OffsetPlanetMinDistFromTarget:500]
 			[OffsetPlanetMaxDistFromTarget:501]
 			[OffsetPlanetMinTargetAltitude:9]
 			[OffsetPlanetMaxTargetAltitude:10]
 			[AngleAllowedForForwardThrust:45]
+			[MaxVelocityAngleForSpeedControl:1000]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Drone-Encounter-Autopilot-Salvager-COALITION-Secondary</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Autopilot]
+			[UseVelocityCollisionEvasion:false]
+			[CollisionEvasionWaypointCalculatedAwayFromEntity:true]
+			[RotationMultiplierPitch:0.25]
+			[RotationMultiplierYaw:1]
+			[RotationMultiplierRoll:1]
+			[LimitRotationSpeed:true]
+			[MaxRotationMagnitude:0.25]
+			[FlyLevelWithGravity:false]
+			[LevelWithGravityWhenIdle:false]
+			[UseSurfaceHoverThrustMode:true]
+			[HoverPathStepDistance:60]
+			[AltitudeTolerance:5000]
+			[WaypointAbandonTimeTrigger:30]
+			[WaypointTolerance:55]
+			[IdealPlanetAltitude:13]
+			[IdealMinSpeed:25]
+			[IdealMaxSpeed:60]
+			[MaxSpeedTolerance:10]
+			[WaypointWaitTimeTrigger:10]
+			[OffsetPlanetMinDistFromTarget:500]
+			[OffsetPlanetMaxDistFromTarget:501]
+			[OffsetPlanetMinTargetAltitude:9]
+			[OffsetPlanetMaxTargetAltitude:10]
+			[AngleAllowedForForwardThrust:90]
 			[MaxVelocityAngleForSpeedControl:1000]
 			</Description>
 		</EntityComponent>

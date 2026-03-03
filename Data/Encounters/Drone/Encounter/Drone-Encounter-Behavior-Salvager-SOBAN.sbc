@@ -1,12 +1,11 @@
 <?xml version="1.0"?>
 <Definitions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
 	<EntityComponents>
-		<!-- GAALSIEN and KHAANEPH Salvagers use the same behavior and autopilot -->
 		<!-- Salvager Hover Drone Behavior -->
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Drone-Encounter-Behavior-Salvager-GAALSIEN</SubtypeId>
+				<SubtypeId>GVK-Drone-Encounter-Behavior-Salvager-SOBAN</SubtypeId>
 			</Id>
 			<Description>
 			[RivalAI Behavior]
@@ -16,8 +15,8 @@
 			[UseRetreatTimer:true]
 			[RetreatTimerTrigger:1800]
 			[RetreatDespawnDistance:2000]
-			[AutopilotData:GVK-Drone-Encounter-Autopilot-Salvager-GAALSIEN]
-			[SecondaryAutopilotData:GVK-Drone-Encounter-Autopilot-Salvager-GAALSIEN-Secondary]
+			[AutopilotData:GVK-Drone-Encounter-Autopilot-Salvager-SOBAN]
+			[SecondaryAutopilotData:GVK-Drone-Encounter-Autopilot-Salvager-SOBAN-Secondary]
 			[TargetData:GVK-Universal-Target-EnemyGrids2km]
 			[Triggers:GVK-Universal-Trigger-TargetAttacker]
 			[TriggerGroups:GVK-Drone-All-TriggerGroup-SalvagerDefeated]
@@ -30,53 +29,67 @@
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Drone-Encounter-Autopilot-Salvager-GAALSIEN</SubtypeId>
+				<SubtypeId>GVK-Drone-Encounter-Autopilot-Salvager-SOBAN</SubtypeId>
 			</Id>
 			<Description>
 			[RivalAI Autopilot]
 			[UseVelocityCollisionEvasion:false]
-			[CollisionEvasionWaypointCalculatedAwayFromEntity:true]
-			[RotationMultiplier:0.5]
-			[FlyLevelWithGravity:true]
-			[LevelWithGravityWhenIdle:true]
+			[RotationMultiplierPitch:0.25]
+			[RotationMultiplierYaw:1]
+			[RotationMultiplierRoll:1]
+			[LimitRotationSpeed:true]
+			[MaxRotationMagnitude:0.5]
+			[FlyLevelWithGravity:false]
+			[LevelWithGravityWhenIdle:false]
+			[UseSurfaceHoverThrustMode:true]
+			[HoverPathStepDistance:60]
 			[AltitudeTolerance:5000]
-			[WaypointAbandonTimeTrigger:60]
-			[WaypointTolerance:100]
+			[WaypointAbandonTimeTrigger:30]
+			[WaypointTolerance:55]
+			[IdealPlanetAltitude:13]
 			[IdealMinSpeed:25]
 			[IdealMaxSpeed:30]
 			[MaxSpeedTolerance:5]
 			[WaypointWaitTimeTrigger:10]
-			[OffsetPlanetMinDistFromTarget:200]
-			[OffsetPlanetMaxDistFromTarget:500]
-			[OffsetPlanetMinTargetAltitude:0]
+			[OffsetPlanetMinDistFromTarget:500]
+			[OffsetPlanetMaxDistFromTarget:501]
+			[OffsetPlanetMinTargetAltitude:9]
 			[OffsetPlanetMaxTargetAltitude:10]
-			[AngleAllowedForForwardThrust:120]
+			[AngleAllowedForForwardThrust:45]
+			[MaxVelocityAngleForSpeedControl:1000]
 			</Description>
 		</EntityComponent>
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Drone-Encounter-Autopilot-Salvager-GAALSIEN-Secondary</SubtypeId>
+				<SubtypeId>GVK-Drone-Encounter-Autopilot-Salvager-SOBAN-Secondary</SubtypeId>
 			</Id>
 			<Description>
 			[RivalAI Autopilot]
 			[UseVelocityCollisionEvasion:false]
-			[CollisionEvasionWaypointCalculatedAwayFromEntity:true]
-			[RotationMultiplier:0.5]
-			[FlyLevelWithGravity:true]
-			[LevelWithGravityWhenIdle:true]
+			[RotationMultiplierPitch:0.25]
+			[RotationMultiplierYaw:1]
+			[RotationMultiplierRoll:1]
+			[LimitRotationSpeed:true]
+			[MaxRotationMagnitude:0.75]
+			[FlyLevelWithGravity:false]
+			[LevelWithGravityWhenIdle:false]
+			[UseSurfaceHoverThrustMode:true]
+			[HoverPathStepDistance:60]
 			[AltitudeTolerance:5000]
-			[WaypointAbandonTimeTrigger:60]
-			[WaypointTolerance:100]
+			[WaypointAbandonTimeTrigger:30]
+			[WaypointTolerance:55]
+			[IdealPlanetAltitude:13]
 			[IdealMinSpeed:25]
 			[IdealMaxSpeed:60]
 			[MaxSpeedTolerance:10]
 			[WaypointWaitTimeTrigger:10]
-			[OffsetPlanetMinDistFromTarget:200]
-			[OffsetPlanetMaxDistFromTarget:500]
-			[OffsetPlanetMinTargetAltitude:0]
+			[OffsetPlanetMinDistFromTarget:500]
+			[OffsetPlanetMaxDistFromTarget:501]
+			[OffsetPlanetMinTargetAltitude:9]
 			[OffsetPlanetMaxTargetAltitude:10]
-			[AngleAllowedForForwardThrust:120]
+			[AngleAllowedForForwardThrust:90]
+			[MaxVelocityAngleForSpeedControl:1000]
 			</Description>
 		</EntityComponent>
 	</EntityComponents>
