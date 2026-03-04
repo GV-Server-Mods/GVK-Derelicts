@@ -292,7 +292,7 @@
 			[DecreaseCounters:DefenseSpawn_Counter]
 			</Description>
 		</EntityComponent>
-		<!-- this gets enabled only when the right trigger tags turn on during init -->
+		<!-- Reset spawn counter every 60 minutes. This gets enabled only when the right trigger tags turn on during init -->
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
@@ -305,8 +305,8 @@
 			[UseTrigger:false]
 			[Type:Timer]
 			[StartsReady:false]
-			[MinCooldownMs:1800001]
-			[MaxCooldownMs:1800002]
+			[MinCooldownMs:3600001]
+			[MaxCooldownMs:3600002]
 			[ActionExecution:All]
 			[Actions:GVK-Universal-Action-DefensesResetCounter]
 			</Description>
