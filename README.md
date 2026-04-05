@@ -85,7 +85,14 @@ Additional Bool:
 - SOBAN
 - DERELICT
 
-
+## Reputaiton Changes:
+Reputation can be changed using a plugin (I think it is Crunch Utils, or might be Crunch Econ V3) with the following commands:
+`!faction rep change OPA SOBAN 1500`. NPC rep should be as follows:
+- Set reputation between GAALSIEN and KOTH to friendly `!faction rep change GAALSIEN KOTH 1500`
+- Set reputation between COALITION and GAALSIEN to enemy `!faction rep change GAALSIEN COALITION -1500`
+- Set reputation between KHAANEPH and SOBAN to enemy `!faction rep change KHAANEPH SOBAN -1500`
+- Set reputation between KHAANEPH and KOTH to friendly `!faction rep change KHAANEPH KOTH 1500`
+- Set reputation between SOBAN and KOTH to friendly `!faction rep change SOBAN KOTH 1500`
 
 ## Thanks Yous:
 - Nekron910 https://steamcommunity.com/sharedfiles/filedetails/?id=2650194963&tscn=1643638039
