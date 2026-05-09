@@ -286,5 +286,54 @@
 				</Prefab>
 			</Prefabs>
 		</SpawnGroup>
+		<!-- Scraptown KOTH, Small grids only -->
+		<SpawnGroup>
+			<Id>
+				<TypeId>SpawnGroupDefinition</TypeId>
+				<SubtypeId>GVK-Static-KOTH-Massive-SpawnGroup-04</SubtypeId>
+			</Id>
+			<Description>
+			[Modular Encounters SpawnGroup]
+			[StaticEncounter:true]
+			[FactionOwner:KOTH]
+			[ManipulationProfiles:GVK-Static-KOTH-Massive-Manipulation]
+			[ReactorsOn:true]
+			[ForceStaticGrid:true]
+			[TriggerCoords:{X:10115.7562741823 Y:30337.4739964301 Z:52205.9195720789}]
+			[TriggerRadius:30000]
+			[IgnoreCleanupRules:true]
+			[ReplenishSystems:true]
+			[SkipVoxelSpawnChecks:true]
+			[SkipGridSpawnChecks:true]
+			[RotateFirstCockpitToForward:false]
+			[ForceExactPositionAndOrientation:true]
+			[StaticEncounterCoords:{X:10115.7562741823 Y:30337.4739964301 Z:52205.9195720789}]
+			[StaticEncounterForward:{X:0.334457129240036 Y:0.792367696762085 Z:0.510188162326813}]
+			[StaticEncounterUp:{X:-0.760544896125793 Y:-0.0927484631538391 Z:0.642626762390137}]
+			[SandboxVariables:KOTHsEnabled]
+			[ZoneConditions:GVK-Universal-ZoneConditions-KOTH-Massive-01]
+			[ZoneConditions:GVK-Universal-ZoneConditions-KOTH-Massive-02]
+			[ZoneConditions:GVK-Universal-ZoneConditions-KOTH-Massive-03]
+			[ZoneConditions:GVK-Universal-ZoneConditions-KOTH-Massive-04]
+			[UseRemoteControlCodeRestrictions:true]
+			[RemoteControlCode:GVK-Static]
+			[RemoteControlCodeMinDistance:200]
+			[RemoteControlCodeMaxDistance:-1]
+			</Description>
+			<IsPirate>true</IsPirate>
+			<Frequency>5.0</Frequency>
+			<Prefabs>
+				<Prefab SubtypeId="KOTH V1_0">
+					<Position>
+						<X>0.0</X>
+						<Y>0</Y>
+						<Z>0.0</Z>
+					</Position>
+					<Speed>0</Speed>
+					<BeaconText>Massive Signal</BeaconText>
+					<Behaviour>GVK-Static-KOTH-Massive01-Behavior</Behaviour>
+				</Prefab>
+			</Prefabs>
+		</SpawnGroup>
 	</SpawnGroups>
 </Definitions>
