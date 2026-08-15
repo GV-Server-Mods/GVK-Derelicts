@@ -1,0 +1,96 @@
+<?xml version="1.0"?>
+<Definitions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+	<EntityComponents>
+		<!-- Salvager Hover Drone Behavior -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Drone-Encounter-Behavior-Salvager-SOBAN</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Behavior]
+			[BehaviorName:Patrol]
+			[UsePlayerDistanceTimer:false]
+			[UseNoTargetTimer:false]
+			[UseRetreatTimer:true]
+			[RetreatTimerTrigger:1800]
+			[RetreatDespawnDistance:2000]
+			[AutopilotData:GVK-Drone-Encounter-Autopilot-Salvager-SOBAN]
+			[SecondaryAutopilotData:GVK-Drone-Encounter-Autopilot-Salvager-SOBAN-Secondary]
+			[TargetData:GVK-Universal-Target-EnemyGrids2km]
+			[Triggers:GVK-Universal-Trigger-TargetAttacker]
+			[TriggerGroups:GVK-Drone-All-TriggerGroup-SalvagerDefeated]
+			[TriggerGroups:GVK-Drone-All-TriggerGroup-SalvagerRetreat]
+			[TriggerGroups:GVK-Universal-TriggerGroup-SendTargets]
+			BountyOnKill=500000;
+			</Description>
+		</EntityComponent>
+		<!-- Salvager Patrol Autopilot -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Drone-Encounter-Autopilot-Salvager-SOBAN</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Autopilot]
+			[UseVelocityCollisionEvasion:false]
+			[RotationMultiplierPitch:0.25]
+			[RotationMultiplierYaw:1]
+			[RotationMultiplierRoll:1]
+			[LimitRotationSpeed:true]
+			[MaxRotationMagnitude:0.5]
+			[FlyLevelWithGravity:false]
+			[LevelWithGravityWhenIdle:false]
+			[UseSurfaceHoverThrustMode:true]
+			[HoverPathStepDistance:60]
+			[AltitudeTolerance:5000]
+			[WaypointAbandonTimeTrigger:30]
+			[WaypointTolerance:55]
+			[IdealPlanetAltitude:13]
+			[IdealMinSpeed:25]
+			[IdealMaxSpeed:30]
+			[MaxSpeedTolerance:5]
+			[WaypointWaitTimeTrigger:10]
+			[OffsetPlanetMinDistFromTarget:500]
+			[OffsetPlanetMaxDistFromTarget:501]
+			[OffsetPlanetMinTargetAltitude:9]
+			[OffsetPlanetMaxTargetAltitude:10]
+			[AngleAllowedForForwardThrust:45]
+			[MaxVelocityAngleForSpeedControl:1000]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Drone-Encounter-Autopilot-Salvager-SOBAN-Secondary</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Autopilot]
+			[UseVelocityCollisionEvasion:false]
+			[RotationMultiplierPitch:0.25]
+			[RotationMultiplierYaw:1]
+			[RotationMultiplierRoll:1]
+			[LimitRotationSpeed:true]
+			[MaxRotationMagnitude:0.75]
+			[FlyLevelWithGravity:false]
+			[LevelWithGravityWhenIdle:false]
+			[UseSurfaceHoverThrustMode:true]
+			[HoverPathStepDistance:60]
+			[AltitudeTolerance:5000]
+			[WaypointAbandonTimeTrigger:30]
+			[WaypointTolerance:55]
+			[IdealPlanetAltitude:13]
+			[IdealMinSpeed:25]
+			[IdealMaxSpeed:60]
+			[MaxSpeedTolerance:10]
+			[WaypointWaitTimeTrigger:10]
+			[OffsetPlanetMinDistFromTarget:500]
+			[OffsetPlanetMaxDistFromTarget:501]
+			[OffsetPlanetMinTargetAltitude:9]
+			[OffsetPlanetMaxTargetAltitude:10]
+			[AngleAllowedForForwardThrust:90]
+			[MaxVelocityAngleForSpeedControl:1000]
+			</Description>
+		</EntityComponent>
+	</EntityComponents>
+</Definitions>

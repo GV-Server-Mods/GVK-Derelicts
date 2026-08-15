@@ -300,18 +300,42 @@
 			[RivalAI Target]
 			[UseCustomTargeting:true]
 			[Target:Grid]
-			[BlockTargets:RivalAi]
 			[UseTargetRefresh:false]
 			[TimeUntilNextRefresh:60]
 			[TimeUntilNextEvaluation:15]
-			[MaxDistance:500]
+			[MaxDistance:1000]
 			[GetTargetBy:ClosestDistance]
 			[MatchAllFilters:Name]
-			[MatchAllFilters:Faction]
+			[MatchAllFilters:Relation]
 			[MatchAllFilters:Powered]
-			[FactionTargets:COALITION]
-			[Names:NTS [COAL] Sevastapol]
-			[UsePartialNameMatching:false]
+			[Relations:Faction]
+			[Names:Sevastapol]
+			[UsePartialNameMatching:true]
+			[GetTargetBy:ClosestDistance]
+			[PrioritizeSpecifiedFactions:false]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Universal-Target-SupplyDepot</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Target]
+			[UseCustomTargeting:true]
+			[Target:Grid]
+			[UseTargetRefresh:false]
+			[TimeUntilNextRefresh:60]
+			[TimeUntilNextEvaluation:15]
+			[MaxDistance:5000]
+			[GetTargetBy:ClosestDistance]
+			[MatchAllFilters:Name]
+			[MatchAllFilters:Relation]
+			[MatchAllFilters:Powered]
+			[Names:Supply Depot]
+			[Names:Homebase]
+			[Relations:Faction]
+			[UsePartialNameMatching:true]
 			[GetTargetBy:ClosestDistance]
 			[PrioritizeSpecifiedFactions:false]
 			</Description>

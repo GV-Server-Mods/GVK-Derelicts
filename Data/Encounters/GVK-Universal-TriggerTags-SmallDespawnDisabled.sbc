@@ -4,6 +4,7 @@
 		<!--
 		
 		When called, check if the grid is small, and force despawn if true.
+		Temporarily removed small grid condition, so all aircraft despawn rather than clang through voxels.
 				
 		Tags:GVK-Universal-TriggerTags-AttemptSmallDespawn
 
@@ -20,7 +21,8 @@
 			[Tags:GVK-Universal-TriggerTags-AttemptSmallDespawn]
 			[Type:Manual]
 			[StartsReady:true]
-			[Conditions:GVK-Universal-Condition-GridSizeSmall]
+			[//Conditions:GVK-Universal-Condition-GridSizeSmall]
+			[Conditions:GVK-Universal-Condition-IsAircraftMobilityType]
 			[ActionExecution:All]
 			[Actions:GVK-Universal-Action-AttemptSmallDespawn]
 			</Description>

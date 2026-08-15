@@ -1,0 +1,849 @@
+<?xml version="1.0"?>
+<Definitions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+	<EntityComponents>
+		<!-- Cargo Ship Behavior for trade station routes-->
+		<!-- 
+		
+		1. Supply Depot sends command for HQ to spawn cargo ship, every 6 hours or so
+		2. Cargo Ship calls for available supply depot waypoints, close range, then long range
+		3. Supply depot responds with waypoint command
+		4. Cargo ship makes its way and announces it global
+		5. When it arrives at the supply depot, it sends a command to trigger a restock
+		6. Cargo Ship returns back to HQ, and/or goes to another allied base or outpost randomly
+		
+		Notes:
+		 - Only 1 cargo ship at at time (remote control code with long range)
+		 - Cargo ship spawns enemies based on nearby player rep. If allied then spawn opposite enemies.
+		 - WaypointNear and WaypointFar are broken and break all other triggers. Workaround is to use 
+		   TargetNear and TargetFar with a target profile for Supply Depots. This inhibits the use of 
+		   SendTargets trigger groups and targeting of player grids.
+		 - It might be worth adding the ReturnToSender or similar command tags
+		
+		-->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-CargoShip-SOBAN-Behavior</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Behavior]
+			[BehaviorName:CargoShip]
+			[UsePlayerDistanceTimer:false]
+			[UseRetreatTimer:false]
+			[UseNoTargetTimer:false]
+			[RetreatDespawnDistance:4000]
+			[AutopilotData:GVK-CargoShip-SOBAN-PrimaryAutopilot]
+			[SecondaryAutopilotData:GVK-CargoShip-SOBAN-SecondaryAutopilot]
+			[TargetData:GVK-Universal-Target-SupplyDepot]
+			[Triggers:GVK-Universal-Trigger-JetpackInhibitor]
+			[Triggers:GVK-Universal-Trigger-UneditableOnSpawn]
+			[Triggers:GVK-Universal-Trigger-EditableOnCompromised]
+			[Triggers:GVK-CargoShip-SOBAN-Trigger-Init]
+			[Triggers:GVK-CargoShip-SOBAN-Trigger-RequestNearWaypoint]
+			[Triggers:GVK-CargoShip-SOBAN-Trigger-RequestFarWaypoint]
+			[Triggers:GVK-CargoShip-SOBAN-Trigger-RequestHQWaypoint]
+			[Triggers:GVK-CargoShip-SOBAN-Trigger-ReceiveWaypoint]
+			[Triggers:GVK-CargoShip-SOBAN-Trigger-ArriveAtWaypoint]
+			[Triggers:GVK-CargoShip-SOBAN-Trigger-LeaveWaypoint]
+			[Triggers:GVK-CargoShip-SOBAN-Trigger-HeadToDespawn]
+			[Triggers:GVK-CargoShip-SOBAN-Trigger-Defenses]
+			[Triggers:GVK-CargoShip-SOBAN-Trigger-Attackers]
+			[Triggers:GVK-CargoShip-SOBAN-Trigger-LongWait]
+			[Triggers:GVK-CargoShip-SOBAN-Trigger-CargoDrop]
+			[//Triggers:GVK-CargoShip-SOBAN-Trigger-WaypointNear]
+			[//Triggers:GVK-CargoShip-SOBAN-Trigger-WaypointFar]
+			[Triggers:GVK-CargoShip-SOBAN-Trigger-TargetNear]
+			[Triggers:GVK-CargoShip-SOBAN-Trigger-TargetFar]
+			[TriggerGroups:GVK-Universal-TriggerGroup-SendTargets]
+			[TriggerGroups:GVK-Universal-TriggerGroup-DefeatedAndAttacked]
+			[RemoteControlCode:CargoShip_SOBAN]
+			</Description>
+		</EntityComponent>
+		<!-- Cargo Ship Autopilot-->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-CargoShip-SOBAN-PrimaryAutopilot</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Autopilot]
+			[UseVelocityCollisionEvasion:true]
+			[RotationMultiplier:0.3]
+			[DisableInertiaDampeners:false]
+			[FlyLevelWithGravity:true]
+			[LevelWithGravityWhenIdle:true]
+			[IdealPlanetAltitude:2000]
+			[MinimumPlanetAltitude:1500]
+			[AltitudeTolerance:100]
+			[MinAngleForLeveledDescent:150]
+			[MaxAngleForLeveledAscent:180]
+			[MaxVerticalSpeed:20]
+			[IdealMinSpeed:50]
+			[IdealMaxSpeed:60]
+			[MaxSpeedTolerance:10]
+			[SlowDownOnWaypointApproach:true]
+			[WaypointWaitTimeTrigger:30]
+			[ExtraSlowDownDistance:1000]
+			[WaypointTolerance:100]
+			[LimitRotationSpeed:true]
+			[MaxRotationMagnitude:0.5]
+			[ReverseOffsetDistAltAboveHeight:false]
+			[ReverseOffsetHeight:0]
+			[AngleAllowedForForwardThrust:45]
+			[MaxVelocityAngleForSpeedControl:181]
+			</Description>
+		</EntityComponent>
+		<!-- Cargo Ship Autopilot Secondary -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-CargoShip-SOBAN-SecondaryAutopilot</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Autopilot]
+			[UseVelocityCollisionEvasion:true]
+			[RotationMultiplier:0.3]
+			[DisableInertiaDampeners:false]
+			[FlyLevelWithGravity:true]
+			[LevelWithGravityWhenIdle:true]
+			[IdealPlanetAltitude:100]
+			[MinimumPlanetAltitude:50]
+			[AltitudeTolerance:20]
+			[MinAngleForLeveledDescent:0]
+			[MaxAngleForLeveledAscent:180]
+			[MaxVerticalSpeed:20]
+			[IdealMinSpeed:20]
+			[IdealMaxSpeed:50]
+			[MaxSpeedTolerance:5]
+			[SlowDownOnWaypointApproach:true]
+			[WaypointWaitTimeTrigger:30]
+			[ExtraSlowDownDistance:500]
+			[WaypointTolerance:100]
+			[LimitRotationSpeed:true]
+			[MaxRotationMagnitude:0.5]
+			[ReverseOffsetDistAltAboveHeight:false]
+			[ReverseOffsetHeight:0]
+			[AngleAllowedForForwardThrust:30]
+			[MaxVelocityAngleForSpeedControl:181]
+			</Description>
+		</EntityComponent>
+		<!-- Trigger when Cargo Ship Spawns -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-CargoShip-SOBAN-Trigger-Init</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Trigger]
+			[Type:Timer]
+			[UseTrigger:true]
+			[StartsReady:false]
+			[MaxActions:1]
+			[MinCooldownMs:1000]
+			[MaxCooldownMs:1000]
+			[Actions:GVK-CargoShip-SOBAN-Action-Init]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-CargoShip-SOBAN-Action-Init</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Action]
+			[Chance:100]
+			[SetCustomStrings:true]
+			[CustomStrings:EncounterType,CargoShip]
+			[CustomStrings:EncounterDisplayName,Cargo Ship]
+			[SetBooleansTrue:GVK_MobilityType_Aircraft]
+			[UseChatBroadcast:true]
+			[ChatData:GVK-CargoShip-SOBAN-Chat-Init]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-CargoShip-SOBAN-Chat-Init</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Chat]
+			[UseChat:true]
+			[StartsReady:true]
+			[Chance:100]
+			[MaxChats:1]
+			[BroadcastRandomly:false]
+			[Author:SOBAN]
+			[Color:{PlayerRelation}]
+			[ChatMessages:A Supply Depot shipment is en route.]
+			[ChatAudio:ArcHudGPSNotification2]
+			[BroadcastChatType:Both]
+			[SendToAllOnlinePlayers:true]
+			[IgnoreAntennaRequirement:true]
+			[IgnoredAntennaRangeOverride:9999999]
+			</Description>
+		</EntityComponent>
+		<!-- Trigger sequence when Cargo Ship Spawns to request near waypoint -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-CargoShip-SOBAN-Trigger-RequestNearWaypoint</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Trigger]
+			[Type:Timer]
+			[UseTrigger:true]
+			[StartsReady:false]
+			[MaxActions:1]
+			[MinCooldownMs:5000]
+			[MaxCooldownMs:5000]
+			[Actions:GVK-CargoShip-SOBAN-Action-RequestNearWaypoint]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-CargoShip-SOBAN-Action-RequestNearWaypoint</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Action]
+			[//DebugMessage:RequestNearWaypoint]
+			[BroadcastCommandProfiles:true]
+			[CommandProfileIds:GVK-CargoShip-SOBAN-Command-RequestNearWaypoint]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-CargoShip-SOBAN-Command-RequestNearWaypoint</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Command]
+			[CommandCode:CargoShipWaypointRequest]
+			[SingleRecipient:false]
+			[MatchSenderReceiverOwners:true]
+			[IgnoreAntennaRequirement:true]
+			[IgnoreReceiverAntennaRequirement:true]
+			[Radius:40000]
+			</Description>
+		</EntityComponent>
+		<!-- Trigger sequence when Cargo Ship Spawns to request far waypoint -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-CargoShip-SOBAN-Trigger-RequestFarWaypoint</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Trigger]
+			[Type:Timer]
+			[UseTrigger:true]
+			[StartsReady:false]
+			[MaxActions:1]
+			[MinCooldownMs:10000]
+			[MaxCooldownMs:10000]
+			[Actions:GVK-CargoShip-SOBAN-Action-RequestFarWaypoint]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-CargoShip-SOBAN-Action-RequestFarWaypoint</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Action]
+			[//DebugMessage:RequestFarWaypoint]
+			[BroadcastCommandProfiles:true]
+			[CommandProfileIds:GVK-CargoShip-SOBAN-Command-RequestFarWaypoint]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-CargoShip-SOBAN-Command-RequestFarWaypoint</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Command]
+			[CommandCode:CargoShipWaypointRequest]
+			[SingleRecipient:false]
+			[MatchSenderReceiverOwners:true]
+			[IgnoreAntennaRequirement:true]
+			[IgnoreReceiverAntennaRequirement:true]
+			[Radius:75000]
+			</Description>
+		</EntityComponent>
+		<!-- Trigger sequence when Cargo Ship Spawns to request far waypoint -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-CargoShip-SOBAN-Trigger-RequestHQWaypoint</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Trigger]
+			[Type:Timer]
+			[UseTrigger:true]
+			[StartsReady:false]
+			[MaxActions:1]
+			[MinCooldownMs:15000]
+			[MaxCooldownMs:15000]
+			[Actions:GVK-CargoShip-SOBAN-Action-RequestHQWaypoint]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-CargoShip-SOBAN-Action-RequestHQWaypoint</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Action]
+			[//DebugMessage:RequestHQWaypoint]
+			[BroadcastCommandProfiles:true]
+			[CommandProfileIds:GVK-CargoShip-SOBAN-Command-RequestHQWaypoint]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-CargoShip-SOBAN-Command-RequestHQWaypoint</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Command]
+			[CommandCode:CargoShipHQWaypointRequest]
+			[SingleRecipient:true]
+			[MatchSenderReceiverOwners:true]
+			[IgnoreAntennaRequirement:true]
+			[IgnoreReceiverAntennaRequirement:true]
+			[Radius:75000]
+			</Description>
+		</EntityComponent>
+		<!-- Trigger sequence for Cargo Ship to receive waypoints Supply Depot and HQ -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-CargoShip-SOBAN-Trigger-ReceiveWaypoint</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Trigger]
+			[Type:CommandReceived]
+			[UseTrigger:true]
+			[StartsReady:true]
+			[MaxActions:4]
+			[CommandReceiveCode:SupplyDepotWaypoint]
+			[Actions:GVK-CargoShip-SOBAN-Action-ReceiveWaypoint]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-CargoShip-SOBAN-Action-ReceiveWaypoint</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Action]
+			[//DebugMessage:ReceiveWaypoint]
+			[AddWaypointFromCommand:true]
+			</Description>
+		</EntityComponent>
+		<!-- Trigger sequence when Cargo Ship arrives at a waypoint -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-CargoShip-SOBAN-Trigger-ArriveAtWaypoint</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Trigger]
+			[Type:BehaviorTriggerA]
+			[UseTrigger:true]
+			[StartsReady:true]
+			[MaxActions:-1]
+			[Actions:GVK-CargoShip-SOBAN-Action-ArriveAtWaypoint]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-CargoShip-SOBAN-Action-ArriveAtWaypoint</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Action]
+			[//DebugMessage:ArriveAtWaypoint]
+			[BroadcastCommandProfiles:true]
+			[CommandProfileIds:GVK-CargoShip-SOBAN-Command-RestockSupplyDepot]
+			[//CancelWaitingAtWaypoint:true]
+			[//SwitchToNextWaypoint:true]
+			[UseChatBroadcast:true]
+			[ChatData:GVK-CargoShip-SOBAN-Chat-ArriveAtWaypoint]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-CargoShip-SOBAN-Command-RestockSupplyDepot</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Command]
+			[CommandCode:CargoShip_RestockSupplyDepot]
+			[SingleRecipient:true]
+			[MatchSenderReceiverOwners:true]
+			[IgnoreAntennaRequirement:true]
+			[IgnoreReceiverAntennaRequirement:true]
+			[Radius:2000]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-CargoShip-SOBAN-Chat-ArriveAtWaypoint</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Chat]
+			[UseChat:true]
+			[StartsReady:true]
+			[Chance:100]
+			[MaxChats:-1]
+			[BroadcastRandomly:false]
+			[Author:SOBAN]
+			[Color:{PlayerRelation}]
+			[ChatMessages:Cargo Ship arrived at Supply Depot]
+			[ChatAudio:ArcHudGPSNotification2]
+			[BroadcastChatType:Chat]
+			[SendToAllOnlinePlayers:false]
+			[IgnoreAntennaRequirement:true]
+			[IgnoredAntennaRangeOverride:9999999]
+			</Description>
+		</EntityComponent>
+		<!-- Trigger sequence when Cargo Ship leaves a waypoint -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-CargoShip-SOBAN-Trigger-LeaveWaypoint</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Trigger]
+			[Type:BehaviorTriggerB]
+			[UseTrigger:true]
+			[StartsReady:true]
+			[MaxActions:-1]
+			[Actions:GVK-CargoShip-SOBAN-Action-LeaveWaypoint]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-CargoShip-SOBAN-Action-LeaveWaypoint</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Action]
+			[//DebugMessage:LeaveWaypoint]
+			[ChangeAutopilotProfile:true]
+			[AutopilotProfile:Primary]
+			[UseChatBroadcast:true]
+			[ChatData:GVK-CargoShip-SOBAN-Chat-LeaveWaypoint]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-CargoShip-SOBAN-Chat-LeaveWaypoint</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Chat]
+			[UseChat:true]
+			[StartsReady:true]
+			[Chance:100]
+			[MaxChats:-1]
+			[BroadcastRandomly:false]
+			[Author:SOBAN]
+			[Color:{PlayerRelation}]
+			[ChatMessages:Cargo Ship heading to next delivery]
+			[ChatAudio:ArcHudGPSNotification2]
+			[BroadcastChatType:Chat]
+			[SendToAllOnlinePlayers:false]
+			[IgnoreAntennaRequirement:true]
+			[IgnoredAntennaRangeOverride:9999999]
+			</Description>
+		</EntityComponent>
+		<!-- Trigger sequence when Cargo Ship departs to despawn waypoint -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-CargoShip-SOBAN-Trigger-HeadToDespawn</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Trigger]
+			[Type:BehaviorTriggerD]
+			[MinCooldownMs:30000]
+			[MaxCooldownMs:30000]
+			[UseTrigger:true]
+			[StartsReady:false]
+			[MaxActions:-1]
+			[Actions:GVK-CargoShip-SOBAN-Action-HeadToDespawn]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-CargoShip-SOBAN-Action-HeadToDespawn</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Action]
+			[RecalculateDespawnCoords:true]
+			[UseChatBroadcast:true]
+			[ChatData:GVK-CargoShip-SOBAN-Chat-HeadToDespawn]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-CargoShip-SOBAN-Chat-HeadToDespawn</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Chat]
+			[UseChat:true]
+			[StartsReady:true]
+			[Chance:100]
+			[MaxChats:-1]
+			[BroadcastRandomly:false]
+			[Author:{Faction}]
+			[Color:{PlayerRelation}]
+			[ChatMessages:Deliveries complete.]
+			[ChatAudio:ArcHudGPSNotification2]
+			[BroadcastChatType:Chat]
+			[SendToAllOnlinePlayers:false]
+			[IgnoreAntennaRequirement:true]
+			[IgnoredAntennaRangeOverride:9999999]
+			</Description>
+		</EntityComponent>
+		<!-- Spawn defenses when an enemy player is in range -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-CargoShip-SOBAN-Trigger-Defenses</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Trigger]
+			[UseTrigger:true]
+			[Type:PlayerNear]
+			[TargetDistance:1500]
+			[MinPlayerReputation:-1500]
+			[MaxPlayerReputation:-500]
+			[StartsReady:true]
+			[MinCooldownMs:120000]
+			[MaxCooldownMs:240000]
+			[MaxActions:6]
+			[Actions:GVK-CargoShip-SOBAN-Action-Defenses]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-CargoShip-SOBAN-Action-Defenses</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Action]
+			[//DebugMessage:Spawn Defenses]
+			[SpawnEncounter:true]
+			[Spawner:GVK-CargoShip-SOBAN-Spawner-Defenses]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-CargoShip-SOBAN-Spawner-Defenses</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Spawn]
+			[UseSpawn:true]
+			[SpawningType:CustomSpawn]
+			[StartsReady:true]
+			[ProcessAsAdminSpawn:false]
+			[ForceSameFactionOwnership:true]
+			[MaxSpawns:6]
+			[SpawnGroups:GVK-Drone-Defense-SpawnGroup-SOBAN-InterceptorSquad]
+			[SpawnGroups:GVK-Drone-Defense-SpawnGroup-SOBAN-StrikeFighterSquad]
+			[MinDistance:500]
+			[MaxDistance:700]
+			[MinAltitude:50]
+			[MaxAltitude:200]
+			[InheritNpcAltitude:true]
+			[IgnoreSafetyChecks:true]
+			</Description>
+		</EntityComponent>
+		<!-- Spawn attackers when an allied player is in range -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-CargoShip-SOBAN-Trigger-Attackers</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Trigger]
+			[UseTrigger:true]
+			[Type:PlayerNear]
+			[TargetDistance:1500]
+			[MinPlayerReputation:500]
+			[MaxPlayerReputation:1500]
+			[StartsReady:true]
+			[MinCooldownMs:120000]
+			[MaxCooldownMs:240000]
+			[MaxActions:6]
+			[Actions:GVK-CargoShip-SOBAN-Action-Attackers]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-CargoShip-SOBAN-Action-Attackers</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Action]
+			[//DebugMessage:Spawn Attackers]
+			[SpawnEncounter:true]
+			[Spawner:GVK-CargoShip-SOBAN-Spawner-Attackers]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-CargoShip-SOBAN-Spawner-Attackers</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Spawn]
+			[UseSpawn:true]
+			[SpawningType:CustomSpawn]
+			[StartsReady:true]
+			[ProcessAsAdminSpawn:false]
+			[MaxSpawns:6]
+			[SpawnGroups:GVK-Drone-Defense-SpawnGroup-KHAANEPH-InterceptorSquad]
+			[SpawnGroups:GVK-Drone-Defense-SpawnGroup-KHAANEPH-StrikeFighterSquad]
+			[MinDistance:500]
+			[MaxDistance:700]
+			[MinAltitude:50]
+			[MaxAltitude:200]
+			[InheritNpcAltitude:true]
+			[IgnoreSafetyChecks:true]
+			</Description>
+		</EntityComponent>
+		<!-- Just in case it gets stuck somewhere, should be longer than the autopilot waypoint wait time -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-CargoShip-SOBAN-Trigger-LongWait</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Trigger]
+			[Type:Timer]
+			[UseTrigger:true]
+			[StartsReady:false]
+			[MaxActions:-1]
+			[MinCooldownMs:120000]
+			[MaxCooldownMs:120000]
+			[Conditions:GVK-CargoShip-SOBAN-Condition-LongWait]
+			[ConditionCheckResetsTimer:true]
+			[Actions:GVK-CargoShip-SOBAN-Action-LongWait]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-CargoShip-SOBAN-Condition-LongWait</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Condition]
+			[UseConditions:true]
+			[MatchAnyCondition:false]
+			[CheckGridSpeed:true]
+			[MinGridSpeed:0]
+			[MaxGridSpeed:5]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-CargoShip-SOBAN-Action-LongWait</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Action]
+			[//DebugMessage:LongWait HeadToDespawn]
+			[Chance:100]
+			[Retreat:true]
+			[RecalculateDespawnCoords:true]
+			[UseChatBroadcast:true]
+			[ChatData:GVK-CargoShip-SOBAN-Chat-HeadToDespawn]
+			</Description>
+		</EntityComponent>
+		<!-- WaypointNear and WaypointFar are broken right now -->
+		<!-- Trigger sequence when Cargo Ship is near the waypoint to switch to secondary autopilot -->
+		<!--<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-CargoShip-SOBAN-Trigger-WaypointNear</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Trigger]
+			[UseTrigger:true]
+			[Type:WaypointNear]
+			[TargetDistance:699]
+			[MinCooldownMs:10000]
+			[MaxCooldownMs:10001]
+			[StartsReady:true]
+			[MaxActions:-1]
+			[Actions:GVK-CargoShip-SOBAN-Action-WaypointNear]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-CargoShip-SOBAN-Action-WaypointNear</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Action]
+			[//DebugMessage:WaypointNear]
+			[ChangeAutopilotProfile:true]
+			[AutopilotProfile:Secondary]
+			</Description>
+		</EntityComponent>-->
+		<!-- Trigger sequence when Cargo Ship is far from the waypoint to switch to Primary autopilot -->
+		<!--<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-CargoShip-SOBAN-Trigger-WaypointFar</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Trigger]
+			[UseTrigger:true]
+			[Type:Timer]
+			[TargetDistance:700]
+			[MinCooldownMs:10000]
+			[MaxCooldownMs:10001]
+			[StartsReady:true]
+			[MaxActions:1]
+			[Actions:GVK-CargoShip-SOBAN-Action-WaypointFar]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-CargoShip-SOBAN-Action-WaypointFar</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Action]
+			[//DebugMessage:WaypointFar]
+			[ChangeAutopilotProfile:true]
+			[AutopilotProfile:Primary]
+			</Description>
+		</EntityComponent>-->
+		<!-- Using Supply Depot as target since WaypointNear/Far are broken -->
+		<!-- Trigger sequence when Cargo Ship is near the Target to switch to secondary autopilot -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-CargoShip-SOBAN-Trigger-TargetNear</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Trigger]
+			[UseTrigger:true]
+			[Type:TargetNear]
+			[TargetDistance:2999]
+			[MinCooldownMs:10000]
+			[MaxCooldownMs:10001]
+			[StartsReady:true]
+			[MaxActions:-1]
+			[Actions:GVK-CargoShip-SOBAN-Action-TargetNear]
+			[ToggleWithTriggerProfile:GVK-CargoShip-SOBAN-Trigger-TargetFar]
+			[ToggledProfileResetsCooldown:true]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-CargoShip-SOBAN-Action-TargetNear</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Action]
+			[//DebugMessage:TargetNear]
+			[ChangeAutopilotProfile:true]
+			[AutopilotProfile:Secondary]
+			</Description>
+		</EntityComponent>
+		<!-- Trigger sequence when Cargo Ship is far from the Target to switch to Primary autopilot -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-CargoShip-SOBAN-Trigger-TargetFar</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Trigger]
+			[UseTrigger:true]
+			[Type:TargetFar]
+			[TargetDistance:3000]
+			[MinCooldownMs:10000]
+			[MaxCooldownMs:10001]
+			[StartsReady:true]
+			[MaxActions:-1]
+			[Actions:GVK-CargoShip-SOBAN-Action-TargetFar]
+			[ToggleWithTriggerProfile:GVK-CargoShip-SOBAN-Trigger-TargetNear]
+			[ToggledProfileResetsCooldown:true]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-CargoShip-SOBAN-Action-TargetFar</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Action]
+			[//DebugMessage:TargetFar]
+			[ChangeAutopilotProfile:true]
+			[AutopilotProfile:Primary]
+			</Description>
+		</EntityComponent>
+		<!-- Trigger sequence to deploy CargoDrop2x if compromised -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-CargoShip-SOBAN-Trigger-CargoDrop</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Trigger]
+			[UseTrigger:true]
+			[Tags:GVK-Universal-TriggerTags-Compromised]
+			[Type:Manual]
+			[StartsReady:true]
+			[MaxActions:1]
+			[Actions:GVK-CargoShip-SOBAN-Action-CargoDrop]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-CargoShip-SOBAN-Action-CargoDrop</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Action]
+			[//DebugMessage:CargoDrop]
+			[SpawnEncounter:true]
+			[Spawner:GVK-CargoShip-SOBAN-Spawner-CargoDrop]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-CargoShip-SOBAN-Spawner-CargoDrop</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Spawn]
+			[UseSpawn:true]
+			[SpawningType:CustomSpawn]
+			[StartsReady:true]
+			[ProcessAsAdminSpawn:false]
+			[MaxSpawns:1]
+			[ForceSameFactionOwnership:true]
+			[SpawnGroups:GVK-Other-Loot-SpawnGroup-COALITION-CargoDrop2x]
+			[SpawnGroups:GVK-Other-Loot-SpawnGroup-COALITION-AmmoDrop]
+			[MinDistance:50]
+			[MaxDistance:100]
+			[MinAltitude:10]
+			[MaxAltitude:50]
+			[InheritNpcAltitude:true]
+			[IgnoreSafetyChecks:true]
+			</Description>
+		</EntityComponent>
+	</EntityComponents>
+</Definitions>

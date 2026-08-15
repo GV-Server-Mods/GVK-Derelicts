@@ -6,6 +6,7 @@
 		EncounterTypes:
 		- Base			Large
 		- Outpost		Medium
+		- CargoShip		Large
 		- WreckLarge	Large
 		- WreckMedium	Medium
 		- WreckSmall	Small
@@ -81,6 +82,21 @@
 			[Type:Manual]
 			[StartsReady:true]
 			[Actions:GVK-Universal-Action-MediumExplosionEffects]
+			</Description>
+		</EntityComponent>
+		<!-- DroneElite -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Universal-TriggerTags-Explosions-CargoShip-KHAANEPH</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Trigger]
+			[UseTrigger:true]
+			[Tags:GVK-Universal-TriggerTags-Explosions-CargoShip-KHAANEPH]
+			[Type:Manual]
+			[StartsReady:true]
+			[Actions:GVK-Universal-Action-LargeExplosionEffects]
 			</Description>
 		</EntityComponent>
 		<!-- DroneElite -->
