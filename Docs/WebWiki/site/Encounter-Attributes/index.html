@@ -1,0 +1,538 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link rel="shortcut icon" href="../img/favicon.ico" />
+    <title>Encounter-Attributes.md - Modular Encounters System</title>
+    <link rel="stylesheet" href="../css/theme.css" />
+    <link rel="stylesheet" href="../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+        <link href="../style.css" rel="stylesheet" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "Encounter-Attributes.md";
+        var mkdocs_page_input_path = "Encounter-Attributes.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href=".." class="icon icon-home"> Modular Encounters System
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="..">Home</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Player Support</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="" href="../Encounter-Guide">Encounter Guide</a>
+                  </li>
+                  <li class="toctree-l1"><a class="" href="../Frequently-Asked-Questions">FAQs</a>
+                  </li>
+                  <li class="toctree-l1"><a class="" href="../Troubleshooting">Troubleshooting</a>
+                  </li>
+                  <li class="toctree-l1"><a class="" href="../Bugs,-Issues,-or-Crashes">Bugs, Issues, or Crashes</a>
+                  </li>
+                  <li class="toctree-l1"><a class="" href="../Economy-Stations-FAQ">Economy Stations FAQ</a>
+                  </li>
+                  <li class="toctree-l1"><a class="" href="../Mod-Republishing-and-Reuse">Mod Republishing Guidelines</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Admin & Configuration</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="" href="../AdminConfig_General">General Settings</a>
+                  </li>
+                  <li class="toctree-l1"><a class="" href="../AdminConfig_Grid">Grid Settings</a>
+                  </li>
+                  <li class="toctree-l1"><a class="" href="../AdminConfig_Combat">Combat Settings</a>
+                  </li>
+                  <li class="toctree-l1"><a class="" href="../AdminConfig_Space Cargo Ships">Space Cargo Ships</a>
+                  </li>
+                  <li class="toctree-l1"><a class="" href="../AdminConfig_Random Encounters">Random Encounters</a>
+                  </li>
+                  <li class="toctree-l1"><a class="" href="../AdminConfig_Planetary Cargo Ships">Planetary Cargo Ships</a>
+                  </li>
+                  <li class="toctree-l1"><a class="" href="../AdminConfig_Planetary Installations">Planetary Installations</a>
+                  </li>
+                  <li class="toctree-l1"><a class="" href="../AdminConfig_Boss Encounters">Boss Encounters</a>
+                  </li>
+                  <li class="toctree-l1"><a class="" href="../AdminConfig_Creatures">Creatures</a>
+                  </li>
+                  <li class="toctree-l1"><a class="" href="../AdminConfig_AiEnabled Bot Spawning">AiEnabled Bot Spawning</a>
+                  </li>
+                  <li class="toctree-l1"><a class="" href="../AdminConfig_Wave Spawner">Wave Spawners</a>
+                  </li>
+                  <li class="toctree-l1"><a class="" href="../AdminConfig_Clean-Up">Clean-Up</a>
+                  </li>
+                  <li class="toctree-l1"><a class="" href="../AdminConfig_Spawn Filtering">Spawn Filtering</a>
+                  </li>
+                  <li class="toctree-l1"><a class="" href="../AdminConfig_Timeout">Timeout</a>
+                  </li>
+                  <li class="toctree-l1"><a class="" href="../AdminConfig_AdminDebugOptions">Admin & Debug Options</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Modding</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" >Spawning</a>
+    <ul>
+                <li class="toctree-l2"><a class="" href="../SpawnGroup">SpawnGroup</a>
+                </li>
+                <li class="toctree-l2"><a class="" href="../Spawn-Conditions">Spawning Conditions</a>
+                </li>
+                <li class="toctree-l2"><a class="" href="../Zone-Conditions-Profile">Zone Conditions</a>
+                </li>
+                <li class="toctree-l2"><a class="" href="../Spawn-Conditions-Groups">Spawning Conditions Groups</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" >Manipulation</a>
+    <ul>
+                <li class="toctree-l3"><a class="" href="../Block-Replacement">Block Replacement</a>
+                </li>
+                <li class="toctree-l3"><a class="" href="../Dereliction">Dereliction</a>
+                </li>
+                <li class="toctree-l3"><a class="" href="../Loot">Loot</a>
+                </li>
+                <li class="toctree-l3"><a class="" href="../Loot-Profile-Group">Loot Profile Group</a>
+                </li>
+                <li class="toctree-l3"><a class="" href="../Weapon-Mod-Rules">Weapon Mod Rules</a>
+                </li>
+                <li class="toctree-l3"><a class="" href="../Manipulation-Groups">Manipulation Groups</a>
+                </li>
+                <li class="toctree-l3"><a class="" href="../Prefab-Data">Prefab Data</a>
+                </li>
+                <li class="toctree-l3"><a class="" href="../Replenishment">Replenishment</a>
+                </li>
+    </ul>
+                </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" >Behaviors (Getting Started)</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" >Core Behavior</a>
+    <ul>
+                <li class="toctree-l3"><a class="" href="../Core-Behavior">Behavior</a>
+                </li>
+                <li class="toctree-l3"><a class="" href="../Autopilot">Autopilot</a>
+                </li>
+                <li class="toctree-l3"><a class="" href="../Command">Command</a>
+                </li>
+                <li class="toctree-l3"><a class="" href="../Datapad">Datapad</a>
+                </li>
+                <li class="toctree-l3"><a class="" href="../Target">Target</a>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" >Triggers</a>
+    <ul>
+                <li class="toctree-l3"><a class="" href="../Trigger">Trigger</a>
+                </li>
+                <li class="toctree-l3"><a class="" href="../Condition">Condition</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" >Actions</a>
+    <ul>
+                <li class="toctree-l4"><a class="" href="../Action">Actions</a>
+                </li>
+                <li class="toctree-l4"><a class="" href="../Bot-Spawn">Bot Spawn</a>
+                </li>
+                <li class="toctree-l4"><a class="" href="../Chat">Chat</a>
+                </li>
+                <li class="toctree-l4"><a class="" href="../Spawn">Spawn</a>
+                </li>
+                <li class="toctree-l4"><a class="" href="../TextTemplate">TextTemplate</a>
+                </li>
+    </ul>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l2"><a class="" href="../Trigger-Group">Trigger Group</a>
+                </li>
+                <li class="toctree-l2"><a class="" href="../Waypoint">Waypoint</a>
+                </li>
+                <li class="toctree-l2"><a class="" href="../Weapons">Weapons</a>
+                </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" >Events (Getting Started)</a>
+    <ul>
+                <li class="toctree-l2"><a class="" href="../Event">Event</a>
+                </li>
+                <li class="toctree-l2"><a class="" href="../Event-Conditions">Event Condition</a>
+                </li>
+                <li class="toctree-l2"><a class="" href="../Event-Action">Event Action</a>
+                </li>
+                <li class="toctree-l2"><a class="" href="../Custom-Event-Actions-and-ScenarioTools">Custom Event Actions</a>
+                </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="" href="../Player-Condition-Profile">Player Conditions (New)</a>
+                  </li>
+                  <li class="toctree-l1"><a class="" href="../Zone-Profile">Zone</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Template / Example Files</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="" href="https://gist.github.com/MeridiusIX/1ae743505ec489d31e6ac17edf16e5e0?ts=2">SpawnGroup.sbc</a>
+                  </li>
+                  <li class="toctree-l1"><a class="" href="https://gist.github.com/MeridiusIX/cd9b4decb58dea335290a05b728a7276?ts=2">Factions.sbc</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Modder Resources</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="" href="../Armor-Modules">Armor Modules Included with MES (Page Unavailable)</a>
+                  </li>
+                  <li class="toctree-l1"><a class="" href="https://gist.github.com/MeridiusIX/415b45b53174c608c6486ce06bb58e2c">Block Replacement Profiles</a>
+                  </li>
+                  <li class="toctree-l1"><a class="" href=".">Encounter Attributes</a>
+                  </li>
+                  <li class="toctree-l1"><a class="" href="../Loot-Profiles">Loot Profiles</a>
+                  </li>
+                  <li class="toctree-l1"><a class="" href="Modding:-Tutorial-&-Guidelines:-NPC-Grid-Setup-Guidelines">NPC Grid Setup Guidelines</a>
+                  </li>
+                  <li class="toctree-l1"><a class="" href="https://gist.github.com/MeridiusIX/8888bbc06a623cac90f8362dd948033c">Random Name Generator Guide</a>
+                  </li>
+                  <li class="toctree-l1"><a class="" href="../Scripting-API">Scripting API</a>
+                  </li>
+                  <li class="toctree-l1"><a class="" href="../Troubleshooting-Tips">Troubleshooting Tips</a>
+                  </li>
+                  <li class="toctree-l1"><a class="" href="https://gist.github.com/MeridiusIX/52fbf5679e67107a8cf37706205b5812">Threat Score Guide</a>
+                  </li>
+                  <li class="toctree-l1"><a class="" href="../Tutorials">Tutorials</a>
+                  </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="..">Modular Encounters System</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href=".." class="icon icon-home" aria-label="Docs"></a></li>
+      <li class="breadcrumb-item active">Encounter-Attributes.md</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="encounter-attributesmd">Encounter-Attributes.md</h1>
+<h1 id="behavior-difficulty">Behavior Difficulty</h1>
+<p>This section defines the various difficulty levels of encounters behaviors, ie how they interact with the player and other entities in the world.</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Rating</th>
+<th style="text-align: left;">Title&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
+<th style="text-align: left;">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">★☆☆☆☆</td>
+<td style="text-align: left;">No Challenge</td>
+<td style="text-align: left;">Encounters are not hostile.</td>
+</tr>
+<tr>
+<td style="text-align: left;">★★☆☆☆</td>
+<td style="text-align: left;">Minimal</td>
+<td style="text-align: left;">Encounters are passively hostile, will only use turrets if you get close.</td>
+</tr>
+<tr>
+<td style="text-align: left;">★★★☆☆</td>
+<td style="text-align: left;">Average</td>
+<td style="text-align: left;">Encounters will likely not engage players unless provoked or approached.</td>
+</tr>
+<tr>
+<td style="text-align: left;">★★★★☆</td>
+<td style="text-align: left;">Hostile</td>
+<td style="text-align: left;">Encounters will seek players and attack when conditions are met (visibility, signals, etc).</td>
+</tr>
+<tr>
+<td style="text-align: left;">★★★★★</td>
+<td style="text-align: left;">Nightmare</td>
+<td style="text-align: left;">Encounters are easily aware of targets in the area and will relentlessly attack.</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h1 id="grid-difficulty">Grid Difficulty</h1>
+<p>This section defines how difficult the ships / stations you'll encounter can be.</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Rating</th>
+<th style="text-align: left;">Title&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
+<th style="text-align: left;">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">★☆☆☆☆</td>
+<td style="text-align: left;">No Challenge</td>
+<td style="text-align: left;">Grids are not significantly armed and/or armored.</td>
+</tr>
+<tr>
+<td style="text-align: left;">★★☆☆☆</td>
+<td style="text-align: left;">Minimal</td>
+<td style="text-align: left;">Smaller grids that are lightly armed and/or armored.</td>
+</tr>
+<tr>
+<td style="text-align: left;">★★★☆☆</td>
+<td style="text-align: left;">Average</td>
+<td style="text-align: left;">Average sized grids that are moderately armed and/or armored.</td>
+</tr>
+<tr>
+<td style="text-align: left;">★★★★☆</td>
+<td style="text-align: left;">Difficult</td>
+<td style="text-align: left;">Larger sized grids that are heavily armed and/or armored.</td>
+</tr>
+<tr>
+<td style="text-align: left;">★★★★★</td>
+<td style="text-align: left;">Nightmare</td>
+<td style="text-align: left;">Massive sized grids that are heavily armed and/or armored.</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h1 id="environments">Environments</h1>
+<p>This section defines the various environments that encounters can appear in.</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Type&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
+<th style="text-align: left;">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">Space</td>
+<td style="text-align: left;">Encounters can appear in space (zero gravity).</td>
+</tr>
+<tr>
+<td style="text-align: left;">Atmosphere</td>
+<td style="text-align: left;">Encounters can appear on planets with an atmosphere.</td>
+</tr>
+<tr>
+<td style="text-align: left;">Gravity</td>
+<td style="text-align: left;">Encounters can appear on planets without an atmosphere.</td>
+</tr>
+<tr>
+<td style="text-align: left;">Water</td>
+<td style="text-align: left;">Encounters can appear on water surface (while using Water Mod).</td>
+</tr>
+<tr>
+<td style="text-align: left;">Underwater</td>
+<td style="text-align: left;">Encounters can appear under the water surface (while using Water Mod).</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h1 id="encounter-types">Encounter Types</h1>
+<p>This section defines the various types of encounters and how/when they generally spawn.</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Type&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
+<th style="text-align: left;">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">Space Cargo Ship</td>
+<td style="text-align: left;">Encounters that appear on a timer in space, fly in a linear path, and despawn when they reach the end of their path.</td>
+</tr>
+<tr>
+<td style="text-align: left;">Planetary Cargo Ship</td>
+<td style="text-align: left;">Encounters that appear on a timer near a planet's surface, fly in a linear path, and despawn when they reach the end of their path.</td>
+</tr>
+<tr>
+<td style="text-align: left;">Random Encounter</td>
+<td style="text-align: left;">Encounters that appear at random in space as the player travels across large distances.</td>
+</tr>
+<tr>
+<td style="text-align: left;">Planetary Installation</td>
+<td style="text-align: left;">Encounters that appear at random on a planet's surface as the player travels across large distances.</td>
+</tr>
+<tr>
+<td style="text-align: left;">Static Encounter</td>
+<td style="text-align: left;">Encounters that appear once the player has gotten close to where it should appear. These encounters only appear once.</td>
+</tr>
+<tr>
+<td style="text-align: left;">Boss Encounter</td>
+<td style="text-align: left;">Difficult encounters the player can optionally engage by traveling to a designated GPS signal.</td>
+</tr>
+<tr>
+<td style="text-align: left;">Drone Encounter</td>
+<td style="text-align: left;">Encounters that appear randomly on a timer near the player proximity.</td>
+</tr>
+<tr>
+<td style="text-align: left;">Creature</td>
+<td style="text-align: left;">Animal or bot encounters that appear on a planet's surface near the player.</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h1 id="spawning-conditions">Spawning Conditions</h1>
+<p>This section defines various additional conditions that may also be used when determining if an encounter is eligible to spawn.</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Condition&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
+<th style="text-align: left;">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">Chance</td>
+<td style="text-align: left;">Encounters will use an additional chance roll to determine if they're allowed to spawn in certain environments.</td>
+</tr>
+<tr>
+<td style="text-align: left;">Combat Phase</td>
+<td style="text-align: left;">Encounters will only appear during a Combat Phase in the world. If Combat Phases are disabled, then this check is omitted.</td>
+</tr>
+<tr>
+<td style="text-align: left;">Known Player Location</td>
+<td style="text-align: left;">Encounters can designate an area around a player as a Known Player Location, which can potentially allow encounters to spawn more often or detect the player easier.</td>
+</tr>
+<tr>
+<td style="text-align: left;">Reputation</td>
+<td style="text-align: left;">Encounters will only appear if a player's reputation with an NPC faction is at a certain value.</td>
+</tr>
+<tr>
+<td style="text-align: left;">Threat Score</td>
+<td style="text-align: left;">Encounters will only appear once players have progressed / built enough grid resources in an area.</td>
+</tr>
+<tr>
+<td style="text-align: left;">Weather</td>
+<td style="text-align: left;">Certain encounters will only appear during specific weather events or times of the day.</td>
+</tr>
+<tr>
+<td style="text-align: left;">Zones</td>
+<td style="text-align: left;">Certain encounters will only appear in certain areas.</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h1 id="special-abilities">Special Abilities</h1>
+<p>This section defines special blocks, attributes, and abilities that encounters may possess.</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Type&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
+<th style="text-align: left;">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">Defense Shields</td>
+<td style="text-align: left;">Spawns with Defense Shields (if the Defense Shields mod is loaded).</td>
+</tr>
+<tr>
+<td style="text-align: left;">Energy Inhibitor</td>
+<td style="text-align: left;">Drains suit energy from unseated players while in the inhibitor block range (disable the inhibitor block to stop this effect).</td>
+</tr>
+<tr>
+<td style="text-align: left;">Grinder Damage</td>
+<td style="text-align: left;">Damages players that attack an encounter while using a grinder (disable the AI Control Module to stop this effect).</td>
+</tr>
+<tr>
+<td style="text-align: left;">Hand Drill Inhibitor</td>
+<td style="text-align: left;">Disables Hand Drills while in the inhibitor block range (disable the inhibitor block to stop this effect).</td>
+</tr>
+<tr>
+<td style="text-align: left;">Jetpack Inhibitor</td>
+<td style="text-align: left;">Disables Jetpack Dampeners while in the inhibitor block range, and disables Jetpack entirely at closer ranges (disable the inhibitor block to stop this effect).</td>
+</tr>
+<tr>
+<td style="text-align: left;">Jump Drive Inhibitor</td>
+<td style="text-align: left;">Disables Jump Drive blocks while in the inhibitor block range (disable the inhibitor block to stop this effect).</td>
+</tr>
+<tr>
+<td style="text-align: left;">Merchant Equipment</td>
+<td style="text-align: left;">Encounters may include store blocks, Shipyard System, and/or Suit Upgrade Stations.</td>
+</tr>
+<tr>
+<td style="text-align: left;">Nanobot Inhibitor</td>
+<td style="text-align: left;">Disables Nanobot blocks while in the inhibitor block range (disable the inhibitor block to stop this effect).</td>
+</tr>
+<tr>
+<td style="text-align: left;">Personnel Inhibitor</td>
+<td style="text-align: left;">Damages unseated players while in the inhibitor block range (disable the inhibitor block to stop this effect).</td>
+</tr>
+<tr>
+<td style="text-align: left;">Reinforcements</td>
+<td style="text-align: left;">Calls for additional support / spawns drones to assist.</td>
+</tr>
+<tr>
+<td style="text-align: left;">Randomized Weapons</td>
+<td style="text-align: left;">Spawns with randomized weapons, which also includes weapons from mods you may have loaded.</td>
+</tr>
+</tbody>
+</table>
+              
+            </div>
+          </div><footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+    
+  </span>
+</div>
+    <script src="../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "..";</script>
+    <script src="../js/theme_extra.js"></script>
+    <script src="../js/theme.js"></script>
+      <script src="../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>
