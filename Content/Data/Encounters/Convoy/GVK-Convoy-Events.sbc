@@ -1,0 +1,337 @@
+<?xml version="1.0"?>
+<Definitions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+	<EntityComponents>
+		<!-- =================================================== -->
+		<!-- COALITION CONVOY A (Land)                           -->
+		<!-- =================================================== -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Convoy-Event-CoalitionA</SubtypeId>
+			</Id>
+			<Description>
+				[MES Event]
+				[UseEvent:true]
+				[UniqueEvent:false]
+				[StartsReady:true]
+				[MinCooldownMs:4800]
+				[MaxCooldownMs:7200]
+				[ConditionIds:GVK-Convoy-EventCondition-CoalitionA]
+				[ActionIds:GVK-Convoy-EventAction-CoalitionA]
+				[ActionExecution:All]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Convoy-EventCondition-CoalitionA</SubtypeId>
+			</Id>
+			<Description>
+				[MES Event Condition]
+				[CheckPlayerNear:true]
+				[PlayerNearCoords:{X:60487.1180668017 Y:32965.0642252912 Z:44090.2929086085}]
+				[PlayerNearDistanceFromCoords:10000]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Convoy-EventAction-CoalitionA</SubtypeId>
+			</Id>
+			<Description>
+				[MES Event Action]
+				[SpawnEncounter:true]
+				[SpawnCoords:{X:60487.1180668017 Y:32965.0642252912 Z:44090.2929086085}]
+				[SpawnFactionTags:COALITION]
+				[SpawnData:GVK-Convoy-EventSpawner-CoalitionA]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Convoy-EventSpawner-CoalitionA</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Spawn]
+				[UseSpawn:true]
+				[SpawningType:CustomSpawn]
+				[StartsReady:true]
+				[ProcessAsAdminSpawn:true]
+				[SpawnGroups:GVK-PlanetaryCargoShip-Land-COALITION-SpawnGroup-ConvoyEscortA]
+				[SpawnGroups:GVK-PlanetaryCargoShip-Land-COALITION-SpawnGroup-EscortA]
+				[MinDistance:200]
+				[MaxDistance:500]
+				[MinAltitude:40]
+				[MaxAltitude:50]
+				[InheritNpcAltitude:false]
+				[IgnoreSafetyChecks:true]
+			</Description>
+		</EntityComponent>
+
+		<!-- =================================================== -->
+		<!-- COALITION CONVOY B (Land)                           -->
+		<!-- =================================================== -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Convoy-Event-CoalitionB</SubtypeId>
+			</Id>
+			<Description>
+				[MES Event]
+				[UseEvent:true]
+				[UniqueEvent:false]
+				[StartsReady:true]
+				[MinCooldownMs:4800]
+				[MaxCooldownMs:7200]
+				[ConditionIds:GVK-Convoy-EventCondition-CoalitionB]
+				[ActionIds:GVK-Convoy-EventAction-CoalitionB]
+				[ActionExecution:All]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Convoy-EventCondition-CoalitionB</SubtypeId>
+			</Id>
+			<Description>
+				[MES Event Condition]
+				[CheckPlayerNear:true]
+				[PlayerNearCoords:{X:61272.4981949369 Y:23606.8090237343 Z:32536.2033243986}]
+				[PlayerNearDistanceFromCoords:10000]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Convoy-EventAction-CoalitionB</SubtypeId>
+			</Id>
+			<Description>
+				[MES Event Action]
+				[SpawnEncounter:true]
+				[SpawnCoords:{X:61272.4981949369 Y:23606.8090237343 Z:32536.2033243986}]
+				[SpawnFactionTags:COALITION]
+				[SpawnData:GVK-Convoy-EventSpawner-CoalitionB]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Convoy-EventSpawner-CoalitionB</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Spawn]
+				[UseSpawn:true]
+				[SpawningType:CustomSpawn]
+				[StartsReady:true]
+				[ProcessAsAdminSpawn:true]
+				[SpawnGroups:GVK-PlanetaryCargoShip-Land-COALITION-SpawnGroup-ConvoyEscortB]
+				[SpawnGroups:GVK-PlanetaryCargoShip-Land-COALITION-SpawnGroup-EscortB]
+				[MinDistance:200]
+				[MaxDistance:500]
+				[MinAltitude:40]
+				[MaxAltitude:50]
+				[InheritNpcAltitude:false]
+				[IgnoreSafetyChecks:true]
+			</Description>
+		</EntityComponent>
+
+		<!-- =================================================== -->
+		<!-- COALITION CONVOY E (Air)                            -->
+		<!-- =================================================== -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Convoy-Event-CoalitionE</SubtypeId>
+			</Id>
+			<Description>
+				[MES Event]
+				[UseEvent:true]
+				[UniqueEvent:false]
+				[StartsReady:true]
+				[MinCooldownMs:4800]
+				[MaxCooldownMs:7200]
+				[ConditionIds:GVK-Convoy-EventCondition-CoalitionE]
+				[ActionIds:GVK-Convoy-EventAction-CoalitionE]
+				[ActionExecution:All]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Convoy-EventCondition-CoalitionE</SubtypeId>
+			</Id>
+			<Description>
+				[MES Event Condition]
+				[CheckPlayerNear:true]
+				[PlayerNearCoords:{X:66352.348636402 Y:13303.882191595 Z:17215.1118671659}]
+				[PlayerNearDistanceFromCoords:10000]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Convoy-EventAction-CoalitionE</SubtypeId>
+			</Id>
+			<Description>
+				[MES Event Action]
+				[SpawnEncounter:true]
+				[SpawnCoords:{X:66352.348636402 Y:13303.882191595 Z:17215.1118671659}]
+				[SpawnFactionTags:COALITION]
+				[SpawnData:GVK-Convoy-EventSpawner-CoalitionE]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Convoy-EventSpawner-CoalitionE</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Spawn]
+				[UseSpawn:true]
+				[SpawningType:CustomSpawn]
+				[StartsReady:true]
+				[ProcessAsAdminSpawn:true]
+				[SpawnGroups:GVK-PlanetaryCargoShip-Air-COALITION-SpawnGroup-ConvoyEscortE]
+				[SpawnGroups:GVK-PlanetaryCargoShip-Air-COALITION-SpawnGroup-EscortE]
+				[MinDistance:500]
+				[MaxDistance:1000]
+				[MinAltitude:300]
+				[MaxAltitude:400]
+				[InheritNpcAltitude:false]
+				[IgnoreSafetyChecks:true]
+			</Description>
+		</EntityComponent>
+
+		<!-- =================================================== -->
+		<!-- GAALSIEN CONVOY C (Carrier Group)                   -->
+		<!-- =================================================== -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Convoy-Event-GaalsienC</SubtypeId>
+			</Id>
+			<Description>
+				[MES Event]
+				[UseEvent:true]
+				[UniqueEvent:false]
+				[StartsReady:true]
+				[MinCooldownMs:30000000]
+				[MaxCooldownMs:60000000]
+				[ConditionIds:GVK-Convoy-EventCondition-GaalsienC]
+				[ActionIds:GVK-Convoy-EventAction-GaalsienC]
+				[ActionExecution:All]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Convoy-EventCondition-GaalsienC</SubtypeId>
+			</Id>
+			<Description>
+				[MES Event Condition]
+				[CheckPlayerNear:true]
+				[PlayerNearCoords:{X:6554.40723381665 Y:-46197.6698621404 Z:38153.2201994645}]
+				[PlayerNearDistanceFromCoords:10000]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Convoy-EventAction-GaalsienC</SubtypeId>
+			</Id>
+			<Description>
+				[MES Event Action]
+				[SpawnEncounter:true]
+				[SpawnCoords:{X:6554.40723381665 Y:-46197.6698621404 Z:38153.2201994645}]
+				[SpawnFactionTags:GAALSIEN]
+				[SpawnData:GVK-Convoy-EventSpawner-GaalsienC]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Convoy-EventSpawner-GaalsienC</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Spawn]
+				[UseSpawn:true]
+				[SpawningType:CustomSpawn]
+				[StartsReady:true]
+				[ProcessAsAdminSpawn:true]
+				[SpawnGroups:GVK-Convoy-GAALSIENCarrier-Lead-SpawnGroup]
+				[MinDistance:500]
+				[MaxDistance:1000]
+				[MinAltitude:40]
+				[MaxAltitude:50]
+				[InheritNpcAltitude:false]
+				[IgnoreSafetyChecks:true]
+			</Description>
+		</EntityComponent>
+
+		<!-- =================================================== -->
+		<!-- GAALSIEN CONVOY D (Small Convoy)                    -->
+		<!-- =================================================== -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Convoy-Event-GaalsienD</SubtypeId>
+			</Id>
+			<Description>
+				[MES Event]
+				[UseEvent:true]
+				[UniqueEvent:false]
+				[StartsReady:true]
+				[MinCooldownMs:20000000]
+				[MaxCooldownMs:30000000]
+				[ConditionIds:GVK-Convoy-EventCondition-GaalsienD]
+				[ActionIds:GVK-Convoy-EventAction-GaalsienD]
+				[ActionExecution:All]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Convoy-EventCondition-GaalsienD</SubtypeId>
+			</Id>
+			<Description>
+				[MES Event Condition]
+				[CheckPlayerNear:true]
+				[PlayerNearCoords:{X:57793.8427771746 Y:41490.548771333 Z:10729.0734003001}]
+				[PlayerNearDistanceFromCoords:10000]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Convoy-EventAction-GaalsienD</SubtypeId>
+			</Id>
+			<Description>
+				[MES Event Action]
+				[SpawnEncounter:true]
+				[SpawnCoords:{X:57793.8427771746 Y:41490.548771333 Z:10729.0734003001}]
+				[SpawnFactionTags:GAALSIEN]
+				[SpawnData:GVK-Convoy-EventSpawner-GaalsienD]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Convoy-EventSpawner-GaalsienD</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Spawn]
+				[UseSpawn:true]
+				[SpawningType:CustomSpawn]
+				[StartsReady:true]
+				[ProcessAsAdminSpawn:true]
+				[SpawnGroups:GVK-Convoy-GAALSIENSmallConvoy-Lead-SpawnGroup]
+				[MinDistance:200]
+				[MaxDistance:500]
+				[MinAltitude:50]
+				[MaxAltitude:51]
+				[InheritNpcAltitude:false]
+				[IgnoreSafetyChecks:true]
+			</Description>
+		</EntityComponent>
+	</EntityComponents>
+</Definitions>

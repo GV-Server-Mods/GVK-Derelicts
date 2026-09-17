@@ -1,0 +1,140 @@
+<?xml version="1.0"?>
+<Definitions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+	<EntityComponents>
+		<!-- =================================================== -->
+		<!-- KHAANEPH CARGO SHIP DISPATCH EVENT                 -->
+		<!-- =================================================== -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-Event-SpawnCargoShip-KHAANEPH</SubtypeId>
+			</Id>
+			<Description>
+				[MES Event]
+				[UseEvent:true]
+				[UniqueEvent:false]
+				[MinCooldownMs:10800000]
+				[MaxCooldownMs:10800001]
+				[StartsReady:false]
+				[ConditionIds:GVK-Alliance-EventCondition-SpawnCargoShip-KHAANEPH]
+				[ActionIds:GVK-Alliance-EventAction-SpawnCargoShip-KHAANEPH]
+				[ActionExecution:All]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-EventCondition-SpawnCargoShip-KHAANEPH</SubtypeId>
+			</Id>
+			<Description>
+				[MES Event Condition]
+				[CheckCustomCounters:true]
+				[CustomCounters:KHAANEPH_Points]
+				[CustomCountersTargets:-1]
+				[CounterCompareTypes:Greater]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-EventAction-SpawnCargoShip-KHAANEPH</SubtypeId>
+			</Id>
+			<Description>
+				[MES Event Action]
+				[SpawnEncounter:true]
+				[SpawnCoords:{X:20797.4026136076 Y:21816.0775106065 Z:57964.3183518895}]
+				[SpawnFactionTags:KHAANEPH]
+				[SpawnData:GVK-Alliance-Spawner-SpawnCargoShip-KHAANEPH]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-Spawner-SpawnCargoShip-KHAANEPH</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Spawn]
+				[UseSpawn:true]
+				[SpawningType:CustomSpawn]
+				[StartsReady:true]
+				[ProcessAsAdminSpawn:true]
+				[MaxSpawns:-1]
+				[SpawnGroups:GVK-PlanetaryCargoShips-SpawnGroups-KHAANEPH-CargoShip1]
+				[MinDistance:300]
+				[MaxDistance:600]
+				[MinAltitude:100]
+				[MaxAltitude:200]
+				[InheritNpcAltitude:true]
+				[IgnoreSafetyChecks:true]
+			</Description>
+		</EntityComponent>
+
+		<!-- =================================================== -->
+		<!-- SOBAN CARGO SHIP DISPATCH EVENT                    -->
+		<!-- =================================================== -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-Event-SpawnCargoShip-SOBAN</SubtypeId>
+			</Id>
+			<Description>
+				[MES Event]
+				[UseEvent:true]
+				[UniqueEvent:false]
+				[MinCooldownMs:10800000]
+				[MaxCooldownMs:10800001]
+				[StartsReady:false]
+				[ConditionIds:GVK-Alliance-EventCondition-SpawnCargoShip-SOBAN]
+				[ActionIds:GVK-Alliance-EventAction-SpawnCargoShip-SOBAN]
+				[ActionExecution:All]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-EventCondition-SpawnCargoShip-SOBAN</SubtypeId>
+			</Id>
+			<Description>
+				[MES Event Condition]
+				[CheckCustomCounters:true]
+				[CustomCounters:SOBAN_Points]
+				[CustomCountersTargets:-1]
+				[CounterCompareTypes:Greater]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-EventAction-SpawnCargoShip-SOBAN</SubtypeId>
+			</Id>
+			<Description>
+				[MES Event Action]
+				[SpawnEncounter:true]
+				[SpawnCoords:{X:45840.5372800245 Y:50421.6003477879 Z:12457.3170166929}]
+				[SpawnFactionTags:SOBAN]
+				[SpawnData:GVK-Alliance-Spawner-SpawnCargoShip-SOBAN]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-Spawner-SpawnCargoShip-SOBAN</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Spawn]
+				[UseSpawn:true]
+				[SpawningType:CustomSpawn]
+				[StartsReady:true]
+				[ProcessAsAdminSpawn:true]
+				[MaxSpawns:-1]
+				[SpawnGroups:GVK-PlanetaryCargoShips-SpawnGroups-SOBAN-CargoShip1]
+				[MinDistance:300]
+				[MaxDistance:600]
+				[MinAltitude:100]
+				[MaxAltitude:200]
+				[InheritNpcAltitude:true]
+				[IgnoreSafetyChecks:true]
+			</Description>
+		</EntityComponent>
+	</EntityComponents>
+</Definitions>
