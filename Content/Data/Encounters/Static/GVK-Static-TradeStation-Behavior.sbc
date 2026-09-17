@@ -8,14 +8,29 @@
 				<SubtypeId>GVK-Static-TradeStation-Behavior</SubtypeId>
 			</Id>
 			<Description>
-			[RivalAI Behavior]
-			[BehaviorName:Passive]
-			[UseRetreatTimer:false]
-			[UseNoTargetTimer:false]
-			[UsePlayerDistanceTimer:false]
-			[Triggers:GVK-Static-TradeStation-Trigger-CreateSafeZone]
-			[TriggerGroups:GVK-Store-TriggerGroup-UpdateStores]
-			[RemoteControlCode:GVK-Static]
+				[RivalAI Behavior]
+				[BehaviorName:Passive]
+				[UseRetreatTimer:false]
+				[UseNoTargetTimer:false]
+				[UsePlayerDistanceTimer:false]
+				[Triggers:GVK-Static-TradeStation-Trigger-CreateSafeZone]
+				[TriggerGroups:GVK-Store-TriggerGroup-UpdateStores]
+				[RemoteControlCode:GVK-Static]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Static-TradeStation-Behavior-NoSafeZone</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Behavior]
+				[BehaviorName:Passive]
+				[UseRetreatTimer:false]
+				[UseNoTargetTimer:false]
+				[UsePlayerDistanceTimer:false]
+				[TriggerGroups:GVK-Store-TriggerGroup-UpdateStores]
+				[RemoteControlCode:GVK-Static]
 			</Description>
 		</EntityComponent>
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
@@ -24,13 +39,13 @@
 				<SubtypeId>GVK-Static-KOTHTown-Behavior</SubtypeId>
 			</Id>
 			<Description>
-			[RivalAI Behavior]
-			[BehaviorName:Passive]
-			[UseRetreatTimer:false]
-			[UseNoTargetTimer:false]
-			[UsePlayerDistanceTimer:false]
-			[Triggers:GVK-Universal-Trigger-JetpackInhibitor]
-			[RemoteControlCode:GVK-Static]
+				[RivalAI Behavior]
+				[BehaviorName:Passive]
+				[UseRetreatTimer:false]
+				[UseNoTargetTimer:false]
+				[UsePlayerDistanceTimer:false]
+				[Triggers:GVK-Universal-Trigger-JetpackInhibitor]
+				[RemoteControlCode:GVK-Static]
 			</Description>
 		</EntityComponent>
 		<!-- Trigger sequence to create a safezone on trade station spawn -->
@@ -40,12 +55,12 @@
 				<SubtypeId>GVK-Static-TradeStation-Trigger-CreateSafeZone</SubtypeId>
 			</Id>
 			<Description>
-			[MES AI Trigger]
-			[UseTrigger:true]
-			[Type:Session]
-			[StartsReady:true]
-			[MaxActions:-1]
-			[Actions:GVK-Static-TradeStation-Action-CreateSafeZone]
+				[MES AI Trigger]
+				[UseTrigger:true]
+				[Type:Session]
+				[StartsReady:true]
+				[MaxActions:-1]
+				[Actions:GVK-Static-TradeStation-Action-CreateSafeZone]
 			</Description>
 		</EntityComponent>
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
@@ -54,12 +69,12 @@
 				<SubtypeId>GVK-Static-TradeStation-Action-CreateSafeZone</SubtypeId>
 			</Id>
 			<Description>
-			[MES AI Action]
-			[CreateSafeZone:true]
-			[SafeZoneProfile:GVK-Static-TradeStation-SafeZone-StoreSafeZone]
-			[LinkSafeZoneToRemoteControl:true]
-			[SafeZonePositionGridCenter:true]
-			[SafeZonePositionTerrainSurface:true]
+				[MES AI Action]
+				[CreateSafeZone:true]
+				[SafeZoneProfile:GVK-Static-TradeStation-SafeZone-StoreSafeZone]
+				[LinkSafeZoneToRemoteControl:true]
+				[SafeZonePositionGridCenter:true]
+				[SafeZonePositionTerrainSurface:true]
 			</Description>
 		</EntityComponent>
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
@@ -68,146 +83,21 @@
 				<SubtypeId>GVK-Static-TradeStation-SafeZone-StoreSafeZone</SubtypeId>
 			</Id>
 			<Description>
-			[MES SafeZone]
-			[Shape:Sphere]
-			[Radius:0]
-			[RadiusFromParentEntity:true]
-			[ParentEntityRadiusMultiplier:3]
-			[Enabled:true]
-			[LinkToParentEntity:true]
-			[IsVisible:false]
-			[Color:{X:0 Y:0 Z:0}]
-			[Texture:SafeZone_Texture_Restricted]
-			[FactionAccess:Blacklist]
-			[GridAccess:Blacklist]
-			[PlayerAccess:Blacklist]
-			[AllowedActions:LandingGearLock]
-			[AllowedActions:ConvertToStation]
-			</Description>
-		</EntityComponent>
-		<!-- Trigger sequence for Trade Station to send relative waypoint to listening Cargo Ship (not currently used)
-		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
-			<Id>
-				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Static-TradeStation-Trigger-SendWaypoint</SubtypeId>
-			</Id>
-			<Description>
-			[RivalAI Trigger]
-			[Type:CommandReceived] 
-			[UseTrigger:true]
-			[StartsReady:true]
-			[MinCooldownMs:10000]
-			[MaxCooldownMs:10000]
-			[MaxActions:-1]
-			[CommandReceiveCode:CargoShip_RequestWaypoint]
-			[Actions:GVK-Static-TradeStation-Action-SendWaypoint]
-			</Description>
-		</EntityComponent>
-		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
-			<Id>
-				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Static-TradeStation-Action-SendWaypoint</SubtypeId>
-			</Id>
-			<Description>
-			[RivalAI Action]
-			[BroadcastCommandProfiles:true]
-			[CommandProfileIds:GVK-Static-TradeStation-Command-SendWaypoint]
-			[UseChatBroadcast:false]
-			[ChatData:GVK-Static-TradeStation-Chat-SendWaypoint]
-			</Description>
-		</EntityComponent>
-		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
-			<Id>
-				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Static-TradeStation-Command-SendWaypoint</SubtypeId>
-			</Id>
-			<Description>
-			[RivalAI Command]
-			[CommandCode:CargoShip_ReceiveWaypoint]
-			[SingleRecipient:false]
-			[MatchSenderReceiverOwners:false]
-			[IgnoreAntennaRequirement:true]
-			[IgnoreReceiverAntennaRequirement:true]
-			[Radius:75000]
-			[SendWaypoint:true]
-			[Waypoint:GVK-Static-TradeStation-Waypoint-RelativeRandom]
-			</Description>
-		</EntityComponent>
-		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
-			<Id>
-				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Static-TradeStation-Chat-SendWaypoint</SubtypeId>
-			</Id>
-			<Description>
-			[RivalAI Chat]
-			[UseChat:true]
-			[StartsReady:true]
-			[Chance:100]
-			[MaxChats:-1]
-			[BroadcastRandomly:false]
-			[Author:Trade Station]
-			[Color:White]
-			[ChatMessages:Sending Waypoint {GridName}]
-			[ChatAudio:GreetingSoundId-A]
-			[BroadcastChatType:Chat]
-			[SendToAllOnlinePlayers:false]
-			[IgnoreAntennaRequirement:true]
-			[IgnoredAntennaRangeOverride:9999999]
-			</Description>
-		</EntityComponent> -->
-		<!-- Trigger sequence to despawn the trade station when players are far -->
-		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
-			<Id>
-				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Static-TradeStation-Trigger-Unload-ResetCooldown</SubtypeId>
-			</Id>
-			<Description>
-			[RivalAI Trigger]
-			[Type:PlayerNear]
-			[UseTrigger:false]
-			[StartsReady:false]
-			[TargetDistance:10000]
-			[MinCooldownMs:30000]
-			[MaxCooldownMs:30001]
-			[Actions:GVK-Static-TradeStation-Action-Unload-ResetCooldown]	  
-			</Description>
-		</EntityComponent>
-		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
-			<Id>
-				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Static-TradeStation-Action-Unload-ResetCooldown</SubtypeId>
-			</Id>
-			<Description>
-			[RivalAI Action]
-			[ResetCooldownTimeOfTriggers:true]
-			[ResetTriggerCooldownNames:GVK-Static-TradeStation-Trigger-Unload-Despawn]
-			</Description>
-		</EntityComponent>
-		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
-			<Id>
-				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Static-TradeStation-Trigger-Unload-Despawn</SubtypeId>
-			</Id>
-			<Description>
-			[RivalAI Trigger]
-			[Type:Timer]
-			[UseTrigger:false]
-			[StartsReady:false]
-			[MinCooldownMs:300000]
-			[MaxCooldownMs:300001]
-			[MaxActions:1]
-			[Actions:GVK-Static-TradeStation-Action-Unload-Despawn]	  
-			</Description>
-		</EntityComponent>
-		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
-			<Id>
-				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Static-TradeStation-Action-Unload-Despawn</SubtypeId>
-			</Id>
-			<Description>
-			[RivalAI Action]
-			[ResetThisStaticEncounter:true]
-			[ForceDespawn:true]
+				[MES SafeZone]
+				[Shape:Sphere]
+				[Radius:0]
+				[RadiusFromParentEntity:true]
+				[ParentEntityRadiusMultiplier:3]
+				[Enabled:true]
+				[LinkToParentEntity:true]
+				[IsVisible:false]
+				[Color:{X:0 Y:0 Z:0}]
+				[Texture:SafeZone_Texture_Restricted]
+				[FactionAccess:Blacklist]
+				[GridAccess:Blacklist]
+				[PlayerAccess:Blacklist]
+				[AllowedActions:LandingGearLock]
+				[AllowedActions:ConvertToStation]
 			</Description>
 		</EntityComponent>
 	</EntityComponents>
