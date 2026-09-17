@@ -22,14 +22,18 @@
 			[Triggers:GVK-Alliance-Trigger-Inside40000Check]
 			[Triggers:GVK-Alliance-Trigger-Inside50000Check]
 			[Triggers:GVK-Alliance-Trigger-Inside55000Check]
+			[Triggers:GVK-Alliance-Trigger-OutsideZoneCheck]
+			[Triggers:GVK-Alliance-Trigger-InsideZoneCheck]
 			[Triggers:GVK-Alliance-Trigger-OutsideAllZones]
 			</Description>
 		</EntityComponent>
 		<!-- trigger to confirm it is Outside Zone 10000 -->
+		<!-- trigger to confirm it is Outside Faction Zone -->
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
 				<SubtypeId>GVK-Alliance-Trigger-Outside10000Check</SubtypeId>
+				<SubtypeId>GVK-Alliance-Trigger-OutsideZoneCheck</SubtypeId>
 			</Id>
 			<Description>
 			[MES AI Trigger]
@@ -40,24 +44,30 @@
 			[StartsReady:false]
 			[ZoneName:{Faction}_Zone_10000]
 			[Actions:GVK-Alliance-Action-Outside10000Check]
+			[ZoneName:{Faction}_Zone]
+			[Actions:GVK-Alliance-Action-OutsideZoneCheck]
 			</Description>
 		</EntityComponent>
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
 				<SubtypeId>GVK-Alliance-Action-Outside10000Check</SubtypeId>
+				<SubtypeId>GVK-Alliance-Action-OutsideZoneCheck</SubtypeId>
 			</Id>
 			<Description>
 			[MES AI Action]
 			[//DebugMessage:Trigger Outside10000Check]
 			[SetBooleansTrue:Zone10000Check]
+			[SetBooleansTrue:OutsideFactionZone]
 			</Description>
 		</EntityComponent>
 		<!-- trigger to confirm it is Outside Zone 20000 -->
+		<!-- trigger to confirm it is Inside Faction Zone -->
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
 				<SubtypeId>GVK-Alliance-Trigger-Outside20000Check</SubtypeId>
+				<SubtypeId>GVK-Alliance-Trigger-InsideZoneCheck</SubtypeId>
 			</Id>
 			<Description>
 			[MES AI Trigger]
@@ -208,20 +218,25 @@
 			[StartsReady:false]
 			[ZoneName:{Faction}_Zone_10000]
 			[Actions:GVK-Alliance-Action-Inside10000Check]
+			[ZoneName:{Faction}_Zone]
+			[Actions:GVK-Alliance-Action-InsideZoneCheck]
 			</Description>
 		</EntityComponent>
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
 				<SubtypeId>GVK-Alliance-Action-Inside10000Check</SubtypeId>
+				<SubtypeId>GVK-Alliance-Action-InsideZoneCheck</SubtypeId>
 			</Id>
 			<Description>
 			[MES AI Action]
 			[//DebugMessage:Trigger Inside10000Check]
 			[SetBooleansFalse:Zone10000Check]
+			[SetBooleansFalse:OutsideFactionZone]
 			</Description>
 		</EntityComponent>
 		<!-- trigger to confirm it is inside Zone 20000 -->
+		<!-- trigger to check if outside faction zone for despawn -->
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
@@ -382,6 +397,7 @@
 			</Description>
 		</EntityComponent>
 		<!-- if Zone bools are all true, then outside all zones, then despawn -->
+		<!-- if OutsideFactionZone is true, then outside territory, then despawn after timer -->
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
@@ -399,6 +415,7 @@
 			[TrueBooleans:Zone50000Check]
 			[TrueBooleans:Zone55000Check]
 			[AllowAnyTrueBoolean:false]
+			[TrueBooleans:OutsideFactionZone]
 			</Description>
 		</EntityComponent>
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
