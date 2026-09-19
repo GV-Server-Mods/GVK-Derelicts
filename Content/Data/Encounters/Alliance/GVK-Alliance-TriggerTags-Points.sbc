@@ -6,6 +6,7 @@
 		EncounterTypes:
 		- Base:				50 points
 		- Outpost:			10 points
+		- Turret:			2 points
 		- Cargo Ship:		10 points
 		- Research Lab:		3 points
 		- Elite Drones: 	15 points
@@ -304,6 +305,145 @@
 				[CustomStrings:DecreaseFactionAmount,10]
 				[DecreaseSandboxCounters:SOBAN_Points]
 				[DecreaseSandboxCountersAmount:10]
+				[UseChatBroadcast:true]
+				[ChatData:GVK-Alliance-Chat-PointsAdjustDespawned]
+			</Description>
+		</EntityComponent>
+		<!-- Turret -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-TriggerTags-PointsCompromised-AllianceTurret-KHAANEPH</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Trigger]
+				[UseTrigger:true]
+				[Tags:GVK-Alliance-TriggerTags-PointsCompromised-AllianceTurret-KHAANEPH]
+				[Type:Manual]
+				[StartsReady:true]
+				[Conditions:GVK-Universal-Condition-DamagedByNonFriendlyPlayer]
+				[ActionExecution:All]
+				[Actions:GVK-Alliance-Action-PointsCompromised-AllianceTurret-KHAANEPH]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-Action-PointsCompromised-AllianceTurret-KHAANEPH</SubtypeId>
+			</Id>
+			<Description>
+				[MES AI Action]
+				[//DebugMessage:PointsCompromised-AllianceTurret-KHAANEPH]
+				[SetCustomStrings:true]
+				[CustomStrings:DecreaseFactionName,KHAANEPH]
+				[CustomStrings:IncreaseFactionName,SOBAN]
+				[CustomStrings:DecreaseFactionAmount,2]
+				[CustomStrings:IncreaseFactionAmount,2]
+				[DecreaseSandboxCounters:KHAANEPH_Points]
+				[DecreaseSandboxCountersAmount:2]
+				[IncreaseSandboxCounters:SOBAN_Points]
+				[IncreaseSandboxCountersAmount:2]
+				[UseChatBroadcast:true]
+				[ChatData:GVK-Alliance-Chat-PointsAdjustCompromised]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-TriggerTags-PointsDespawned-AllianceTurret-KHAANEPH</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Trigger]
+				[UseTrigger:true]
+				[Tags:GVK-Alliance-TriggerTags-PointsDespawned-AllianceTurret-KHAANEPH]
+				[Type:Manual]
+				[StartsReady:true]
+				[ActionExecution:All]
+				[Actions:GVK-Alliance-Action-PointsDespawned-AllianceTurret-KHAANEPH]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-Action-PointsDespawned-AllianceTurret-KHAANEPH</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Action]
+				[//DebugMessage:PointsDespawned-AllianceTurret-KHAANEPH]
+				[SetCustomStrings:true]
+				[CustomStrings:DecreaseFactionName,KHAANEPH]
+				[CustomStrings:DecreaseFactionAmount,2]
+				[DecreaseSandboxCounters:KHAANEPH_Points]
+				[DecreaseSandboxCountersAmount:2]
+				[UseChatBroadcast:true]
+				[ChatData:GVK-Alliance-Chat-PointsAdjustDespawned]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-TriggerTags-PointsCompromised-AllianceTurret-SOBAN</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Trigger]
+				[UseTrigger:true]
+				[Tags:GVK-Alliance-TriggerTags-PointsCompromised-AllianceTurret-SOBAN]
+				[Type:Manual]
+				[StartsReady:true]
+				[Conditions:GVK-Universal-Condition-DamagedByNonFriendlyPlayer]
+				[ActionExecution:All]
+				[Actions:GVK-Alliance-Action-PointsCompromised-AllianceTurret-SOBAN]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-Action-PointsCompromised-AllianceTurret-SOBAN</SubtypeId>
+			</Id>
+			<Description>
+				[MES AI Action]
+				[//DebugMessage:PointsCompromised-AllianceTurret-SOBAN]
+				[SetCustomStrings:true]
+				[CustomStrings:DecreaseFactionName,SOBAN]
+				[CustomStrings:IncreaseFactionName,KHAANEPH]
+				[CustomStrings:DecreaseFactionAmount,2]
+				[CustomStrings:IncreaseFactionAmount,2]
+				[DecreaseSandboxCounters:SOBAN_Points]
+				[DecreaseSandboxCountersAmount:2]
+				[IncreaseSandboxCounters:KHAANEPH_Points]
+				[IncreaseSandboxCountersAmount:2]
+				[UseChatBroadcast:true]
+				[ChatData:GVK-Alliance-Chat-PointsAdjustCompromised]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-TriggerTags-PointsDespawned-AllianceTurret-SOBAN</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Trigger]
+				[UseTrigger:true]
+				[Tags:GVK-Alliance-TriggerTags-PointsDespawned-AllianceTurret-SOBAN]
+				[Type:Manual]
+				[StartsReady:true]
+				[ActionExecution:All]
+				[Actions:GVK-Alliance-Action-PointsDespawned-AllianceTurret-SOBAN]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-Action-PointsDespawned-AllianceTurret-SOBAN</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Action]
+				[//DebugMessage:PointsDespawned-AllianceTurret-SOBAN]
+				[SetCustomStrings:true]
+				[CustomStrings:DecreaseFactionName,SOBAN]
+				[CustomStrings:DecreaseFactionAmount,2]
+				[DecreaseSandboxCounters:SOBAN_Points]
+				[DecreaseSandboxCountersAmount:2]
 				[UseChatBroadcast:true]
 				[ChatData:GVK-Alliance-Chat-PointsAdjustDespawned]
 			</Description>

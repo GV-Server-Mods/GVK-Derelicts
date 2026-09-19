@@ -37,22 +37,22 @@
 				<SubtypeId>GVK-Universal-TriggerGroup-SpawnDefenses</SubtypeId>
 			</Id>
 			<Description>
-			[RivalAI TriggerGroup]
-			[Triggers:GVK-Universal-Trigger-DefensesInit]
-			[Triggers:GVK-Universal-Trigger-DefensesPlayerNear-500]
-			[Triggers:GVK-Universal-Trigger-DefensesPlayerNear-2000]
-			[Triggers:GVK-Universal-Trigger-DefensesTargetNear-500]
-			[Triggers:GVK-Universal-Trigger-DefensesTargetNear-2000]
-			[Triggers:GVK-Universal-Trigger-DefensesDamage]
-			[Triggers:GVK-Universal-Trigger-DefensesRefundCounter]
-			[Triggers:GVK-Universal-Trigger-DefensesResetCounter]
-			[Triggers:GVK-Universal-Trigger-DefensesTriggerDelay]
-			[Triggers:GVK-Universal-Trigger-DefensesManual]
-			[Triggers:GVK-Universal-Trigger-DefensesManualSpawn-WreckLarge]
-			[Triggers:GVK-Universal-Trigger-DefensesManualSpawn-WreckMedium]
-			[Triggers:GVK-Universal-Trigger-DefensesManualSpawn-WreckSmall]
-			[Triggers:GVK-Universal-Trigger-DefensesManualSpawn-AllianceBase]
-			[Triggers:GVK-Universal-Trigger-DefensesManualSpawn-AllianceOutpost]
+				[RivalAI TriggerGroup]
+				[Triggers:GVK-Universal-Trigger-DefensesInit]
+				[Triggers:GVK-Universal-Trigger-DefensesPlayerNear-500]
+				[Triggers:GVK-Universal-Trigger-DefensesPlayerNear-2000]
+				[Triggers:GVK-Universal-Trigger-DefensesTargetNear-500]
+				[Triggers:GVK-Universal-Trigger-DefensesTargetNear-2000]
+				[Triggers:GVK-Universal-Trigger-DefensesDamage]
+				[Triggers:GVK-Universal-Trigger-DefensesRefundCounter]
+				[Triggers:GVK-Universal-Trigger-DefensesResetCounter]
+				[Triggers:GVK-Universal-Trigger-DefensesTriggerDelay]
+				[Triggers:GVK-Universal-Trigger-DefensesManual]
+				[Triggers:GVK-Universal-Trigger-DefensesManualSpawn-WreckLarge]
+				[Triggers:GVK-Universal-Trigger-DefensesManualSpawn-WreckMedium]
+				[Triggers:GVK-Universal-Trigger-DefensesManualSpawn-WreckSmall]
+				[Triggers:GVK-Universal-Trigger-DefensesManualSpawn-AllianceBase]
+				[Triggers:GVK-Universal-Trigger-DefensesManualSpawn-AllianceOutpost]
 			</Description>
 		</EntityComponent>
 		<!-- 
@@ -60,21 +60,21 @@
 			Universal structure defense systems that spawn GAALSIEN drones
 			
 		-->
-		<!-- The offsets and random valeus in the waypoint override those in the spawner -->
+		<!-- The offsets and random values in the waypoint override those in the spawner -->
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
 				<SubtypeId>GVK-Universal-Waypoint-DefensesManualSpawn</SubtypeId>
 			</Id>
 			<Description>
-			[RivalAI Waypoint]
-			[Waypoint:EntityRandom]
-			[RelativeEntity:Target]
-			[MinDistance:800]
-			[MaxDistance:1200]
-			[MinAltitude:30]
-			[MaxAltitude:31]
-			[InheritRelativeAltitude:false]
+				[RivalAI Waypoint]
+				[Waypoint:EntityRandom]
+				[RelativeEntity:Target]
+				[MinDistance:800]
+				[MaxDistance:1200]
+				[MinAltitude:30]
+				[MaxAltitude:31]
+				[InheritRelativeAltitude:false]
 			</Description>
 		</EntityComponent>
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
@@ -83,13 +83,13 @@
 				<SubtypeId>GVK-Universal-Trigger-DefensesInit</SubtypeId>
 			</Id>
 			<Description>
-			[MES AI Trigger]
-			[UseTrigger:true]
-			[Type:Timer]
-			[StartsReady:true]
-			[MaxActions:1]
-			[ActionExecution:All]
-			[Actions:GVK-Universal-Action-DefensesInit]
+				[MES AI Trigger]
+				[UseTrigger:true]
+				[Type:Timer]
+				[StartsReady:true]
+				[MaxActions:1]
+				[ActionExecution:All]
+				[Actions:GVK-Universal-Action-DefensesInit]
 			</Description>
 		</EntityComponent>
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
@@ -98,11 +98,11 @@
 				<SubtypeId>GVK-Universal-Action-DefensesInit</SubtypeId>
 			</Id>
 			<Description>
-			[RivalAI Action]
-			[//DebugMessage:DefensesInit]
-			[ResetCounters:DefenseSpawn_Counter]
-			[EnableTriggers:true]
-			[EnableTriggerTags:GVK-Universal-TriggerTags-{EncounterType}]
+				[RivalAI Action]
+				[//DebugMessage:DefensesInit]
+				[ResetCounters:DefenseSpawn_Counter]
+				[EnableTriggers:true]
+				[EnableTriggerTags:GVK-Universal-TriggerTags-{EncounterType}]
 			</Description>
 		</EntityComponent>
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
@@ -111,21 +111,21 @@
 				<SubtypeId>GVK-Universal-Trigger-DefensesPlayerNear-500</SubtypeId>
 			</Id>
 			<Description>
-			[RivalAI Trigger]
-			[Tags:GVK-Universal-TriggerTags-WreckLarge]
-			[Tags:GVK-Universal-TriggerTags-WreckMedium]
-			[Tags:GVK-Universal-TriggerTags-WreckSmall]
-			[UseTrigger:false]
-			[Type:PlayerNear]
-			[TargetDistance:500]
-			[MinPlayerReputation:-1500]
-			[MaxPlayerReputation:0]
-			[StartsReady:true]
-			[MinCooldownMs:10000]
-			[MaxCooldownMs:10001]
-			[ActionExecution:All]
-			[Actions:GVK-Universal-Action-DefensesTrigger]
-			[ConditionCheckResetsTimer:true]
+				[RivalAI Trigger]
+				[Tags:GVK-Universal-TriggerTags-WreckLarge]
+				[Tags:GVK-Universal-TriggerTags-WreckMedium]
+				[Tags:GVK-Universal-TriggerTags-WreckSmall]
+				[UseTrigger:false]
+				[Type:PlayerNear]
+				[TargetDistance:500]
+				[MinPlayerReputation:-1500]
+				[MaxPlayerReputation:0]
+				[StartsReady:true]
+				[MinCooldownMs:10000]
+				[MaxCooldownMs:10001]
+				[ActionExecution:All]
+				[Actions:GVK-Universal-Action-DefensesTrigger]
+				[ConditionCheckResetsTimer:true]
 			</Description>
 		</EntityComponent>
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
@@ -134,21 +134,21 @@
 				<SubtypeId>GVK-Universal-Trigger-DefensesPlayerNear-2000</SubtypeId>
 			</Id>
 			<Description>
-			[RivalAI Trigger]
-			[Tags:GVK-Universal-TriggerTags-AllianceBase]
-			[Tags:GVK-Universal-TriggerTags-AllianceOutpost]
-			[Tags:GVK-Universal-TriggerTags-DroneLarge]
-			[UseTrigger:false]
-			[Type:PlayerNear]
-			[TargetDistance:2000]
-			[MinPlayerReputation:-1500]
-			[MaxPlayerReputation:0]
-			[StartsReady:true]
-			[MinCooldownMs:10000]
-			[MaxCooldownMs:10001]
-			[ActionExecution:All]
-			[Actions:GVK-Universal-Action-DefensesTrigger]
-			[ConditionCheckResetsTimer:true]
+				[RivalAI Trigger]
+				[Tags:GVK-Universal-TriggerTags-AllianceBase]
+				[Tags:GVK-Universal-TriggerTags-AllianceOutpost]
+				[Tags:GVK-Universal-TriggerTags-DroneLarge]
+				[UseTrigger:false]
+				[Type:PlayerNear]
+				[TargetDistance:2000]
+				[MinPlayerReputation:-1500]
+				[MaxPlayerReputation:0]
+				[StartsReady:true]
+				[MinCooldownMs:10000]
+				[MaxCooldownMs:10001]
+				[ActionExecution:All]
+				[Actions:GVK-Universal-Action-DefensesTrigger]
+				[ConditionCheckResetsTimer:true]
 			</Description>
 		</EntityComponent>
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
@@ -157,21 +157,21 @@
 				<SubtypeId>GVK-Universal-Trigger-DefensesTargetNear-500</SubtypeId>
 			</Id>
 			<Description>
-			[RivalAI Trigger]
-			[Tags:GVK-Universal-TriggerTags-WreckLarge]
-			[Tags:GVK-Universal-TriggerTags-WreckMedium]
-			[Tags:GVK-Universal-TriggerTags-WreckSmall]
-			[UseTrigger:false]
-			[Type:TargetNear]
-			[TargetDistance:500]
-			[MinPlayerReputation:-1500]
-			[MaxPlayerReputation:0]
-			[StartsReady:true]
-			[MinCooldownMs:10000]
-			[MaxCooldownMs:10001]
-			[ActionExecution:All]
-			[Actions:GVK-Universal-Action-DefensesTrigger]
-			[ConditionCheckResetsTimer:true]
+				[RivalAI Trigger]
+				[Tags:GVK-Universal-TriggerTags-WreckLarge]
+				[Tags:GVK-Universal-TriggerTags-WreckMedium]
+				[Tags:GVK-Universal-TriggerTags-WreckSmall]
+				[UseTrigger:false]
+				[Type:TargetNear]
+				[TargetDistance:500]
+				[MinPlayerReputation:-1500]
+				[MaxPlayerReputation:0]
+				[StartsReady:true]
+				[MinCooldownMs:10000]
+				[MaxCooldownMs:10001]
+				[ActionExecution:All]
+				[Actions:GVK-Universal-Action-DefensesTrigger]
+				[ConditionCheckResetsTimer:true]
 			</Description>
 		</EntityComponent>
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
@@ -180,21 +180,21 @@
 				<SubtypeId>GVK-Universal-Trigger-DefensesTargetNear-2000</SubtypeId>
 			</Id>
 			<Description>
-			[RivalAI Trigger]
-			[Tags:GVK-Universal-TriggerTags-AllianceBase]
-			[Tags:GVK-Universal-TriggerTags-AllianceOutpost]
-			[Tags:GVK-Universal-TriggerTags-DroneLarge]
-			[UseTrigger:false]
-			[Type:TargetNear]
-			[TargetDistance:2000]
-			[MinPlayerReputation:-1500]
-			[MaxPlayerReputation:0]
-			[StartsReady:true]
-			[MinCooldownMs:10000]
-			[MaxCooldownMs:10001]
-			[ActionExecution:All]
-			[Actions:GVK-Universal-Action-DefensesTrigger]
-			[ConditionCheckResetsTimer:true]
+				[RivalAI Trigger]
+				[Tags:GVK-Universal-TriggerTags-AllianceBase]
+				[Tags:GVK-Universal-TriggerTags-AllianceOutpost]
+				[Tags:GVK-Universal-TriggerTags-DroneLarge]
+				[UseTrigger:false]
+				[Type:TargetNear]
+				[TargetDistance:2000]
+				[MinPlayerReputation:-1500]
+				[MaxPlayerReputation:0]
+				[StartsReady:true]
+				[MinCooldownMs:10000]
+				[MaxCooldownMs:10001]
+				[ActionExecution:All]
+				[Actions:GVK-Universal-Action-DefensesTrigger]
+				[ConditionCheckResetsTimer:true]
 			</Description>
 		</EntityComponent>
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
@@ -203,15 +203,15 @@
 				<SubtypeId>GVK-Universal-Trigger-DefensesDamage</SubtypeId>
 			</Id>
 			<Description>
-			[RivalAI Trigger]
-			[UseTrigger:true]
-			[Type:Damage]
-			[DamageTypes:Any]
-			[StartsReady:true]
-			[MinCooldownMs:10000]
-			[MaxCooldownMs:10001]
-			[ActionExecution:All]
-			[Actions:GVK-Universal-Action-DefensesTrigger]
+				[RivalAI Trigger]
+				[UseTrigger:true]
+				[Type:Damage]
+				[DamageTypes:Any]
+				[StartsReady:true]
+				[MinCooldownMs:10000]
+				[MaxCooldownMs:10001]
+				[ActionExecution:All]
+				[Actions:GVK-Universal-Action-DefensesTrigger]
 			</Description>
 		</EntityComponent>
 		<!-- above triggers activate DefensesTriggerDelay which adds a slight delay to ensure Target profile has a target in time -->
@@ -221,12 +221,12 @@
 				<SubtypeId>GVK-Universal-Action-DefensesTrigger</SubtypeId>
 			</Id>
 			<Description>
-			[RivalAI Action]
-			[//DebugMessage:DefensesTrigger]
-			[ResetCooldownTimeOfTriggers:true]
-			[ResetTriggerCooldownNames:GVK-Universal-Trigger-DefensesTriggerDelay]
-			[EnableTriggers:true]
-			[EnableTriggerNames:GVK-Universal-Trigger-DefensesTriggerDelay]
+				[RivalAI Action]
+				[//DebugMessage:DefensesTrigger]
+				[ResetCooldownTimeOfTriggers:true]
+				[ResetTriggerCooldownNames:GVK-Universal-Trigger-DefensesTriggerDelay]
+				[EnableTriggers:true]
+				[EnableTriggerNames:GVK-Universal-Trigger-DefensesTriggerDelay]
 			</Description>
 		</EntityComponent>
 		<!-- This adds a slight delay to ensure target profile has a target for the Waypoint spawning -->
@@ -236,15 +236,15 @@
 				<SubtypeId>GVK-Universal-Trigger-DefensesTriggerDelay</SubtypeId>
 			</Id>
 			<Description>
-			[RivalAI Trigger]
-			[UseTrigger:false]
-			[Type:Timer]
-			[StartsReady:false]
-			[MinCooldownMs:5000]
-			[MaxCooldownMs:5001]
-			[MaxActions:-1]
-			[ActionExecution:All]
-			[Actions:GVK-Universal-Action-DefensesTriggerDelay]
+				[RivalAI Trigger]
+				[UseTrigger:false]
+				[Type:Timer]
+				[StartsReady:false]
+				[MinCooldownMs:5000]
+				[MaxCooldownMs:5001]
+				[MaxActions:-1]
+				[ActionExecution:All]
+				[Actions:GVK-Universal-Action-DefensesTriggerDelay]
 			</Description>
 		</EntityComponent>
 		<!-- Activate DefensesManual which then checks the counter and increments the counter -->
@@ -254,12 +254,12 @@
 				<SubtypeId>GVK-Universal-Action-DefensesTriggerDelay</SubtypeId>
 			</Id>
 			<Description>
-			[RivalAI Action]
-			[//DebugMessage:DefensesTriggerDelay]
-			[DisableTriggers:true]
-			[DisableTriggerNames:GVK-Universal-Trigger-DefensesTriggerDelay]
-			[ManuallyActivateTrigger:true]
-			[ManuallyActivatedTriggerNames:GVK-Universal-Trigger-DefensesManual]
+				[RivalAI Action]
+				[//DebugMessage:DefensesTriggerDelay]
+				[DisableTriggers:true]
+				[DisableTriggerNames:GVK-Universal-Trigger-DefensesTriggerDelay]
+				[ManuallyActivateTrigger:true]
+				[ManuallyActivatedTriggerNames:GVK-Universal-Trigger-DefensesManual]
 			</Description>
 		</EntityComponent>
 		<!-- decrease DefenseSpawn_Counter if received drone despawn command -->
@@ -269,16 +269,16 @@
 				<SubtypeId>GVK-Universal-Trigger-DefensesRefundCounter</SubtypeId>
 			</Id>
 			<Description>
-			[RivalAI Trigger]
-			[UseTrigger:true]
-			[Type:CommandReceived]
-			[StartsReady:false]
-			[MinCooldownMs:1000]
-			[MaxCooldownMs:1001]
-			[CommandReceiveCode:DefensesRefundCounter]
-			[MaxActions:-1]
-			[ActionExecution:All]
-			[Actions:GVK-Universal-Action-DefensesRefundCounter]
+				[RivalAI Trigger]
+				[UseTrigger:true]
+				[Type:CommandReceived]
+				[StartsReady:false]
+				[MinCooldownMs:1000]
+				[MaxCooldownMs:1001]
+				[CommandReceiveCode:DefensesRefundCounter]
+				[MaxActions:-1]
+				[ActionExecution:All]
+				[Actions:GVK-Universal-Action-DefensesRefundCounter]
 			</Description>
 		</EntityComponent>
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
@@ -287,9 +287,9 @@
 				<SubtypeId>GVK-Universal-Action-DefensesRefundCounter</SubtypeId>
 			</Id>
 			<Description>
-			[RivalAI Action]
-			[//DebugMessage:DefensesRefundCounter]
-			[DecreaseCounters:DefenseSpawn_Counter]
+				[RivalAI Action]
+				[//DebugMessage:DefensesRefundCounter]
+				[DecreaseCounters:DefenseSpawn_Counter]
 			</Description>
 		</EntityComponent>
 		<!-- Reset spawn counter every 60 minutes. This gets enabled only when the right trigger tags turn on during init -->
@@ -299,16 +299,16 @@
 				<SubtypeId>GVK-Universal-Trigger-DefensesResetCounter</SubtypeId>
 			</Id>
 			<Description>
-			[RivalAI Trigger]
-			[Tags:GVK-Universal-TriggerTags-AllianceBase]
-			[Tags:GVK-Universal-TriggerTags-AllianceOutpost]
-			[UseTrigger:false]
-			[Type:Timer]
-			[StartsReady:false]
-			[MinCooldownMs:3600001]
-			[MaxCooldownMs:3600002]
-			[ActionExecution:All]
-			[Actions:GVK-Universal-Action-DefensesResetCounter]
+				[RivalAI Trigger]
+				[Tags:GVK-Universal-TriggerTags-AllianceBase]
+				[Tags:GVK-Universal-TriggerTags-AllianceOutpost]
+				[UseTrigger:false]
+				[Type:Timer]
+				[StartsReady:false]
+				[MinCooldownMs:3600001]
+				[MaxCooldownMs:3600002]
+				[ActionExecution:All]
+				[Actions:GVK-Universal-Action-DefensesResetCounter]
 			</Description>
 		</EntityComponent>
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
@@ -317,9 +317,9 @@
 				<SubtypeId>GVK-Universal-Action-DefensesResetCounter</SubtypeId>
 			</Id>
 			<Description>
-			[RivalAI Action]
-			[//DebugMessage:DefensesResetCounter]
-			[ResetCounters:DefenseSpawn_Counter]
+				[RivalAI Action]
+				[//DebugMessage:DefensesResetCounter]
+				[ResetCounters:DefenseSpawn_Counter]
 			</Description>
 		</EntityComponent>
 		<!-- check if DefenseSpawn_Counter is under DefenseSpawn_Limit and activate manual trigger tags -->
@@ -329,16 +329,16 @@
 				<SubtypeId>GVK-Universal-Trigger-DefensesManual</SubtypeId>
 			</Id>
 			<Description>
-			[RivalAI Trigger]
-			[UseTrigger:true]
-			[Type:Manual]
-			[StartsReady:true]
-			[MinCooldownMs:25000]
-			[MaxCooldownMs:25001]
-			[ActionExecution:All]
-			[Conditions:GVK-Universal-Condition-DefensesManual]
-			[ConditionCheckResetsTimer:true]
-			[Actions:GVK-Universal-Action-DefensesManual]
+				[RivalAI Trigger]
+				[UseTrigger:true]
+				[Type:Manual]
+				[StartsReady:true]
+				[MinCooldownMs:25000]
+				[MaxCooldownMs:25001]
+				[ActionExecution:All]
+				[Conditions:GVK-Universal-Condition-DefensesManual]
+				[ConditionCheckResetsTimer:true]
+				[Actions:GVK-Universal-Action-DefensesManual]
 			</Description>
 		</EntityComponent>
 		<!-- use "Less" compare because DefenseSpawn_Counter starts at 0 and is not incremented until after this check -->
@@ -348,13 +348,13 @@
 				<SubtypeId>GVK-Universal-Condition-DefensesManual</SubtypeId>
 			</Id>
 			<Description>
-			[RivalAI Condition]
-			[UseConditions:true]
-			[MatchAnyCondition:false]
-			[CheckCustomCounters:true]
-			[CustomCounters:DefenseSpawn_Counter]
-			[CustomCountersVariables:{DefenseSpawn_Limit}]
-			[CounterCompareTypes:Less]
+				[RivalAI Condition]
+				[UseConditions:true]
+				[MatchAnyCondition:false]
+				[CheckCustomCounters:true]
+				[CustomCounters:DefenseSpawn_Counter]
+				[CustomCountersVariables:{DefenseSpawn_Limit}]
+				[CounterCompareTypes:Less]
 			</Description>
 		</EntityComponent>
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
@@ -363,13 +363,13 @@
 				<SubtypeId>GVK-Universal-Action-DefensesManual</SubtypeId>
 			</Id>
 			<Description>
-			[RivalAI Action]
-			[//DebugMessage:DefensesManual DefenseSpawn_Counter passed]
-			[IncreaseCounters:DefenseSpawn_Counter]
-			[ManuallyActivateTrigger:true]
-			[ManuallyActivatedTriggerNames:GVK-Universal-Trigger-DefensesManualSpawn-{EncounterType}]
-			[UseChatBroadcast:true]
-			[ChatData:GVK-Universal-Chat-DefensesManual]
+				[RivalAI Action]
+				[//DebugMessage:DefensesManual DefenseSpawn_Counter passed]
+				[IncreaseCounters:DefenseSpawn_Counter]
+				[ManuallyActivateTrigger:true]
+				[ManuallyActivatedTriggerNames:GVK-Universal-Trigger-DefensesManualSpawn-{EncounterType}]
+				[UseChatBroadcast:true]
+				[ChatData:GVK-Universal-Chat-DefensesManual]
 			</Description>
 		</EntityComponent>
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
@@ -378,21 +378,21 @@
 				<SubtypeId>GVK-Universal-Chat-DefensesManual</SubtypeId>
 			</Id>
 			<Description>
-			[RivalAI Chat]
-			[UseChat:true]
-			[MinTime:1800]
-			[MaxTime:1801]
-			[StartsReady:true]
-			[Chance:100]
-			[MaxChats:1]
-			[Author:Sensors]
-			[Color:Blue]
-			[ChatMessages:Enemy forces in-bound.]
-			[ChatAudio:ArcHudSensors]
-			[BroadcastChatType:Both]
-			[SendToAllOnlinePlayers:false]
-			[IgnoreAntennaRequirement:true]
-			[IgnoredAntennaRangeOverride:6000]
+				[RivalAI Chat]
+				[UseChat:true]
+				[MinTime:1800]
+				[MaxTime:1801]
+				[StartsReady:true]
+				[Chance:100]
+				[MaxChats:1]
+				[Author:Sensors]
+				[Color:Blue]
+				[ChatMessages:Enemy forces in-bound.]
+				[ChatAudio:ArcHudSensors]
+				[BroadcastChatType:Both]
+				[SendToAllOnlinePlayers:false]
+				[IgnoreAntennaRequirement:true]
+				[IgnoredAntennaRangeOverride:6000]
 			</Description>
 		</EntityComponent>
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
@@ -401,12 +401,12 @@
 				<SubtypeId>GVK-Universal-Trigger-DefensesManualSpawn-WreckLarge</SubtypeId>
 			</Id>
 			<Description>
-			[RivalAI Trigger]
-			[UseTrigger:true]
-			[Type:Manual]
-			[StartsReady:true]
-			[ActionExecution:All]
-			[Actions:GVK-Universal-Action-DefensesManualSpawn-WreckLarge]
+				[RivalAI Trigger]
+				[UseTrigger:true]
+				[Type:Manual]
+				[StartsReady:true]
+				[ActionExecution:All]
+				[Actions:GVK-Universal-Action-DefensesManualSpawn-WreckLarge]
 			</Description>
 		</EntityComponent>
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
@@ -415,10 +415,10 @@
 				<SubtypeId>GVK-Universal-Action-DefensesManualSpawn-WreckLarge</SubtypeId>
 			</Id>
 			<Description>
-			[RivalAI Action]
-			[//DebugMessage:DefensesManualSpawn-WreckLarge]
-			[SpawnEncounter:true]
-			[Spawner:GVK-Universal-Spawner-Defenses-WreckLarge]
+				[RivalAI Action]
+				[//DebugMessage:DefensesManualSpawn-WreckLarge]
+				[SpawnEncounter:true]
+				[Spawner:GVK-Universal-Spawner-Defenses-WreckLarge]
 			</Description>
 		</EntityComponent>
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
@@ -427,23 +427,23 @@
 				<SubtypeId>GVK-Universal-Spawner-Defenses-WreckLarge</SubtypeId>
 			</Id>
 			<Description>
-			[RivalAI Spawn]
-			[UseSpawn:true]
-			[SpawningType:CustomSpawn]
-			[StartsReady:true]
-			[ProcessAsAdminSpawn:true]
-			[SpawnGroups:GVK-Drone-Defense-SpawnGroup-GAALSIEN-LargeHover]
-			[SpawnGroups:GVK-Drone-Defense-SpawnGroup-GAALSIEN-LargeHover]
-			[SpawnGroups:GVK-Drone-Defense-SpawnGroup-GAALSIEN-BaserunnerHeavy]
-			[SpawnGroups:GVK-Drone-Defense-SpawnGroup-GAALSIEN-InterceptorSquad]
-			[SpawnGroups:GVK-Drone-Defense-SpawnGroup-GAALSIEN-MediumHoverHeavy]
-			[SpawnGroups:GVK-Drone-Defense-SpawnGroup-GAALSIEN-MediumFlyer]
-			[MinDistance:1500]
-			[MaxDistance:1700]
-			[MinAltitude:50]
-			[MaxAltitude:51]
-			[InheritNpcAltitude:false]
-			[IgnoreSafetyChecks:false]
+				[RivalAI Spawn]
+				[UseSpawn:true]
+				[SpawningType:CustomSpawn]
+				[StartsReady:true]
+				[ProcessAsAdminSpawn:true]
+				[SpawnGroups:GVK-Drone-Defense-SpawnGroup-GAALSIEN-LargeHover]
+				[SpawnGroups:GVK-Drone-Defense-SpawnGroup-GAALSIEN-LargeHover]
+				[SpawnGroups:GVK-Drone-Defense-SpawnGroup-GAALSIEN-BaserunnerHeavy]
+				[SpawnGroups:GVK-Drone-Defense-SpawnGroup-GAALSIEN-InterceptorSquad]
+				[SpawnGroups:GVK-Drone-Defense-SpawnGroup-GAALSIEN-MediumHoverHeavy]
+				[SpawnGroups:GVK-Drone-Defense-SpawnGroup-GAALSIEN-MediumFlyer]
+				[MinDistance:1500]
+				[MaxDistance:1700]
+				[MinAltitude:50]
+				[MaxAltitude:51]
+				[InheritNpcAltitude:false]
+				[IgnoreSafetyChecks:false]
 			</Description>
 		</EntityComponent>
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
@@ -452,12 +452,12 @@
 				<SubtypeId>GVK-Universal-Trigger-DefensesManualSpawn-WreckMedium</SubtypeId>
 			</Id>
 			<Description>
-			[RivalAI Trigger]
-			[UseTrigger:true]
-			[Type:Manual]
-			[StartsReady:false]
-			[ActionExecution:All]
-			[Actions:GVK-Universal-Action-DefensesManualSpawn-WreckMedium]
+				[RivalAI Trigger]
+				[UseTrigger:true]
+				[Type:Manual]
+				[StartsReady:false]
+				[ActionExecution:All]
+				[Actions:GVK-Universal-Action-DefensesManualSpawn-WreckMedium]
 			</Description>
 		</EntityComponent>
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
@@ -466,10 +466,10 @@
 				<SubtypeId>GVK-Universal-Action-DefensesManualSpawn-WreckMedium</SubtypeId>
 			</Id>
 			<Description>
-			[RivalAI Action]
-			[//DebugMessage:DefensesManualSpawn-WreckMedium]
-			[SpawnEncounter:true]
-			[Spawner:GVK-Universal-Spawner-Defenses-WreckMedium]
+				[RivalAI Action]
+				[//DebugMessage:DefensesManualSpawn-WreckMedium]
+				[SpawnEncounter:true]
+				[Spawner:GVK-Universal-Spawner-Defenses-WreckMedium]
 			</Description>
 		</EntityComponent>
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
@@ -478,20 +478,20 @@
 				<SubtypeId>GVK-Universal-Spawner-Defenses-WreckMedium</SubtypeId>
 			</Id>
 			<Description>
-			[RivalAI Spawn]
-			[UseSpawn:true]
-			[SpawningType:CustomSpawn]
-			[StartsReady:true]
-			[ProcessAsAdminSpawn:true]
-			[SpawnGroups:GVK-Drone-Defense-SpawnGroup-GAALSIEN-InterceptorSingle]
-			[SpawnGroups:GVK-Drone-Defense-SpawnGroup-GAALSIEN-SandskimmerSquad]
-			[SpawnGroups:GVK-Drone-Defense-SpawnGroup-GAALSIEN-MediumHoverLight]
-			[MinDistance:1500]
-			[MaxDistance:1700]
-			[MinAltitude:50]
-			[MaxAltitude:51]
-			[InheritNpcAltitude:false]
-			[IgnoreSafetyChecks:false]
+				[RivalAI Spawn]
+				[UseSpawn:true]
+				[SpawningType:CustomSpawn]
+				[StartsReady:true]
+				[ProcessAsAdminSpawn:true]
+				[SpawnGroups:GVK-Drone-Defense-SpawnGroup-GAALSIEN-InterceptorSingle]
+				[SpawnGroups:GVK-Drone-Defense-SpawnGroup-GAALSIEN-SandskimmerSquad]
+				[SpawnGroups:GVK-Drone-Defense-SpawnGroup-GAALSIEN-MediumHoverLight]
+				[MinDistance:1500]
+				[MaxDistance:1700]
+				[MinAltitude:50]
+				[MaxAltitude:51]
+				[InheritNpcAltitude:false]
+				[IgnoreSafetyChecks:false]
 			</Description>
 		</EntityComponent>
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
@@ -500,12 +500,12 @@
 				<SubtypeId>GVK-Universal-Trigger-DefensesManualSpawn-WreckSmall</SubtypeId>
 			</Id>
 			<Description>
-			[RivalAI Trigger]
-			[UseTrigger:true]
-			[Type:Manual]
-			[StartsReady:false]
-			[ActionExecution:All]
-			[Actions:GVK-Universal-Action-DefensesManualSpawn-WreckSmall]
+				[RivalAI Trigger]
+				[UseTrigger:true]
+				[Type:Manual]
+				[StartsReady:false]
+				[ActionExecution:All]
+				[Actions:GVK-Universal-Action-DefensesManualSpawn-WreckSmall]
 			</Description>
 		</EntityComponent>
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
@@ -514,10 +514,10 @@
 				<SubtypeId>GVK-Universal-Action-DefensesManualSpawn-WreckSmall</SubtypeId>
 			</Id>
 			<Description>
-			[RivalAI Action]
-			[//DebugMessage:DefensesManualSpawn-WreckSmall]
-			[SpawnEncounter:true]
-			[Spawner:GVK-Universal-Spawner-Defenses-WreckSmall]
+				[RivalAI Action]
+				[//DebugMessage:DefensesManualSpawn-WreckSmall]
+				[SpawnEncounter:true]
+				[Spawner:GVK-Universal-Spawner-Defenses-WreckSmall]
 			</Description>
 		</EntityComponent>
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
@@ -526,18 +526,18 @@
 				<SubtypeId>GVK-Universal-Spawner-Defenses-WreckSmall</SubtypeId>
 			</Id>
 			<Description>
-			[RivalAI Spawn]
-			[UseSpawn:true]
-			[SpawningType:CustomSpawn]
-			[StartsReady:true]
-			[ProcessAsAdminSpawn:true]
-			[SpawnGroups:GVK-Drone-Defense-SpawnGroup-GAALSIEN-SandskimmerSquad]
-			[MinDistance:500]
-			[MaxDistance:700]
-			[MinAltitude:50]
-			[MaxAltitude:51]
-			[InheritNpcAltitude:false]
-			[IgnoreSafetyChecks:false]
+				[RivalAI Spawn]
+				[UseSpawn:true]
+				[SpawningType:CustomSpawn]
+				[StartsReady:true]
+				[ProcessAsAdminSpawn:true]
+				[SpawnGroups:GVK-Drone-Defense-SpawnGroup-GAALSIEN-SandskimmerSquad]
+				[MinDistance:500]
+				[MaxDistance:700]
+				[MinAltitude:50]
+				[MaxAltitude:51]
+				[InheritNpcAltitude:false]
+				[IgnoreSafetyChecks:false]
 			</Description>
 		</EntityComponent>
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
@@ -546,12 +546,12 @@
 				<SubtypeId>GVK-Universal-Trigger-DefensesManualSpawn-AllianceBase</SubtypeId>
 			</Id>
 			<Description>
-			[RivalAI Trigger]
-			[UseTrigger:true]
-			[Type:Manual]
-			[StartsReady:false]
-			[ActionExecution:All]
-			[Actions:GVK-Universal-Action-DefensesManualSpawn-AllianceBase]
+				[RivalAI Trigger]
+				[UseTrigger:true]
+				[Type:Manual]
+				[StartsReady:false]
+				[ActionExecution:All]
+				[Actions:GVK-Universal-Action-DefensesManualSpawn-AllianceBase]
 			</Description>
 		</EntityComponent>
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
@@ -560,10 +560,10 @@
 				<SubtypeId>GVK-Universal-Action-DefensesManualSpawn-AllianceBase</SubtypeId>
 			</Id>
 			<Description>
-			[RivalAI Action]
-			[//DebugMessage:DefensesManualSpawn-AllianceBase]
-			[SpawnEncounter:true]
-			[Spawner:GVK-Universal-Spawner-Defenses-AllianceBase]
+				[RivalAI Action]
+				[//DebugMessage:DefensesManualSpawn-AllianceBase]
+				[SpawnEncounter:true]
+				[Spawner:GVK-Universal-Spawner-Defenses-AllianceBase]
 			</Description>
 		</EntityComponent>
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
@@ -572,25 +572,25 @@
 				<SubtypeId>GVK-Universal-Spawner-Defenses-AllianceBase</SubtypeId>
 			</Id>
 			<Description>
-			[RivalAI Spawn]
-			[UseSpawn:true]
-			[SpawningType:CustomSpawn]
-			[StartsReady:true]
-			[UseWaypoint:true]
-			[Waypoint:GVK-Universal-Waypoint-DefensesManualSpawn]
-			[ProcessAsAdminSpawn:true]
-			[SpawnGroups:GVK-Drone-Defense-SpawnGroup-{Faction}-BaserunnerHeavy]
-			[SpawnGroups:GVK-Drone-Defense-SpawnGroup-{Faction}-LargeHover]
-			[SpawnGroups:GVK-Drone-Defense-SpawnGroup-{Faction}-LargeRover]
-			[SpawnGroups:GVK-Drone-Defense-SpawnGroup-{Faction}-InterceptorSquad]
-			[SpawnGroups:GVK-Drone-Defense-SpawnGroup-{Faction}-MediumHoverHeavy]
-			[SpawnGroups:GVK-Drone-Defense-SpawnGroup-{Faction}-LargeHover]
-			[MinDistance:500]
-			[MaxDistance:700]
-			[MinAltitude:50]
-			[MaxAltitude:51]
-			[InheritNpcAltitude:false]
-			[IgnoreSafetyChecks:false]
+				[RivalAI Spawn]
+				[UseSpawn:true]
+				[SpawningType:CustomSpawn]
+				[StartsReady:true]
+				[UseWaypoint:true]
+				[Waypoint:GVK-Universal-Waypoint-DefensesManualSpawn]
+				[ProcessAsAdminSpawn:true]
+				[SpawnGroups:GVK-Drone-Defense-SpawnGroup-{Faction}-BaserunnerHeavy]
+				[SpawnGroups:GVK-Drone-Defense-SpawnGroup-{Faction}-LargeHover]
+				[SpawnGroups:GVK-Drone-Defense-SpawnGroup-{Faction}-LargeRover]
+				[SpawnGroups:GVK-Drone-Defense-SpawnGroup-{Faction}-InterceptorSquad]
+				[SpawnGroups:GVK-Drone-Defense-SpawnGroup-{Faction}-MediumHoverHeavy]
+				[SpawnGroups:GVK-Drone-Defense-SpawnGroup-{Faction}-LargeHover]
+				[MinDistance:500]
+				[MaxDistance:700]
+				[MinAltitude:50]
+				[MaxAltitude:51]
+				[InheritNpcAltitude:false]
+				[IgnoreSafetyChecks:false]
 			</Description>
 		</EntityComponent>
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
@@ -599,12 +599,12 @@
 				<SubtypeId>GVK-Universal-Trigger-DefensesManualSpawn-AllianceOutpost</SubtypeId>
 			</Id>
 			<Description>
-			[RivalAI Trigger]
-			[UseTrigger:true]
-			[Type:Manual]
-			[StartsReady:false]
-			[ActionExecution:All]
-			[Actions:GVK-Universal-Action-DefensesManualSpawn-AllianceOutpost]
+				[RivalAI Trigger]
+				[UseTrigger:true]
+				[Type:Manual]
+				[StartsReady:false]
+				[ActionExecution:All]
+				[Actions:GVK-Universal-Action-DefensesManualSpawn-AllianceOutpost]
 			</Description>
 		</EntityComponent>
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
@@ -613,10 +613,10 @@
 				<SubtypeId>GVK-Universal-Action-DefensesManualSpawn-AllianceOutpost</SubtypeId>
 			</Id>
 			<Description>
-			[RivalAI Action]
-			[//DebugMessage:DefensesManualSpawn-AllianceOutpost]
-			[SpawnEncounter:true]
-			[Spawner:GVK-Universal-Spawner-Defenses-AllianceOutpost]
+				[RivalAI Action]
+				[//DebugMessage:DefensesManualSpawn-AllianceOutpost]
+				[SpawnEncounter:true]
+				[Spawner:GVK-Universal-Spawner-Defenses-AllianceOutpost]
 			</Description>
 		</EntityComponent>
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
@@ -625,25 +625,25 @@
 				<SubtypeId>GVK-Universal-Spawner-Defenses-AllianceOutpost</SubtypeId>
 			</Id>
 			<Description>
-			[RivalAI Spawn]
-			[UseSpawn:true]
-			[SpawningType:CustomSpawn]
-			[StartsReady:true]
-			[UseWaypoint:true]
-			[Waypoint:GVK-Universal-Waypoint-DefensesManualSpawn]
-			[ProcessAsAdminSpawn:true]
-			[SpawnGroups:GVK-Drone-Defense-SpawnGroup-{Faction}-InterceptorSingle]
-			[SpawnGroups:GVK-Drone-Defense-SpawnGroup-{Faction}-SandskimmerSquad]
-			[SpawnGroups:GVK-Drone-Defense-SpawnGroup-{Faction}-MediumHoverLight]
-			[SpawnGroups:GVK-Drone-Defense-SpawnGroup-{Faction}-LAVSquad]
-			[SpawnGroups:GVK-Drone-Defense-SpawnGroup-{Faction}-StrikeFighterSingle]
-			[SpawnGroups:GVK-Drone-Defense-SpawnGroup-{Faction}-BaserunnerLight]
-			[MinDistance:500]
-			[MaxDistance:700]
-			[MinAltitude:50]
-			[MaxAltitude:51]
-			[InheritNpcAltitude:false]
-			[IgnoreSafetyChecks:false]
+				[RivalAI Spawn]
+				[UseSpawn:true]
+				[SpawningType:CustomSpawn]
+				[StartsReady:true]
+				[UseWaypoint:true]
+				[Waypoint:GVK-Universal-Waypoint-DefensesManualSpawn]
+				[ProcessAsAdminSpawn:true]
+				[SpawnGroups:GVK-Drone-Defense-SpawnGroup-{Faction}-InterceptorSingle]
+				[SpawnGroups:GVK-Drone-Defense-SpawnGroup-{Faction}-SandskimmerSquad]
+				[SpawnGroups:GVK-Drone-Defense-SpawnGroup-{Faction}-MediumHoverLight]
+				[SpawnGroups:GVK-Drone-Defense-SpawnGroup-{Faction}-LAVSquad]
+				[SpawnGroups:GVK-Drone-Defense-SpawnGroup-{Faction}-StrikeFighterSingle]
+				[SpawnGroups:GVK-Drone-Defense-SpawnGroup-{Faction}-BaserunnerLight]
+				[MinDistance:500]
+				[MaxDistance:700]
+				[MinAltitude:50]
+				[MaxAltitude:51]
+				[InheritNpcAltitude:false]
+				[IgnoreSafetyChecks:false]
 			</Description>
 		</EntityComponent>
 	</EntityComponents>

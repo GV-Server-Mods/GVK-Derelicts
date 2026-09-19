@@ -18,9 +18,9 @@
 				[Triggers:GVK-Universal-Trigger-WeaponsToMaxRange]
 				[Triggers:GVK-Universal-Trigger-DespawnInZ0]
 				[Triggers:GVK-Alliance-Base-Trigger-Init-SOBAN]
-				[Triggers:GVK-Alliance-Base-Trigger-SpawnOutpost-SOBAN]
-				[TriggerGroups:GVK-Universal-TriggerGroup-SpawnDefenses]
+				[Triggers:GVK-Alliance-Base-Trigger-SpawnTurret-SOBAN]
 				[TriggerGroups:GVK-Alliance-TriggerGroup-InsideOutsideZone]
+				[TriggerGroups:GVK-Universal-TriggerGroup-SpawnDefenses]
 				[TriggerGroups:GVK-Universal-TriggerGroup-SendTargets]
 				[TriggerGroups:GVK-Universal-TriggerGroup-DefeatedAndAttacked]
 				[RemoteControlCode:GVK-Alliance-Base]
@@ -61,11 +61,11 @@
 			</Description>
 		</EntityComponent>
 
-		<!-- Trigger to dynamically spawn satellite outposts (2.5 - 5km) -->
+		<!-- Trigger to dynamically spawn satellite Turrets (300m - 500m) -->
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Alliance-Base-Trigger-SpawnOutpost-SOBAN</SubtypeId>
+				<SubtypeId>GVK-Alliance-Base-Trigger-SpawnTurret-SOBAN</SubtypeId>
 			</Id>
 			<Description>
 				[MES AI Trigger]
@@ -75,15 +75,15 @@
 				[MaxCooldownMs:1800000]
 				[StartsReady:true]
 				[MaxActions:-1]
-				[Conditions:GVK-Alliance-Base-Condition-SpawnOutpost-SOBAN]
-				[Actions:GVK-Alliance-Base-Action-SpawnOutpost-SOBAN]
+				[Conditions:GVK-Alliance-Base-Condition-SpawnTurret-SOBAN]
+				[Actions:GVK-Alliance-Base-Action-SpawnTurret-SOBAN]
 			</Description>
 		</EntityComponent>
 
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Alliance-Base-Condition-SpawnOutpost-SOBAN</SubtypeId>
+				<SubtypeId>GVK-Alliance-Base-Condition-SpawnTurret-SOBAN</SubtypeId>
 			</Id>
 			<Description>
 				[MES AI Condition]
@@ -95,19 +95,19 @@
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Alliance-Base-Action-SpawnOutpost-SOBAN</SubtypeId>
+				<SubtypeId>GVK-Alliance-Base-Action-SpawnTurret-SOBAN</SubtypeId>
 			</Id>
 			<Description>
 				[MES AI Action]
 				[SpawnEncounter:true]
-				[Spawner:GVK-Alliance-Base-Spawner-Outpost-SOBAN]
+				[Spawner:GVK-Alliance-Base-Spawner-Turret-SOBAN]
 			</Description>
 		</EntityComponent>
 
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Alliance-Base-Spawner-Outpost-SOBAN</SubtypeId>
+				<SubtypeId>GVK-Alliance-Base-Spawner-Turret-SOBAN</SubtypeId>
 			</Id>
 			<Description>
 				[RivalAI Spawn]
@@ -115,9 +115,9 @@
 				[SpawningType:CustomSpawn]
 				[StartsReady:true]
 				[ProcessAsAdminSpawn:true]
-				[SpawnGroups:GVK-Alliance-Outpost-SpawnGroup-SOBAN]
-				[MinDistance:1500]
-				[MaxDistance:2500]
+				[SpawnGroups:GVK-Alliance-DefenseTurret-SpawnGroup-SOBAN]
+				[MinDistance:300]
+				[MaxDistance:500]
 				[MinAltitude:0]
 				[MaxAltitude:1]
 				[InheritNpcAltitude:false]

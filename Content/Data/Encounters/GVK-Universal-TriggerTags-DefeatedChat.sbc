@@ -6,11 +6,12 @@
 		EncounterTypes:
 		- Base				Faction Base
 		- Outpost			Faction Outpost
+		- Turret			Faction Turret
 		- CargoShip			Faction Cargo Ship
 		- DroneElite		Faction Elite Drone
 		- DroneLarge		Faction Large Drone
-		- DroneMedium		Facion Medium Drone
-		- DroneSmall		FactionSmall Drone
+		- DroneMedium		Faction Medium Drone
+		- DroneSmall		Faction Small Drone
 		- WreckLarge		Large Signal
 		- WreckMedium		Medium Signal
 		- WreckSmall		Medium Signal
@@ -24,7 +25,7 @@
 		Note: Drones don't have DespawnChat
 
 		-->
-		
+
 		<!-- Defeated Chats -->
 		<!-- Base -->
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
@@ -33,12 +34,12 @@
 				<SubtypeId>GVK-Universal-TriggerTags-DefeatedChat-AllianceBase</SubtypeId>
 			</Id>
 			<Description>
-			[RivalAI Trigger]
-			[UseTrigger:true]
-			[Tags:GVK-Universal-TriggerTags-DefeatedChat-AllianceBase]
-			[Type:Manual]
-			[StartsReady:true]
-			[Actions:GVK-Universal-Action-DefeatedChat-Large]
+				[RivalAI Trigger]
+				[UseTrigger:true]
+				[Tags:GVK-Universal-TriggerTags-DefeatedChat-AllianceBase]
+				[Type:Manual]
+				[StartsReady:true]
+				[Actions:GVK-Universal-Action-DefeatedChat-Large]
 			</Description>
 		</EntityComponent>
 		<!-- Outpost -->
@@ -48,12 +49,27 @@
 				<SubtypeId>GVK-Universal-TriggerTags-DefeatedChat-AllianceOutpost</SubtypeId>
 			</Id>
 			<Description>
-			[RivalAI Trigger]
-			[UseTrigger:true]
-			[Tags:GVK-Universal-TriggerTags-DefeatedChat-AllianceOutpost]
-			[Type:Manual]
-			[StartsReady:true]
-			[Actions:GVK-Universal-Action-DefeatedChat-Large]
+				[RivalAI Trigger]
+				[UseTrigger:true]
+				[Tags:GVK-Universal-TriggerTags-DefeatedChat-AllianceOutpost]
+				[Type:Manual]
+				[StartsReady:true]
+				[Actions:GVK-Universal-Action-DefeatedChat-Medium]
+			</Description>
+		</EntityComponent>
+		<!-- Turret -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Universal-TriggerTags-DefeatedChat-AllianceTurret</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Trigger]
+				[UseTrigger:true]
+				[Tags:GVK-Universal-TriggerTags-DefeatedChat-AllianceTurret]
+				[Type:Manual]
+				[StartsReady:true]
+				[Actions:GVK-Universal-Action-DefeatedChat-Small]
 			</Description>
 		</EntityComponent>
 		<!-- CargoShip -->
@@ -63,12 +79,12 @@
 				<SubtypeId>GVK-Universal-TriggerTags-DefeatedChat-CargoShip</SubtypeId>
 			</Id>
 			<Description>
-			[RivalAI Trigger]
-			[UseTrigger:true]
-			[Tags:GVK-Universal-TriggerTags-DefeatedChat-CargoShip]
-			[Type:Manual]
-			[StartsReady:true]
-			[Actions:GVK-Universal-Action-DefeatedChat-Large]
+				[RivalAI Trigger]
+				[UseTrigger:true]
+				[Tags:GVK-Universal-TriggerTags-DefeatedChat-CargoShip]
+				[Type:Manual]
+				[StartsReady:true]
+				[Actions:GVK-Universal-Action-DefeatedChat-Large]
 			</Description>
 		</EntityComponent>
 		<!-- DroneElite -->
@@ -78,12 +94,12 @@
 				<SubtypeId>GVK-Universal-TriggerTags-DefeatedChat-DroneElite</SubtypeId>
 			</Id>
 			<Description>
-			[RivalAI Trigger]
-			[UseTrigger:true]
-			[Tags:GVK-Universal-TriggerTags-DefeatedChat-DroneElite]
-			[Type:Manual]
-			[StartsReady:true]
-			[Actions:GVK-Universal-Action-DefeatedChat-Large]
+				[RivalAI Trigger]
+				[UseTrigger:true]
+				[Tags:GVK-Universal-TriggerTags-DefeatedChat-DroneElite]
+				[Type:Manual]
+				[StartsReady:true]
+				[Actions:GVK-Universal-Action-DefeatedChat-Large]
 			</Description>
 		</EntityComponent>
 		<!-- DroneLarge -->
@@ -93,12 +109,12 @@
 				<SubtypeId>GVK-Universal-TriggerTags-DefeatedChat-DroneLarge</SubtypeId>
 			</Id>
 			<Description>
-			[RivalAI Trigger]
-			[UseTrigger:true]
-			[Tags:GVK-Universal-TriggerTags-DefeatedChat-DroneLarge]
-			[Type:Manual]
-			[StartsReady:true]
-			[Actions:GVK-Universal-Action-DefeatedChat-Large]
+				[RivalAI Trigger]
+				[UseTrigger:true]
+				[Tags:GVK-Universal-TriggerTags-DefeatedChat-DroneLarge]
+				[Type:Manual]
+				[StartsReady:true]
+				[Actions:GVK-Universal-Action-DefeatedChat-Medium]
 			</Description>
 		</EntityComponent>
 		<!-- DroneMedium -->
@@ -108,12 +124,12 @@
 				<SubtypeId>GVK-Universal-TriggerTags-DefeatedChat-DroneMedium</SubtypeId>
 			</Id>
 			<Description>
-			[RivalAI Trigger]
-			[UseTrigger:true]
-			[Tags:GVK-Universal-TriggerTags-DefeatedChat-DroneMedium]
-			[Type:Manual]
-			[StartsReady:true]
-			[Actions:GVK-Universal-Action-DefeatedChat-Medium]
+				[RivalAI Trigger]
+				[UseTrigger:true]
+				[Tags:GVK-Universal-TriggerTags-DefeatedChat-DroneMedium]
+				[Type:Manual]
+				[StartsReady:true]
+				[Actions:GVK-Universal-Action-DefeatedChat-Medium]
 			</Description>
 		</EntityComponent>
 		<!-- DroneSmall -->
@@ -123,12 +139,12 @@
 				<SubtypeId>GVK-Universal-TriggerTags-DefeatedChat-DroneSmall</SubtypeId>
 			</Id>
 			<Description>
-			[RivalAI Trigger]
-			[UseTrigger:true]
-			[Tags:GVK-Universal-TriggerTags-DefeatedChat-DroneSmall]
-			[Type:Manual]
-			[StartsReady:true]
-			[Actions:GVK-Universal-Action-DefeatedChat-Small]
+				[RivalAI Trigger]
+				[UseTrigger:true]
+				[Tags:GVK-Universal-TriggerTags-DefeatedChat-DroneSmall]
+				[Type:Manual]
+				[StartsReady:true]
+				[Actions:GVK-Universal-Action-DefeatedChat-Small]
 			</Description>
 		</EntityComponent>
 		<!-- WreckLarge -->
@@ -138,12 +154,12 @@
 				<SubtypeId>GVK-Universal-TriggerTags-DefeatedChat-WreckLarge</SubtypeId>
 			</Id>
 			<Description>
-			[RivalAI Trigger]
-			[UseTrigger:true]
-			[Tags:GVK-Universal-TriggerTags-DefeatedChat-WreckLarge]
-			[Type:Manual]
-			[StartsReady:true]
-			[Actions:GVK-Universal-Action-DefeatedChat-Large]
+				[RivalAI Trigger]
+				[UseTrigger:true]
+				[Tags:GVK-Universal-TriggerTags-DefeatedChat-WreckLarge]
+				[Type:Manual]
+				[StartsReady:true]
+				[Actions:GVK-Universal-Action-DefeatedChat-Large]
 			</Description>
 		</EntityComponent>
 		<!-- WreckMedium -->
@@ -153,12 +169,12 @@
 				<SubtypeId>GVK-Universal-TriggerTags-DefeatedChat-WreckMedium</SubtypeId>
 			</Id>
 			<Description>
-			[RivalAI Trigger]
-			[UseTrigger:true]
-			[Tags:GVK-Universal-TriggerTags-DefeatedChat-WreckMedium]
-			[Type:Manual]
-			[StartsReady:true]
-			[Actions:GVK-Universal-Action-DefeatedChat-Medium]
+				[RivalAI Trigger]
+				[UseTrigger:true]
+				[Tags:GVK-Universal-TriggerTags-DefeatedChat-WreckMedium]
+				[Type:Manual]
+				[StartsReady:true]
+				[Actions:GVK-Universal-Action-DefeatedChat-Medium]
 			</Description>
 		</EntityComponent>
 		<!-- WreckSmall -->
@@ -168,12 +184,12 @@
 				<SubtypeId>GVK-Universal-TriggerTags-DefeatedChat-WreckSmall</SubtypeId>
 			</Id>
 			<Description>
-			[RivalAI Trigger]
-			[UseTrigger:true]
-			[Tags:GVK-Universal-TriggerTags-DefeatedChat-WreckSmall]
-			[Type:Manual]
-			[StartsReady:true]
-			[Actions:GVK-Universal-Action-DefeatedChat-Small]
+				[RivalAI Trigger]
+				[UseTrigger:true]
+				[Tags:GVK-Universal-TriggerTags-DefeatedChat-WreckSmall]
+				[Type:Manual]
+				[StartsReady:true]
+				[Actions:GVK-Universal-Action-DefeatedChat-Small]
 			</Description>
 		</EntityComponent>
 		<!-- Despawned Chats -->
@@ -184,27 +200,27 @@
 				<SubtypeId>GVK-Universal-TriggerTags-DespawnedChat-AllianceBase</SubtypeId>
 			</Id>
 			<Description>
-			[RivalAI Trigger]
-			[UseTrigger:true]
-			[Tags:GVK-Universal-TriggerTags-DespawnedChat-AllianceBase]
-			[Type:Manual]
-			[StartsReady:true]
-			[Actions:GVK-Universal-Action-DespawnedChat-StructureLarge]
+				[RivalAI Trigger]
+				[UseTrigger:true]
+				[Tags:GVK-Universal-TriggerTags-DespawnedChat-AllianceBase]
+				[Type:Manual]
+				[StartsReady:true]
+				[Actions:GVK-Universal-Action-DespawnedChat-StructureLarge]
 			</Description>
 		</EntityComponent>
-		<!-- Outpost -->
+		<!-- Turret -->
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Universal-TriggerTags-DespawnedChat-AllianceOutpost</SubtypeId>
+				<SubtypeId>GVK-Universal-TriggerTags-DespawnedChat-AllianceTurret</SubtypeId>
 			</Id>
 			<Description>
-			[RivalAI Trigger]
-			[UseTrigger:true]
-			[Tags:GVK-Universal-TriggerTags-DespawnedChat-AllianceOutpost]
-			[Type:Manual]
-			[StartsReady:true]
-			[Actions:GVK-Universal-Action-DespawnedChat-StructureMedium]
+				[RivalAI Trigger]
+				[UseTrigger:true]
+				[Tags:GVK-Universal-TriggerTags-DespawnedChat-AllianceTurret]
+				[Type:Manual]
+				[StartsReady:true]
+				[Actions:GVK-Universal-Action-DespawnedChat-StructureSmall]
 			</Description>
 		</EntityComponent>
 		<!-- WreckLarge -->
@@ -214,12 +230,12 @@
 				<SubtypeId>GVK-Universal-TriggerTags-DespawnedChat-WreckLarge</SubtypeId>
 			</Id>
 			<Description>
-			[RivalAI Trigger]
-			[UseTrigger:true]
-			[Tags:GVK-Universal-TriggerTags-DespawnedChat-WreckLarge]
-			[Type:Manual]
-			[StartsReady:true]
-			[Actions:GVK-Universal-Action-DespawnedChat-StructureLarge]
+				[RivalAI Trigger]
+				[UseTrigger:true]
+				[Tags:GVK-Universal-TriggerTags-DespawnedChat-WreckLarge]
+				[Type:Manual]
+				[StartsReady:true]
+				[Actions:GVK-Universal-Action-DespawnedChat-StructureLarge]
 			</Description>
 		</EntityComponent>
 		<!-- WreckMedium -->
@@ -229,12 +245,12 @@
 				<SubtypeId>GVK-Universal-TriggerTags-DespawnedChat-WreckMedium</SubtypeId>
 			</Id>
 			<Description>
-			[RivalAI Trigger]
-			[UseTrigger:true]
-			[Tags:GVK-Universal-TriggerTags-DespawnedChat-WreckMedium]
-			[Type:Manual]
-			[StartsReady:true]
-			[Actions:GVK-Universal-Action-DespawnedChat-StructureMedium]
+				[RivalAI Trigger]
+				[UseTrigger:true]
+				[Tags:GVK-Universal-TriggerTags-DespawnedChat-WreckMedium]
+				[Type:Manual]
+				[StartsReady:true]
+				[Actions:GVK-Universal-Action-DespawnedChat-StructureMedium]
 			</Description>
 		</EntityComponent>
 		<!-- WreckSmall -->
@@ -244,12 +260,12 @@
 				<SubtypeId>GVK-Universal-TriggerTags-DespawnedChat-WreckSmall</SubtypeId>
 			</Id>
 			<Description>
-			[RivalAI Trigger]
-			[UseTrigger:true]
-			[Tags:GVK-Universal-TriggerTags-DespawnedChat-WreckSmall]
-			[Type:Manual]
-			[StartsReady:true]
-			[Actions:GVK-Universal-Action-DespawnedChat-StructureSmall]
+				[RivalAI Trigger]
+				[UseTrigger:true]
+				[Tags:GVK-Universal-TriggerTags-DespawnedChat-WreckSmall]
+				[Type:Manual]
+				[StartsReady:true]
+				[Actions:GVK-Universal-Action-DespawnedChat-StructureSmall]
 			</Description>
 		</EntityComponent>
 		<!-- Action and Common Chat messages -->
@@ -259,10 +275,10 @@
 				<SubtypeId>GVK-Universal-Action-DefeatedChat-Small</SubtypeId>
 			</Id>
 			<Description>
-			[MES AI Action]
-			[//DebugMessage:DefeatedChat-Small]
-			[UseChatBroadcast:true]
-			[ChatData:GVK-Universal-Chat-DefeatedChat-Small]
+				[MES AI Action]
+				[//DebugMessage:DefeatedChat-Small]
+				[UseChatBroadcast:true]
+				[ChatData:GVK-Universal-Chat-DefeatedChat-Small]
 			</Description>
 		</EntityComponent>
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
@@ -271,20 +287,20 @@
 				<SubtypeId>GVK-Universal-Chat-DefeatedChat-Small</SubtypeId>
 			</Id>
 			<Description>
-			[RivalAI Chat]
-			[UseChat:true]
-			[StartsReady:true]
-			[Chance:100]
-			[MaxChats:1]
-			[BroadcastRandomly:false]
-			[Author:Sensors]
-			[Color:Blue]
-			[ChatMessages:{Faction} {EncounterDisplayName} destroyed.]
-			[ChatAudio:ArcHudSensors]
-			[BroadcastChatType:Chat]
-			[SendToAllOnlinePlayers:false]
-			[IgnoreAntennaRequirement:true]
-			[IgnoredAntennaRangeOverride:6000]
+				[RivalAI Chat]
+				[UseChat:true]
+				[StartsReady:true]
+				[Chance:100]
+				[MaxChats:1]
+				[BroadcastRandomly:false]
+				[Author:Sensors]
+				[Color:Blue]
+				[ChatMessages:{Faction} {EncounterDisplayName} destroyed.]
+				[ChatAudio:ArcHudSensors]
+				[BroadcastChatType:Chat]
+				[SendToAllOnlinePlayers:false]
+				[IgnoreAntennaRequirement:true]
+				[IgnoredAntennaRangeOverride:6000]
 			</Description>
 		</EntityComponent>
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
@@ -293,10 +309,10 @@
 				<SubtypeId>GVK-Universal-Action-DefeatedChat-Medium</SubtypeId>
 			</Id>
 			<Description>
-			[MES AI Action]
-			[//DebugMessage:DefeatedChat-Medium]
-			[UseChatBroadcast:true]
-			[ChatData:GVK-Universal-Chat-DefeatedChat-Medium]
+				[MES AI Action]
+				[//DebugMessage:DefeatedChat-Medium]
+				[UseChatBroadcast:true]
+				[ChatData:GVK-Universal-Chat-DefeatedChat-Medium]
 			</Description>
 		</EntityComponent>
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
@@ -305,20 +321,20 @@
 				<SubtypeId>GVK-Universal-Chat-DefeatedChat-Medium</SubtypeId>
 			</Id>
 			<Description>
-			[RivalAI Chat]
-			[UseChat:true]
-			[StartsReady:true]
-			[Chance:100]
-			[MaxChats:1]
-			[BroadcastRandomly:false]
-			[Author:Sensors]
-			[Color:Blue]
-			[ChatMessages:{Faction} {EncounterDisplayName} destroyed.]
-			[ChatAudio:ArcHudSensors]
-			[BroadcastChatType:Chat]
-			[SendToAllOnlinePlayers:false]
-			[IgnoreAntennaRequirement:true]
-			[IgnoredAntennaRangeOverride:40000]
+				[RivalAI Chat]
+				[UseChat:true]
+				[StartsReady:true]
+				[Chance:100]
+				[MaxChats:1]
+				[BroadcastRandomly:false]
+				[Author:Sensors]
+				[Color:Blue]
+				[ChatMessages:{Faction} {EncounterDisplayName} destroyed.]
+				[ChatAudio:ArcHudSensors]
+				[BroadcastChatType:Chat]
+				[SendToAllOnlinePlayers:false]
+				[IgnoreAntennaRequirement:true]
+				[IgnoredAntennaRangeOverride:40000]
 			</Description>
 		</EntityComponent>
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
@@ -327,10 +343,10 @@
 				<SubtypeId>GVK-Universal-Action-DefeatedChat-Large</SubtypeId>
 			</Id>
 			<Description>
-			[MES AI Action]
-			[//DebugMessage:DefeatedChat-Large]
-			[UseChatBroadcast:true]
-			[ChatData:GVK-Universal-Chat-DefeatedChat-Large]
+				[MES AI Action]
+				[//DebugMessage:DefeatedChat-Large]
+				[UseChatBroadcast:true]
+				[ChatData:GVK-Universal-Chat-DefeatedChat-Large]
 			</Description>
 		</EntityComponent>
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
@@ -339,20 +355,20 @@
 				<SubtypeId>GVK-Universal-Chat-DefeatedChat-Large</SubtypeId>
 			</Id>
 			<Description>
-			[RivalAI Chat]
-			[UseChat:true]
-			[StartsReady:true]
-			[Chance:100]
-			[MaxChats:1]
-			[BroadcastRandomly:false]
-			[Author:Sensors]
-			[Color:Blue]
-			[ChatMessages:{Faction} {EncounterDisplayName} destroyed.]
-			[ChatAudio:ArcHudSensors]
-			[BroadcastChatType:Chat]
-			[SendToAllOnlinePlayers:false]
-			[IgnoreAntennaRequirement:true]
-			[IgnoredAntennaRangeOverride:100000]
+				[RivalAI Chat]
+				[UseChat:true]
+				[StartsReady:true]
+				[Chance:100]
+				[MaxChats:1]
+				[BroadcastRandomly:false]
+				[Author:Sensors]
+				[Color:Blue]
+				[ChatMessages:{Faction} {EncounterDisplayName} destroyed.]
+				[ChatAudio:ArcHudSensors]
+				[BroadcastChatType:Chat]
+				[SendToAllOnlinePlayers:false]
+				[IgnoreAntennaRequirement:true]
+				[IgnoredAntennaRangeOverride:100000]
 			</Description>
 		</EntityComponent>
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
@@ -361,10 +377,10 @@
 				<SubtypeId>GVK-Universal-Action-DespawnedChat-StructureSmall</SubtypeId>
 			</Id>
 			<Description>
-			[MES AI Action]
-			[//DebugMessage:DespawnedChat-StructureSmall]
-			[UseChatBroadcast:true]
-			[ChatData:GVK-Universal-Chat-DespawnedChat-StructureSmall]
+				[MES AI Action]
+				[//DebugMessage:DespawnedChat-StructureSmall]
+				[UseChatBroadcast:true]
+				[ChatData:GVK-Universal-Chat-DespawnedChat-StructureSmall]
 			</Description>
 		</EntityComponent>
 		<!-- Removed {Faction} on small structure despawns since most are DERELICT and GAALSIEN Signals -->
@@ -374,20 +390,20 @@
 				<SubtypeId>GVK-Universal-Chat-DespawnedChat-StructureSmall</SubtypeId>
 			</Id>
 			<Description>
-			[RivalAI Chat]
-			[UseChat:true]
-			[StartsReady:true]
-			[Chance:100]
-			[MaxChats:1]
-			[BroadcastRandomly:false]
-			[Author:Sensors]
-			[Color:Blue]
-			[ChatMessages:{EncounterDisplayName} lost.]
-			[ChatAudio:ArcHudSensors]
-			[BroadcastChatType:Chat]
-			[SendToAllOnlinePlayers:false]
-			[IgnoreAntennaRequirement:true]
-			[IgnoredAntennaRangeOverride:6000]
+				[RivalAI Chat]
+				[UseChat:true]
+				[StartsReady:true]
+				[Chance:100]
+				[MaxChats:1]
+				[BroadcastRandomly:false]
+				[Author:Sensors]
+				[Color:Blue]
+				[ChatMessages:{EncounterDisplayName} lost.]
+				[ChatAudio:ArcHudSensors]
+				[BroadcastChatType:Chat]
+				[SendToAllOnlinePlayers:false]
+				[IgnoreAntennaRequirement:true]
+				[IgnoredAntennaRangeOverride:6000]
 			</Description>
 		</EntityComponent>
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
@@ -396,10 +412,10 @@
 				<SubtypeId>GVK-Universal-Action-DespawnedChat-StructureMedium</SubtypeId>
 			</Id>
 			<Description>
-			[MES AI Action]
-			[//DebugMessage:DespawnedChat-StructureMedium]
-			[UseChatBroadcast:true]
-			[ChatData:GVK-Universal-Chat-DespawnedChat-StructureMedium]
+				[MES AI Action]
+				[//DebugMessage:DespawnedChat-StructureMedium]
+				[UseChatBroadcast:true]
+				[ChatData:GVK-Universal-Chat-DespawnedChat-StructureMedium]
 			</Description>
 		</EntityComponent>
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
@@ -408,20 +424,20 @@
 				<SubtypeId>GVK-Universal-Chat-DespawnedChat-StructureMedium</SubtypeId>
 			</Id>
 			<Description>
-			[RivalAI Chat]
-			[UseChat:true]
-			[StartsReady:true]
-			[Chance:100]
-			[MaxChats:1]
-			[BroadcastRandomly:false]
-			[Author:Sensors]
-			[Color:Blue]
-			[ChatMessages:{Faction} {EncounterDisplayName} lost.]
-			[ChatAudio:ArcHudSensors]
-			[BroadcastChatType:Chat]
-			[SendToAllOnlinePlayers:false]
-			[IgnoreAntennaRequirement:true]
-			[IgnoredAntennaRangeOverride:40000]
+				[RivalAI Chat]
+				[UseChat:true]
+				[StartsReady:true]
+				[Chance:100]
+				[MaxChats:1]
+				[BroadcastRandomly:false]
+				[Author:Sensors]
+				[Color:Blue]
+				[ChatMessages:{Faction} {EncounterDisplayName} lost.]
+				[ChatAudio:ArcHudSensors]
+				[BroadcastChatType:Chat]
+				[SendToAllOnlinePlayers:false]
+				[IgnoreAntennaRequirement:true]
+				[IgnoredAntennaRangeOverride:40000]
 			</Description>
 		</EntityComponent>
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
@@ -430,10 +446,10 @@
 				<SubtypeId>GVK-Universal-Action-DespawnedChat-StructureLarge</SubtypeId>
 			</Id>
 			<Description>
-			[MES AI Action]
-			[//DebugMessage:DespawnedChat-StructureLarge]
-			[UseChatBroadcast:true]
-			[ChatData:GVK-Universal-Chat-DespawnedChat-StructureLarge]
+				[MES AI Action]
+				[//DebugMessage:DespawnedChat-StructureLarge]
+				[UseChatBroadcast:true]
+				[ChatData:GVK-Universal-Chat-DespawnedChat-StructureLarge]
 			</Description>
 		</EntityComponent>
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
@@ -442,20 +458,20 @@
 				<SubtypeId>GVK-Universal-Chat-DespawnedChat-StructureLarge</SubtypeId>
 			</Id>
 			<Description>
-			[RivalAI Chat]
-			[UseChat:true]
-			[StartsReady:true]
-			[Chance:100]
-			[MaxChats:1]
-			[BroadcastRandomly:false]
-			[Author:Sensors]
-			[Color:Blue]
-			[ChatMessages:{Faction} {EncounterDisplayName} lost.]
-			[ChatAudio:ArcHudSensors]
-			[BroadcastChatType:Chat]
-			[SendToAllOnlinePlayers:false]
-			[IgnoreAntennaRequirement:true]
-			[IgnoredAntennaRangeOverride:100000]
+				[RivalAI Chat]
+				[UseChat:true]
+				[StartsReady:true]
+				[Chance:100]
+				[MaxChats:1]
+				[BroadcastRandomly:false]
+				[Author:Sensors]
+				[Color:Blue]
+				[ChatMessages:{Faction} {EncounterDisplayName} lost.]
+				[ChatAudio:ArcHudSensors]
+				[BroadcastChatType:Chat]
+				[SendToAllOnlinePlayers:false]
+				[IgnoreAntennaRequirement:true]
+				[IgnoredAntennaRangeOverride:100000]
 			</Description>
 		</EntityComponent>
 	</EntityComponents>

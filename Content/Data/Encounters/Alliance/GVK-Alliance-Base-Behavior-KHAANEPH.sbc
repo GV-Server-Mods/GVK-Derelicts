@@ -18,9 +18,9 @@
 				[Triggers:GVK-Universal-Trigger-WeaponsToMaxRange]
 				[Triggers:GVK-Universal-Trigger-DespawnInZ0]
 				[Triggers:GVK-Alliance-Base-Trigger-Init-KHAANEPH]
-				[Triggers:GVK-Alliance-Base-Trigger-SpawnOutpost-KHAANEPH]
-				[TriggerGroups:GVK-Universal-TriggerGroup-SpawnDefenses]
+				[Triggers:GVK-Alliance-Base-Trigger-SpawnTurret-KHAANEPH]
 				[TriggerGroups:GVK-Alliance-TriggerGroup-InsideOutsideZone]
+				[TriggerGroups:GVK-Universal-TriggerGroup-SpawnDefenses]
 				[TriggerGroups:GVK-Universal-TriggerGroup-SendTargets]
 				[TriggerGroups:GVK-Universal-TriggerGroup-DefeatedAndAttacked]
 				[RemoteControlCode:GVK-Alliance-Base]
@@ -61,11 +61,11 @@
 			</Description>
 		</EntityComponent>
 
-		<!-- Trigger to dynamically spawn satellite outposts (2.5 - 5km) -->
+		<!-- Trigger to dynamically spawn satellite Turrets (300m - 500m) -->
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Alliance-Base-Trigger-SpawnOutpost-KHAANEPH</SubtypeId>
+				<SubtypeId>GVK-Alliance-Base-Trigger-SpawnTurret-KHAANEPH</SubtypeId>
 			</Id>
 			<Description>
 				[MES AI Trigger]
@@ -75,15 +75,15 @@
 				[MaxCooldownMs:1800000]
 				[StartsReady:true]
 				[MaxActions:-1]
-				[Conditions:GVK-Alliance-Base-Condition-SpawnOutpost-KHAANEPH]
-				[Actions:GVK-Alliance-Base-Action-SpawnOutpost-KHAANEPH]
+				[Conditions:GVK-Alliance-Base-Condition-SpawnTurret-KHAANEPH]
+				[Actions:GVK-Alliance-Base-Action-SpawnTurret-KHAANEPH]
 			</Description>
 		</EntityComponent>
 
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Alliance-Base-Condition-SpawnOutpost-KHAANEPH</SubtypeId>
+				<SubtypeId>GVK-Alliance-Base-Condition-SpawnTurret-KHAANEPH</SubtypeId>
 			</Id>
 			<Description>
 				[MES AI Condition]
@@ -95,19 +95,19 @@
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Alliance-Base-Action-SpawnOutpost-KHAANEPH</SubtypeId>
+				<SubtypeId>GVK-Alliance-Base-Action-SpawnTurret-KHAANEPH</SubtypeId>
 			</Id>
 			<Description>
 				[MES AI Action]
 				[SpawnEncounter:true]
-				[Spawner:GVK-Alliance-Base-Spawner-Outpost-KHAANEPH]
+				[Spawner:GVK-Alliance-Base-Spawner-Turret-KHAANEPH]
 			</Description>
 		</EntityComponent>
 
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Alliance-Base-Spawner-Outpost-KHAANEPH</SubtypeId>
+				<SubtypeId>GVK-Alliance-Base-Spawner-Turret-KHAANEPH</SubtypeId>
 			</Id>
 			<Description>
 				[RivalAI Spawn]
@@ -115,9 +115,9 @@
 				[SpawningType:CustomSpawn]
 				[StartsReady:true]
 				[ProcessAsAdminSpawn:true]
-				[SpawnGroups:GVK-Alliance-Outpost-SpawnGroup-KHAANEPH]
-				[MinDistance:1500]
-				[MaxDistance:2500]
+				[SpawnGroups:GVK-Alliance-DefenseTurret-SpawnGroup-KHAANEPH]
+				[MinDistance:300]
+				[MaxDistance:500]
 				[MinAltitude:0]
 				[MaxAltitude:1]
 				[InheritNpcAltitude:false]

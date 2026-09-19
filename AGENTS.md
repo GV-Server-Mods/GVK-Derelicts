@@ -287,6 +287,14 @@ When spawning via `[MES Event Action]`:
   ```
 - Valid `CounterCompareTypes`: `GreaterOrEqual`, `Greater`, `Equal`, `NotEqual`, `Less`, `LessOrEqual`.
 
+### A. One Namespace, Single Writer
+
+- All sandbox counters/booleans (MES Events, RivalAI grid actions, plugins, HUD) share ONE session-global namespace. Two events writing the same bare name fight over the same storage and can loop announcements forever - this happened live when the zone-size ladder used bare `Tier10..Tier55` booleans in both faction events (each faction's transitions cleared the other's flags, producing an endless "decreased to 10km" / "increased to 55km" ping-pong).
+- Rule 1 - Prefix every shared-state variable with its owner: `KHAANEPH_Tier`, `SOBAN_Points`, never bare `Tier`.
+- Rule 2 - Single writer: exactly one event/action owns each variable's writes. In a tier ladder, clamps must not write the tier marker - the transition action owns it (so a clamp that resets points gets its zone + chat on the next cycle).
+- Rule 3 - Prefer stateless integer tier markers over boolean matrices: conditions test `points in band AND Tier != band AND (Tier < band = up-entry | Tier > band = down-entry)`. Same-tier repeats are structurally impossible, and the top band must be open-ended (the ceiling clamp parks points at exactly the max - a bounded top band leaves that value dead). See `GVK-Alliance-Events-ZoneSize.sbc` for the reference implementation.
+- Rule 4 - A condition that references a counter never written to sandbox storage ALWAYS fails: `EventConditions.cs` keeps the `GetVariable` success flag in the verdict, so the 0 default does not help. Bootstrap any state a condition reads via a one-shot event (`UniqueEvent:true` - `RunCount` is `[ProtoMember]`-serialized, so it fires exactly once per world) whose conditions only reference counters that already exist, and whose action `SetCounters` the new ones. Without this the ladder deadlocks: nothing writes the marker, so every condition reading it fails forever.
+
 ---
 
 ## 8. MES Tag Parsing Quirks & The Zero-Stripping Bug

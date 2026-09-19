@@ -1,6 +1,49 @@
 <?xml version="1.0"?>
 <Definitions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+	<!-- Bases are now handled via PresetBases -->
 	<EntityComponents>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-EncounterTurret-SpawnCondition-KHAANEPH</SubtypeId>
+			</Id>
+			<Description>
+				[MES Spawn Conditions]
+				[PlanetaryInstallation:true]
+				[PlanetaryInstallationType:Small]
+				[RivalAiAnySpawn:true]
+				[FactionOwner:KHAANEPH]
+				[ForceStaticGrid:true]
+				[SkipVoxelSpawnChecks:true]
+				[SkipGridSpawnChecks:false]
+				[ZoneConditions:GVK-Alliance-ZoneConditions-KHAANEPH]
+				[PrefabSpawningMode:Random]
+				[UseRemoteControlCodeRestrictions:true]
+				[RemoteControlCode:GVK-Alliance-Encounter]
+				[RemoteControlCodeMinDistance:5000]
+				[RemoteControlCodeMaxDistance:-1]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-DefenseTurret-SpawnCondition-KHAANEPH</SubtypeId>
+			</Id>
+			<Description>
+				[MES Spawn Conditions]
+				[RivalAiAnySpawn:true]
+				[FactionOwner:KHAANEPH]
+				[ForceStaticGrid:true]
+				[SkipVoxelSpawnChecks:true]
+				[SkipGridSpawnChecks:false]
+				[ZoneConditions:GVK-Alliance-ZoneConditions-KHAANEPH]
+				[PrefabSpawningMode:Random]
+				[UseRemoteControlCodeRestrictions:true]
+				[RemoteControlCode:GVK-Alliance-DefenseTurret]
+				[RemoteControlCodeMinDistance:600]
+				[RemoteControlCodeMaxDistance:-1]
+			</Description>
+		</EntityComponent>
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
@@ -17,8 +60,8 @@
 				[ZoneConditions:GVK-Alliance-ZoneConditions-KHAANEPH]
 				[PrefabSpawningMode:Random]
 				[UseRemoteControlCodeRestrictions:true]
-				[RemoteControlCode:GVK-Alliance-Outpost]
-				[RemoteControlCodeMinDistance:4500]
+				[RemoteControlCode:GVK-Alliance-Encounter]
+				[RemoteControlCodeMinDistance:5000]
 				[RemoteControlCodeMaxDistance:-1]
 				[RivalAiAnySpawn:true]
 			</Description>
@@ -26,24 +69,43 @@
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Alliance-Base-SpawnCondition-KHAANEPH</SubtypeId>
+				<SubtypeId>GVK-Alliance-EncounterTurret-SpawnCondition-SOBAN</SubtypeId>
 			</Id>
 			<Description>
 				[MES Spawn Conditions]
 				[PlanetaryInstallation:true]
-				[PlanetaryInstallationType:Medium]
+				[PlanetaryInstallationType:Small]
 				[RivalAiAnySpawn:true]
-				[FactionOwner:KHAANEPH]
+				[FactionOwner:SOBAN]
 				[ForceStaticGrid:true]
 				[SkipVoxelSpawnChecks:true]
 				[SkipGridSpawnChecks:false]
-				[ZoneConditions:GVK-Alliance-ZoneConditions-KHAANEPH]
+				[ZoneConditions:GVK-Alliance-ZoneConditions-SOBAN]
 				[PrefabSpawningMode:Random]
 				[UseRemoteControlCodeRestrictions:true]
-				[RemoteControlCode:GVK-Alliance-Base]
-				[RemoteControlCodeMinDistance:15000]
+				[RemoteControlCode:GVK-Alliance-Encounter]
+				[RemoteControlCodeMinDistance:5000]
 				[RemoteControlCodeMaxDistance:-1]
-				[SandboxVariables:MediumWrecksEnabled]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-DefenseTurret-SpawnCondition-SOBAN</SubtypeId>
+			</Id>
+			<Description>
+				[MES Spawn Conditions]
+				[FactionOwner:SOBAN]
+				[RivalAiAnySpawn:true]
+				[ForceStaticGrid:true]
+				[SkipVoxelSpawnChecks:true]
+				[SkipGridSpawnChecks:false]
+				[ZoneConditions:GVK-Alliance-ZoneConditions-SOBAN]
+				[PrefabSpawningMode:Random]
+				[UseRemoteControlCodeRestrictions:true]
+				[RemoteControlCode:GVK-Alliance-DefenseTurret]
+				[RemoteControlCodeMinDistance:600]
+				[RemoteControlCodeMaxDistance:-1]
 			</Description>
 		</EntityComponent>
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
@@ -62,33 +124,10 @@
 				[ZoneConditions:GVK-Alliance-ZoneConditions-SOBAN]
 				[PrefabSpawningMode:Random]
 				[UseRemoteControlCodeRestrictions:true]
-				[RemoteControlCode:GVK-Alliance-Outpost]
-				[RemoteControlCodeMinDistance:4500]
+				[RemoteControlCode:GVK-Alliance-Encounter]
+				[RemoteControlCodeMinDistance:5000]
 				[RemoteControlCodeMaxDistance:-1]
 				[RivalAiAnySpawn:true]
-			</Description>
-		</EntityComponent>
-		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
-			<Id>
-				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Alliance-Base-SpawnCondition-SOBAN</SubtypeId>
-			</Id>
-			<Description>
-				[MES Spawn Conditions]
-				[PlanetaryInstallation:true]
-				[PlanetaryInstallationType:Large]
-				[RivalAiAnySpawn:true]
-				[FactionOwner:SOBAN]
-				[ForceStaticGrid:true]
-				[SkipVoxelSpawnChecks:true]
-				[SkipGridSpawnChecks:false]
-				[ZoneConditions:GVK-Alliance-ZoneConditions-SOBAN]
-				[PrefabSpawningMode:Random]
-				[UseRemoteControlCodeRestrictions:true]
-				[RemoteControlCode:GVK-Alliance-Base]
-				[RemoteControlCodeMinDistance:15000]
-				[RemoteControlCodeMaxDistance:-1]
-				[SandboxVariables:MediumWrecksEnabled]
 			</Description>
 		</EntityComponent>
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
@@ -109,7 +148,7 @@
 				[ZoneConditions:GVK-Universal-ZoneConditions-WreckZone3Only]
 				[PrefabSpawningMode:Random]
 				[RemoteControlCode:GVK-Alliance-ResearchLab]
-				[RemoteControlCodeMinDistance:15000]
+				[RemoteControlCodeMinDistance:10000]
 				[RemoteControlCodeMaxDistance:-1]
 			</Description>
 		</EntityComponent>
