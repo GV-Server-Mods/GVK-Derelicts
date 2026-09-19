@@ -1,81 +1,24 @@
 <?xml version="1.0"?>
 <Definitions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
 	<EntityComponents>
-		<!-- =================================================== -->
-		<!-- KHAANEPH ZONE RESIZING EVENTS                       -->
-		<!-- =================================================== -->
-
-		<!-- 20km Tier (200 Points) -->
-		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
-			<Id>
-				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Alliance-Event-EnableZone20000-KHAANEPH</SubtypeId>
-			</Id>
-			<Description>
-				[MES Event]
-				[UseEvent:true]
-				[UniqueEvent:false]
-				[MinCooldownMs:10000]
-				[MaxCooldownMs:10001]
-				[ConditionIds:GVK-Alliance-EventCondition-EnableZone20000-KHAANEPH]
-				[ActionIds:GVK-Alliance-EventAction-EnableZone20000-KHAANEPH]
-				[ActionExecution:All]
-			</Description>
-		</EntityComponent>
-		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
-			<Id>
-				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Alliance-EventCondition-EnableZone20000-KHAANEPH</SubtypeId>
-			</Id>
-			<Description>
-				[MES Event Condition]
-				[CheckCustomCounters:true]
-				[CustomCounters:KHAANEPH_Points]
-				[CustomCountersTargets:200]
-				[CounterCompareTypes:GreaterOrEqual]
-			</Description>
-		</EntityComponent>
-		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
-			<Id>
-				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Alliance-EventAction-EnableZone20000-KHAANEPH</SubtypeId>
-			</Id>
-			<Description>
-				[MES Event Action]
-				[ChangeZoneByName:true]
-				[ZoneNames:KHAANEPH_Zone]
-				[ZoneRadiusChangeTypes:Set]
-				[ZoneRadiusChangeAmounts:20000]
-				[ToggleEvents:true]
-				[ToggleEventIds:GVK-Alliance-Event-EnableZone20000-KHAANEPH,GVK-Alliance-Event-DisableZone20000-KHAANEPH]
-				[ToggleEventIdModes:false,true]
-				[UseChatBroadcast:true]
-				[UseChatOverrideAuthor:true]
-				[ChatOverrideAuthor:KHAANEPH]
-				[ChatData:GVK-Alliance-Chat-ZoneIncreased-20km]
-			</Description>
-		</EntityComponent>
+		<!-- ======================================================================== -->
+		<!-- ALLIANCE ZONE SIZE LADDER (MES Events)                                   -->
+		<!-- One event per faction drives the full tier ladder via [ActionExecution:Condition]:  -->
+		<!-- MES executes ONLY the action whose index matches the satisfied condition index, so   -->
+		<!-- ConditionIds and ActionIds must stay index-aligned and equal in length.              -->
+		<!-- Direction is derived from the tier booleans:                                         -->
+		<!--   UP   entry: points in range AND this tier false AND every tier above false         -->
+		<!--   DOWN entry: points in range AND this tier false AND at least one tier above true   -->
+		<!-- Clamps are listed last so a clamp wins the index tie against a tier change in the     -->
+		<!-- same cycle; the tier transition then fires on the following cycle (cooldown 5s).      -->
+		<!-- Index map: 01=10km down | 02/03=20km up/down | 04/05=30km | 06/07=40km | 08/09=50km  -->
+		<!--            10=55km up | 11=points floor | 12=points ceiling                          -->
+		<!-- ======================================================================== -->
 
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Alliance-Event-DisableZone20000-KHAANEPH</SubtypeId>
-			</Id>
-			<Description>
-				[MES Event]
-				[UseEvent:false]
-				[UniqueEvent:false]
-				[MinCooldownMs:10000]
-				[MaxCooldownMs:10001]
-				[ConditionIds:GVK-Alliance-EventCondition-DisableZone20000-KHAANEPH]
-				[ActionIds:GVK-Alliance-EventAction-DisableZone20000-KHAANEPH]
-				[ActionExecution:All]
-			</Description>
-		</EntityComponent>
-		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
-			<Id>
-				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Alliance-EventCondition-DisableZone20000-KHAANEPH</SubtypeId>
+				<SubtypeId>GVK-Alliance-EventCondition-ZoneLadder-01-KHAANEPH</SubtypeId>
 			</Id>
 			<Description>
 				[MES Event Condition]
@@ -83,967 +26,188 @@
 				[CustomCounters:KHAANEPH_Points]
 				[CustomCountersTargets:200]
 				[CounterCompareTypes:Less]
+				[CheckFalseBooleans:true]
+				[FalseBooleans:Tier10]
+				[CheckTrueBooleans:true]
+				[TrueBooleans:Tier20,Tier30,Tier40,Tier50,Tier55]
+				[AllowAnyTrueBoolean:true]
 			</Description>
 		</EntityComponent>
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Alliance-EventAction-DisableZone20000-KHAANEPH</SubtypeId>
-			</Id>
-			<Description>
-				[MES Event Action]
-				[ChangeZoneByName:true]
-				[ZoneNames:KHAANEPH_Zone]
-				[ZoneRadiusChangeTypes:Set]
-				[ZoneRadiusChangeAmounts:10000]
-				[ToggleEvents:true]
-				[ToggleEventIds:GVK-Alliance-Event-DisableZone20000-KHAANEPH,GVK-Alliance-Event-EnableZone20000-KHAANEPH]
-				[ToggleEventIdModes:false,true]
-				[UseChatBroadcast:true]
-				[UseChatOverrideAuthor:true]
-				[ChatOverrideAuthor:KHAANEPH]
-				[ChatData:GVK-Alliance-Chat-ZoneDecreased-10km]
-			</Description>
-		</EntityComponent>
-
-		<!-- 30km Tier (400 Points) -->
-		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
-			<Id>
-				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Alliance-Event-EnableZone30000-KHAANEPH</SubtypeId>
-			</Id>
-			<Description>
-				[MES Event]
-				[UseEvent:true]
-				[UniqueEvent:false]
-				[MinCooldownMs:10000]
-				[MaxCooldownMs:10001]
-				[ConditionIds:GVK-Alliance-EventCondition-EnableZone30000-KHAANEPH]
-				[ActionIds:GVK-Alliance-EventAction-EnableZone30000-KHAANEPH]
-				[ActionExecution:All]
-			</Description>
-		</EntityComponent>
-		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
-			<Id>
-				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Alliance-EventCondition-EnableZone30000-KHAANEPH</SubtypeId>
+				<SubtypeId>GVK-Alliance-EventCondition-ZoneLadder-02-KHAANEPH</SubtypeId>
 			</Id>
 			<Description>
 				[MES Event Condition]
 				[CheckCustomCounters:true]
 				[CustomCounters:KHAANEPH_Points]
-				[CustomCountersTargets:400]
-				[CounterCompareTypes:GreaterOrEqual]
-			</Description>
-		</EntityComponent>
-		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
-			<Id>
-				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Alliance-EventAction-EnableZone30000-KHAANEPH</SubtypeId>
-			</Id>
-			<Description>
-				[MES Event Action]
-				[ChangeZoneByName:true]
-				[ZoneNames:KHAANEPH_Zone]
-				[ZoneRadiusChangeTypes:Set]
-				[ZoneRadiusChangeAmounts:30000]
-				[ToggleEvents:true]
-				[ToggleEventIds:GVK-Alliance-Event-EnableZone30000-KHAANEPH,GVK-Alliance-Event-DisableZone30000-KHAANEPH]
-				[ToggleEventIdModes:false,true]
-				[UseChatBroadcast:true]
-				[UseChatOverrideAuthor:true]
-				[ChatOverrideAuthor:KHAANEPH]
-				[ChatData:GVK-Alliance-Chat-ZoneIncreased-30km]
-			</Description>
-		</EntityComponent>
-
-		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
-			<Id>
-				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Alliance-Event-DisableZone30000-KHAANEPH</SubtypeId>
-			</Id>
-			<Description>
-				[MES Event]
-				[UseEvent:false]
-				[UniqueEvent:false]
-				[MinCooldownMs:10000]
-				[MaxCooldownMs:10001]
-				[ConditionIds:GVK-Alliance-EventCondition-DisableZone30000-KHAANEPH]
-				[ActionIds:GVK-Alliance-EventAction-DisableZone30000-KHAANEPH]
-				[ActionExecution:All]
-			</Description>
-		</EntityComponent>
-		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
-			<Id>
-				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Alliance-EventCondition-DisableZone30000-KHAANEPH</SubtypeId>
-			</Id>
-			<Description>
-				[MES Event Condition]
-				[CheckCustomCounters:true]
-				[CustomCounters:KHAANEPH_Points]
-				[CustomCountersTargets:400]
-				[CounterCompareTypes:Less]
-			</Description>
-		</EntityComponent>
-		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
-			<Id>
-				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Alliance-EventAction-DisableZone30000-KHAANEPH</SubtypeId>
-			</Id>
-			<Description>
-				[MES Event Action]
-				[ChangeZoneByName:true]
-				[ZoneNames:KHAANEPH_Zone]
-				[ZoneRadiusChangeTypes:Set]
-				[ZoneRadiusChangeAmounts:20000]
-				[ToggleEvents:true]
-				[ToggleEventIds:GVK-Alliance-Event-DisableZone30000-KHAANEPH,GVK-Alliance-Event-EnableZone30000-KHAANEPH]
-				[ToggleEventIdModes:false,true]
-				[UseChatBroadcast:true]
-				[UseChatOverrideAuthor:true]
-				[ChatOverrideAuthor:KHAANEPH]
-				[ChatData:GVK-Alliance-Chat-ZoneDecreased-20km]
-			</Description>
-		</EntityComponent>
-
-		<!-- 40km Tier (600 Points) -->
-		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
-			<Id>
-				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Alliance-Event-EnableZone40000-KHAANEPH</SubtypeId>
-			</Id>
-			<Description>
-				[MES Event]
-				[UseEvent:true]
-				[UniqueEvent:false]
-				[MinCooldownMs:10000]
-				[MaxCooldownMs:10001]
-				[ConditionIds:GVK-Alliance-EventCondition-EnableZone40000-KHAANEPH]
-				[ActionIds:GVK-Alliance-EventAction-EnableZone40000-KHAANEPH]
-				[ActionExecution:All]
-			</Description>
-		</EntityComponent>
-		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
-			<Id>
-				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Alliance-EventCondition-EnableZone40000-KHAANEPH</SubtypeId>
-			</Id>
-			<Description>
-				[MES Event Condition]
-				[CheckCustomCounters:true]
-				[CustomCounters:KHAANEPH_Points]
-				[CustomCountersTargets:600]
-				[CounterCompareTypes:GreaterOrEqual]
-			</Description>
-		</EntityComponent>
-		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
-			<Id>
-				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Alliance-EventAction-EnableZone40000-KHAANEPH</SubtypeId>
-			</Id>
-			<Description>
-				[MES Event Action]
-				[ChangeZoneByName:true]
-				[ZoneNames:KHAANEPH_Zone]
-				[ZoneRadiusChangeTypes:Set]
-				[ZoneRadiusChangeAmounts:40000]
-				[ToggleEvents:true]
-				[ToggleEventIds:GVK-Alliance-Event-EnableZone40000-KHAANEPH,GVK-Alliance-Event-DisableZone40000-KHAANEPH]
-				[ToggleEventIdModes:false,true]
-				[UseChatBroadcast:true]
-				[UseChatOverrideAuthor:true]
-				[ChatOverrideAuthor:KHAANEPH]
-				[ChatData:GVK-Alliance-Chat-ZoneIncreased-40km]
-			</Description>
-		</EntityComponent>
-
-		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
-			<Id>
-				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Alliance-Event-DisableZone40000-KHAANEPH</SubtypeId>
-			</Id>
-			<Description>
-				[MES Event]
-				[UseEvent:false]
-				[UniqueEvent:false]
-				[MinCooldownMs:10000]
-				[MaxCooldownMs:10001]
-				[ConditionIds:GVK-Alliance-EventCondition-DisableZone40000-KHAANEPH]
-				[ActionIds:GVK-Alliance-EventAction-DisableZone40000-KHAANEPH]
-				[ActionExecution:All]
-			</Description>
-		</EntityComponent>
-		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
-			<Id>
-				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Alliance-EventCondition-DisableZone40000-KHAANEPH</SubtypeId>
-			</Id>
-			<Description>
-				[MES Event Condition]
-				[CheckCustomCounters:true]
-				[CustomCounters:KHAANEPH_Points]
-				[CustomCountersTargets:600]
-				[CounterCompareTypes:Less]
-			</Description>
-		</EntityComponent>
-		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
-			<Id>
-				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Alliance-EventAction-DisableZone40000-KHAANEPH</SubtypeId>
-			</Id>
-			<Description>
-				[MES Event Action]
-				[ChangeZoneByName:true]
-				[ZoneNames:KHAANEPH_Zone]
-				[ZoneRadiusChangeTypes:Set]
-				[ZoneRadiusChangeAmounts:30000]
-				[ToggleEvents:true]
-				[ToggleEventIds:GVK-Alliance-Event-DisableZone40000-KHAANEPH,GVK-Alliance-Event-EnableZone40000-KHAANEPH]
-				[ToggleEventIdModes:false,true]
-				[UseChatBroadcast:true]
-				[UseChatOverrideAuthor:true]
-				[ChatOverrideAuthor:KHAANEPH]
-				[ChatData:GVK-Alliance-Chat-ZoneDecreased-30km]
-			</Description>
-		</EntityComponent>
-
-		<!-- 50km Tier (800 Points) -->
-		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
-			<Id>
-				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Alliance-Event-EnableZone50000-KHAANEPH</SubtypeId>
-			</Id>
-			<Description>
-				[MES Event]
-				[UseEvent:true]
-				[UniqueEvent:false]
-				[MinCooldownMs:10000]
-				[MaxCooldownMs:10001]
-				[ConditionIds:GVK-Alliance-EventCondition-EnableZone50000-KHAANEPH]
-				[ActionIds:GVK-Alliance-EventAction-EnableZone50000-KHAANEPH]
-				[ActionExecution:All]
-			</Description>
-		</EntityComponent>
-		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
-			<Id>
-				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Alliance-EventCondition-EnableZone50000-KHAANEPH</SubtypeId>
-			</Id>
-			<Description>
-				[MES Event Condition]
-				[CheckCustomCounters:true]
-				[CustomCounters:KHAANEPH_Points]
-				[CustomCountersTargets:800]
-				[CounterCompareTypes:GreaterOrEqual]
-			</Description>
-		</EntityComponent>
-		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
-			<Id>
-				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Alliance-EventAction-EnableZone50000-KHAANEPH</SubtypeId>
-			</Id>
-			<Description>
-				[MES Event Action]
-				[ChangeZoneByName:true]
-				[ZoneNames:KHAANEPH_Zone]
-				[ZoneRadiusChangeTypes:Set]
-				[ZoneRadiusChangeAmounts:50000]
-				[ToggleEvents:true]
-				[ToggleEventIds:GVK-Alliance-Event-EnableZone50000-KHAANEPH,GVK-Alliance-Event-DisableZone50000-KHAANEPH]
-				[ToggleEventIdModes:false,true]
-				[UseChatBroadcast:true]
-				[UseChatOverrideAuthor:true]
-				[ChatOverrideAuthor:KHAANEPH]
-				[ChatData:GVK-Alliance-Chat-ZoneIncreased-50km]
-			</Description>
-		</EntityComponent>
-
-		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
-			<Id>
-				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Alliance-Event-DisableZone50000-KHAANEPH</SubtypeId>
-			</Id>
-			<Description>
-				[MES Event]
-				[UseEvent:false]
-				[UniqueEvent:false]
-				[MinCooldownMs:10000]
-				[MaxCooldownMs:10001]
-				[ConditionIds:GVK-Alliance-EventCondition-DisableZone50000-KHAANEPH]
-				[ActionIds:GVK-Alliance-EventAction-DisableZone50000-KHAANEPH]
-				[ActionExecution:All]
-			</Description>
-		</EntityComponent>
-		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
-			<Id>
-				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Alliance-EventCondition-DisableZone50000-KHAANEPH</SubtypeId>
-			</Id>
-			<Description>
-				[MES Event Condition]
-				[CheckCustomCounters:true]
-				[CustomCounters:KHAANEPH_Points]
-				[CustomCountersTargets:800]
-				[CounterCompareTypes:Less]
-			</Description>
-		</EntityComponent>
-		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
-			<Id>
-				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Alliance-EventAction-DisableZone50000-KHAANEPH</SubtypeId>
-			</Id>
-			<Description>
-				[MES Event Action]
-				[ChangeZoneByName:true]
-				[ZoneNames:KHAANEPH_Zone]
-				[ZoneRadiusChangeTypes:Set]
-				[ZoneRadiusChangeAmounts:40000]
-				[ToggleEvents:true]
-				[ToggleEventIds:GVK-Alliance-Event-DisableZone50000-KHAANEPH,GVK-Alliance-Event-EnableZone50000-KHAANEPH]
-				[ToggleEventIdModes:false,true]
-				[UseChatBroadcast:true]
-				[UseChatOverrideAuthor:true]
-				[ChatOverrideAuthor:KHAANEPH]
-				[ChatData:GVK-Alliance-Chat-ZoneDecreased-40km]
-			</Description>
-		</EntityComponent>
-
-		<!-- 55km Tier (1000 Points) -->
-		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
-			<Id>
-				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Alliance-Event-EnableZone55000-KHAANEPH</SubtypeId>
-			</Id>
-			<Description>
-				[MES Event]
-				[UseEvent:true]
-				[UniqueEvent:false]
-				[MinCooldownMs:10000]
-				[MaxCooldownMs:10001]
-				[ConditionIds:GVK-Alliance-EventCondition-EnableZone55000-KHAANEPH]
-				[ActionIds:GVK-Alliance-EventAction-EnableZone55000-KHAANEPH]
-				[ActionExecution:All]
-			</Description>
-		</EntityComponent>
-		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
-			<Id>
-				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Alliance-EventCondition-EnableZone55000-KHAANEPH</SubtypeId>
-			</Id>
-			<Description>
-				[MES Event Condition]
-				[CheckCustomCounters:true]
-				[CustomCounters:KHAANEPH_Points]
-				[CustomCountersTargets:1000]
-				[CounterCompareTypes:GreaterOrEqual]
-			</Description>
-		</EntityComponent>
-		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
-			<Id>
-				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Alliance-EventAction-EnableZone55000-KHAANEPH</SubtypeId>
-			</Id>
-			<Description>
-				[MES Event Action]
-				[ChangeZoneByName:true]
-				[ZoneNames:KHAANEPH_Zone]
-				[ZoneRadiusChangeTypes:Set]
-				[ZoneRadiusChangeAmounts:55000]
-				[ToggleEvents:true]
-				[ToggleEventIds:GVK-Alliance-Event-EnableZone55000-KHAANEPH,GVK-Alliance-Event-DisableZone55000-KHAANEPH]
-				[ToggleEventIdModes:false,true]
-				[UseChatBroadcast:true]
-				[UseChatOverrideAuthor:true]
-				[ChatOverrideAuthor:KHAANEPH]
-				[ChatData:GVK-Alliance-Chat-ZoneIncreased-55km]
-			</Description>
-		</EntityComponent>
-
-		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
-			<Id>
-				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Alliance-Event-DisableZone55000-KHAANEPH</SubtypeId>
-			</Id>
-			<Description>
-				[MES Event]
-				[UseEvent:false]
-				[UniqueEvent:false]
-				[MinCooldownMs:10000]
-				[MaxCooldownMs:10001]
-				[ConditionIds:GVK-Alliance-EventCondition-DisableZone55000-KHAANEPH]
-				[ActionIds:GVK-Alliance-EventAction-DisableZone55000-KHAANEPH]
-				[ActionExecution:All]
-			</Description>
-		</EntityComponent>
-		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
-			<Id>
-				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Alliance-EventCondition-DisableZone55000-KHAANEPH</SubtypeId>
-			</Id>
-			<Description>
-				[MES Event Condition]
-				[CheckCustomCounters:true]
-				[CustomCounters:KHAANEPH_Points]
-				[CustomCountersTargets:1000]
-				[CounterCompareTypes:Less]
-			</Description>
-		</EntityComponent>
-		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
-			<Id>
-				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Alliance-EventAction-DisableZone55000-KHAANEPH</SubtypeId>
-			</Id>
-			<Description>
-				[MES Event Action]
-				[ChangeZoneByName:true]
-				[ZoneNames:KHAANEPH_Zone]
-				[ZoneRadiusChangeTypes:Set]
-				[ZoneRadiusChangeAmounts:50000]
-				[ToggleEvents:true]
-				[ToggleEventIds:GVK-Alliance-Event-DisableZone55000-KHAANEPH,GVK-Alliance-Event-EnableZone55000-KHAANEPH]
-				[ToggleEventIdModes:false,true]
-				[UseChatBroadcast:true]
-				[UseChatOverrideAuthor:true]
-				[ChatOverrideAuthor:KHAANEPH]
-				[ChatData:GVK-Alliance-Chat-ZoneDecreased-50km]
-			</Description>
-		</EntityComponent>
-
-		<!-- =================================================== -->
-		<!-- SOBAN ZONE RESIZING EVENTS                          -->
-		<!-- =================================================== -->
-
-		<!-- 20km Tier (200 Points) -->
-		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
-			<Id>
-				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Alliance-Event-EnableZone20000-SOBAN</SubtypeId>
-			</Id>
-			<Description>
-				[MES Event]
-				[UseEvent:true]
-				[UniqueEvent:false]
-				[MinCooldownMs:10000]
-				[MaxCooldownMs:10001]
-				[ConditionIds:GVK-Alliance-EventCondition-EnableZone20000-SOBAN]
-				[ActionIds:GVK-Alliance-EventAction-EnableZone20000-SOBAN]
-				[ActionExecution:All]
-			</Description>
-		</EntityComponent>
-		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
-			<Id>
-				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Alliance-EventCondition-EnableZone20000-SOBAN</SubtypeId>
-			</Id>
-			<Description>
-				[MES Event Condition]
-				[CheckCustomCounters:true]
-				[CustomCounters:SOBAN_Points]
 				[CustomCountersTargets:200]
 				[CounterCompareTypes:GreaterOrEqual]
+				[CustomCounters:KHAANEPH_Points]
+				[CustomCountersTargets:400]
+				[CounterCompareTypes:Less]
+				[CheckFalseBooleans:true]
+				[FalseBooleans:Tier20,Tier30,Tier40,Tier50,Tier55]
 			</Description>
 		</EntityComponent>
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Alliance-EventAction-EnableZone20000-SOBAN</SubtypeId>
-			</Id>
-			<Description>
-				[MES Event Action]
-				[ChangeZoneByName:true]
-				[ZoneNames:SOBAN_Zone]
-				[ZoneRadiusChangeTypes:Set]
-				[ZoneRadiusChangeAmounts:20000]
-				[ToggleEvents:true]
-				[ToggleEventIds:GVK-Alliance-Event-EnableZone20000-SOBAN,GVK-Alliance-Event-DisableZone20000-SOBAN]
-				[ToggleEventIdModes:false,true]
-				[UseChatBroadcast:true]
-				[UseChatOverrideAuthor:true]
-				[ChatOverrideAuthor:SOBAN]
-				[ChatData:GVK-Alliance-Chat-ZoneIncreased-20km]
-			</Description>
-		</EntityComponent>
-
-		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
-			<Id>
-				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Alliance-Event-DisableZone20000-SOBAN</SubtypeId>
-			</Id>
-			<Description>
-				[MES Event]
-				[UseEvent:false]
-				[UniqueEvent:false]
-				[MinCooldownMs:10000]
-				[MaxCooldownMs:10001]
-				[ConditionIds:GVK-Alliance-EventCondition-DisableZone20000-SOBAN]
-				[ActionIds:GVK-Alliance-EventAction-DisableZone20000-SOBAN]
-				[ActionExecution:All]
-			</Description>
-		</EntityComponent>
-		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
-			<Id>
-				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Alliance-EventCondition-DisableZone20000-SOBAN</SubtypeId>
+				<SubtypeId>GVK-Alliance-EventCondition-ZoneLadder-03-KHAANEPH</SubtypeId>
 			</Id>
 			<Description>
 				[MES Event Condition]
 				[CheckCustomCounters:true]
-				[CustomCounters:SOBAN_Points]
+				[CustomCounters:KHAANEPH_Points]
 				[CustomCountersTargets:200]
-				[CounterCompareTypes:Less]
-			</Description>
-		</EntityComponent>
-		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
-			<Id>
-				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Alliance-EventAction-DisableZone20000-SOBAN</SubtypeId>
-			</Id>
-			<Description>
-				[MES Event Action]
-				[ChangeZoneByName:true]
-				[ZoneNames:SOBAN_Zone]
-				[ZoneRadiusChangeTypes:Set]
-				[ZoneRadiusChangeAmounts:10000]
-				[ToggleEvents:true]
-				[ToggleEventIds:GVK-Alliance-Event-DisableZone20000-SOBAN,GVK-Alliance-Event-EnableZone20000-SOBAN]
-				[ToggleEventIdModes:false,true]
-				[UseChatBroadcast:true]
-				[UseChatOverrideAuthor:true]
-				[ChatOverrideAuthor:SOBAN]
-				[ChatData:GVK-Alliance-Chat-ZoneDecreased-10km]
-			</Description>
-		</EntityComponent>
-
-		<!-- 30km Tier (400 Points) -->
-		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
-			<Id>
-				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Alliance-Event-EnableZone30000-SOBAN</SubtypeId>
-			</Id>
-			<Description>
-				[MES Event]
-				[UseEvent:true]
-				[UniqueEvent:false]
-				[MinCooldownMs:10000]
-				[MaxCooldownMs:10001]
-				[ConditionIds:GVK-Alliance-EventCondition-EnableZone30000-SOBAN]
-				[ActionIds:GVK-Alliance-EventAction-EnableZone30000-SOBAN]
-				[ActionExecution:All]
-			</Description>
-		</EntityComponent>
-		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
-			<Id>
-				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Alliance-EventCondition-EnableZone30000-SOBAN</SubtypeId>
-			</Id>
-			<Description>
-				[MES Event Condition]
-				[CheckCustomCounters:true]
-				[CustomCounters:SOBAN_Points]
-				[CustomCountersTargets:400]
 				[CounterCompareTypes:GreaterOrEqual]
-			</Description>
-		</EntityComponent>
-		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
-			<Id>
-				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Alliance-EventAction-EnableZone30000-SOBAN</SubtypeId>
-			</Id>
-			<Description>
-				[MES Event Action]
-				[ChangeZoneByName:true]
-				[ZoneNames:SOBAN_Zone]
-				[ZoneRadiusChangeTypes:Set]
-				[ZoneRadiusChangeAmounts:30000]
-				[ToggleEvents:true]
-				[ToggleEventIds:GVK-Alliance-Event-EnableZone30000-SOBAN,GVK-Alliance-Event-DisableZone30000-SOBAN]
-				[ToggleEventIdModes:false,true]
-				[UseChatBroadcast:true]
-				[UseChatOverrideAuthor:true]
-				[ChatOverrideAuthor:SOBAN]
-				[ChatData:GVK-Alliance-Chat-ZoneIncreased-30km]
-			</Description>
-		</EntityComponent>
-
-		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
-			<Id>
-				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Alliance-Event-DisableZone30000-SOBAN</SubtypeId>
-			</Id>
-			<Description>
-				[MES Event]
-				[UseEvent:false]
-				[UniqueEvent:false]
-				[MinCooldownMs:10000]
-				[MaxCooldownMs:10001]
-				[ConditionIds:GVK-Alliance-EventCondition-DisableZone30000-SOBAN]
-				[ActionIds:GVK-Alliance-EventAction-DisableZone30000-SOBAN]
-				[ActionExecution:All]
-			</Description>
-		</EntityComponent>
-		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
-			<Id>
-				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Alliance-EventCondition-DisableZone30000-SOBAN</SubtypeId>
-			</Id>
-			<Description>
-				[MES Event Condition]
-				[CheckCustomCounters:true]
-				[CustomCounters:SOBAN_Points]
+				[CustomCounters:KHAANEPH_Points]
 				[CustomCountersTargets:400]
 				[CounterCompareTypes:Less]
+				[CheckFalseBooleans:true]
+				[FalseBooleans:Tier20]
+				[CheckTrueBooleans:true]
+				[TrueBooleans:Tier30,Tier40,Tier50,Tier55]
+				[AllowAnyTrueBoolean:true]
 			</Description>
 		</EntityComponent>
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Alliance-EventAction-DisableZone30000-SOBAN</SubtypeId>
-			</Id>
-			<Description>
-				[MES Event Action]
-				[ChangeZoneByName:true]
-				[ZoneNames:SOBAN_Zone]
-				[ZoneRadiusChangeTypes:Set]
-				[ZoneRadiusChangeAmounts:20000]
-				[ToggleEvents:true]
-				[ToggleEventIds:GVK-Alliance-Event-DisableZone30000-SOBAN,GVK-Alliance-Event-EnableZone30000-SOBAN]
-				[ToggleEventIdModes:false,true]
-				[UseChatBroadcast:true]
-				[UseChatOverrideAuthor:true]
-				[ChatOverrideAuthor:SOBAN]
-				[ChatData:GVK-Alliance-Chat-ZoneDecreased-20km]
-			</Description>
-		</EntityComponent>
-
-		<!-- 40km Tier (600 Points) -->
-		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
-			<Id>
-				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Alliance-Event-EnableZone40000-SOBAN</SubtypeId>
-			</Id>
-			<Description>
-				[MES Event]
-				[UseEvent:true]
-				[UniqueEvent:false]
-				[MinCooldownMs:10000]
-				[MaxCooldownMs:10001]
-				[ConditionIds:GVK-Alliance-EventCondition-EnableZone40000-SOBAN]
-				[ActionIds:GVK-Alliance-EventAction-EnableZone40000-SOBAN]
-				[ActionExecution:All]
-			</Description>
-		</EntityComponent>
-		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
-			<Id>
-				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Alliance-EventCondition-EnableZone40000-SOBAN</SubtypeId>
+				<SubtypeId>GVK-Alliance-EventCondition-ZoneLadder-04-KHAANEPH</SubtypeId>
 			</Id>
 			<Description>
 				[MES Event Condition]
 				[CheckCustomCounters:true]
-				[CustomCounters:SOBAN_Points]
-				[CustomCountersTargets:600]
+				[CustomCounters:KHAANEPH_Points]
+				[CustomCountersTargets:400]
 				[CounterCompareTypes:GreaterOrEqual]
-			</Description>
-		</EntityComponent>
-		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
-			<Id>
-				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Alliance-EventAction-EnableZone40000-SOBAN</SubtypeId>
-			</Id>
-			<Description>
-				[MES Event Action]
-				[ChangeZoneByName:true]
-				[ZoneNames:SOBAN_Zone]
-				[ZoneRadiusChangeTypes:Set]
-				[ZoneRadiusChangeAmounts:40000]
-				[ToggleEvents:true]
-				[ToggleEventIds:GVK-Alliance-Event-EnableZone40000-SOBAN,GVK-Alliance-Event-DisableZone40000-SOBAN]
-				[ToggleEventIdModes:false,true]
-				[UseChatBroadcast:true]
-				[UseChatOverrideAuthor:true]
-				[ChatOverrideAuthor:SOBAN]
-				[ChatData:GVK-Alliance-Chat-ZoneIncreased-40km]
-			</Description>
-		</EntityComponent>
-
-		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
-			<Id>
-				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Alliance-Event-DisableZone40000-SOBAN</SubtypeId>
-			</Id>
-			<Description>
-				[MES Event]
-				[UseEvent:false]
-				[UniqueEvent:false]
-				[MinCooldownMs:10000]
-				[MaxCooldownMs:10001]
-				[ConditionIds:GVK-Alliance-EventCondition-DisableZone40000-SOBAN]
-				[ActionIds:GVK-Alliance-EventAction-DisableZone40000-SOBAN]
-				[ActionExecution:All]
-			</Description>
-		</EntityComponent>
-		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
-			<Id>
-				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Alliance-EventCondition-DisableZone40000-SOBAN</SubtypeId>
-			</Id>
-			<Description>
-				[MES Event Condition]
-				[CheckCustomCounters:true]
-				[CustomCounters:SOBAN_Points]
+				[CustomCounters:KHAANEPH_Points]
 				[CustomCountersTargets:600]
 				[CounterCompareTypes:Less]
+				[CheckFalseBooleans:true]
+				[FalseBooleans:Tier30,Tier40,Tier50,Tier55]
 			</Description>
 		</EntityComponent>
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Alliance-EventAction-DisableZone40000-SOBAN</SubtypeId>
-			</Id>
-			<Description>
-				[MES Event Action]
-				[ChangeZoneByName:true]
-				[ZoneNames:SOBAN_Zone]
-				[ZoneRadiusChangeTypes:Set]
-				[ZoneRadiusChangeAmounts:30000]
-				[ToggleEvents:true]
-				[ToggleEventIds:GVK-Alliance-Event-DisableZone40000-SOBAN,GVK-Alliance-Event-EnableZone40000-SOBAN]
-				[ToggleEventIdModes:false,true]
-				[UseChatBroadcast:true]
-				[UseChatOverrideAuthor:true]
-				[ChatOverrideAuthor:SOBAN]
-				[ChatData:GVK-Alliance-Chat-ZoneDecreased-30km]
-			</Description>
-		</EntityComponent>
-
-		<!-- 50km Tier (800 Points) -->
-		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
-			<Id>
-				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Alliance-Event-EnableZone50000-SOBAN</SubtypeId>
-			</Id>
-			<Description>
-				[MES Event]
-				[UseEvent:true]
-				[UniqueEvent:false]
-				[MinCooldownMs:10000]
-				[MaxCooldownMs:10001]
-				[ConditionIds:GVK-Alliance-EventCondition-EnableZone50000-SOBAN]
-				[ActionIds:GVK-Alliance-EventAction-EnableZone50000-SOBAN]
-				[ActionExecution:All]
-			</Description>
-		</EntityComponent>
-		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
-			<Id>
-				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Alliance-EventCondition-EnableZone50000-SOBAN</SubtypeId>
+				<SubtypeId>GVK-Alliance-EventCondition-ZoneLadder-05-KHAANEPH</SubtypeId>
 			</Id>
 			<Description>
 				[MES Event Condition]
 				[CheckCustomCounters:true]
-				[CustomCounters:SOBAN_Points]
-				[CustomCountersTargets:800]
+				[CustomCounters:KHAANEPH_Points]
+				[CustomCountersTargets:400]
 				[CounterCompareTypes:GreaterOrEqual]
+				[CustomCounters:KHAANEPH_Points]
+				[CustomCountersTargets:600]
+				[CounterCompareTypes:Less]
+				[CheckFalseBooleans:true]
+				[FalseBooleans:Tier30]
+				[CheckTrueBooleans:true]
+				[TrueBooleans:Tier40,Tier50,Tier55]
+				[AllowAnyTrueBoolean:true]
 			</Description>
 		</EntityComponent>
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Alliance-EventAction-EnableZone50000-SOBAN</SubtypeId>
-			</Id>
-			<Description>
-				[MES Event Action]
-				[ChangeZoneByName:true]
-				[ZoneNames:SOBAN_Zone]
-				[ZoneRadiusChangeTypes:Set]
-				[ZoneRadiusChangeAmounts:50000]
-				[ToggleEvents:true]
-				[ToggleEventIds:GVK-Alliance-Event-EnableZone50000-SOBAN,GVK-Alliance-Event-DisableZone50000-SOBAN]
-				[ToggleEventIdModes:false,true]
-				[UseChatBroadcast:true]
-				[UseChatOverrideAuthor:true]
-				[ChatOverrideAuthor:SOBAN]
-				[ChatData:GVK-Alliance-Chat-ZoneIncreased-50km]
-			</Description>
-		</EntityComponent>
-
-		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
-			<Id>
-				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Alliance-Event-DisableZone50000-SOBAN</SubtypeId>
-			</Id>
-			<Description>
-				[MES Event]
-				[UseEvent:false]
-				[UniqueEvent:false]
-				[MinCooldownMs:10000]
-				[MaxCooldownMs:10001]
-				[ConditionIds:GVK-Alliance-EventCondition-DisableZone50000-SOBAN]
-				[ActionIds:GVK-Alliance-EventAction-DisableZone50000-SOBAN]
-				[ActionExecution:All]
-			</Description>
-		</EntityComponent>
-		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
-			<Id>
-				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Alliance-EventCondition-DisableZone50000-SOBAN</SubtypeId>
+				<SubtypeId>GVK-Alliance-EventCondition-ZoneLadder-06-KHAANEPH</SubtypeId>
 			</Id>
 			<Description>
 				[MES Event Condition]
 				[CheckCustomCounters:true]
-				[CustomCounters:SOBAN_Points]
+				[CustomCounters:KHAANEPH_Points]
+				[CustomCountersTargets:600]
+				[CounterCompareTypes:GreaterOrEqual]
+				[CustomCounters:KHAANEPH_Points]
 				[CustomCountersTargets:800]
 				[CounterCompareTypes:Less]
+				[CheckFalseBooleans:true]
+				[FalseBooleans:Tier40,Tier50,Tier55]
 			</Description>
 		</EntityComponent>
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Alliance-EventAction-DisableZone50000-SOBAN</SubtypeId>
-			</Id>
-			<Description>
-				[MES Event Action]
-				[ChangeZoneByName:true]
-				[ZoneNames:SOBAN_Zone]
-				[ZoneRadiusChangeTypes:Set]
-				[ZoneRadiusChangeAmounts:40000]
-				[ToggleEvents:true]
-				[ToggleEventIds:GVK-Alliance-Event-DisableZone50000-SOBAN,GVK-Alliance-Event-EnableZone50000-SOBAN]
-				[ToggleEventIdModes:false,true]
-				[UseChatBroadcast:true]
-				[UseChatOverrideAuthor:true]
-				[ChatOverrideAuthor:SOBAN]
-				[ChatData:GVK-Alliance-Chat-ZoneDecreased-40km]
-			</Description>
-		</EntityComponent>
-
-		<!-- 55km Tier (1000 Points) -->
-		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
-			<Id>
-				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Alliance-Event-EnableZone55000-SOBAN</SubtypeId>
-			</Id>
-			<Description>
-				[MES Event]
-				[UseEvent:true]
-				[UniqueEvent:false]
-				[MinCooldownMs:10000]
-				[MaxCooldownMs:10001]
-				[ConditionIds:GVK-Alliance-EventCondition-EnableZone55000-SOBAN]
-				[ActionIds:GVK-Alliance-EventAction-EnableZone55000-SOBAN]
-				[ActionExecution:All]
-			</Description>
-		</EntityComponent>
-		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
-			<Id>
-				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Alliance-EventCondition-EnableZone55000-SOBAN</SubtypeId>
+				<SubtypeId>GVK-Alliance-EventCondition-ZoneLadder-07-KHAANEPH</SubtypeId>
 			</Id>
 			<Description>
 				[MES Event Condition]
 				[CheckCustomCounters:true]
-				[CustomCounters:SOBAN_Points]
-				[CustomCountersTargets:1000]
+				[CustomCounters:KHAANEPH_Points]
+				[CustomCountersTargets:600]
 				[CounterCompareTypes:GreaterOrEqual]
+				[CustomCounters:KHAANEPH_Points]
+				[CustomCountersTargets:800]
+				[CounterCompareTypes:Less]
+				[CheckFalseBooleans:true]
+				[FalseBooleans:Tier40]
+				[CheckTrueBooleans:true]
+				[TrueBooleans:Tier50,Tier55]
+				[AllowAnyTrueBoolean:true]
 			</Description>
 		</EntityComponent>
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Alliance-EventAction-EnableZone55000-SOBAN</SubtypeId>
-			</Id>
-			<Description>
-				[MES Event Action]
-				[ChangeZoneByName:true]
-				[ZoneNames:SOBAN_Zone]
-				[ZoneRadiusChangeTypes:Set]
-				[ZoneRadiusChangeAmounts:55000]
-				[ToggleEvents:true]
-				[ToggleEventIds:GVK-Alliance-Event-EnableZone55000-SOBAN,GVK-Alliance-Event-DisableZone55000-SOBAN]
-				[ToggleEventIdModes:false,true]
-				[UseChatBroadcast:true]
-				[UseChatOverrideAuthor:true]
-				[ChatOverrideAuthor:SOBAN]
-				[ChatData:GVK-Alliance-Chat-ZoneIncreased-55km]
-			</Description>
-		</EntityComponent>
-
-		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
-			<Id>
-				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Alliance-Event-DisableZone55000-SOBAN</SubtypeId>
-			</Id>
-			<Description>
-				[MES Event]
-				[UseEvent:false]
-				[UniqueEvent:false]
-				[MinCooldownMs:10000]
-				[MaxCooldownMs:10001]
-				[ConditionIds:GVK-Alliance-EventCondition-DisableZone55000-SOBAN]
-				[ActionIds:GVK-Alliance-EventAction-DisableZone55000-SOBAN]
-				[ActionExecution:All]
-			</Description>
-		</EntityComponent>
-		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
-			<Id>
-				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Alliance-EventCondition-DisableZone55000-SOBAN</SubtypeId>
+				<SubtypeId>GVK-Alliance-EventCondition-ZoneLadder-08-KHAANEPH</SubtypeId>
 			</Id>
 			<Description>
 				[MES Event Condition]
 				[CheckCustomCounters:true]
-				[CustomCounters:SOBAN_Points]
+				[CustomCounters:KHAANEPH_Points]
+				[CustomCountersTargets:800]
+				[CounterCompareTypes:GreaterOrEqual]
+				[CustomCounters:KHAANEPH_Points]
 				[CustomCountersTargets:1000]
 				[CounterCompareTypes:Less]
+				[CheckFalseBooleans:true]
+				[FalseBooleans:Tier50,Tier55]
 			</Description>
 		</EntityComponent>
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Alliance-EventAction-DisableZone55000-SOBAN</SubtypeId>
+				<SubtypeId>GVK-Alliance-EventCondition-ZoneLadder-09-KHAANEPH</SubtypeId>
 			</Id>
 			<Description>
-				[MES Event Action]
-				[ChangeZoneByName:true]
-				[ZoneNames:SOBAN_Zone]
-				[ZoneRadiusChangeTypes:Set]
-				[ZoneRadiusChangeAmounts:50000]
-				[ToggleEvents:true]
-				[ToggleEventIds:GVK-Alliance-Event-DisableZone55000-SOBAN,GVK-Alliance-Event-EnableZone55000-SOBAN]
-				[ToggleEventIdModes:false,true]
-				[UseChatBroadcast:true]
-				[UseChatOverrideAuthor:true]
-				[ChatOverrideAuthor:SOBAN]
-				[ChatData:GVK-Alliance-Chat-ZoneDecreased-50km]
+				[MES Event Condition]
+				[CheckCustomCounters:true]
+				[CustomCounters:KHAANEPH_Points]
+				[CustomCountersTargets:800]
+				[CounterCompareTypes:GreaterOrEqual]
+				[CustomCounters:KHAANEPH_Points]
+				[CustomCountersTargets:1000]
+				[CounterCompareTypes:Less]
+				[CheckFalseBooleans:true]
+				[FalseBooleans:Tier50]
+				[CheckTrueBooleans:true]
+				[TrueBooleans:Tier55]
+				[AllowAnyTrueBoolean:true]
 			</Description>
 		</EntityComponent>
-
-		<!-- =================================================== -->
-		<!-- ALLIANCE POINTS FLOOR CLAMPING                      -->
-		<!-- =================================================== -->
-
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Alliance-Event-PointsFloor-KHAANEPH</SubtypeId>
+				<SubtypeId>GVK-Alliance-EventCondition-ZoneLadder-10-KHAANEPH</SubtypeId>
 			</Id>
 			<Description>
-				[MES Event]
-				[UseEvent:true]
-				[UniqueEvent:false]
-				[StartsReady:true]
-				[MinCooldownMs:5000]
-				[MaxCooldownMs:5001]
-				[ConditionIds:GVK-Alliance-EventCondition-PointsFloor-KHAANEPH]
-				[ActionIds:GVK-Alliance-EventAction-PointsFloor-KHAANEPH]
-				[ActionExecution:All]
+				[MES Event Condition]
+				[CheckCustomCounters:true]
+				[CustomCounters:KHAANEPH_Points]
+				[CustomCountersTargets:1000]
+				[CounterCompareTypes:GreaterOrEqual]
+				[CheckFalseBooleans:true]
+				[FalseBooleans:Tier55]
 			</Description>
 		</EntityComponent>
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Alliance-EventCondition-PointsFloor-KHAANEPH</SubtypeId>
+				<SubtypeId>GVK-Alliance-EventCondition-ZoneLadder-11-KHAANEPH</SubtypeId>
 			</Id>
 			<Description>
 				[MES Event Condition]
@@ -1056,84 +220,7 @@
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Alliance-EventAction-PointsFloor-KHAANEPH</SubtypeId>
-			</Id>
-			<Description>
-				[MES Event Action]
-				[ChangeCounters:true]
-				[SetCounters:KHAANEPH_Points]
-				[SetCountersAmount:0]
-			</Description>
-		</EntityComponent>
-
-		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
-			<Id>
-				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Alliance-Event-PointsFloor-SOBAN</SubtypeId>
-			</Id>
-			<Description>
-				[MES Event]
-				[UseEvent:true]
-				[UniqueEvent:false]
-				[StartsReady:true]
-				[MinCooldownMs:5000]
-				[MaxCooldownMs:5001]
-				[ConditionIds:GVK-Alliance-EventCondition-PointsFloor-SOBAN]
-				[ActionIds:GVK-Alliance-EventAction-PointsFloor-SOBAN]
-				[ActionExecution:All]
-			</Description>
-		</EntityComponent>
-		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
-			<Id>
-				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Alliance-EventCondition-PointsFloor-SOBAN</SubtypeId>
-			</Id>
-			<Description>
-				[MES Event Condition]
-				[CheckCustomCounters:true]
-				[CustomCounters:SOBAN_Points]
-				[CustomCountersTargets:-1]
-				[CounterCompareTypes:LessOrEqual]
-			</Description>
-		</EntityComponent>
-		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
-			<Id>
-				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Alliance-EventAction-PointsFloor-SOBAN</SubtypeId>
-			</Id>
-			<Description>
-				[MES Event Action]
-				[ChangeCounters:true]
-				[SetCounters:SOBAN_Points]
-				[SetCountersAmount:0]
-			</Description>
-		</EntityComponent>
-
-		<!-- =================================================== -->
-		<!-- ALLIANCE POINTS CEILING CLAMPING                    -->
-		<!-- =================================================== -->
-
-		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
-			<Id>
-				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Alliance-Event-PointsCeiling-KHAANEPH</SubtypeId>
-			</Id>
-			<Description>
-				[MES Event]
-				[UseEvent:true]
-				[UniqueEvent:false]
-				[StartsReady:true]
-				[MinCooldownMs:5000]
-				[MaxCooldownMs:5001]
-				[ConditionIds:GVK-Alliance-EventCondition-PointsCeiling-KHAANEPH]
-				[ActionIds:GVK-Alliance-EventAction-PointsCeiling-KHAANEPH]
-				[ActionExecution:All]
-			</Description>
-		</EntityComponent>
-		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
-			<Id>
-				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Alliance-EventCondition-PointsCeiling-KHAANEPH</SubtypeId>
+				<SubtypeId>GVK-Alliance-EventCondition-ZoneLadder-12-KHAANEPH</SubtypeId>
 			</Id>
 			<Description>
 				[MES Event Condition]
@@ -1146,7 +233,259 @@
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Alliance-EventAction-PointsCeiling-KHAANEPH</SubtypeId>
+				<SubtypeId>GVK-Alliance-EventAction-ZoneLadder-01-KHAANEPH</SubtypeId>
+			</Id>
+			<Description>
+				[MES Event Action]
+				[ChangeZoneByName:true]
+				[ZoneNames:KHAANEPH_Zone]
+				[ZoneRadiusChangeTypes:Set]
+				[ZoneRadiusChangeAmounts:10000]
+				[ChangeBooleans:true]
+				[SetBooleansTrue:Tier10]
+				[SetBooleansFalse:Tier20]
+				[SetBooleansFalse:Tier30]
+				[SetBooleansFalse:Tier40]
+				[SetBooleansFalse:Tier50]
+				[SetBooleansFalse:Tier55]
+				[UseChatBroadcast:true]
+				[UseChatOverrideAuthor:true]
+				[ChatOverrideAuthor:KHAANEPH]
+				[ChatData:GVK-Alliance-Chat-ZoneDecreased-10km]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-EventAction-ZoneLadder-02-KHAANEPH</SubtypeId>
+			</Id>
+			<Description>
+				[MES Event Action]
+				[ChangeZoneByName:true]
+				[ZoneNames:KHAANEPH_Zone]
+				[ZoneRadiusChangeTypes:Set]
+				[ZoneRadiusChangeAmounts:20000]
+				[ChangeBooleans:true]
+				[SetBooleansTrue:Tier20]
+				[SetBooleansFalse:Tier10]
+				[SetBooleansFalse:Tier30]
+				[SetBooleansFalse:Tier40]
+				[SetBooleansFalse:Tier50]
+				[SetBooleansFalse:Tier55]
+				[UseChatBroadcast:true]
+				[UseChatOverrideAuthor:true]
+				[ChatOverrideAuthor:KHAANEPH]
+				[ChatData:GVK-Alliance-Chat-ZoneIncreased-20km]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-EventAction-ZoneLadder-03-KHAANEPH</SubtypeId>
+			</Id>
+			<Description>
+				[MES Event Action]
+				[ChangeZoneByName:true]
+				[ZoneNames:KHAANEPH_Zone]
+				[ZoneRadiusChangeTypes:Set]
+				[ZoneRadiusChangeAmounts:20000]
+				[ChangeBooleans:true]
+				[SetBooleansTrue:Tier20]
+				[SetBooleansFalse:Tier10]
+				[SetBooleansFalse:Tier30]
+				[SetBooleansFalse:Tier40]
+				[SetBooleansFalse:Tier50]
+				[SetBooleansFalse:Tier55]
+				[UseChatBroadcast:true]
+				[UseChatOverrideAuthor:true]
+				[ChatOverrideAuthor:KHAANEPH]
+				[ChatData:GVK-Alliance-Chat-ZoneDecreased-20km]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-EventAction-ZoneLadder-04-KHAANEPH</SubtypeId>
+			</Id>
+			<Description>
+				[MES Event Action]
+				[ChangeZoneByName:true]
+				[ZoneNames:KHAANEPH_Zone]
+				[ZoneRadiusChangeTypes:Set]
+				[ZoneRadiusChangeAmounts:30000]
+				[ChangeBooleans:true]
+				[SetBooleansTrue:Tier30]
+				[SetBooleansFalse:Tier10]
+				[SetBooleansFalse:Tier20]
+				[SetBooleansFalse:Tier40]
+				[SetBooleansFalse:Tier50]
+				[SetBooleansFalse:Tier55]
+				[UseChatBroadcast:true]
+				[UseChatOverrideAuthor:true]
+				[ChatOverrideAuthor:KHAANEPH]
+				[ChatData:GVK-Alliance-Chat-ZoneIncreased-30km]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-EventAction-ZoneLadder-05-KHAANEPH</SubtypeId>
+			</Id>
+			<Description>
+				[MES Event Action]
+				[ChangeZoneByName:true]
+				[ZoneNames:KHAANEPH_Zone]
+				[ZoneRadiusChangeTypes:Set]
+				[ZoneRadiusChangeAmounts:30000]
+				[ChangeBooleans:true]
+				[SetBooleansTrue:Tier30]
+				[SetBooleansFalse:Tier10]
+				[SetBooleansFalse:Tier20]
+				[SetBooleansFalse:Tier40]
+				[SetBooleansFalse:Tier50]
+				[SetBooleansFalse:Tier55]
+				[UseChatBroadcast:true]
+				[UseChatOverrideAuthor:true]
+				[ChatOverrideAuthor:KHAANEPH]
+				[ChatData:GVK-Alliance-Chat-ZoneDecreased-30km]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-EventAction-ZoneLadder-06-KHAANEPH</SubtypeId>
+			</Id>
+			<Description>
+				[MES Event Action]
+				[ChangeZoneByName:true]
+				[ZoneNames:KHAANEPH_Zone]
+				[ZoneRadiusChangeTypes:Set]
+				[ZoneRadiusChangeAmounts:40000]
+				[ChangeBooleans:true]
+				[SetBooleansTrue:Tier40]
+				[SetBooleansFalse:Tier10]
+				[SetBooleansFalse:Tier20]
+				[SetBooleansFalse:Tier30]
+				[SetBooleansFalse:Tier50]
+				[SetBooleansFalse:Tier55]
+				[UseChatBroadcast:true]
+				[UseChatOverrideAuthor:true]
+				[ChatOverrideAuthor:KHAANEPH]
+				[ChatData:GVK-Alliance-Chat-ZoneIncreased-40km]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-EventAction-ZoneLadder-07-KHAANEPH</SubtypeId>
+			</Id>
+			<Description>
+				[MES Event Action]
+				[ChangeZoneByName:true]
+				[ZoneNames:KHAANEPH_Zone]
+				[ZoneRadiusChangeTypes:Set]
+				[ZoneRadiusChangeAmounts:40000]
+				[ChangeBooleans:true]
+				[SetBooleansTrue:Tier40]
+				[SetBooleansFalse:Tier10]
+				[SetBooleansFalse:Tier20]
+				[SetBooleansFalse:Tier30]
+				[SetBooleansFalse:Tier50]
+				[SetBooleansFalse:Tier55]
+				[UseChatBroadcast:true]
+				[UseChatOverrideAuthor:true]
+				[ChatOverrideAuthor:KHAANEPH]
+				[ChatData:GVK-Alliance-Chat-ZoneDecreased-40km]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-EventAction-ZoneLadder-08-KHAANEPH</SubtypeId>
+			</Id>
+			<Description>
+				[MES Event Action]
+				[ChangeZoneByName:true]
+				[ZoneNames:KHAANEPH_Zone]
+				[ZoneRadiusChangeTypes:Set]
+				[ZoneRadiusChangeAmounts:50000]
+				[ChangeBooleans:true]
+				[SetBooleansTrue:Tier50]
+				[SetBooleansFalse:Tier10]
+				[SetBooleansFalse:Tier20]
+				[SetBooleansFalse:Tier30]
+				[SetBooleansFalse:Tier40]
+				[SetBooleansFalse:Tier55]
+				[UseChatBroadcast:true]
+				[UseChatOverrideAuthor:true]
+				[ChatOverrideAuthor:KHAANEPH]
+				[ChatData:GVK-Alliance-Chat-ZoneIncreased-50km]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-EventAction-ZoneLadder-09-KHAANEPH</SubtypeId>
+			</Id>
+			<Description>
+				[MES Event Action]
+				[ChangeZoneByName:true]
+				[ZoneNames:KHAANEPH_Zone]
+				[ZoneRadiusChangeTypes:Set]
+				[ZoneRadiusChangeAmounts:50000]
+				[ChangeBooleans:true]
+				[SetBooleansTrue:Tier50]
+				[SetBooleansFalse:Tier10]
+				[SetBooleansFalse:Tier20]
+				[SetBooleansFalse:Tier30]
+				[SetBooleansFalse:Tier40]
+				[SetBooleansFalse:Tier55]
+				[UseChatBroadcast:true]
+				[UseChatOverrideAuthor:true]
+				[ChatOverrideAuthor:KHAANEPH]
+				[ChatData:GVK-Alliance-Chat-ZoneDecreased-50km]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-EventAction-ZoneLadder-10-KHAANEPH</SubtypeId>
+			</Id>
+			<Description>
+				[MES Event Action]
+				[ChangeZoneByName:true]
+				[ZoneNames:KHAANEPH_Zone]
+				[ZoneRadiusChangeTypes:Set]
+				[ZoneRadiusChangeAmounts:55000]
+				[ChangeBooleans:true]
+				[SetBooleansTrue:Tier55]
+				[SetBooleansFalse:Tier10]
+				[SetBooleansFalse:Tier20]
+				[SetBooleansFalse:Tier30]
+				[SetBooleansFalse:Tier40]
+				[SetBooleansFalse:Tier50]
+				[UseChatBroadcast:true]
+				[UseChatOverrideAuthor:true]
+				[ChatOverrideAuthor:KHAANEPH]
+				[ChatData:GVK-Alliance-Chat-ZoneIncreased-55km]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-EventAction-ZoneLadder-11-KHAANEPH</SubtypeId>
+			</Id>
+			<Description>
+				[MES Event Action]
+				[ChangeCounters:true]
+				[SetCounters:KHAANEPH_Points]
+				[SetCountersAmount:0]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-EventAction-ZoneLadder-12-KHAANEPH</SubtypeId>
 			</Id>
 			<Description>
 				[MES Event Action]
@@ -1156,10 +495,11 @@
 			</Description>
 		</EntityComponent>
 
+		<!-- KHAANEPH LADDER EVENT: 12 conditions + 12 actions -->
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Alliance-Event-PointsCeiling-SOBAN</SubtypeId>
+				<SubtypeId>GVK-Alliance-Event-ZoneLadder-KHAANEPH</SubtypeId>
 			</Id>
 			<Description>
 				[MES Event]
@@ -1168,15 +508,241 @@
 				[StartsReady:true]
 				[MinCooldownMs:5000]
 				[MaxCooldownMs:5001]
-				[ConditionIds:GVK-Alliance-EventCondition-PointsCeiling-SOBAN]
-				[ActionIds:GVK-Alliance-EventAction-PointsCeiling-SOBAN]
-				[ActionExecution:All]
+				[UseAnyPassingCondition:true]
+				[ConditionIds:GVK-Alliance-EventCondition-ZoneLadder-01-KHAANEPH]
+				[ConditionIds:GVK-Alliance-EventCondition-ZoneLadder-02-KHAANEPH]
+				[ConditionIds:GVK-Alliance-EventCondition-ZoneLadder-03-KHAANEPH]
+				[ConditionIds:GVK-Alliance-EventCondition-ZoneLadder-04-KHAANEPH]
+				[ConditionIds:GVK-Alliance-EventCondition-ZoneLadder-05-KHAANEPH]
+				[ConditionIds:GVK-Alliance-EventCondition-ZoneLadder-06-KHAANEPH]
+				[ConditionIds:GVK-Alliance-EventCondition-ZoneLadder-07-KHAANEPH]
+				[ConditionIds:GVK-Alliance-EventCondition-ZoneLadder-08-KHAANEPH]
+				[ConditionIds:GVK-Alliance-EventCondition-ZoneLadder-09-KHAANEPH]
+				[ConditionIds:GVK-Alliance-EventCondition-ZoneLadder-10-KHAANEPH]
+				[ConditionIds:GVK-Alliance-EventCondition-ZoneLadder-11-KHAANEPH]
+				[ConditionIds:GVK-Alliance-EventCondition-ZoneLadder-12-KHAANEPH]
+				[ActionIds:GVK-Alliance-EventAction-ZoneLadder-01-KHAANEPH]
+				[ActionIds:GVK-Alliance-EventAction-ZoneLadder-02-KHAANEPH]
+				[ActionIds:GVK-Alliance-EventAction-ZoneLadder-03-KHAANEPH]
+				[ActionIds:GVK-Alliance-EventAction-ZoneLadder-04-KHAANEPH]
+				[ActionIds:GVK-Alliance-EventAction-ZoneLadder-05-KHAANEPH]
+				[ActionIds:GVK-Alliance-EventAction-ZoneLadder-06-KHAANEPH]
+				[ActionIds:GVK-Alliance-EventAction-ZoneLadder-07-KHAANEPH]
+				[ActionIds:GVK-Alliance-EventAction-ZoneLadder-08-KHAANEPH]
+				[ActionIds:GVK-Alliance-EventAction-ZoneLadder-09-KHAANEPH]
+				[ActionIds:GVK-Alliance-EventAction-ZoneLadder-10-KHAANEPH]
+				[ActionIds:GVK-Alliance-EventAction-ZoneLadder-11-KHAANEPH]
+				[ActionIds:GVK-Alliance-EventAction-ZoneLadder-12-KHAANEPH]
+				[ActionExecution:Condition]
+			</Description>
+		</EntityComponent>
+
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-EventCondition-ZoneLadder-01-SOBAN</SubtypeId>
+			</Id>
+			<Description>
+				[MES Event Condition]
+				[CheckCustomCounters:true]
+				[CustomCounters:SOBAN_Points]
+				[CustomCountersTargets:200]
+				[CounterCompareTypes:Less]
+				[CheckFalseBooleans:true]
+				[FalseBooleans:Tier10]
+				[CheckTrueBooleans:true]
+				[TrueBooleans:Tier20,Tier30,Tier40,Tier50,Tier55]
+				[AllowAnyTrueBoolean:true]
 			</Description>
 		</EntityComponent>
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Alliance-EventCondition-PointsCeiling-SOBAN</SubtypeId>
+				<SubtypeId>GVK-Alliance-EventCondition-ZoneLadder-02-SOBAN</SubtypeId>
+			</Id>
+			<Description>
+				[MES Event Condition]
+				[CheckCustomCounters:true]
+				[CustomCounters:SOBAN_Points]
+				[CustomCountersTargets:200]
+				[CounterCompareTypes:GreaterOrEqual]
+				[CustomCounters:SOBAN_Points]
+				[CustomCountersTargets:400]
+				[CounterCompareTypes:Less]
+				[CheckFalseBooleans:true]
+				[FalseBooleans:Tier20,Tier30,Tier40,Tier50,Tier55]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-EventCondition-ZoneLadder-03-SOBAN</SubtypeId>
+			</Id>
+			<Description>
+				[MES Event Condition]
+				[CheckCustomCounters:true]
+				[CustomCounters:SOBAN_Points]
+				[CustomCountersTargets:200]
+				[CounterCompareTypes:GreaterOrEqual]
+				[CustomCounters:SOBAN_Points]
+				[CustomCountersTargets:400]
+				[CounterCompareTypes:Less]
+				[CheckFalseBooleans:true]
+				[FalseBooleans:Tier20]
+				[CheckTrueBooleans:true]
+				[TrueBooleans:Tier30,Tier40,Tier50,Tier55]
+				[AllowAnyTrueBoolean:true]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-EventCondition-ZoneLadder-04-SOBAN</SubtypeId>
+			</Id>
+			<Description>
+				[MES Event Condition]
+				[CheckCustomCounters:true]
+				[CustomCounters:SOBAN_Points]
+				[CustomCountersTargets:400]
+				[CounterCompareTypes:GreaterOrEqual]
+				[CustomCounters:SOBAN_Points]
+				[CustomCountersTargets:600]
+				[CounterCompareTypes:Less]
+				[CheckFalseBooleans:true]
+				[FalseBooleans:Tier30,Tier40,Tier50,Tier55]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-EventCondition-ZoneLadder-05-SOBAN</SubtypeId>
+			</Id>
+			<Description>
+				[MES Event Condition]
+				[CheckCustomCounters:true]
+				[CustomCounters:SOBAN_Points]
+				[CustomCountersTargets:400]
+				[CounterCompareTypes:GreaterOrEqual]
+				[CustomCounters:SOBAN_Points]
+				[CustomCountersTargets:600]
+				[CounterCompareTypes:Less]
+				[CheckFalseBooleans:true]
+				[FalseBooleans:Tier30]
+				[CheckTrueBooleans:true]
+				[TrueBooleans:Tier40,Tier50,Tier55]
+				[AllowAnyTrueBoolean:true]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-EventCondition-ZoneLadder-06-SOBAN</SubtypeId>
+			</Id>
+			<Description>
+				[MES Event Condition]
+				[CheckCustomCounters:true]
+				[CustomCounters:SOBAN_Points]
+				[CustomCountersTargets:600]
+				[CounterCompareTypes:GreaterOrEqual]
+				[CustomCounters:SOBAN_Points]
+				[CustomCountersTargets:800]
+				[CounterCompareTypes:Less]
+				[CheckFalseBooleans:true]
+				[FalseBooleans:Tier40,Tier50,Tier55]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-EventCondition-ZoneLadder-07-SOBAN</SubtypeId>
+			</Id>
+			<Description>
+				[MES Event Condition]
+				[CheckCustomCounters:true]
+				[CustomCounters:SOBAN_Points]
+				[CustomCountersTargets:600]
+				[CounterCompareTypes:GreaterOrEqual]
+				[CustomCounters:SOBAN_Points]
+				[CustomCountersTargets:800]
+				[CounterCompareTypes:Less]
+				[CheckFalseBooleans:true]
+				[FalseBooleans:Tier40]
+				[CheckTrueBooleans:true]
+				[TrueBooleans:Tier50,Tier55]
+				[AllowAnyTrueBoolean:true]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-EventCondition-ZoneLadder-08-SOBAN</SubtypeId>
+			</Id>
+			<Description>
+				[MES Event Condition]
+				[CheckCustomCounters:true]
+				[CustomCounters:SOBAN_Points]
+				[CustomCountersTargets:800]
+				[CounterCompareTypes:GreaterOrEqual]
+				[CustomCounters:SOBAN_Points]
+				[CustomCountersTargets:1000]
+				[CounterCompareTypes:Less]
+				[CheckFalseBooleans:true]
+				[FalseBooleans:Tier50,Tier55]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-EventCondition-ZoneLadder-09-SOBAN</SubtypeId>
+			</Id>
+			<Description>
+				[MES Event Condition]
+				[CheckCustomCounters:true]
+				[CustomCounters:SOBAN_Points]
+				[CustomCountersTargets:800]
+				[CounterCompareTypes:GreaterOrEqual]
+				[CustomCounters:SOBAN_Points]
+				[CustomCountersTargets:1000]
+				[CounterCompareTypes:Less]
+				[CheckFalseBooleans:true]
+				[FalseBooleans:Tier50]
+				[CheckTrueBooleans:true]
+				[TrueBooleans:Tier55]
+				[AllowAnyTrueBoolean:true]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-EventCondition-ZoneLadder-10-SOBAN</SubtypeId>
+			</Id>
+			<Description>
+				[MES Event Condition]
+				[CheckCustomCounters:true]
+				[CustomCounters:SOBAN_Points]
+				[CustomCountersTargets:1000]
+				[CounterCompareTypes:GreaterOrEqual]
+				[CheckFalseBooleans:true]
+				[FalseBooleans:Tier55]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-EventCondition-ZoneLadder-11-SOBAN</SubtypeId>
+			</Id>
+			<Description>
+				[MES Event Condition]
+				[CheckCustomCounters:true]
+				[CustomCounters:SOBAN_Points]
+				[CustomCountersTargets:-1]
+				[CounterCompareTypes:LessOrEqual]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-EventCondition-ZoneLadder-12-SOBAN</SubtypeId>
 			</Id>
 			<Description>
 				[MES Event Condition]
@@ -1189,137 +755,313 @@
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Alliance-EventAction-PointsCeiling-SOBAN</SubtypeId>
+				<SubtypeId>GVK-Alliance-EventAction-ZoneLadder-01-SOBAN</SubtypeId>
+			</Id>
+			<Description>
+				[MES Event Action]
+				[ChangeZoneByName:true]
+				[ZoneNames:SOBAN_Zone]
+				[ZoneRadiusChangeTypes:Set]
+				[ZoneRadiusChangeAmounts:10000]
+				[ChangeBooleans:true]
+				[SetBooleansTrue:Tier10]
+				[SetBooleansFalse:Tier20]
+				[SetBooleansFalse:Tier30]
+				[SetBooleansFalse:Tier40]
+				[SetBooleansFalse:Tier50]
+				[SetBooleansFalse:Tier55]
+				[UseChatBroadcast:true]
+				[UseChatOverrideAuthor:true]
+				[ChatOverrideAuthor:SOBAN]
+				[ChatData:GVK-Alliance-Chat-ZoneDecreased-10km]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-EventAction-ZoneLadder-02-SOBAN</SubtypeId>
+			</Id>
+			<Description>
+				[MES Event Action]
+				[ChangeZoneByName:true]
+				[ZoneNames:SOBAN_Zone]
+				[ZoneRadiusChangeTypes:Set]
+				[ZoneRadiusChangeAmounts:20000]
+				[ChangeBooleans:true]
+				[SetBooleansTrue:Tier20]
+				[SetBooleansFalse:Tier10]
+				[SetBooleansFalse:Tier30]
+				[SetBooleansFalse:Tier40]
+				[SetBooleansFalse:Tier50]
+				[SetBooleansFalse:Tier55]
+				[UseChatBroadcast:true]
+				[UseChatOverrideAuthor:true]
+				[ChatOverrideAuthor:SOBAN]
+				[ChatData:GVK-Alliance-Chat-ZoneIncreased-20km]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-EventAction-ZoneLadder-03-SOBAN</SubtypeId>
+			</Id>
+			<Description>
+				[MES Event Action]
+				[ChangeZoneByName:true]
+				[ZoneNames:SOBAN_Zone]
+				[ZoneRadiusChangeTypes:Set]
+				[ZoneRadiusChangeAmounts:20000]
+				[ChangeBooleans:true]
+				[SetBooleansTrue:Tier20]
+				[SetBooleansFalse:Tier10]
+				[SetBooleansFalse:Tier30]
+				[SetBooleansFalse:Tier40]
+				[SetBooleansFalse:Tier50]
+				[SetBooleansFalse:Tier55]
+				[UseChatBroadcast:true]
+				[UseChatOverrideAuthor:true]
+				[ChatOverrideAuthor:SOBAN]
+				[ChatData:GVK-Alliance-Chat-ZoneDecreased-20km]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-EventAction-ZoneLadder-04-SOBAN</SubtypeId>
+			</Id>
+			<Description>
+				[MES Event Action]
+				[ChangeZoneByName:true]
+				[ZoneNames:SOBAN_Zone]
+				[ZoneRadiusChangeTypes:Set]
+				[ZoneRadiusChangeAmounts:30000]
+				[ChangeBooleans:true]
+				[SetBooleansTrue:Tier30]
+				[SetBooleansFalse:Tier10]
+				[SetBooleansFalse:Tier20]
+				[SetBooleansFalse:Tier40]
+				[SetBooleansFalse:Tier50]
+				[SetBooleansFalse:Tier55]
+				[UseChatBroadcast:true]
+				[UseChatOverrideAuthor:true]
+				[ChatOverrideAuthor:SOBAN]
+				[ChatData:GVK-Alliance-Chat-ZoneIncreased-30km]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-EventAction-ZoneLadder-05-SOBAN</SubtypeId>
+			</Id>
+			<Description>
+				[MES Event Action]
+				[ChangeZoneByName:true]
+				[ZoneNames:SOBAN_Zone]
+				[ZoneRadiusChangeTypes:Set]
+				[ZoneRadiusChangeAmounts:30000]
+				[ChangeBooleans:true]
+				[SetBooleansTrue:Tier30]
+				[SetBooleansFalse:Tier10]
+				[SetBooleansFalse:Tier20]
+				[SetBooleansFalse:Tier40]
+				[SetBooleansFalse:Tier50]
+				[SetBooleansFalse:Tier55]
+				[UseChatBroadcast:true]
+				[UseChatOverrideAuthor:true]
+				[ChatOverrideAuthor:SOBAN]
+				[ChatData:GVK-Alliance-Chat-ZoneDecreased-30km]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-EventAction-ZoneLadder-06-SOBAN</SubtypeId>
+			</Id>
+			<Description>
+				[MES Event Action]
+				[ChangeZoneByName:true]
+				[ZoneNames:SOBAN_Zone]
+				[ZoneRadiusChangeTypes:Set]
+				[ZoneRadiusChangeAmounts:40000]
+				[ChangeBooleans:true]
+				[SetBooleansTrue:Tier40]
+				[SetBooleansFalse:Tier10]
+				[SetBooleansFalse:Tier20]
+				[SetBooleansFalse:Tier30]
+				[SetBooleansFalse:Tier50]
+				[SetBooleansFalse:Tier55]
+				[UseChatBroadcast:true]
+				[UseChatOverrideAuthor:true]
+				[ChatOverrideAuthor:SOBAN]
+				[ChatData:GVK-Alliance-Chat-ZoneIncreased-40km]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-EventAction-ZoneLadder-07-SOBAN</SubtypeId>
+			</Id>
+			<Description>
+				[MES Event Action]
+				[ChangeZoneByName:true]
+				[ZoneNames:SOBAN_Zone]
+				[ZoneRadiusChangeTypes:Set]
+				[ZoneRadiusChangeAmounts:40000]
+				[ChangeBooleans:true]
+				[SetBooleansTrue:Tier40]
+				[SetBooleansFalse:Tier10]
+				[SetBooleansFalse:Tier20]
+				[SetBooleansFalse:Tier30]
+				[SetBooleansFalse:Tier50]
+				[SetBooleansFalse:Tier55]
+				[UseChatBroadcast:true]
+				[UseChatOverrideAuthor:true]
+				[ChatOverrideAuthor:SOBAN]
+				[ChatData:GVK-Alliance-Chat-ZoneDecreased-40km]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-EventAction-ZoneLadder-08-SOBAN</SubtypeId>
+			</Id>
+			<Description>
+				[MES Event Action]
+				[ChangeZoneByName:true]
+				[ZoneNames:SOBAN_Zone]
+				[ZoneRadiusChangeTypes:Set]
+				[ZoneRadiusChangeAmounts:50000]
+				[ChangeBooleans:true]
+				[SetBooleansTrue:Tier50]
+				[SetBooleansFalse:Tier10]
+				[SetBooleansFalse:Tier20]
+				[SetBooleansFalse:Tier30]
+				[SetBooleansFalse:Tier40]
+				[SetBooleansFalse:Tier55]
+				[UseChatBroadcast:true]
+				[UseChatOverrideAuthor:true]
+				[ChatOverrideAuthor:SOBAN]
+				[ChatData:GVK-Alliance-Chat-ZoneIncreased-50km]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-EventAction-ZoneLadder-09-SOBAN</SubtypeId>
+			</Id>
+			<Description>
+				[MES Event Action]
+				[ChangeZoneByName:true]
+				[ZoneNames:SOBAN_Zone]
+				[ZoneRadiusChangeTypes:Set]
+				[ZoneRadiusChangeAmounts:50000]
+				[ChangeBooleans:true]
+				[SetBooleansTrue:Tier50]
+				[SetBooleansFalse:Tier10]
+				[SetBooleansFalse:Tier20]
+				[SetBooleansFalse:Tier30]
+				[SetBooleansFalse:Tier40]
+				[SetBooleansFalse:Tier55]
+				[UseChatBroadcast:true]
+				[UseChatOverrideAuthor:true]
+				[ChatOverrideAuthor:SOBAN]
+				[ChatData:GVK-Alliance-Chat-ZoneDecreased-50km]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-EventAction-ZoneLadder-10-SOBAN</SubtypeId>
+			</Id>
+			<Description>
+				[MES Event Action]
+				[ChangeZoneByName:true]
+				[ZoneNames:SOBAN_Zone]
+				[ZoneRadiusChangeTypes:Set]
+				[ZoneRadiusChangeAmounts:55000]
+				[ChangeBooleans:true]
+				[SetBooleansTrue:Tier55]
+				[SetBooleansFalse:Tier10]
+				[SetBooleansFalse:Tier20]
+				[SetBooleansFalse:Tier30]
+				[SetBooleansFalse:Tier40]
+				[SetBooleansFalse:Tier50]
+				[UseChatBroadcast:true]
+				[UseChatOverrideAuthor:true]
+				[ChatOverrideAuthor:SOBAN]
+				[ChatData:GVK-Alliance-Chat-ZoneIncreased-55km]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-EventAction-ZoneLadder-11-SOBAN</SubtypeId>
+			</Id>
+			<Description>
+				[MES Event Action]
+				[ChangeCounters:true]
+				[SetCounters:SOBAN_Points]
+				[SetCountersAmount:0]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-EventAction-ZoneLadder-12-SOBAN</SubtypeId>
 			</Id>
 			<Description>
 				[MES Event Action]
 				[ChangeCounters:true]
 				[SetCounters:SOBAN_Points]
 				[SetCountersAmount:1200]
+			</Description>
+		</EntityComponent>
+
+		<!-- SOBAN LADDER EVENT: 12 conditions + 12 actions -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-Event-ZoneLadder-SOBAN</SubtypeId>
+			</Id>
+			<Description>
+				[MES Event]
+				[UseEvent:true]
+				[UniqueEvent:false]
+				[StartsReady:true]
+				[MinCooldownMs:5000]
+				[MaxCooldownMs:5001]
+				[UseAnyPassingCondition:true]
+				[ConditionIds:GVK-Alliance-EventCondition-ZoneLadder-01-SOBAN]
+				[ConditionIds:GVK-Alliance-EventCondition-ZoneLadder-02-SOBAN]
+				[ConditionIds:GVK-Alliance-EventCondition-ZoneLadder-03-SOBAN]
+				[ConditionIds:GVK-Alliance-EventCondition-ZoneLadder-04-SOBAN]
+				[ConditionIds:GVK-Alliance-EventCondition-ZoneLadder-05-SOBAN]
+				[ConditionIds:GVK-Alliance-EventCondition-ZoneLadder-06-SOBAN]
+				[ConditionIds:GVK-Alliance-EventCondition-ZoneLadder-07-SOBAN]
+				[ConditionIds:GVK-Alliance-EventCondition-ZoneLadder-08-SOBAN]
+				[ConditionIds:GVK-Alliance-EventCondition-ZoneLadder-09-SOBAN]
+				[ConditionIds:GVK-Alliance-EventCondition-ZoneLadder-10-SOBAN]
+				[ConditionIds:GVK-Alliance-EventCondition-ZoneLadder-11-SOBAN]
+				[ConditionIds:GVK-Alliance-EventCondition-ZoneLadder-12-SOBAN]
+				[ActionIds:GVK-Alliance-EventAction-ZoneLadder-01-SOBAN]
+				[ActionIds:GVK-Alliance-EventAction-ZoneLadder-02-SOBAN]
+				[ActionIds:GVK-Alliance-EventAction-ZoneLadder-03-SOBAN]
+				[ActionIds:GVK-Alliance-EventAction-ZoneLadder-04-SOBAN]
+				[ActionIds:GVK-Alliance-EventAction-ZoneLadder-05-SOBAN]
+				[ActionIds:GVK-Alliance-EventAction-ZoneLadder-06-SOBAN]
+				[ActionIds:GVK-Alliance-EventAction-ZoneLadder-07-SOBAN]
+				[ActionIds:GVK-Alliance-EventAction-ZoneLadder-08-SOBAN]
+				[ActionIds:GVK-Alliance-EventAction-ZoneLadder-09-SOBAN]
+				[ActionIds:GVK-Alliance-EventAction-ZoneLadder-10-SOBAN]
+				[ActionIds:GVK-Alliance-EventAction-ZoneLadder-11-SOBAN]
+				[ActionIds:GVK-Alliance-EventAction-ZoneLadder-12-SOBAN]
+				[ActionExecution:Condition]
 			</Description>
 		</EntityComponent>
 
 		<!-- =================================================== -->
 		<!-- SHARED ZONE STATUS CHAT PROFILES                    -->
 		<!-- =================================================== -->
-
-		<!-- Increased Status Chats -->
-		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
-			<Id>
-				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Alliance-Chat-ZoneIncreased-20km</SubtypeId>
-			</Id>
-			<Description>
-				[RivalAI Chat]
-				[UseChat:true]
-				[StartsReady:true]
-				[Chance:100]
-				[MaxChats:-1]
-				[BroadcastRandomly:false]
-				[Author:Alliance]
-				[Color:White]
-				[ChatMessages:Alliance territory increased to 20km.]
-				[ChatAudio:ArcHudGPSNotification2]
-				[BroadcastChatType:Both]
-				[SendToAllOnlinePlayers:true]
-				[IgnoreAntennaRequirement:true]
-				[IgnoredAntennaRangeOverride:100000]
-			</Description>
-		</EntityComponent>
-
-		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
-			<Id>
-				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Alliance-Chat-ZoneIncreased-30km</SubtypeId>
-			</Id>
-			<Description>
-				[RivalAI Chat]
-				[UseChat:true]
-				[StartsReady:true]
-				[Chance:100]
-				[MaxChats:-1]
-				[BroadcastRandomly:false]
-				[Author:Alliance]
-				[Color:White]
-				[ChatMessages:Alliance territory increased to 30km.]
-				[ChatAudio:ArcHudGPSNotification2]
-				[BroadcastChatType:Both]
-				[SendToAllOnlinePlayers:true]
-				[IgnoreAntennaRequirement:true]
-				[IgnoredAntennaRangeOverride:100000]
-			</Description>
-		</EntityComponent>
-
-		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
-			<Id>
-				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Alliance-Chat-ZoneIncreased-40km</SubtypeId>
-			</Id>
-			<Description>
-				[RivalAI Chat]
-				[UseChat:true]
-				[StartsReady:true]
-				[Chance:100]
-				[MaxChats:-1]
-				[BroadcastRandomly:false]
-				[Author:Alliance]
-				[Color:White]
-				[ChatMessages:Alliance territory increased to 40km.]
-				[ChatAudio:ArcHudGPSNotification2]
-				[BroadcastChatType:Both]
-				[SendToAllOnlinePlayers:true]
-				[IgnoreAntennaRequirement:true]
-				[IgnoredAntennaRangeOverride:100000]
-			</Description>
-		</EntityComponent>
-
-		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
-			<Id>
-				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Alliance-Chat-ZoneIncreased-50km</SubtypeId>
-			</Id>
-			<Description>
-				[RivalAI Chat]
-				[UseChat:true]
-				[StartsReady:true]
-				[Chance:100]
-				[MaxChats:-1]
-				[BroadcastRandomly:false]
-				[Author:Alliance]
-				[Color:White]
-				[ChatMessages:Alliance territory increased to 50km.]
-				[ChatAudio:ArcHudGPSNotification2]
-				[BroadcastChatType:Both]
-				[SendToAllOnlinePlayers:true]
-				[IgnoreAntennaRequirement:true]
-				[IgnoredAntennaRangeOverride:100000]
-			</Description>
-		</EntityComponent>
-
-		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
-			<Id>
-				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Alliance-Chat-ZoneIncreased-55km</SubtypeId>
-			</Id>
-			<Description>
-				[RivalAI Chat]
-				[UseChat:true]
-				[StartsReady:true]
-				[Chance:100]
-				[MaxChats:-1]
-				[BroadcastRandomly:false]
-				[Author:Alliance]
-				[Color:White]
-				[ChatMessages:Alliance territory increased to 55km.]
-				[ChatAudio:ArcHudGPSNotification2]
-				[BroadcastChatType:Both]
-				[SendToAllOnlinePlayers:true]
-				[IgnoreAntennaRequirement:true]
-				[IgnoredAntennaRangeOverride:100000]
-			</Description>
-		</EntityComponent>
-
-		<!-- Decreased Status Chats -->
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
@@ -1342,7 +1084,28 @@
 				[IgnoredAntennaRangeOverride:100000]
 			</Description>
 		</EntityComponent>
-
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-Chat-ZoneIncreased-20km</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Chat]
+				[UseChat:true]
+				[StartsReady:true]
+				[Chance:100]
+				[MaxChats:-1]
+				[BroadcastRandomly:false]
+				[Author:Alliance]
+				[Color:White]
+				[ChatMessages:Alliance territory increased to 20km.]
+				[ChatAudio:ArcHudGPSNotification2]
+				[BroadcastChatType:Both]
+				[SendToAllOnlinePlayers:true]
+				[IgnoreAntennaRequirement:true]
+				[IgnoredAntennaRangeOverride:100000]
+			</Description>
+		</EntityComponent>
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
@@ -1365,7 +1128,28 @@
 				[IgnoredAntennaRangeOverride:100000]
 			</Description>
 		</EntityComponent>
-
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-Chat-ZoneIncreased-30km</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Chat]
+				[UseChat:true]
+				[StartsReady:true]
+				[Chance:100]
+				[MaxChats:-1]
+				[BroadcastRandomly:false]
+				[Author:Alliance]
+				[Color:White]
+				[ChatMessages:Alliance territory increased to 30km.]
+				[ChatAudio:ArcHudGPSNotification2]
+				[BroadcastChatType:Both]
+				[SendToAllOnlinePlayers:true]
+				[IgnoreAntennaRequirement:true]
+				[IgnoredAntennaRangeOverride:100000]
+			</Description>
+		</EntityComponent>
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
@@ -1388,7 +1172,28 @@
 				[IgnoredAntennaRangeOverride:100000]
 			</Description>
 		</EntityComponent>
-
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-Chat-ZoneIncreased-40km</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Chat]
+				[UseChat:true]
+				[StartsReady:true]
+				[Chance:100]
+				[MaxChats:-1]
+				[BroadcastRandomly:false]
+				[Author:Alliance]
+				[Color:White]
+				[ChatMessages:Alliance territory increased to 40km.]
+				[ChatAudio:ArcHudGPSNotification2]
+				[BroadcastChatType:Both]
+				[SendToAllOnlinePlayers:true]
+				[IgnoreAntennaRequirement:true]
+				[IgnoredAntennaRangeOverride:100000]
+			</Description>
+		</EntityComponent>
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
@@ -1411,7 +1216,28 @@
 				[IgnoredAntennaRangeOverride:100000]
 			</Description>
 		</EntityComponent>
-
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-Chat-ZoneIncreased-50km</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Chat]
+				[UseChat:true]
+				[StartsReady:true]
+				[Chance:100]
+				[MaxChats:-1]
+				[BroadcastRandomly:false]
+				[Author:Alliance]
+				[Color:White]
+				[ChatMessages:Alliance territory increased to 50km.]
+				[ChatAudio:ArcHudGPSNotification2]
+				[BroadcastChatType:Both]
+				[SendToAllOnlinePlayers:true]
+				[IgnoreAntennaRequirement:true]
+				[IgnoredAntennaRangeOverride:100000]
+			</Description>
+		</EntityComponent>
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
@@ -1427,6 +1253,28 @@
 				[Author:Alliance]
 				[Color:White]
 				[ChatMessages:Alliance territory decreased to 50km.]
+				[ChatAudio:ArcHudGPSNotification2]
+				[BroadcastChatType:Both]
+				[SendToAllOnlinePlayers:true]
+				[IgnoreAntennaRequirement:true]
+				[IgnoredAntennaRangeOverride:100000]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-Chat-ZoneIncreased-55km</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Chat]
+				[UseChat:true]
+				[StartsReady:true]
+				[Chance:100]
+				[MaxChats:-1]
+				[BroadcastRandomly:false]
+				[Author:Alliance]
+				[Color:White]
+				[ChatMessages:Alliance territory increased to 55km.]
 				[ChatAudio:ArcHudGPSNotification2]
 				[BroadcastChatType:Both]
 				[SendToAllOnlinePlayers:true]

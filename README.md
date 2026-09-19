@@ -13,6 +13,19 @@ Global Counters:
 - `KHAANEPH_Points`
 - `SOBAN_Points`
 
+Alliance zone size is driven by these counters through `GVK-Alliance-Events-ZoneSize.sbc` (one MES Event per faction, 12 conditions mapped 1:1 to 12 actions):
+
+| Points | Zone radius |
+| --- | --- |
+| `< 200` | 10 km |
+| `200 - 399` | 20 km |
+| `400 - 599` | 30 km |
+| `600 - 799` | 40 km |
+| `800 - 999` | 50 km |
+| `>= 1000` | 55 km |
+
+Counters are clamped to a floor of 0 and a ceiling of 1200 every evaluation cycle, and every chat message names the direction the territory moved.
+
 Run command `/MES.Debug.ChangeCounter.Value1.Value2` to adjust counters. This is an additive command, so use positive or negative ammounts.
 
 
@@ -125,6 +138,15 @@ Reputation can be changed using a plugin (I think it is Crunch Utils, or might b
 23. Use `[IgnoreCleanupRules:true]` on all NPCs with aggressive MES CleanUp settings to help delete debris that doesn't have an active RAI block.
 24. Use `[DebugMessage: enter text here]` in action profiles for a quick way to send a message to chat for testing purposes.
 25. Do not use RazeBlocks on an RAI remote control block; doing so can cause a crash at UpdateShape() if the block is split from its parent grid.
+26. `MaxActions` is one-way. Once `TriggerCount >= MaxActions` the trigger is force-disabled on every evaluation and RivalAI has no tag to reset the count, so `[EnableTriggers:true]` cannot revive it. Any trigger that must fire again (3h cooldowns, repeatable terminals) must use `[MaxActions:-1]` and disable itself from its own action.
+27. `[ActionExecution:Condition]` with `[UseAnyPassingCondition:true]` runs only the action whose index matches the last satisfied condition, so `ConditionIds` and `ActionIds` must be index-aligned and equal in length. This is how one event can host a whole tier ladder instead of one event per tier. Order matters: list clamp conditions last so a clamp wins the tie against a simultaneous tier change.
+28. Direction-aware MES conditions: derive entry direction from stored booleans instead of the counter alone. UP = in-range AND this tier false AND every tier above false; DOWN = in-range AND this tier false AND at least one tier above true (`[AllowAnyTrueBoolean:true]`). This also keeps a fresh world silent instead of announcing a drop to the base tier.
+29. RivalAI `[SetBooleansTrue/False]` and `[SetCounters]/[IncreaseCounters]` are grid-scoped, not sandbox. Anything that a MES Event, plugin, or HUD must read needs the `[SetSandboxBooleansTrue/False]`, `[IncreaseSandboxCounters]` etc. variants instead.
+30. Preset base deployment (`GVK-Alliance-PresetBases-*`) keeps one live base per site purely through the SpawnCondition RC code gate: `[RemoteControlCode:GVK-Alliance-Base]` with `[RemoteControlCodeMinDistance:1100]`. 1100 must stay above `2 x` the spawner `MaxDistance` (500) or a redeploy can land outside the gate; tower sites are 7.9 km apart at minimum, so the gate never leaks across sites. There is no per-site cooldown: the site frees itself when the base grid is destroyed, and pressing the terminal while a base exists is a silent no-op (the base's own "constructed" chat is the success feedback).
+31. MES Event chat messages only substitute `{PlayerName}`. `IdsReplacer` tokens (`{Faction}`, `{EncounterDisplayName}`, sandbox counters, zone names) are applied to sandbox variable names/values, zone names, spawn replace keys and `DebugChatMessage`, but not to event chat text.
+32. MES zone radius vs Zone 0: the SOBAN zone centre is 37.2 km and KHAANEPH is 47.0 km from Crossroads Tower, so the 40-55 km tiers overlap the starter hub. NPC spawning there is already gated server-side (COALITION only), but hub players will see alliance zone enter/leave announcements.
+33. Known upstream MES issue: `TriggerSystem.ProcessButtonTriggers` skips panels on other grids only when they are in the same logical group, so a player-built panel with a matching name can fire another grid's triggers. Needs an MES-side fix; SBC workarounds are limited to tightening the trigger's player/zone/reputation conditions.
+
 
 ## Helpful MES examples:
 - Enenra's MSB https://github.com/enenra/mes-shared-behaviors

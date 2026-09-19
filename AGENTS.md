@@ -34,7 +34,7 @@ MES Events run globally via `EventManager` (server-authoritative, no physical gr
 
 ## 3. SBC XML Deserialization Quirks
 
-### Strict Single `<SubtypeId>` per `<Id>` Block
+### A. Strict Single `<SubtypeId>` per `<Id>` Block (Child Tag Style)
 Keen's XML deserializer strictly accepts **only one** `<SubtypeId>` per `<Id>` block:
 ```xml
 <!-- INVALID: Second SubtypeId is discarded by deserializer; action fails to load -->
@@ -67,14 +67,65 @@ Keen's XML deserializer strictly accepts **only one** `<SubtypeId>` per `<Id>` b
 - **Symptom**: `MES / Error: Could Not Load Action Profile From Trigger: : [SubtypeId]`.
 - **Rule**: Every distinct component, action, trigger, or condition must have its own dedicated definition block.
 
+### B. Strict Single `<Id>` per `<Prefab>` / Definition Block (Attribute Tag Style)
+In prefab and block definitions using self-closing attribute tags (`<Id Type="..." Subtype="..." />`), having multiple `<Id>` elements inside a `<Prefab>` causes Keen to only read the first one and discard subsequent ones:
+```xml
+<!-- INVALID: Deserializer reads the first Id, registering the prefab as Nav Tower instead of Base Site Tower -->
+<Prefab xsi:type="MyObjectBuilder_PrefabDefinition">
+  <Id Type="MyObjectBuilder_PrefabDefinition" Subtype="NST GAALSIEN Nav Tower" />
+  <Id Type="MyObjectBuilder_PrefabDefinition" Subtype="NST Base Site Tower" />
+  <CubeGrids>...</CubeGrids>
+</Prefab>
+```
+- **Symptom**: `Spawn group initialization: Could not get prefab [SubtypeId]`.
+- **Rule**: When cloning prefabs, always replace the existing `<Id>` tag cleanly. Never leave duplicate `<Id>` elements.
+
+### C. Ban XML Comments Inside `<Description>` Tags
+Keen deserializes `<Description>` via `ReadElementString()`, which strictly expects plain text:
+```xml
+<!-- CRITICAL FAILURE: Throws System.Xml.XmlException: Unexpected node type Comment -->
+<Description>
+  [RivalAI Behavior]
+  <!-- Zone Presence Tracking -->
+  [Triggers:MyTrigger]
+</Description>
+```
+```xml
+<!-- VALID: Use RivalAI comment tag syntax instead -->
+<Description>
+  [RivalAI Behavior]
+  [//Zone Presence Tracking]
+  [Triggers:MyTrigger]
+</Description>
+```
+- **Symptom**: `System.Xml.XmlException: Unexpected node type Comment. ReadElementString method can only be called on elements with simple or empty content. Failed to deserialize file... MOD_CRITICAL_ERROR / MOD SKIPPED`.
+- **Rule**: Never use `<!-- ... -->` inside `<Description>` or any text element deserialized by `ReadElementString()`. Use `[//Comment]` syntax.
+
+### D. Mandatory Pre-Build Automated XML Audit
+Before running `dotnet build` or shipping SBC changes, execute this dual-check script in PowerShell:
+```powershell
+Get-ChildItem -Path Content\Data -Filter *.sbc -Recurse | ForEach-Object {
+    [xml]$doc = Get-Content -LiteralPath $_.FullName -Raw
+    $badChildIds = $doc.SelectNodes("//Id[count(SubtypeId) > 1]")
+    if ($badChildIds.Count -gt 0) { Write-Host "DUPLICATE SubtypeId IN: $($_.FullName)" }
+    $badAttrIds = $doc.SelectNodes("//*[count(Id) > 1]")
+    if ($badAttrIds.Count -gt 0) { Write-Host "DUPLICATE Id TAG IN: $($_.FullName)" }
+}
+```
+
 ---
 
 ## 4. The MES & RivalAI Boolean Master-Gate Architecture
 
-In both MES Event Actions/Conditions and RivalAI Actions/Conditions, sub-configuration tags (lists of variables, targets, coordinates, amounts) **do nothing on their own**. Almost every feature is guarded by a boolean master-switch tag that defaults to `false`.
+In **MES Event** Actions/Conditions, sub-configuration tags (lists of variables, targets, coordinates, amounts) **do nothing on their own**. Almost every feature is guarded by a boolean master-switch tag that defaults to `false`.
 
 > [!CAUTION]
-> **The Golden Rule**: Specifying child parameters (e.g. `[SetCounters:...]`, `[TrueBooleans:...]`, `[SpawnCoords:...]`) without their parent boolean tag (e.g. `[ChangeCounters:true]`, `[CheckTrueBooleans:true]`, `[SpawnEncounter:true]`) causes **silent execution failure**. MES logs zero errors, but the entire block is skipped.
+> **The Golden Rule (MES Events only)**: Specifying child parameters (e.g. `[SetCounters:...]`, `[TrueBooleans:...]`, `[SpawnCoords:...]`) without their parent boolean tag (e.g. `[ChangeCounters:true]`, `[CheckTrueBooleans:true]`, `[SpawnEncounter:true]`) causes **silent execution failure**. MES logs zero errors, but the entire block is skipped.
+>
+> **RivalAI has NO master gates.** There is no `ChangeBooleans`/`ChangeCounters` field anywhere in `Behavior\Subsystems\Trigger\` - RivalAI action tags are self-gating (an empty list is a no-op), so `[SetBooleansTrue:X]` alone is valid. Do not add MES-style gates to `[MES AI Action]` profiles.
+
+> [!CAUTION]
+> **Grid vs Sandbox variables are different namespaces.** RivalAI `[SetBooleansTrue/False]`, `[SetCounters]`, `[IncreaseCounters]`, `[DecreaseCounters]`, `[ResetCounters]` write to the **grid-scoped** behavior settings (`StoredSettings.StoredCustomBooleans`/`StoredCustomCounters`) and are read back only by grid conditions. Sandbox (session-wide) storage uses the separate `[SetSandboxBooleansTrue/False]`, `[IncreaseSandboxCounters]`, `[DecreaseSandboxCounters]`, `[ResetSandboxCounters]`, `[SetSandboxCounters(+Values)]` tags, which is the same storage MES Event actions/conditions use. Mixing them up produces conditions that never become true.
 
 > [!IMPORTANT]
 > **Non-Exhaustive Reference**: The tables below document the primary actions and conditions used across this mod, but this is a **non-exhaustive list**. Virtually every subsystem in MES Event Actions/Conditions and RivalAI Actions/Conditions implements this exact same master-gate scheme. When writing or debugging any tag group, assume a parent boolean gate is required and verify it against the local MES source code.
@@ -112,10 +163,14 @@ In both MES Event Actions/Conditions and RivalAI Actions/Conditions, sub-configu
 | `[CheckMainEventDaysPassed:true]`| `[DaysPassed:]` | World age / session lifespan progression. |
 
 ### C. RivalAI Actions (`ActionSystem.cs`)
-| Master Gating Tag (Required) | Dependent Child Tags Enabled | Purpose / Effect |
+
+**No master gates** - the tag itself is the switch.
+
+| Tag | Reads / writes | Purpose / Effect |
 | :--- | :--- | :--- |
-| `[ChangeCounters:true]` | `[SetCounters:]`, `[IncreaseCounters:]`, `[DecreaseCounters:]`, `[ResetCounters:]` | Mutating sandbox counters from grid blocks. |
-| `[ChangeBooleans:true]` | `[SetBooleansTrue:]`, `[SetBooleansFalse:]` | Mutating sandbox booleans from grid blocks. |
+| `[SetBooleansTrue:]`, `[SetBooleansFalse:]` | Grid settings (`_settings.SetCustomBool`) | Grid-scoped flags, readable only by grid conditions (`[CheckTrueBooleans]/[CheckFalseBooleans]`). |
+| `[SetCounters:]` + `[SetCountersValues:]`, `[IncreaseCounters:]` + `[IncreaseCountersAmount:]`, `[DecreaseCounters:]` + `[DecreaseCountersAmount:]`, `[ResetCounters:]` | Grid settings | Grid-scoped counters. |
+| `[SetSandboxBooleansTrue:]`, `[SetSandboxBooleansFalse:]`, `[IncreaseSandboxCounters:]` + `[IncreaseSandboxCountersAmount:]`, `[DecreaseSandboxCounters:]` + `[DecreaseSandboxCountersAmount:]`, `[ResetSandboxCounters:]`, `[SetSandboxCounters:]` + `[SetSandboxCountersValues:]` | Session storage | Sandbox variants - the same namespace MES Events read. |
 | `[SpawnEncounter:true]` | `[Spawner:ProfileId]` | Spawning reinforcements or escorts. |
 | `[ChangeZoneByName:true]` | `[ZoneNames:]`, `[ZoneRadiusChangeTypes:]`, `[ZoneRadiusChangeAmounts:]` | Modifying dynamic zones from grid triggers. |
 | `[ToggleEvents:true]` | `[ToggleEventIds:]`, `[ToggleEventIdModes:]` | Activating/deactivating MES Events from grid. |
@@ -124,23 +179,43 @@ In both MES Event Actions/Conditions and RivalAI Actions/Conditions, sub-configu
 | `[BroadcastCommandProfiles:true]`| `[CommandProfileIds:]` | Transmitting antenna command codes to nearby NPCs. |
 
 ### D. RivalAI Conditions (`ConditionReferenceProfile.cs`)
+
 | Master Gating Tag (Required) | Dependent Child Tags Evaluated | Purpose / Effect |
 | :--- | :--- | :--- |
-| `[CheckCustomCounters:true]` | `[CustomCounters:]`, `[CustomCountersTargets:]`, `[CounterCompareTypes:]` | Evaluating sandbox counter variables. |
-| `[CheckTrueBooleans:true]` | `[TrueBooleans:]`, `[AllowAnyTrueBoolean:true/false]` | Evaluating sandbox true booleans. |
-| `[CheckFalseBooleans:true]` | `[FalseBooleans:]`, `[AllowAnyFalseBoolean:true/false]` | Evaluating sandbox false booleans. |
+| `[CheckCustomCounters:true]` | `[CustomCounters:]`, `[CustomCountersTargets:]`, `[CounterCompareTypes:]` | Evaluating **grid-scoped** counters. |
+| `[CheckCustomSandboxCounters:true]` | `[CustomSandboxCounters:]`, `[CustomSandboxCountersTargets:]`, `[SandboxCounterCompareTypes:]` | Evaluating **sandbox** counters. |
+| `[CheckTrueBooleans:true]` | `[TrueBooleans:]`, `[AllowAnyTrueBoolean:true/false]` | Evaluating grid-scoped true booleans (`AllowAnyTrueBoolean` = OR over the list). |
+| `[CheckFalseBooleans:true]` | `[FalseBooleans:]`, `[AllowAnyFalseBoolean:true/false]` | Evaluating grid-scoped false booleans (list = AND). |
 | `[CheckThreatScore:true]` | `[ThreatScoreAmount:]`, `[ThreatScoreDistance:]` | Evaluating threat of nearby player grids. |
 | `[CheckPlayerNear:true]` | `[PlayerNearDistance:]` | Checking player distance from remote control. |
-| `[CheckPlayerReputation:true]` | `[CheckReputationFaction:]`, `[CheckReputationMin:]`, `[CheckReputationMax:]` | Checking player faction reputation. |
+| `[CheckPlayerReputation:true]` | `[CheckReputationwithFaction:]`, `[MinPlayerReputation:]`, `[MaxPlayerReputation:]` | Checking player faction reputation (equal list counts required). |
 | `[CheckHealthPercentage:true]` | `[HealthPercentageTrigger:]`, `[HealthPercentageCompareType:]` | Triggering on grid damage / block loss. |
 | `[CheckWeaponsPercentage:true]`| `[WeaponsPercentageTrigger:]`, `[WeaponsPercentageCompareType:]` | Triggering on loss of defensive armament. |
 
-### E. List Count Alignment Rules
+### E. Trigger Gotchas (`TriggerProfile.cs`, `TriggerSystem.cs`)
+- `[MaxActions:N]` is **one-way**: once `TriggerCount >= N` the trigger is force-disabled on every evaluation and there is **no reset tag** in RivalAI. Any re-enableable trigger (3h cooldowns, repeatable terminals) must use `[MaxActions:-1]` and disable itself from its own action.
+- `[UseTrigger:false]` skips the trigger entirely, including `[Type:Timer]`. Re-enabling via `[EnableTriggers:true]` + `[ResetCooldownTimeOfTriggers:true]` restarts the full cooldown from that moment.
+- `[Type:ButtonPress]` is event-driven (fires only on a real press, no polling); `[ButtonPanelIndex:-1]` = any button on the named panel. A 1s `[MinCooldownMs:1000]`/`[MaxCooldownMs:1001]` absorbs double-press/duplicate events.
+- Grid filters are loose: `ProcessButtonTriggers` skips panels on *other* grids only when they are in the same logical group, so a player-built panel with a matching name can fire another grid's triggers (known MES issue).
+
+### F. MES Event Execution Model
+- `[UseAnyPassingCondition:true]` + `[ActionExecution:Condition]` runs **only** `Actions[RequiredConditionIndex]`, where the index is the *last* satisfied condition. `ConditionIds` and `ActionIds` must therefore be index-aligned and equal in length, and order-sensitive rules (e.g. clamps that must win against a tier change) rely on list position.
+- `[UniqueEvent:false]` is required for any event that must fire more than once (default is `true`).
+- Event chat profiles support only the `{PlayerName}` token in this path; `IdsReplacer` tokens (`{Faction}`, `{EncounterDisplayName}`, etc.) are **not** applied to MES Event chat messages.
+- SpawnCondition `[UseRemoteControlCodeRestrictions:true]` + `[RemoteControlCode:]` + `[RemoteControlCodeMinDistance:]` blocks spawning within that distance of any grid registered with the code (`CoreBehavior` registers the RC when the NPC behavior starts; destroyed grids stop blocking). Set the min distance **greater than 2x the spawner's MaxDistance**, otherwise a redeploy can land outside the gate.
+
+
+### G. List Count Alignment Rules
 All paired lists in Event Actions must have strictly equal element counts:
 - `SetCounters` count must equal `SetCountersAmount` count.
 - `IncreaseCounters` count must equal `IncreaseCountersAmount` count.
 - `DecreaseCounters` count must equal `DecreaseCountersAmount` count.
 - For `[SpawnEncounter:true]`: `SpawnData` count must equal `SpawnCoords` count and `SpawnFactionTags` count.
+- For `[ActionExecution:Condition]`: `ConditionIds` count must equal `ActionIds` count, index for index (see F).
+- In `[CheckCustomCounters:true]`: `CustomCounters` count must equal `CustomCountersTargets` count. `CounterCompareTypes` is optional per entry but silently defaults to `GreaterOrEqual`, so state it explicitly for every entry.
+
+### H. Profile Header Tags
+Profile type is detected from a header line inside `<Description>`; `ProfileManager` accepts both the legacy `[RivalAI ...]` and the current `[MES AI ...]` aliases. New files use `[MES AI Behavior|Trigger|Action|Condition|TriggerGroup|Chat|Spawn]` plus the MES-side headers `[MES Event]`, `[MES Event Condition]`, `[MES Event Action]`, `[MES Player Condition]`, `[MES Zone]`, `[MES Zone Conditions]`, `[MES Spawn Conditions]`, `[MES Manipulation]`. RivalAI and MES were separate mods before they merged, so the legacy names carry no extra meaning - they are compatibility aliases only.
 
 ---
 
