@@ -1,4 +1,5 @@
-<?xml version="1.0" encoding="utf-16"?>
+﻿<?xml version="1.0" encoding="utf-16"?>
+	<!-- GVK Store Items: per store-class file. One StoreItem lives in exactly one file - cross-class exclusivity is enforced by file placement, not by profile tags. Profile tags ([RequiredOrders:] / [RequiredOffers:] / [Offers:] / [Orders:]) only pin items into stores. -->
 <StoreItemsContainer xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
 	<!--
 	Available ItemType:
@@ -627,6 +628,55 @@
 				<MaxPriceMultiplier>100</MaxPriceMultiplier>
 				<MinAmount>30</MinAmount>
 				<MaxAmount>50</MaxAmount>
+			</Order>
+		</StoreItem>
+		<!-- GVK Recovery Items - one exclusive order per main trade station -->
+		<StoreItem>
+			<StoreItemId>Other_RecoveryOrder_EncryptedDataStorage</StoreItemId>
+			<ItemType>Component</ItemType>
+			<ItemSubtypeId>GVK_Recovery_EncryptedDataStorage</ItemSubtypeId>
+			<Order>
+				<CustomPrice>4500000</CustomPrice>
+				<MinPriceMultiplier>100</MinPriceMultiplier>
+				<MaxPriceMultiplier>100</MaxPriceMultiplier>
+				<MinAmount>1</MinAmount>
+				<MaxAmount>2</MaxAmount>
+			</Order>
+		</StoreItem>
+		<StoreItem>
+			<StoreItemId>Other_RecoveryOrder_InterceptedTransmissions</StoreItemId>
+			<ItemType>Component</ItemType>
+			<ItemSubtypeId>GVK_Recovery_InterceptedTransmissions</ItemSubtypeId>
+			<Order>
+				<CustomPrice>4500000</CustomPrice>
+				<MinPriceMultiplier>100</MinPriceMultiplier>
+				<MaxPriceMultiplier>100</MaxPriceMultiplier>
+				<MinAmount>1</MinAmount>
+				<MaxAmount>2</MaxAmount>
+			</Order>
+		</StoreItem>
+		<StoreItem>
+			<StoreItemId>Other_RecoveryOrder_ResearchMaterials</StoreItemId>
+			<ItemType>Component</ItemType>
+			<ItemSubtypeId>GVK_Recovery_ResearchMaterials</ItemSubtypeId>
+			<Order>
+				<CustomPrice>5500000</CustomPrice>
+				<MinPriceMultiplier>100</MinPriceMultiplier>
+				<MaxPriceMultiplier>100</MaxPriceMultiplier>
+				<MinAmount>1</MinAmount>
+				<MaxAmount>2</MaxAmount>
+			</Order>
+		</StoreItem>
+		<StoreItem>
+			<StoreItemId>Other_RecoveryOrder_TechnicalBlueprints</StoreItemId>
+			<ItemType>Component</ItemType>
+			<ItemSubtypeId>GVK_Recovery_TechnicalBlueprints</ItemSubtypeId>
+			<Order>
+				<CustomPrice>5500000</CustomPrice>
+				<MinPriceMultiplier>100</MinPriceMultiplier>
+				<MaxPriceMultiplier>100</MaxPriceMultiplier>
+				<MinAmount>1</MinAmount>
+				<MaxAmount>2</MaxAmount>
 			</Order>
 		</StoreItem>
 		<StoreItem>
