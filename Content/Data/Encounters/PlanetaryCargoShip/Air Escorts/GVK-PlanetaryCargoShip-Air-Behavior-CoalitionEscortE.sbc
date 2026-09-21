@@ -1,53 +1,56 @@
-<?xml version="1.0"?>
+﻿<?xml version="1.0"?>
 <Definitions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
 	<EntityComponents>
 		<!-- Route E, Aerial Crossroads to Skyport to Sevastapol -->
-		<!-- This uses a SandboxCounter for its waypoint tracking. Only one of this behavior should ever be active at a time. -->
-		<!-- TO DO: Add wait time at Skyport, update antenna name to say Sevastapol after reaching Skyport), add coalition strike fighter chance in Z3 -->
+		<!-- This uses a SandboxCounter for its waypoint tracking. Only one of this behavior should ever be active at a time. 
+		 	TODO: This use of sandbox counter may no longer be needed since Tinsoldier fixed behavior counters not saving-->
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
 				<SubtypeId>GVK-CargoShip-Air-COALITION-Behavior-EscortE</SubtypeId>
 			</Id>
 			<Description>
-			[RivalAI Behavior]
-			[BehaviorName:CargoShip]
-			[WeaponSystem:GVK-Universal-Weapons-All]
-			[UsePlayerDistanceTimer:true]
-			[PlayerDistanceTimerTrigger:3600]
-			[PlayerDistanceTrigger:4000]
-			[UseRetreatTimer:false]
-			[RetreatTimerTrigger:3600]
-			[UseNoTargetTimer:false]
-			[RetreatDespawnDistance:3000]
-			[AutopilotData:GVK-CargoShip-Air-COALITION-EscortPrimaryAutopilot]
-			[SecondaryAutopilotData:GVK-CargoShip-Air-COALITION-EscortSecondaryAutopilot]
-			[TargetData:GVK-Universal-Target-Sevastapol]
-			[Triggers:GVK-Universal-Trigger-UneditableOnSpawn]
-			[Triggers:GVK-Universal-Trigger-EditableOnCompromised]
-			[Triggers:GVK-Universal-Trigger-TargetAttacker]
-			[Triggers:GVK-Universal-Trigger-TurretTarget]
-			[Triggers:GVK-Universal-Trigger-WeaponsToMaxRange]
-			[Triggers:GVK-CargoShip-Air-COALITION-Trigger-EscortOnSpawnE]
-			[Triggers:GVK-CargoShip-Air-COALITION-Trigger-EscortAddWaypointsE]
-			[Triggers:GVK-CargoShip-Air-COALITION-Trigger-EscortArriveAtSkyport]
-			[Triggers:GVK-CargoShip-Air-COALITION-Trigger-EscortArriveAtWaypoint]
-			[Triggers:GVK-CargoShip-Air-COALITION-Trigger-EscortLeaveWaypoint]
-			[Triggers:GVK-CargoShip-Air-COALITION-Trigger-EscortBeaconDisabled]
-			[Triggers:GVK-CargoShip-Air-COALITION-Trigger-EscortCompromised]
-			[Triggers:GVK-CargoShip-Air-COALITION-Trigger-EscortAttacked]
-			[Triggers:GVK-CargoShip-Air-COALITION-Trigger-EscortPlayerNear]
-			[Triggers:GVK-CargoShip-Air-COALITION-Trigger-EscortPlayerStillNear]
-			[Triggers:GVK-CargoShip-Air-COALITION-Trigger-EscortPlayerNotNear]
-			[Triggers:GVK-CargoShip-Air-COALITION-Trigger-EscortInsideZ1]
-			[Triggers:GVK-CargoShip-Air-COALITION-Trigger-EscortEnemySpawnsZ1]
-			[Triggers:GVK-CargoShip-Air-COALITION-Trigger-EscortInsideZ2]
-			[Triggers:GVK-CargoShip-Air-COALITION-Trigger-EscortEnemySpawnsZ2]
-			[Triggers:GVK-CargoShip-Air-COALITION-Trigger-EscortInsideZ3]
-			[Triggers:GVK-CargoShip-Air-COALITION-Trigger-EscortEnemySpawnsZ3]
-			[Triggers:GVK-CargoShip-Air-COALITION-Trigger-EscortSuccessTargetE]
-			[Triggers:GVK-CargoShip-Air-COALITION-Trigger-EscortSuccessCounterE]
-			[RemoteControlCode:COALITIONRouteE]
+				[RivalAI Behavior]
+				[BehaviorName:CargoShip]
+				[WeaponSystem:GVK-Universal-Weapons-All]
+				[UsePlayerDistanceTimer:false]
+				[PlayerDistanceTimerTrigger:3600]
+				[PlayerDistanceTrigger:4000]
+				[UseRetreatTimer:false]
+				[RetreatTimerTrigger:3600]
+				[UseNoTargetTimer:false]
+				[RetreatDespawnDistance:3000]
+				[AutopilotData:GVK-CargoShip-Air-COALITION-EscortPrimaryAutopilot]
+				[SecondaryAutopilotData:GVK-CargoShip-Air-COALITION-EscortSecondaryAutopilot]
+				[TargetData:GVK-Universal-Target-Sevastapol]
+				[Triggers:GVK-Universal-Trigger-UneditableOnSpawn]
+				[Triggers:GVK-Universal-Trigger-EditableOnCompromised]
+				[Triggers:GVK-Universal-Trigger-TargetAttacker]
+				[Triggers:GVK-Universal-Trigger-TurretTarget]
+				[Triggers:GVK-Universal-Trigger-WeaponsToMaxRange]
+				[Triggers:GVK-CargoShip-Air-COALITION-Trigger-EscortOnSpawnE]
+				[Triggers:GVK-CargoShip-Air-COALITION-Trigger-EscortAddWaypointsE]
+				[Triggers:GVK-CargoShip-Air-COALITION-Trigger-EscortArriveAtSkyport]
+				[Triggers:GVK-CargoShip-Air-COALITION-Trigger-EscortArriveAtWaypoint]
+				[Triggers:GVK-CargoShip-Air-COALITION-Trigger-EscortLeaveWaypoint]
+				[Triggers:GVK-CargoShip-Air-COALITION-Trigger-EscortBeaconDisabled]
+				[Triggers:GVK-CargoShip-Air-COALITION-Trigger-EscortCompromised]
+				[Triggers:GVK-CargoShip-Air-COALITION-Trigger-EscortDespawn]
+				[Triggers:GVK-CargoShip-Air-COALITION-Trigger-EscortDespawnMES]
+				[Triggers:GVK-CargoShip-Air-COALITION-Trigger-EscortLostE]
+				[Triggers:GVK-CargoShip-Air-COALITION-Trigger-EscortAttacked]
+				[Triggers:GVK-CargoShip-Air-COALITION-Trigger-EscortPlayerNear]
+				[Triggers:GVK-CargoShip-Air-COALITION-Trigger-EscortPlayerStillNear]
+				[Triggers:GVK-CargoShip-Air-COALITION-Trigger-EscortPlayerNotNear]
+				[Triggers:GVK-CargoShip-Air-COALITION-Trigger-EscortInsideZ1]
+				[Triggers:GVK-CargoShip-Air-COALITION-Trigger-EscortEnemySpawnsZ1]
+				[Triggers:GVK-CargoShip-Air-COALITION-Trigger-EscortInsideZ2]
+				[Triggers:GVK-CargoShip-Air-COALITION-Trigger-EscortEnemySpawnsZ2]
+				[Triggers:GVK-CargoShip-Air-COALITION-Trigger-EscortInsideZ3]
+				[Triggers:GVK-CargoShip-Air-COALITION-Trigger-EscortEnemySpawnsZ3]
+				[Triggers:GVK-CargoShip-Air-COALITION-Trigger-EscortSuccessTargetE]
+				[Triggers:GVK-CargoShip-Air-COALITION-Trigger-EscortSuccessCounterE]
+				[RemoteControlCode:COALITIONRouteE]
 			</Description>
 		</EntityComponent>
 		<!-- Escort Transport Ship Primary Autopilot-->
@@ -57,34 +60,34 @@
 				<SubtypeId>GVK-CargoShip-Air-COALITION-EscortPrimaryAutopilot</SubtypeId>
 			</Id>
 			<Description>
-			[RivalAI Autopilot]
-			[RotationMultiplier:0.75]
-			[LimitRotationSpeed:true]
-			[MaxRotationMagnitude:0.25]
-			[DisableInertiaDampeners:false]
-			[FlyLevelWithGravity:true]
-			[LevelWithGravityWhenIdle:true]
-			[IdealPlanetAltitude:500]
-			[MinimumPlanetAltitude:50]
-			[AltitudeTolerance:100]
-			[UseSurfaceHoverThrustMode:false]
-			[HoverPathStepDistance:100]
-			[UseVelocityCollisionEvasion:false]
-			[CollisionEvasionWaypointDistance:200]
-			[CollisionEvasionResumeDistance:100]
-			[CollisionEvasionResumeTime:10]
-			[CollisionEvasionWaypointCalculatedAwayFromEntity:true]
-			[CollisionEvasionWaypointFromEntityMaxAngle:90]
-			[WaypointAbandonTimeTrigger:9999999]
-			[WaypointTolerance:95]
-			[IdealMinSpeed:35]
-			[IdealMaxSpeed:50]
-			[MaxSpeedTolerance:5]
-			[SlowDownOnWaypointApproach:true]
-			[WaypointWaitTimeTrigger:60]
-			[ExtraSlowDownDistance:500]
-			[AngleAllowedForForwardThrust:90]
-			[MaxVelocityAngleForSpeedControl:1000]
+				[RivalAI Autopilot]
+				[RotationMultiplier:0.75]
+				[LimitRotationSpeed:true]
+				[MaxRotationMagnitude:0.25]
+				[DisableInertiaDampeners:false]
+				[FlyLevelWithGravity:true]
+				[LevelWithGravityWhenIdle:true]
+				[IdealPlanetAltitude:500]
+				[MinimumPlanetAltitude:50]
+				[AltitudeTolerance:100]
+				[UseSurfaceHoverThrustMode:false]
+				[HoverPathStepDistance:100]
+				[UseVelocityCollisionEvasion:false]
+				[CollisionEvasionWaypointDistance:200]
+				[CollisionEvasionResumeDistance:100]
+				[CollisionEvasionResumeTime:10]
+				[CollisionEvasionWaypointCalculatedAwayFromEntity:true]
+				[CollisionEvasionWaypointFromEntityMaxAngle:90]
+				[WaypointAbandonTimeTrigger:9999999]
+				[WaypointTolerance:95]
+				[IdealMinSpeed:35]
+				[IdealMaxSpeed:50]
+				[MaxSpeedTolerance:5]
+				[SlowDownOnWaypointApproach:true]
+				[WaypointWaitTimeTrigger:60]
+				[ExtraSlowDownDistance:500]
+				[AngleAllowedForForwardThrust:90]
+				[MaxVelocityAngleForSpeedControl:1000]
 			</Description>
 		</EntityComponent>
 		<!-- Escort Transport Ship Secondary Autopilot-->
@@ -94,34 +97,34 @@
 				<SubtypeId>GVK-CargoShip-Air-COALITION-EscortSecondaryAutopilot</SubtypeId>
 			</Id>
 			<Description>
-			[RivalAI Autopilot]
-			[RotationMultiplier:0.75]
-			[LimitRotationSpeed:true]
-			[MaxRotationMagnitude:0.25]
-			[DisableInertiaDampeners:false]
-			[FlyLevelWithGravity:true]
-			[LevelWithGravityWhenIdle:true]
-			[IdealPlanetAltitude:500]
-			[MinimumPlanetAltitude:50]
-			[AltitudeTolerance:100]
-			[UseSurfaceHoverThrustMode:false]
-			[HoverPathStepDistance:100]
-			[UseVelocityCollisionEvasion:false]
-			[CollisionEvasionWaypointDistance:200]
-			[CollisionEvasionResumeDistance:100]
-			[CollisionEvasionResumeTime:10]
-			[CollisionEvasionWaypointCalculatedAwayFromEntity:true]
-			[CollisionEvasionWaypointFromEntityMaxAngle:90]
-			[WaypointAbandonTimeTrigger:9999999]
-			[WaypointTolerance:95]
-			[IdealMinSpeed:0]
-			[IdealMaxSpeed:0]
-			[MaxSpeedTolerance:0.25]
-			[SlowDownOnWaypointApproach:true]
-			[WaypointWaitTimeTrigger:9999999]
-			[ExtraSlowDownDistance:500]
-			[AngleAllowedForForwardThrust:90]
-			[MaxVelocityAngleForSpeedControl:1000]
+				[RivalAI Autopilot]
+				[RotationMultiplier:0.75]
+				[LimitRotationSpeed:true]
+				[MaxRotationMagnitude:0.25]
+				[DisableInertiaDampeners:false]
+				[FlyLevelWithGravity:true]
+				[LevelWithGravityWhenIdle:true]
+				[IdealPlanetAltitude:500]
+				[MinimumPlanetAltitude:50]
+				[AltitudeTolerance:100]
+				[UseSurfaceHoverThrustMode:false]
+				[HoverPathStepDistance:100]
+				[UseVelocityCollisionEvasion:false]
+				[CollisionEvasionWaypointDistance:200]
+				[CollisionEvasionResumeDistance:100]
+				[CollisionEvasionResumeTime:10]
+				[CollisionEvasionWaypointCalculatedAwayFromEntity:true]
+				[CollisionEvasionWaypointFromEntityMaxAngle:90]
+				[WaypointAbandonTimeTrigger:9999999]
+				[WaypointTolerance:95]
+				[IdealMinSpeed:0]
+				[IdealMaxSpeed:0]
+				[MaxSpeedTolerance:0.25]
+				[SlowDownOnWaypointApproach:true]
+				[WaypointWaitTimeTrigger:9999999]
+				[ExtraSlowDownDistance:500]
+				[AngleAllowedForForwardThrust:90]
+				[MaxVelocityAngleForSpeedControl:1000]
 			</Description>
 		</EntityComponent>
 		<!-- Escort chat when spawned -->
@@ -131,15 +134,15 @@
 				<SubtypeId>GVK-CargoShip-Air-COALITION-Trigger-EscortOnSpawnE</SubtypeId>
 			</Id>
 			<Description>
-			[RivalAI Trigger]
-			[Type:Timer]
-			[UseTrigger:true]
-			[StartsReady:false]
-			[MaxActions:1]
-			[MinCooldownMs:1000]
-			[MaxCooldownMs:1000]
-			[ActionExecution:All]
-			[Actions:GVK-CargoShip-Air-COALITION-Action-EscortOnSpawnE]
+				[RivalAI Trigger]
+				[Type:Timer]
+				[UseTrigger:true]
+				[StartsReady:false]
+				[MaxActions:1]
+				[MinCooldownMs:1000]
+				[MaxCooldownMs:1000]
+				[ActionExecution:All]
+				[Actions:GVK-CargoShip-Air-COALITION-Action-EscortOnSpawnE]
 			</Description>
 		</EntityComponent>
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
@@ -148,14 +151,14 @@
 				<SubtypeId>GVK-CargoShip-Air-COALITION-Action-EscortOnSpawnE</SubtypeId>
 			</Id>
 			<Description>
-			[RivalAI Action]
-			[Chance:100]
-			[ChangeAutopilotProfile:true]
-			[AutopilotProfile:Secondary]
-			[SetWeaponsToMaxRange:true]
-			[UseChatBroadcast:true]
-			[ChatData:GVK-CargoShip-Air-COALITION-Chat-EscortOnSpawnE]
-			[ResetSandboxCounters:SandboxCounter_WaypointRouteE]
+				[RivalAI Action]
+				[Chance:100]
+				[ChangeAutopilotProfile:true]
+				[AutopilotProfile:Secondary]
+				[SetWeaponsToMaxRange:true]
+				[UseChatBroadcast:true]
+				[ChatData:GVK-CargoShip-Air-COALITION-Chat-EscortOnSpawnE]
+				[ResetSandboxCounters:SandboxCounter_WaypointRouteE]
 			</Description>
 		</EntityComponent>
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
@@ -164,20 +167,20 @@
 				<SubtypeId>GVK-CargoShip-Air-COALITION-Chat-EscortOnSpawnE</SubtypeId>
 			</Id>
 			<Description>
-			[RivalAI Chat]
-			[UseChat:true]
-			[StartsReady:true]
-			[Chance:100]
-			[MaxChats:1]
-			[BroadcastRandomly:false]
-			[Author:{Faction}]
-			[Color:{PlayerRelation}]
-			[ChatMessages:An aerial transport is ready for escort to Skyport and Sevastapol (Difficult).]
-			[ChatAudio:ArcHudGPSNotification2]
-			[BroadcastChatType:Both]
-			[SendToAllOnlinePlayers:true]
-			[IgnoreAntennaRequirement:true]
-			[IgnoredAntennaRangeOverride:999999]
+				[RivalAI Chat]
+				[UseChat:true]
+				[StartsReady:true]
+				[Chance:100]
+				[MaxChats:1]
+				[BroadcastRandomly:false]
+				[Author:{Faction}]
+				[Color:{PlayerRelation}]
+				[ChatMessages:An aerial transport is ready for escort to Skyport and Sevastapol (Difficult).]
+				[ChatAudio:ArcHudGPSNotification2]
+				[BroadcastChatType:Both]
+				[SendToAllOnlinePlayers:true]
+				[IgnoreAntennaRequirement:true]
+				[IgnoredAntennaRangeOverride:999999]
 			</Description>
 		</EntityComponent>
 		<!-- Trigger to add waypoints after spawn -->
@@ -187,15 +190,15 @@
 				<SubtypeId>GVK-CargoShip-Air-COALITION-Trigger-EscortAddWaypointsE</SubtypeId>
 			</Id>
 			<Description>
-			[RivalAI Trigger]
-			[Type:Timer]
-			[UseTrigger:true]
-			[StartsReady:false]
-			[MaxActions:2]
-			[MinCooldownMs:3000]
-			[MaxCooldownMs:3001]
-			[ActionExecution:All]
-			[Actions:GVK-CargoShip-Air-COALITION-Action-EscortAddWaypointsE]
+				[RivalAI Trigger]
+				[Type:Timer]
+				[UseTrigger:true]
+				[StartsReady:false]
+				[MaxActions:2]
+				[MinCooldownMs:3000]
+				[MaxCooldownMs:3001]
+				[ActionExecution:All]
+				[Actions:GVK-CargoShip-Air-COALITION-Action-EscortAddWaypointsE]
 			</Description>
 		</EntityComponent>
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
@@ -204,23 +207,23 @@
 				<SubtypeId>GVK-CargoShip-Air-COALITION-Action-EscortAddWaypointsE</SubtypeId>
 			</Id>
 			<Description>
-			[RivalAI Action]
-			[AddWaypoints:true]
-			[WaypointsToAdd:GVK-Convoy-WaypointStatic-AirRouteE00]
-			[WaypointsToAdd:GVK-Convoy-WaypointStatic-AirRouteE01]
-			[WaypointsToAdd:GVK-Convoy-WaypointStatic-AirRouteE02]
-			[WaypointsToAdd:GVK-Convoy-WaypointStatic-AirRouteE03]
-			[WaypointsToAdd:GVK-Convoy-WaypointStatic-AirRouteE04]
-			[WaypointsToAdd:GVK-Convoy-WaypointStatic-AirRouteE05]
-			[WaypointsToAdd:GVK-Convoy-WaypointStatic-AirRouteE06]
-			[WaypointsToAdd:GVK-Convoy-WaypointStatic-AirRouteE07]
-			[WaypointsToAdd:GVK-Convoy-WaypointStatic-AirRouteE08]
-			[WaypointsToAdd:GVK-Convoy-WaypointStatic-AirRouteE09]
-			[WaypointsToAdd:GVK-Convoy-WaypointStatic-AirRouteE10]
-			[WaypointsToAdd:GVK-Convoy-WaypointStatic-AirRouteE11]
-			[WaypointsToAdd:GVK-Convoy-WaypointStatic-AirRouteE12]
-			[UseChatBroadcast:true]
-			[ChatData:GVK-CargoShip-Air-COALITION-Chat-EscortAddWaypointsE]
+				[RivalAI Action]
+				[AddWaypoints:true]
+				[WaypointsToAdd:GVK-Convoy-WaypointStatic-AirRouteE00]
+				[WaypointsToAdd:GVK-Convoy-WaypointStatic-AirRouteE01]
+				[WaypointsToAdd:GVK-Convoy-WaypointStatic-AirRouteE02]
+				[WaypointsToAdd:GVK-Convoy-WaypointStatic-AirRouteE03]
+				[WaypointsToAdd:GVK-Convoy-WaypointStatic-AirRouteE04]
+				[WaypointsToAdd:GVK-Convoy-WaypointStatic-AirRouteE05]
+				[WaypointsToAdd:GVK-Convoy-WaypointStatic-AirRouteE06]
+				[WaypointsToAdd:GVK-Convoy-WaypointStatic-AirRouteE07]
+				[WaypointsToAdd:GVK-Convoy-WaypointStatic-AirRouteE08]
+				[WaypointsToAdd:GVK-Convoy-WaypointStatic-AirRouteE09]
+				[WaypointsToAdd:GVK-Convoy-WaypointStatic-AirRouteE10]
+				[WaypointsToAdd:GVK-Convoy-WaypointStatic-AirRouteE11]
+				[WaypointsToAdd:GVK-Convoy-WaypointStatic-AirRouteE12]
+				[UseChatBroadcast:true]
+				[ChatData:GVK-CargoShip-Air-COALITION-Chat-EscortAddWaypointsE]
 			</Description>
 		</EntityComponent>
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
@@ -229,20 +232,20 @@
 				<SubtypeId>GVK-CargoShip-Air-COALITION-Chat-EscortAddWaypointsE</SubtypeId>
 			</Id>
 			<Description>
-			[RivalAI Chat]
-			[UseChat:false]
-			[StartsReady:true]
-			[Chance:100]
-			[MaxChats:-1]
-			[BroadcastRandomly:false]
-			[Author:Cargo Ship]
-			[Color:White]
-			[ChatMessages:Adding waypoints.]
-			[ChatAudio:GreetingSoundId-A]
-			[BroadcastChatType:Chat]
-			[SendToAllOnlinePlayers:true]
-			[IgnoreAntennaRequirement:true]
-			[IgnoredAntennaRangeOverride:9999999]
+				[RivalAI Chat]
+				[UseChat:false]
+				[StartsReady:true]
+				[Chance:100]
+				[MaxChats:-1]
+				[BroadcastRandomly:false]
+				[Author:Cargo Ship]
+				[Color:White]
+				[ChatMessages:Adding waypoints.]
+				[ChatAudio:GreetingSoundId-A]
+				[BroadcastChatType:Chat]
+				[SendToAllOnlinePlayers:true]
+				[IgnoreAntennaRequirement:true]
+				[IgnoredAntennaRangeOverride:9999999]
 			</Description>
 		</EntityComponent>
 		<!-- Trigger sequence for Cargo Ship to die -->
@@ -252,17 +255,18 @@
 				<SubtypeId>GVK-CargoShip-Air-COALITION-Trigger-EscortBeaconDisabled</SubtypeId>
 			</Id>
 			<Description>
-			[RivalAI Trigger]
-			[Type:Timer]
-			[UseTrigger:true]
-			[StartsReady:true]
-			[Conditions:GVK-Universal-Condition-AllBeaconsDisabled]
-			[MaxActions:1]
-			[ActionExecution:All]
-			[Actions:GVK-CargoShip-Air-COALITION-Action-EscortCompromised]
-			[Actions:GVK-Universal-Action-EditableOnCompromised]
-			[Actions:GVK-Universal-Action-Disabled]
-			[Actions:GVK-Universal-Action-LargeExplosionEffects]
+				[RivalAI Trigger]
+				[Type:Timer]
+				[UseTrigger:true]
+				[StartsReady:true]
+				[Conditions:GVK-Universal-Condition-AllBeaconsDisabled]
+				[MaxActions:1]
+				[ActionExecution:All]
+				[Actions:GVK-EscortMissions-Action-ConvoyLost-E]
+				[Actions:GVK-CargoShip-Air-COALITION-Action-EscortCompromised]
+				[Actions:GVK-Universal-Action-EditableOnCompromised]
+				[Actions:GVK-Universal-Action-Disabled]
+				[Actions:GVK-Universal-Action-LargeExplosionEffects]
 			</Description>
 		</EntityComponent>
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
@@ -271,15 +275,17 @@
 				<SubtypeId>GVK-CargoShip-Air-COALITION-Trigger-EscortCompromised</SubtypeId>
 			</Id>
 			<Description>
-			[RivalAI Trigger]
-			[Type:Compromised]
-			[UseTrigger:true]
-			[StartsReady:true]
-			[MaxActions:1]
-			[Actions:GVK-CargoShip-Air-COALITION-Action-EscortCompromised]
-			[Actions:GVK-Universal-Action-EditableOnCompromised]
-			[Actions:GVK-Universal-Action-Disabled]
-			[Actions:GVK-Universal-Action-LargeExplosionEffects]
+				[RivalAI Trigger]
+				[Type:Compromised]
+				[UseTrigger:true]
+				[StartsReady:true]
+				[MaxActions:1]
+				[ActionExecution:All]
+				[Actions:GVK-EscortMissions-Action-ConvoyLost-E]
+				[Actions:GVK-CargoShip-Air-COALITION-Action-EscortCompromised]
+				[Actions:GVK-Universal-Action-EditableOnCompromised]
+				[Actions:GVK-Universal-Action-Disabled]
+				[Actions:GVK-Universal-Action-LargeExplosionEffects]
 			</Description>
 		</EntityComponent>
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
@@ -288,12 +294,14 @@
 				<SubtypeId>GVK-CargoShip-Air-COALITION-Trigger-EscortDespawn</SubtypeId>
 			</Id>
 			<Description>
-			[RivalAI Trigger]
-			[Type:Despawn]
-			[UseTrigger:true]
-			[StartsReady:true]
-			[MaxActions:1]
-			[Actions:GVK-CargoShip-Air-COALITION-Action-EscortCompromised]
+				[RivalAI Trigger]
+				[Type:Despawn]
+				[UseTrigger:true]
+				[StartsReady:true]
+				[MaxActions:1]
+				[ActionExecution:All]
+				[Actions:GVK-EscortMissions-Action-ConvoyLost-E]
+				[Actions:GVK-CargoShip-Air-COALITION-Action-EscortCompromised]
 			</Description>
 		</EntityComponent>
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
@@ -302,12 +310,14 @@
 				<SubtypeId>GVK-CargoShip-Air-COALITION-Trigger-EscortDespawnMES</SubtypeId>
 			</Id>
 			<Description>
-			[RivalAI Trigger]
-			[Type:DespawnMES]
-			[UseTrigger:true]
-			[StartsReady:true]
-			[MaxActions:1]
-			[Actions:GVK-CargoShip-Air-COALITION-Action-EscortCompromised]
+				[RivalAI Trigger]
+				[Type:DespawnMES]
+				[UseTrigger:true]
+				[StartsReady:true]
+				[MaxActions:1]
+				[ActionExecution:All]
+				[Actions:GVK-EscortMissions-Action-ConvoyLost-E]
+				[Actions:GVK-CargoShip-Air-COALITION-Action-EscortCompromised]
 			</Description>
 		</EntityComponent>
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
@@ -316,29 +326,29 @@
 				<SubtypeId>GVK-CargoShip-Air-COALITION-Action-EscortCompromised</SubtypeId>
 			</Id>
 			<Description>
-			[RivalAI Action]
-			[TriggerTimerBlocks:true]
-			[TimerBlockNames:NPC Timer E-brake]
-			[EnableBlocks:true]
-			[EnableBlockNames:NPC Suspension]
-			[EnableBlockStates:Off]
-			[DisableTriggers:true]
-			[DisableTriggerNames:GVK-CargoShip-Air-COALITION-Trigger-EscortBeaconDisabled]
-			[DisableTriggerNames:GVK-CargoShip-Air-COALITION-Trigger-EscortCompromised]
-			[DisableTriggerNames:GVK-CargoShip-Air-COALITION-Trigger-EscortSuccessTargetE]
-			[DisableTriggerNames:GVK-CargoShip-Air-COALITION-Trigger-EscortSuccessCounterE]
-			[DisableTriggerNames:GVK-CargoShip-Air-COALITION-Trigger-EscortPlayerNear]
-			[DisableTriggerNames:GVK-CargoShip-Air-COALITION-Trigger-EscortPlayerNotNear]
-			[DisableTriggerNames:GVK-CargoShip-Air-COALITION-Trigger-EscortInsideZ1]
-			[DisableTriggerNames:GVK-CargoShip-Air-COALITION-Trigger-EscortEnemySpawnsZ1]
-			[DisableTriggerNames:GVK-CargoShip-Air-COALITION-Trigger-EscortInsideZ2]
-			[DisableTriggerNames:GVK-CargoShip-Air-COALITION-Trigger-EscortEnemySpawnsZ2]
-			[DisableTriggerNames:GVK-CargoShip-Air-COALITION-Trigger-EscortInsideZ3]
-			[DisableTriggerNames:GVK-CargoShip-Air-COALITION-Trigger-EscortEnemySpawnsZ3]
-			[DisableTriggerNames:GVK-CargoShip-Air-COALITION-Trigger-EscortAttacked]
-			[UseChatBroadcast:true]
-			[ChatData:GVK-CargoShip-Air-COALITION-Chat-EscortCompromised]
-			[TerminateBehavior:true]
+				[RivalAI Action]
+				[TriggerTimerBlocks:true]
+				[TimerBlockNames:NPC Timer E-brake]
+				[EnableBlocks:true]
+				[EnableBlockNames:NPC Suspension]
+				[EnableBlockStates:Off]
+				[DisableTriggers:true]
+				[DisableTriggerNames:GVK-CargoShip-Air-COALITION-Trigger-EscortBeaconDisabled]
+				[DisableTriggerNames:GVK-CargoShip-Air-COALITION-Trigger-EscortCompromised]
+				[DisableTriggerNames:GVK-CargoShip-Air-COALITION-Trigger-EscortSuccessTargetE]
+				[DisableTriggerNames:GVK-CargoShip-Air-COALITION-Trigger-EscortSuccessCounterE]
+				[DisableTriggerNames:GVK-CargoShip-Air-COALITION-Trigger-EscortPlayerNear]
+				[DisableTriggerNames:GVK-CargoShip-Air-COALITION-Trigger-EscortPlayerNotNear]
+				[DisableTriggerNames:GVK-CargoShip-Air-COALITION-Trigger-EscortInsideZ1]
+				[DisableTriggerNames:GVK-CargoShip-Air-COALITION-Trigger-EscortEnemySpawnsZ1]
+				[DisableTriggerNames:GVK-CargoShip-Air-COALITION-Trigger-EscortInsideZ2]
+				[DisableTriggerNames:GVK-CargoShip-Air-COALITION-Trigger-EscortEnemySpawnsZ2]
+				[DisableTriggerNames:GVK-CargoShip-Air-COALITION-Trigger-EscortInsideZ3]
+				[DisableTriggerNames:GVK-CargoShip-Air-COALITION-Trigger-EscortEnemySpawnsZ3]
+				[DisableTriggerNames:GVK-CargoShip-Air-COALITION-Trigger-EscortAttacked]
+				[UseChatBroadcast:true]
+				[ChatData:GVK-CargoShip-Air-COALITION-Chat-EscortCompromised]
+				[TerminateBehavior:true]
 			</Description>
 		</EntityComponent>
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
@@ -347,20 +357,20 @@
 				<SubtypeId>GVK-CargoShip-Air-COALITION-Chat-EscortCompromised</SubtypeId>
 			</Id>
 			<Description>
-			[RivalAI Chat]
-			[UseChat:true]
-			[StartsReady:true]
-			[Chance:100]
-			[MaxChats:1]
-			[BroadcastRandomly:false]
-			[Author:{Faction}]
-			[Color:{PlayerRelation}]
-			[ChatMessages:Aerial escort has been Lost!]
-			[ChatAudio:GreetingSoundId-A]
-			[BroadcastChatType:Chat]
-			[SendToAllOnlinePlayers:true]
-			[IgnoreAntennaRequirement:true]
-			[IgnoredAntennaRangeOverride:9999999]
+				[RivalAI Chat]
+				[UseChat:true]
+				[StartsReady:true]
+				[Chance:100]
+				[MaxChats:1]
+				[BroadcastRandomly:false]
+				[Author:{Faction}]
+				[Color:{PlayerRelation}]
+				[ChatMessages:Aerial escort has been Lost!]
+				[ChatAudio:GreetingSoundId-A]
+				[BroadcastChatType:Chat]
+				[SendToAllOnlinePlayers:true]
+				[IgnoreAntennaRequirement:true]
+				[IgnoredAntennaRangeOverride:9999999]
 			</Description>
 		</EntityComponent>
 		<!-- Trigger sequence when Cargo Ship arrives at Skyport -->
@@ -370,13 +380,13 @@
 				<SubtypeId>GVK-CargoShip-Air-COALITION-Trigger-EscortArriveAtSkyport</SubtypeId>
 			</Id>
 			<Description>
-			[RivalAI Trigger]
-			[Type:BehaviorTriggerA]
-			[UseTrigger:true]
-			[StartsReady:true]
-			[MaxActions:1]
-			[Conditions:GVK-CargoShip-Air-COALITION-Condition-EscortArriveAtSkyport]
-			[Actions:GVK-CargoShip-Air-COALITION-Action-EscortArriveAtSkyport]
+				[RivalAI Trigger]
+				[Type:BehaviorTriggerA]
+				[UseTrigger:true]
+				[StartsReady:true]
+				[MaxActions:1]
+				[Conditions:GVK-CargoShip-Air-COALITION-Condition-EscortArriveAtSkyport]
+				[Actions:GVK-CargoShip-Air-COALITION-Action-EscortArriveAtSkyport]
 			</Description>
 		</EntityComponent>
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
@@ -385,12 +395,12 @@
 				<SubtypeId>GVK-CargoShip-Air-COALITION-Condition-EscortArriveAtSkyport</SubtypeId>
 			</Id>
 			<Description>
-			[RivalAI Condition]
-			[UseConditions:true]
-			[CheckCustomSandboxCounters:true]
-			[CustomSandboxCounters:SandboxCounter_WaypointRouteE]
-			[CustomSandboxCountersTargets:5]
-			[SandboxCounterCompareTypes:Equal]
+				[RivalAI Condition]
+				[UseConditions:true]
+				[CheckCustomSandboxCounters:true]
+				[CustomSandboxCounters:SandboxCounter_WaypointRouteE]
+				[CustomSandboxCountersTargets:5]
+				[SandboxCounterCompareTypes:Equal]
 			</Description>
 		</EntityComponent>
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
@@ -399,12 +409,12 @@
 				<SubtypeId>GVK-CargoShip-Air-COALITION-Action-EscortArriveAtSkyport</SubtypeId>
 			</Id>
 			<Description>
-			[RivalAI Action]
-			[CancelWaitingAtWaypoint:false]
-			[SwitchToNextWaypoint:false]
-			[IncreaseSandboxCounters:SandboxCounter_WaypointRouteE]
-			[UseChatBroadcast:true]
-			[ChatData:GVK-CargoShip-Air-COALITION-Chat-EscortArriveAtSkyport]
+				[RivalAI Action]
+				[CancelWaitingAtWaypoint:false]
+				[SwitchToNextWaypoint:false]
+				[IncreaseSandboxCounters:SandboxCounter_WaypointRouteE]
+				[UseChatBroadcast:true]
+				[ChatData:GVK-CargoShip-Air-COALITION-Chat-EscortArriveAtSkyport]
 			</Description>
 		</EntityComponent>
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
@@ -413,20 +423,20 @@
 				<SubtypeId>GVK-CargoShip-Air-COALITION-Chat-EscortArriveAtSkyport</SubtypeId>
 			</Id>
 			<Description>
-			[RivalAI Chat]
-			[UseChat:true]
-			[StartsReady:true]
-			[Chance:100]
-			[MaxChats:-1]
-			[BroadcastRandomly:false]
-			[Author:{Faction} Aerial Escort]
-			[Color:{PlayerRelation}]
-			[ChatMessages:Arrived at Skyport. Heading to Sevastapol in 1 minute.]
-			[ChatAudio:GreetingSoundId-A]
-			[BroadcastChatType:Chat]
-			[SendToAllOnlinePlayers:false]
-			[IgnoreAntennaRequirement:true]
-			[IgnoredAntennaRangeOverride:5000]
+				[RivalAI Chat]
+				[UseChat:true]
+				[StartsReady:true]
+				[Chance:100]
+				[MaxChats:-1]
+				[BroadcastRandomly:false]
+				[Author:{Faction} Aerial Escort]
+				[Color:{PlayerRelation}]
+				[ChatMessages:Arrived at Skyport. Heading to Sevastapol in 1 minute.]
+				[ChatAudio:GreetingSoundId-A]
+				[BroadcastChatType:Chat]
+				[SendToAllOnlinePlayers:false]
+				[IgnoreAntennaRequirement:true]
+				[IgnoredAntennaRangeOverride:5000]
 			</Description>
 		</EntityComponent>
 		<!-- Trigger sequence when Cargo Ship arrives at a Waypoint (except skyport) -->
@@ -436,13 +446,13 @@
 				<SubtypeId>GVK-CargoShip-Air-COALITION-Trigger-EscortArriveAtWaypoint</SubtypeId>
 			</Id>
 			<Description>
-			[RivalAI Trigger]
-			[Type:BehaviorTriggerA]
-			[UseTrigger:true]
-			[StartsReady:true]
-			[MaxActions:-1]
-			[Conditions:GVK-CargoShip-Air-COALITION-Condition-EscortArriveAtWaypoint]
-			[Actions:GVK-CargoShip-Air-COALITION-Action-EscortArriveAtWaypoint]
+				[RivalAI Trigger]
+				[Type:BehaviorTriggerA]
+				[UseTrigger:true]
+				[StartsReady:true]
+				[MaxActions:-1]
+				[Conditions:GVK-CargoShip-Air-COALITION-Condition-EscortArriveAtWaypoint]
+				[Actions:GVK-CargoShip-Air-COALITION-Action-EscortArriveAtWaypoint]
 			</Description>
 		</EntityComponent>
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
@@ -451,12 +461,12 @@
 				<SubtypeId>GVK-CargoShip-Air-COALITION-Condition-EscortArriveAtWaypoint</SubtypeId>
 			</Id>
 			<Description>
-			[RivalAI Condition]
-			[UseConditions:true]
-			[CheckCustomSandboxCounters:true]
-			[CustomSandboxCounters:SandboxCounter_WaypointRouteE]
-			[CustomSandboxCountersTargets:5]
-			[SandboxCounterCompareTypes:NotEqual]
+				[RivalAI Condition]
+				[UseConditions:true]
+				[CheckCustomSandboxCounters:true]
+				[CustomSandboxCounters:SandboxCounter_WaypointRouteE]
+				[CustomSandboxCountersTargets:5]
+				[SandboxCounterCompareTypes:NotEqual]
 			</Description>
 		</EntityComponent>
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
@@ -465,11 +475,11 @@
 				<SubtypeId>GVK-CargoShip-Air-COALITION-Action-EscortArriveAtWaypoint</SubtypeId>
 			</Id>
 			<Description>
-			[RivalAI Action]
-			[//DebugMessage:EscortArriveAtWaypoint]
-			[CancelWaitingAtWaypoint:true]
-			[SwitchToNextWaypoint:false]
-			[IncreaseSandboxCounters:SandboxCounter_WaypointRouteE]
+				[RivalAI Action]
+				[//DebugMessage:EscortArriveAtWaypoint]
+				[CancelWaitingAtWaypoint:true]
+				[SwitchToNextWaypoint:false]
+				[IncreaseSandboxCounters:SandboxCounter_WaypointRouteE]
 			</Description>
 		</EntityComponent>
 		<!-- Trigger sequence when Cargo Ship leaves a waypoint -->
@@ -479,12 +489,12 @@
 				<SubtypeId>GVK-CargoShip-Air-COALITION-Trigger-EscortLeaveWaypoint</SubtypeId>
 			</Id>
 			<Description>
-			[RivalAI Trigger]
-			[Type:BehaviorTriggerB]
-			[UseTrigger:false]
-			[StartsReady:true]
-			[MaxActions:-1]
-			[Actions:GVK-CargoShip-Air-COALITION-Action-EscortLeaveWaypoint]
+				[RivalAI Trigger]
+				[Type:BehaviorTriggerB]
+				[UseTrigger:false]
+				[StartsReady:true]
+				[MaxActions:-1]
+				[Actions:GVK-CargoShip-Air-COALITION-Action-EscortLeaveWaypoint]
 			</Description>
 		</EntityComponent>
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
@@ -493,8 +503,8 @@
 				<SubtypeId>GVK-CargoShip-Air-COALITION-Action-EscortLeaveWaypoint</SubtypeId>
 			</Id>
 			<Description>
-			[RivalAI Action]
-			[//DebugMessage:EscortLeaveWaypoint]
+				[RivalAI Action]
+				[//DebugMessage:EscortLeaveWaypoint]
 			</Description>
 		</EntityComponent>
 		<!-- Trigger sequence when attacked -->
@@ -504,16 +514,16 @@
 				<SubtypeId>GVK-CargoShip-Air-COALITION-Trigger-EscortAttacked</SubtypeId>
 			</Id>
 			<Description>
-			[RivalAI Trigger]
-			[Type:Damage]
-			[MinCooldownMs:120000]
-			[MaxCooldownMs:240000]
-			[UseTrigger:true]
-			[StartsReady:true]
-			[MaxActions:-1]
-			[DamageTypes:Any]
-			[ActionExecution:All]
-			[Actions:GVK-CargoShip-Air-COALITION-Action-EscortAttacked]
+				[RivalAI Trigger]
+				[Type:Damage]
+				[MinCooldownMs:120000]
+				[MaxCooldownMs:240000]
+				[UseTrigger:true]
+				[StartsReady:true]
+				[MaxActions:-1]
+				[DamageTypes:Any]
+				[ActionExecution:All]
+				[Actions:GVK-CargoShip-Air-COALITION-Action-EscortAttacked]
 			</Description>
 		</EntityComponent>
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
@@ -522,9 +532,9 @@
 				<SubtypeId>GVK-CargoShip-Air-COALITION-Action-EscortAttacked</SubtypeId>
 			</Id>
 			<Description>
-			[RivalAI Action]
-			[UseChatBroadcast:true]
-			[ChatData:GVK-CargoShip-Air-COALITION-Chat-EscortAttacked]
+				[RivalAI Action]
+				[UseChatBroadcast:true]
+				[ChatData:GVK-CargoShip-Air-COALITION-Chat-EscortAttacked]
 			</Description>
 		</EntityComponent>
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
@@ -533,20 +543,20 @@
 				<SubtypeId>GVK-CargoShip-Air-COALITION-Chat-EscortAttacked</SubtypeId>
 			</Id>
 			<Description>
-			[RivalAI Chat]
-			[UseChat:true]
-			[StartsReady:true]
-			[Chance:100]
-			[MaxChats:-1]
-			[BroadcastRandomly:false]
-			[Author:{Faction}]
-			[Color:{PlayerRelation}]
-			[ChatMessages:Escort is under attack!]
-			[ChatAudio:GreetingSoundId-A]
-			[BroadcastChatType:Chat]
-			[SendToAllOnlinePlayers:true]
-			[IgnoreAntennaRequirement:true]
-			[IgnoredAntennaRangeOverride:9999999]
+				[RivalAI Chat]
+				[UseChat:true]
+				[StartsReady:true]
+				[Chance:100]
+				[MaxChats:-1]
+				[BroadcastRandomly:false]
+				[Author:{Faction}]
+				[Color:{PlayerRelation}]
+				[ChatMessages:Escort is under attack!]
+				[ChatAudio:GreetingSoundId-A]
+				[BroadcastChatType:Chat]
+				[SendToAllOnlinePlayers:true]
+				[IgnoreAntennaRequirement:true]
+				[IgnoredAntennaRangeOverride:9999999]
 			</Description>
 		</EntityComponent>
 		<!-- Trigger Sequence enemy spawns Zone 1-->
@@ -556,15 +566,15 @@
 				<SubtypeId>GVK-CargoShip-Air-COALITION-Trigger-EscortInsideZ1</SubtypeId>
 			</Id>
 			<Description>
-			[RivalAI Trigger]
-			[UseTrigger:true]
-			[Type:InsideZone]
-			[ZoneName:Zone 1]
-			[StartsReady:false]
-			[MinCooldownMs:10000]
-			[MaxCooldownMs:10001]
-			[MaxActions:2]
-			[Actions:GVK-CargoShip-Air-COALITION-Action-EscortInsideZ1]
+				[RivalAI Trigger]
+				[UseTrigger:true]
+				[Type:InsideZone]
+				[ZoneName:Zone 1]
+				[StartsReady:false]
+				[MinCooldownMs:10000]
+				[MaxCooldownMs:10001]
+				[MaxActions:2]
+				[Actions:GVK-CargoShip-Air-COALITION-Action-EscortInsideZ1]
 			</Description>
 		</EntityComponent>
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
@@ -573,12 +583,12 @@
 				<SubtypeId>GVK-CargoShip-Air-COALITION-Action-EscortInsideZ1</SubtypeId>
 			</Id>
 			<Description>
-			[RivalAI Action]
-			[EnableBlocks:true]
-			[EnableBlockNames:NPC Weapon]
-			[EnableBlockStates:On]
-			[EnableTriggers:true]
-			[EnableTriggerNames:GVK-CargoShip-Air-COALITION-Trigger-EscortEnemySpawnsZ1]
+				[RivalAI Action]
+				[EnableBlocks:true]
+				[EnableBlockNames:NPC Weapon]
+				[EnableBlockStates:On]
+				[EnableTriggers:true]
+				[EnableTriggerNames:GVK-CargoShip-Air-COALITION-Trigger-EscortEnemySpawnsZ1]
 			</Description>
 		</EntityComponent>
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
@@ -587,15 +597,15 @@
 				<SubtypeId>GVK-CargoShip-Air-COALITION-Trigger-EscortEnemySpawnsZ1</SubtypeId>
 			</Id>
 			<Description>
-			[RivalAI Trigger]
-			[UseTrigger:false]
-			[Type:PlayerNear]
-			[TargetDistance:2000]
-			[StartsReady:false]
-			[MinCooldownMs:90000]
-			[MaxCooldownMs:90001]
-			[MaxActions:30]
-			[Actions:GVK-CargoShip-Air-COALITION-Action-EscortEnemySpawnsZ1]
+				[RivalAI Trigger]
+				[UseTrigger:false]
+				[Type:PlayerNear]
+				[TargetDistance:2000]
+				[StartsReady:false]
+				[MinCooldownMs:90000]
+				[MaxCooldownMs:90001]
+				[MaxActions:30]
+				[Actions:GVK-CargoShip-Air-COALITION-Action-EscortEnemySpawnsZ1]
 			</Description>
 		</EntityComponent>
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
@@ -604,12 +614,12 @@
 				<SubtypeId>GVK-CargoShip-Air-COALITION-Action-EscortEnemySpawnsZ1</SubtypeId>
 			</Id>
 			<Description>
-			[RivalAI Action]
-			[Chance:100]
-			[SpawnEncounter:true]
-			[Spawner:GVK-CargoShip-Air-COALITION-Spawner-EscortEnemySpawnsZ1]
-			[UseChatBroadcast:true]
-			[ChatData:GVK-CargoShip-Air-COALITION-Chat-EscortEnemySpawns]
+				[RivalAI Action]
+				[Chance:100]
+				[SpawnEncounter:true]
+				[Spawner:GVK-CargoShip-Air-COALITION-Spawner-EscortEnemySpawnsZ1]
+				[UseChatBroadcast:true]
+				[ChatData:GVK-CargoShip-Air-COALITION-Chat-EscortEnemySpawns]
 			</Description>
 		</EntityComponent>
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
@@ -618,20 +628,20 @@
 				<SubtypeId>GVK-CargoShip-Air-COALITION-Spawner-EscortEnemySpawnsZ1</SubtypeId>
 			</Id>
 			<Description>
-			[RivalAI Spawn]
-			[UseSpawn:true]
-			[SpawningType:CustomSpawn]
-			[StartsReady:true]
-			[ProcessAsAdminSpawn:false]
-			[MaxSpawns:-1]
-			[SpawnGroups:GVK-Drone-Defense-SpawnGroup-GAALSIEN-SmallFlyerSingle]
-			[SpawnGroups:GVK-Drone-Defense-SpawnGroup-GAALSIEN-InterceptorSingle]
-			[MinDistance:800]
-			[MaxDistance:1000]
-			[MinAltitude:50]
-			[MaxAltitude:51]
-			[InheritNpcAltitude:true]
-			[IgnoreSafetyChecks:true]
+				[RivalAI Spawn]
+				[UseSpawn:true]
+				[SpawningType:CustomSpawn]
+				[StartsReady:true]
+				[ProcessAsAdminSpawn:false]
+				[MaxSpawns:-1]
+				[SpawnGroups:GVK-Drone-Defense-SpawnGroup-GAALSIEN-SmallFlyerSingle]
+				[SpawnGroups:GVK-Drone-Defense-SpawnGroup-GAALSIEN-InterceptorSingle]
+				[MinDistance:800]
+				[MaxDistance:1000]
+				[MinAltitude:50]
+				[MaxAltitude:51]
+				[InheritNpcAltitude:true]
+				[IgnoreSafetyChecks:true]
 			</Description>
 		</EntityComponent>
 		<!-- Trigger Sequence enemy spawns Zone 2-->
@@ -641,15 +651,15 @@
 				<SubtypeId>GVK-CargoShip-Air-COALITION-Trigger-EscortInsideZ2</SubtypeId>
 			</Id>
 			<Description>
-			[RivalAI Trigger]
-			[UseTrigger:true]
-			[Type:InsideZone]
-			[ZoneName:Zone 2]
-			[StartsReady:false]
-			[MinCooldownMs:10000]
-			[MaxCooldownMs:10001]
-			[MaxActions:1]
-			[Actions:GVK-CargoShip-Air-COALITION-Action-EscortInsideZ2]
+				[RivalAI Trigger]
+				[UseTrigger:true]
+				[Type:InsideZone]
+				[ZoneName:Zone 2]
+				[StartsReady:false]
+				[MinCooldownMs:10000]
+				[MaxCooldownMs:10001]
+				[MaxActions:1]
+				[Actions:GVK-CargoShip-Air-COALITION-Action-EscortInsideZ2]
 			</Description>
 		</EntityComponent>
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
@@ -658,11 +668,11 @@
 				<SubtypeId>GVK-CargoShip-Air-COALITION-Action-EscortInsideZ2</SubtypeId>
 			</Id>
 			<Description>
-			[RivalAI Action]
-			[EnableTriggers:true]
-			[EnableTriggerNames:GVK-CargoShip-Air-COALITION-Trigger-EscortEnemySpawnsZ2]
-			[DisableTriggers:true]
-			[DisableTriggerNames:GVK-CargoShip-Air-COALITION-Trigger-EscortEnemySpawnsZ1]
+				[RivalAI Action]
+				[EnableTriggers:true]
+				[EnableTriggerNames:GVK-CargoShip-Air-COALITION-Trigger-EscortEnemySpawnsZ2]
+				[DisableTriggers:true]
+				[DisableTriggerNames:GVK-CargoShip-Air-COALITION-Trigger-EscortEnemySpawnsZ1]
 			</Description>
 		</EntityComponent>
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
@@ -671,15 +681,15 @@
 				<SubtypeId>GVK-CargoShip-Air-COALITION-Trigger-EscortEnemySpawnsZ2</SubtypeId>
 			</Id>
 			<Description>
-			[RivalAI Trigger]
-			[UseTrigger:false]
-			[Type:PlayerNear]
-			[TargetDistance:2000]
-			[StartsReady:false]
-			[MinCooldownMs:90000]
-			[MaxCooldownMs:90001]
-			[MaxActions:30]
-			[Actions:GVK-CargoShip-Air-COALITION-Action-EscortEnemySpawnsZ2]
+				[RivalAI Trigger]
+				[UseTrigger:false]
+				[Type:PlayerNear]
+				[TargetDistance:2000]
+				[StartsReady:false]
+				[MinCooldownMs:90000]
+				[MaxCooldownMs:90001]
+				[MaxActions:30]
+				[Actions:GVK-CargoShip-Air-COALITION-Action-EscortEnemySpawnsZ2]
 			</Description>
 		</EntityComponent>
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
@@ -688,12 +698,12 @@
 				<SubtypeId>GVK-CargoShip-Air-COALITION-Action-EscortEnemySpawnsZ2</SubtypeId>
 			</Id>
 			<Description>
-			[RivalAI Action]
-			[Chance:100]
-			[SpawnEncounter:true]
-			[Spawner:GVK-CargoShip-Air-COALITION-Spawner-EscortEnemySpawnsZ2]
-			[UseChatBroadcast:true]
-			[ChatData:GVK-CargoShip-Air-COALITION-Chat-EscortEnemySpawns]
+				[RivalAI Action]
+				[Chance:100]
+				[SpawnEncounter:true]
+				[Spawner:GVK-CargoShip-Air-COALITION-Spawner-EscortEnemySpawnsZ2]
+				[UseChatBroadcast:true]
+				[ChatData:GVK-CargoShip-Air-COALITION-Chat-EscortEnemySpawns]
 			</Description>
 		</EntityComponent>
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
@@ -702,20 +712,20 @@
 				<SubtypeId>GVK-CargoShip-Air-COALITION-Spawner-EscortEnemySpawnsZ2</SubtypeId>
 			</Id>
 			<Description>
-			[RivalAI Spawn]
-			[UseSpawn:true]
-			[SpawningType:CustomSpawn]
-			[StartsReady:true]
-			[ProcessAsAdminSpawn:false]
-			[MaxSpawns:-1]
-			[SpawnGroups:GVK-Drone-Defense-SpawnGroup-GAALSIEN-InterceptorSquad]
-			[SpawnGroups:GVK-Drone-Defense-SpawnGroup-GAALSIEN-SmallFlyerSquad]
-			[MinDistance:800]
-			[MaxDistance:1000]
-			[MinAltitude:50]
-			[MaxAltitude:51]
-			[InheritNpcAltitude:true]
-			[IgnoreSafetyChecks:true]
+				[RivalAI Spawn]
+				[UseSpawn:true]
+				[SpawningType:CustomSpawn]
+				[StartsReady:true]
+				[ProcessAsAdminSpawn:false]
+				[MaxSpawns:-1]
+				[SpawnGroups:GVK-Drone-Defense-SpawnGroup-GAALSIEN-InterceptorSquad]
+				[SpawnGroups:GVK-Drone-Defense-SpawnGroup-GAALSIEN-SmallFlyerSquad]
+				[MinDistance:800]
+				[MaxDistance:1000]
+				[MinAltitude:50]
+				[MaxAltitude:51]
+				[InheritNpcAltitude:true]
+				[IgnoreSafetyChecks:true]
 			</Description>
 		</EntityComponent>
 		<!-- Trigger Sequence enemy spawns Zone 3-->
@@ -725,15 +735,15 @@
 				<SubtypeId>GVK-CargoShip-Air-COALITION-Trigger-EscortInsideZ3</SubtypeId>
 			</Id>
 			<Description>
-			[RivalAI Trigger]
-			[UseTrigger:true]
-			[Type:InsideZone]
-			[ZoneName:Zone 3]
-			[StartsReady:false]
-			[MinCooldownMs:10000]
-			[MaxCooldownMs:10001]
-			[MaxActions:1]
-			[Actions:GVK-CargoShip-Air-COALITION-Action-EscortInsideZ3]
+				[RivalAI Trigger]
+				[UseTrigger:true]
+				[Type:InsideZone]
+				[ZoneName:Zone 3]
+				[StartsReady:false]
+				[MinCooldownMs:10000]
+				[MaxCooldownMs:10001]
+				[MaxActions:1]
+				[Actions:GVK-CargoShip-Air-COALITION-Action-EscortInsideZ3]
 			</Description>
 		</EntityComponent>
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
@@ -742,11 +752,11 @@
 				<SubtypeId>GVK-CargoShip-Air-COALITION-Action-EscortInsideZ3</SubtypeId>
 			</Id>
 			<Description>
-			[RivalAI Action]
-			[EnableTriggers:true]
-			[EnableTriggerNames:GVK-CargoShip-Air-COALITION-Trigger-EscortEnemySpawnsZ3]
-			[DisableTriggers:true]
-			[DisableTriggerNames:GVK-CargoShip-Air-COALITION-Trigger-EscortEnemySpawnsZ2]
+				[RivalAI Action]
+				[EnableTriggers:true]
+				[EnableTriggerNames:GVK-CargoShip-Air-COALITION-Trigger-EscortEnemySpawnsZ3]
+				[DisableTriggers:true]
+				[DisableTriggerNames:GVK-CargoShip-Air-COALITION-Trigger-EscortEnemySpawnsZ2]
 			</Description>
 		</EntityComponent>
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
@@ -755,16 +765,16 @@
 				<SubtypeId>GVK-CargoShip-Air-COALITION-Trigger-EscortEnemySpawnsZ3</SubtypeId>
 			</Id>
 			<Description>
-			[RivalAI Trigger]
-			[UseTrigger:false]
-			[Type:PlayerNear]
-			[TargetDistance:2000]
-			[StartsReady:false]
-			[MinCooldownMs:90000]
-			[MaxCooldownMs:90001]
-			[MaxActions:30]
-			[Actions:GVK-CargoShip-Air-COALITION-Action-EscortEnemySpawnsZ3]
-			[Actions:GVK-CargoShip-Air-COALITION-Action-EscortFriendlySpawnsZ3]
+				[RivalAI Trigger]
+				[UseTrigger:false]
+				[Type:PlayerNear]
+				[TargetDistance:2000]
+				[StartsReady:false]
+				[MinCooldownMs:90000]
+				[MaxCooldownMs:90001]
+				[MaxActions:30]
+				[Actions:GVK-CargoShip-Air-COALITION-Action-EscortEnemySpawnsZ3]
+				[Actions:GVK-CargoShip-Air-COALITION-Action-EscortFriendlySpawnsZ3]
 			</Description>
 		</EntityComponent>
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
@@ -773,12 +783,12 @@
 				<SubtypeId>GVK-CargoShip-Air-COALITION-Action-EscortEnemySpawnsZ3</SubtypeId>
 			</Id>
 			<Description>
-			[RivalAI Action]
-			[Chance:100]
-			[SpawnEncounter:true]
-			[Spawner:GVK-CargoShip-Air-COALITION-Spawner-EscortEnemySpawnsZ3]
-			[UseChatBroadcast:true]
-			[ChatData:GVK-CargoShip-Air-COALITION-Chat-EscortEnemySpawns]
+				[RivalAI Action]
+				[Chance:100]
+				[SpawnEncounter:true]
+				[Spawner:GVK-CargoShip-Air-COALITION-Spawner-EscortEnemySpawnsZ3]
+				[UseChatBroadcast:true]
+				[ChatData:GVK-CargoShip-Air-COALITION-Chat-EscortEnemySpawns]
 			</Description>
 		</EntityComponent>
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
@@ -787,20 +797,20 @@
 				<SubtypeId>GVK-CargoShip-Air-COALITION-Spawner-EscortEnemySpawnsZ3</SubtypeId>
 			</Id>
 			<Description>
-			[RivalAI Spawn]
-			[UseSpawn:true]
-			[SpawningType:CustomSpawn]
-			[StartsReady:true]
-			[ProcessAsAdminSpawn:false]
-			[MaxSpawns:-1]
-			[SpawnGroups:GVK-Drone-Defense-SpawnGroup-GAALSIEN-MediumFlyer]
-			[SpawnGroups:GVK-Drone-Defense-SpawnGroup-GAALSIEN-InterceptorSquad]
-			[MinDistance:800]
-			[MaxDistance:1000]
-			[MinAltitude:50]
-			[MaxAltitude:51]
-			[InheritNpcAltitude:true]
-			[IgnoreSafetyChecks:true]
+				[RivalAI Spawn]
+				[UseSpawn:true]
+				[SpawningType:CustomSpawn]
+				[StartsReady:true]
+				[ProcessAsAdminSpawn:false]
+				[MaxSpawns:-1]
+				[SpawnGroups:GVK-Drone-Defense-SpawnGroup-GAALSIEN-MediumFlyer]
+				[SpawnGroups:GVK-Drone-Defense-SpawnGroup-GAALSIEN-InterceptorSquad]
+				[MinDistance:800]
+				[MaxDistance:1000]
+				[MinAltitude:50]
+				[MaxAltitude:51]
+				[InheritNpcAltitude:true]
+				[IgnoreSafetyChecks:true]
 			</Description>
 		</EntityComponent>
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
@@ -809,10 +819,10 @@
 				<SubtypeId>GVK-CargoShip-Air-COALITION-Action-EscortFriendlySpawnsZ3</SubtypeId>
 			</Id>
 			<Description>
-			[RivalAI Action]
-			[Chance:15]
-			[SpawnEncounter:true]
-			[Spawner:GVK-CargoShip-Air-COALITION-Spawner-EscortFriendlySpawnsZ3]
+				[RivalAI Action]
+				[Chance:15]
+				[SpawnEncounter:true]
+				[Spawner:GVK-CargoShip-Air-COALITION-Spawner-EscortFriendlySpawnsZ3]
 			</Description>
 		</EntityComponent>
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
@@ -821,19 +831,19 @@
 				<SubtypeId>GVK-CargoShip-Air-COALITION-Spawner-EscortFriendlySpawnsZ3</SubtypeId>
 			</Id>
 			<Description>
-			[RivalAI Spawn]
-			[UseSpawn:true]
-			[SpawningType:CustomSpawn]
-			[StartsReady:true]
-			[ProcessAsAdminSpawn:false]
-			[MaxSpawns:-1]
-			[SpawnGroups:GVK-Drone-Defense-SpawnGroup-COALITION-StrikeFighter]
-			[MinDistance:500]
-			[MaxDistance:1000]
-			[MinAltitude:50]
-			[MaxAltitude:51]
-			[InheritNpcAltitude:true]
-			[IgnoreSafetyChecks:true]
+				[RivalAI Spawn]
+				[UseSpawn:true]
+				[SpawningType:CustomSpawn]
+				[StartsReady:true]
+				[ProcessAsAdminSpawn:false]
+				[MaxSpawns:-1]
+				[SpawnGroups:GVK-Drone-Defense-SpawnGroup-COALITION-StrikeFighter]
+				[MinDistance:500]
+				[MaxDistance:1000]
+				[MinAltitude:50]
+				[MaxAltitude:51]
+				[InheritNpcAltitude:true]
+				[IgnoreSafetyChecks:true]
 			</Description>
 		</EntityComponent>
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
@@ -842,20 +852,20 @@
 				<SubtypeId>GVK-CargoShip-Air-COALITION-Chat-EscortEnemySpawns</SubtypeId>
 			</Id>
 			<Description>
-			[RivalAI Chat]
-			[UseChat:true]
-			[StartsReady:true]
-			[Chance:100]
-			[MaxChats:-1]
-			[BroadcastRandomly:false]
-			[Author:Cargo Transport]
-			[Color:White]
-			[ChatMessages:Enemies in-bound.]
-			[ChatAudio:ArcHudGPSNotification2]
-			[BroadcastChatType:Notify]
-			[SendToAllOnlinePlayers:false]
-			[IgnoreAntennaRequirement:true]
-			[IgnoredAntennaRangeOverride:2000]
+				[RivalAI Chat]
+				[UseChat:true]
+				[StartsReady:true]
+				[Chance:100]
+				[MaxChats:-1]
+				[BroadcastRandomly:false]
+				[Author:Cargo Transport]
+				[Color:White]
+				[ChatMessages:Enemies in-bound.]
+				[ChatAudio:ArcHudGPSNotification2]
+				[BroadcastChatType:Notify]
+				[SendToAllOnlinePlayers:false]
+				[IgnoreAntennaRequirement:true]
+				[IgnoredAntennaRangeOverride:2000]
 			</Description>
 		</EntityComponent>
 		<!-- Trigger Sequence to start moving when player is near -->
@@ -865,14 +875,14 @@
 				<SubtypeId>GVK-CargoShip-Air-COALITION-Trigger-EscortPlayerNear</SubtypeId>
 			</Id>
 			<Description>
-			[RivalAI Trigger]
-			[UseTrigger:true]
-			[Type:PlayerNear]
-			[TargetDistance:750]
-			[StartsReady:false]
-			[MinCooldownMs:10000]
-			[MaxCooldownMs:10001]
-			[Actions:GVK-CargoShip-Air-COALITION-Action-EscortPlayerNear]
+				[RivalAI Trigger]
+				[UseTrigger:true]
+				[Type:PlayerNear]
+				[TargetDistance:750]
+				[StartsReady:false]
+				[MinCooldownMs:10000]
+				[MaxCooldownMs:10001]
+				[Actions:GVK-CargoShip-Air-COALITION-Action-EscortPlayerNear]
 			</Description>
 		</EntityComponent>
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
@@ -881,20 +891,20 @@
 				<SubtypeId>GVK-CargoShip-Air-COALITION-Action-EscortPlayerNear</SubtypeId>
 			</Id>
 			<Description>
-			[RivalAI Action]
-			[ChangeAutopilotProfile:true]
-			[AutopilotProfile:Primary]
-			[EnableBlocks:true]
-			[EnableBlockNames:NPC Suspension]
-			[EnableBlockStates:On]
-			[TriggerTimerBlocks:true]
-			[TimerBlockNames:NPC Timer Resume Cruise]
-			[EnableTriggers:true]
-			[EnableTriggerNames:GVK-CargoShip-Air-COALITION-Trigger-EscortPlayerNotNear]
-			[DisableTriggers:true]
-			[DisableTriggerNames:GVK-CargoShip-Air-COALITION-Trigger-EscortPlayerNear]
-			[UseChatBroadcast:true]
-			[ChatData:GVK-CargoShip-Air-COALITION-Chat-EscortPlayerNear]
+				[RivalAI Action]
+				[ChangeAutopilotProfile:true]
+				[AutopilotProfile:Primary]
+				[EnableBlocks:true]
+				[EnableBlockNames:NPC Suspension]
+				[EnableBlockStates:On]
+				[TriggerTimerBlocks:true]
+				[TimerBlockNames:NPC Timer Resume Cruise]
+				[EnableTriggers:true]
+				[EnableTriggerNames:GVK-CargoShip-Air-COALITION-Trigger-EscortPlayerNotNear]
+				[DisableTriggers:true]
+				[DisableTriggerNames:GVK-CargoShip-Air-COALITION-Trigger-EscortPlayerNear]
+				[UseChatBroadcast:true]
+				[ChatData:GVK-CargoShip-Air-COALITION-Chat-EscortPlayerNear]
 			</Description>
 		</EntityComponent>
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
@@ -903,20 +913,20 @@
 				<SubtypeId>GVK-CargoShip-Air-COALITION-Chat-EscortPlayerNear</SubtypeId>
 			</Id>
 			<Description>
-			[RivalAI Chat]
-			[UseChat:true]
-			[StartsReady:true]
-			[Chance:100]
-			[MaxChats:-1]
-			[BroadcastRandomly:false]
-			[Author:Cargo Transport]
-			[Color:White]
-			[ChatMessages:Escort in range, resuming route.]
-			[ChatAudio:ArcHudGPSNotification2]
-			[BroadcastChatType:Both]
-			[SendToAllOnlinePlayers:false]
-			[IgnoreAntennaRequirement:true]
-			[IgnoredAntennaRangeOverride:1000]
+				[RivalAI Chat]
+				[UseChat:true]
+				[StartsReady:true]
+				[Chance:100]
+				[MaxChats:-1]
+				[BroadcastRandomly:false]
+				[Author:Cargo Transport]
+				[Color:White]
+				[ChatMessages:Escort in range, resuming route.]
+				[ChatAudio:ArcHudGPSNotification2]
+				[BroadcastChatType:Both]
+				[SendToAllOnlinePlayers:false]
+				[IgnoreAntennaRequirement:true]
+				[IgnoredAntennaRangeOverride:1000]
 			</Description>
 		</EntityComponent>
 		<!-- Trigger Sequence to check if the player is still near -->
@@ -926,14 +936,14 @@
 				<SubtypeId>GVK-CargoShip-Air-COALITION-Trigger-EscortPlayerStillNear</SubtypeId>
 			</Id>
 			<Description>
-			[RivalAI Trigger]
-			[UseTrigger:true]
-			[Type:PlayerNear]
-			[TargetDistance:750]
-			[StartsReady:false]
-			[MinCooldownMs:10000]
-			[MaxCooldownMs:10001]
-			[Actions:GVK-CargoShip-Air-COALITION-Action-EscortPlayerStillNear]
+				[RivalAI Trigger]
+				[UseTrigger:true]
+				[Type:PlayerNear]
+				[TargetDistance:750]
+				[StartsReady:false]
+				[MinCooldownMs:10000]
+				[MaxCooldownMs:10001]
+				[Actions:GVK-CargoShip-Air-COALITION-Action-EscortPlayerStillNear]
 			</Description>
 		</EntityComponent>
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
@@ -942,11 +952,11 @@
 				<SubtypeId>GVK-CargoShip-Air-COALITION-Action-EscortPlayerStillNear</SubtypeId>
 			</Id>
 			<Description>
-			[RivalAI Action]
-			[EnableTriggers:true]
-			[EnableTriggerNames:GVK-CargoShip-Air-COALITION-Trigger-EscortPlayerNotNear]
-			[ResetCooldownTimeOfTriggers:true]
-			[ResetTriggerCooldownNames:GVK-CargoShip-Air-COALITION-Trigger-EscortPlayerNotNear]
+				[RivalAI Action]
+				[EnableTriggers:true]
+				[EnableTriggerNames:GVK-CargoShip-Air-COALITION-Trigger-EscortPlayerNotNear]
+				[ResetCooldownTimeOfTriggers:true]
+				[ResetTriggerCooldownNames:GVK-CargoShip-Air-COALITION-Trigger-EscortPlayerNotNear]
 			</Description>
 		</EntityComponent>
 		<!-- Trigger Sequence to stop moving when player is no longer near -->
@@ -956,13 +966,13 @@
 				<SubtypeId>GVK-CargoShip-Air-COALITION-Trigger-EscortPlayerNotNear</SubtypeId>
 			</Id>
 			<Description>
-			[RivalAI Trigger]
-			[UseTrigger:true]
-			[Type:Timer]
-			[StartsReady:false]
-			[MinCooldownMs:11000]
-			[MaxCooldownMs:11001]
-			[Actions:GVK-CargoShip-Air-COALITION-Action-EscortPlayerNotNear]
+				[RivalAI Trigger]
+				[UseTrigger:true]
+				[Type:Timer]
+				[StartsReady:false]
+				[MinCooldownMs:11000]
+				[MaxCooldownMs:11001]
+				[Actions:GVK-CargoShip-Air-COALITION-Action-EscortPlayerNotNear]
 			</Description>
 		</EntityComponent>
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
@@ -971,20 +981,20 @@
 				<SubtypeId>GVK-CargoShip-Air-COALITION-Action-EscortPlayerNotNear</SubtypeId>
 			</Id>
 			<Description>
-			[RivalAI Action]
-			[ChangeAutopilotProfile:true]
-			[AutopilotProfile:Secondary]
-			[EnableBlocks:true]
-			[EnableBlockNames:NPC Suspension]
-			[EnableBlockStates:Off]
-			[TriggerTimerBlocks:true]
-			[TimerBlockNames:NPC Timer E-brake]
-			[EnableTriggers:true]
-			[EnableTriggerNames:GVK-CargoShip-Air-COALITION-Trigger-EscortPlayerNear]
-			[DisableTriggers:true]
-			[DisableTriggerNames:GVK-CargoShip-Air-COALITION-Trigger-EscortPlayerNotNear]
-			[UseChatBroadcast:true]
-			[ChatData:GVK-CargoShip-Air-COALITION-Chat-EscortPlayerNotNear]
+				[RivalAI Action]
+				[ChangeAutopilotProfile:true]
+				[AutopilotProfile:Secondary]
+				[EnableBlocks:true]
+				[EnableBlockNames:NPC Suspension]
+				[EnableBlockStates:Off]
+				[TriggerTimerBlocks:true]
+				[TimerBlockNames:NPC Timer E-brake]
+				[EnableTriggers:true]
+				[EnableTriggerNames:GVK-CargoShip-Air-COALITION-Trigger-EscortPlayerNear]
+				[DisableTriggers:true]
+				[DisableTriggerNames:GVK-CargoShip-Air-COALITION-Trigger-EscortPlayerNotNear]
+				[UseChatBroadcast:true]
+				[ChatData:GVK-CargoShip-Air-COALITION-Chat-EscortPlayerNotNear]
 			</Description>
 		</EntityComponent>
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
@@ -993,20 +1003,20 @@
 				<SubtypeId>GVK-CargoShip-Air-COALITION-Chat-EscortPlayerNotNear</SubtypeId>
 			</Id>
 			<Description>
-			[RivalAI Chat]
-			[UseChat:true]
-			[StartsReady:true]
-			[Chance:100]
-			[MaxChats:-1]
-			[BroadcastRandomly:false]
-			[Author:Cargo Transport]
-			[Color:White]
-			[ChatMessages:Waiting for escort.]
-			[ChatAudio:ArcHudGPSNotification2]
-			[BroadcastChatType:Both]
-			[SendToAllOnlinePlayers:false]
-			[IgnoreAntennaRequirement:true]
-			[IgnoredAntennaRangeOverride:1000]
+				[RivalAI Chat]
+				[UseChat:true]
+				[StartsReady:true]
+				[Chance:100]
+				[MaxChats:-1]
+				[BroadcastRandomly:false]
+				[Author:Cargo Transport]
+				[Color:White]
+				[ChatMessages:Waiting for escort.]
+				[ChatAudio:ArcHudGPSNotification2]
+				[BroadcastChatType:Both]
+				[SendToAllOnlinePlayers:false]
+				[IgnoreAntennaRequirement:true]
+				[IgnoredAntennaRangeOverride:1000]
 			</Description>
 		</EntityComponent>
 		<!-- Trigger when it reaches Sevastapol to spawn reward -->
@@ -1016,15 +1026,15 @@
 				<SubtypeId>GVK-CargoShip-Air-COALITION-Trigger-EscortSuccessTargetE</SubtypeId>
 			</Id>
 			<Description>
-			[RivalAI Trigger]
-			[Type:TargetNear]
-			[UseTrigger:true]
-			[StartsReady:false]
-			[TargetDistance:500]
-			[ActionExecution:All]
-			[MinCooldownMs:9998]
-			[MaxCooldownMs:9999]
-			[Actions:GVK-CargoShip-Air-COALITION-Action-EscortSuccessE]
+				[RivalAI Trigger]
+				[Type:TargetNear]
+				[UseTrigger:true]
+				[StartsReady:false]
+				[TargetDistance:500]
+				[ActionExecution:All]
+				[MinCooldownMs:9998]
+				[MaxCooldownMs:9999]
+				[Actions:GVK-CargoShip-Air-COALITION-Action-EscortSuccessE]
 			</Description>
 		</EntityComponent>
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
@@ -1033,17 +1043,17 @@
 				<SubtypeId>GVK-CargoShip-Air-COALITION-Trigger-EscortSuccessCounterE</SubtypeId>
 			</Id>
 			<Description>
-			[RivalAI Trigger]
-			[Type:Timer]
-			[UseTrigger:true]
-			[StartsReady:false]
-			[MaxActions:1]
-			[ActionExecution:All]
-			[MinCooldownMs:5000]
-			[MaxCooldownMs:5001]
-			[Conditions:GVK-CargoShip-Air-COALITION-Condition-EscortSuccessE]
-			[ConditionCheckResetsTimer:true]
-			[Actions:GVK-CargoShip-Air-COALITION-Action-EscortSuccessE]
+				[RivalAI Trigger]
+				[Type:Timer]
+				[UseTrigger:true]
+				[StartsReady:false]
+				[MaxActions:1]
+				[ActionExecution:All]
+				[MinCooldownMs:5000]
+				[MaxCooldownMs:5001]
+				[Conditions:GVK-CargoShip-Air-COALITION-Condition-EscortSuccessE]
+				[ConditionCheckResetsTimer:true]
+				[Actions:GVK-CargoShip-Air-COALITION-Action-EscortSuccessE]
 			</Description>
 		</EntityComponent>
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
@@ -1052,14 +1062,14 @@
 				<SubtypeId>GVK-CargoShip-Air-COALITION-Condition-EscortSuccessE</SubtypeId>
 			</Id>
 			<Description>
-			[RivalAI Condition]
-			[UseConditions:true]
-			[MatchAnyCondition:true]
-			[CheckCustomSandboxCounters:true]
-			[CustomSandboxCounters:SandboxCounter_WaypointRouteE]
-			[CustomSandboxCountersTargets:13]
-			[SandboxCounterCompareTypes:GreaterOrEqual]
-			[AllowAnyValidSandboxCounter:true]
+				[RivalAI Condition]
+				[UseConditions:true]
+				[MatchAnyCondition:true]
+				[CheckCustomSandboxCounters:true]
+				[CustomSandboxCounters:SandboxCounter_WaypointRouteE]
+				[CustomSandboxCountersTargets:13]
+				[SandboxCounterCompareTypes:GreaterOrEqual]
+				[AllowAnyValidSandboxCounter:true]
 			</Description>
 		</EntityComponent>
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
@@ -1068,35 +1078,36 @@
 				<SubtypeId>GVK-CargoShip-Air-COALITION-Action-EscortSuccessE</SubtypeId>
 			</Id>
 			<Description>
-			[RivalAI Action]
-			[Chance:100]
-			[UseChatBroadcast:true]
-			[ChatData:GVK-CargoShip-Air-COALITION-Chat-EscortSuccessE]
-			[SpawnEncounter:true]
-			[Spawner:GVK-CargoShip-Air-COALITION-Spawner-EscortSuccessE]
-			[DisableTriggers:true]
-			[DisableTriggerNames:GVK-CargoShip-Air-COALITION-Trigger-EscortSuccessTargetE]
-			[DisableTriggerNames:GVK-CargoShip-Air-COALITION-Trigger-EscortSuccessCounterE]
-			[DisableTriggerNames:GVK-CargoShip-Air-COALITION-Trigger-EscortPlayerNear]
-			[DisableTriggerNames:GVK-CargoShip-Air-COALITION-Trigger-EscortPlayerNotNear]
-			[DisableTriggerNames:GVK-CargoShip-Air-COALITION-Trigger-EscortInsideZ1]
-			[DisableTriggerNames:GVK-CargoShip-Air-COALITION-Trigger-EscortEnemySpawnsZ1]
-			[DisableTriggerNames:GVK-CargoShip-Air-COALITION-Trigger-EscortInsideZ2]
-			[DisableTriggerNames:GVK-CargoShip-Air-COALITION-Trigger-EscortEnemySpawnsZ2]
-			[DisableTriggerNames:GVK-CargoShip-Air-COALITION-Trigger-EscortInsideZ3]
-			[DisableTriggerNames:GVK-CargoShip-Air-COALITION-Trigger-EscortEnemySpawnsZ3]
-			[DisableTriggerNames:GVK-CargoShip-Air-COALITION-Trigger-EscortAttacked]
-			[DisableTriggerNames:GVK-CargoShip-Air-COALITION-Trigger-EscortBeaconDisabled]
-			[DisableTriggerNames:GVK-CargoShip-Air-COALITION-Trigger-EscortCompromised]
-			[PlayParticleEffectAtRemote:true]
-			[ParticleEffectId:CruiserPoofSmoke]
-			[ParticleEffectOffset:{X:0.0 Y:0.0 Z:0.0}]
-			[ParticleEffectScale:3.0]
-			[ParticleEffectMaxTime:2000]
-			[ParticleEffectColor:{X:1.0 Y:1.0 Z:1.0}]
-			[PlaySoundAtPosition:true]
-			[SoundAtPosition:Cruiser_Explosion]
-			[ForceDespawn:true]
+				[RivalAI Action]
+				[Chance:100]
+				[SetSandboxBooleansTrue:GVK_EscortArrived_E]
+				[UseChatBroadcast:true]
+				[ChatData:GVK-CargoShip-Air-COALITION-Chat-EscortSuccessE]
+				[SpawnEncounter:true]
+				[Spawner:GVK-CargoShip-Air-COALITION-Spawner-EscortSuccessE]
+				[DisableTriggers:true]
+				[DisableTriggerNames:GVK-CargoShip-Air-COALITION-Trigger-EscortSuccessTargetE]
+				[DisableTriggerNames:GVK-CargoShip-Air-COALITION-Trigger-EscortSuccessCounterE]
+				[DisableTriggerNames:GVK-CargoShip-Air-COALITION-Trigger-EscortPlayerNear]
+				[DisableTriggerNames:GVK-CargoShip-Air-COALITION-Trigger-EscortPlayerNotNear]
+				[DisableTriggerNames:GVK-CargoShip-Air-COALITION-Trigger-EscortInsideZ1]
+				[DisableTriggerNames:GVK-CargoShip-Air-COALITION-Trigger-EscortEnemySpawnsZ1]
+				[DisableTriggerNames:GVK-CargoShip-Air-COALITION-Trigger-EscortInsideZ2]
+				[DisableTriggerNames:GVK-CargoShip-Air-COALITION-Trigger-EscortEnemySpawnsZ2]
+				[DisableTriggerNames:GVK-CargoShip-Air-COALITION-Trigger-EscortInsideZ3]
+				[DisableTriggerNames:GVK-CargoShip-Air-COALITION-Trigger-EscortEnemySpawnsZ3]
+				[DisableTriggerNames:GVK-CargoShip-Air-COALITION-Trigger-EscortAttacked]
+				[DisableTriggerNames:GVK-CargoShip-Air-COALITION-Trigger-EscortBeaconDisabled]
+				[DisableTriggerNames:GVK-CargoShip-Air-COALITION-Trigger-EscortCompromised]
+				[PlayParticleEffectAtRemote:true]
+				[ParticleEffectId:CruiserPoofSmoke]
+				[ParticleEffectOffset:{X:0.0 Y:0.0 Z:0.0}]
+				[ParticleEffectScale:3.0]
+				[ParticleEffectMaxTime:2000]
+				[ParticleEffectColor:{X:1.0 Y:1.0 Z:1.0}]
+				[PlaySoundAtPosition:true]
+				[SoundAtPosition:Cruiser_Explosion]
+				[ForceDespawn:true]
 			</Description>
 		</EntityComponent>
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
@@ -1105,21 +1116,21 @@
 				<SubtypeId>GVK-CargoShip-Air-COALITION-Chat-EscortSuccessE</SubtypeId>
 			</Id>
 			<Description>
-			[RivalAI Chat]
-			[UseChat:true]
-			[StartsReady:true]
-			[Chance:100]
-			[MaxChats:1]
-			[BroadcastRandomly:false]
-			[Author:{Faction}]
-			[Color:{PlayerRelation}]
-			[ChatMessages:Escort arrived safely at Sevastopol.]
-			[ChatAudio:ArcHudGPSNotification2]
-			[BroadcastChatType:Both]
-			[SendToAllOnlinePlayers:true]
-			[IgnoreAntennaRequirement:true]
-			[IgnoredAntennaRangeOverride:9999999]
-		  </Description>
+				[RivalAI Chat]
+				[UseChat:true]
+				[StartsReady:true]
+				[Chance:100]
+				[MaxChats:1]
+				[BroadcastRandomly:false]
+				[Author:{Faction}]
+				[Color:{PlayerRelation}]
+				[ChatMessages:Escort arrived safely at Sevastopol.]
+				[ChatAudio:ArcHudGPSNotification2]
+				[BroadcastChatType:Both]
+				[SendToAllOnlinePlayers:true]
+				[IgnoreAntennaRequirement:true]
+				[IgnoredAntennaRangeOverride:9999999]
+			</Description>
 		</EntityComponent>
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
@@ -1127,19 +1138,19 @@
 				<SubtypeId>GVK-CargoShip-Air-COALITION-Spawner-EscortSuccessE</SubtypeId>
 			</Id>
 			<Description>
-			[RivalAI Spawn]
-			[UseSpawn:true]
-			[SpawningType:CustomSpawn]
-			[StartsReady:true]
-			[ProcessAsAdminSpawn:true]
-			[MaxSpawns:1]
-			[SpawnGroups:GVK-Other-Loot-SpawnGroup-COALITION-CargoDrop4x]
-			[MinDistance:300]
-			[MaxDistance:400]
-			[MinAltitude:300]
-			[MaxAltitude:301]
-			[InheritNpcAltitude:false]
-			[IgnoreSafetyChecks:true]
+				[RivalAI Spawn]
+				[UseSpawn:true]
+				[SpawningType:CustomSpawn]
+				[StartsReady:true]
+				[ProcessAsAdminSpawn:true]
+				[MaxSpawns:1]
+				[SpawnGroups:GVK-Other-Loot-SpawnGroup-COALITION-CargoDrop4x]
+				[MinDistance:300]
+				[MaxDistance:400]
+				[MinAltitude:300]
+				[MaxAltitude:301]
+				[InheritNpcAltitude:false]
+				[IgnoreSafetyChecks:true]
 			</Description>
 		</EntityComponent>
 	</EntityComponents>

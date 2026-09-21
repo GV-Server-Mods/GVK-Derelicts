@@ -18,6 +18,23 @@
 				[RemoteControlCode:GVK-Static]
 			</Description>
 		</EntityComponent>
+		<!-- Behavior for COALITION Base includes Contracts Block Triggers -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Static-TradeStation-Behavior-COALITIONBase</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Behavior]
+				[BehaviorName:Passive]
+				[UseRetreatTimer:false]
+				[UseNoTargetTimer:false]
+				[UsePlayerDistanceTimer:false]
+				[Triggers:GVK-EscortContracts-Trigger-RefreshBoard]
+				[TriggerGroups:GVK-Store-TriggerGroup-UpdateStores]
+				[RemoteControlCode:GVK-Static]
+			</Description>
+		</EntityComponent>
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>

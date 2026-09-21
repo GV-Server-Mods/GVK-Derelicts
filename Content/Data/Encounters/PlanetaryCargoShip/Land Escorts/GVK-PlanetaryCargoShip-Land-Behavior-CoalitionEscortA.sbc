@@ -1,4 +1,4 @@
-<?xml version="1.0"?>
+﻿<?xml version="1.0"?>
 <Definitions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
 	<EntityComponents>
 		<!-- 
@@ -19,7 +19,7 @@
 				[RivalAI Behavior]
 				[BehaviorName:CargoShip]
 				[WeaponSystem:GVK-Universal-Weapons-All]
-				[UsePlayerDistanceTimer:true]
+				[UsePlayerDistanceTimer:false]
 				[PlayerDistanceTimerTrigger:3600]
 				[PlayerDistanceTrigger:4000]
 				[UseRetreatTimer:false]
@@ -40,8 +40,11 @@
 				[Triggers:GVK-CargoShip-Land-COALITION-Trigger-EscortHorizonAngleHigh]
 				[Triggers:GVK-CargoShip-Land-COALITION-Trigger-EscortArriveAtWaypoint]
 				[Triggers:GVK-CargoShip-Land-COALITION-Trigger-EscortLeaveWaypoint]
-				[Triggers:GVK-CargoShip-Land-COALITION-Trigger-EscortBeaconDisabled]
-				[Triggers:GVK-CargoShip-Land-COALITION-Trigger-EscortCompromised]
+				[Triggers:GVK-CargoShip-Land-COALITION-Trigger-EscortBeaconDisabled-A]
+				[Triggers:GVK-CargoShip-Land-COALITION-Trigger-EscortCompromised-A]
+				[Triggers:GVK-CargoShip-Land-COALITION-Trigger-EscortDespawn-A]
+				[Triggers:GVK-CargoShip-Land-COALITION-Trigger-EscortDespawnMES-A]
+				[Triggers:GVK-CargoShip-Land-COALITION-Trigger-EscortLostA]
 				[Triggers:GVK-CargoShip-Land-COALITION-Trigger-EscortAttacked]
 				[Triggers:GVK-CargoShip-Land-COALITION-Trigger-EscortPlayerNear]
 				[Triggers:GVK-CargoShip-Land-COALITION-Trigger-EscortPlayerStillNear]
@@ -437,7 +440,7 @@
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-CargoShip-Land-COALITION-Trigger-EscortBeaconDisabled</SubtypeId>
+				<SubtypeId>GVK-CargoShip-Land-COALITION-Trigger-EscortBeaconDisabled-A</SubtypeId>
 			</Id>
 			<Description>
 				[RivalAI Trigger]
@@ -447,6 +450,7 @@
 				[Conditions:GVK-Universal-Condition-AllBeaconsDisabled]
 				[MaxActions:1]
 				[ActionExecution:All]
+				[Actions:GVK-EscortMissions-Action-ConvoyLost-A]
 				[Actions:GVK-CargoShip-Land-COALITION-Action-EscortCompromised]
 				[Actions:GVK-Universal-Action-EditableOnCompromised]
 				[Actions:GVK-Universal-Action-Disabled]
@@ -456,7 +460,7 @@
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-CargoShip-Land-COALITION-Trigger-EscortCompromised</SubtypeId>
+				<SubtypeId>GVK-CargoShip-Land-COALITION-Trigger-EscortCompromised-A</SubtypeId>
 			</Id>
 			<Description>
 				[RivalAI Trigger]
@@ -464,6 +468,7 @@
 				[UseTrigger:true]
 				[StartsReady:true]
 				[MaxActions:1]
+				[Actions:GVK-EscortMissions-Action-ConvoyLost-A]
 				[Actions:GVK-CargoShip-Land-COALITION-Action-EscortCompromised]
 				[Actions:GVK-Universal-Action-EditableOnCompromised]
 				[Actions:GVK-Universal-Action-Disabled]
@@ -473,7 +478,7 @@
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-CargoShip-Land-COALITION-Trigger-EscortDespawn</SubtypeId>
+				<SubtypeId>GVK-CargoShip-Land-COALITION-Trigger-EscortDespawn-A</SubtypeId>
 			</Id>
 			<Description>
 				[RivalAI Trigger]
@@ -481,13 +486,15 @@
 				[UseTrigger:true]
 				[StartsReady:true]
 				[MaxActions:1]
+				[ActionExecution:All]
+				[Actions:GVK-EscortMissions-Action-ConvoyLost-A]
 				[Actions:GVK-CargoShip-Land-COALITION-Action-EscortCompromised]
 			</Description>
 		</EntityComponent>
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-CargoShip-Land-COALITION-Trigger-EscortDespawnMES</SubtypeId>
+				<SubtypeId>GVK-CargoShip-Land-COALITION-Trigger-EscortDespawnMES-A</SubtypeId>
 			</Id>
 			<Description>
 				[RivalAI Trigger]
@@ -495,6 +502,8 @@
 				[UseTrigger:true]
 				[StartsReady:true]
 				[MaxActions:1]
+				[ActionExecution:All]
+				[Actions:GVK-EscortMissions-Action-ConvoyLost-A]
 				[Actions:GVK-CargoShip-Land-COALITION-Action-EscortCompromised]
 			</Description>
 		</EntityComponent>
@@ -1426,6 +1435,7 @@
 				[RivalAI Action]
 				[//DebugMessage:EscortSuccessA]
 				[Chance:100]
+				[SetSandboxBooleansTrue:GVK_EscortArrived_A]
 				[UseChatBroadcast:true]
 				[ChatData:GVK-CargoShip-Land-COALITION-Chat-EscortSuccessA]
 				[SpawnEncounter:true]

@@ -1,0 +1,70 @@
+<?xml version="1.0"?>
+<Definitions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+	<EntityComponents>
+		<!-- ================================================================= -->
+		<!-- GVK ESCORT CONTRACT BOARD                                          -->
+		<!-- Contract Block profile: the list of missions MES publishes onto the -->
+		<!-- Coalition contract block. Applied by the board behavior below.     -->
+		<!-- ================================================================= -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-EscortContracts-Board</SubtypeId>
+			</Id>
+			<Description>
+				[MES Contract Block]
+				[MissionIds:GVK-EscortMission-RouteA]
+				[MissionIds:GVK-EscortMission-RouteB]
+				[MissionIds:GVK-EscortMission-RouteE]
+			</Description>
+		</EntityComponent>
+		<!-- Trigger to refresh the escort contract board, place on appropriate grid behaviors only -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-EscortContracts-Trigger-RefreshBoard</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Trigger]
+				[Type:Timer]
+				[UseTrigger:true]
+				[StartsReady:true]
+				[MinCooldownMs:60000]
+				[MaxCooldownMs:60001]
+				[//Conditions:GVK-EscortContracts-Condition-NoActiveContract]
+				[Actions:GVK-EscortContracts-Action-RefreshBoard]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-EscortContracts-Condition-NoActiveContract</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Condition]
+				[UseConditions:true]
+				[NoActiveContracts:true]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-EscortContracts-Action-RefreshBoard</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Action]
+				[Chance:100]
+				[SetSandboxBooleansFalse:GVK_EscortArrived_A]
+				[SetSandboxBooleansFalse:GVK_EscortArrived_B]
+				[SetSandboxBooleansFalse:GVK_EscortArrived_E]
+				[SetSandboxBooleansFalse:GVK_EscortLost_A]
+				[SetSandboxBooleansFalse:GVK_EscortLost_B]
+				[SetSandboxBooleansFalse:GVK_EscortLost_E]
+				[ApplyContractProfiles:true]
+				[ClearContractContentsFirst:true]
+				[ContractBlocks:NPC Contracts]
+				[ContractBlockProfiles:GVK-EscortContracts-Board]
+			</Description>
+		</EntityComponent>
+	</EntityComponents>
+</Definitions>

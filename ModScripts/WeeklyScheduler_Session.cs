@@ -148,13 +148,17 @@ namespace GVK_Derelicts.WeeklyScheduler
                 var up      = evt.SpawnUp      != Vector3D.Zero ? evt.SpawnUp      : Vector3D.Up;
                 var matrix  = MatrixD.CreateWorld(evt.SpawnCoords, forward, up);
 
-                _mesApi.CustomSpawnRequest(
+                var spawned = _mesApi.CustomSpawnRequest(
                     evt.SpawnGroups,
                     matrix,
                     Vector3.Zero,
-                    false,
+                    true,                  // forceSpawn — bypass MES spawn conditions (this is a scheduled event)
                     null,
                     "GVK_WeeklyScheduler");
+
+                if (!spawned)
+                    MyLog.Default.WriteLineAndConsole(
+                        "[GVK WeeklyScheduler] WARNING: MES rejected spawn request for event '" + evt.EventId + "'.");
             }
             else
             {
@@ -179,13 +183,17 @@ namespace GVK_Derelicts.WeeklyScheduler
                 "[GVK WeeklyScheduler]   -> Spawning entry: " + entry.SpawnGroup +
                 " (event: " + eventId + ")");
 
-            _mesApi.CustomSpawnRequest(
+            var spawned = _mesApi.CustomSpawnRequest(
                 new List<string> { entry.SpawnGroup },
                 matrix,
                 Vector3.Zero,
-                false,
+                true,                  // forceSpawn — bypass MES spawn conditions (this is a scheduled event)
                 null,
                 "GVK_WeeklyScheduler");
+
+            if (!spawned)
+                MyLog.Default.WriteLineAndConsole(
+                    "[GVK WeeklyScheduler] WARNING: MES rejected spawn request for group '" + entry.SpawnGroup + "'.");
         }
 
         // -------------------------------------------------------

@@ -9,15 +9,19 @@
 				<TypeId>Inventory</TypeId>
 				<SubtypeId>GVK-Convoy-Event-CoalitionA</SubtypeId>
 			</Id>
+			<!-- Ambient spawn disabled: this convoy now spawns only via escort contract missions
+			     (GVK-EscortMission-RouteA -> GVK-EscortMissions-Template-Spawn-A). Its condition,
+			     action and spawner profiles are reused by those template events.
+			     Set UseEvent:true to restore the ambient spawn as well. -->
 			<Description>
 				[MES Event]
-				[UseEvent:true]
+				[UseEvent:false]
 				[UniqueEvent:false]
 				[StartsReady:true]
 				[MinCooldownMs:4800000]
 				[MaxCooldownMs:7200000]
-				[ConditionIds:GVK-Convoy-EventCondition-CoalitionA]
-				[ActionIds:GVK-Convoy-EventAction-CoalitionA]
+				[//ConditionIds:GVK-Convoy-EventCondition-CoalitionA]
+				[//ActionIds:GVK-Convoy-EventAction-CoalitionA]
 				[ActionExecution:All]
 			</Description>
 		</EntityComponent>
@@ -76,15 +80,19 @@
 				<TypeId>Inventory</TypeId>
 				<SubtypeId>GVK-Convoy-Event-CoalitionB</SubtypeId>
 			</Id>
+			<!-- Ambient spawn disabled: this convoy now spawns only via escort contract missions
+			     (GVK-EscortMission-RouteB -> GVK-EscortMissions-Template-Spawn-B). Its condition,
+			     action and spawner profiles are reused by those template events.
+			     Set UseEvent:true to restore the ambient spawn as well. -->
 			<Description>
 				[MES Event]
-				[UseEvent:true]
+				[UseEvent:false]
 				[UniqueEvent:false]
 				[StartsReady:true]
 				[MinCooldownMs:4800000]
 				[MaxCooldownMs:7200000]
-				[ConditionIds:GVK-Convoy-EventCondition-CoalitionB]
-				[ActionIds:GVK-Convoy-EventAction-CoalitionB]
+				[//ConditionIds:GVK-Convoy-EventCondition-CoalitionB]
+				[//ActionIds:GVK-Convoy-EventAction-CoalitionB]
 				[ActionExecution:All]
 			</Description>
 		</EntityComponent>
@@ -142,15 +150,19 @@
 				<TypeId>Inventory</TypeId>
 				<SubtypeId>GVK-Convoy-Event-CoalitionE</SubtypeId>
 			</Id>
+			<!-- Ambient spawn disabled: this convoy now spawns only via escort contract missions
+			     (GVK-EscortMission-RouteE -> GVK-EscortMissions-Template-Spawn-E). Its condition,
+			     action and spawner profiles are reused by those template events.
+			     Set UseEvent:true to restore the ambient spawn as well. -->
 			<Description>
 				[MES Event]
-				[UseEvent:true]
+				[UseEvent:false]
 				[UniqueEvent:false]
 				[StartsReady:true]
 				[MinCooldownMs:4800000]
 				[MaxCooldownMs:7200000]
-				[ConditionIds:GVK-Convoy-EventCondition-CoalitionE]
-				[ActionIds:GVK-Convoy-EventAction-CoalitionE]
+				[//ConditionIds:GVK-Convoy-EventCondition-CoalitionE]
+				[//ActionIds:GVK-Convoy-EventAction-CoalitionE]
 				[ActionExecution:All]
 			</Description>
 		</EntityComponent>
