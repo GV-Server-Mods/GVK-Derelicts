@@ -668,69 +668,7 @@
 				[ChatData:GVK-CargoShip-SOBAN-Chat-HeadToDespawn]
 			</Description>
 		</EntityComponent>
-		<!-- WaypointNear and WaypointFar are broken right now -->
-		<!-- Trigger sequence when Cargo Ship is near the waypoint to switch to secondary autopilot -->
-		<!--<EntityComponent
-		xsi:type="MyObjectBuilder_InventoryComponentDefinition">
-			<Id>
-				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-CargoShip-SOBAN-Trigger-WaypointNear</SubtypeId>
-			</Id>
-			<Description>
-			[RivalAI Trigger]
-			[UseTrigger:true]
-			[Type:WaypointNear]
-			[TargetDistance:699]
-			[MinCooldownMs:10000]
-			[MaxCooldownMs:10001]
-			[StartsReady:true]
-			[MaxActions:-1]
-			[Actions:GVK-CargoShip-SOBAN-Action-WaypointNear]
-			</Description>
-		</EntityComponent>
-		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
-			<Id>
-				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-CargoShip-SOBAN-Action-WaypointNear</SubtypeId>
-			</Id>
-			<Description>
-			[RivalAI Action]
-			[//DebugMessage:WaypointNear]
-			[ChangeAutopilotProfile:true]
-			[AutopilotProfile:Secondary]
-			</Description>
-		</EntityComponent>-->
-		<!-- Trigger sequence when Cargo Ship is far from the waypoint to switch to Primary autopilot -->
-		<!--<EntityComponent
-		xsi:type="MyObjectBuilder_InventoryComponentDefinition">
-			<Id>
-				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-CargoShip-SOBAN-Trigger-WaypointFar</SubtypeId>
-			</Id>
-			<Description>
-			[RivalAI Trigger]
-			[UseTrigger:true]
-			[Type:Timer]
-			[TargetDistance:700]
-			[MinCooldownMs:10000]
-			[MaxCooldownMs:10001]
-			[StartsReady:true]
-			[MaxActions:1]
-			[Actions:GVK-CargoShip-SOBAN-Action-WaypointFar]
-			</Description>
-		</EntityComponent>
-		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
-			<Id>
-				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-CargoShip-SOBAN-Action-WaypointFar</SubtypeId>
-			</Id>
-			<Description>
-			[RivalAI Action]
-			[//DebugMessage:WaypointFar]
-			[ChangeAutopilotProfile:true]
-			[AutopilotProfile:Primary]
-			</Description>
-		</EntityComponent>-->
+		<!-- WaypointNear/WaypointFar trigger types are broken (crash CargoShipWaypoints indexing) -->
 		<!-- Using Supply Depot as target since WaypointNear/Far are broken -->
 		<!-- Trigger sequence when Cargo Ship is near the Target to switch to secondary autopilot -->
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">

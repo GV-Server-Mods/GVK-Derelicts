@@ -746,7 +746,7 @@
 				[Actions:GVK-Universal-Action-PublicSpawnPoint]
 			</Description>
 		</EntityComponent>
-		<!-- ChangeBlocksShareModeAll seems broken right now -->
+		<!-- ChangeBlocksShareModeAll is partly broken and this might not work, it might even crash -->
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
@@ -755,12 +755,11 @@
 			<Description>
 				[RivalAI Action]
 				[//DebugMessage:PublicSpawnPoint]
+				[ChangeBlockOwnership:true]
+				[OwnershipBlockNames:PublicSpawnPoint]
+				[OwnershipBlockFactions:COALITION]
 				[ChangeBlocksShareModeAll:true]
 				[BlockNamesShareModeAll:PublicSpawnPoint]
-				[ChangeBlockOnwership:true]
-				[OnwershipBlockNames:PublicSpawnPoint]
-				[OwnershipBlockFactions:COALITION]
-				[OwnershipBlockShareMode:All]
 			</Description>
 		</EntityComponent>
 		<!-- Generic conditions -->
