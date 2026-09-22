@@ -29,9 +29,9 @@
 				[Type:Timer]
 				[UseTrigger:true]
 				[StartsReady:true]
-				[MinCooldownMs:60000]
-				[MaxCooldownMs:60001]
-				[//Conditions:GVK-EscortContracts-Condition-NoActiveContract]
+				[MinCooldownMs:600000]
+				[MaxCooldownMs:600001]
+				[Conditions:GVK-EscortContracts-Condition-NoActiveContract]
 				[Actions:GVK-EscortContracts-Action-RefreshBoard]
 			</Description>
 		</EntityComponent>
@@ -54,12 +54,6 @@
 			<Description>
 				[RivalAI Action]
 				[Chance:100]
-				[SetSandboxBooleansFalse:GVK_EscortArrived_A]
-				[SetSandboxBooleansFalse:GVK_EscortArrived_B]
-				[SetSandboxBooleansFalse:GVK_EscortArrived_E]
-				[SetSandboxBooleansFalse:GVK_EscortLost_A]
-				[SetSandboxBooleansFalse:GVK_EscortLost_B]
-				[SetSandboxBooleansFalse:GVK_EscortLost_E]
 				[ApplyContractProfiles:true]
 				[ClearContractContentsFirst:true]
 				[ContractBlocks:NPC Contracts]

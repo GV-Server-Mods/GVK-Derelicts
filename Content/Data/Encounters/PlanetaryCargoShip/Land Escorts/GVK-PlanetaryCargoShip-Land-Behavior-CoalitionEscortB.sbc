@@ -50,6 +50,7 @@
 				[Triggers:GVK-CargoShip-Land-COALITION-Trigger-EscortEnemySpawnsZ3]
 				[Triggers:GVK-CargoShip-Land-COALITION-Trigger-EscortSuccessTargetB]
 				[Triggers:GVK-CargoShip-Land-COALITION-Trigger-EscortSuccessCounterB]
+				[Triggers:GVK-CargoShip-Land-COALITION-Trigger-HeartbeatB]
 				[RemoteControlCode:COALITIONRouteB]
 			</Description>
 		</EntityComponent>
@@ -382,8 +383,10 @@
 				[DisableTriggerNames:GVK-CargoShip-Land-COALITION-Trigger-EscortInsideZ3]
 				[DisableTriggerNames:GVK-CargoShip-Land-COALITION-Trigger-EscortEnemySpawnsZ3]
 				[DisableTriggerNames:GVK-CargoShip-Land-COALITION-Trigger-EscortAttacked]
-				[DisableTriggerNames:GVK-CargoShip-Land-COALITION-Trigger-EscortBeaconDisabled]
-				[DisableTriggerNames:GVK-CargoShip-Land-COALITION-Trigger-EscortCompromised]
+				[DisableTriggerNames:GVK-CargoShip-Land-COALITION-Trigger-EscortBeaconDisabled-B]
+				[DisableTriggerNames:GVK-CargoShip-Land-COALITION-Trigger-EscortCompromised-B]
+				[DisableTriggerNames:GVK-CargoShip-Land-COALITION-Trigger-EscortDespawn-B]
+				[DisableTriggerNames:GVK-CargoShip-Land-COALITION-Trigger-EscortDespawnMES-B]
 				[PlayParticleEffectAtRemote:true]
 				[ParticleEffectId:CruiserPoofSmoke]
 				[ParticleEffectOffset:{X:0.0 Y:0.0 Z:0.0}]
@@ -436,6 +439,32 @@
 				[MaxAltitude:301]
 				[InheritNpcAltitude:false]
 				[IgnoreSafetyChecks:true]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-CargoShip-Land-COALITION-Trigger-HeartbeatB</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Trigger]
+				[Type:Timer]
+				[UseTrigger:true]
+				[StartsReady:true]
+				[MinCooldownMs:30000]
+				[MaxCooldownMs:30001]
+				[Actions:GVK-CargoShip-Land-COALITION-Action-HeartbeatB]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-CargoShip-Land-COALITION-Action-HeartbeatB</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Action]
+				[ResetCooldownTimeOfEvents:true]
+				[ResetEventCooldownTags:GVK_EscortWatchdog_B]
 			</Description>
 		</EntityComponent>
 	</EntityComponents>

@@ -11,7 +11,7 @@
 		<!--        GVK_EscortLost_X    (transport destroyed / compromised)      -->
 		<!-- Reset by GVK-EscortContracts-Action-RefreshBoard.                   -->
 		<!-- ================================================================= -->
-
+		<!-- TODO: consolidate conditions and actions that are spread across here and EventTemplates files-->
 		<!-- ================= ROUTE A (Land, Sevastopol) ================= -->
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
@@ -64,6 +64,16 @@
 			<Id>
 				<TypeId>Inventory</TypeId>
 				<SubtypeId>GVK-EscortMissions-EventAction-Lost-A</SubtypeId>
+			</Id>
+			<Description>
+				[MES Event Action]
+				[TryContractFail:true]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-EscortMissions-EventAction-Watchdog-A</SubtypeId>
 			</Id>
 			<Description>
 				[MES Event Action]
@@ -128,6 +138,16 @@
 				[TryContractFail:true]
 			</Description>
 		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-EscortMissions-EventAction-Watchdog-B</SubtypeId>
+			</Id>
+			<Description>
+				[MES Event Action]
+				[TryContractFail:true]
+			</Description>
+		</EntityComponent>
 		<!-- ================= ROUTE E (Air, Sevastopol) ================= -->
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
@@ -180,6 +200,16 @@
 			<Id>
 				<TypeId>Inventory</TypeId>
 				<SubtypeId>GVK-EscortMissions-EventAction-Lost-E</SubtypeId>
+			</Id>
+			<Description>
+				[MES Event Action]
+				[TryContractFail:true]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-EscortMissions-EventAction-Watchdog-E</SubtypeId>
 			</Id>
 			<Description>
 				[MES Event Action]

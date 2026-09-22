@@ -62,6 +62,7 @@
 				[Triggers:GVK-CargoShip-Land-COALITION-Trigger-EscortEnemySpawnsZ3Canyon]
 				[Triggers:GVK-CargoShip-Land-COALITION-Trigger-EscortSuccessTargetA]
 				[Triggers:GVK-CargoShip-Land-COALITION-Trigger-EscortSuccessCounterA]
+				[Triggers:GVK-CargoShip-Land-COALITION-Trigger-HeartbeatA]
 				[RemoteControlCode:COALITIONRouteA]
 			</Description>
 		</EntityComponent>
@@ -1456,8 +1457,10 @@
 				[DisableTriggerNames:GVK-CargoShip-Land-COALITION-Trigger-EscortEnemySpawnsZ3]
 				[DisableTriggerNames:GVK-CargoShip-Land-COALITION-Trigger-EscortEnemySpawnsZ3Canyon]
 				[DisableTriggerNames:GVK-CargoShip-Land-COALITION-Trigger-EscortAttacked]
-				[DisableTriggerNames:GVK-CargoShip-Land-COALITION-Trigger-EscortBeaconDisabled]
-				[DisableTriggerNames:GVK-CargoShip-Land-COALITION-Trigger-EscortCompromised]
+				[DisableTriggerNames:GVK-CargoShip-Land-COALITION-Trigger-EscortBeaconDisabled-A]
+				[DisableTriggerNames:GVK-CargoShip-Land-COALITION-Trigger-EscortCompromised-A]
+				[DisableTriggerNames:GVK-CargoShip-Land-COALITION-Trigger-EscortDespawn-A]
+				[DisableTriggerNames:GVK-CargoShip-Land-COALITION-Trigger-EscortDespawnMES-A]
 				[PlayParticleEffectAtRemote:true]
 				[ParticleEffectId:CruiserPoofSmoke]
 				[ParticleEffectOffset:{X:0.0 Y:0.0 Z:0.0}]
@@ -1510,6 +1513,32 @@
 				[MaxAltitude:301]
 				[InheritNpcAltitude:false]
 				[IgnoreSafetyChecks:true]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-CargoShip-Land-COALITION-Trigger-HeartbeatA</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Trigger]
+				[Type:Timer]
+				[UseTrigger:true]
+				[StartsReady:true]
+				[MinCooldownMs:30000]
+				[MaxCooldownMs:30001]
+				[Actions:GVK-CargoShip-Land-COALITION-Action-HeartbeatA]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-CargoShip-Land-COALITION-Action-HeartbeatA</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Action]
+				[ResetCooldownTimeOfEvents:true]
+				[ResetEventCooldownTags:GVK_EscortWatchdog_A]
 			</Description>
 		</EntityComponent>
 	</EntityComponents>

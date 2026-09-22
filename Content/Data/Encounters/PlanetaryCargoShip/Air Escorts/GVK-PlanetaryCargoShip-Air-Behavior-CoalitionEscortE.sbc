@@ -50,6 +50,7 @@
 				[Triggers:GVK-CargoShip-Air-COALITION-Trigger-EscortEnemySpawnsZ3]
 				[Triggers:GVK-CargoShip-Air-COALITION-Trigger-EscortSuccessTargetE]
 				[Triggers:GVK-CargoShip-Air-COALITION-Trigger-EscortSuccessCounterE]
+				[Triggers:GVK-CargoShip-Air-COALITION-Trigger-HeartbeatE]
 				[RemoteControlCode:COALITIONRouteE]
 			</Description>
 		</EntityComponent>
@@ -1097,8 +1098,10 @@
 				[DisableTriggerNames:GVK-CargoShip-Air-COALITION-Trigger-EscortInsideZ3]
 				[DisableTriggerNames:GVK-CargoShip-Air-COALITION-Trigger-EscortEnemySpawnsZ3]
 				[DisableTriggerNames:GVK-CargoShip-Air-COALITION-Trigger-EscortAttacked]
-				[DisableTriggerNames:GVK-CargoShip-Air-COALITION-Trigger-EscortBeaconDisabled]
-				[DisableTriggerNames:GVK-CargoShip-Air-COALITION-Trigger-EscortCompromised]
+				[DisableTriggerNames:GVK-CargoShip-Air-COALITION-Trigger-EscortBeaconDisabled-E]
+				[DisableTriggerNames:GVK-CargoShip-Air-COALITION-Trigger-EscortCompromised-E]
+				[DisableTriggerNames:GVK-CargoShip-Air-COALITION-Trigger-EscortDespawn-E]
+				[DisableTriggerNames:GVK-CargoShip-Air-COALITION-Trigger-EscortDespawnMES-E]
 				[PlayParticleEffectAtRemote:true]
 				[ParticleEffectId:CruiserPoofSmoke]
 				[ParticleEffectOffset:{X:0.0 Y:0.0 Z:0.0}]
@@ -1151,6 +1154,32 @@
 				[MaxAltitude:301]
 				[InheritNpcAltitude:false]
 				[IgnoreSafetyChecks:true]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-CargoShip-Air-COALITION-Trigger-HeartbeatE</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Trigger]
+				[Type:Timer]
+				[UseTrigger:true]
+				[StartsReady:true]
+				[MinCooldownMs:30000]
+				[MaxCooldownMs:30001]
+				[Actions:GVK-CargoShip-Air-COALITION-Action-HeartbeatE]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-CargoShip-Air-COALITION-Action-HeartbeatE</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Action]
+				[ResetCooldownTimeOfEvents:true]
+				[ResetEventCooldownTags:GVK_EscortWatchdog_E]
 			</Description>
 		</EntityComponent>
 	</EntityComponents>
