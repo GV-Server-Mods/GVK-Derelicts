@@ -86,8 +86,8 @@
 				[MaxCooldownMs:1800001]
 				[StartsReady:false]
 				[TargetDistance:4000]
+				[Actions:GVK-Alliance-Action-OutsideAllZonesExplosion]
 				[Actions:GVK-Alliance-Action-OutsideAllZones]
-				[Actions:GVK-Universal-Action-LargeExplosionEffects]
 				[Conditions:GVK-Alliance-Condition-OutsideAllZones]
 				[ConditionCheckResetsTimer:true]
 			</Description>
@@ -116,6 +116,18 @@
 				[ForceDespawn:true]
 				[UseChatBroadcast:true]
 				[ChatData:GVK-Alliance-Chat-OutsideAllZones]
+			</Description>
+		</EntityComponent>
+		<!-- Faction-colored explosion (blue for KHAANEPH) via the shared Explosions trigger tags -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-Action-OutsideAllZonesExplosion</SubtypeId>
+			</Id>
+			<Description>
+				[MES AI Action]
+				[ManuallyActivateTrigger:true]
+				[ManuallyActivatedTriggerTags:GVK-Universal-TriggerTags-Explosions-{EncounterType}-{Faction}]
 			</Description>
 		</EntityComponent>
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">

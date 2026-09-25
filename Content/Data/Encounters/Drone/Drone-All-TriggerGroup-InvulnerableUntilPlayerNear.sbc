@@ -39,11 +39,13 @@
 			[EnableTriggerNames:GVK-Drone-All-Trigger-PlayerNotNearBecomeInvulnerable]
 			[ResetCooldownTimeOfTriggers:true]
 			[ResetTriggerCooldownNames:GVK-Drone-All-Trigger-PlayerNotNearBecomeInvulnerable]
-			[GridDestructible:true]
-			[SubGridsDestructible:true]
+			[GridDestructible:Yes]
+			[SubGridsDestructible:Yes]
 			</Description>
 		</EntityComponent>
 		<!-- This is more suitable than ElseActions because it needs to stop applying the else action after player leaves -->
+		<!-- Starts enabled and ready so a fresh spawn goes invulnerable on its first check; a player within 4 km
+		     makes it vulnerable again within 1 s. GridDestructible takes Yes/No (CheckEnum), not true/false. -->
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
@@ -51,7 +53,8 @@
 			</Id>
 			<Description>
 			[RivalAI Trigger]
-			[UseTrigger:false]
+			[UseTrigger:true]
+			[StartsReady:true]
 			[Type:Timer]
 			[MinCooldownMs:10000]
 			[MaxCooldownMs:10001]
@@ -67,8 +70,8 @@
 			[RivalAI Action]
 			[DisableTriggers:true]
 			[DisableTriggerNames:GVK-Drone-All-Trigger-PlayerNotNearBecomeInvulnerable]
-			[GridDestructible:false]
-			[SubGridsDestructible:false]
+			[GridDestructible:No]
+			[SubGridsDestructible:No]
 			</Description>
 		</EntityComponent>
 	</EntityComponents>
