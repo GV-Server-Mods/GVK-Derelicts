@@ -8,24 +8,24 @@
 				<SubtypeId>GVK-Convoy-Escort-Behavior-MediumHover</SubtypeId>
 			</Id>
 			<Description>
-			[RivalAI Behavior]
-			[BehaviorName:Escort]
-			[WeaponSystem:GVK-Universal-Weapons-All]
-			[UsePlayerDistanceTimer:true]
-			[PlayerDistanceTimerTrigger:1800]
-			[PlayerDistanceTrigger:5000]
-			[UseNoTargetTimer:false]
-			[UseRetreatTimer:false]
-			[TargetData:GVK-Universal-Target-EnemyGrids2km]
-			[AutopilotData:GVK-Convoy-Escort-PrimaryAutopilot]
-			[SecondaryAutopilotData:GVK-Drone-All-Autopilot-MediumHoverPatrolHorsefly-Aggressive]
-			[Triggers:GVK-Universal-Trigger-TargetAttacker]
-			[Triggers:GVK-Universal-Trigger-WeaponsToMaxRange]
-			[Triggers:GVK-Drone-All-Trigger-FireMissilesTimers]
-			[Triggers:GVK-Convoy-Escort-Trigger-RequestEscortSlot]
-			[Triggers:GVK-Convoy-Escort-Trigger-ReceiveScatterCommand]
-			[TriggerGroups:GVK-Universal-TriggerGroup-DefeatedAndAttacked]
-			BountyOnKill=1000000;
+				[RivalAI Behavior]
+				[BehaviorName:Escort]
+				[WeaponSystem:GVK-Universal-Weapons-All]
+				[UsePlayerDistanceTimer:true]
+				[PlayerDistanceTimerTrigger:1800]
+				[PlayerDistanceTrigger:5000]
+				[UseNoTargetTimer:false]
+				[UseRetreatTimer:false]
+				[TargetData:GVK-Universal-Target-EnemyGrids2km]
+				[AutopilotData:GVK-Convoy-Escort-PrimaryAutopilot]
+				[SecondaryAutopilotData:GVK-Drone-All-Autopilot-MediumHoverPatrolHorsefly-Aggressive]
+				[Triggers:GVK-Universal-Trigger-TargetAttacker]
+				[Triggers:GVK-Universal-Trigger-WeaponsToMaxRange]
+				[Triggers:GVK-Drone-All-Trigger-FireMissilesTimers]
+				[Triggers:GVK-Convoy-Escort-Trigger-RequestEscortSlot]
+				[Triggers:GVK-Convoy-Escort-Trigger-ReceiveScatterCommand]
+				[TriggerGroups:GVK-Universal-TriggerGroup-DefeatedAndAttacked]
+				BountyOnKill=1000000;
 			</Description>
 		</EntityComponent>
 		<!-- Large Escort Drone Rover Behavior -->
@@ -35,24 +35,24 @@
 				<SubtypeId>GVK-Convoy-Escort-Behavior-LargeHover</SubtypeId>
 			</Id>
 			<Description>
-			[RivalAI Behavior]
-			[BehaviorName:Escort]
-			[WeaponSystem:GVK-Universal-Weapons-All]
-			[UsePlayerDistanceTimer:true]
-			[PlayerDistanceTimerTrigger:1800]
-			[PlayerDistanceTrigger:5000]
-			[UseNoTargetTimer:false]
-			[UseRetreatTimer:false]
-			[TargetData:GVK-Universal-Target-EnemyGrids2km]
-			[AutopilotData:GVK-Convoy-Escort-PrimaryAutopilot]
-			[SecondaryAutopilotData:GVK-Drone-All-Autopilot-MediumHoverPatrolHorsefly-Aggressive]
-			[Triggers:GVK-Universal-Trigger-TargetAttacker]
-			[Triggers:GVK-Universal-Trigger-WeaponsToMaxRange]
-			[Triggers:GVK-Drone-All-Trigger-FireMissilesTimers]
-			[Triggers:GVK-Convoy-Escort-Trigger-RequestEscortSlot]
-			[Triggers:GVK-Convoy-Escort-Trigger-ReceiveScatterCommand]
-			[TriggerGroups:GVK-Universal-TriggerGroup-DefeatedAndAttacked]
-			BountyOnKill=3000000;
+				[RivalAI Behavior]
+				[BehaviorName:Escort]
+				[WeaponSystem:GVK-Universal-Weapons-All]
+				[UsePlayerDistanceTimer:true]
+				[PlayerDistanceTimerTrigger:1800]
+				[PlayerDistanceTrigger:5000]
+				[UseNoTargetTimer:false]
+				[UseRetreatTimer:false]
+				[TargetData:GVK-Universal-Target-EnemyGrids2km]
+				[AutopilotData:GVK-Convoy-Escort-PrimaryAutopilot]
+				[SecondaryAutopilotData:GVK-Drone-All-Autopilot-MediumHoverPatrolHorsefly-Aggressive]
+				[Triggers:GVK-Universal-Trigger-TargetAttacker]
+				[Triggers:GVK-Universal-Trigger-WeaponsToMaxRange]
+				[Triggers:GVK-Drone-All-Trigger-FireMissilesTimers]
+				[Triggers:GVK-Convoy-Escort-Trigger-RequestEscortSlot]
+				[Triggers:GVK-Convoy-Escort-Trigger-ReceiveScatterCommand]
+				[TriggerGroups:GVK-Universal-TriggerGroup-DefeatedAndAttacked]
+				BountyOnKill=3000000;
 			</Description>
 		</EntityComponent>
 		<!-- Escort Drone Rover Autopilot -->
@@ -62,28 +62,28 @@
 				<SubtypeId>GVK-Convoy-Escort-PrimaryAutopilot</SubtypeId>
 			</Id>
 			<Description>
-			[RivalAI Autopilot]
-			[UseVelocityCollisionEvasion:false]
-			[RotationMultiplier:1]
-			[DisableInertiaDampeners:false]
-			[FlyLevelWithGravity:true]
-			[LevelWithGravityWhenIdle:true]
-			[IdealPlanetAltitude:30]
-			[MinimumPlanetAltitude:0]
-			[AltitudeTolerance:60]
-			[WaypointAbandonTimeTrigger:30]
-			[WaypointWaitTimeTrigger:30]
-			[WaypointTolerance:10]
-			[SlowDownOnWaypointApproach:true]
-			[ExtraSlowDownDistance:50]
-			[IdealMinSpeed:30]
-			[IdealMaxSpeed:75]
-			[MaxSpeedTolerance:5]
-			[AngleAllowedForForwardThrust:70]
-			[MaxVelocityAngleForSpeedControl:1000]
-			[EscortUsesRelativeDampening:true]
-			[EscortSpeedMatchMinDistance:1]
-			[EscortSpeedMatchMaxDistance:50]
+				[RivalAI Autopilot]
+				[UseVelocityCollisionEvasion:false]
+				[RotationMultiplier:1]
+				[DisableInertiaDampeners:false]
+				[FlyLevelWithGravity:true]
+				[LevelWithGravityWhenIdle:true]
+				[IdealPlanetAltitude:30]
+				[MinimumPlanetAltitude:0]
+				[AltitudeTolerance:60]
+				[WaypointAbandonTimeTrigger:30]
+				[WaypointWaitTimeTrigger:30]
+				[WaypointTolerance:10]
+				[SlowDownOnWaypointApproach:true]
+				[ExtraSlowDownDistance:50]
+				[IdealMinSpeed:30]
+				[IdealMaxSpeed:75]
+				[MaxSpeedTolerance:5]
+				[AngleAllowedForForwardThrust:70]
+				[MaxVelocityAngleForSpeedControl:1000]
+				[EscortUsesRelativeDampening:true]
+				[EscortSpeedMatchMinDistance:0]
+				[EscortSpeedMatchMaxDistance:25]
 			</Description>
 		</EntityComponent>
 		<!-- Trigger sequence for Drone to request an escort slot from Convoy Lead -->
@@ -93,14 +93,14 @@
 				<SubtypeId>GVK-Convoy-Escort-Trigger-RequestEscortSlot</SubtypeId>
 			</Id>
 			<Description>
-			[RivalAI Trigger]
-			[Type:Timer]
-			[UseTrigger:true]
-			[MinCooldownMs:2000]
-			[MaxCooldownMs:5000]
-			[StartsReady:false]
-			[MaxActions:1]
-			[Actions:GVK-Convoy-Escort-Action-RequestEscortSlot]
+				[RivalAI Trigger]
+				[Type:Timer]
+				[UseTrigger:true]
+				[MinCooldownMs:2000]
+				[MaxCooldownMs:5000]
+				[StartsReady:false]
+				[MaxActions:1]
+				[Actions:GVK-Convoy-Escort-Action-RequestEscortSlot]
 			</Description>
 		</EntityComponent>
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
@@ -109,11 +109,11 @@
 				<SubtypeId>GVK-Convoy-Escort-Action-RequestEscortSlot</SubtypeId>
 			</Id>
 			<Description>
-			[RivalAI Action]
-			[BroadcastCommandProfiles:true]
-			[CommandProfileIds:GVK-Convoy-Escort-Command-RequestEscortSlot]
-			[UseChatBroadcast:false]
-			[ChatData:GVK-Convoy-Escort-Chat-RequestEscortSlot]
+				[RivalAI Action]
+				[BroadcastCommandProfiles:true]
+				[CommandProfileIds:GVK-Convoy-Escort-Command-RequestEscortSlot]
+				[UseChatBroadcast:false]
+				[ChatData:GVK-Convoy-Escort-Chat-RequestEscortSlot]
 			</Description>
 		</EntityComponent>
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
@@ -122,14 +122,14 @@
 				<SubtypeId>GVK-Convoy-Escort-Command-RequestEscortSlot</SubtypeId>
 			</Id>
 			<Description>
-			[RivalAI Command]
-			[SingleRecipient:true]
-			[MatchSenderReceiverOwners:true]
-			[IgnoreAntennaRequirement:true]
-			[IgnoreReceiverAntennaRequirement:true]
-			[Radius:5000]
-			[CommandCode:GVK_Command_Lead_RequestEscortSlot]
-			[RequestEscortSlot:true]
+				[RivalAI Command]
+				[SingleRecipient:true]
+				[MatchSenderReceiverOwners:true]
+				[IgnoreAntennaRequirement:true]
+				[IgnoreReceiverAntennaRequirement:true]
+				[Radius:5000]
+				[CommandCode:GVK_Command_Lead_RequestEscortSlot]
+				[RequestEscortSlot:true]
 			</Description>
 		</EntityComponent>
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
@@ -138,20 +138,20 @@
 				<SubtypeId>GVK-Convoy-Escort-Chat-RequestEscortSlot</SubtypeId>
 			</Id>
 			<Description>
-			[RivalAI Chat]
-			[UseChat:true]
-			[StartsReady:true]
-			[Chance:100]
-			[MaxChats:-1]
-			[BroadcastRandomly:false]
-			[Author:Escort Drone]
-			[Color:Red]
-			[ChatMessages:Requesting escort slot.]
-			[ChatAudio:GreetingSoundId-A]
-			[BroadcastChatType:Chat]
-			[SendToAllOnlinePlayers:false]
-			[IgnoreAntennaRequirement:true]
-			[IgnoredAntennaRangeOverride:9999999]
+				[RivalAI Chat]
+				[UseChat:true]
+				[StartsReady:true]
+				[Chance:100]
+				[MaxChats:-1]
+				[BroadcastRandomly:false]
+				[Author:Escort Drone]
+				[Color:Red]
+				[ChatMessages:Requesting escort slot.]
+				[ChatAudio:GreetingSoundId-A]
+				[BroadcastChatType:Chat]
+				[SendToAllOnlinePlayers:false]
+				[IgnoreAntennaRequirement:true]
+				[IgnoredAntennaRangeOverride:9999999]
 			</Description>
 		</EntityComponent>
 		<!-- Trigger sequence for Escorts to switch behaviors after Convoy Lead is disabled -->
@@ -161,13 +161,13 @@
 				<SubtypeId>GVK-Convoy-Escort-Trigger-ReceiveScatterCommand</SubtypeId>
 			</Id>
 			<Description>
-			[RivalAI Trigger]
-			[Type:CommandReceived]
-			[UseTrigger:true]
-			[StartsReady:true]
-			[MaxActions:-1]
-			[CommandReceiveCode:GVK_Command_Escort_Scatter]
-			[Actions:GVK-Convoy-Escort-Action-ReceiveScatterCommand]
+				[RivalAI Trigger]
+				[Type:CommandReceived]
+				[UseTrigger:true]
+				[StartsReady:true]
+				[MaxActions:-1]
+				[CommandReceiveCode:GVK_Command_Escort_Scatter]
+				[Actions:GVK-Convoy-Escort-Action-ReceiveScatterCommand]
 			</Description>
 		</EntityComponent>
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
@@ -176,15 +176,15 @@
 				<SubtypeId>GVK-Convoy-Escort-Action-ReceiveScatterCommand</SubtypeId>
 			</Id>
 			<Description>
-			[RivalAI Action]
-			[UseChatBroadcast:false]
-			[ChatData:GVK-Convoy-Escort-Chat-ReceiveScatterCommand]
-			[ChangeBehaviorSubclass:true]
-			[NewBehaviorSubclass:Horsefly]
-			[ChangeAutopilotProfile:true]
-			[AutopilotProfile:Secondary]
-			[ChangeAutopilotSpeed:true]
-			[NewAutopilotSpeed:70]
+				[RivalAI Action]
+				[UseChatBroadcast:false]
+				[ChatData:GVK-Convoy-Escort-Chat-ReceiveScatterCommand]
+				[ChangeBehaviorSubclass:true]
+				[NewBehaviorSubclass:Horsefly]
+				[ChangeAutopilotProfile:true]
+				[AutopilotProfile:Secondary]
+				[ChangeAutopilotSpeed:true]
+				[NewAutopilotSpeed:70]
 			</Description>
 		</EntityComponent>
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
@@ -193,20 +193,20 @@
 				<SubtypeId>GVK-Convoy-Escort-Chat-ReceiveScatterCommand</SubtypeId>
 			</Id>
 			<Description>
-			[RivalAI Chat]
-			[UseChat:true]
-			[StartsReady:true]
-			[Chance:100]
-			[MaxChats:1]
-			[BroadcastRandomly:false]
-			[Author:GAALSIEN Escort]
-			[Color:Red]
-			[ChatMessages:Scattering escorts.]
-			[ChatAudio:GreetingSoundId-A]
-			[BroadcastChatType:Chat]
-			[SendToAllOnlinePlayers:false]
-			[IgnoreAntennaRequirement:true]
-			[IgnoredAntennaRangeOverride:9999999]
+				[RivalAI Chat]
+				[UseChat:true]
+				[StartsReady:true]
+				[Chance:100]
+				[MaxChats:1]
+				[BroadcastRandomly:false]
+				[Author:GAALSIEN Escort]
+				[Color:Red]
+				[ChatMessages:Scattering escorts.]
+				[ChatAudio:GreetingSoundId-A]
+				[BroadcastChatType:Chat]
+				[SendToAllOnlinePlayers:false]
+				[IgnoreAntennaRequirement:true]
+				[IgnoredAntennaRangeOverride:9999999]
 			</Description>
 		</EntityComponent>
 	</EntityComponents>
