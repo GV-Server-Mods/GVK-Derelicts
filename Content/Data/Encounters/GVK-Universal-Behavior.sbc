@@ -746,7 +746,8 @@
 				[Actions:GVK-Universal-Action-PublicSpawnPoint]
 			</Description>
 		</EntityComponent>
-		<!-- ChangeBlocksShareModeAll is partly broken and this might not work, it might even crash -->
+		<!-- TODO: Restore the ShareMode-All action tags for PublicSpawnPoint once the MES fix PR lands (ActionSystem.cs reads AllTerminalBlocks[i] instead of [j]; never matches the block and can throw IndexOutOfRange). -->
+		<!-- Until then the spawn point is only COALITION-owned and faction-shared, so it is not a public respawn. -->
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
@@ -758,8 +759,6 @@
 				[ChangeBlockOwnership:true]
 				[OwnershipBlockNames:PublicSpawnPoint]
 				[OwnershipBlockFactions:COALITION]
-				[ChangeBlocksShareModeAll:true]
-				[BlockNamesShareModeAll:PublicSpawnPoint]
 			</Description>
 		</EntityComponent>
 		<!-- Generic conditions -->

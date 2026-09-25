@@ -188,7 +188,10 @@ if ($UpdateFile) {
         return
     }
 
-    $content = Get-Content -Raw -Path $TodoPath
+    # Read/write via .NET so the file stays UTF-8 (no BOM) with CRLF line endings.
+    $fullTodoPath = (Resolve-Path $TodoPath).Path
+    $utf8NoBom = New-Object System.Text.UTF8Encoding($false)
+    $content = [System.IO.File]::ReadAllText($fullTodoPath, $utf8NoBom)
     $startMarker = "<!-- AUTO-GENERATED-TODOS-START -->"
     $endMarker = "<!-- AUTO-GENERATED-TODOS-END -->"
 
@@ -196,12 +199,14 @@ if ($UpdateFile) {
 
     if ($content -match "(?s)$startMarker.*?$endMarker") {
         $updatedContent = $content -replace "(?s)$startMarker.*?$endMarker", $newBlock
-        Set-Content -Path $TodoPath -Value $updatedContent -NoNewline
         Write-Host "Updated auto-generated section in $TodoPath ($($results.Count) items found)." -ForegroundColor Green
     } else {
         Write-Warning "Markers not found in $TodoPath. Appending to bottom."
-        Add-Content -Path $TodoPath -Value "`n## Auto-Harvested Inline Comments`n$newBlock"
+        $updatedContent = $content.TrimEnd() + "`n`n## Auto-Harvested Inline Comments`n$newBlock`n"
     }
+
+    $updatedContent = $updatedContent -replace "\r?\n", "`r`n"
+    [System.IO.File]::WriteAllText($fullTodoPath, $updatedContent, $utf8NoBom)
 }
 elseif ($AsMarkdown) {
     $mdLines -join "`n"

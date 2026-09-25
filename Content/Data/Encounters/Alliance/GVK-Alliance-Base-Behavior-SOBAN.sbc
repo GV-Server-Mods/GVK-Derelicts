@@ -70,26 +70,13 @@
 			<Description>
 				[MES AI Trigger]
 				[UseTrigger:true]
-				[Type:Timer]
+				[Type:PlayerNear]
+				[TargetDistance:15000]
 				[MinCooldownMs:1200000]
 				[MaxCooldownMs:1800000]
 				[StartsReady:true]
 				[MaxActions:-1]
-				[Conditions:GVK-Alliance-Base-Condition-SpawnTurret-SOBAN]
 				[Actions:GVK-Alliance-Base-Action-SpawnTurret-SOBAN]
-			</Description>
-		</EntityComponent>
-
-		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
-			<Id>
-				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Alliance-Base-Condition-SpawnTurret-SOBAN</SubtypeId>
-			</Id>
-			<Description>
-				[MES AI Condition]
-				[UseConditions:true]
-				[CheckPlayerNear:true]
-				[PlayerNearDistance:15000]
 			</Description>
 		</EntityComponent>
 

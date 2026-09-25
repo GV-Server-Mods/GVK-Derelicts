@@ -296,6 +296,39 @@
 			[CommandDelayTicks:60]
 			</Description>
 		</EntityComponent>
+		<!-- No escort slot received in time: revert to Patrol. Enabled by AvailableToEscort, disabled by ReceiveEscortSlot. -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-ConvoySystem-Escort-ManualTrigger-ReturnToPatrol</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Trigger]
+			[UseTrigger:false]
+			[Type:Timer]
+			[StartsReady:false]
+			[MinCooldownMs:10000]
+			[MaxCooldownMs:10001]
+			[MaxActions:-1]
+			[Actions:GVK-ConvoySystem-Escort-Action-ReturnToPatrol]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-ConvoySystem-Escort-Action-ReturnToPatrol</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Action]
+			[//DebugMessage:No escort slot received; returning to patrol]
+			[ChangeBehaviorSubclass:true]
+			[NewBehaviorSubclass:Patrol]
+			[ChangeAutopilotProfile:true]
+			[AutopilotProfile:Primary]
+			[DisableTriggers:true]
+			[DisableTriggerNames:GVK-ConvoySystem-Escort-ManualTrigger-ReturnToPatrol]
+			</Description>
+		</EntityComponent>
 		<!-- Receive Escort Slot and enable ActiveEscortTasks tags -->
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
@@ -324,6 +357,7 @@
 			[SetBooleansTrue:GVK_Role_Escort]
 			[DisableTriggers:true]
 			[DisableTriggerTags:GVK-TriggerTags-InactiveEscortTasks]
+			[DisableTriggerNames:GVK-ConvoySystem-Escort-ManualTrigger-ReturnToPatrol]
 			[ResetCooldownTimeOfTriggers:true]
 			[ResetTriggerCooldownTags:GVK-TriggerTags-ActiveEscortTasks]
 			[EnableTriggers:true]

@@ -39,7 +39,7 @@ post-mortem, verified in source). The whole feature is now SBC-only, **zero C#**
 | `GVK-EscortContracts-BoardBehavior` (+ `Trigger`/`Condition`/`Action`) | `[RivalAI Behavior/Trigger/Condition/Action]` | Runs on the base grid; publishes the board and refreshes it every 10 min, gated on `[NoActiveContracts:true]` so it can never disturb an in-progress mission |
 | `GVK-EscortMissions-Template-Spawn/Arrived/Lost-X` + `GVK-EscortMissions-Group-X` | `[MES Event Template]` / `[MES Event TemplateGroup]` | On accept MES instantiates these with the contract id as `InstanceId`: spawn (runs the existing `GVK-Convoy-EventAction-CoalitionX`), plus arrived-wait and lost-wait |
 | `GVK-EscortMissions-EventCondition-Arrived/Lost-X`, `GVK-EscortMissions-EventAction-Arrived/Lost-X` | `[MES Event Condition]` / `[MES Event Action]` | `[TryContractSuccess:true]` / `[TryContractFail:true]` — MES passes the seeded contract id to `TryFinishCustomContract`/`TryFailCustomContract` |
-| `GVK_EscortArrived_X`, `GVK_EscortLost_X` (sandbox booleans) | convoy behavior actions | Outcome signals: set by `Action-EscortSuccessX` / `Trigger-EscortLostX`; cleared by the board refresh action |
+| `GVK_EscortArrived_X`, `GVK_EscortLost_X` (sandbox booleans) | convoy behavior actions | Outcome signals: set by `Action-EscortSuccessX` / the convoy's BeaconDisabled, Compromised, Despawn and DespawnMES triggers; cleared by the board refresh action |
 
 Flow: board refresh → MES adds the missions as real `MyContractCustom` contracts (type
 `MESContract`, shipped by MES at `Data/Contract/ContractType.sbc`) → player accepts →
@@ -259,7 +259,8 @@ script-side offering UI.
   and the `TryContractSuccess` / `TryContractFail` event actions
 - `.../GVK-EscortMissions-EventTemplates.sbc` — 3 template groups × (spawn, arrived, lost)
 - Convoy behaviors: `[SetSandboxBooleansTrue:GVK_EscortArrived_X]` added to `Action-EscortSuccessA/B/E`;
-  new per-route `Trigger-EscortLostX` (Type:Compromised) → `GVK-EscortMissions-Action-ConvoyLost-X`
+  `GVK-EscortMissions-Action-ConvoyLost-X` added to the existing BeaconDisabled, Compromised, Despawn
+  and DespawnMES triggers
 - Board hosting: board trigger added to `GVK-PlanetaryInstallation-Large-Behavior` (station bases,
   incl. existing worlds) and `GVK-EscortContracts-BoardBehavior` attached to the Z0 hub prefab slot
   (`NST Crossroads Tower V3` in `GVK-Static-Generic-SpawnGroup.sbc`)
@@ -300,10 +301,9 @@ script-side offering UI.
 ### Known trade-offs / follow-ups
 - **Completion = transport arrival only.** The two escort cruisers in Route A's lead group are not
   required to survive; add them if the mission should be harsher.
-- **Loss detection = `Type:Compromised`** (plus contract expiry as backstop). A convoy that
-  despawns without being destroyed (MES cleanup, wandering off) fails only when `Duration` expires.
-  Add a `Type:Despawn` clone of `Trigger-EscortLostX` if that proves annoying — the arrived-flag
-  guard in the fail condition already prevents false positives after a successful delivery.
+- **Loss detection** = beacon disabled, compromised, or despawned (RivalAI `Despawn` and MES cleanup),
+  plus contract expiry as backstop. The arrived-flag guard in the fail condition prevents false
+  positives from the post-delivery despawn.
 - **Board refresh interval is 10 min**, so a completed route can take up to 10 minutes to re-appear.
 - **Routes A and E can be run simultaneously** (separate missions; per-route flags keep them
   independent). If you want one escort at a time, add a shared `PersistantEventConditionIds` gate.

@@ -17,7 +17,7 @@ Centralized task tracker for **GVK_Derelicts** on the **GV: Deserts of Kharak (G
 ## 🔴 P0: Urgent / Game-Breaking
 - [ ] **Cross-Grid Trigger Bypass**: Upstream button panel trigger bypass (`TriggerSystem.ProcessButtonTriggers` executing across different grids) — pending PR submitted to MES.
 - [ ] **Dynamic Weapon Randomization**: Upstream MES weapon randomization issue (fix in progress, pending testing before submitting PR; temp workaround: weapon randomization disabled).
-- [ ] **ChangeBlocksShareModeAll MES Bug**: Upstream unhandled indexing bug in MES `ActionSystem.cs` when executing `ChangeBlocksShareModeAll` (fix PR needed for MES; affects `GVK-Universal-Action-PublicSpawnPoint`).
+- [ ] **ChangeBlocksShareModeAll MES Bug**: Submit an MES PR fixing the indexing bug in `ActionSystem.cs` (`ChangeBlocksShareModeAll` loop uses `grid.AllTerminalBlocks[i]` instead of `[j]`). The tag was removed from `GVK-Universal-Action-PublicSpawnPoint`, so the KOTHOutpost spawn point is not public right now. Restore the tag once the fix ships.
 - [ ] **Rescue Mission Despawn** ([#469](https://github.com/GV-Server-Mods/GVK-Settings/issues/469)): Fix mission cruiser despawning after server restarts during active rescue missions.
 - [ ] **Escort Behavior Lock** ([#449](https://github.com/GV-Server-Mods/GVK-Settings/issues/449)): Fix NPC escorts retreating prematurely due to getting stuck between behavior state transitions.
 
@@ -84,6 +84,13 @@ Centralized task tracker for **GVK_Derelicts** on the **GV: Deserts of Kharak (G
 - [ ] 📝 **TODO** (Line 278): Optional deployment announcement with current alliance stats (needs new logic - deferred).
 - [ ] 📝 **TODO** (Line 279): Upstream MES fix needed - a button panel on another grid can trigger this behavior (TriggerSystem.ProcessButtonTriggers bypasses its same-grid filter for grids outside the logical group). 
 
+### [Content/Data/Encounters/Convoy/Contracts/GVK-EscortMissions-Missions.sbc](file:///C:/Users/blayl/source/repos/MDK2 Mods/GVK_Derelicts/Content/Data/Encounters/Convoy/Contracts/GVK-EscortMissions-Missions.sbc)
+- [ ] 📝 **TODO** (Line 6): #480).
+- [ ] 📝 **TODO** (Line 11): Add Route A option for single and double escort missions
+
+### [Content/Data/Encounters/Convoy/Contracts/GVK-EscortMissions-Signals.sbc](file:///C:/Users/blayl/source/repos/MDK2 Mods/GVK_Derelicts/Content/Data/Encounters/Convoy/Contracts/GVK-EscortMissions-Signals.sbc)
+- [ ] 📝 **TODO** (Line 14): consolidate conditions and actions that are spread across here and EventTemplates files
+
 ### [Content/Data/Encounters/Convoy/GaalsienSmallConvoy/GVK-ConvoySystem-TriggerGroup.sbc](file:///C:/Users/blayl/source/repos/MDK2 Mods/GVK_Derelicts/Content/Data/Encounters/Convoy/GaalsienSmallConvoy/GVK-ConvoySystem-TriggerGroup.sbc)
 - [ ] 📝 **TODO** (Line 31): (No description provided)
 
@@ -91,6 +98,9 @@ Centralized task tracker for **GVK_Derelicts** on the **GV: Deserts of Kharak (G
 - [ ] 📝 **TODO** (Line 19): Switch to message banks so separate triggers are not needed for GAALSIEN chats
 - [ ] 📝 **TODO** (Line 19): use IdsReplacer to incorporate flexible spawn options using CustomText from behavior Inits
 - [ ] 📝 **TODO** (Line 19): Make the non-drone specific stuff universal
+
+### [Content/Data/Encounters/GVK-Universal-Behavior.sbc](file:///C:/Users/blayl/source/repos/MDK2 Mods/GVK_Derelicts/Content/Data/Encounters/GVK-Universal-Behavior.sbc)
+- [ ] 📝 **TODO** (Line 749): Restore the ShareMode-All action tags for PublicSpawnPoint once the MES fix PR lands (ActionSystem.cs reads AllTerminalBlocks[i] instead of [j]; never matches the block and can throw IndexOutOfRange).
 
 ### [Content/Data/Encounters/GVK-Universal-TriggerGroup-Defenses.sbc](file:///C:/Users/blayl/source/repos/MDK2 Mods/GVK_Derelicts/Content/Data/Encounters/GVK-Universal-TriggerGroup-Defenses.sbc)
 - [ ] 📝 **TODO** (Line 26): Have alliance structure-spawned drones send a command to the structure to reset the cooldown of the Trigger	so that it doesn't reset the counter while drones are still active that could cause too many drones.
@@ -100,6 +110,15 @@ Centralized task tracker for **GVK_Derelicts** on the **GV: Deserts of Kharak (G
 ### [Content/Data/Encounters/GVK-Universal-TriggerTags-DefeatedChat.sbc](file:///C:/Users/blayl/source/repos/MDK2 Mods/GVK_Derelicts/Content/Data/Encounters/GVK-Universal-TriggerTags-DefeatedChat.sbc)
 - [ ] 📝 **TODO** (Line 19): Switch to dialogue banks for more variety
 - [ ] 📝 **TODO** (Line 20): Probably no need for {EncounterType} since it all uses 1 chat except for ship and structure
+
+### [Content/Data/Encounters/PlanetaryCargoShip/Air Escorts/GVK-PlanetaryCargoShip-Air-Behavior-CoalitionEscortE.sbc](file:///C:/Users/blayl/source/repos/MDK2 Mods/GVK_Derelicts/Content/Data/Encounters/PlanetaryCargoShip/Air Escorts/GVK-PlanetaryCargoShip-Air-Behavior-CoalitionEscortE.sbc)
+- [ ] 📝 **TODO** (Line 6): This use of sandbox counter may no longer be needed since Tinsoldier fixed behavior counters not saving
+
+### [Content/Data/Encounters/PlanetaryCargoShip/Land Escorts/GVK-PlanetaryCargoShip-Land-Behavior-CoalitionTraderA.sbc](file:///C:/Users/blayl/source/repos/MDK2 Mods/GVK_Derelicts/Content/Data/Encounters/PlanetaryCargoShip/Land Escorts/GVK-PlanetaryCargoShip-Land-Behavior-CoalitionTraderA.sbc)
+- [ ] 📝 **TODO** (Line 6): Clean up redundancy and cross-utilization between RouteA and RouteB Traders and Escort missions using better methods
+
+### [Docs/EscortContractMissions-Design.md](file:///C:/Users/blayl/source/repos/MDK2 Mods/GVK_Derelicts/Docs/EscortContractMissions-Design.md)
+- [ ] 📝 **TODO** (Line 6): #480 (On-Demand Escort Spawns) — https://github.com/GV-Server-Mods/GVK-Settings/issues/480
 
 <!-- AUTO-GENERATED-TODOS-END -->
 
