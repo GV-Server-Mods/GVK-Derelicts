@@ -737,17 +737,16 @@
 			</Id>
 			<Description>
 				[RivalAI Trigger]
-				[UseTrigger:false]
+				[UseTrigger:true]
 				[Type:Timer]
-				[MinCooldownMs:10000]
-				[MaxCooldownMs:10001]
-				[StartsReady:false]
-				[MaxActions:-1]
+				[MinCooldownMs:1000]
+				[MaxCooldownMs:1001]
+				[StartsReady:true]
+				[MaxActions:1]
 				[Actions:GVK-Universal-Action-PublicSpawnPoint]
 			</Description>
 		</EntityComponent>
-		<!-- TODO: Restore the ShareMode-All action tags for PublicSpawnPoint once the MES fix PR lands (ActionSystem.cs reads AllTerminalBlocks[i] instead of [j]; never matches the block and can throw IndexOutOfRange). -->
-		<!-- Until then the spawn point is only COALITION-owned and faction-shared, so it is not a public respawn. -->
+		<!-- Submitted PR to fix ChangeBlocksShareModeAll -->
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
@@ -756,9 +755,8 @@
 			<Description>
 				[RivalAI Action]
 				[//DebugMessage:PublicSpawnPoint]
-				[ChangeBlockOwnership:true]
-				[OwnershipBlockNames:PublicSpawnPoint]
-				[OwnershipBlockFactions:COALITION]
+				[ChangeBlocksShareModeAll:true]
+				[BlockNamesShareModeAll:PublicSpawnPoint]
 			</Description>
 		</EntityComponent>
 		<!-- Generic conditions -->
