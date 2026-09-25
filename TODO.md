@@ -15,8 +15,7 @@ Centralized task tracker for **GVK_Derelicts** on the **GV: Deserts of Kharak (G
 ---
 
 ## 🔴 P0: Urgent / Game-Breaking
-- [ ] **Cross-Grid Trigger Bypass**: Upstream button panel trigger bypass (`TriggerSystem.ProcessButtonTriggers` executing across different grids) — pending PR submitted to MES.
-- [ ] **Dynamic Weapon Randomization**: Upstream MES weapon randomization issue (fix in progress, pending testing before submitting PR; temp workaround: weapon randomization disabled).
+- [x] **Cross-Grid Trigger Bypass**: Upstream button panel trigger bypass (`TriggerSystem.ProcessButtonTriggers` executing across different grids) — merged upstream as MES #360. Remove the inline TODO in `GVK-Alliance-PresetBases-Placeholder-Behavior.sbc` once the server runs a MES build that includes it.
 - [ ] **ChangeBlocksShareModeAll MES Bug**: Submit an MES PR fixing the indexing bug in `ActionSystem.cs` (`ChangeBlocksShareModeAll` loop uses `grid.AllTerminalBlocks[i]` instead of `[j]`). The tag was removed from `GVK-Universal-Action-PublicSpawnPoint`, so the KOTHOutpost spawn point is not public right now. Restore the tag once the fix ships.
 - [ ] **Rescue Mission Despawn** ([#469](https://github.com/GV-Server-Mods/GVK-Settings/issues/469)): Fix mission cruiser despawning after server restarts during active rescue missions.
 - [ ] **Escort Behavior Lock** ([#449](https://github.com/GV-Server-Mods/GVK-Settings/issues/449)): Fix NPC escorts retreating prematurely due to getting stuck between behavior state transitions.
@@ -40,6 +39,7 @@ Centralized task tracker for **GVK_Derelicts** on the **GV: Deserts of Kharak (G
 - [ ] **Convoy System Integration**: Integrate `GVK-ConvoySystem-TriggerGroup` into additional behavior profiles beyond `HoverPatrolHorsefly`.
 
 ### Core Behaviors & Triggers
+- [ ] **Re-enable Weapon Randomization**: set MES `RandomizedWeaponsUseFullRange` to `true` (`Config-Grids.xml` or `/MES.Settings.Grids.RandomizedWeaponsUseFullRange.true`). Randomized NPCs then skip MES's 800m cap and spawn at WeaponCore's full range, which avoids the 0m range bug without waiting for the MES fix. Only affects new spawns, and applies to every randomized NPC server-wide. Then restore the commented-out `[ManipulationProfiles:GVK-Universal-Manipulation-*Turrets]` lines in the spawn groups. Don't use `[SetWeaponsToMaxRange:]` / `[SetWeaponsToMinRange:]` actions until the MES fix ships (they still hit the bug).
 - [ ] **StrikeFighter → FighterPlane**: Consider moving the StrikeFighter drones (`GVK-Drone-All-TriggerGroup-PatrolStrike` switches them to the `Strike` subclass) to MES's newer `FighterPlane` behavior subclass (`Behavior/FighterPlane.cs`, MES `6d6d412`). It reads the same autopilot `AttackRun*` tags, so `GVK-Drone-All-Autopilot-StrikeFighter-Strike` carries over.
 - [ ] **Alliance Research Lab**: Add countdown timers to behavior so players do not assume it is frozen.
 - [ ] **Drone Trigger Defaults**:
@@ -64,7 +64,8 @@ Centralized task tracker for **GVK_Derelicts** on the **GV: Deserts of Kharak (G
 ---
 
 ## 🐞 Upstream MES Bugs (report / PR to MES)
-Verified against MES source at commit `537c875` (2026-09-24) unless marked *observed*. File paths are under `Data/Scripts/ModularEncountersSystems/`; line numbers are at that commit. Grouped into the reports to file. Upstream items already tracked elsewhere: Cross-Grid Trigger Bypass, Dynamic Weapon Randomization and ChangeBlocksShareModeAll (all in P0).
+Verified against MES source at commit `537c875` (2026-09-24) unless marked *observed*. File paths are under `Data/Scripts/ModularEncountersSystems/`; line numbers are at that commit. Grouped into the reports to file. Upstream items already tracked elsewhere: Cross-Grid Trigger Bypass and ChangeBlocksShareModeAll (both in P0).
+PR branches and issue drafts (2026-09-25): see `Docs/MES-Upstream-Drafts.md`. `fix/sharemode-all-index`, `fix/known-player-locations` (Report A bugs), `fix/tag-parsing` (Report B + C); issues drafted for KPL resize, Report D and unused tags.
 
 ### Report A: Known Player Locations (KPLs)
 Context: `d2a18a2` (2025-08-03) already fixed a KPL without MaxSpawns being deleted by the next spawn request (default `MaxSpawnedEncounters` 0 passed `0 >= 0`) and `RemoveLocation` removing other factions' KPLs instead of the caller's. Those matched GVK's "KPL vanished within seconds while I stood in it" reports from Jan 2025.
@@ -83,6 +84,9 @@ Context: `d2a18a2` (2025-08-03) already fixed a KPL without MaxSpawns being dele
 
 ### Report C: Missions
 - [ ] **`[EventConditionIds:]` is ignored**: parsed in `Mission/MissionProfile.cs:110`, but `Mission/Mission.cs:311` loops over `Profile.PlayerConditionIds` a second time instead of `Profile.EventConditionIds` when building the mission's event conditions. GVK impact: none today; avoid the tag until fixed (use `[PersistantEventConditionIds:]`).
+
+### Report E: WeaponCore ranges (low priority for GVK)
+- [ ] **WeaponCore 0m ranges and related bugs** (upstream #332): MES branch `fix/weaponcore-range-desync`, PR 4 in `Docs/MES-Upstream-Drafts.md`; old branch kept as `backup/weaponcore-range-desync`. GVK doesn't need it once `RandomizedWeaponsUseFullRange` is on (see P1). Before submitting, one quick test: a `[SetWeaponsToMaxRange:true]` action gives turrets their real max range (not 0m), and `[SetWeaponsToMinRange:true]` gives 800m.
 
 ### Report D: Commands can't address the parent grid (feature request)
 - [ ] A spawner stores `ParentId = _behavior.RemoteControl.OwnerId` (`Behavior/Subsystems/Trigger/ActionSystem.cs:403`), an owner identity rather than a grid, and `[CommandCheckFromParent:]` compares the command's owner identity to it (`Behavior/Subsystems/Trigger/ConditionProfile.cs:1746`). So "from parent" means "from any grid with the same owner as the one that spawned me". A `[SingleRecipient:true]` command goes to the first listener that processes it (`Behavior/Subsystems/Trigger/TriggerSystem.cs:763`), not the nearest or the parent. Ask: store the parent Remote Control entity id in `NpcData`, add a "send to parent only" command option, and check the parent by entity id. GVK impact: a despawning defense drone's refund can go to the wrong structure (see "Defense refund targets the wrong structure" below).
