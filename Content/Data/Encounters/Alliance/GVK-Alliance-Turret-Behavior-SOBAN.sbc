@@ -1,0 +1,57 @@
+<?xml version="1.0"?>
+<Definitions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+	<EntityComponents>
+		<!-- Behavior for Trade Stations -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-Turret-Behavior-SOBAN</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Behavior]
+				[BehaviorName:Passive]
+				[UseRetreatTimer:false]
+				[UseNoTargetTimer:false]
+				[UsePlayerDistanceTimer:false]
+				[TargetData:GVK-Universal-Target-EnemyPlayerAndGrid3km]
+				[Triggers:GVK-Universal-Trigger-WeaponsToMaxRange]
+				[Triggers:GVK-Universal-Trigger-DespawnInZ0]
+				[Triggers:GVK-Alliance-Turret-Trigger-Init-SOBAN]
+				[TriggerGroups:GVK-Universal-TriggerGroup-SendTargets]
+				[TriggerGroups:GVK-Universal-TriggerGroup-DefeatedAndAttacked]
+				[RemoteControlCode:GVK-Alliance-DefenseTurret]
+				BountyOnKill=100000;
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-Turret-Trigger-Init-SOBAN</SubtypeId>
+			</Id>
+			<Description>
+				[MES AI Trigger]
+				[UseTrigger:true]
+				[Type:Session]
+				[StartsReady:true]
+				[MaxActions:-1]
+				[ActionExecution:All]
+				[Actions:GVK-Alliance-Turret-Action-Init-SOBAN]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-Turret-Action-Init-SOBAN</SubtypeId>
+			</Id>
+			<Description>
+				[MES AI Action]
+				[//DebugMessage:Init-Turret-SOBAN]
+				[SetCustomStrings:true]
+				[CustomStrings:EncounterType,AllianceTurret]
+				[CustomStrings:EncounterDisplayName,Turret]
+				[UseChatBroadcast:true]
+				[ChatData:GVK-Alliance-EncounterType-Chat-Spawned-Faction]
+			</Description>
+		</EntityComponent>
+	</EntityComponents>
+</Definitions>

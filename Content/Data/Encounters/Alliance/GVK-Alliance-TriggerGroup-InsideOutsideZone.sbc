@@ -1,0 +1,155 @@
+<?xml version="1.0"?>
+<Definitions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+	<EntityComponents>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-TriggerGroup-InsideOutsideZone</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI TriggerGroup]
+				[Triggers:GVK-Alliance-Trigger-OutsideZoneCheck]
+				[Triggers:GVK-Alliance-Trigger-InsideZoneCheck]
+				[Triggers:GVK-Alliance-Trigger-OutsideAllZones]
+			</Description>
+		</EntityComponent>
+
+		<!-- Trigger to confirm it is Outside Faction Zone -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-Trigger-OutsideZoneCheck</SubtypeId>
+			</Id>
+			<Description>
+				[MES AI Trigger]
+				[UseTrigger:true]
+				[Type:OutsideActiveZone]
+				[MinCooldownMs:10000]
+				[MaxCooldownMs:10001]
+				[StartsReady:false]
+				[ZoneName:{Faction}_Zone]
+				[Actions:GVK-Alliance-Action-OutsideZoneCheck]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-Action-OutsideZoneCheck</SubtypeId>
+			</Id>
+			<Description>
+				[MES AI Action]
+				[//DebugMessage:Trigger OutsideZoneCheck]
+				[SetBooleansTrue:OutsideFactionZone]
+			</Description>
+		</EntityComponent>
+
+		<!-- Trigger to confirm it is Inside Faction Zone -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-Trigger-InsideZoneCheck</SubtypeId>
+			</Id>
+			<Description>
+				[MES AI Trigger]
+				[UseTrigger:true]
+				[Type:InsideActiveZone]
+				[MinCooldownMs:10000]
+				[MaxCooldownMs:10001]
+				[StartsReady:false]
+				[ZoneName:{Faction}_Zone]
+				[Actions:GVK-Alliance-Action-InsideZoneCheck]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-Action-InsideZoneCheck</SubtypeId>
+			</Id>
+			<Description>
+				[MES AI Action]
+				[//DebugMessage:Trigger InsideZoneCheck]
+				[SetBooleansFalse:OutsideFactionZone]
+			</Description>
+		</EntityComponent>
+
+		<!-- Trigger to check if outside faction zone for despawn after 30 minutes -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-Trigger-OutsideAllZones</SubtypeId>
+			</Id>
+			<Description>
+				[MES AI Trigger]
+				[UseTrigger:true]
+				[Type:PlayerFar]
+				[MinCooldownMs:1800000]
+				[MaxCooldownMs:1800001]
+				[StartsReady:false]
+				[TargetDistance:4000]
+				[Actions:GVK-Alliance-Action-OutsideAllZonesExplosion]
+				[Actions:GVK-Alliance-Action-OutsideAllZones]
+				[Conditions:GVK-Alliance-Condition-OutsideAllZones]
+				[ConditionCheckResetsTimer:true]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-Condition-OutsideAllZones</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Condition]
+				[UseConditions:true]
+				[MatchAnyCondition:false]
+				[CheckTrueBooleans:true]
+				[TrueBooleans:OutsideFactionZone]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-Action-OutsideAllZones</SubtypeId>
+			</Id>
+			<Description>
+				[MES AI Action]
+				[//DebugMessage:Trigger OutsideAllZones]
+				[ForceDespawn:true]
+				[UseChatBroadcast:true]
+				[ChatData:GVK-Alliance-Chat-OutsideAllZones]
+			</Description>
+		</EntityComponent>
+		<!-- Faction-colored explosion (blue for KHAANEPH) via the shared Explosions trigger tags -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-Action-OutsideAllZonesExplosion</SubtypeId>
+			</Id>
+			<Description>
+				[MES AI Action]
+				[ManuallyActivateTrigger:true]
+				[ManuallyActivatedTriggerTags:GVK-Universal-TriggerTags-Explosions-{EncounterType}-{Faction}]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-Chat-OutsideAllZones</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Chat]
+				[UseChat:true]
+				[StartsReady:true]
+				[Chance:100]
+				[BroadcastRandomly:false]
+				[Author:Sensors]
+				[Color:Blue]
+				[ChatMessages:A {Faction} {EncounterDisplayName} was abandoned.]
+				[ChatAudio:ArcHudSensors]
+				[BroadcastChatType:Both]
+				[SendToAllOnlinePlayers:false]
+				[IgnoreAntennaRequirement:true]
+				[IgnoredAntennaRangeOverride:5000]
+			</Description>
+		</EntityComponent>
+	</EntityComponents>
+</Definitions>

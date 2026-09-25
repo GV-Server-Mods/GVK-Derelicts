@@ -1,0 +1,121 @@
+<?xml version="1.0"?>
+<Definitions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+	<EntityComponents>
+		<!-- Behavior for Trade Stations -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Static-TradeStation-Behavior</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Behavior]
+				[BehaviorName:Passive]
+				[UseRetreatTimer:false]
+				[UseNoTargetTimer:false]
+				[UsePlayerDistanceTimer:false]
+				[Triggers:GVK-Static-TradeStation-Trigger-CreateSafeZone]
+				[TriggerGroups:GVK-Store-TriggerGroup-UpdateStores]
+				[RemoteControlCode:GVK-Static]
+			</Description>
+		</EntityComponent>
+		<!-- Behavior for COALITION Base includes Contracts Block Triggers -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Static-TradeStation-Behavior-COALITIONBase</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Behavior]
+				[BehaviorName:Passive]
+				[UseRetreatTimer:false]
+				[UseNoTargetTimer:false]
+				[UsePlayerDistanceTimer:false]
+				[Triggers:GVK-EscortContracts-Trigger-RefreshBoard]
+				[TriggerGroups:GVK-Store-TriggerGroup-UpdateStores]
+				[RemoteControlCode:GVK-Static]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Static-TradeStation-Behavior-NoSafeZone</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Behavior]
+				[BehaviorName:Passive]
+				[UseRetreatTimer:false]
+				[UseNoTargetTimer:false]
+				[UsePlayerDistanceTimer:false]
+				[TriggerGroups:GVK-Store-TriggerGroup-UpdateStores]
+				[RemoteControlCode:GVK-Static]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Static-KOTHTown-Behavior</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Behavior]
+				[BehaviorName:Passive]
+				[UseRetreatTimer:false]
+				[UseNoTargetTimer:false]
+				[UsePlayerDistanceTimer:false]
+				[Triggers:GVK-Universal-Trigger-JetpackInhibitor]
+				[RemoteControlCode:GVK-Static]
+			</Description>
+		</EntityComponent>
+		<!-- Trigger sequence to create a safezone on trade station spawn -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Static-TradeStation-Trigger-CreateSafeZone</SubtypeId>
+			</Id>
+			<Description>
+				[MES AI Trigger]
+				[UseTrigger:true]
+				[Type:Session]
+				[StartsReady:true]
+				[MaxActions:-1]
+				[Actions:GVK-Static-TradeStation-Action-CreateSafeZone]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Static-TradeStation-Action-CreateSafeZone</SubtypeId>
+			</Id>
+			<Description>
+				[MES AI Action]
+				[CreateSafeZone:true]
+				[SafeZoneProfile:GVK-Static-TradeStation-SafeZone-StoreSafeZone]
+				[LinkSafeZoneToRemoteControl:true]
+				[SafeZonePositionGridCenter:true]
+				[SafeZonePositionTerrainSurface:true]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Static-TradeStation-SafeZone-StoreSafeZone</SubtypeId>
+			</Id>
+			<Description>
+				[MES SafeZone]
+				[Shape:Sphere]
+				[Radius:0]
+				[RadiusFromParentEntity:true]
+				[ParentEntityRadiusMultiplier:3]
+				[Enabled:true]
+				[LinkToParentEntity:true]
+				[IsVisible:false]
+				[Color:{X:0 Y:0 Z:0}]
+				[Texture:SafeZone_Texture_Restricted]
+				[FactionAccess:Blacklist]
+				[GridAccess:Blacklist]
+				[PlayerAccess:Blacklist]
+				[AllowedActions:LandingGearLock]
+				[AllowedActions:ConvertToStation]
+			</Description>
+		</EntityComponent>
+	</EntityComponents>
+</Definitions>

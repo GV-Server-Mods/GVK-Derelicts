@@ -1,0 +1,494 @@
+<?xml version="1.0"?>
+<Definitions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+	<EntityComponents>
+		<!--
+		
+		EncounterTypes:
+		- Base			Large
+		- Outpost		Medium
+		- Turret		Medium
+		- CargoShip		Large
+		- WreckLarge	Large
+		- WreckMedium	Medium
+		- WreckSmall	Small
+		- DroneElite	Elite
+		- DroneLarge	Large
+		- DroneMedium	Medium
+		- DroneSmall	Small
+
+		Factions:
+		- KHAANEPH	Blue
+		- GAALSIEN	Blue
+		- COALITION	Regular
+		- SOBAN		Regular
+		- DERELICT 	Regular
+				
+		Tags:GVK-Universal-TriggerTags-Explosions-{EncounterType}-{Faction}
+
+		-->
+
+		<!-- Base -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Universal-TriggerTags-Explosions-AllianceBase-KHAANEPH</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Trigger]
+				[UseTrigger:true]
+				[Tags:GVK-Universal-TriggerTags-Explosions-AllianceBase-KHAANEPH]
+				[Type:Manual]
+				[StartsReady:true]
+				[Actions:GVK-Universal-Action-LargeBlueExplosionEffects]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Universal-TriggerTags-Explosions-AllianceBase-SOBAN</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Trigger]
+				[UseTrigger:true]
+				[Tags:GVK-Universal-TriggerTags-Explosions-AllianceBase-SOBAN]
+				[Type:Manual]
+				[StartsReady:true]
+				[Actions:GVK-Universal-Action-LargeExplosionEffects]
+			</Description>
+		</EntityComponent>
+		<!-- Outpost -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Universal-TriggerTags-Explosions-AllianceOutpost-KHAANEPH</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Trigger]
+				[UseTrigger:true]
+				[Tags:GVK-Universal-TriggerTags-Explosions-AllianceOutpost-KHAANEPH]
+				[Type:Manual]
+				[StartsReady:true]
+				[Actions:GVK-Universal-Action-MediumBlueExplosionEffects]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Universal-TriggerTags-Explosions-AllianceOutpost-SOBAN</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Trigger]
+				[UseTrigger:true]
+				[Tags:GVK-Universal-TriggerTags-Explosions-AllianceOutpost-SOBAN]
+				[Type:Manual]
+				[StartsReady:true]
+				[Actions:GVK-Universal-Action-MediumExplosionEffects]
+			</Description>
+		</EntityComponent>
+		<!-- Turret -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Universal-TriggerTags-Explosions-AllianceTurret-KHAANEPH</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Trigger]
+				[UseTrigger:true]
+				[Tags:GVK-Universal-TriggerTags-Explosions-AllianceTurret-KHAANEPH]
+				[Type:Manual]
+				[StartsReady:true]
+				[Actions:GVK-Universal-Action-MediumBlueExplosionEffects]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Universal-TriggerTags-Explosions-AllianceTurret-SOBAN</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Trigger]
+				[UseTrigger:true]
+				[Tags:GVK-Universal-TriggerTags-Explosions-AllianceTurret-SOBAN]
+				[Type:Manual]
+				[StartsReady:true]
+				[Actions:GVK-Universal-Action-MediumExplosionEffects]
+			</Description>
+		</EntityComponent>
+		<!-- DroneElite -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Universal-TriggerTags-Explosions-CargoShip-KHAANEPH</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Trigger]
+				[UseTrigger:true]
+				[Tags:GVK-Universal-TriggerTags-Explosions-CargoShip-KHAANEPH]
+				[Type:Manual]
+				[StartsReady:true]
+				[Actions:GVK-Universal-Action-LargeBlueExplosionEffects]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Universal-TriggerTags-Explosions-CargoShip-SOBAN</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Trigger]
+				[UseTrigger:true]
+				[Tags:GVK-Universal-TriggerTags-Explosions-CargoShip-SOBAN]
+				[Type:Manual]
+				[StartsReady:true]
+				[Actions:GVK-Universal-Action-LargeExplosionEffects]
+			</Description>
+		</EntityComponent>
+		<!-- DroneElite -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Universal-TriggerTags-Explosions-DroneElite-KHAANEPH</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Trigger]
+				[UseTrigger:true]
+				[Tags:GVK-Universal-TriggerTags-Explosions-DroneElite-KHAANEPH]
+				[Type:Manual]
+				[StartsReady:true]
+				[Actions:GVK-Universal-Action-LargeBlueExplosionEffects]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Universal-TriggerTags-Explosions-DroneElite-SOBAN</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Trigger]
+				[UseTrigger:true]
+				[Tags:GVK-Universal-TriggerTags-Explosions-DroneElite-SOBAN]
+				[Type:Manual]
+				[StartsReady:true]
+				[Actions:GVK-Universal-Action-LargeExplosionEffects]
+			</Description>
+		</EntityComponent>
+		<!-- DroneLarge -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Universal-TriggerTags-Explosions-DroneLarge-KHAANEPH</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Trigger]
+				[UseTrigger:true]
+				[Tags:GVK-Universal-TriggerTags-Explosions-DroneLarge-KHAANEPH]
+				[Type:Manual]
+				[StartsReady:true]
+				[Actions:GVK-Universal-Action-LargeBlueExplosionEffects]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Universal-TriggerTags-Explosions-DroneLarge-SOBAN</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Trigger]
+				[UseTrigger:true]
+				[Tags:GVK-Universal-TriggerTags-Explosions-DroneLarge-SOBAN]
+				[Type:Manual]
+				[StartsReady:true]
+				[Actions:GVK-Universal-Action-LargeExplosionEffects]
+			</Description>
+		</EntityComponent>
+		<!-- DroneMedium -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Universal-TriggerTags-Explosions-DroneMedium-KHAANEPH</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Trigger]
+				[UseTrigger:true]
+				[Tags:GVK-Universal-TriggerTags-Explosions-DroneMedium-KHAANEPH]
+				[Type:Manual]
+				[StartsReady:true]
+				[Actions:GVK-Universal-Action-MediumBlueExplosionEffects]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Universal-TriggerTags-Explosions-DroneMedium-SOBAN</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Trigger]
+				[UseTrigger:true]
+				[Tags:GVK-Universal-TriggerTags-Explosions-DroneMedium-SOBAN]
+				[Type:Manual]
+				[StartsReady:true]
+				[Actions:GVK-Universal-Action-MediumExplosionEffects]
+			</Description>
+		</EntityComponent>
+		<!-- DroneSmall -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Universal-TriggerTags-Explosions-DroneSmall-KHAANEPH</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Trigger]
+				[UseTrigger:true]
+				[Tags:GVK-Universal-TriggerTags-Explosions-DroneSmall-KHAANEPH]
+				[Type:Manual]
+				[StartsReady:true]
+				[Actions:GVK-Universal-Action-SmallBlueExplosionEffects]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Universal-TriggerTags-Explosions-DroneSmall-SOBAN</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Trigger]
+				[UseTrigger:true]
+				[Tags:GVK-Universal-TriggerTags-Explosions-DroneSmall-SOBAN]
+				[Type:Manual]
+				[StartsReady:true]
+				[Actions:GVK-Universal-Action-SmallExplosionEffects]
+			</Description>
+		</EntityComponent>
+		<!-- WreckLarge -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Universal-TriggerTags-Explosions-WreckLarge-GAALSIEN</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Trigger]
+				[UseTrigger:true]
+				[Tags:GVK-Universal-TriggerTags-Explosions-WreckLarge-GAALSIEN]
+				[Type:Manual]
+				[StartsReady:true]
+				[Actions:GVK-Universal-Action-LargeBlueExplosionEffects]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Universal-TriggerTags-Explosions-WreckLarge-DERELICT</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Trigger]
+				[UseTrigger:true]
+				[Tags:GVK-Universal-TriggerTags-Explosions-WreckLarge-DERELICT]
+				[Type:Manual]
+				[StartsReady:true]
+				[Actions:GVK-Universal-Action-LargeExplosionEffects]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Universal-TriggerTags-Explosions-WreckLarge-COALITION</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Trigger]
+				[UseTrigger:true]
+				[Tags:GVK-Universal-TriggerTags-Explosions-WreckLarge-COALITION]
+				[Type:Manual]
+				[StartsReady:true]
+				[Actions:GVK-Universal-Action-LargeExplosionEffects]
+			</Description>
+		</EntityComponent>
+		<!-- WreckMedium -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Universal-TriggerTags-Explosions-WreckMedium-GAALSIEN</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Trigger]
+				[UseTrigger:true]
+				[Tags:GVK-Universal-TriggerTags-Explosions-WreckMedium-GAALSIEN]
+				[Type:Manual]
+				[StartsReady:true]
+				[Actions:GVK-Universal-Action-MediumBlueExplosionEffects]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Universal-TriggerTags-Explosions-WreckMedium-DERELICT</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Trigger]
+				[UseTrigger:true]
+				[Tags:GVK-Universal-TriggerTags-Explosions-WreckMedium-DERELICT]
+				[Type:Manual]
+				[StartsReady:true]
+				[Actions:GVK-Universal-Action-MediumExplosionEffects]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Universal-TriggerTags-Explosions-WreckMedium-COALITION</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Trigger]
+				[UseTrigger:true]
+				[Tags:GVK-Universal-TriggerTags-Explosions-WreckMedium-COALITION]
+				[Type:Manual]
+				[StartsReady:true]
+				[Actions:GVK-Universal-Action-MediumExplosionEffects]
+			</Description>
+		</EntityComponent>
+		<!-- WreckSmall -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Universal-TriggerTags-Explosions-WreckSmall-GAALSIEN</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Trigger]
+				[UseTrigger:true]
+				[Tags:GVK-Universal-TriggerTags-Explosions-WreckSmall-GAALSIEN]
+				[Type:Manual]
+				[StartsReady:true]
+				[Actions:GVK-Universal-Action-SmallBlueExplosionEffects]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Universal-TriggerTags-Explosions-WreckSmall-DERELICT</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Trigger]
+				[UseTrigger:true]
+				[Tags:GVK-Universal-TriggerTags-Explosions-WreckSmall-DERELICT]
+				[Type:Manual]
+				[StartsReady:true]
+				[Actions:GVK-Universal-Action-SmallExplosionEffects]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Universal-TriggerTags-Explosions-WreckSmall-COALITION</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Trigger]
+				[UseTrigger:true]
+				[Tags:GVK-Universal-TriggerTags-Explosions-WreckSmall-COALITION]
+				[Type:Manual]
+				[StartsReady:true]
+				[Actions:GVK-Universal-Action-SmallExplosionEffects]
+			</Description>
+		</EntityComponent>
+		<!-- DroneElite -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Universal-TriggerTags-Explosions-DroneElite-GAALSIEN</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Trigger]
+				[UseTrigger:true]
+				[Tags:GVK-Universal-TriggerTags-Explosions-DroneElite-GAALSIEN]
+				[Type:Manual]
+				[StartsReady:true]
+				[Actions:GVK-Universal-Action-LargeBlueExplosionEffects]
+			</Description>
+		</EntityComponent>
+		<!-- DroneLarge -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Universal-TriggerTags-Explosions-DroneLarge-GAALSIEN</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Trigger]
+				[UseTrigger:true]
+				[Tags:GVK-Universal-TriggerTags-Explosions-DroneLarge-GAALSIEN]
+				[Type:Manual]
+				[StartsReady:true]
+				[Actions:GVK-Universal-Action-LargeBlueExplosionEffects]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Universal-TriggerTags-Explosions-DroneLarge-COALITION</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Trigger]
+				[UseTrigger:true]
+				[Tags:GVK-Universal-TriggerTags-Explosions-DroneLarge-COALITION]
+				[Type:Manual]
+				[StartsReady:true]
+				[Actions:GVK-Universal-Action-LargeExplosionEffects]
+			</Description>
+		</EntityComponent>
+		<!-- DroneMedium -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Universal-TriggerTags-Explosions-DroneMedium-GAALSIEN</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Trigger]
+				[UseTrigger:true]
+				[Tags:GVK-Universal-TriggerTags-Explosions-DroneMedium-GAALSIEN]
+				[Type:Manual]
+				[StartsReady:true]
+				[Actions:GVK-Universal-Action-MediumBlueExplosionEffects]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Universal-TriggerTags-Explosions-DroneMedium-COALITION</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Trigger]
+				[UseTrigger:true]
+				[Tags:GVK-Universal-TriggerTags-Explosions-DroneMedium-COALITION]
+				[Type:Manual]
+				[StartsReady:true]
+				[Actions:GVK-Universal-Action-MediumExplosionEffects]
+			</Description>
+		</EntityComponent>
+		<!-- DroneSmall -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Universal-TriggerTags-Explosions-DroneSmall-GAALSIEN</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Trigger]
+				[UseTrigger:true]
+				[Tags:GVK-Universal-TriggerTags-Explosions-DroneSmall-GAALSIEN]
+				[Type:Manual]
+				[StartsReady:true]
+				[Actions:GVK-Universal-Action-SmallBlueExplosionEffects]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Universal-TriggerTags-Explosions-DroneSmall-COALITION</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Trigger]
+				[UseTrigger:true]
+				[Tags:GVK-Universal-TriggerTags-Explosions-DroneSmall-COALITION]
+				[Type:Manual]
+				[StartsReady:true]
+				[Actions:GVK-Universal-Action-SmallExplosionEffects]
+			</Description>
+		</EntityComponent>
+	</EntityComponents>
+</Definitions>

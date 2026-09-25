@@ -1,0 +1,80 @@
+<?xml version="1.0"?>
+<Definitions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+	<EntityComponents>
+		<!-- ================================================================= -->
+		<!-- GVK ESCORT CONTRACT MISSIONS                                      -->
+		<!-- MES-native player-initiated escort missions (TODO #480).          -->
+		<!-- MES adds these to the Coalition contract block as real contracts   -->
+		<!-- (MyContractCustom, MESContract type) and spawns the convoy on      -->
+		<!-- accept via the mission's InstanceEventGroupId. No C# required.     -->
+		<!-- See Docs/EscortContractMissions-Design.md.                         -->
+		<!-- TODO: Add Route A option for single and double escort missions -->
+		<!-- ================================================================= -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-EscortMission-RouteA</SubtypeId>
+			</Id>
+			<Description>
+				[MES Mission]
+				[MissionType:Custom]
+				[Title:Escort Convoy - Sevastopol (Land)]
+				[Description:A Coalition land convoy is waiting at Crossroads for an escort to Sevastopol. Gaalsien raiders will harass it en route. Guard the transport until it arrives. Primary
+				payout is the cargo itself. This is a test contract description with no special characters.]
+				[Reward:8000]
+				[Collateral:8000]
+				[ReputationReward:0]
+				[FailReputationPrice:0]
+				[Duration:180]
+				[Exclusive:true]
+				[OverrideFaction:COALITION]
+				[InstanceEventGroupId:GVK-EscortMissions-Group-A]
+				[ActivateBooleanNameOnSucces:GVK_EscortMissionDone_A]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-EscortMission-RouteB</SubtypeId>
+			</Id>
+			<Description>
+				[MES Mission]
+				[MissionType:Custom]
+				[Title:Escort Convoy - Mastodon (Land)]
+				[Description:A Coalition land convoy is waiting at Crossroads for an escort to the Mastodon station. Gaalsien raiders will harass it en route. Guard the transport until it arrives.
+				Primary payout is the cargo itself. This is a test contract description with no special characters.]
+				[Reward:6000]
+				[Collateral:6000]
+				[ReputationReward:0]
+				[FailReputationPrice:0]
+				[Duration:180]
+				[Exclusive:true]
+				[OverrideFaction:COALITION]
+				[InstanceEventGroupId:GVK-EscortMissions-Group-B]
+				[ActivateBooleanNameOnSucces:GVK_EscortMissionDone_B]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-EscortMission-RouteE</SubtypeId>
+			</Id>
+			<Description>
+				[MES Mission]
+				[MissionType:Custom]
+				[Title:Escort Convoy - Sevastopol (Air)]
+				[Description:A Coalition aerial transport is waiting at the Skyport for an escort to Sevastopol. Watch the refuel stops - grounded transports are vulnerable. Guard it until it arrives.
+				Primary payout is the cargo itself. This is a test contract description with no special characters.]
+				[Reward:10000]
+				[Collateral:10000]
+				[ReputationReward:0]
+				[FailReputationPrice:0]
+				[Duration:180]
+				[Exclusive:true]
+				[OverrideFaction:COALITION]
+				[InstanceEventGroupId:GVK-EscortMissions-Group-E]
+				[ActivateBooleanNameOnSucces:GVK_EscortMissionDone_E]
+			</Description>
+		</EntityComponent>
+	</EntityComponents>
+</Definitions>

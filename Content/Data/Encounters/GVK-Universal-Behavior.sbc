@@ -1,0 +1,883 @@
+<?xml version="1.0"?>
+<Definitions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+	<EntityComponents>
+		<!-- === Trigger Sequences === -->
+		<!-- NPC Chat when target is acquired -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Universal-Trigger-TargetAcquiredChatter-GAALSIEN</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Trigger]
+				[Type:AcquiredTarget]
+				[UseTrigger:true]
+				[StartsReady:true]
+				[MaxActions:1]
+				[Actions:GVK-Universal-Action-GAALSIEN-TargetAcquiredChatter]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Universal-Action-GAALSIEN-TargetAcquiredChatter</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Action]
+				[UseChatBroadcast:true]
+				[ChatData:GVK-Universal-Chat-GAALSIEN-TargetAcquiredChatter]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Universal-Trigger-TargetAcquiredChatter</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Trigger]
+				[Type:AcquiredTarget]
+				[UseTrigger:true]
+				[StartsReady:true]
+				[MaxActions:1]
+				[Actions:GVK-Universal-Action-TargetAcquiredChatter]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Universal-Action-TargetAcquiredChatter</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Action]
+				[UseChatBroadcast:true]
+				[ChatData:GVK-Universal-Chat-TargetAcquiredChatter]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Universal-Trigger-NoTargetsChatter</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Trigger]
+				[Type:NoTarget]
+				[UseTrigger:true]
+				[StartsReady:false]
+				[MinCooldownMs:10000]
+				[MaxCooldownMs:10001]
+				[MaxActions:1]
+				[Actions:GVK-Universal-Action-NoTargetsChatter]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Universal-Action-NoTargetsChatter</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Action]
+				[UseChatBroadcast:true]
+				[ChatData:GVK-Universal-Chat-NoTargetsChatter]
+			</Description>
+		</EntityComponent>
+		<!-- Jetpack Inhibitor on Session (This appears to be broken in DS MP, players can glide long distances  -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Universal-Trigger-JetpackInhibitor</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Trigger]
+				[Type:Session]
+				[UseTrigger:false]
+				[StartsReady:false]
+				[MaxActions:-1]
+				[MinCooldownMs:10000]
+				[MaxCooldownMs:10001]
+				[Actions:GVK-Universal-Action-JetpackInhibitor]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Universal-Action-JetpackInhibitor</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Action]
+				[Chance:100]
+				[UseJetpackInhibitorEffect:true]
+			</Description>
+		</EntityComponent>
+		<!-- Trigger Make indestructable on spawn -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Universal-Trigger-IndestructibleOnSpawn</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Trigger]
+				[Type:Timer]
+				[UseTrigger:true]
+				[StartsReady:true]
+				[MaxActions:1]
+				[Actions:GVK-Universal-Action-IndestructibleOnSpawn]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Universal-Action-IndestructibleOnSpawn</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Action]
+				[Chance:100]
+				[GridDestructible:No]
+				[SubGridsDestructible:No]
+			</Description>
+		</EntityComponent>
+		<!-- Trigger Make non-editable on spawn -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Universal-Trigger-UneditableOnSpawn</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Trigger]
+				[Type:Timer]
+				[UseTrigger:true]
+				[StartsReady:true]
+				[MaxActions:1]
+				[Actions:GVK-Universal-Action-UneditableOnSpawn]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Universal-Action-UneditableOnSpawn</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Action]
+				[Chance:100]
+				[GridEditable:No]
+				[SubGridsEditable:No]
+			</Description>
+		</EntityComponent>
+		<!-- Trigger Make editable on defeat -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Universal-Trigger-EditableOnCompromised</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Trigger]
+				[Type:Compromised]
+				[UseTrigger:true]
+				[StartsReady:true]
+				[MaxActions:1]
+				[Actions:GVK-Universal-Action-EditableOnCompromised]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Universal-Action-EditableOnCompromised</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Action]
+				[Chance:100]
+				[GridEditable:Yes]
+				[SubGridsEditable:Yes]
+			</Description>
+		</EntityComponent>
+		<!-- === Chat === -->
+		<!-- Generic SPRT Battle Chatter -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Universal-Chat-SPRTBattleChatter</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Chat]
+				[UseChat:true]
+				[MinTime:30]
+				[MaxTime:90]
+				[StartsReady:true]
+				[Chance:10]
+				[BroadcastRandomly:true]
+				[SendToAllOnlinePlayers:false]
+				[IgnoreAntennaRequirement:true]
+				[IgnoredAntennaRangeOverride:9999999]
+				[Author:{GridName}]
+				[Color:Red]
+				[ChatMessages:Lets dance!]
+				[ChatAudio:ArcHudGPSNotification2]
+				[BroadcastChatType:Chat]
+				[ChatMessages:Your mother was a hamster and your father smelt of elderberries!]
+				[ChatAudio:ArcHudGPSNotification2]
+				[BroadcastChatType:Chat]
+				[ChatMessages:Its just a flesh wound.]
+				[ChatAudio:ArcHudGPSNotification2]
+				[BroadcastChatType:Chat]
+				[ChatMessages:wE hAvE cHiLdReN oN bOaRd, PlEaSe HoLd YoUr FiRe.]
+				[ChatAudio:ArcHudGPSNotification2]
+				[BroadcastChatType:Chat]
+				[ChatMessages:You don't stand a chance.]
+				[ChatAudio:ArcHudGPSNotification2]
+				[BroadcastChatType:Chat]
+				[ChatMessages:You're going to regret this.]
+				[ChatAudio:ArcHudGPSNotification2]
+				[BroadcastChatType:Chat]
+				[ChatMessages:I’m a leaf on the wind!]
+				[ChatAudio:ArcHudGPSNotification2]
+				[BroadcastChatType:Chat]
+				[ChatMessages:Tis but a scratch]
+				[ChatAudio:ArcHudGPSNotification2]
+				[BroadcastChatType:Chat]
+				[ChatMessages:Please enjoy the music while your party is being reached.]
+				[ChatAudio:ArcHudGPSNotification2]
+				[BroadcastChatType:Chat]
+				[ChatMessages:Target is continuing to attack, requesting fire support!]
+				[ChatAudio:ArcHudGPSNotification2]
+				[BroadcastChatType:Chat]
+				[ChatMessages:ouch, I felt that sim speed hit]
+				[ChatAudio:ArcHudGPSNotification2]
+				[BroadcastChatType:Chat]
+				[ChatMessages:I'm doing my part!]
+				[ChatAudio:ArcHudGPSNotification2]
+				[BroadcastChatType:Chat]
+				[ChatMessages:This is pretty boring, you should drop your base coords in the chat]
+				[ChatAudio:ArcHudGPSNotification2]
+				[BroadcastChatType:Chat]
+				[ChatMessages:Hmmm, RBH fights better than this, and that’s saying something]
+				[ChatAudio:ArcHudGPSNotification2]
+				[BroadcastChatType:Chat]
+				[ChatMessages:I'm gonna whip yer sorry hide like a mule!]
+				[ChatAudio:ArcHudGPSNotification2]
+				[BroadcastChatType:Chat]
+				[ChatMessages:Lock S-Foils in attack position.]
+				[ChatAudio:ArcHudGPSNotification2]
+				[BroadcastChatType:Chat]
+			</Description>
+		</EntityComponent>
+		<!-- GAALSIEN Target Acquired Chatter -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Universal-Chat-GAALSIEN-TargetAcquiredChatter</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Chat]
+				[UseChat:true]
+				[StartsReady:true]
+				[Chance:20]
+				[BroadcastRandomly:true]
+				[SendToAllOnlinePlayers:false]
+				[IgnoreAntennaRequirement:true]
+				[IgnoredAntennaRangeOverride:9999999]
+				[Author:{GridName}]
+				[Color:Red]
+				[ChatMessages:Target acquired.]
+				[ChatAudio:ArcHudGPSNotification2]
+				[BroadcastChatType:Chat]
+				[ChatMessages:Target locked.]
+				[ChatAudio:ArcHudGPSNotification2]
+				[BroadcastChatType:Chat]
+				[ChatMessages:Enemy ship in-sight.]
+				[ChatAudio:ArcHudGPSNotification2]
+				[BroadcastChatType:Chat]
+				[ChatMessages:I'm moving in.]
+				[ChatAudio:ArcHudGPSNotification2]
+				[BroadcastChatType:Chat]
+				[ChatMessages:Tangos in-bound.]
+				[ChatAudio:ArcHudGPSNotification2]
+				[BroadcastChatType:Chat]
+				[ChatMessages:Engaging enemy.]
+				[ChatAudio:ArcHudGPSNotification2]
+				[BroadcastChatType:Chat]
+				[ChatMessages:Enemy detected.]
+				[ChatAudio:ArcHudGPSNotification2]
+				[BroadcastChatType:Chat]
+				[ChatMessages:Look who decided to show up.]
+				[ChatAudio:ArcHudGPSNotification2]
+				[BroadcastChatType:Chat]
+				[ChatMessages:This will be easy.]
+				[ChatAudio:ArcHudGPSNotification2]
+				[BroadcastChatType:Chat]
+				[ChatMessages:This isn't even worth my time.]
+				[ChatAudio:ArcHudGPSNotification2]
+				[BroadcastChatType:Chat]
+				[ChatMessages:These COALITION sympathizers don't stand a chance.]
+				[ChatAudio:ArcHudGPSNotification2]
+				[BroadcastChatType:Chat]
+				[ChatMessages:In the name of Sajuuk.]
+				[ChatAudio:ArcHudGPSNotification2]
+				[BroadcastChatType:Chat]
+				[ChatMessages:For Kiith GAALSIEN!]
+				[ChatAudio:ArcHudGPSNotification2]
+				[BroadcastChatType:Chat]
+				[ChatMessages:Kill the blasphemers!]
+				[ChatAudio:ArcHudGPSNotification2]
+				[BroadcastChatType:Chat]
+				[ChatMessages:This is your last chance to run.]
+				[ChatAudio:ArcHudGPSNotification2]
+				[BroadcastChatType:Chat]
+			</Description>
+		</EntityComponent>
+		<!-- COALITION Target Acquired Chatter -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Universal-Chat-TargetAcquiredChatter</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Chat]
+				[UseChat:true]
+				[StartsReady:true]
+				[Chance:20]
+				[BroadcastRandomly:true]
+				[SendToAllOnlinePlayers:false]
+				[IgnoreAntennaRequirement:true]
+				[IgnoredAntennaRangeOverride:9999999]
+				[Author:{GridName}]
+				[Color:White]
+				[ChatMessages:Target acquired.]
+				[ChatAudio:ArcHudGPSNotification2]
+				[BroadcastChatType:Chat]
+				[ChatMessages:Target locked.]
+				[ChatAudio:ArcHudGPSNotification2]
+				[BroadcastChatType:Chat]
+				[ChatMessages:Don't let them near the carrier.]
+				[ChatAudio:ArcHudGPSNotification2]
+				[BroadcastChatType:Chat]
+				[ChatMessages:We'll handle this.]
+				[ChatAudio:ArcHudGPSNotification2]
+				[BroadcastChatType:Chat]
+				[ChatMessages:Engaging enemy.]
+				[ChatAudio:ArcHudGPSNotification2]
+				[BroadcastChatType:Chat]
+				[ChatMessages:Enemy detected.]
+				[ChatAudio:ArcHudGPSNotification2]
+				[BroadcastChatType:Chat]
+				[ChatMessages:{Faction} Reinforcements have arrived.]
+				[ChatAudio:ArcHudGPSNotification2]
+				[BroadcastChatType:Chat]
+				[ChatMessages:We're from the {Faction} and we're here to help.]
+				[ChatAudio:ArcHudGPSNotification2]
+				[BroadcastChatType:Chat]
+				[ChatMessages:We must find the primary anomaly.]
+				[ChatAudio:ArcHudGPSNotification2]
+				[BroadcastChatType:Chat]
+				[ChatMessages:Protect the Jaraci Object.]
+				[ChatAudio:ArcHudGPSNotification2]
+				[BroadcastChatType:Chat]
+				[ChatMessages:For Kiith {Faction}.]
+				[ChatAudio:ArcHudGPSNotification2]
+				[BroadcastChatType:Chat]
+				[ChatMessages:Destroy the zealots.]
+				[ChatAudio:ArcHudGPSNotification2]
+				[BroadcastChatType:Chat]
+			</Description>
+		</EntityComponent>
+		<!-- COALITION Target Acquired Chatter -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Universal-Chat-NoTargetsChatter</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Chat]
+				[UseChat:true]
+				[StartsReady:true]
+				[Chance:20]
+				[BroadcastRandomly:true]
+				[SendToAllOnlinePlayers:false]
+				[IgnoreAntennaRequirement:true]
+				[IgnoredAntennaRangeOverride:9999999]
+				[Author:{GridName}]
+				[Color:White]
+				[ChatMessages:Sector is Clear.]
+				[ChatAudio:ArcHudGPSNotification2]
+				[BroadcastChatType:Chat]
+				[ChatMessages:Searching for targets.]
+				[ChatAudio:ArcHudGPSNotification2]
+				[BroadcastChatType:Chat]
+				[ChatMessages:No enemies detected.]
+				[ChatAudio:ArcHudGPSNotification2]
+				[BroadcastChatType:Chat]
+				[ChatMessages:I think we got them all.]
+				[ChatAudio:ArcHudGPSNotification2]
+				[BroadcastChatType:Chat]
+				[ChatMessages:Keep your eyes open for more enemies.]
+				[ChatAudio:ArcHudGPSNotification2]
+				[BroadcastChatType:Chat]
+			</Description>
+		</EntityComponent>
+		<!-- Explosion effects for non-gaalsien NPCs -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Universal-Trigger-SmallExplosionEffects</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Trigger]
+				[Type:Compromised]
+				[UseTrigger:true]
+				[StartsReady:true]
+				[MaxActions:1]
+				[Actions:GVK-Universal-Action-SmallExplosionEffects]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Universal-Action-SmallExplosionEffects</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Action]
+				[//DebugMessage:SmallExplosionEffects]
+				[PlayParticleEffectAtRemote:true]
+				[ParticleEffectId:BlockDestroyedExplosion_Large3X]
+				[ParticleEffectOffset:{X:0.0 Y:0.0 Z:0.0}]
+				[ParticleEffectScale:1.0]
+				[ParticleEffectMaxTime:1000]
+				[ParticleEffectColor:{X:1.0 Y:1.0 Z:1.0}]
+				[PlaySoundAtPosition:true]
+				[SoundAtPosition:HWR_SmallExplosion]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Universal-Trigger-MediumExplosionEffects</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Trigger]
+				[Type:Compromised]
+				[UseTrigger:true]
+				[StartsReady:true]
+				[MaxActions:1]
+				[Actions:GVK-Universal-Action-MediumExplosionEffects]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Universal-Action-MediumExplosionEffects</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Action]
+				[//DebugMessage:MediumExplosionEffects]
+				[PlayParticleEffectAtRemote:true]
+				[ParticleEffectId:Explosion_Warhead_30]
+				[ParticleEffectOffset:{X:0.0 Y:0.0 Z:0.0}]
+				[ParticleEffectScale:1.0]
+				[ParticleEffectMaxTime:1000]
+				[ParticleEffectColor:{X:1.0 Y:1.0 Z:1.0}]
+				[PlaySoundAtPosition:true]
+				[SoundAtPosition:HWR_LargeExplosion]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Universal-Trigger-LargeExplosionEffects</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Trigger]
+				[Type:Compromised]
+				[UseTrigger:true]
+				[StartsReady:true]
+				[MaxActions:1]
+				[Actions:GVK-Universal-Action-LargeExplosionEffects]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Universal-Action-LargeExplosionEffects</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Action]
+				[//DebugMessage:LargeExplosionEffects]
+				[PlayParticleEffectAtRemote:true]
+				[ParticleEffectId:Explosion_Warhead_50]
+				[ParticleEffectOffset:{X:0.0 Y:0.0 Z:0.0}]
+				[ParticleEffectScale:1.0]
+				[ParticleEffectMaxTime:1000]
+				[ParticleEffectColor:{X:1.0 Y:1.0 Z:1.0}]
+				[PlaySoundAtPosition:true]
+				[SoundAtPosition:Cruiser_Explosion]
+			</Description>
+		</EntityComponent>
+		<!-- Explosion effects for GAALSIEN NPCs -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Universal-Trigger-SmallBlueExplosionEffects</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Trigger]
+				[Type:Compromised]
+				[UseTrigger:true]
+				[StartsReady:true]
+				[MaxActions:1]
+				[Actions:GVK-Universal-Action-SmallBlueExplosionEffects]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Universal-Action-SmallBlueExplosionEffects</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Action]
+				[//DebugMessage:SmallBlueExplosionEffects]
+				[PlayParticleEffectAtRemote:true]
+				[ParticleEffectId:BlockDestroyedExplosion_Large3X_Blue]
+				[ParticleEffectOffset:{X:0.0 Y:0.0 Z:0.0}]
+				[ParticleEffectScale:1.0]
+				[ParticleEffectMaxTime:1000]
+				[ParticleEffectColor:{X:1.0 Y:1.0 Z:1.0}]
+				[PlaySoundAtPosition:true]
+				[SoundAtPosition:HWR_SmallExplosion]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Universal-Trigger-MediumBlueExplosionEffects</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Trigger]
+				[Type:Compromised]
+				[UseTrigger:true]
+				[StartsReady:true]
+				[MaxActions:1]
+				[Actions:GVK-Universal-Action-MediumBlueExplosionEffects]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Universal-Action-MediumBlueExplosionEffects</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Action]
+				[//DebugMessage:MediumBlueExplosionEffects]
+				[PlayParticleEffectAtRemote:true]
+				[ParticleEffectId:Explosion_Warhead_30_Blue]
+				[ParticleEffectOffset:{X:0.0 Y:0.0 Z:0.0}]
+				[ParticleEffectScale:1.0]
+				[ParticleEffectMaxTime:1000]
+				[ParticleEffectColor:{X:1.0 Y:1.0 Z:1.0}]
+				[PlaySoundAtPosition:true]
+				[SoundAtPosition:HWR_LargeExplosion]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Universal-Trigger-LargeBlueExplosionEffects</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Trigger]
+				[Type:Compromised]
+				[UseTrigger:true]
+				[StartsReady:true]
+				[MaxActions:1]
+				[Actions:GVK-Universal-Action-LargeBlueExplosionEffects]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Universal-Action-LargeBlueExplosionEffects</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Action]
+				[//DebugMessage:LargeBlueExplosionEffects]
+				[PlayParticleEffectAtRemote:true]
+				[ParticleEffectId:Explosion_Warhead_50_Blue]
+				[ParticleEffectOffset:{X:0.0 Y:0.0 Z:0.0}]
+				[ParticleEffectScale:1.0]
+				[ParticleEffectMaxTime:1000]
+				[ParticleEffectColor:{X:1.0 Y:1.0 Z:1.0}]
+				[PlaySoundAtPosition:true]
+				[SoundAtPosition:Cruiser_Explosion]
+			</Description>
+		</EntityComponent>
+		<!-- Shared disabled action for most NPCs that do not despawn on death, also shut off power producers on lg -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Universal-Action-Disabled</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Action]
+				[//DebugMessage:Universal-Action-Disabled]
+				[EnableBlocks:true]
+				[EnableBlockNames:Magnetic Plate]
+				[EnableBlockStates:On]
+				[EnableBlockNames:NPC Beacon]
+				[EnableBlockStates:Off]
+				[StopAllRotation:true]
+				[StopAllThrust:true]
+				[ChangeInertiaDampeners:true]
+				[InertiaDampenersEnable:false]
+				[RazeBlocksOfType:true]
+				[RazeBlocksTypes:MyObjectBuilder_Beacon/ZoneBlock]
+				[//RazeBlocksTypes:MyObjectBuilder_Beacon/SmallBlockBeacon]
+				[//RazeBlocksTypes:MyObjectBuilder_Beacon/LargeBlockBeacon]
+				[//RazeBlocksTypes:MyObjectBuilder_Beacon/SmallBlockBeacon_NPC]
+				[//RazeBlocksTypes:MyObjectBuilder_Beacon/LargeBlockBeacon_NPC]
+				[//RazeBlocksTypes:MyObjectBuilder_Beacon/SmallBlockBeacon_NPCNoConceal]
+				[//RazeBlocksTypes:MyObjectBuilder_Beacon/LargeBlockBeacon_NPCNoConceal]
+				[ToggleBlocksOfType:true]
+				[BlockTypesToToggle:MyObjectBuilder_Parachute/LgParachute]
+				[BlockTypeToggles:On]
+				[BlockTypesToToggle:MyObjectBuilder_Beacon/DisposableNpcBeaconSmall]
+				[BlockTypeToggles:Off]
+				[BlockTypesToToggle:MyObjectBuilder_Beacon/DisposableNpcBeaconLarge]
+				[BlockTypeToggles:Off]
+				[BlockTypesToToggle:MyObjectBuilder_BatteryBlock/LargeBlockBatteryBlock]
+				[BlockTypeToggles:Off]
+				[BlockTypesToToggle:MyObjectBuilder_BatteryBlock/LargeBlockPrototechBattery]
+				[BlockTypeToggles:Off]
+				[BlockTypesToToggle:MyObjectBuilder_BatteryBlock/LargeBlockBatteryBlockWarfare2]
+				[BlockTypeToggles:Off]
+				[BlockTypesToToggle:MyObjectBuilder_Reactor/ProprietaryLargeBlockSmallGenerator]
+				[BlockTypeToggles:Off]
+				[BlockTypesToToggle:MyObjectBuilder_Reactor/ProprietaryLargeBlockLargeGenerator]
+				[BlockTypeToggles:Off]
+				[BlockTypesToToggle:MyObjectBuilder_HydrogenEngine/LargeHydrogenEngine]
+				[BlockTypeToggles:Off]
+				[BlockTypesToToggle:MyObjectBuilder_WindTurbine/LargeBlockWindTurbine]
+				[BlockTypeToggles:Off]
+				[BlockTypesToToggle:MyObjectBuilder_WindTurbine/LargeBlockWindTurbineReskin]
+				[BlockTypeToggles:Off]
+				[BlockTypesToToggle:MyObjectBuilder_SolarPanel/LargeBlockSolarPanel]
+				[BlockTypeToggles:Off]
+				[BlockTypesToToggle:MyObjectBuilder_SolarPanel/LargeBlockColorableSolarPanel]
+				[BlockTypeToggles:Off]
+				[BlockTypesToToggle:MyObjectBuilder_SolarPanel/LargeBlockColorableSolarPanelCorner]
+				[BlockTypeToggles:Off]
+				[BlockTypesToToggle:MyObjectBuilder_SolarPanel/LargeBlockColorableSolarPanelCornerInverted]
+				[BlockTypeToggles:Off]
+				[BlockTypesToToggle:MyObjectBuilder_Beacon/SmallBlockBeacon]
+				[BlockTypeToggles:Off]
+				[BlockTypesToToggle:MyObjectBuilder_Beacon/LargeBlockBeacon]
+				[BlockTypeToggles:Off]
+				[BlockTypesToToggle:MyObjectBuilder_Beacon/SmallBlockBeacon_NPC]
+				[BlockTypeToggles:Off]
+				[BlockTypesToToggle:MyObjectBuilder_Beacon/LargeBlockBeacon_NPC]
+				[BlockTypeToggles:Off]
+				[BlockTypesToToggle:MyObjectBuilder_Beacon/SmallBlockBeacon_NPCNoConceal]
+				[BlockTypeToggles:Off]
+				[BlockTypesToToggle:MyObjectBuilder_Beacon/LargeBlockBeacon_NPCNoConceal]
+				[BlockTypeToggles:Off]
+				[GridEditable:Yes]
+				[SubGridsEditable:Yes]
+				[ForceDespawn:false]
+			</Description>
+		</EntityComponent>
+		<!-- Shared action to shut off thrusters and other blocks on large wrecks -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Universal-Action-DisableVanillaBlocks</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Action]
+				[//DebugMessage:Universal-Action-DisableVanillaBlocks]
+				[ToggleBlocksOfType:true]
+				[BlockTypesToToggle:MyObjectBuilder_Thrust/MES-NPC-Thrust-Ion-LargeGrid-Large]
+				[BlockTypeToggles:Off]
+				[BlockTypesToToggle:MyObjectBuilder_Thrust/MES-NPC-Thrust-Ion-LargeGrid-Small]
+				[BlockTypeToggles:Off]
+				[BlockTypesToToggle:MyObjectBuilder_Thrust/MES-NPC-Thrust-IonSciFi-LargeGrid-Large]
+				[BlockTypeToggles:Off]
+				[BlockTypesToToggle:MyObjectBuilder_Thrust/MES-NPC-Thrust-IonSciFi-LargeGrid-Small]
+				[BlockTypeToggles:Off]
+				[BlockTypesToToggle:MyObjectBuilder_Thrust/MES-NPC-Thrust-WarfareIon-LargeGrid-Large]
+				[BlockTypeToggles:Off]
+				[BlockTypesToToggle:MyObjectBuilder_Thrust/MES-NPC-Thrust-WarfareIon-LargeGrid-Small]
+				[BlockTypeToggles:Off]
+				[BlockTypesToToggle:MyObjectBuilder_Thrust/MES-NPC-Thrust-Atmo-LargeGrid-Large]
+				[BlockTypeToggles:Off]
+				[BlockTypesToToggle:MyObjectBuilder_Thrust/MES-NPC-Thrust-Atmo-LargeGrid-Small]
+				[BlockTypeToggles:Off]
+				[BlockTypesToToggle:MyObjectBuilder_Thrust/MES-NPC-Thrust-AtmoSciFi-LargeGrid-Large]
+				[BlockTypeToggles:Off]
+				[BlockTypesToToggle:MyObjectBuilder_Thrust/MES-NPC-Thrust-AtmoSciFi-LargeGrid-Small]
+				[BlockTypeToggles:Off]
+				[BlockTypesToToggle:MyObjectBuilder_Thrust/MES-NPC-Thrust-Hydro-LargeGrid-Large]
+				[BlockTypeToggles:Off]
+				[BlockTypesToToggle:MyObjectBuilder_Thrust/MES-NPC-Thrust-Hydro-LargeGrid-Small]
+				[BlockTypeToggles:Off]
+				[BlockTypesToToggle:MyObjectBuilder_Thrust/MES-NPC-Thrust-IndustryHydro-LargeGrid-Large]
+				[BlockTypeToggles:Off]
+				[BlockTypesToToggle:MyObjectBuilder_Thrust/MES-NPC-Thrust-IndustryHydro-LargeGrid-Small]
+				[BlockTypeToggles:Off]
+				[BlockTypesToToggle:MyObjectBuilder_OffensiveCombatBlock/LargeOffensiveCombat]
+				[BlockTypeToggles:Off]
+				[BlockTypesToToggle:MyObjectBuilder_DefensiveCombatBlock/LargeDefensiveCombat]
+				[BlockTypeToggles:Off]
+				[BlockTypesToToggle:MyObjectBuilder_BasicMissionBlock/LargeBasicMission]
+				[BlockTypeToggles:Off]
+				[BlockTypesToToggle:MyObjectBuilder_PathRecorderBlock/LargePathRecorderBlock]
+				[BlockTypeToggles:Off]
+				[BlockTypesToToggle:MyObjectBuilder_FlightMovementBlock/LargeFlightMovement]
+				[BlockTypeToggles:Off]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Universal-Trigger-PublicSpawnPoint</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Trigger]
+				[UseTrigger:false]
+				[Type:Timer]
+				[MinCooldownMs:10000]
+				[MaxCooldownMs:10001]
+				[StartsReady:false]
+				[MaxActions:-1]
+				[Actions:GVK-Universal-Action-PublicSpawnPoint]
+			</Description>
+		</EntityComponent>
+		<!-- TODO: Restore the ShareMode-All action tags for PublicSpawnPoint once the MES fix PR lands (ActionSystem.cs reads AllTerminalBlocks[i] instead of [j]; never matches the block and can throw IndexOutOfRange). -->
+		<!-- Until then the spawn point is only COALITION-owned and faction-shared, so it is not a public respawn. -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Universal-Action-PublicSpawnPoint</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Action]
+				[//DebugMessage:PublicSpawnPoint]
+				[ChangeBlockOwnership:true]
+				[OwnershipBlockNames:PublicSpawnPoint]
+				[OwnershipBlockFactions:COALITION]
+			</Description>
+		</EntityComponent>
+		<!-- Generic conditions -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Universal-Condition-Crashed</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Condition]
+				[UseConditions:true]
+				[MatchAnyCondition:false]
+				[CheckGridSpeed:true]
+				[MinGridSpeed:0]
+				[MaxGridSpeed:10]
+				[AltitudeCheck:true]
+				[MinAltitude:-999999]
+				[MaxAltitude:7]
+				[CheckTrueBooleans:true]
+				[TrueBooleans:GVK_MobilityType_Aircraft]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Universal-Condition-IsAircraftMobilityType</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Condition]
+				[UseConditions:true]
+				[MatchAnyCondition:false]
+				[CheckTrueBooleans:true]
+				[TrueBooleans:GVK_MobilityType_Aircraft]
+			</Description>
+		</EntityComponent>
+		<!-- Action group to set turrets to max range because of a bug in MES right now -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Universal-Trigger-WeaponsToMaxRange</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Trigger]
+				[UseTrigger:true]
+				[Type:Timer]
+				[StartsReady:false]
+				[MinCooldownMs:5000]
+				[MaxCooldownMs:5001]
+				[MaxActions:3]
+				[Actions:GVK-Universal-Action-WeaponsToMaxRange]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Universal-Action-WeaponsToMaxRange</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Action]
+				[//DebugMessage:WeaponsToMaxRange]
+				[SetWeaponsToMaxRange:true]
+			</Description>
+		</EntityComponent>
+		<!-- Action group to engage enemy upon taking damage -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Universal-Trigger-TargetAttacker</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Trigger]
+				[UseTrigger:true]
+				[Type:Damage]
+				[StartsReady:true]
+				[MinCooldownMs:30000]
+				[MaxCooldownMs:30001]
+				[DamageTypes:Any]
+				[MaxActions:-1]
+				[Actions:GVK-Universal-Action-TargetAttacker]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Universal-Action-TargetAttacker</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Action]
+				[//DebugMessage:TargetAttacker]
+				[SwitchToReceivedTarget:true]
+			</Description>
+		</EntityComponent>
+		<!-- Action group to engage enemy when turret has a target -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Universal-Trigger-TurretTarget</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Trigger]
+				[UseTrigger:true]
+				[Type:TurretTarget]
+				[StartsReady:true]
+				[MinCooldownMs:30000]
+				[MaxCooldownMs:30001]
+				[MaxActions:-1]
+				[Actions:GVK-Universal-Action-TurretTarget]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Universal-Action-TurretTarget</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Action]
+				[//DebugMessage:TurretTarget]
+				[SwitchToReceivedTarget:true]
+			</Description>
+		</EntityComponent>
+	</EntityComponents>
+</Definitions>

@@ -1,0 +1,457 @@
+<?xml version="1.0"?>
+<Definitions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+	<EntityComponents>
+		<!--
+		
+		Trigger Groups for behaviors:
+			[TriggerGroups:GVK-ConvoySystem-Leader-TriggerGroup]
+			[TriggerGroups:GVK-ConvoySystem-Escort-TriggerGroup]
+		
+		Trigger Tags available for use elsewhere:
+			GVK-TriggerTags-LeaderDead
+			
+		Trigger Tags used here:
+			GVK-Universal-TriggerTags-Compromised
+
+		Leader tasks:
+			Send periodic command alerting nearby drones of potential leader
+			Receive and process escort slot request
+				Send escort status CustomCountersVariables EscortStatus=1 to escort (since commands can't send bools)
+			Send leader compromised command
+				Send escort status EscortStatus=0 to escort
+			
+		Escort tasks:
+			Receive command alert of nearby potential Leader
+			Change behavior to escort
+			Send escort request
+			Receive escort assignment status command from leader
+			Receive leader compromised Command
+			Receive escort status from leader
+			
+		TODO:
+			Integrate into more behaviors than HoverPatrolHorsefly
+		
+		-->
+		<!-- TriggerGroups - choose one -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-ConvoySystem-Leader-TriggerGroup</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI TriggerGroup]
+			[Triggers:GVK-ConvoySystem-Leader-Trigger-AlertPotentialEscorts]
+			[Triggers:GVK-ConvoySystem-Leader-Trigger-ProcessEscortRequest]
+			[Triggers:GVK-ConvoySystem-Leader-Trigger-SendHeartbeatCommand]
+			[Triggers:GVK-ConvoySystem-Leader-ManualTrigger-Compromised]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-ConvoySystem-Escort-TriggerGroup</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI TriggerGroup]
+			[Triggers:GVK-ConvoySystem-Escort-Trigger-AvailableToEscort]
+			[Triggers:GVK-ConvoySystem-Escort-Trigger-ReceiveEscortSlot]
+			[Triggers:GVK-ConvoySystem-Escort-Trigger-LeaderHeartbeat]
+			[Triggers:GVK-ConvoySystem-Escort-Trigger-DeadmanSwitch]
+			[Triggers:GVK-ConvoySystem-Escort-Trigger-LeaderDead]
+			[Triggers:GVK-ConvoySystem-Escort-ManualTrigger-ReturnToPatrol]
+			</Description>
+		</EntityComponent>
+		<!-- Leader ================================================================================ -->
+		<!-- Alert nearby drones of available escort slots -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-ConvoySystem-Leader-Trigger-AlertPotentialEscorts</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Trigger]
+			[UseTrigger:true]
+			[Type:Timer]
+			[StartsReady:true]
+			[MinCooldownMs:10000]
+			[MaxCooldownMs:10001]
+			[Actions:GVK-ConvoySystem-Leader-Action-AlertPotentialEscorts]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-ConvoySystem-Leader-Action-AlertPotentialEscorts</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Action]
+			[//DebugMessage:Alerting potential escorts]
+			[BroadcastCommandProfiles:true]
+			[CommandProfileIds:GVK-ConvoySystem-Leader-Command-AlertPotentialEscorts]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-ConvoySystem-Leader-Command-AlertPotentialEscorts</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Command]
+			[CommandCode:GVK_EscortReady]
+			[MatchSenderReceiverOwners:true]
+			[IgnoreAntennaRequirement:true]
+			[IgnoreReceiverAntennaRequirement:true]
+			[Radius:5000]
+			[CommandDelayTicks:60]
+			</Description>
+		</EntityComponent>
+		<!-- ProcessEscortRequest -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-ConvoySystem-Leader-Trigger-ProcessEscortRequest</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Trigger]
+			[UseTrigger:true]
+			[Type:CommandReceived]
+			[CommandReceiveCode:GVK_EscortRequest]
+			[StartsReady:true]
+			[Actions:GVK-ConvoySystem-Leader-Action-ProcessEscortRequest]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-ConvoySystem-Leader-Action-ProcessEscortRequest</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Action]
+			[//DebugMessage:Assigning escorts]
+			[AssignEscortFromCommand:true]
+			[BroadcastCommandProfiles:true]
+			[CommandProfileIds:GVK-ConvoySystem-Leader-Command-ProcessEscortRequest]
+			[SetBooleansTrue:GVK_Role_Leader]
+			[EnableTriggers:true]
+			[EnableTriggerNames:GVK-ConvoySystem-Leader-Trigger-SendHeartbeatCommand]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-ConvoySystem-Leader-Command-ProcessEscortRequest</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Command]
+			[CommandCode:GVK_EscortAssigned]
+			[ReturnToSender:true]
+			[MatchSenderReceiverOwners:true]
+			[IgnoreAntennaRequirement:true]
+			[IgnoreReceiverAntennaRequirement:true]
+			[Radius:5000]
+			[CommandDelayTicks:60]
+			</Description>
+		</EntityComponent>
+		<!-- Send leader heartbeat command to escorts -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-ConvoySystem-Leader-Trigger-SendHeartbeatCommand</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Trigger]
+			[UseTrigger:false]
+			[Type:Timer]
+			[StartsReady:true]
+			[MinCooldownMs:3000]
+			[MaxCooldownMs:3001]
+			[Actions:GVK-ConvoySystem-Leader-Action-SendHeartbeatCommand]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-ConvoySystem-Leader-Action-SendHeartbeatCommand</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Action]
+			[//DebugMessage:Sending heartbeat command]
+			[BroadcastCommandProfiles:true]
+			[CommandProfileIds:GVK-ConvoySystem-Leader-Command-SendHeartbeatCommand]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-ConvoySystem-Leader-Command-SendHeartbeatCommand</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Command]
+			[CommandCode:GVK_LeaderHeartbeat]
+			[MatchSenderReceiverOwners:true]
+			[IgnoreAntennaRequirement:true]
+			[IgnoreReceiverAntennaRequirement:true]
+			[Radius:5000]
+			</Description>
+		</EntityComponent>
+		<!-- Compromised -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-ConvoySystem-Leader-ManualTrigger-Compromised</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Trigger]
+			[UseTrigger:true]
+			[Type:Manual]
+			[Tags:GVK-Universal-TriggerTags-Compromised]
+			[StartsReady:true]
+			[MaxActions:1]
+			[ActionExecution:All]
+			[Actions:GVK-ConvoySystem-Leader-Action-Compromised]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-ConvoySystem-Leader-Action-Compromised</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Action]
+			[//DebugMessage:sending command GVK_LeaderDead]
+			[BroadcastCommandProfiles:true]
+			[CommandProfileIds:GVK-ConvoySystem-Leader-Command-Compromised]
+			[SetBooleansFalse:GVK_Role_Leader]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-ConvoySystem-Leader-Command-Compromised</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Command]
+			[CommandCode:GVK_LeaderDead]
+			[MatchSenderReceiverOwners:true]
+			[IgnoreAntennaRequirement:true]
+			[IgnoreReceiverAntennaRequirement:true]
+			[Radius:5000]
+			[CommandDelayTicks:60]
+			</Description>
+		</EntityComponent>
+		<!-- Escort ================================================================================ -->
+		<!-- Receive alert from potential leader -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-ConvoySystem-Escort-Trigger-AvailableToEscort</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Trigger]
+			[UseTrigger:true]
+			[Tags:GVK-TriggerTags-InactiveEscortTasks]
+			[Type:CommandReceived]
+			[CommandReceiveCode:GVK_EscortReady]
+			[Tags:GVK-TriggerTags-AvailableToEscort]
+			[StartsReady:false]
+			[Actions:GVK-ConvoySystem-Escort-Action-AvailableToEscort]
+			</Description>
+		</EntityComponent>
+		<!-- set to escort and prepare to receive slot, and set timer to return to patrol if none received. -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-ConvoySystem-Escort-Action-AvailableToEscort</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Action]
+			[//DebugMessage:Leader available; attempting to request escort slot]
+			[ChangeBehaviorSubclass:true]
+			[NewBehaviorSubclass:Escort]
+			[ChangeAutopilotProfile:true]
+			[AutopilotProfile:Primary]
+			[BroadcastCommandProfiles:true]
+			[CommandProfileIds:GVK-ConvoySystem-Escort-Command-RequestEscortSlot]
+			[ResetCooldownTimeOfTriggers:true]
+			[ResetTriggerCooldownNames:GVK-ConvoySystem-Escort-ManualTrigger-ReturnToPatrol]
+			[EnableTriggers:true]
+			[EnableTriggerNames:GVK-ConvoySystem-Escort-ManualTrigger-ReturnToPatrol]
+			</Description>
+		</EntityComponent>
+		<!-- RequestEscortSlot -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-ConvoySystem-Escort-Command-RequestEscortSlot</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Command]
+			[CommandCode:GVK_EscortRequest]
+			[ReturnToSender:true]
+			[MatchSenderReceiverOwners:true]
+			[IgnoreAntennaRequirement:true]
+			[IgnoreReceiverAntennaRequirement:true]
+			[Radius:5000]
+			[RequestEscortSlot:true]
+			[CommandDelayTicks:60]
+			</Description>
+		</EntityComponent>
+		<!-- No escort slot received in time: revert to Patrol. Enabled by AvailableToEscort, disabled by ReceiveEscortSlot. -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-ConvoySystem-Escort-ManualTrigger-ReturnToPatrol</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Trigger]
+			[UseTrigger:false]
+			[Type:Timer]
+			[StartsReady:false]
+			[MinCooldownMs:10000]
+			[MaxCooldownMs:10001]
+			[MaxActions:-1]
+			[Actions:GVK-ConvoySystem-Escort-Action-ReturnToPatrol]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-ConvoySystem-Escort-Action-ReturnToPatrol</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Action]
+			[//DebugMessage:No escort slot received; returning to patrol]
+			[ChangeBehaviorSubclass:true]
+			[NewBehaviorSubclass:Patrol]
+			[ChangeAutopilotProfile:true]
+			[AutopilotProfile:Primary]
+			[DisableTriggers:true]
+			[DisableTriggerNames:GVK-ConvoySystem-Escort-ManualTrigger-ReturnToPatrol]
+			</Description>
+		</EntityComponent>
+		<!-- Receive Escort Slot and enable ActiveEscortTasks tags -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-ConvoySystem-Escort-Trigger-ReceiveEscortSlot</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Trigger]
+			[UseTrigger:true]
+			[Tags:GVK-TriggerTags-InactiveEscortTasks]
+			[Type:CommandReceived]
+			[CommandReceiveCode:GVK_EscortAssigned]
+			[StartsReady:false]
+			[Conditions:GVK-Drone-All-Condition-CommandFromAssignedLeader]
+			[Actions:GVK-ConvoySystem-Escort-Action-ReceiveEscortSlot]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-ConvoySystem-Escort-Action-ReceiveEscortSlot</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Action]
+			[//DebugMessage:Received escort slot]
+			[SetBooleansTrue:GVK_Role_Escort]
+			[DisableTriggers:true]
+			[DisableTriggerTags:GVK-TriggerTags-InactiveEscortTasks]
+			[DisableTriggerNames:GVK-ConvoySystem-Escort-ManualTrigger-ReturnToPatrol]
+			[ResetCooldownTimeOfTriggers:true]
+			[ResetTriggerCooldownTags:GVK-TriggerTags-ActiveEscortTasks]
+			[EnableTriggers:true]
+			[EnableTriggerTags:GVK-TriggerTags-ActiveEscortTasks]
+			</Description>
+		</EntityComponent>
+		<!-- Receive Leader heartbeat command to reset deadman switch -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-ConvoySystem-Escort-Trigger-LeaderHeartbeat</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Trigger]
+			[UseTrigger:false]
+			[Tags:GVK-TriggerTags-ActiveEscortTasks]
+			[Type:CommandReceived]
+			[CommandReceiveCode:GVK_LeaderHeartbeat]
+			[StartsReady:true]
+			[MaxActions:-1]
+			[Conditions:GVK-Drone-All-Condition-CommandFromAssignedLeader]
+			[Actions:GVK-ConvoySystem-Escort-Action-LeaderHeartbeat]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-ConvoySystem-Escort-Action-LeaderHeartbeat</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Action]
+			[//DebugMessage:Received LeaderHeartbeat command]
+			[SetBooleansTrue:GVK_Role_Escort]
+			[ResetCooldownTimeOfTriggers:true]
+			[ResetTriggerCooldownNames:GVK-ConvoySystem-Escort-Trigger-DeadmanSwitch]
+			[EnableTriggers:true]
+			[EnableTriggerNames:GVK-ConvoySystem-Escort-Trigger-DeadmanSwitch]
+			</Description>
+		</EntityComponent>
+		<!-- Deadman switch if leader heartbeat command not received in time -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-ConvoySystem-Escort-Trigger-DeadmanSwitch</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Trigger]
+			[UseTrigger:false]
+			[Tags:GVK-TriggerTags-ActiveEscortTasks]
+			[Type:Timer]
+			[StartsReady:false]
+			[MinCooldownMs:8000]
+			[MaxCooldownMs:8001]
+			[MaxActions:-1]
+			[Actions:GVK-ConvoySystem-Escort-Action-LeaderDead]
+			</Description>
+		</EntityComponent>
+		<!-- LeaderDead command received -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-ConvoySystem-Escort-Trigger-LeaderDead</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Trigger]
+			[UseTrigger:true]
+			[Tags:GVK-TriggerTags-ActiveEscortTasks]
+			[Type:CommandReceived]
+			[CommandReceiveCode:GVK_LeaderDead]
+			[StartsReady:true]
+			[MaxActions:-1]
+			[Conditions:GVK-Drone-All-Condition-CommandFromAssignedLeader]
+			[Actions:GVK-ConvoySystem-Escort-Action-LeaderDead]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-ConvoySystem-Escort-Action-LeaderDead</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Action]
+			[//DebugMessage:Leader is dead]
+			[SetBooleansFalse:GVK_Role_Escort]
+			[ResetCooldownTimeOfTriggers:true]
+			[ResetTriggerCooldownTags:GVK-TriggerTags-InactiveEscortTasks]
+			[EnableTriggers:true]
+			[EnableTriggerTags:GVK-TriggerTags-InactiveEscortTasks]
+			[DisableTriggers:true]
+			[DisableTriggerTags:GVK-TriggerTags-ActiveEscortTasks]
+			[ManuallyActivateTrigger:true]
+			[ManuallyActivatedTriggerTags:GVK-TriggerTags-LeaderDead]
+			[ForceManualTriggerActivation:false]
+			</Description>
+		</EntityComponent>
+	</EntityComponents>
+</Definitions>

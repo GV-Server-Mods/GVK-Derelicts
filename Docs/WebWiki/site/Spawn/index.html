@@ -1,0 +1,756 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link rel="shortcut icon" href="../img/favicon.ico" />
+    <title>Spawn.md - Modular Encounters System</title>
+    <link rel="stylesheet" href="../css/theme.css" />
+    <link rel="stylesheet" href="../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+        <link href="../style.css" rel="stylesheet" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "Spawn.md";
+        var mkdocs_page_input_path = "Spawn.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href=".." class="icon icon-home"> Modular Encounters System
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="..">Home</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Player Support</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="" href="../Encounter-Guide">Encounter Guide</a>
+                  </li>
+                  <li class="toctree-l1"><a class="" href="../Frequently-Asked-Questions">FAQs</a>
+                  </li>
+                  <li class="toctree-l1"><a class="" href="../Troubleshooting">Troubleshooting</a>
+                  </li>
+                  <li class="toctree-l1"><a class="" href="../Bugs,-Issues,-or-Crashes">Bugs, Issues, or Crashes</a>
+                  </li>
+                  <li class="toctree-l1"><a class="" href="../Economy-Stations-FAQ">Economy Stations FAQ</a>
+                  </li>
+                  <li class="toctree-l1"><a class="" href="../Mod-Republishing-and-Reuse">Mod Republishing Guidelines</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Admin & Configuration</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="" href="../AdminConfig_General">General Settings</a>
+                  </li>
+                  <li class="toctree-l1"><a class="" href="../AdminConfig_Grid">Grid Settings</a>
+                  </li>
+                  <li class="toctree-l1"><a class="" href="../AdminConfig_Combat">Combat Settings</a>
+                  </li>
+                  <li class="toctree-l1"><a class="" href="../AdminConfig_Space Cargo Ships">Space Cargo Ships</a>
+                  </li>
+                  <li class="toctree-l1"><a class="" href="../AdminConfig_Random Encounters">Random Encounters</a>
+                  </li>
+                  <li class="toctree-l1"><a class="" href="../AdminConfig_Planetary Cargo Ships">Planetary Cargo Ships</a>
+                  </li>
+                  <li class="toctree-l1"><a class="" href="../AdminConfig_Planetary Installations">Planetary Installations</a>
+                  </li>
+                  <li class="toctree-l1"><a class="" href="../AdminConfig_Boss Encounters">Boss Encounters</a>
+                  </li>
+                  <li class="toctree-l1"><a class="" href="../AdminConfig_Creatures">Creatures</a>
+                  </li>
+                  <li class="toctree-l1"><a class="" href="../AdminConfig_AiEnabled Bot Spawning">AiEnabled Bot Spawning</a>
+                  </li>
+                  <li class="toctree-l1"><a class="" href="../AdminConfig_Wave Spawner">Wave Spawners</a>
+                  </li>
+                  <li class="toctree-l1"><a class="" href="../AdminConfig_Clean-Up">Clean-Up</a>
+                  </li>
+                  <li class="toctree-l1"><a class="" href="../AdminConfig_Spawn Filtering">Spawn Filtering</a>
+                  </li>
+                  <li class="toctree-l1"><a class="" href="../AdminConfig_Timeout">Timeout</a>
+                  </li>
+                  <li class="toctree-l1"><a class="" href="../AdminConfig_AdminDebugOptions">Admin & Debug Options</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Modding</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" >Spawning</a>
+    <ul>
+                <li class="toctree-l2"><a class="" href="../SpawnGroup">SpawnGroup</a>
+                </li>
+                <li class="toctree-l2"><a class="" href="../Spawn-Conditions">Spawning Conditions</a>
+                </li>
+                <li class="toctree-l2"><a class="" href="../Zone-Conditions-Profile">Zone Conditions</a>
+                </li>
+                <li class="toctree-l2"><a class="" href="../Spawn-Conditions-Groups">Spawning Conditions Groups</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" >Manipulation</a>
+    <ul>
+                <li class="toctree-l3"><a class="" href="../Block-Replacement">Block Replacement</a>
+                </li>
+                <li class="toctree-l3"><a class="" href="../Dereliction">Dereliction</a>
+                </li>
+                <li class="toctree-l3"><a class="" href="../Loot">Loot</a>
+                </li>
+                <li class="toctree-l3"><a class="" href="../Loot-Profile-Group">Loot Profile Group</a>
+                </li>
+                <li class="toctree-l3"><a class="" href="../Weapon-Mod-Rules">Weapon Mod Rules</a>
+                </li>
+                <li class="toctree-l3"><a class="" href="../Manipulation-Groups">Manipulation Groups</a>
+                </li>
+                <li class="toctree-l3"><a class="" href="../Prefab-Data">Prefab Data</a>
+                </li>
+                <li class="toctree-l3"><a class="" href="../Replenishment">Replenishment</a>
+                </li>
+    </ul>
+                </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" >Behaviors (Getting Started)</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" >Core Behavior</a>
+    <ul>
+                <li class="toctree-l3"><a class="" href="../Core-Behavior">Behavior</a>
+                </li>
+                <li class="toctree-l3"><a class="" href="../Autopilot">Autopilot</a>
+                </li>
+                <li class="toctree-l3"><a class="" href="../Command">Command</a>
+                </li>
+                <li class="toctree-l3"><a class="" href="../Datapad">Datapad</a>
+                </li>
+                <li class="toctree-l3"><a class="" href="../Target">Target</a>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" >Triggers</a>
+    <ul>
+                <li class="toctree-l3"><a class="" href="../Trigger">Trigger</a>
+                </li>
+                <li class="toctree-l3"><a class="" href="../Condition">Condition</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" >Actions</a>
+    <ul>
+                <li class="toctree-l4"><a class="" href="../Action">Actions</a>
+                </li>
+                <li class="toctree-l4"><a class="" href="../Bot-Spawn">Bot Spawn</a>
+                </li>
+                <li class="toctree-l4"><a class="" href="../Chat">Chat</a>
+                </li>
+                <li class="toctree-l4"><a class="" href=".">Spawn</a>
+                </li>
+                <li class="toctree-l4"><a class="" href="../TextTemplate">TextTemplate</a>
+                </li>
+    </ul>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l2"><a class="" href="../Trigger-Group">Trigger Group</a>
+                </li>
+                <li class="toctree-l2"><a class="" href="../Waypoint">Waypoint</a>
+                </li>
+                <li class="toctree-l2"><a class="" href="../Weapons">Weapons</a>
+                </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" >Events (Getting Started)</a>
+    <ul>
+                <li class="toctree-l2"><a class="" href="../Event">Event</a>
+                </li>
+                <li class="toctree-l2"><a class="" href="../Event-Conditions">Event Condition</a>
+                </li>
+                <li class="toctree-l2"><a class="" href="../Event-Action">Event Action</a>
+                </li>
+                <li class="toctree-l2"><a class="" href="../Custom-Event-Actions-and-ScenarioTools">Custom Event Actions</a>
+                </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="" href="../Player-Condition-Profile">Player Conditions (New)</a>
+                  </li>
+                  <li class="toctree-l1"><a class="" href="../Zone-Profile">Zone</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Template / Example Files</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="" href="https://gist.github.com/MeridiusIX/1ae743505ec489d31e6ac17edf16e5e0?ts=2">SpawnGroup.sbc</a>
+                  </li>
+                  <li class="toctree-l1"><a class="" href="https://gist.github.com/MeridiusIX/cd9b4decb58dea335290a05b728a7276?ts=2">Factions.sbc</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Modder Resources</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="" href="../Armor-Modules">Armor Modules Included with MES (Page Unavailable)</a>
+                  </li>
+                  <li class="toctree-l1"><a class="" href="https://gist.github.com/MeridiusIX/415b45b53174c608c6486ce06bb58e2c">Block Replacement Profiles</a>
+                  </li>
+                  <li class="toctree-l1"><a class="" href="../Encounter-Attributes">Encounter Attributes</a>
+                  </li>
+                  <li class="toctree-l1"><a class="" href="../Loot-Profiles">Loot Profiles</a>
+                  </li>
+                  <li class="toctree-l1"><a class="" href="Modding:-Tutorial-&-Guidelines:-NPC-Grid-Setup-Guidelines">NPC Grid Setup Guidelines</a>
+                  </li>
+                  <li class="toctree-l1"><a class="" href="https://gist.github.com/MeridiusIX/8888bbc06a623cac90f8362dd948033c">Random Name Generator Guide</a>
+                  </li>
+                  <li class="toctree-l1"><a class="" href="../Scripting-API">Scripting API</a>
+                  </li>
+                  <li class="toctree-l1"><a class="" href="../Troubleshooting-Tips">Troubleshooting Tips</a>
+                  </li>
+                  <li class="toctree-l1"><a class="" href="https://gist.github.com/MeridiusIX/52fbf5679e67107a8cf37706205b5812">Threat Score Guide</a>
+                  </li>
+                  <li class="toctree-l1"><a class="" href="../Tutorials">Tutorials</a>
+                  </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="..">Modular Encounters System</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href=".." class="icon icon-home" aria-label="Docs"></a></li>
+      <li class="breadcrumb-item active">Spawn.md</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="spawnmd">Spawn.md</h1>
+<p>Spawn Profiles in RivalAI allow you to specify a set of parameters that get passed to the Modular Encounters Spawner that will spawn an encounter when triggered. These are essentially RivalAI's alternative to Keen's Antenna Spawns. Spawn Profiles are attached to <strong>Action Profiles</strong>. It is important that you use a unique SubtypeId for each Spawn Profile you create, otherwise they may not work correctly.</p>
+<p>Here's an example of how a Spawn Profile Definition is setup:</p>
+<pre><code>&lt;?xml version=&quot;1.0&quot;?&gt;
+&lt;Definitions xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot; xmlns:xsd=&quot;http://www.w3.org/2001/XMLSchema&quot;&gt;
+  &lt;EntityComponents&gt;
+
+    &lt;EntityComponent xsi:type=&quot;MyObjectBuilder_InventoryComponentDefinition&quot;&gt;
+      &lt;Id&gt;
+          &lt;TypeId&gt;Inventory&lt;/TypeId&gt;
+          &lt;SubtypeId&gt;RAI-ExampleSpawnProfile&lt;/SubtypeId&gt;
+      &lt;/Id&gt;
+      &lt;Description&gt;
+
+      [RivalAI Spawn]
+
+      [UseSpawn:true]
+
+      [StartsReady:true]
+      [SpawnMinCooldown:30]
+      [SpawnMaxCooldown:60]
+      [MaxSpawns:3]
+
+      [SpawnGroups:DefenseDrone]
+      [SpawnGroups:AssaultDrone]
+
+      [UseRelativeSpawnPosition:false]
+      [MinDistance:1000]
+      [MaxDistance:1500]
+      [MinAltitude:500]
+      [MaxAltitude:1000]
+      [IgnoreSafetyChecks:false]
+
+      &lt;/Description&gt;
+
+    &lt;/EntityComponent&gt;
+
+  &lt;/EntityComponents&gt;
+&lt;/Definitions&gt;
+</code></pre>
+<!--UseSpawn-->
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Tag:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
+<th style="text-align: left;">UseSpawn</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">Tag Format:</td>
+<td style="text-align: left;"><code>[UseSpawn:Value]</code></td>
+</tr>
+<tr>
+<td style="text-align: left;">Description:</td>
+<td style="text-align: left;">This tag specifies if the behavior should use your Spawn Profile.</td>
+</tr>
+<tr>
+<td style="text-align: left;">Allowed Values:</td>
+<td style="text-align: left;"><code>true</code><br><code>false</code></td>
+</tr>
+<tr>
+<td style="text-align: left;">Multiple Tag Allowed:</td>
+<td style="text-align: left;">No</td>
+</tr>
+</tbody>
+</table>
+<!--SpawningType-->
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Tag:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
+<th style="text-align: left;">SpawningType</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">Tag Format:</td>
+<td style="text-align: left;"><code>[SpawningType:Value]</code></td>
+</tr>
+<tr>
+<td style="text-align: left;">Description:</td>
+<td style="text-align: left;">This tag specifies the type of spawn that this spawn profile will request from the Modular Encounters Spawner. Please note that all position tags are not used for tags other than <code>CustomSpawn</code>. Also, if using <code>CustomSpawn</code>, your SpawnGroup/Conditions must include the <code>[RivalAiSpawn:true]</code> tag</td>
+</tr>
+<tr>
+<td style="text-align: left;">Allowed Values:</td>
+<td style="text-align: left;"><code>CustomSpawn</code><br><code>SpaceCargoShip</code><br><code>RandomEncounter</code><br><code>PlanetaryCargoShip</code><br><code>PlanetaryInstallation</code><br><code>BossEncounter</code></td>
+</tr>
+<tr>
+<td style="text-align: left;">Multiple Tag Allowed:</td>
+<td style="text-align: left;">No</td>
+</tr>
+</tbody>
+</table>
+<!--StartsReady-->
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Tag:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
+<th style="text-align: left;">StartsReady</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">Tag Format:</td>
+<td style="text-align: left;"><code>[StartsReady:Value]</code></td>
+</tr>
+<tr>
+<td style="text-align: left;">Description:</td>
+<td style="text-align: left;">This tag specifies if the Spawn Profile should be ready to spawn as soon as it is triggered from the Action Profile.</td>
+</tr>
+<tr>
+<td style="text-align: left;">Allowed Values:</td>
+<td style="text-align: left;"><code>true</code><br><code>false</code></td>
+</tr>
+<tr>
+<td style="text-align: left;">Multiple Tag Allowed:</td>
+<td style="text-align: left;">No</td>
+</tr>
+</tbody>
+</table>
+<!--SpawnMinCooldown-->
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Tag:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
+<th style="text-align: left;">SpawnMinCooldown</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">Tag Format:</td>
+<td style="text-align: left;"><code>[SpawnMinCooldown:Value]</code></td>
+</tr>
+<tr>
+<td style="text-align: left;">Description:</td>
+<td style="text-align: left;">Specifies the minimum time (in seconds) after a spawn event that the profile needs to wait before it can attempt another.</td>
+</tr>
+<tr>
+<td style="text-align: left;">Allowed Values:</td>
+<td style="text-align: left;">Any integer greater than <code>0</code><br />Must be lower than <code>SpawnMaxCooldown</code></td>
+</tr>
+<tr>
+<td style="text-align: left;">Multiple Tag Allowed:</td>
+<td style="text-align: left;">No</td>
+</tr>
+</tbody>
+</table>
+<!--SpawnMaxCooldown-->
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Tag:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
+<th style="text-align: left;">SpawnMaxCooldown</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">Tag Format:</td>
+<td style="text-align: left;"><code>[SpawnMaxCooldown:Value]</code></td>
+</tr>
+<tr>
+<td style="text-align: left;">Description:</td>
+<td style="text-align: left;">Specifies the maximum time (in seconds) after a spawn event that the profile needs to wait before it can attempt another.</td>
+</tr>
+<tr>
+<td style="text-align: left;">Allowed Values:</td>
+<td style="text-align: left;">Any integer greater than <code>0</code><br />Must be higher than <code>SpawnMinCooldown</code></td>
+</tr>
+<tr>
+<td style="text-align: left;">Multiple Tag Allowed:</td>
+<td style="text-align: left;">No</td>
+</tr>
+</tbody>
+</table>
+<!--MaxSpawns-->
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Tag:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
+<th style="text-align: left;">MaxSpawns</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">Tag Format:</td>
+<td style="text-align: left;"><code>[MaxSpawns:Value]</code></td>
+</tr>
+<tr>
+<td style="text-align: left;">Description:</td>
+<td style="text-align: left;">Specifies the maximum amount of spawns that can be triggered from this profile.</td>
+</tr>
+<tr>
+<td style="text-align: left;">Allowed Values:</td>
+<td style="text-align: left;">Any integer greater than <code>0</code><br /><code>-1</code> is used for No Limit</td>
+</tr>
+<tr>
+<td style="text-align: left;">Multiple Tag Allowed:</td>
+<td style="text-align: left;">No</td>
+</tr>
+</tbody>
+</table>
+<!--SpawnGroups-->
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Tag:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
+<th style="text-align: left;">SpawnGroups</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">Tag Format:</td>
+<td style="text-align: left;"><code>[SpawnGroups:Value]</code></td>
+</tr>
+<tr>
+<td style="text-align: left;">Description:</td>
+<td style="text-align: left;">Specifies the SubtypeId of a SpawnGroup you want the profile to spawn. If multiple instances of this tag are provided, the Modular Encounter Spawner will select one at random based on the SpawnGroup <code>Frequency</code> rules. When using any other SpawningType than <code>CustomSpawn</code>, not providing a SpawnGroup here will request a random spawn from any eligible spawngroup for that area.</td>
+</tr>
+<tr>
+<td style="text-align: left;">Allowed Values:</td>
+<td style="text-align: left;">Any SpawnGroup SubtypeId string excluding characters <code>:</code>, <code>[</code>, <code>]</code></td>
+</tr>
+<tr>
+<td style="text-align: left;">Multiple Tag Allowed:</td>
+<td style="text-align: left;">Yes</td>
+</tr>
+</tbody>
+</table>
+<!--UseRelativeSpawnPosition-->
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Tag:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
+<th style="text-align: left;">UseRelativeSpawnPosition</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">Tag Format:</td>
+<td style="text-align: left;"><code>[UseRelativeSpawnPosition:Value]</code></td>
+</tr>
+<tr>
+<td style="text-align: left;">Description:</td>
+<td style="text-align: left;">This tag specifies if the Spawn position should be at a relative position to the NPC Remote Control block. Otherwise the spawn will be in a random location within a min/max distance from the grid.</td>
+</tr>
+<tr>
+<td style="text-align: left;">Allowed Values:</td>
+<td style="text-align: left;"><code>true</code><br><code>false</code></td>
+</tr>
+<tr>
+<td style="text-align: left;">Multiple Tag Allowed:</td>
+<td style="text-align: left;">No</td>
+</tr>
+</tbody>
+</table>
+<!--MinDistance-->
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Tag:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
+<th style="text-align: left;">MinDistance</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">Tag Format:</td>
+<td style="text-align: left;"><code>[MinDistance:Value]</code></td>
+</tr>
+<tr>
+<td style="text-align: left;">Description:</td>
+<td style="text-align: left;">Specifies the minimum spawn distance from the NPC grid if <code>UseRelativeSpawnPosition</code> is <code>false</code>.</td>
+</tr>
+<tr>
+<td style="text-align: left;">Allowed Values:</td>
+<td style="text-align: left;">Any number greater than <code>0</code><br />Must be lower than <code>MaxDistance</code></td>
+</tr>
+<tr>
+<td style="text-align: left;">Multiple Tag Allowed:</td>
+<td style="text-align: left;">No</td>
+</tr>
+</tbody>
+</table>
+<!--MaxDistance-->
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Tag:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
+<th style="text-align: left;">MaxDistance</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">Tag Format:</td>
+<td style="text-align: left;"><code>[MaxDistance:Value]</code></td>
+</tr>
+<tr>
+<td style="text-align: left;">Description:</td>
+<td style="text-align: left;">Specifies the maximum spawn distance from the NPC grid if <code>UseRelativeSpawnPosition</code> is <code>false</code>.</td>
+</tr>
+<tr>
+<td style="text-align: left;">Allowed Values:</td>
+<td style="text-align: left;">Any number greater than <code>0</code><br />Must be higher than <code>MinDistance</code></td>
+</tr>
+<tr>
+<td style="text-align: left;">Multiple Tag Allowed:</td>
+<td style="text-align: left;">No</td>
+</tr>
+</tbody>
+</table>
+<!--MinAltitude-->
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Tag:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
+<th style="text-align: left;">MinAltitude</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">Tag Format:</td>
+<td style="text-align: left;"><code>[MinAltitude:Value]</code></td>
+</tr>
+<tr>
+<td style="text-align: left;">Description:</td>
+<td style="text-align: left;">Specifies the minimum spawn altitude from the NPC grid if <code>UseRelativeSpawnPosition</code> is <code>false</code>. This is only used if the spawn occurs in natural gravity.</td>
+</tr>
+<tr>
+<td style="text-align: left;">Allowed Values:</td>
+<td style="text-align: left;">Any number greater than <code>0</code><br />Must be lower than <code>MaxAltitude</code></td>
+</tr>
+<tr>
+<td style="text-align: left;">Multiple Tag Allowed:</td>
+<td style="text-align: left;">No</td>
+</tr>
+</tbody>
+</table>
+<!--MaxAltitude-->
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Tag:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
+<th style="text-align: left;">MaxAltitude</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">Tag Format:</td>
+<td style="text-align: left;"><code>[MaxAltitude:Value]</code></td>
+</tr>
+<tr>
+<td style="text-align: left;">Description:</td>
+<td style="text-align: left;">Specifies the maximum spawn altitude from the NPC grid if <code>UseRelativeSpawnPosition</code> is <code>false</code>. This is only used if the spawn occurs in natural gravity.</td>
+</tr>
+<tr>
+<td style="text-align: left;">Allowed Values:</td>
+<td style="text-align: left;">Any number greater than <code>0</code><br />Must be higher than <code>MinAltitude</code></td>
+</tr>
+<tr>
+<td style="text-align: left;">Multiple Tag Allowed:</td>
+<td style="text-align: left;">No</td>
+</tr>
+</tbody>
+</table>
+<!--InheritNpcAltitude-->
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Tag:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
+<th style="text-align: left;">InheritNpcAltitude</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">Tag Format:</td>
+<td style="text-align: left;"><code>[InheritNpcAltitude:Value]</code></td>
+</tr>
+<tr>
+<td style="text-align: left;">Description:</td>
+<td style="text-align: left;">Specifies if the current altitude of the NPC should be added to the random result of <code>MinAltitude</code> and <code>MinAltitude</code>.</td>
+</tr>
+<tr>
+<td style="text-align: left;">Allowed Values:</td>
+<td style="text-align: left;"><code>true</code><br><code>false</code></td>
+</tr>
+<tr>
+<td style="text-align: left;">Multiple Tag Allowed:</td>
+<td style="text-align: left;">No</td>
+</tr>
+</tbody>
+</table>
+<!--RelativeSpawnOffset-->
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Tag:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
+<th style="text-align: left;">RelativeSpawnOffset</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">Tag Format:</td>
+<td style="text-align: left;"><code>[RelativeSpawnOffset:Value]</code></td>
+</tr>
+<tr>
+<td style="text-align: left;">Description:</td>
+<td style="text-align: left;">Specifies the position offset from the Remote Control that a spawn will be located at if <code>UseRelativeSpawnPosition</code> is <code>true</code>.</td>
+</tr>
+<tr>
+<td style="text-align: left;">Allowed Values:</td>
+<td style="text-align: left;">A Vector3D Value in the following format:<br /><code>{X:# Y:# Z:#}</code><br />X: Right<br />Y: Up<br />Z: Forward<br />Replace <code>#</code> with values in meters.</td>
+</tr>
+<tr>
+<td style="text-align: left;">Multiple Tag Allowed:</td>
+<td style="text-align: left;">No</td>
+</tr>
+</tbody>
+</table>
+<!--RelativeSpawnVelocity-->
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Tag:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
+<th style="text-align: left;">RelativeSpawnVelocity</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">Tag Format:</td>
+<td style="text-align: left;"><code>[RelativeSpawnVelocity:Value]</code></td>
+</tr>
+<tr>
+<td style="text-align: left;">Description:</td>
+<td style="text-align: left;">Specifies the velocity vector from the Remote Control that a spawn will start with if <code>UseRelativeSpawnPosition</code> is <code>true</code>.</td>
+</tr>
+<tr>
+<td style="text-align: left;">Allowed Values:</td>
+<td style="text-align: left;">A Vector3D Value in the following format:<br /><code>{X:# Y:# Z:#}</code><br />X: Right<br />Y: Up<br />Z: Forward<br />Replace <code>#</code> with values in m/s.</td>
+</tr>
+<tr>
+<td style="text-align: left;">Multiple Tag Allowed:</td>
+<td style="text-align: left;">No</td>
+</tr>
+</tbody>
+</table>
+<!--IgnoreSafetyChecks-->
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Tag:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
+<th style="text-align: left;">IgnoreSafetyChecks</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">Tag Format:</td>
+<td style="text-align: left;"><code>[IgnoreSafetyChecks:Value]</code></td>
+</tr>
+<tr>
+<td style="text-align: left;">Description:</td>
+<td style="text-align: left;">This tag specifies if the safety checks that look for obstructions before spawn should be ignored.</td>
+</tr>
+<tr>
+<td style="text-align: left;">Allowed Values:</td>
+<td style="text-align: left;"><code>true</code><br><code>false</code></td>
+</tr>
+<tr>
+<td style="text-align: left;">Multiple Tag Allowed:</td>
+<td style="text-align: left;">No</td>
+</tr>
+</tbody>
+</table>
+              
+            </div>
+          </div><footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+    
+  </span>
+</div>
+    <script src="../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "..";</script>
+    <script src="../js/theme_extra.js"></script>
+    <script src="../js/theme.js"></script>
+      <script src="../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>

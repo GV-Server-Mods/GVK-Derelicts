@@ -1,0 +1,78 @@
+<?xml version="1.0"?>
+<Definitions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+	<EntityComponents>
+		<!-- SmallFlyerHorseFighter Autopilot -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Drone-All-Autopilot-StrikeFighter-Patrol</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Autopilot]
+			[WaypointAbandonTimeTrigger:15]
+			[RotationMultiplierPitch:0.5]
+			[RotationMultiplierYaw:0.1]
+			[RotationMultiplierRoll:1]
+			[LimitRotationSpeed:true]
+			[MaxRotationMagnitude:1]
+			[FlyLevelWithGravity:false]
+			[LevelWithGravityWhenIdle:true]
+			[IdealPlanetAltitude:200]
+			[MinimumPlanetAltitude:200]
+			[AltitudeTolerance:50]
+			[WaypointTolerance:150]
+			[RamMinDurationMs:0]
+			[RamMaxDurationMs:0]
+			[IdealMinSpeed:49]
+			[IdealMaxSpeed:50]
+			[BarrelRollMinDurationMs:0]
+			[BarrelRollMaxDurationMs:0]
+			[OffsetPlanetMinDistFromTarget:1000]
+			[OffsetPlanetMaxDistFromTarget:1001]
+			[OffsetPlanetMinTargetAltitude:250]
+			[OffsetPlanetMaxTargetAltitude:300]
+			[AngleAllowedForForwardThrust:180]
+			[MaxVelocityAngleForSpeedControl:1000]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Drone-All-Autopilot-StrikeFighter-Strike</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Autopilot]
+			[AttackRunDistancePlanet:100]
+			[AttackRunBreakawayDistance:700]
+			[OffsetRecalculationTime:30]
+			[AttackRunUseSafePlanetPathing:false]
+			[AttackRunUseCollisionEvasionPlanet:false]
+			[WaypointAbandonTimeTrigger:60]
+			[RotationMultiplierPitch:0.5]
+			[RotationMultiplierYaw:0.1]
+			[RotationMultiplierRoll:1]
+			[LimitRotationSpeed:false]
+			[MaxRotationMagnitude:1]
+			[DisableInertiaDampeners:false]
+			[FlyLevelWithGravity:false]
+			[LevelWithGravityWhenIdle:false]
+			[IdealPlanetAltitude:500]
+			[MinimumPlanetAltitude:150]
+			[AltitudeTolerance:10]
+			[WaypointTolerance:200]
+			[RamMinDurationMs:6000]
+			[RamMaxDurationMs:6001]
+			[IdealMinSpeed:50]
+			[IdealMaxSpeed:130]
+			[BarrelRollMinDurationMs:3000]
+			[BarrelRollMaxDurationMs:5001]
+			[OffsetPlanetMinDistFromTarget:1700]
+			[OffsetPlanetMaxDistFromTarget:2001]
+			[OffsetPlanetMinTargetAltitude:-100]
+			[OffsetPlanetMaxTargetAltitude:100]
+			[AngleAllowedForForwardThrust:180]
+			[MaxVelocityAngleForSpeedControl:1000]
+			</Description>
+		</EntityComponent>
+	</EntityComponents>
+</Definitions>

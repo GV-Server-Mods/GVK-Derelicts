@@ -1,0 +1,282 @@
+<?xml version="1.0"?>
+<Definitions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+	<EntityComponents>
+		<!-- =================================================== -->
+		<!-- BASE SITE SIGNAL TOWER BEHAVIOR                     -->
+		<!-- =================================================== -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-PresetBases-Tower-Behavior</SubtypeId>
+			</Id>
+			<Description>
+				[MES AI Behavior]
+				[BehaviorName:Passive]
+				[UseRetreatTimer:false]
+				[UseNoTargetTimer:false]
+				[UsePlayerDistanceTimer:false]
+
+				[Triggers:GVK-Alliance-PresetBases-Trigger-ButtonPress-Soban-Uncontested]
+				[Triggers:GVK-Alliance-PresetBases-Trigger-ButtonPress-Soban-Contested]
+				[Triggers:GVK-Alliance-PresetBases-Trigger-ButtonPress-Khaaneph-Uncontested]
+				[Triggers:GVK-Alliance-PresetBases-Trigger-ButtonPress-Khaaneph-Contested]
+			</Description>
+		</EntityComponent>
+
+		<!-- =================================================== -->
+		<!-- MES PLAYER CONDITIONS FOR ZONE & REPUTATION         -->
+		<!-- =================================================== -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-PresetBases-PlayerCondition-InSobanZone</SubtypeId>
+			</Id>
+			<Description>
+				[MES Player Condition]
+				[CheckPlayerInActiveZone:true]
+				[ZoneName:SOBAN_Zone]
+			</Description>
+		</EntityComponent>
+
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-PresetBases-PlayerCondition-NotInSobanZone</SubtypeId>
+			</Id>
+			<Description>
+				[MES Player Condition]
+				[UseFailCondition:true]
+				[CheckPlayerInActiveZone:true]
+				[ZoneName:SOBAN_Zone]
+			</Description>
+		</EntityComponent>
+
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-PresetBases-PlayerCondition-InKhaanephZone</SubtypeId>
+			</Id>
+			<Description>
+				[MES Player Condition]
+				[CheckPlayerInActiveZone:true]
+				[ZoneName:KHAANEPH_Zone]
+			</Description>
+		</EntityComponent>
+
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-PresetBases-PlayerCondition-NotInKhaanephZone</SubtypeId>
+			</Id>
+			<Description>
+				[MES Player Condition]
+				[UseFailCondition:true]
+				[CheckPlayerInActiveZone:true]
+				[ZoneName:KHAANEPH_Zone]
+			</Description>
+		</EntityComponent>
+
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-PresetBases-PlayerCondition-RepSoban</SubtypeId>
+			</Id>
+			<Description>
+				[MES Player Condition]
+				[CheckPlayerReputation:true]
+				[CheckReputationwithFaction:SOBAN]
+				[MinPlayerReputation:1]
+				[MaxPlayerReputation:1500]
+			</Description>
+		</EntityComponent>
+
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-PresetBases-PlayerCondition-RepKhaaneph</SubtypeId>
+			</Id>
+			<Description>
+				[MES Player Condition]
+				[CheckPlayerReputation:true]
+				[CheckReputationwithFaction:KHAANEPH]
+				[MinPlayerReputation:1]
+				[MaxPlayerReputation:1500]
+			</Description>
+		</EntityComponent>
+
+		<!-- =================================================== -->
+		<!-- INTERACTIVE BUTTON PRESS TRIGGERS                   -->
+		<!-- =================================================== -->
+		<!-- SOBAN - Uncontested (In SOBAN_Zone, Not in KHAANEPH_Zone) -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-PresetBases-Trigger-ButtonPress-Soban-Uncontested</SubtypeId>
+			</Id>
+			<Description>
+				[MES AI Trigger]
+				[UseTrigger:true]
+				[Type:ButtonPress]
+				[ButtonPanelName:Base Deployment Terminal]
+				[ButtonPanelIndex:-1]
+				[MinCooldownMs:1000]
+				[MaxCooldownMs:1001]
+				[StartsReady:true]
+				[MaxActions:-1]
+				[UsePlayerCondition:true]
+				[PlayerConditionIds:GVK-Alliance-PresetBases-PlayerCondition-InSobanZone]
+				[PlayerConditionIds:GVK-Alliance-PresetBases-PlayerCondition-NotInKhaanephZone]
+				[PlayerConditionIds:GVK-Alliance-PresetBases-PlayerCondition-RepSoban]
+				[Actions:GVK-Alliance-PresetBases-Action-UpgradeToBase-SOBAN]
+			</Description>
+		</EntityComponent>
+
+		<!-- SOBAN - Contested (In SOBAN_Zone, In KHAANEPH_Zone, Player Rep SOBAN >= 1) -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-PresetBases-Trigger-ButtonPress-Soban-Contested</SubtypeId>
+			</Id>
+			<Description>
+				[MES AI Trigger]
+				[UseTrigger:true]
+				[Type:ButtonPress]
+				[ButtonPanelName:Base Deployment Terminal]
+				[ButtonPanelIndex:-1]
+				[MinCooldownMs:1000]
+				[MaxCooldownMs:1001]
+				[StartsReady:true]
+				[MaxActions:-1]
+				[UsePlayerCondition:true]
+				[PlayerConditionIds:GVK-Alliance-PresetBases-PlayerCondition-InSobanZone]
+				[PlayerConditionIds:GVK-Alliance-PresetBases-PlayerCondition-InKhaanephZone]
+				[PlayerConditionIds:GVK-Alliance-PresetBases-PlayerCondition-RepSoban]
+				[Actions:GVK-Alliance-PresetBases-Action-UpgradeToBase-SOBAN]
+			</Description>
+		</EntityComponent>
+
+		<!-- KHAANEPH - Uncontested (In KHAANEPH_Zone, Not in SOBAN_Zone) -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-PresetBases-Trigger-ButtonPress-Khaaneph-Uncontested</SubtypeId>
+			</Id>
+			<Description>
+				[MES AI Trigger]
+				[UseTrigger:true]
+				[Type:ButtonPress]
+				[ButtonPanelName:Base Deployment Terminal]
+				[ButtonPanelIndex:-1]
+				[MinCooldownMs:1000]
+				[MaxCooldownMs:1001]
+				[StartsReady:true]
+				[MaxActions:-1]
+				[UsePlayerCondition:true]
+				[PlayerConditionIds:GVK-Alliance-PresetBases-PlayerCondition-InKhaanephZone]
+				[PlayerConditionIds:GVK-Alliance-PresetBases-PlayerCondition-NotInSobanZone]
+				[PlayerConditionIds:GVK-Alliance-PresetBases-PlayerCondition-RepKhaaneph]
+				[Actions:GVK-Alliance-PresetBases-Action-UpgradeToBase-KHAANEPH]
+			</Description>
+		</EntityComponent>
+
+		<!-- KHAANEPH - Contested (In KHAANEPH_Zone, In SOBAN_Zone, Player Rep KHAANEPH >= 1) -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-PresetBases-Trigger-ButtonPress-Khaaneph-Contested</SubtypeId>
+			</Id>
+			<Description>
+				[MES AI Trigger]
+				[UseTrigger:true]
+				[Type:ButtonPress]
+				[ButtonPanelName:Base Deployment Terminal]
+				[ButtonPanelIndex:-1]
+				[MinCooldownMs:1000]
+				[MaxCooldownMs:1001]
+				[StartsReady:true]
+				[MaxActions:-1]
+				[UsePlayerCondition:true]
+				[PlayerConditionIds:GVK-Alliance-PresetBases-PlayerCondition-InKhaanephZone]
+				[PlayerConditionIds:GVK-Alliance-PresetBases-PlayerCondition-InSobanZone]
+				[PlayerConditionIds:GVK-Alliance-PresetBases-PlayerCondition-RepKhaaneph]
+				[Actions:GVK-Alliance-PresetBases-Action-UpgradeToBase-KHAANEPH]
+			</Description>
+		</EntityComponent>
+
+		<!-- =================================================== -->
+		<!-- BASE SPAWN ACTIONS & SPAWNERS                       -->
+		<!-- =================================================== -->
+		<!-- TODO: Tokenise spawner/spawngroup/faction via IdsReplacer to collapse the per-faction definitions. -->
+		<!-- One-base-per-site is enforced by the RC code GVK-Alliance-Base in GVK-Alliance-PresetBases-Base-SpawnCondition-*:
+		     RemoteControlCodeMinDistance 1100 exceeds the spawner MaxDistance 500, so an existing base always blocks a redeploy. -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-PresetBases-Action-UpgradeToBase-SOBAN</SubtypeId>
+			</Id>
+			<Description>
+				[MES AI Action]
+				[SpawnEncounter:true]
+				[Spawner:GVK-Alliance-PresetBases-Spawner-Base-SOBAN]
+			</Description>
+		</EntityComponent>
+
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-PresetBases-Spawner-Base-SOBAN</SubtypeId>
+			</Id>
+			<Description>
+				[MES AI Spawn]
+				[UseSpawn:true]
+				[SpawningType:CustomSpawn]
+				[StartsReady:true]
+				[ProcessAsAdminSpawn:true]
+				[SpawnGroups:GVK-Alliance-PresetBases-Base-SpawnGroup-SOBAN]
+				[MinDistance:200]
+				[MaxDistance:500]
+				[MinAltitude:0]
+				[MaxAltitude:1]
+				[InheritNpcAltitude:false]
+				[IgnoreSafetyChecks:true]
+			</Description>
+		</EntityComponent>
+
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-PresetBases-Action-UpgradeToBase-KHAANEPH</SubtypeId>
+			</Id>
+			<Description>
+				[MES AI Action]
+				[SpawnEncounter:true]
+				[Spawner:GVK-Alliance-PresetBases-Spawner-Base-KHAANEPH]
+			</Description>
+		</EntityComponent>
+
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-PresetBases-Spawner-Base-KHAANEPH</SubtypeId>
+			</Id>
+			<Description>
+				[MES AI Spawn]
+				[UseSpawn:true]
+				[SpawningType:CustomSpawn]
+				[StartsReady:true]
+				[ProcessAsAdminSpawn:true]
+				[SpawnGroups:GVK-Alliance-PresetBases-Base-SpawnGroup-KHAANEPH]
+				[MinDistance:200]
+				[MaxDistance:500]
+				[MinAltitude:0]
+				[MaxAltitude:1]
+				[InheritNpcAltitude:false]
+				[IgnoreSafetyChecks:true]
+			</Description>
+		</EntityComponent>
+
+		<!-- TODO: Optional deployment announcement with current alliance stats (needs new logic - deferred).
+		     TODO: Upstream MES fix needed - a button panel on another grid can trigger this behavior
+		     (TriggerSystem.ProcessButtonTriggers bypasses its same-grid filter for grids outside the logical group). -->
+	</EntityComponents>
+</Definitions>

@@ -1,0 +1,360 @@
+<?xml version="1.0"?>
+<Definitions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+	<EntityComponents>
+		<!-- 
+		
+		This TriggerGroup handles:
+			- Alliance points
+			- Alliance Reputation
+			- Explosions
+			- NPC Disable
+			- Defeated/Despawned Chats
+			- Crashed (if GVK_MobilityType_Aircraft true)
+			- Instant delete (if small grid true)
+			
+		Requires:
+			- CustomStrings {EncounterType} 
+			- CustomStrings {EncounterDisplayName}
+			- {Faction}
+			
+		Example tags for init trigger:
+			[CustomStrings:EncounterType,DroneMedium]
+			[CustomStrings:EncounterDisplayName,aircraft]
+			[SetBooleansTrue:GVK_MobilityType_Aircraft]
+
+		Optional:
+			- SetBooleansTrue {GVK_MobilityType_Aircraft}
+		
+		Tags for use elsewhere:
+			- Tags:GVK-Universal-TriggerTags-Compromised
+			
+		-->
+
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Universal-TriggerGroup-DefeatedAndAttacked</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI TriggerGroup]
+				[Triggers:GVK-Universal-Trigger-AttackerIsNeutralPlayer]
+				[Triggers:GVK-Universal-Trigger-AttackerIsEnemyPlayer]
+				[Triggers:GVK-Universal-Trigger-DefeatedBeaconDisabled]
+				[Triggers:GVK-Universal-Trigger-DefeatedCompromised]
+				[Triggers:GVK-Universal-Trigger-DefeatedCrashed]
+				[Triggers:GVK-Universal-ManualTrigger-DefeatedCompromised]
+				[Triggers:GVK-Universal-Trigger-DefeatedDespawn]
+				[Triggers:GVK-Universal-Trigger-DefeatedDespawnMES]
+				[Triggers:GVK-Universal-ManualTrigger-DefeatedDespawned]
+				[Triggers:GVK-Universal-TriggerTags-AttemptSmallDespawn]
+				[Triggers:GVK-Universal-TriggerTags-Disabled]
+				[Triggers:GVK-Universal-TriggerTags-DefeatedChat-AllianceBase]
+				[Triggers:GVK-Universal-TriggerTags-DefeatedChat-AllianceOutpost]
+				[Triggers:GVK-Universal-TriggerTags-DefeatedChat-AllianceTurret]
+				[Triggers:GVK-Universal-TriggerTags-DefeatedChat-CargoShip]
+				[Triggers:GVK-Universal-TriggerTags-DefeatedChat-DroneElite]
+				[Triggers:GVK-Universal-TriggerTags-DefeatedChat-DroneLarge]
+				[Triggers:GVK-Universal-TriggerTags-DefeatedChat-DroneMedium]
+				[Triggers:GVK-Universal-TriggerTags-DefeatedChat-DroneSmall]
+				[Triggers:GVK-Universal-TriggerTags-DefeatedChat-WreckLarge]
+				[Triggers:GVK-Universal-TriggerTags-DefeatedChat-WreckMedium]
+				[Triggers:GVK-Universal-TriggerTags-DefeatedChat-WreckSmall]
+				[Triggers:GVK-Universal-TriggerTags-DespawnedChat-AllianceBase]
+				[Triggers:GVK-Universal-TriggerTags-DespawnedChat-AllianceOutpost]
+				[Triggers:GVK-Universal-TriggerTags-DespawnedChat-AllianceTurret]
+				[Triggers:GVK-Universal-TriggerTags-DespawnedChat-WreckLarge]
+				[Triggers:GVK-Universal-TriggerTags-DespawnedChat-WreckMedium]
+				[Triggers:GVK-Universal-TriggerTags-DespawnedChat-WreckSmall]
+				[Triggers:GVK-Universal-TriggerTags-Explosions-AllianceBase-KHAANEPH]
+				[Triggers:GVK-Universal-TriggerTags-Explosions-AllianceBase-SOBAN]
+				[Triggers:GVK-Universal-TriggerTags-Explosions-AllianceOutpost-KHAANEPH]
+				[Triggers:GVK-Universal-TriggerTags-Explosions-AllianceOutpost-SOBAN]
+				[Triggers:GVK-Universal-TriggerTags-Explosions-AllianceTurret-KHAANEPH]
+				[Triggers:GVK-Universal-TriggerTags-Explosions-AllianceTurret-SOBAN]
+				[Triggers:GVK-Universal-TriggerTags-Explosions-CargoShip-KHAANEPH]
+				[Triggers:GVK-Universal-TriggerTags-Explosions-CargoShip-SOBAN]
+				[Triggers:GVK-Universal-TriggerTags-Explosions-DroneElite-GAALSIEN]
+				[Triggers:GVK-Universal-TriggerTags-Explosions-DroneElite-KHAANEPH]
+				[Triggers:GVK-Universal-TriggerTags-Explosions-DroneElite-SOBAN]
+				[Triggers:GVK-Universal-TriggerTags-Explosions-DroneLarge-COALITION]
+				[Triggers:GVK-Universal-TriggerTags-Explosions-DroneLarge-GAALSIEN]
+				[Triggers:GVK-Universal-TriggerTags-Explosions-DroneLarge-KHAANEPH]
+				[Triggers:GVK-Universal-TriggerTags-Explosions-DroneLarge-SOBAN]
+				[Triggers:GVK-Universal-TriggerTags-Explosions-DroneMedium-COALITION]
+				[Triggers:GVK-Universal-TriggerTags-Explosions-DroneMedium-GAALSIEN]
+				[Triggers:GVK-Universal-TriggerTags-Explosions-DroneMedium-KHAANEPH]
+				[Triggers:GVK-Universal-TriggerTags-Explosions-DroneMedium-SOBAN]
+				[Triggers:GVK-Universal-TriggerTags-Explosions-DroneSmall-COALITION]
+				[Triggers:GVK-Universal-TriggerTags-Explosions-DroneSmall-GAALSIEN]
+				[Triggers:GVK-Universal-TriggerTags-Explosions-DroneSmall-KHAANEPH]
+				[Triggers:GVK-Universal-TriggerTags-Explosions-DroneSmall-SOBAN]
+				[Triggers:GVK-Universal-TriggerTags-Explosions-WreckLarge-COALITION]
+				[Triggers:GVK-Universal-TriggerTags-Explosions-WreckLarge-DERELICT]
+				[Triggers:GVK-Universal-TriggerTags-Explosions-WreckLarge-GAALSIEN]
+				[Triggers:GVK-Universal-TriggerTags-Explosions-WreckMedium-COALITION]
+				[Triggers:GVK-Universal-TriggerTags-Explosions-WreckMedium-DERELICT]
+				[Triggers:GVK-Universal-TriggerTags-Explosions-WreckMedium-GAALSIEN]
+				[Triggers:GVK-Universal-TriggerTags-Explosions-WreckSmall-COALITION]
+				[Triggers:GVK-Universal-TriggerTags-Explosions-WreckSmall-DERELICT]
+				[Triggers:GVK-Universal-TriggerTags-Explosions-WreckSmall-GAALSIEN]
+				[Triggers:GVK-Universal-TriggerTags-RefundDefensesCommand]
+				[Triggers:GVK-Alliance-TriggerTags-PointsCompromised-AllianceBase-KHAANEPH]
+				[Triggers:GVK-Alliance-TriggerTags-PointsCompromised-AllianceBase-SOBAN]
+				[Triggers:GVK-Alliance-TriggerTags-PointsCompromised-AllianceOutpost-KHAANEPH]
+				[Triggers:GVK-Alliance-TriggerTags-PointsCompromised-AllianceOutpost-SOBAN]
+				[Triggers:GVK-Alliance-TriggerTags-PointsCompromised-AllianceTurret-KHAANEPH]
+				[Triggers:GVK-Alliance-TriggerTags-PointsCompromised-AllianceTurret-SOBAN]
+				[Triggers:GVK-Alliance-TriggerTags-PointsCompromised-CargoShip-KHAANEPH]
+				[Triggers:GVK-Alliance-TriggerTags-PointsCompromised-CargoShip-SOBAN]
+				[Triggers:GVK-Alliance-TriggerTags-PointsCompromised-DroneElite-KHAANEPH]
+				[Triggers:GVK-Alliance-TriggerTags-PointsCompromised-DroneElite-SOBAN]
+				[Triggers:GVK-Alliance-TriggerTags-PointsCompromised-DroneLarge-KHAANEPH]
+				[Triggers:GVK-Alliance-TriggerTags-PointsCompromised-DroneLarge-SOBAN]
+				[Triggers:GVK-Alliance-TriggerTags-PointsCompromised-DroneMedium-KHAANEPH]
+				[Triggers:GVK-Alliance-TriggerTags-PointsCompromised-DroneMedium-SOBAN]
+				[Triggers:GVK-Alliance-TriggerTags-PointsCompromised-DroneSmall-KHAANEPH]
+				[Triggers:GVK-Alliance-TriggerTags-PointsCompromised-DroneSmall-SOBAN]
+				[Triggers:GVK-Alliance-TriggerTags-PointsAwarded-AllianceResearchLab]
+				[Triggers:GVK-Alliance-TriggerTags-PointsDespawned-AllianceBase]
+				[Triggers:GVK-Alliance-TriggerTags-PointsDespawned-AllianceOutpost]
+				[Triggers:GVK-Alliance-TriggerTags-PointsDespawned-AllianceTurret]
+				[Triggers:GVK-Alliance-Trigger-AttackedReputation-Init]
+				[Triggers:GVK-Alliance-TriggerTags-AttackedReputation-KHAANEPH]
+				[Triggers:GVK-Alliance-TriggerTags-AttackedReputation-SOBAN]
+			</Description>
+		</EntityComponent>
+		<!-- Check if NPC has been damaged by an neutral player (primarily for alliance point changes) -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Universal-Trigger-AttackerIsNeutralPlayer</SubtypeId>
+			</Id>
+			<Description>
+			[MES AI Trigger]
+			[UseTrigger:true]
+			[Type:Damage]
+			[MinCooldownMs:1000]
+			[MaxCooldownMs:1001]
+			[MaxActions:1]
+			[StartsReady:true]
+			[DamageTypes:Any]
+			[ExcludedDamageTypes:Environment]
+			[ExcludedDamageTypes:Fire]
+			[ExcludedDamageTypes:Fall]
+			[ExcludedDamageTypes:Thruster]
+			[Conditions:GVK-Universal-Condition-AttackerIsNeutralPlayer]
+			[ActionExecution:All]
+			[Actions:GVK-Universal-Action-AttackerIsNeutralPlayer]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Universal-Action-AttackerIsNeutralPlayer</SubtypeId>
+			</Id>
+			<Description>
+			[MES AI Action]
+			[//DebugMessage:AttackerIsNeutralPlayer]
+			[SetBooleansTrue:DamagedByNeutralPlayer]
+			</Description>
+		</EntityComponent>
+		<!-- Check if NPC has been damaged by an enemy player (primarily for alliance point changes) -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Universal-Trigger-AttackerIsEnemyPlayer</SubtypeId>
+			</Id>
+			<Description>
+			[MES AI Trigger]
+			[UseTrigger:true]
+			[Type:Damage]
+			[MinCooldownMs:1000]
+			[MaxCooldownMs:1001]
+			[MaxActions:1]
+			[StartsReady:true]
+			[DamageTypes:Any]
+			[ExcludedDamageTypes:Environment]
+			[ExcludedDamageTypes:Fire]
+			[ExcludedDamageTypes:Fall]
+			[ExcludedDamageTypes:Thruster]
+			[Conditions:GVK-Universal-Condition-AttackerIsEnemyPlayer]
+			[ActionExecution:All]
+			[Actions:GVK-Universal-Action-AttackerIsEnemyPlayer]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Universal-Action-AttackerIsEnemyPlayer</SubtypeId>
+			</Id>
+			<Description>
+			[MES AI Action]
+			[//DebugMessage:AttackerIsEnemyPlayer]
+			[SetBooleansTrue:DamagedByEnemyPlayer]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Universal-Trigger-DefeatedBeaconDisabled</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Trigger]
+			[Type:Timer]
+			[UseTrigger:true]
+			[MinCooldownMs:2000]
+			[MaxCooldownMs:2001]
+			[StartsReady:false]
+			[Conditions:GVK-Universal-Condition-AllBeaconsDisabled]
+			[ConditionCheckResetsTimer:true]
+			[Actions:GVK-Universal-Action-DefeatedCompromised]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Universal-Trigger-DefeatedCompromised</SubtypeId>
+			</Id>
+			<Description>
+			[MES AI Trigger]
+			[UseTrigger:true]
+			[Type:Compromised]
+			[StartsReady:true]
+			[MaxActions:1]
+			[Actions:GVK-Universal-Action-DefeatedCompromised]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Universal-Trigger-DefeatedCrashed</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Trigger]
+			[Type:Timer]
+			[UseTrigger:true]
+			[StartsReady:false]
+			[MinCooldownMs:5000]
+			[MaxCooldownMs:5001]
+			[MaxActions:1]
+			[Conditions:GVK-Universal-Condition-Crashed]
+			[ActionExecution:All]
+			[Actions:GVK-Universal-Action-DefeatedCompromised]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Universal-Action-DefeatedCompromised</SubtypeId>
+			</Id>
+			<Description>
+			[MES AI Action]
+			[//DebugMessage:Action-DefeatedCompromised]
+			[ManuallyActivateTrigger:true]
+			[ManuallyActivatedTriggerTags:GVK-Universal-TriggerTags-Compromised]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Universal-ManualTrigger-DefeatedCompromised</SubtypeId>
+			</Id>
+			<Description>
+			[MES AI Trigger]
+			[UseTrigger:true]
+			[Type:Manual]
+			[Tags:GVK-Universal-TriggerTags-Compromised]
+			[StartsReady:true]
+			[MaxActions:1]
+			[ActionExecution:All]
+			[Actions:GVK-Universal-ManualAction-DefeatedCompromised]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Universal-ManualAction-DefeatedCompromised</SubtypeId>
+			</Id>
+			<Description>
+			[MES AI Action]
+			[//DebugMessage:ManualAction-DefeatedCompromised]
+			[ManuallyActivateTrigger:true]
+			[ManuallyActivatedTriggerTags:GVK-Alliance-TriggerTags-PointsCompromised-{EncounterType}-{Faction}]
+			[ManuallyActivatedTriggerTags:GVK-Universal-TriggerTags-Explosions-{EncounterType}-{Faction}]
+			[ManuallyActivatedTriggerTags:GVK-Universal-TriggerTags-DefeatedChat-{EncounterType}]
+			[ManuallyActivatedTriggerTags:GVK-Universal-TriggerTags-AttemptSmallDespawn]
+			[ManuallyActivatedTriggerTags:GVK-Universal-TriggerTags-Disabled]
+			</Description>
+		</EntityComponent>
+		<!-- trigger to adjust points if Despawned -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Universal-Trigger-DefeatedDespawn</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Trigger]
+			[Type:Despawn]
+			[UseTrigger:true]
+			[MaxActions:1]
+			[ActionExecution:All]
+			[Actions:GVK-Universal-Action-DefeatedDespawned]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Universal-Trigger-DefeatedDespawnMES</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Trigger]
+			[Type:DespawnMES]
+			[UseTrigger:true]
+			[MaxActions:1]
+			[ActionExecution:All]
+			[Actions:GVK-Universal-Action-DefeatedDespawned]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Universal-Action-DefeatedDespawned</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Action]
+			[//DebugMessage:Action-DefeatedDespawned]
+			[ManuallyActivateTrigger:true]
+			[ManuallyActivatedTriggerNames:GVK-Universal-ManualTrigger-DefeatedDespawned]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Universal-ManualTrigger-DefeatedDespawned</SubtypeId>
+			</Id>
+			<Description>
+			[MES AI Trigger]
+			[UseTrigger:true]
+			[Type:Manual]
+			[StartsReady:true]
+			[MaxActions:1]
+			[ActionExecution:All]
+			[Actions:GVK-Universal-ManualAction-DefeatedDespawned]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Universal-ManualAction-DefeatedDespawned</SubtypeId>
+			</Id>
+			<Description>
+			[MES AI Action]
+			[//DebugMessage:ManualAction-DefeatedDespawned]
+			[ManuallyActivateTrigger:true]
+			[ManuallyActivatedTriggerTags:GVK-Alliance-TriggerTags-PointsDespawned-{EncounterType}]
+			[ManuallyActivatedTriggerTags:GVK-Universal-TriggerTags-DespawnedChat-{EncounterType}]
+			[ManuallyActivatedTriggerTags:GVK-Universal-TriggerTags-RefundDefensesCommand-{EncounterType}]
+			</Description>
+		</EntityComponent>
+	</EntityComponents>
+</Definitions>

@@ -1,0 +1,387 @@
+<?xml version="1.0"?>
+<Definitions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+	<!--
+	
+	TODO:
+		- Add countdowns timers so players don't think it is broken
+		
+	-->
+	<EntityComponents>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-ResearchLab-Behavior</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Behavior]
+			[BehaviorName:Passive]
+			[WeaponSystem:GVK-Universal-Weapons-All]
+			[UsePlayerDistanceTimer:false]
+			[UseRetreatTimer:false]
+			[UseNoTargetTimer:false]
+			[TargetData:GVK-Universal-Target-EnemyGrids2km]
+			[Triggers:GVK-Universal-Trigger-TargetAttacker]
+			[Triggers:GVK-Universal-Trigger-TurretTarget]
+			[Triggers:GVK-Universal-Trigger-WeaponsToMaxRange]
+			[Triggers:GVK-Universal-Trigger-UneditableOnSpawn]
+			[Triggers:GVK-Alliance-ResearchLab-Trigger-Init]
+			[Triggers:GVK-Alliance-ResearchLab-Trigger-ButtonPress1]
+			[Triggers:GVK-Alliance-ResearchLab-Trigger-ButtonPress2]
+			[Triggers:GVK-Alliance-ResearchLab-Trigger-ButtonPress3]
+			[Triggers:GVK-Alliance-ResearchLab-Trigger-UploadComplete]
+			[Triggers:GVK-Alliance-ResearchLab-Trigger-Disabled]
+			[TriggerGroups:GVK-Universal-TriggerGroup-DefeatedAndAttacked]
+			[RemoteControlCode:GVK-Alliance-ResearchLab]
+			</Description>
+		</EntityComponent>
+		<!-- Trigger sequence when Wreck Spawns -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-ResearchLab-Trigger-Init</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Trigger]
+			[UseTrigger:true]
+			[Type:Session]
+			[StartsReady:true]
+			[MaxActions:-1]
+			[Actions:GVK-Alliance-ResearchLab-Action-Init]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-ResearchLab-Action-Init</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Action]
+			[//DebugMessage:AllianceResearchPostInit]
+			[Chance:100]
+			[SetCustomStrings:true]
+			[CustomStrings:EncounterType,WreckSmall]
+			[CustomStrings:AlliancePoints,AllianceResearchLab]
+			[CustomStrings:EncounterDisplayName,Research Lab]
+			[UseChatBroadcast:true]
+			[ChatData:GVK-Alliance-ResearchLab-Chat-Init]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-ResearchLab-Chat-Init</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Chat]
+			[UseChat:true]
+			[StartsReady:true]
+			[Chance:100]
+			[MaxChats:1]
+			[BroadcastRandomly:false]
+			[Author:Sensors]
+			[Color:Blue]
+			[ChatMessages:Nearby research lab detected.]
+			[ChatAudio:ArcHudSensors]
+			[BroadcastChatType:Chat]
+			[SendToAllOnlinePlayers:false]
+			[IgnoreAntennaRequirement:true]
+			[IgnoredAntennaRangeOverride:10000]
+		  </Description>
+		</EntityComponent>
+		<!-- Trigger when activation button 1 is pressed KHAANEPH-->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-ResearchLab-Trigger-ButtonPress1</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Trigger]
+			[Type:ButtonPress]
+			[MinCooldownMs:3000]
+			[MaxCooldownMs:3001]
+			[UseTrigger:true]
+			[StartsReady:true]
+			[MaxActions:-1]
+			[ButtonPanelName:NPC Button]
+			[ButtonPanelIndex:0]
+			[ActionExecution:All]
+			[Actions:GVK-Alliance-ResearchLab-Action-ButtonPress1]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-ResearchLab-Action-ButtonPress1</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Action]
+			[//DebugMessage:AllianceResearchPostButtonPress1]
+			[Chance:100]
+			[SetCustomStrings:true]
+			[CustomStrings:SelectedFaction,KHAANEPH]
+			[TriggerTimerBlocks:true]
+			[TimerBlockNames:NPC Timer Start]
+			[ApplyLcdChanges:true]
+			[LcdTextTemplateFile:AllianceResearchPostButtonPress1.xml]
+			[LcdBlockNames:NPC Button]
+			[LcdTemplateIndexes:0]
+			[ResetCooldownTimeOfTriggers:true]
+			[ResetTriggerCooldownNames:GVK-Alliance-ResearchLab-Trigger-UploadComplete]
+			[EnableTriggers:true]
+			[EnableTriggerNames:GVK-Alliance-ResearchLab-Trigger-ButtonPress3]
+			[EnableTriggerNames:GVK-Alliance-ResearchLab-Trigger-UploadComplete]
+			[DisableTriggers:true]
+			[DisableTriggerNames:GVK-Alliance-ResearchLab-Trigger-ButtonPress1]
+			[DisableTriggerNames:GVK-Alliance-ResearchLab-Trigger-ButtonPress2]
+			[UseChatBroadcast:true]
+			[ChatData:GVK-Alliance-ResearchLab-Chat-ButtonPressStart]
+			</Description>
+		</EntityComponent>
+		<!-- Trigger when activation button 2 is pressed SOBAN -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-ResearchLab-Trigger-ButtonPress2</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Trigger]
+			[Type:ButtonPress]
+			[MinCooldownMs:5000]
+			[MaxCooldownMs:5001]
+			[UseTrigger:true]
+			[StartsReady:true]
+			[MaxActions:-1]
+			[ButtonPanelName:NPC Button]
+			[ButtonPanelIndex:1]
+			[ActionExecution:All]
+			[Actions:GVK-Alliance-ResearchLab-Action-ButtonPress2]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-ResearchLab-Action-ButtonPress2</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Action]
+			[//DebugMessage:AllianceResearchPostButtonPress2]
+			[Chance:100]
+			[SetCustomStrings:true]
+			[CustomStrings:SelectedFaction,SOBAN]
+			[TriggerTimerBlocks:true]
+			[TimerBlockNames:NPC Timer Start]
+			[ApplyLcdChanges:true]
+			[LcdTextTemplateFile:AllianceResearchPostButtonPress2.xml]
+			[LcdBlockNames:NPC Button]
+			[LcdTemplateIndexes:0]
+			[ResetCooldownTimeOfTriggers:true]
+			[ResetTriggerCooldownNames:GVK-Alliance-ResearchLab-Trigger-UploadComplete]
+			[EnableTriggers:true]
+			[EnableTriggerNames:GVK-Alliance-ResearchLab-Trigger-ButtonPress3]
+			[EnableTriggerNames:GVK-Alliance-ResearchLab-Trigger-UploadComplete]
+			[DisableTriggers:true]
+			[DisableTriggerNames:GVK-Alliance-ResearchLab-Trigger-ButtonPress1]
+			[DisableTriggerNames:GVK-Alliance-ResearchLab-Trigger-ButtonPress2]
+			[UseChatBroadcast:true]
+			[ChatData:GVK-Alliance-ResearchLab-Chat-ButtonPressStart]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-ResearchLab-Chat-ButtonPressStart</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Chat]
+			[UseChat:true]
+			[StartsReady:true]
+			[Chance:100]
+			[MaxChats:-1]
+			[BroadcastRandomly:false]
+			[Author:Research Lab Computer]
+			[Color:White]
+			[ChatMessages:Established connection to {SelectedFaction}, upload complete in 5 minutes.]
+			[ChatAudio:ArcHudGPSNotification2]
+			[BroadcastChatType:Chat]
+			[SendToAllOnlinePlayers:false]
+			[IgnoreAntennaRequirement:true]
+			[IgnoredAntennaRangeOverride:20000]
+		  </Description>
+		</EntityComponent>
+		<!-- Trigger when activation button 3 is pressed Reset -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-ResearchLab-Trigger-ButtonPress3</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Trigger]
+			[Type:ButtonPress]
+			[MinCooldownMs:5000]
+			[MaxCooldownMs:5001]
+			[UseTrigger:false]
+			[StartsReady:true]
+			[MaxActions:-1]
+			[ButtonPanelName:NPC Button]
+			[ButtonPanelIndex:2]
+			[ActionExecution:All]
+			[Actions:GVK-Alliance-ResearchLab-Action-ButtonPress3]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-ResearchLab-Action-ButtonPress3</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Action]
+			[//DebugMessage:AllianceResearchPostButtonPress3]
+			[Chance:100]
+			[TriggerTimerBlocks:true]
+			[TimerBlockNames:NPC Timer Reset]
+			[ApplyLcdChanges:true]
+			[LcdTextTemplateFile:AllianceResearchPostButtonPress3.xml]
+			[LcdBlockNames:NPC Button]
+			[LcdTemplateIndexes:0]
+			[EnableTriggers:true]
+			[EnableTriggerNames:GVK-Alliance-ResearchLab-Trigger-ButtonPress1]
+			[EnableTriggerNames:GVK-Alliance-ResearchLab-Trigger-ButtonPress2]
+			[DisableTriggers:true]
+			[DisableTriggerNames:GVK-Alliance-ResearchLab-Trigger-ButtonPress3]
+			[DisableTriggerNames:GVK-Alliance-ResearchLab-Trigger-UploadComplete]
+			[UseChatBroadcast:true]
+			[ChatData:GVK-Alliance-ResearchLab-Chat-ButtonPress3]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-ResearchLab-Chat-ButtonPress3</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Chat]
+			[UseChat:true]
+			[StartsReady:true]
+			[Chance:100]
+			[MaxChats:-1]
+			[BroadcastRandomly:false]
+			[Author:Research Lab Computer]
+			[Color:White]
+			[ChatMessages:Connection reset, upload canceled.]
+			[ChatAudio:ArcHudGPSNotification2]
+			[BroadcastChatType:Chat]
+			[SendToAllOnlinePlayers:false]
+			[IgnoreAntennaRequirement:true]
+			[IgnoredAntennaRangeOverride:20000]
+		  </Description>
+		</EntityComponent>
+		<!-- Trigger to count down to complete -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-ResearchLab-Trigger-UploadComplete</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Trigger]
+			[Type:Timer]
+			[MinCooldownMs:300000]
+			[MaxCooldownMs:300001]
+			[UseTrigger:false]
+			[StartsReady:false]
+			[MaxActions:1]
+			[ActionExecution:All]
+			[Actions:GVK-Alliance-ResearchLab-Action-UploadComplete]
+			[Actions:GVK-Universal-Action-Disabled]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-ResearchLab-Action-UploadComplete</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Action]
+			[//DebugMessage:{EncounterType} {SelectedFaction} Completed]
+			[Chance:100]
+			[ApplyLcdChanges:true]
+			[LcdTextTemplateFile:AllianceResearchPostComplete.xml]
+			[LcdBlockNames:NPC Button]
+			[LcdTemplateIndexes:0]
+			[TriggerTimerBlocks:true]
+			[TimerBlockNames:NPC Timer Complete]
+			[EnableBlocks:true]
+			[EnableBlockNames:NPC Button]
+			[EnableBlockStates:Off]
+			[ManuallyActivateTrigger:true]
+			[ManuallyActivatedTriggerTags:GVK-Alliance-TriggerTags-PointsAwarded-{AlliancePoints}]
+			[DisableTriggers:true]
+			[DisableTriggerNames:GVK-Alliance-ResearchLab-Trigger-Init]
+			[DisableTriggerNames:GVK-Alliance-ResearchLab-Trigger-ButtonPress1]
+			[DisableTriggerNames:GVK-Alliance-ResearchLab-Trigger-ButtonPress2]
+			[DisableTriggerNames:GVK-Alliance-ResearchLab-Trigger-ButtonPress3]
+			[DisableTriggerNames:GVK-Alliance-ResearchLab-Trigger-UploadComplete]
+			[DisableTriggerNames:GVK-Alliance-ResearchLab-Trigger-Disabled]
+			[DisableTriggerTags:GVK-Universal-TriggerTags-Compromised]
+			[UseChatBroadcast:true]
+			[ChatData:GVK-Alliance-ResearchLab-Chat-UploadComplete]
+			[TerminateBehavior:true]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-ResearchLab-Chat-UploadComplete</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Chat]
+			[UseChat:true]
+			[StartsReady:true]
+			[Chance:100]
+			[MaxChats:-1]
+			[BroadcastRandomly:false]
+			[Author:Research Lab Computer]
+			[Color:White]
+			[ChatMessages:Upload to {SelectedFaction} complete, shutting down.]
+			[ChatAudio:ArcHudGPSNotification2]
+			[BroadcastChatType:Chat]
+			[SendToAllOnlinePlayers:false]
+			[IgnoreAntennaRequirement:true]
+			[IgnoredAntennaRangeOverride:20000]
+		  </Description>
+		</EntityComponent>
+		<!-- Condition for no functional beacons, this may be abusable if players place their own beacons first -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-ResearchLab-Trigger-Disabled</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Trigger]
+			[Type:Timer]
+			[MinCooldownMs:5000]
+			[MaxCooldownMs:5001]
+			[UseTrigger:true]
+			[StartsReady:false]
+			[MaxActions:1]
+			[Conditions:GVK-Alliance-ResearchLab-Condition-Disabled]
+			[ActionExecution:All]
+			[Actions:GVK-Universal-Action-DefeatedCompromised]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-ResearchLab-Condition-Disabled</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Condition]
+			[UseConditions:true]
+			[MatchAnyCondition:true]
+			[CheckForBlocksOfType:true]
+			[BlocksOfType:MyObjectBuilder_RadioAntenna]
+			[BlocksOfType:MyObjectBuilder_ButtonPanel]
+			[UseFailCondition:true]
+			</Description>
+		</EntityComponent>
+	</EntityComponents>
+</Definitions>
