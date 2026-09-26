@@ -1,12 +1,14 @@
 # MES upstream drafts
 
-Fork: `%AppData%\SpaceEngineers\Mods\Modular-Encounters-Systems` (origin = GV-Server-Mods, upstream = MeridiusIX). Branches are based on upstream/master `537c875`, compile-checked, not yet tested in-game or pushed.
+Fork: `%AppData%\SpaceEngineers\Mods\Modular-Encounters-Systems` (origin = GV-Server-Mods, upstream = MeridiusIX). Branches were cut from upstream/master `537c875` and compile-checked. Each section's **Status** line says whether it has been tested, pushed or submitted; sections without one are still local drafts.
 
 Permalink base: `https://github.com/MeridiusIX/Modular-Encounters-Systems/blob/537c875f574f5fb305451a62ab20044323ce4296/Data/Scripts/ModularEncountersSystems/`
 
 ---
 
 ## PR 1: `fix/sharemode-all-index`
+
+**Status:** merged as [MES #369](https://github.com/MeridiusIX/Modular-Encounters-Systems/pull/369) (issue #370), in the MES 2.74.04 patch notes.
 
 **Title:** Fix ChangeBlocksShareModeAll using wrong loop index
 
@@ -31,10 +33,12 @@ Note: with the UseKPL fix, bool/counter changes without `UseKPL:true` now go to 
 
 ## PR 3: `fix/tag-parsing`
 
+**Status:** open as [MES PR #372](https://github.com/MeridiusIX/Modular-Encounters-Systems/pull/372), fixes issue #371. Rebased on upstream `137f99f`, tested in-game (not on a dedicated server).
+
 **Title:** Fix tags that are never parsed
 
-- `TagCheckEnumCheck` (GridDestructible, SubGridsDestructible, GridEditable, SubGridsEditable, IsStatic) is case-sensitive and silently keeps Ignore on a bad value, so `true`/`false` do nothing. It now accepts true/false, ignores case, and logs bad values.
-- `EscortUsesRelativeDampening`, `EscortSpeedMatchMinDistance` and `EscortSpeedMatchMaxDistance` are used in Escort.cs but had no parser. Added them, plus wiki entries.
+- `TagCheckEnumCheck` (GridDestructible, SubGridsDestructible, GridEditable, SubGridsEditable, IsStatic) silently keeps Ignore on a bad value, so `true`/`false` do nothing. enenra didn't want true/false accepted, so it still takes exactly Yes/No/Ignore, but now logs bad values through `BehaviorLogger` with the profile SubtypeId (`ProfileManager` sets the SubtypeId before `InitTags`). Wiki lists `Ignore`.
+- `EscortUsesRelativeDampening`, `EscortSpeedMatchMinDistance` and `EscortSpeedMatchMaxDistance` are used in Escort.cs but had no parser. Added them, plus wiki entries; the MinDistance entry says it currently has no effect.
 - Spawner `StartsReady` is on the wiki but had no parser.
 - Mission.cs builds the event conditions from `PlayerConditionIds` instead of `EventConditionIds`.
 
