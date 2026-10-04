@@ -30,46 +30,6 @@
 				[BarrelRoll:true]
 			</Description>
 		</EntityComponent>
-		<!-- Action group to fire Fixed Rocket Timer Blocks because of a bug in WC2 right now -->
-		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
-			<Id>
-				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Drone-All-Trigger-FireRocketsTimers</SubtypeId>
-			</Id>
-			<Description>
-				[RivalAI Trigger]
-				[UseTrigger:true]
-				[Type:TargetNear]
-				[TargetDistance:1000]
-				[Conditions:GVK-Drone-All-Condition-FireRocketsTimers]
-				[Actions:GVK-Drone-All-Action-FireRocketsTimers]
-			</Description>
-		</EntityComponent>
-		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
-			<Id>
-				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Drone-All-Condition-FireRocketsTimers</SubtypeId>
-			</Id>
-			<Description>
-				[RivalAI Condition]
-				[UseConditions:true]
-				[MatchAnyCondition:true]
-				[CheckTargetAngleFromForward:true]
-				[MinTargetAngle:0]
-				[MaxTargetAngle:15]
-			</Description>
-		</EntityComponent>
-		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
-			<Id>
-				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Drone-All-Action-FireRocketsTimers</SubtypeId>
-			</Id>
-			<Description>
-				[RivalAI Action]
-				[TriggerTimerBlocks:true]
-				[TimerBlockNames:Timer Block Rockets]
-			</Description>
-		</EntityComponent>
 		<!-- Action group to fire Archer Pods via Timer because of a bug in WC2 right now -->
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
@@ -112,79 +72,6 @@
 				[TriggerTimerBlocks:true]
 				[TimerBlockNames:Timer Block Missiles]
 				[TimerBlockNames:Timer Block Torpedoes]
-			</Description>
-		</EntityComponent>
-		<!-- Action group to fire Flares when taking damage -->
-		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
-			<Id>
-				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Drone-All-Trigger-FireFlaresTimers</SubtypeId>
-			</Id>
-			<Description>
-				[RivalAI Trigger]
-				[UseTrigger:true]
-				[Type:Damage]
-				[DamageTypes:Any]
-				[MinCooldownMs:30000]
-				[MaxCooldownMs:60000]
-				[StartsReady:true]
-				[Actions:GVK-Drone-All-Action-FireFlaresTimers]
-			</Description>
-		</EntityComponent>
-		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
-			<Id>
-				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Drone-All-Action-FireFlaresTimers</SubtypeId>
-			</Id>
-			<Description>
-				[RivalAI Action]
-				[Chance:40]
-				[TriggerTimerBlocks:true]
-				[TimerBlockNames:Timer Block Flares]
-			</Description>
-		</EntityComponent>
-		<!-- Action group to fire Fixed Railguns because of a bug in WC2 right now -->
-		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
-			<Id>
-				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Drone-All-Trigger-FireRailgunsTimers</SubtypeId>
-			</Id>
-			<Description>
-				[RivalAI Trigger]
-				[UseTrigger:true]
-				[Type:TargetNear]
-				[TargetDistance:2000]
-				[MinCooldownMs:5000]
-				[MaxCooldownMs:5000]
-				[ConditionCheckResetsTimer:true]
-				[Conditions:GVK-Drone-All-Condition-FireRailgunsTimers]
-				[Actions:GVK-Drone-All-Action-FireRailgunsTimers]
-			</Description>
-		</EntityComponent>
-		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
-			<Id>
-				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Drone-All-Condition-FireRailgunsTimers</SubtypeId>
-			</Id>
-			<Description>
-				[RivalAI Condition]
-				[UseConditions:true]
-				[MatchAnyCondition:true]
-				[CheckTargetAngleFromForward:true]
-				[MinTargetAngle:0]
-				[MaxTargetAngle:5]
-			</Description>
-		</EntityComponent>
-		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
-			<Id>
-				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Drone-All-Action-FireRailgunsTimers</SubtypeId>
-			</Id>
-			<Description>
-				[RivalAI Action]
-				[TriggerTimerBlocks:true]
-				[TimerBlockNames:Timer Block Railguns]
-				[TimerBlockNames:Timer Block MAC]
 			</Description>
 		</EntityComponent>
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
