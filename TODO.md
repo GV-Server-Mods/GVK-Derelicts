@@ -1,11 +1,13 @@
 # GVK_Derelicts Project Tracker & TODOs
 
-Centralized task tracker for **GVK_Derelicts** on the **GV: Deserts of Kharak (GVK)** server.
+Work for **GVK_Derelicts** is tracked as GitHub issues in **GV-Server-Mods/GVK-Settings** (Issues are disabled on this repo):
+[open `area:npc` issues](https://github.com/GV-Server-Mods/GVK-Settings/issues?q=is%3Aissue+is%3Aopen+label%3Aarea%3Anpc).
+This file keeps only what does not belong there: upstream MES bug reports, on-hold ideas, and the auto-harvested inline TODOs.
 
 ---
 
 ## 🛠️ Workflow & Usage
-* **Manual Tasks**: Add high-level plans, features, or balance tasks to the sections below.
+* **New work**: open an issue in GVK-Settings (`area:npc`, or `area:economy` for stores, contracts and loot). See `Docs/agents/issue-tracker.md`.
 * **Inline Code TODOs**: Leave `<!-- TODO: ... -->` in `.sbc` files or `// TODO: ...` in `.cs` files.
 * **Auto-Sync Script**: Run the following command from PowerShell to refresh the auto-harvested section below:
   ```powershell
@@ -14,57 +16,8 @@ Centralized task tracker for **GVK_Derelicts** on the **GV: Deserts of Kharak (G
 
 ---
 
-## 🔴 P0: Urgent / Game-Breaking
-- [x] **Cross-Grid Trigger Bypass**: Upstream button panel trigger bypass (`TriggerSystem.ProcessButtonTriggers` executing across different grids) — merged upstream as MES #360. Remove the inline TODO in `GVK-Alliance-PresetBases-Placeholder-Behavior.sbc` once the server runs a MES build that includes it.
-- [x] **ChangeBlocksShareModeAll MES Bug**: indexing bug in `ActionSystem.cs` (`grid.AllTerminalBlocks[i]` instead of `[j]`) — merged upstream as MES #369 (issue #370), listed in the MES 2.74.04 patch notes. The share-mode tags are restored on `GVK-Universal-Action-PublicSpawnPoint`; the KOTHOutpost spawn point becomes public once the server runs MES 2.74.04 or later.
-- [ ] **Rescue Mission Despawn** ([#469](https://github.com/GV-Server-Mods/GVK-Settings/issues/469)): Fix mission cruiser despawning after server restarts during active rescue missions.
-- [ ] **Escort Behavior Lock** ([#449](https://github.com/GV-Server-Mods/GVK-Settings/issues/449)): Fix NPC escorts retreating prematurely due to getting stuck between behavior state transitions.
-
----
-
-## 🟡 P1: Active Encounters & Features (Season 11)
-### Faction Encounters & KOTH
-- [ ] **Alliance Preset Bases** ([#494](https://github.com/GV-Server-Mods/GVK-Settings/issues/494)): Complete preset location deployment system (`GVK-Alliance-PresetBases-*`) and collapse per-faction definitions via `IdsReplacer`.
-- [ ] **Alliance Base Proximity Check** ([#479](https://github.com/GV-Server-Mods/GVK-Settings/issues/479)): Add trigger to check for duplicate base signals within 15 km; despawn and re-roll to prevent clutter.
-- [ ] **Flying KOTH** ([#494](https://github.com/GV-Server-Mods/GVK-Settings/issues/494)): Create flying KOTH encounter profile and behaviors.
-- [ ] **KOTH Megastructures** ([#494](https://github.com/GV-Server-Mods/GVK-Settings/issues/494)): Move KOTH capture blocks onto a separate subgrid to allow megastructures to conceal properly.
-- [ ] **KOTH Slot Randomization** ([#494](https://github.com/GV-Server-Mods/GVK-Settings/issues/494)): Randomize KOTH encounter selection for each active spawn slot.
-- [ ] **Ammo Factory Encounter** ([#494](https://github.com/GV-Server-Mods/GVK-Settings/issues/494)): Add automated ammo factory encounter.
-- [ ] **Re-enable Planetary Encounters** ([#478](https://github.com/GV-Server-Mods/GVK-Settings/issues/478)): Restore random encounters by adjusting small planetary installation probability multipliers (to ~12.5) and uncommenting spawn conditions.
-
-### Escorts & Formations
-- [ ] **Escort System Verification** ([#484](https://github.com/GV-Server-Mods/GVK-Settings/issues/484)): Diagnose why Baserunners fail to escort cruisers; verify escort autopilot assignment.
-- [ ] **On-Demand Escort Spawns** ([#480](https://github.com/GV-Server-Mods/GVK-Settings/issues/480)): Convert escorts from ambient idle spawns to interactive on-demand spawns (via button or contract block).
-- [ ] **Formation Flying** ([#481](https://github.com/GV-Server-Mods/GVK-Settings/issues/481)): Implement RivalAI escort formation behaviors for fighters, sandskimmers, and LAVs.
-- [ ] **Convoy System Integration**: Integrate `GVK-ConvoySystem-TriggerGroup` into additional behavior profiles beyond `HoverPatrolHorsefly`.
-
-### Core Behaviors & Triggers
-- [ ] **Re-enable Weapon Randomization**: set MES `RandomizedWeaponsUseFullRange` to `true` (`Config-Grids.xml` or `/MES.Settings.Grids.RandomizedWeaponsUseFullRange.true`). Randomized NPCs then skip MES's 800m cap and spawn at WeaponCore's full range, which avoids the 0m range bug without waiting for the MES fix. Only affects new spawns, and applies to every randomized NPC server-wide. Then restore the commented-out `[ManipulationProfiles:GVK-Universal-Manipulation-*Turrets]` lines in the spawn groups. Don't use `[SetWeaponsToMaxRange:]` / `[SetWeaponsToMinRange:]` actions until the MES fix ships (they still hit the bug).
-- [ ] **StrikeFighter → FighterPlane**: Consider moving the StrikeFighter drones (`GVK-Drone-All-TriggerGroup-PatrolStrike` switches them to the `Strike` subclass) to MES's newer `FighterPlane` behavior subclass (`Behavior/FighterPlane.cs`, MES `6d6d412`). It reads the same autopilot `AttackRun*` tags, so `GVK-Drone-All-Autopilot-StrikeFighter-Strike` carries over.
-- [ ] **Alliance Research Lab**: Add countdown timers to behavior so players do not assume it is frozen.
-- [ ] **Drone Trigger Defaults**:
-  - [ ] Switch to message banks for Gaalsien chats to eliminate redundant triggers.
-  - [ ] Use `IdsReplacer` for flexible spawn configurations via `CustomText`.
-  - [ ] Abstract non-drone specific triggers into universal profiles.
-
----
-
-## 🟢 P2: Balance & Economy
-- [x] **Econ 2 Mission Items** ([#490](https://github.com/GV-Server-Mods/GVK-Settings/issues/490)): Hook `[LootProfiles:GVK-Universal-Loot-Mission]` into wreck manipulation profiles / spawn groups (`Kharak_Loot_Mission` items and loot profile already defined). — DONE: 5 GVK_Recovery_* Component items defined, wired into all 15 UseLootProfiles wreck blocks + Recovery manipulation, exclusive store orders (Rustys/Mastodon/Sevastapol/Skyport + SmuggledGoods at ScrapTownKoth), NLO Cargo Drop & Subawu Rover updated.
-- [ ] **Station Services Terminal** ([#494](https://github.com/GV-Server-Mods/GVK-Settings/issues/494)): Enable the services terminal (`ServicesTerminal`) for specific features on NPC stations.
-- [ ] **Alliance NPC Cooldown** ([#489](https://github.com/GV-Server-Mods/GVK-Settings/issues/489)): Implement cooldown mechanism for Alliance NPCs to prevent defense spawn spam in dense areas.
-- [ ] **Alliance Supply System** ([#476](https://github.com/GV-Server-Mods/GVK-Settings/issues/476)): Implement supply grid delivery mechanic (transporting supply grids from depots to bases to build defense towers).
-- [ ] **Dynamic KOTH POIs** ([#451](https://github.com/GV-Server-Mods/GVK-Settings/issues/451)): Add temporary KOTH POIs that generate resources for a short duration and then turn off.
-- [ ] **Planetary Installations**: Audit and adjust beacon ranges on Small and Medium Vanilla prefab spawn groups.
-- [ ] **Universal Defenses**:
-  - [ ] Implement cooldown handshake between alliance drones and parent structures to prevent spawn spam.
-  - [ ] Add Coalition wreck defense trigger sets.
-- [ ] **Dialogue Variety**: Convert hardcoded chat triggers in `GVK-Universal-TriggerTags-DefeatedChat.sbc` to dialogue banks.
-
----
-
 ## 🐞 Upstream MES Bugs (report / PR to MES)
-Verified against MES source at commit `537c875` (2026-09-24) unless marked *observed*. File paths are under `Data/Scripts/ModularEncountersSystems/`; line numbers are at that commit. Grouped into the reports to file. Upstream items already tracked elsewhere: Cross-Grid Trigger Bypass and ChangeBlocksShareModeAll (both in P0).
+Verified against MES source at commit `537c875` (2026-09-24) unless marked *observed*. File paths are under `Data/Scripts/ModularEncountersSystems/`; line numbers are at that commit. Grouped into the reports to file. Already merged upstream, waiting on the server MES build: Cross-Grid Trigger Bypass (MES #360; then remove the inline TODO in `GVK-Alliance-PresetBases-Placeholder-Behavior.sbc`) and ChangeBlocksShareModeAll (MES #369, MES 2.74.04; the KOTHOutpost spawn point becomes public once the server runs it).
 PR branches and issue drafts (2026-09-25): see `Docs/MES-Upstream-Drafts.md`. `fix/sharemode-all-index` merged as MES #369; `fix/tag-parsing` (Report B + C) open as MES PR #372 / issue #371; `fix/known-player-locations` (Report A bugs) not yet submitted; issues drafted for KPL resize, Report D and unused tags.
 
 ### Report A: Known Player Locations (KPLs)
@@ -85,11 +38,23 @@ Context: `d2a18a2` (2025-08-03) already fixed a KPL without MaxSpawns being dele
 ### Report C: Missions
 - [ ] **`[EventConditionIds:]` is ignored** — fixed in MES PR #372 (open, tested in-game): parsed in `Mission/MissionProfile.cs:110`, but `Mission/Mission.cs:311` loops over `Profile.PlayerConditionIds` a second time instead of `Profile.EventConditionIds` when building the mission's event conditions. GVK impact: none today; avoid the tag until fixed (use `[PersistantEventConditionIds:]`).
 
+### Report G: Contract blocks (sent to enenra on Discord, 2026-10-04)
+- [ ] **`MinContracts` / `MaxContracts` do nothing**: `Spawning/Profiles/ContractBlockProfile.cs:24-25` declares them (default 10/10) and `:47-48` parses them, but nothing reads them. `ApplyProfileToBlock` (`:110`) loops over every `MissionIds` entry and posts each mission whose `Init` succeeds, so the contract count is just "every eligible mission". Confirmed on upstream `2361acf` (2026-10-04). GVK impact: none today (Convoy Contracts, [#675](https://github.com/GV-Server-Mods/GVK-Settings/issues/675), list 3 missions). Also reported: `Behavior/Subsystems/Trigger/ActionSystem.cs:2572` logs "Couldn't find Mission Profile" for a missing contract block profile.
+  - Status: waiting on enenra. Check for the fix after `git fetch upstream` in the MES clone: `git grep -n "MinContracts\|MaxContracts" upstream/master` shows more than the declaration/parse lines once something reads them. When it lands, tick this off and note the MES commit.
+
+### Report H: Terrain (asked enenra on Discord, 2026-10-04)
+- [ ] **`[MatchTerrainType:]` doesn't check the grid's terrain**: `Behavior/Subsystems/Trigger/ConditionProfile.cs:1174-1180` compares `NpcData.TerrainTypeName`, which `Spawning/PrefabSpawner.cs:202` sets once from `EnvironmentEvaluation.CommonTerrainAtPosition`. That is the most common material within ~165 m of the spawn request position (the player, for random installations), not where the grid landed. The live lookup at the Remote Control position is commented out at `ConditionProfile.cs:1168-1170`. GVK impact: `GVK-Universal-TriggerGroup-TerrainSkin` ([#676](https://github.com/GV-Server-Mods/GVK-Settings/issues/676)) can pick the wrong skin near a biome edge. Becomes exact with no GVK change once fixed.
+- [ ] **`[MatchTerrainType:]` always passes** (found in testing 2026-10-04: a wreck on grass got Frozen). Two bugs in the same block (`ConditionProfile.cs:1160-1190`):
+  - It never does `usedConditions++`. With the default `[MatchAnyCondition:false]`, a condition profile that only uses MatchTerrainType compares `satisfied >= 0`, which is always true.
+  - With `[MatchAnyCondition:true]` (as MSB uses it), `if (_behavior.AutoPilot.CurrentPlanet == null) satisfiedConditions++;` passes it anyway. `CurrentPlanet` is only set in `AutoPilotSystem.CalculateCurrentWaypoint` (`:934`), which a Passive behavior never reaches: `ThreadedAutoPilotCalculations` returns early when `CurrentAutoPilot == None` on first run (`:536-540`). So on wrecks, CurrentPlanet stays null.
+  - GVK impact: every terrain trigger in the group fires, and the first one (Frozen) wins.
+- [ ] *Not yet reported:* `Behavior/Subsystems/GridSystem.cs` `RecolorBlocks` loops over `AllBlocks` but removes an invalid block with `AllTerminalBlocks.RemoveAt(j)` (same `[i]`/`[j]` list mix-up class as MES #369). Only hits when the grid has a destroyed block, so it doesn't affect the spawn-time skin swap.
+
 ### Report E: WeaponCore ranges (low priority for GVK)
-- [ ] **WeaponCore 0m ranges and related bugs** (upstream #332): MES branch `fix/weaponcore-range-desync`, PR 4 in `Docs/MES-Upstream-Drafts.md`; old branch kept as `backup/weaponcore-range-desync`. GVK doesn't need it once `RandomizedWeaponsUseFullRange` is on (see P1). Before submitting, one quick test: a `[SetWeaponsToMaxRange:true]` action gives turrets their real max range (not 0m), and `[SetWeaponsToMinRange:true]` gives 800m.
+- [ ] **WeaponCore 0m ranges and related bugs** (upstream #332): MES branch `fix/weaponcore-range-desync`, PR 4 in `Docs/MES-Upstream-Drafts.md`; old branch kept as `backup/weaponcore-range-desync`. GVK doesn't need it once `RandomizedWeaponsUseFullRange` is on ([#666](https://github.com/GV-Server-Mods/GVK-Settings/issues/666)). Before submitting, one quick test: a `[SetWeaponsToMaxRange:true]` action gives turrets their real max range (not 0m), and `[SetWeaponsToMinRange:true]` gives 800m.
 
 ### Report D: Commands can't address the parent grid (feature request)
-- [ ] A spawner stores `ParentId = _behavior.RemoteControl.OwnerId` (`Behavior/Subsystems/Trigger/ActionSystem.cs:403`), an owner identity rather than a grid, and `[CommandCheckFromParent:]` compares the command's owner identity to it (`Behavior/Subsystems/Trigger/ConditionProfile.cs:1746`). So "from parent" means "from any grid with the same owner as the one that spawned me". A `[SingleRecipient:true]` command goes to the first listener that processes it (`Behavior/Subsystems/Trigger/TriggerSystem.cs:763`), not the nearest or the parent. Ask: store the parent Remote Control entity id in `NpcData`, add a "send to parent only" command option, and check the parent by entity id. GVK impact: a despawning defense drone's refund can go to the wrong structure (see "Defense refund targets the wrong structure" below).
+- [ ] A spawner stores `ParentId = _behavior.RemoteControl.OwnerId` (`Behavior/Subsystems/Trigger/ActionSystem.cs:403`), an owner identity rather than a grid, and `[CommandCheckFromParent:]` compares the command's owner identity to it (`Behavior/Subsystems/Trigger/ConditionProfile.cs:1746`). So "from parent" means "from any grid with the same owner as the one that spawned me". A `[SingleRecipient:true]` command goes to the first listener that processes it (`Behavior/Subsystems/Trigger/TriggerSystem.cs:763`), not the nearest or the parent. Ask: store the parent Remote Control entity id in `NpcData`, add a "send to parent only" command option, and check the parent by entity id. GVK impact: a despawning defense drone's refund can go to the wrong structure ([#663](https://github.com/GV-Server-Mods/GVK-Settings/issues/663)).
 
 ### Report F: Spawner cooldown timing
 - [ ] **A spawner's first cooldown counts from world load, not from when its grid spawned** (noted, not fixed, in MES issue #371): `SpawnProfile` sets `LastSpawnTime` in its constructor (`Behavior/Subsystems/Trigger/SpawnProfile.cs:140`), which runs once when `ProfileManager` builds the template at world load. `LastSpawnTime` is a serialized `[ProtoMember(10)]`, so every grid that later loads the spawner gets the world-load time, and `IsReadyToSpawn` (`:242-244`) measures `[SpawnMinCooldown:]`/`[SpawnMaxCooldown:]` (in seconds) from it. With `[StartsReady:false]`, a spawner on a grid that spawns later than the cooldown after world load can spawn right away; one on a grid that spawns earlier waits out the rest of it. Later cooldowns work: `Spawning/BehaviorSpawnHelper.cs:180-182` / `:203-205` set `LastSpawnTime` and `SpawnCount` after each successful spawn. `SpawnProfile.ProcessSuccessfulSpawn` (`:266`) is never called, and `TriggerProfile.ResetTime` (`Behavior/Subsystems/Trigger/TriggerProfile.cs:509`) only resets the legacy `SpawnerDefunct`. Ask: set `LastSpawnTime` when the spawner is attached to a behavior (for example in `TriggerProfile.InitRandomTimes`, `:532`). GVK impact: `GVK-Drone-All-Spawner-SpawnInterceptorSingle-GAALSIEN` has `[SpawnMinCooldown:180000]` (50 hours; probably meant as ms) behind a `[MaxActions:1]` trigger, so before `[StartsReady:]` was parsed it only spawned if the world had been loaded for 50 hours. With the `fix/tag-parsing` build, Honorguard and HoverCruiserHorsefly Gaalsien drones will spawn their interceptor once when a player comes within 1.5 km.
@@ -99,32 +64,8 @@ Context: `d2a18a2` (2025-08-03) already fixed a KPL without MaxSpawns being dele
 
 ---
 
-## 🧩 Unfinished Mechanics (from the 2026-09-24 unused-profile review)
-Profiles that exist but are not wired into anything yet.
-- [ ] **KHAANEPH Production Cruiser**: `GVK-Drone-All-Behavior-ProductionCruiser-KHAANEPH` and `GVK-Drone-Elite-Behavior-ProductionCruiser-KHAANEPH` exist, but there is no `NDR [KHAA] Production Cruiser` prefab. Build the prefab, then add it to `GVK-Drone-Defense-SpawnGroup-KHAANEPH-LargeHover` and `GVK-Boss-SpawnGroup-KHAANEPH-LargeCruiserSingle`.
-- [ ] **KHAANEPH Large Hover variety**: `GVK-Drone-Defense-SpawnGroup-KHAANEPH-LargeHover` now has the Siege and Honorguard cruisers. The Assault, Hurricane and Railgun cruiser prefabs also exist; consider adding them to match the GAALSIEN Large Hover group.
-- [ ] **Move drones to the KPL trigger groups**: goal is for drones to use the KPL (Known Player Location) versions of the Patrol groups wherever possible. Keep the non-KPL groups (`PatrolFighter`, `PatrolHorsefly`, `PatrolHorseFighter`, used by SOBAN/KHAANEPH today) until the KPL retest below passes. `GVK-Drone-All-TriggerGroup-PatrolFighter` is the non-KPL twin of `PatrolFighterKPL` (fixed guns on targets in range, back to patrol when not engaging).
+## ⏸️ On Hold
 - [ ] **Invulnerable Until Player Near (on hold)**: the trigger group now works (it was sending `true`/`false` to `[GridDestructible:]`, which only accepts `Yes`/`No`, so it never did anything; it also now starts invulnerable). Deliberately not attached to anything. Edge cases to solve before using it: a drone is also invulnerable to unattended player turrets when no player is within 4 km (offline or AFK bases can't kill raiders, but still take damage); only grids carrying it are protected, so a one-sided fight still destroys the other NPC (convoys, Alliance structures would need it too); a player sniping from beyond 4 km can't hurt it.
-- [ ] **Defense refund targets the wrong structure**: the exploit (trigger defenses, leave so they despawn, come back to an undefended target) is handled by the despawn refund: a defense drone that *despawns* (not destroyed) sends `DefensesRefundCounter` (`GVK-Universal-TriggerTags-RefundDefensesCommand`, single recipient, same owner, 6 km) and the structure's `GVK-Universal-Trigger-DefensesRefundCounter` decreases `DefenseSpawn_Counter`. What's left: MES delivers a single-recipient command to the first same-owner listener in range, not the drone's own parent, so with two defended structures within 6 km the wrong one can get the refund. `GVK-Universal-Condition-ReceiveCommandFromParent` can't fix it (see Upstream MES Bugs, Report D). Needs the MES PR, or a workaround such as per-structure command codes.
-- [ ] **Retire the Defense Heartbeat**: `GVK-Universal-TriggerGroup-Send/ReceiveDefenseHeartbeat` (structure pings its defenses every 30 s within 4 km; drones retreat after 30 min with no target or 6 h total) solved the same exploit but keeps drones loaded, since they must be exempt from concealment. Superseded by the refund above; delete once the refund is reliable.
-- [ ] **Reputation on Player Damage**: `GVK-Universal-Condition-DamagedByEnemyPlayer` / `-DamagedByNeutralPlayer` check the `DamagedByEnemyPlayer` / `DamagedByNeutralPlayer` booleans set by the AttackerIsEnemy/NeutralPlayer triggers in `GVK-Universal-TriggerGroup-DefeatedAndAttacked`. Finish the relation/reputation mechanic that consumes them.
-- [ ] **Beacon Disabled Condition**: `GVK-Universal-Condition-BeaconDisabled-WIP` uses `[RequiredNoneFunctionalBlockNames:]`. Retest on current MES with `/MES.BehaviorDebug.Condition.true`. Known limits in `ConditionProfile.cs`: the watched-block list is built once at behavior start by exact CustomName, so beacons renamed afterwards (for example by spawn-group BeaconText) or replaced are never watched.
-- [ ] **KPL Targeting Rebuild**: `GVK-Universal-Target-EnemyGridsinKPL` was meant to keep drones on enemies near their spawn area and break off the chase once players leave, but KPLs kept removing themselves.
-  - Observed: KPLs sometimes vanished within seconds of creation while a player was standing inside.
-  - MES history: `KnownPlayerLocationManager.cs` has had no functional change in the past month (only the `Factions` → `AllowedFactions` rename in `e2d53a7`, 2026-09-07). `d2a18a2` (2025-08-03) fixed two bugs that match "gone within seconds": a KPL without MaxSpawns was removed by the next spawn request after creation (`MaxSpawnedEncounters` defaulted to 0 and `0 >= 0` passed), and `RemoveLocation` removed KPLs of every faction *except* the caller's. GVK's KPL notes date from Jan 2025, before that fix.
-  - Every path in current MES that can remove a KPL (traced 2026-09-24): spawn-count cap (`CleanExpiredLocations`, on every spawn request); timer expiry (`TimerChecks` every 10 s and `CleanExpiredLocations`, both reset while a player is inside a timed KPL); radius ≤ 0; merge with a newer overlapping KPL (replaced, not lost); `RemoveLocation` (the `RemoveKnownPlayerArea` action or the API; GVK no longer uses it); world load (all KPLs, see Upstream MES Bugs). With a player inside, only the spawn cap and `RemoveLocation` can remove a GVK KPL today. The Patrol*KPL groups set `[KnownPlayerAreaMaxSpawns:5]`, and a wreck's defense wave plus escorts can spawn 5 GAALSIEN groups inside the 3 km sphere within seconds.
-  - Also note: a KPL owned by a faction acts as an allowed-faction zone, so while a player stands in a GAALSIEN KPL only GAALSIEN spawn groups can spawn there.
-  - Retest with `/MES.SpawnDebug.Zone.true` (plus `.GameLog.true`): every removal path except timer expiry writes its reason ("Exceeded Spawn Count", "Timer Expired", "Radius is 0 or Less", "Has Been Removed"). Then drop the spawn cap, use a longer timer (not `-1`, which hits the 60-min bug), move drones to the KPL groups, and have target-relay grids (`GVK-Universal-TriggerGroup-SendTargets`) add KPLs to extend the engagement area for nearby drones. Expect KPLs to reset on every restart until the world-load bug is fixed.
-
-## 🧹 Unused Profile Cleanup (decide keep / delete)
-- [ ] **Test explosions through tags** (in GV Kharak NPC Build World, `/MES.BehaviorDebug.Trigger.true`): for a Gaalsien convoy lead, a Coalition escort/trader, a Salvager (GAALSIEN, SOBAN, COALITION), the Coalition depot, Coalition recovery, a Comms Relay, a Turret Post and a convoy escort, destroy the Remote Control or disable the beacons and check for one explosion of the faction's color, one "{Faction} {Name} destroyed." chat, and no doubled mission/despawn actions. The Supply Depot ownership reset and the Recovery spawn/travel timeouts still call the explosion actions directly on purpose.
-- [ ] **Conditions**: `GVK-Universal-Condition-ReceiveCommandFromParent` (keep until the parent-command PR decides the defense refund, see Report D).
-
----
-
-## 📋 Backlog & Tech Debt
-- [ ] **Drone Tethering Investigation** ([#450](https://github.com/GV-Server-Mods/GVK-Settings/issues/450)): Investigate keeping drones near spawn areas without triggering `WaypointNear` engine crashes.
-- [ ] **Infiltration Encounter** ([#420](https://github.com/GV-Server-Mods/GVK-Settings/issues/420)): Design multi-stage stealth/assault encounter with repairable Gaalsien vehicle.
 
 ---
 
@@ -145,8 +86,7 @@ Profiles that exist but are not wired into anything yet.
 - [ ] 📝 **TODO** (Line 279): Upstream MES fix needed - a button panel on another grid can trigger this behavior (TriggerSystem.ProcessButtonTriggers bypasses its same-grid filter for grids outside the logical group). 
 
 ### [Content/Data/Encounters/Convoy/Contracts/GVK-EscortMissions-Missions.sbc](file:///C:/Users/blayl/source/repos/MDK2 Mods/GVK_Derelicts/Content/Data/Encounters/Convoy/Contracts/GVK-EscortMissions-Missions.sbc)
-- [ ] 📝 **TODO** (Line 6): #480).
-- [ ] 📝 **TODO** (Line 11): Add Route A option for single and double escort missions
+- [ ] 📝 **TODO** (Line 15): Add Route A option for single and double escort missions
 
 ### [Content/Data/Encounters/Convoy/Contracts/GVK-EscortMissions-Signals.sbc](file:///C:/Users/blayl/source/repos/MDK2 Mods/GVK_Derelicts/Content/Data/Encounters/Convoy/Contracts/GVK-EscortMissions-Signals.sbc)
 - [ ] 📝 **TODO** (Line 14): consolidate conditions and actions that are spread across here and EventTemplates files
@@ -174,19 +114,4 @@ Profiles that exist but are not wired into anything yet.
 ### [Content/Data/Encounters/PlanetaryCargoShip/Land Escorts/GVK-PlanetaryCargoShip-Land-Behavior-CoalitionTraderA.sbc](file:///C:/Users/blayl/source/repos/MDK2 Mods/GVK_Derelicts/Content/Data/Encounters/PlanetaryCargoShip/Land Escorts/GVK-PlanetaryCargoShip-Land-Behavior-CoalitionTraderA.sbc)
 - [ ] 📝 **TODO** (Line 6): Clean up redundancy and cross-utilization between RouteA and RouteB Traders and Escort missions using better methods
 
-### [Docs/EscortContractMissions-Design.md](file:///C:/Users/blayl/source/repos/MDK2 Mods/GVK_Derelicts/Docs/EscortContractMissions-Design.md)
-- [ ] 📝 **TODO** (Line 34): .md, Upstream MES Bugs); use
-
 <!-- AUTO-GENERATED-TODOS-END -->
-
----
-
-## ✅ Completed
-- [x] **Explosions through tags** (2026-10-04): the Gaalsien convoy leads, Coalition escorts/traders (A, B, E, DoubleEscortA, TraderA/B), Salvagers, Coalition depot and Coalition recovery now use `GVK-Universal-TriggerGroup-DefeatedAndAttacked`. Their own Compromised/BeaconDisabled triggers fire `GVK-Universal-Action-DefeatedCompromised` first (before any `[TerminateBehavior:true]`) instead of a direct explosion. Each behavior sets `EncounterType`/`EncounterDisplayName` with a Session init trigger, including the 4 that had the group without one (convoy escorts, Salvager-COALITION, Comms Relay, Turret Post). Added `Explosions-CargoShip-GAALSIEN` (blue) and `-CargoShip-COALITION`. This also fixes the SOBAN Salvager's blue explosion.
-- [x] **Unused Profile Cleanup** (2026-10-04): deleted ~50 unreferenced profiles (old explosion triggers, PlayerKOTH set, targets, chats, fire-timer triggers, waypoints, spawn/zone conditions, manipulations, PB replacer, Replenishment, Dereliction, COALITIONTrader store), the commented-out Set09 duplicate, and the dead `[ItemsRequireInventory:false]` tags. Kept `GVK-Replacer-NPCWeapons` (parked) and the convoy event conditions (used by the disabled convoy events).
-- [x] Clamped Alliance zone size counters (0 to 1200) and configured direction announcements (`GVK-Alliance-Events-ZoneSize.sbc`).
-- [x] **Zone Condition Consolidation** ([#411](https://github.com/GV-Server-Mods/GVK-Settings/issues/411)): Shared zone names across subtypes and collapsed redundant MES zone condition profiles (`GVK-Universal-ZoneCondition.sbc`).
-- [x] **Multi-Tier Index Verification**: Replaced index-dependent boolean matrices with stateless integer marker ladder logic (`GVK-Alliance-Events-ZoneSize.sbc`).
-- [x] **SBC Validation & Reference Audit**: Audited repository with `audit_sbc.ps1`, `audit_mes_tags.ps1`, and `audit_mes_references.ps1`; resolved duplicate triggers, missing master gates, and missing spawners.
-- [x] **Coalition Wreck Defeated Architecture**: Migrated `GVK-PlanetaryInstallation-Medium-Behavior-COALITIONWreck` to `GVK-Universal-TriggerGroup-DefeatedAndAttacked` using `GVK-Universal-TriggerTags-Compromised` manual trigger to cleanly cancel mission triggers on loss.
-- [x] **Vanilla Installation Beacon Ranges**: Standardized vanilla installation prefabs to Kharak canonical beacon ranges (Small 5km, Medium 30km; adjusted `NWS Twinsail Merchant` to 5km and `NWM Bulk Freighter` to 30km).

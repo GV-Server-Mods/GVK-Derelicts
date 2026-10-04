@@ -1,10 +1,9 @@
 # GVK-Derelicts
 Global Bools:
 - `LargeWrecksEnabled`
+- `MediumWrecksEnabled`
 - `SpawnStaticTown`
-- `MassiveSignalEligible`
-- `LargeWreckActive`
-- `ConvoyInactive`
+- `KOTHsEnabled`
 
 Run command `/MES.Debug.ChangeBool.Value1.true/false` to change bools. LargeWrecksEnabled should be turned on about 1 to 2 weeks in.
 SpawnStaticTown needs to be false when clearing all static grids so they don't spawn too many at once. Then set to true after the trade stations spawn in.
@@ -33,9 +32,9 @@ https://github.com/MeridiusIX/Modular-Encounters-Systems/wiki/Admin-&-Configurat
 
 `/MES.Info.GetGridBehavior` or `/MES.Info.GetGridData` are not currently on the admin debug command wiki
 
-To get large grids to spawn: `/MES.Debug.ChangeBool.LargeWreckActive.false`
+To get large wrecks to spawn: `/MES.Debug.ChangeBool.LargeWrecksEnabled.true`
 
-To get Convoy to spawn: `/MES.Debug.ChangeBool.ConvoyInactive.true`
+Coalition convoys (Routes A, B, E) no longer spawn on their own; they spawn only through Convoy Contracts on the `NTS [COAL] Base` contract board.
 
 Other useful commands:
 `/MES.Debug.ClearUniqueEncounters`
@@ -80,10 +79,10 @@ Additional Bool:
 | CustomStrings | CustomStrings | CustomCountersVariables | SetBooleansTrue |
 | **Alliance**  |  |  |  |
 | - AllianceBase  | Base  | 8 |  |
-| - AllianceOutpost | Outpost | 4 |  |
+| - AllianceOutpost | Outpost | 6 |  |
 | **Wrecks** |  |  |
 | - WreckLarge | large signal* | 8 |  |
-| - WreckMedium | medium signal* | 4 |  |
+| - WreckMedium | medium signal* | 5 (Coalition Wreck: 6) |  |
 | - WreckSmall | small signal | 0 |  |
 | **Drones** |  |  |
 | - DroneElite | Elite cruiser* |  |  |

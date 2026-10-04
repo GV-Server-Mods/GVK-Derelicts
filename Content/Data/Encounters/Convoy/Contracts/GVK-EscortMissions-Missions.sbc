@@ -3,11 +3,15 @@
 	<EntityComponents>
 		<!-- ================================================================= -->
 		<!-- GVK ESCORT CONTRACT MISSIONS                                      -->
-		<!-- MES-native player-initiated escort missions (TODO #480).          -->
+		<!-- MES-native player-initiated Convoy Contracts (Routes A, B, E).     -->
 		<!-- MES adds these to the Coalition contract block as real contracts   -->
 		<!-- (MyContractCustom, MESContract type) and spawns the convoy on      -->
 		<!-- accept via the mission's InstanceEventGroupId. No C# required.     -->
-		<!-- See Docs/EscortContractMissions-Design.md.                         -->
+		<!-- Board: GVK-EscortContracts-Trigger-RefreshBoard on                 -->
+		<!-- GVK-Static-TradeStation-Behavior -> NTS [COAL] Base.               -->
+		<!-- Files: Board, Missions, EventTemplates, Signals in this folder;    -->
+		<!-- Transport behaviors in Encounters/PlanetaryCargoShip/.             -->
+		<!-- Remaining work: GV-Server-Mods/GVK-Settings#675.                   -->
 		<!-- TODO: Add Route A option for single and double escort missions -->
 		<!-- ================================================================= -->
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">

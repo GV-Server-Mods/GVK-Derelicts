@@ -57,3 +57,19 @@ Before testing in-game or committing any `.sbc` modifications in `GVK_Derelicts`
 1. **XML & Deserialization**: Run `audit_sbc.ps1` to ensure no duplicate `<SubtypeId>`, duplicate `<Id>`, or `<!-- -->` comments inside `<Description>`.
 2. **Tag Validity**: Run `audit_mes_tags.ps1` to ensure no zero-stripping in `CustomCountersTargets`, no `WaypointNear` crashes, and all boolean master gates are present.
 3. **Reference Integrity**: Run `audit_mes_references.ps1` to ensure every referenced trigger, action, condition, spawner, and spawn group exists.
+
+---
+
+## Agent skills
+
+### Issue tracker
+
+GitHub Issues on GV-Server-Mods/GVK-Settings (Issues are disabled on GVK-Derelicts) via the `gh` CLI. See `Docs/agents/issue-tracker.md`.
+
+### Triage labels
+
+Default five-role vocabulary (needs-triage, needs-info, ready-for-agent, ready-for-human, wontfix). See `Docs/agents/triage-labels.md`.
+
+### Domain docs
+
+Single-context: root `GLOSSARY.md` + `Docs/adr/`. See `Docs/agents/domain.md`.
