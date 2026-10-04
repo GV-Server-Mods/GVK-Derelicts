@@ -1,0 +1,217 @@
+<?xml version="1.0"?>
+<Definitions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+	<EntityComponents>
+		<!-- Swaps the Dust_Armor skin from the wreck manipulations to match the terrain. Sand and Soil keep Dust. Small wrecks only: Medium/Large spawn too far from the player for the terrain sample to match. -->
+		<!-- MatchTerrainType reads the terrain sampled at spawn time (around the spawn request position, not the grid). -->
+		<!-- MES workaround: MatchTerrainType always passes while AutoPilot.CurrentPlanet is null, which it always is on Passive grids. -->
+		<!-- Sequence: switch to Patrol so the autopilot sets CurrentPlanet, check terrain at 2 s, switch back to Passive at 3 s. -->
+		<!-- Remove the Patrol switch once MES fixes MatchTerrainType (TODO.md, upstream Report H). -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Universal-TriggerGroup-TerrainSkin</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI TriggerGroup]
+			[Triggers:GVK-Universal-Trigger-TerrainSkinStart]
+			[Triggers:GVK-Universal-Trigger-TerrainSkinFrozen]
+			[Triggers:GVK-Universal-Trigger-TerrainSkinMossy]
+			[Triggers:GVK-Universal-Trigger-TerrainSkinBattered]
+			[Triggers:GVK-Universal-Trigger-TerrainSkinRestore]
+			</Description>
+		</EntityComponent>
+		<!-- Start: Passive -> Patrol -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Universal-Trigger-TerrainSkinStart</SubtypeId>
+			</Id>
+			<Description>
+			[MES AI Trigger]
+			[UseTrigger:true]
+			[Type:Session]
+			[StartsReady:true]
+			[MaxActions:1]
+			[Actions:GVK-Universal-Action-TerrainSkinStart]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Universal-Action-TerrainSkinStart</SubtypeId>
+			</Id>
+			<Description>
+			[MES AI Action]
+			[//DebugMessage:TerrainSkinStart]
+			[ChangeBehaviorSubclass:true]
+			[NewBehaviorSubclass:Patrol]
+			</Description>
+		</EntityComponent>
+		<!-- Frozen: Snow, Ice -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Universal-Trigger-TerrainSkinFrozen</SubtypeId>
+			</Id>
+			<Description>
+			[MES AI Trigger]
+			[UseTrigger:true]
+			[Type:Timer]
+			[StartsReady:false]
+			[MinCooldownMs:2000]
+			[MaxCooldownMs:2001]
+			[MaxActions:1]
+			[Conditions:GVK-Universal-Condition-TerrainSkinFrozen]
+			[Actions:GVK-Universal-Action-TerrainSkinFrozen]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Universal-Condition-TerrainSkinFrozen</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Condition]
+			[UseConditions:true]
+			[MatchAnyCondition:true]
+			[MatchTerrainType:true]
+			[TerrainTypeWhitelistNames:Snow]
+			[TerrainTypeWhitelistNames:Ice]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Universal-Action-TerrainSkinFrozen</SubtypeId>
+			</Id>
+			<Description>
+			[MES AI Action]
+			[//DebugMessage:TerrainSkinFrozen]
+			[RecolorGrid:true]
+			[RecolorSubGrids:true]
+			[OldBlockSkins:Dust_Armor]
+			[NewBlockSkins:Frozen_Armor]
+			</Description>
+		</EntityComponent>
+		<!-- Mossy: Grass, GrassDry (Kharak: Grass, Grass_old, Woods_grass) -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Universal-Trigger-TerrainSkinMossy</SubtypeId>
+			</Id>
+			<Description>
+			[MES AI Trigger]
+			[UseTrigger:true]
+			[Type:Timer]
+			[StartsReady:false]
+			[MinCooldownMs:2000]
+			[MaxCooldownMs:2001]
+			[MaxActions:1]
+			[Conditions:GVK-Universal-Condition-TerrainSkinMossy]
+			[Actions:GVK-Universal-Action-TerrainSkinMossy]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Universal-Condition-TerrainSkinMossy</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Condition]
+			[UseConditions:true]
+			[MatchAnyCondition:true]
+			[MatchTerrainType:true]
+			[TerrainTypeWhitelistNames:Grass]
+			[TerrainTypeWhitelistNames:GrassDry]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Universal-Action-TerrainSkinMossy</SubtypeId>
+			</Id>
+			<Description>
+			[MES AI Action]
+			[//DebugMessage:TerrainSkinMossy]
+			[RecolorGrid:true]
+			[RecolorSubGrids:true]
+			[OldBlockSkins:Dust_Armor]
+			[NewBlockSkins:Mossy_Armor]
+			</Description>
+		</EntityComponent>
+		<!-- Battered: Rock (Kharak: DesertRocks, Stone, Stone_03_Roads) -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Universal-Trigger-TerrainSkinBattered</SubtypeId>
+			</Id>
+			<Description>
+			[MES AI Trigger]
+			[UseTrigger:true]
+			[Type:Timer]
+			[StartsReady:false]
+			[MinCooldownMs:2000]
+			[MaxCooldownMs:2001]
+			[MaxActions:1]
+			[Conditions:GVK-Universal-Condition-TerrainSkinBattered]
+			[Actions:GVK-Universal-Action-TerrainSkinBattered]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Universal-Condition-TerrainSkinBattered</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Condition]
+			[UseConditions:true]
+			[MatchAnyCondition:true]
+			[MatchTerrainType:true]
+			[TerrainTypeWhitelistNames:Rock]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Universal-Action-TerrainSkinBattered</SubtypeId>
+			</Id>
+			<Description>
+			[MES AI Action]
+			[//DebugMessage:TerrainSkinBattered]
+			[RecolorGrid:true]
+			[RecolorSubGrids:true]
+			[OldBlockSkins:Dust_Armor]
+			[NewBlockSkins:Battered_Armor]
+			</Description>
+		</EntityComponent>
+		<!-- Restore: Patrol -> Passive, always runs -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Universal-Trigger-TerrainSkinRestore</SubtypeId>
+			</Id>
+			<Description>
+			[MES AI Trigger]
+			[UseTrigger:true]
+			[Type:Timer]
+			[StartsReady:false]
+			[MinCooldownMs:3000]
+			[MaxCooldownMs:3001]
+			[MaxActions:1]
+			[Actions:GVK-Universal-Action-TerrainSkinRestore]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Universal-Action-TerrainSkinRestore</SubtypeId>
+			</Id>
+			<Description>
+			[MES AI Action]
+			[//DebugMessage:TerrainSkinRestore]
+			[ChangeBehaviorSubclass:true]
+			[NewBehaviorSubclass:Passive]
+			</Description>
+		</EntityComponent>
+	</EntityComponents>
+</Definitions>
