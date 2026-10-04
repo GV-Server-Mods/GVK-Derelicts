@@ -37,6 +37,8 @@
 			[Triggers:GVK-Convoy-GAALSIENCarrier-Lead-Trigger-DespawnMES]
 			[Triggers:GVK-Convoy-GAALSIENCarrier-Lead-Trigger-Compromised]
 			[Triggers:GVK-Convoy-GAALSIENCarrier-Lead-Trigger-SpawnFighters]
+			[Triggers:GVK-Convoy-GAALSIENCarrier-Lead-Trigger-EncounterInit]
+			[TriggerGroups:GVK-Universal-TriggerGroup-DefeatedAndAttacked]
 			[RemoteControlCode:ConvoyEncounter]
 			BountyOnKill=50000000;
 			</Description>
@@ -400,11 +402,11 @@
 			[StartsReady:true]
 			[MaxActions:1]
 			[ActionExecution:All]
+			[Actions:GVK-Universal-Action-DefeatedCompromised]
 			[Actions:GVK-Convoy-GAALSIENCarrier-Lead-Action-SendScatterCommand]
 			[Actions:GVK-Convoy-GAALSIENCarrier-Lead-Action-Compromised]
 			[Actions:GVK-Convoy-GAALSIENCarrier-Lead-Action-Disabled]
 			[Actions:GVK-Universal-Action-Disabled]
-			[Actions:GVK-Universal-Action-LargeBlueExplosionEffects]
 			</Description>
 		</EntityComponent>
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
@@ -645,11 +647,11 @@
 			[Conditions:GVK-Convoy-GAALSIENCarrier-Lead-Condition-BeaconDisabled]
 			[MaxActions:1]
 			[ActionExecution:All]
+			[Actions:GVK-Universal-Action-DefeatedCompromised]
 			[Actions:GVK-Convoy-GAALSIENCarrier-Lead-Action-SendScatterCommand]
 			[Actions:GVK-Convoy-GAALSIENCarrier-Lead-Action-Compromised]
 			[Actions:GVK-Convoy-GAALSIENCarrier-Lead-Action-Disabled]
 			[Actions:GVK-Universal-Action-Disabled]
-			[Actions:GVK-Universal-Action-LargeBlueExplosionEffects]
 			</Description>
 		</EntityComponent>
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
@@ -663,6 +665,33 @@
 			[MatchAnyCondition:false]
 			[UseRequiredFunctionalBlocks:true]
 			[RequiredNoneFunctionalBlockNames:Carrier]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Convoy-GAALSIENCarrier-Lead-Trigger-EncounterInit</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Trigger]
+				[UseTrigger:true]
+				[Type:Session]
+				[StartsReady:true]
+				[MaxActions:-1]
+				[ActionExecution:All]
+				[Actions:GVK-Convoy-GAALSIENCarrier-Lead-Action-EncounterInit]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Convoy-GAALSIENCarrier-Lead-Action-EncounterInit</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Action]
+				[SetCustomStrings:true]
+				[CustomStrings:EncounterType,CargoShip]
+				[CustomStrings:EncounterDisplayName,Carrier]
 			</Description>
 		</EntityComponent>
 	</EntityComponents>

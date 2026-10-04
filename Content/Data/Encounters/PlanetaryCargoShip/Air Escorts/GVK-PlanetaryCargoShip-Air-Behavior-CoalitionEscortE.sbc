@@ -50,6 +50,8 @@
 				[Triggers:GVK-CargoShip-Air-COALITION-Trigger-EscortSuccessTargetE]
 				[Triggers:GVK-CargoShip-Air-COALITION-Trigger-EscortSuccessCounterE]
 				[Triggers:GVK-CargoShip-Air-COALITION-Trigger-HeartbeatE]
+				[Triggers:GVK-CargoShip-Air-COALITION-EscortE-Trigger-EncounterInit]
+				[TriggerGroups:GVK-Universal-TriggerGroup-DefeatedAndAttacked]
 				[RemoteControlCode:COALITIONRouteE]
 			</Description>
 		</EntityComponent>
@@ -262,11 +264,11 @@
 				[Conditions:GVK-Universal-Condition-AllBeaconsDisabled]
 				[MaxActions:1]
 				[ActionExecution:All]
+				[Actions:GVK-Universal-Action-DefeatedCompromised]
 				[Actions:GVK-EscortMissions-Action-ConvoyLost-E]
 				[Actions:GVK-CargoShip-Air-COALITION-Action-EscortCompromised]
 				[Actions:GVK-Universal-Action-EditableOnCompromised]
 				[Actions:GVK-Universal-Action-Disabled]
-				[Actions:GVK-Universal-Action-LargeExplosionEffects]
 			</Description>
 		</EntityComponent>
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
@@ -281,11 +283,11 @@
 				[StartsReady:true]
 				[MaxActions:1]
 				[ActionExecution:All]
+				[Actions:GVK-Universal-Action-DefeatedCompromised]
 				[Actions:GVK-EscortMissions-Action-ConvoyLost-E]
 				[Actions:GVK-CargoShip-Air-COALITION-Action-EscortCompromised]
 				[Actions:GVK-Universal-Action-EditableOnCompromised]
 				[Actions:GVK-Universal-Action-Disabled]
-				[Actions:GVK-Universal-Action-LargeExplosionEffects]
 			</Description>
 		</EntityComponent>
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
@@ -1179,6 +1181,33 @@
 				[RivalAI Action]
 				[ResetCooldownTimeOfEvents:true]
 				[ResetEventCooldownTags:GVK_EscortWatchdog_E]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-CargoShip-Air-COALITION-EscortE-Trigger-EncounterInit</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Trigger]
+				[UseTrigger:true]
+				[Type:Session]
+				[StartsReady:true]
+				[MaxActions:-1]
+				[ActionExecution:All]
+				[Actions:GVK-CargoShip-Air-COALITION-EscortE-Action-EncounterInit]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-CargoShip-Air-COALITION-EscortE-Action-EncounterInit</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Action]
+				[SetCustomStrings:true]
+				[CustomStrings:EncounterType,CargoShip]
+				[CustomStrings:EncounterDisplayName,Cargo Ship]
 			</Description>
 		</EntityComponent>
 	</EntityComponents>

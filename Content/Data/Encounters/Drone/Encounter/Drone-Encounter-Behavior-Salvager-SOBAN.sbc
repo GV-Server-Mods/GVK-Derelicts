@@ -22,6 +22,8 @@
 			[TriggerGroups:GVK-Drone-All-TriggerGroup-SalvagerDefeated]
 			[TriggerGroups:GVK-Drone-All-TriggerGroup-SalvagerRetreat]
 			[TriggerGroups:GVK-Universal-TriggerGroup-SendTargets]
+			[Triggers:GVK-Drone-Encounter-Salvager-SOBAN-Trigger-EncounterInit]
+			[TriggerGroups:GVK-Universal-TriggerGroup-DefeatedAndAttacked]
 			BountyOnKill=500000;
 			</Description>
 		</EntityComponent>
@@ -90,6 +92,33 @@
 			[OffsetPlanetMaxTargetAltitude:10]
 			[AngleAllowedForForwardThrust:90]
 			[MaxVelocityAngleForSpeedControl:1000]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Drone-Encounter-Salvager-SOBAN-Trigger-EncounterInit</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Trigger]
+				[UseTrigger:true]
+				[Type:Session]
+				[StartsReady:true]
+				[MaxActions:-1]
+				[ActionExecution:All]
+				[Actions:GVK-Drone-Encounter-Salvager-SOBAN-Action-EncounterInit]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Drone-Encounter-Salvager-SOBAN-Action-EncounterInit</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Action]
+				[SetCustomStrings:true]
+				[CustomStrings:EncounterType,DroneMedium]
+				[CustomStrings:EncounterDisplayName,Salvager]
 			</Description>
 		</EntityComponent>
 	</EntityComponents>

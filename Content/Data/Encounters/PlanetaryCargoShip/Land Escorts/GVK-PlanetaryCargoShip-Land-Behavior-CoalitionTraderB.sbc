@@ -43,6 +43,8 @@
 				[Triggers:GVK-CargoShip-Land-COALITION-Trigger-TraderPlayerStillNear]
 				[Triggers:GVK-CargoShip-Land-COALITION-Trigger-TraderPlayerNotNear]
 				[Triggers:GVK-CargoShip-Land-COALITION-Trigger-TraderOutsideZone0]
+				[Triggers:GVK-CargoShip-Land-COALITION-TraderB-Trigger-EncounterInit]
+				[TriggerGroups:GVK-Universal-TriggerGroup-DefeatedAndAttacked]
 				[RemoteControlCode:COALITIONRouteB]
 			</Description>
 		</EntityComponent>
@@ -98,6 +100,33 @@
 				[SendToAllOnlinePlayers:true]
 				[IgnoreAntennaRequirement:true]
 				[IgnoredAntennaRangeOverride:999999]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-CargoShip-Land-COALITION-TraderB-Trigger-EncounterInit</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Trigger]
+				[UseTrigger:true]
+				[Type:Session]
+				[StartsReady:true]
+				[MaxActions:-1]
+				[ActionExecution:All]
+				[Actions:GVK-CargoShip-Land-COALITION-TraderB-Action-EncounterInit]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-CargoShip-Land-COALITION-TraderB-Action-EncounterInit</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Action]
+				[SetCustomStrings:true]
+				[CustomStrings:EncounterType,CargoShip]
+				[CustomStrings:EncounterDisplayName,Trader]
 			</Description>
 		</EntityComponent>
 	</EntityComponents>

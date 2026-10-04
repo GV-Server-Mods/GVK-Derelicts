@@ -55,6 +55,8 @@
 				[Triggers:GVK-CargoShip-Land-COALITION-Trigger-EscortEnemySpawnsZ3Canyon]
 				[Triggers:GVK-CargoShip-Land-COALITION-Trigger-EscortSuccessTargetA]
 				[Triggers:GVK-CargoShip-Land-COALITION-Trigger-EscortSuccessCounterA]
+				[Triggers:GVK-CargoShip-Land-COALITION-DoubleEscortA-Trigger-EncounterInit]
+				[TriggerGroups:GVK-Universal-TriggerGroup-DefeatedAndAttacked]
 				[RemoteControlCode:COALITIONRouteA]
 			</Description>
 		</EntityComponent>
@@ -168,6 +170,8 @@
 				[Triggers:GVK-CargoShip-Land-COALITION-Trigger-EscortEnemySpawnsZ3Canyon]
 				[Triggers:GVK-CargoShip-Land-COALITION-Trigger-EscortSuccessTargetA]
 				[Triggers:GVK-CargoShip-Land-COALITION-Trigger-EscortSuccessCounterA]
+				[Triggers:GVK-CargoShip-Land-COALITION-DoubleEscortA-Trigger-EncounterInit]
+				[TriggerGroups:GVK-Universal-TriggerGroup-DefeatedAndAttacked]
 				[RemoteControlCode:COALITIONRouteA]
 			</Description>
 		</EntityComponent>
@@ -203,6 +207,33 @@
 				[ResetCounters:WaypointCounter]
 				[DisableTriggers:true]
 				[DisableTriggerNames:GVK-CargoShip-Land-COALITION-Trigger-EscortHorizonAngleHigh]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-CargoShip-Land-COALITION-DoubleEscortA-Trigger-EncounterInit</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Trigger]
+				[UseTrigger:true]
+				[Type:Session]
+				[StartsReady:true]
+				[MaxActions:-1]
+				[ActionExecution:All]
+				[Actions:GVK-CargoShip-Land-COALITION-DoubleEscortA-Action-EncounterInit]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-CargoShip-Land-COALITION-DoubleEscortA-Action-EncounterInit</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Action]
+				[SetCustomStrings:true]
+				[CustomStrings:EncounterType,CargoShip]
+				[CustomStrings:EncounterDisplayName,Cargo Ship]
 			</Description>
 		</EntityComponent>
 	</EntityComponents>

@@ -37,6 +37,8 @@
 			[Triggers:GVK-PlanetaryInstallation-Large-ManualTrigger-COALITIONDepotSpawnsWave2]
 			[Triggers:GVK-Universal-Trigger-DespawnInZ0]
 			[TriggerGroups:GVK-Universal-TriggerGroup-SendTargets]
+			[Triggers:GVK-PlanetaryInstallation-Large-COALITIONDepot-Trigger-EncounterInit]
+			[TriggerGroups:GVK-Universal-TriggerGroup-DefeatedAndAttacked]
 			[RemoteControlCode:GVK-LargeDerelict]
 			</Description>
 		</EntityComponent>
@@ -173,12 +175,12 @@
 			[Conditions:GVK-Universal-Condition-AllBeaconsDisabled]				  
 			[MaxActions:1]
 			[ActionExecution:All]
+			[Actions:GVK-Universal-Action-DefeatedCompromised]
 			[Actions:GVK-PlanetaryInstallation-Large-Action-COALITIONDepotCompromised]
 			[//Actions:GVK-PlanetaryInstallation-All-Action-CompromisedGeneric]
 			[Actions:GVK-PlanetaryInstallation-Large-Action-COALITIONDepotSpawnsWave1]
 			[Actions:GVK-Universal-Action-EditableOnCompromised]
 			[Actions:GVK-Universal-Action-Disabled]
-			[Actions:GVK-Universal-Action-LargeExplosionEffects]
 			</Description>
 		</EntityComponent>
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
@@ -193,12 +195,12 @@
 			[StartsReady:true]
 			[MaxActions:1]
 			[ActionExecution:All]
+			[Actions:GVK-Universal-Action-DefeatedCompromised]
 			[Actions:GVK-PlanetaryInstallation-Large-Action-COALITIONDepotCompromised]
 			[//Actions:GVK-PlanetaryInstallation-All-Action-CompromisedGeneric]
 			[Actions:GVK-PlanetaryInstallation-Large-Action-COALITIONDepotSpawnsWave1]
 			[Actions:GVK-Universal-Action-EditableOnCompromised]
 			[Actions:GVK-Universal-Action-Disabled]
-			[Actions:GVK-Universal-Action-LargeExplosionEffects]
 			</Description>
 		</EntityComponent>
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
@@ -877,6 +879,33 @@
 			[MaxAltitude:51]
 			[InheritNpcAltitude:false]
 			[IgnoreSafetyChecks:true]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-PlanetaryInstallation-Large-COALITIONDepot-Trigger-EncounterInit</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Trigger]
+				[UseTrigger:true]
+				[Type:Session]
+				[StartsReady:true]
+				[MaxActions:-1]
+				[ActionExecution:All]
+				[Actions:GVK-PlanetaryInstallation-Large-COALITIONDepot-Action-EncounterInit]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-PlanetaryInstallation-Large-COALITIONDepot-Action-EncounterInit</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Action]
+				[SetCustomStrings:true]
+				[CustomStrings:EncounterType,WreckLarge]
+				[CustomStrings:EncounterDisplayName,Depot]
 			</Description>
 		</EntityComponent>
 	</EntityComponents>

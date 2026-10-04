@@ -24,6 +24,7 @@
 			[TriggerGroups:GVK-Drone-All-TriggerGroup-FrontSensorStop]
 			[TriggerGroups:GVK-Universal-TriggerGroup-DefeatedAndAttacked]
 			[TriggerGroups:GVK-Universal-TriggerGroup-SendTargets]
+			[Triggers:GVK-Drone-Encounter-Salvager-COALITION-Trigger-EncounterInit]
 			</Description>
 		</EntityComponent>
 		<!-- Salvager at wrecks does not spawn attacker sandskimmers -->
@@ -48,6 +49,7 @@
 			[TriggerGroups:GVK-Drone-All-TriggerGroup-FrontSensorStop]
 			[TriggerGroups:GVK-Universal-TriggerGroup-DefeatedAndAttacked]
 			[TriggerGroups:GVK-Universal-TriggerGroup-SendTargets]
+			[Triggers:GVK-Drone-Encounter-Salvager-COALITION-Trigger-EncounterInit]
 			</Description>
 		</EntityComponent>
 		<!-- Salvager Patrol Autopilot -->
@@ -222,6 +224,33 @@
 			[MaxAltitude:21]
 			[InheritNpcAltitude:false]
 			[IgnoreSafetyChecks:true]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Drone-Encounter-Salvager-COALITION-Trigger-EncounterInit</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Trigger]
+				[UseTrigger:true]
+				[Type:Session]
+				[StartsReady:true]
+				[MaxActions:-1]
+				[ActionExecution:All]
+				[Actions:GVK-Drone-Encounter-Salvager-COALITION-Action-EncounterInit]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Drone-Encounter-Salvager-COALITION-Action-EncounterInit</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Action]
+				[SetCustomStrings:true]
+				[CustomStrings:EncounterType,DroneMedium]
+				[CustomStrings:EncounterDisplayName,Salvager]
 			</Description>
 		</EntityComponent>
 	</EntityComponents>

@@ -25,6 +25,7 @@
 				[Triggers:GVK-Convoy-Escort-Trigger-RequestEscortSlot]
 				[Triggers:GVK-Convoy-Escort-Trigger-ReceiveScatterCommand]
 				[TriggerGroups:GVK-Universal-TriggerGroup-DefeatedAndAttacked]
+				[Triggers:GVK-Convoy-Escort-Trigger-EncounterInit-DroneMedium]
 				BountyOnKill=1000000;
 			</Description>
 		</EntityComponent>
@@ -52,6 +53,7 @@
 				[Triggers:GVK-Convoy-Escort-Trigger-RequestEscortSlot]
 				[Triggers:GVK-Convoy-Escort-Trigger-ReceiveScatterCommand]
 				[TriggerGroups:GVK-Universal-TriggerGroup-DefeatedAndAttacked]
+				[Triggers:GVK-Convoy-Escort-Trigger-EncounterInit-DroneLarge]
 				BountyOnKill=3000000;
 			</Description>
 		</EntityComponent>
@@ -207,6 +209,60 @@
 				[SendToAllOnlinePlayers:false]
 				[IgnoreAntennaRequirement:true]
 				[IgnoredAntennaRangeOverride:9999999]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Convoy-Escort-Trigger-EncounterInit-DroneLarge</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Trigger]
+				[UseTrigger:true]
+				[Type:Session]
+				[StartsReady:true]
+				[MaxActions:-1]
+				[ActionExecution:All]
+				[Actions:GVK-Convoy-Escort-Action-EncounterInit-DroneLarge]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Convoy-Escort-Action-EncounterInit-DroneLarge</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Action]
+				[SetCustomStrings:true]
+				[CustomStrings:EncounterType,DroneLarge]
+				[CustomStrings:EncounterDisplayName,Escort]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Convoy-Escort-Trigger-EncounterInit-DroneMedium</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Trigger]
+				[UseTrigger:true]
+				[Type:Session]
+				[StartsReady:true]
+				[MaxActions:-1]
+				[ActionExecution:All]
+				[Actions:GVK-Convoy-Escort-Action-EncounterInit-DroneMedium]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Convoy-Escort-Action-EncounterInit-DroneMedium</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Action]
+				[SetCustomStrings:true]
+				[CustomStrings:EncounterType,DroneMedium]
+				[CustomStrings:EncounterDisplayName,Escort]
 			</Description>
 		</EntityComponent>
 	</EntityComponents>

@@ -22,6 +22,7 @@
 			[Triggers:GVK-PlanetaryInstallation-Small-Trigger-COALITIONRelayButtonPress]
 			[TriggerGroups:GVK-Universal-TriggerGroup-SendTargets]
 			[TriggerGroups:GVK-Universal-TriggerGroup-DefeatedAndAttacked]
+			[Triggers:GVK-PlanetaryInstallation-Small-COALITIONRelay-Trigger-EncounterInit]
 			</Description>
 		</EntityComponent>
 		<!-- Trigger sequence when Wreck Spawns -->
@@ -249,6 +250,33 @@
 			[SendToAllOnlinePlayers:false]
 			[IgnoreAntennaRequirement:true]
 			[IgnoredAntennaRangeOverride:10000]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-PlanetaryInstallation-Small-COALITIONRelay-Trigger-EncounterInit</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Trigger]
+				[UseTrigger:true]
+				[Type:Session]
+				[StartsReady:true]
+				[MaxActions:-1]
+				[ActionExecution:All]
+				[Actions:GVK-PlanetaryInstallation-Small-COALITIONRelay-Action-EncounterInit]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-PlanetaryInstallation-Small-COALITIONRelay-Action-EncounterInit</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Action]
+				[SetCustomStrings:true]
+				[CustomStrings:EncounterType,WreckSmall]
+				[CustomStrings:EncounterDisplayName,Comms Relay]
 			</Description>
 		</EntityComponent>
 	</EntityComponents>

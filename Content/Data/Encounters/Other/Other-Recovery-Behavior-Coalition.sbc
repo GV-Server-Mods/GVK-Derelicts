@@ -27,6 +27,8 @@
 			[Triggers:GVK-Other-Recovery-Trigger-ReceivedWaypoint]
 			[Triggers:GVK-Other-Recovery-Trigger-SpawnTimeOut]
 			[Triggers:GVK-Other-Recovery-Trigger-TravelTimeOut]
+			[Triggers:GVK-Other-Recovery-Trigger-EncounterInit]
+			[TriggerGroups:GVK-Universal-TriggerGroup-DefeatedAndAttacked]
 			</Description>
 		</EntityComponent>
 		<!-- Salvager CargoShip Autopilot -->
@@ -276,11 +278,11 @@
 			[Conditions:GVK-Universal-Condition-AllBeaconsDisabled]				  
 			[MaxActions:1]
 			[ActionExecution:All]
+			[Actions:GVK-Universal-Action-DefeatedCompromised]
 			[Actions:GVK-Other-Recovery-Action-Compromised]
 			[//Actions:GVK-PlanetaryInstallation-All-Action-CompromisedGeneric]
 			[Actions:GVK-Universal-Action-EditableOnCompromised]
 			[Actions:GVK-Universal-Action-Disabled]
-			[Actions:GVK-Universal-Action-SmallExplosionEffects]
 			</Description>
 		</EntityComponent>
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
@@ -295,11 +297,11 @@
 			[StartsReady:true]
 			[MaxActions:1]
 			[ActionExecution:All]
+			[Actions:GVK-Universal-Action-DefeatedCompromised]
 			[Actions:GVK-Other-Recovery-Action-Compromised]
 			[//Actions:GVK-PlanetaryInstallation-All-Action-CompromisedGeneric]
 			[Actions:GVK-Universal-Action-EditableOnCompromised]
 			[Actions:GVK-Universal-Action-Disabled]
-			[Actions:GVK-Universal-Action-SmallExplosionEffects]
 			</Description>
 		</EntityComponent>
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
@@ -607,6 +609,33 @@
 			[SendToAllOnlinePlayers:false]
 			[IgnoreAntennaRequirement:true]
 			[IgnoredAntennaRangeOverride:3000]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Other-Recovery-Trigger-EncounterInit</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Trigger]
+				[UseTrigger:true]
+				[Type:Session]
+				[StartsReady:true]
+				[MaxActions:-1]
+				[ActionExecution:All]
+				[Actions:GVK-Other-Recovery-Action-EncounterInit]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Other-Recovery-Action-EncounterInit</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Action]
+				[SetCustomStrings:true]
+				[CustomStrings:EncounterType,WreckSmall]
+				[CustomStrings:EncounterDisplayName,Downed Salvager]
 			</Description>
 		</EntityComponent>
 	</EntityComponents>
