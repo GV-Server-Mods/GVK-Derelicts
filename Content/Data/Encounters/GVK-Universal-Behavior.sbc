@@ -80,7 +80,7 @@
 				[ChatData:GVK-Universal-Chat-NoTargetsChatter]
 			</Description>
 		</EntityComponent>
-		<!-- Jetpack Inhibitor on Session (This appears to be broken in DS MP, players can glide long distances  -->
+		<!-- Jetpack Inhibitor on Session (This appears to be broken in DS MP, players can glide long distances; GVK-Settings#690  -->
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
@@ -593,7 +593,7 @@
 				[Actions:GVK-Universal-Action-PublicSpawnPoint]
 			</Description>
 		</EntityComponent>
-		<!-- Submitted PR to fix ChangeBlocksShareModeAll -->
+		<!-- ChangeBlocksShareModeAll needs MES 2.74.04+ (fixed upstream in MES #369) -->
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
@@ -639,7 +639,7 @@
 				[TrueBooleans:GVK_MobilityType_Aircraft]
 			</Description>
 		</EntityComponent>
-		<!-- Action group to set turrets to max range because of a bug in MES right now -->
+		<!-- Action group to set turrets to max range to work around the MES WeaponCore range bug (GVK-Settings#681) -->
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>

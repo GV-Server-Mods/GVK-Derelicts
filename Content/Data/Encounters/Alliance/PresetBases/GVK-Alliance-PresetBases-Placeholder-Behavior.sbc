@@ -206,7 +206,6 @@
 		<!-- =================================================== -->
 		<!-- BASE SPAWN ACTIONS & SPAWNERS                       -->
 		<!-- =================================================== -->
-		<!-- TODO: Tokenise spawner/spawngroup/faction via IdsReplacer to collapse the per-faction definitions. -->
 		<!-- One-base-per-site is enforced by the RC code GVK-Alliance-Base in GVK-Alliance-PresetBases-Base-SpawnCondition-*:
 		     RemoteControlCodeMinDistance 1100 exceeds the spawner MaxDistance 500, so an existing base always blocks a redeploy. -->
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
@@ -275,8 +274,5 @@
 			</Description>
 		</EntityComponent>
 
-		<!-- TODO: Optional deployment announcement with current alliance stats (needs new logic - deferred).
-		     TODO: Upstream MES fix needed - a button panel on another grid can trigger this behavior
-		     (TriggerSystem.ProcessButtonTriggers bypasses its same-grid filter for grids outside the logical group). -->
 	</EntityComponents>
 </Definitions>

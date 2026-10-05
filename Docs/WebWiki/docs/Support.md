@@ -1,3 +1,0 @@
-#Support.md
-
-Coming Soon™

@@ -1,3 +1,0 @@
-#index.md
-
-hello world

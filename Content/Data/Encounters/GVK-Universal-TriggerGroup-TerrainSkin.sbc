@@ -5,7 +5,7 @@
 		<!-- MatchTerrainType reads the terrain sampled at spawn time (around the spawn request position, not the grid). -->
 		<!-- MES workaround: MatchTerrainType always passes while AutoPilot.CurrentPlanet is null, which it always is on Passive grids. -->
 		<!-- Sequence: switch to Patrol so the autopilot sets CurrentPlanet, check terrain at 2 s, switch back to Passive at 3 s. -->
-		<!-- Remove the Patrol switch once MES fixes MatchTerrainType (TODO.md, upstream Report H). -->
+		<!-- Remove the Patrol switch once MES fixes MatchTerrainType (GV-Server-Mods/GVK-Settings#678). -->
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>

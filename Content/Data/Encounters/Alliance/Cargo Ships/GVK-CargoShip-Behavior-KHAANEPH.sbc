@@ -14,10 +14,9 @@
 		Notes:
 		 - Only 1 cargo ship at at time (remote control code with long range)
 		 - Cargo ship spawns enemies based on nearby player rep. If allied then spawn opposite enemies.
-		 - WaypointNear and WaypointFar are broken and break all other triggers. Workaround is to use 
+		 - WaypointNear and WaypointFar are broken and break all other triggers (GVK-Settings#450). Workaround is to use 
 		   TargetNear and TargetFar with a target profile for Supply Depots. This inhibits the use of 
 		   SendTargets trigger groups and targeting of player grids.
-		 - It might be worth adding the ReturnToSender or similar command tags
 		
 		-->
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
@@ -668,8 +667,8 @@
 				[ChatData:GVK-CargoShip-KHAANEPH-Chat-HeadToDespawn]
 			</Description>
 		</EntityComponent>
-		<!-- WaypointNear/WaypointFar trigger types are broken (crash CargoShipWaypoints indexing) -->
-		<!-- Using Supply Depot as target since WaypointNear/Far are broken -->
+		<!-- WaypointNear/WaypointFar trigger types are broken (crash CargoShipWaypoints indexing; GVK-Settings#450) -->
+		<!-- Using Supply Depot as target since WaypointNear/Far are broken (GVK-Settings#450) -->
 		<!-- Trigger sequence when Cargo Ship is near the Target to switch to secondary autopilot -->
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
