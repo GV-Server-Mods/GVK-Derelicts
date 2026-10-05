@@ -35,7 +35,7 @@ Run `/MES.Debug.ChangeBool.<Name>.true/false` to change bools. `LargeWrecksEnabl
 ## Territory size
 Each alliance faction's Influence (`KHAANEPH_Points` / `SOBAN_Points`) sets its Territory radius through `GVK-Alliance-Events-ZoneSize.sbc` (one MES Event per faction, 12 conditions mapped 1:1 to 12 actions):
 
-| Points | Zone radius |
+| Influence | Zone radius |
 | --- | --- |
 | `< 200` | 10 km |
 | `200 - 399` | 20 km |
@@ -100,7 +100,7 @@ Structures that spawn Defenses also set `[CustomCountersVariables:DefenseSpawn_L
 | `AllianceBase` | Base | 8 | - | 2 |
 | `AllianceOutpost` | Outpost | 6 | - | 2 |
 | `AllianceTurret` | Turret | - | - | 2 |
-| `CargoShip` | Cargo Ship, Carrier, Convoy, Trader | - | some | 10 |
+| `CargoShip` | Carrier, Convoy, Freighter, Trader, Transport | - | some | 10 |
 | `DroneElite` | Elite Cruiser, Elite Honorguard | - | - | 8 |
 | `DroneLarge` | aircraft, cruiser, Escort, Honorguard, Production Cruiser | - | some | 12 |
 | `DroneMedium` | aircraft, Bomber, craft, Escort, Salvager, vehicle | - | some | 11 |
