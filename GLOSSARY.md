@@ -60,7 +60,7 @@ A neutral Wreck that players claim for an Alliance faction by holding it through
 
 ## Encounter categories
 
-Most categories carry a three-letter prefab tag that leads the grid's name, e.g. `NWS [COAL] Turtle`.
+Most categories carry a three-letter prefab tag that leads the grid's name, e.g. `NWS [COAL] Combat Baserunner`.
 
 **Wreck**:
 A salvageable NPC grid of any faction, sized Small (NWS), Medium (NWM) or Large (NWL).

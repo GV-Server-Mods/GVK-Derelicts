@@ -38,11 +38,12 @@ All general Modular Encounters Systems (MES) and RivalAI modding rules, tag dict
 ## 3. GVK Naming & Directory Conventions
 
 ### Profile SubtypeId Naming
-- Format: `GVK-<Type>-<Faction/Category>-<DescriptiveName>`
+- Format: `GVK-<SpawnType>-<SubType>-<ProfileType>-<UniqueTag>` (`<SubType>` and `<UniqueTag>` are optional).
 - Examples:
-  - `GVK-Trigger-Damage-GaalsienScout`
-  - `GVK-Action-DeployDefense-Carrier`
-  - `GVK-SpawnGroup-ScrapRace-Set10`
+  - `GVK-Drone-Encounter-Behavior-Salvager-COALITION`
+  - `GVK-PlanetaryInstallation-Small-Behavior`
+  - `GVK-Universal-Trigger-DespawnInZ0`
+- Prefab names: three-letter tag + 4-letter faction tag, e.g. `NWS [COAL] Combat Baserunner`. The tag list is generated in `README.md`.
 
 ### Directory Layout
 - `Content/Data/Encounters/`: Spawn groups, behaviors, and trigger groups.
@@ -57,6 +58,27 @@ Before testing in-game or committing any `.sbc` modifications in `GVK_Derelicts`
 1. **XML & Deserialization**: Run `audit_sbc.ps1` to ensure no duplicate `<SubtypeId>`, duplicate `<Id>`, or `<!-- -->` comments inside `<Description>`.
 2. **Tag Validity**: Run `audit_mes_tags.ps1` to ensure no zero-stripping in `CustomCountersTargets`, no `WaypointNear` crashes, and all boolean master gates are present.
 3. **Reference Integrity**: Run `audit_mes_references.ps1` to ensure every referenced trigger, action, condition, spawner, and spawn group exists.
+
+---
+
+## 5. Documentation Rules (keep docs from going stale)
+
+Each kind of fact has exactly one home. Don't copy it anywhere else.
+
+| Fact | Home |
+| --- | --- |
+| Work, ideas, bugs, and the status of upstream fixes ("PR open", "waiting on MES") | GitHub issues in GVK-Settings (`upstream` label for MES/WeaponCore). Never in Markdown, and never as `TODO` comments in SBC or C#. |
+| MES tags and behavior | The MES source, through the `se-dev-mes` skill. Never vendor copies of the MES wiki. |
+| Data that lives in SBC (sandbox variables, Encounter Types, defense limits, prefab tags) | The SBC files. `tools/Update-DocTables.ps1` regenerates the README tables between `GENERATED` markers. |
+| Vocabulary | `GLOSSARY.md` |
+| Hard-to-reverse decisions | `Docs/adr/` |
+| Durable lessons and admin how-tos | `README.md` notes. Say which MES version a behavior note was checked against. |
+
+- When a change alters something a doc describes, update the doc in the same commit.
+- The local Stop hook runs `tools/Test-Docs.ps1`. It flags:
+  - docs that reference profiles, prefabs or paths that no longer exist
+  - docs that call an MES issue/PR open after it has merged or closed
+  - any `TODO`/`FIXME` comment in the encounter SBC files or ModScripts
 
 ---
 
