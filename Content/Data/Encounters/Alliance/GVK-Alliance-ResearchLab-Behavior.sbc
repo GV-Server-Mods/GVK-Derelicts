@@ -23,6 +23,8 @@
 			[Triggers:GVK-Alliance-ResearchLab-Trigger-ButtonPress2]
 			[Triggers:GVK-Alliance-ResearchLab-Trigger-ButtonPress3]
 			[Triggers:GVK-Alliance-ResearchLab-Trigger-UploadComplete]
+			[Triggers:GVK-Alliance-ResearchLab-Trigger-Countdown3]
+			[Triggers:GVK-Alliance-ResearchLab-Trigger-Countdown1]
 			[Triggers:GVK-Alliance-ResearchLab-Trigger-Disabled]
 			[TriggerGroups:GVK-Universal-TriggerGroup-DefeatedAndAttacked]
 			[RemoteControlCode:GVK-Alliance-ResearchLab]
@@ -121,9 +123,13 @@
 			[LcdTemplateIndexes:0]
 			[ResetCooldownTimeOfTriggers:true]
 			[ResetTriggerCooldownNames:GVK-Alliance-ResearchLab-Trigger-UploadComplete]
+			[ResetTriggerCooldownNames:GVK-Alliance-ResearchLab-Trigger-Countdown3]
+			[ResetTriggerCooldownNames:GVK-Alliance-ResearchLab-Trigger-Countdown1]
 			[EnableTriggers:true]
 			[EnableTriggerNames:GVK-Alliance-ResearchLab-Trigger-ButtonPress3]
 			[EnableTriggerNames:GVK-Alliance-ResearchLab-Trigger-UploadComplete]
+			[EnableTriggerNames:GVK-Alliance-ResearchLab-Trigger-Countdown3]
+			[EnableTriggerNames:GVK-Alliance-ResearchLab-Trigger-Countdown1]
 			[DisableTriggers:true]
 			[DisableTriggerNames:GVK-Alliance-ResearchLab-Trigger-ButtonPress1]
 			[DisableTriggerNames:GVK-Alliance-ResearchLab-Trigger-ButtonPress2]
@@ -170,9 +176,13 @@
 			[LcdTemplateIndexes:0]
 			[ResetCooldownTimeOfTriggers:true]
 			[ResetTriggerCooldownNames:GVK-Alliance-ResearchLab-Trigger-UploadComplete]
+			[ResetTriggerCooldownNames:GVK-Alliance-ResearchLab-Trigger-Countdown3]
+			[ResetTriggerCooldownNames:GVK-Alliance-ResearchLab-Trigger-Countdown1]
 			[EnableTriggers:true]
 			[EnableTriggerNames:GVK-Alliance-ResearchLab-Trigger-ButtonPress3]
 			[EnableTriggerNames:GVK-Alliance-ResearchLab-Trigger-UploadComplete]
+			[EnableTriggerNames:GVK-Alliance-ResearchLab-Trigger-Countdown3]
+			[EnableTriggerNames:GVK-Alliance-ResearchLab-Trigger-Countdown1]
 			[DisableTriggers:true]
 			[DisableTriggerNames:GVK-Alliance-ResearchLab-Trigger-ButtonPress1]
 			[DisableTriggerNames:GVK-Alliance-ResearchLab-Trigger-ButtonPress2]
@@ -243,6 +253,8 @@
 			[DisableTriggers:true]
 			[DisableTriggerNames:GVK-Alliance-ResearchLab-Trigger-ButtonPress3]
 			[DisableTriggerNames:GVK-Alliance-ResearchLab-Trigger-UploadComplete]
+			[DisableTriggerNames:GVK-Alliance-ResearchLab-Trigger-Countdown3]
+			[DisableTriggerNames:GVK-Alliance-ResearchLab-Trigger-Countdown1]
 			[UseChatBroadcast:true]
 			[ChatData:GVK-Alliance-ResearchLab-Chat-ButtonPress3]
 			</Description>
@@ -314,6 +326,8 @@
 			[DisableTriggerNames:GVK-Alliance-ResearchLab-Trigger-ButtonPress2]
 			[DisableTriggerNames:GVK-Alliance-ResearchLab-Trigger-ButtonPress3]
 			[DisableTriggerNames:GVK-Alliance-ResearchLab-Trigger-UploadComplete]
+			[DisableTriggerNames:GVK-Alliance-ResearchLab-Trigger-Countdown3]
+			[DisableTriggerNames:GVK-Alliance-ResearchLab-Trigger-Countdown1]
 			[DisableTriggerNames:GVK-Alliance-ResearchLab-Trigger-Disabled]
 			[DisableTriggerTags:GVK-Universal-TriggerTags-Compromised]
 			[UseChatBroadcast:true]
@@ -343,6 +357,121 @@
 			[IgnoredAntennaRangeOverride:20000]
 		  </Description>
 		</EntityComponent>
+		<!-- Upload countdown: one reminder at 3 minutes and one at 1 minute left, only to players within 2 km of the lab -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-ResearchLab-Trigger-Countdown3</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Trigger]
+			[Type:Timer]
+			[MinCooldownMs:120000]
+			[MaxCooldownMs:120001]
+			[UseTrigger:false]
+			[StartsReady:false]
+			[MaxActions:-1]
+			[Actions:GVK-Alliance-ResearchLab-Action-Countdown3]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-ResearchLab-Action-Countdown3</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Action]
+			[UseChatBroadcast:true]
+			[ChatData:GVK-Alliance-ResearchLab-Chat-Countdown3]
+			[DisableTriggers:true]
+			[DisableTriggerNames:GVK-Alliance-ResearchLab-Trigger-Countdown3]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-ResearchLab-Chat-Countdown3</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Chat]
+			[UseChat:true]
+			[StartsReady:true]
+			[Chance:100]
+			[MaxChats:-1]
+			[BroadcastRandomly:false]
+			[Author:Research Lab Computer]
+			[Color:White]
+			[ChatMessages:Upload to {SelectedFaction} complete in 3 minutes.]
+			[ChatAudio:ArcHudGPSNotification2]
+			[BroadcastChatType:Chat]
+			[SendToAllOnlinePlayers:false]
+			[IgnoreAntennaRequirement:true]
+			[IgnoredAntennaRangeOverride:2000]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-ResearchLab-Trigger-Countdown1</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Trigger]
+			[Type:Timer]
+			[MinCooldownMs:240000]
+			[MaxCooldownMs:240001]
+			[UseTrigger:false]
+			[StartsReady:false]
+			[MaxActions:-1]
+			[Actions:GVK-Alliance-ResearchLab-Action-Countdown1]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-ResearchLab-Action-Countdown1</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Action]
+			[UseChatBroadcast:true]
+			[ChatData:GVK-Alliance-ResearchLab-Chat-Countdown1]
+			[DisableTriggers:true]
+			[DisableTriggerNames:GVK-Alliance-ResearchLab-Trigger-Countdown1]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-ResearchLab-Chat-Countdown1</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Chat]
+			[UseChat:true]
+			[StartsReady:true]
+			[Chance:100]
+			[MaxChats:-1]
+			[BroadcastRandomly:false]
+			[Author:Research Lab Computer]
+			[Color:White]
+			[ChatMessages:Upload to {SelectedFaction} complete in 1 minute.]
+			[ChatAudio:ArcHudGPSNotification2]
+			[BroadcastChatType:Chat]
+			[SendToAllOnlinePlayers:false]
+			[IgnoreAntennaRequirement:true]
+			[IgnoredAntennaRangeOverride:2000]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-ResearchLab-Action-StopCountdown</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Action]
+			[DisableTriggers:true]
+			[DisableTriggerNames:GVK-Alliance-ResearchLab-Trigger-Countdown3]
+			[DisableTriggerNames:GVK-Alliance-ResearchLab-Trigger-Countdown1]
+			</Description>
+		</EntityComponent>
 		<!-- Condition for no functional beacons, this may be abusable if players place their own beacons first -->
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
@@ -360,6 +489,7 @@
 			[Conditions:GVK-Alliance-ResearchLab-Condition-Disabled]
 			[ActionExecution:All]
 			[Actions:GVK-Universal-Action-DefeatedCompromised]
+			[Actions:GVK-Alliance-ResearchLab-Action-StopCountdown]
 			</Description>
 		</EntityComponent>
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
