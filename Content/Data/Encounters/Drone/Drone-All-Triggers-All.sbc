@@ -30,50 +30,6 @@
 				[BarrelRoll:true]
 			</Description>
 		</EntityComponent>
-		<!-- Action group to fire Griffin missile pods via Timer because of a bug in WC2 (GVK-Settings#689) -->
-		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
-			<Id>
-				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Drone-All-Trigger-FireMissilesTimers</SubtypeId>
-			</Id>
-			<Description>
-				[RivalAI Trigger]
-				[UseTrigger:true]
-				[Type:TargetNear]
-				[MinCooldownMs:2000]
-				[MaxCooldownMs:2000]
-				[StartsReady:false]
-				[TargetDistance:2500]
-				[Conditions:GVK-Drone-All-Condition-FireMissilesTimers]
-				[Actions:GVK-Drone-All-Action-FireMissilesTimers]
-			</Description>
-		</EntityComponent>
-		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
-			<Id>
-				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Drone-All-Condition-FireMissilesTimers</SubtypeId>
-			</Id>
-			<Description>
-				[RivalAI Condition]
-				[UseConditions:true]
-				[MatchAnyCondition:true]
-				[CheckTargetAngleFromForward:true]
-				[MinTargetAngle:0]
-				[MaxTargetAngle:100]
-			</Description>
-		</EntityComponent>
-		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
-			<Id>
-				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Drone-All-Action-FireMissilesTimers</SubtypeId>
-			</Id>
-			<Description>
-				[RivalAI Action]
-				[TriggerTimerBlocks:true]
-				[TimerBlockNames:Timer Block Missiles]
-				[TimerBlockNames:Timer Block Torpedoes]
-			</Description>
-		</EntityComponent>
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
