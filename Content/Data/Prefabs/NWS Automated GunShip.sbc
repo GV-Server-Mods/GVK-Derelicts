@@ -3155,70 +3155,14 @@
               <ColorMaskHSV x="1" y="0.2" z="0.55" />
               <SkinSubtypeId>Plastic</SkinSubtypeId>
             </MyObjectBuilder_CubeBlock>
-            <MyObjectBuilder_CubeBlock xsi:type="MyObjectBuilder_BasicMissionBlock">
-              <SubtypeName>LargeBasicMission</SubtypeName>
+            <MyObjectBuilder_CubeBlock xsi:type="MyObjectBuilder_CargoContainer">
+              <SubtypeName>LargeBlockSmallContainer</SubtypeName>
               <EntityId>129585063004396873</EntityId>
               <Min x="0" y="-1" z="-5" />
               <BlockOrientation Forward="Backward" Up="Up" />
               <ColorMaskHSV x="0.6666667" y="-0.8" z="-0.14" />
               <SkinSubtypeId>Clean_Armor</SkinSubtypeId>
               <ShareMode>Faction</ShareMode>
-              <ComponentContainer>
-                <Components>
-                  <ComponentData>
-                    <TypeId>MyBasicMissionFollowHome</TypeId>
-                    <Component xsi:type="MyObjectBuilder_BasicMissionFollowHome">
-                      <MinRange>0</MinRange>
-                      <MaxRange>1000</MaxRange>
-                      <IsWanderEnabled>true</IsWanderEnabled>
-                      <SelectedGpsHash xsi:nil="true" />
-                      <SelectedBeaconEntityId>0</SelectedBeaconEntityId>
-                      <HomePosition>
-                        <X>0</X>
-                        <Y>0</Y>
-                        <Z>0</Z>
-                      </HomePosition>
-                      <SelectedGpsHashNew>
-                        <Name>Aragath #2</Name>
-                        <Position>
-                          <X>-4853.08</X>
-                          <Y>7516.86</Y>
-                          <Z>-9899.25</Z>
-                        </Position>
-                        <Hash>617043515</Hash>
-                      </SelectedGpsHashNew>
-                    </Component>
-                  </ComponentData>
-                  <ComponentData>
-                    <TypeId>MyBasicMissionFollowPlayer</TypeId>
-                    <Component xsi:type="MyObjectBuilder_BasicMissionFollowPlayer">
-                      <IsFollowing>false</IsFollowing>
-                      <FollowDistance>20</FollowDistance>
-                      <FollowedPlayerIdentityId>0</FollowedPlayerIdentityId>
-                    </Component>
-                  </ComponentData>
-                  <ComponentData>
-                    <TypeId>MyBasicMissionAutopilot</TypeId>
-                    <Component xsi:type="MyObjectBuilder_BasicMissionAutopilot">
-                      <Mode>0</Mode>
-                    </Component>
-                  </ComponentData>
-                  <ComponentData>
-                    <TypeId>MyAiBlockComponent</TypeId>
-                    <Component xsi:type="MyObjectBuilder_AiBlockComponent">
-                      <IsActivated>false</IsActivated>
-                    </Component>
-                  </ComponentData>
-                </Components>
-              </ComponentContainer>
-              <CustomName>AI Basic (Task) Patroling</CustomName>
-              <ShowOnHUD>false</ShowOnHUD>
-              <ShowInTerminal>true</ShowInTerminal>
-              <ShowInToolbarConfig>true</ShowInToolbarConfig>
-              <ShowInInventory>true</ShowInInventory>
-              <NumberInGrid>1</NumberInGrid>
-              <Enabled>true</Enabled>
-              <SelectedMission>2</SelectedMission>
             </MyObjectBuilder_CubeBlock>
             <MyObjectBuilder_CubeBlock xsi:type="MyObjectBuilder_EventControllerBlock">
               <SubtypeName>EventControllerLarge</SubtypeName>
@@ -3517,150 +3461,23 @@
               <ColorMaskHSV x="0.6666667" y="-0.8" z="-0.14" />
               <SkinSubtypeId>Clean_Armor</SkinSubtypeId>
             </MyObjectBuilder_CubeBlock>
-            <MyObjectBuilder_CubeBlock xsi:type="MyObjectBuilder_FlightMovementBlock">
-              <SubtypeName>LargeFlightMovement</SubtypeName>
+            <MyObjectBuilder_CubeBlock xsi:type="MyObjectBuilder_CargoContainer">
+              <SubtypeName>LargeBlockSmallContainer</SubtypeName>
               <EntityId>101581506554969208</EntityId>
               <Min x="0" y="1" z="-3" />
               <BlockOrientation Forward="Backward" Up="Down" />
               <ColorMaskHSV x="0.6666667" y="-0.8" z="-0.14" />
               <SkinSubtypeId>Clean_Armor</SkinSubtypeId>
               <ShareMode>Faction</ShareMode>
-              <ComponentContainer>
-                <Components>
-                  <ComponentData>
-                    <TypeId>MyAutopilotComponent</TypeId>
-                    <Component xsi:type="MyObjectBuilder_AutopilotComponent">
-                      <AutoPilotEnabled>true</AutoPilotEnabled>
-                      <FlightMode>1</FlightMode>
-                      <CurrentWaypointIndex>-1</CurrentWaypointIndex>
-                      <Waypoints />
-                      <DockingModeEnabled>false</DockingModeEnabled>
-                      <CollisionAvoidance>true</CollisionAvoidance>
-                      <Direction>0</Direction>
-                      <AutopilotSpeedLimit>100</AutopilotSpeedLimit>
-                      <WaitForFreeWay>false</WaitForFreeWay>
-                      <WaypointThresholdDistance>0</WaypointThresholdDistance>
-                      <Coords />
-                      <Names />
-                      <LookAtPosition xsi:nil="true" />
-                      <FacingDirection />
-                      <AlignToGravity>true</AlignToGravity>
-                      <MinHeightAboveTerrain>25</MinHeightAboveTerrain>
-                      <IsWorkAreaReturningToStart>false</IsWorkAreaReturningToStart>
-                      <WorkAreaStartForward>
-                        <X>0</X>
-                        <Y>0</Y>
-                        <Z>0</Z>
-                      </WorkAreaStartForward>
-                      <PitchAngle>0.7853982</PitchAngle>
-                      <RollAngle>0.7853982</RollAngle>
-                    </Component>
-                  </ComponentData>
-                  <ComponentData>
-                    <TypeId>MyAiBlockComponent</TypeId>
-                    <Component xsi:type="MyObjectBuilder_AiBlockComponent">
-                      <IsActivated>true</IsActivated>
-                    </Component>
-                  </ComponentData>
-                </Components>
-              </ComponentContainer>
-              <ShowOnHUD>false</ShowOnHUD>
-              <ShowInTerminal>true</ShowInTerminal>
-              <ShowInToolbarConfig>true</ShowInToolbarConfig>
-              <ShowInInventory>true</ShowInInventory>
-              <NumberInGrid>1</NumberInGrid>
-              <Enabled>true</Enabled>
             </MyObjectBuilder_CubeBlock>
-            <MyObjectBuilder_CubeBlock xsi:type="MyObjectBuilder_OffensiveCombatBlock">
-              <SubtypeName>LargeOffensiveCombat</SubtypeName>
+            <MyObjectBuilder_CubeBlock xsi:type="MyObjectBuilder_CargoContainer">
+              <SubtypeName>LargeBlockSmallContainer</SubtypeName>
               <EntityId>91231966709741052</EntityId>
               <Min x="0" y="1" z="-1" />
               <BlockOrientation Forward="Right" Up="Down" />
               <ColorMaskHSV x="0.6666667" y="-0.8" z="-0.14" />
               <SkinSubtypeId>Clean_Armor</SkinSubtypeId>
               <ShareMode>Faction</ShareMode>
-              <ComponentContainer>
-                <Components>
-                  <ComponentData>
-                    <TypeId>MySearchEnemyComponent</TypeId>
-                    <Component xsi:type="MyObjectBuilder_SearchEnemyComponent">
-                      <TargetingLockOptions>2</TargetingLockOptions>
-                      <SubsystemsToDestroy>PowerSystems</SubsystemsToDestroy>
-                      <TargetEntityId>0</TargetEntityId>
-                    </Component>
-                  </ComponentData>
-                  <ComponentData>
-                    <TypeId>MyOffensiveCombatCircleOrbit</TypeId>
-                    <Component xsi:type="MyObjectBuilder_OffensiveCombatCircleOrbit">
-                      <CircleDistance>1000</CircleDistance>
-                      <CircleInPGravity>false</CircleInPGravity>
-                      <FacingPriority />
-                      <WasActive>false</WasActive>
-                      <FacingMode>0</FacingMode>
-                    </Component>
-                  </ComponentData>
-                  <ComponentData>
-                    <TypeId>MyOffensiveCombatStayAtRange</TypeId>
-                    <Component xsi:type="MyObjectBuilder_OffensiveCombatStayAtRange">
-                      <MinimalDistance>199</MinimalDistance>
-                      <MaximalDistance>200</MaximalDistance>
-                      <FacingPriority />
-                      <EvasiveManeuvers>false</EvasiveManeuvers>
-                      <FacingMode>0</FacingMode>
-                    </Component>
-                  </ComponentData>
-                  <ComponentData>
-                    <TypeId>MyOffensiveCombatHitAndRun</TypeId>
-                    <Component xsi:type="MyObjectBuilder_OffensiveCombatHitAndRun">
-                      <BreakOffDistance>800</BreakOffDistance>
-                      <RetreatDistance>1200</RetreatDistance>
-                      <RetreatTimeout>30</RetreatTimeout>
-                      <RetreatAngle>90</RetreatAngle>
-                      <SelectedWeapons />
-                      <HitAndRunState>
-                        <CurrentState>None</CurrentState>
-                        <RunAwayDirection>
-                          <X>-0.029964171539815784</X>
-                          <Y>0.79866955350777857</Y>
-                          <Z>-0.60102337119584459</Z>
-                        </RunAwayDirection>
-                        <LastPosition xsi:nil="true" />
-                        <RunAwayStartedFrame>-28826104</RunAwayStartedFrame>
-                      </HitAndRunState>
-                    </Component>
-                  </ComponentData>
-                  <ComponentData>
-                    <TypeId>MyOffensiveCombatIntercept</TypeId>
-                    <Component xsi:type="MyObjectBuilder_OffensiveCombatIntercept">
-                      <Guidance>Basic</Guidance>
-                      <OverrideCollisionAvoidance>true</OverrideCollisionAvoidance>
-                    </Component>
-                  </ComponentData>
-                  <ComponentData>
-                    <TypeId>MyAiBlockComponent</TypeId>
-                    <Component xsi:type="MyObjectBuilder_AiBlockComponent">
-                      <IsActivated>false</IsActivated>
-                    </Component>
-                  </ComponentData>
-                </Components>
-              </ComponentContainer>
-              <ShowOnHUD>false</ShowOnHUD>
-              <ShowInTerminal>true</ShowInTerminal>
-              <ShowInToolbarConfig>true</ShowInToolbarConfig>
-              <ShowInInventory>true</ShowInInventory>
-              <NumberInGrid>1</NumberInGrid>
-              <Enabled>true</Enabled>
-              <TargetPriority>Closest</TargetPriority>
-              <UpdateTargetInterval>5</UpdateTargetInterval>
-              <SelectedAttackPattern>0</SelectedAttackPattern>
-              <CanTargetCharacters>true</CanTargetCharacters>
-              <Toolbar>
-                <ToolbarType>Character</ToolbarType>
-                <SelectedSlot xsi:nil="true" />
-                <Slots />
-                <SlotsGamepad />
-              </Toolbar>
-              <PrevToolbarState xsi:nil="true" />
             </MyObjectBuilder_CubeBlock>
             <MyObjectBuilder_CubeBlock xsi:type="MyObjectBuilder_CubeBlock">
               <SubtypeName>PipeWorkBlockB</SubtypeName>
@@ -3670,90 +3487,14 @@
               <ColorMaskHSV x="0.6666667" y="-0.8" z="-0.3" />
               <SkinSubtypeId>Clean_Armor</SkinSubtypeId>
             </MyObjectBuilder_CubeBlock>
-            <MyObjectBuilder_CubeBlock xsi:type="MyObjectBuilder_DefensiveCombatBlock">
-              <SubtypeName>LargeDefensiveCombat</SubtypeName>
+            <MyObjectBuilder_CubeBlock xsi:type="MyObjectBuilder_CargoContainer">
+              <SubtypeName>LargeBlockSmallContainer</SubtypeName>
               <EntityId>75088223651163747</EntityId>
               <Min x="0" y="1" z="-2" />
               <BlockOrientation Forward="Backward" Up="Down" />
               <ColorMaskHSV x="0.6666667" y="-0.8" z="-0.14" />
               <SkinSubtypeId>Clean_Armor</SkinSubtypeId>
               <ShareMode>Faction</ShareMode>
-              <ComponentContainer>
-                <Components>
-                  <ComponentData>
-                    <TypeId>MySearchEnemyComponent</TypeId>
-                    <Component xsi:type="MyObjectBuilder_SearchEnemyComponent">
-                      <TargetingLockOptions>2</TargetingLockOptions>
-                      <SubsystemsToDestroy />
-                      <TargetEntityId>0</TargetEntityId>
-                    </Component>
-                  </ComponentData>
-                  <ComponentData>
-                    <TypeId>MyAiBlockComponent</TypeId>
-                    <Component xsi:type="MyObjectBuilder_AiBlockComponent">
-                      <IsActivated>true</IsActivated>
-                    </Component>
-                  </ComponentData>
-                </Components>
-              </ComponentContainer>
-              <ShowOnHUD>false</ShowOnHUD>
-              <ShowInTerminal>true</ShowInTerminal>
-              <ShowInToolbarConfig>true</ShowInToolbarConfig>
-              <ShowInInventory>true</ShowInInventory>
-              <NumberInGrid>1</NumberInGrid>
-              <Enabled>true</Enabled>
-              <FleeTrigger>Always</FleeTrigger>
-              <SelectedBeaconEntityId>0</SelectedBeaconEntityId>
-              <SelectedGpsHash xsi:nil="true" />
-              <WaypointZoneSize>250</WaypointZoneSize>
-              <LockTarget>true</LockTarget>
-              <CustomFleeCoordinates>
-                <X>0</X>
-                <Y>0</Y>
-                <Z>0</Z>
-              </CustomFleeCoordinates>
-              <UseCustomFleeCoordinates>false</UseCustomFleeCoordinates>
-              <CanTargetCharacters>true</CanTargetCharacters>
-              <Toolbar>
-                <ToolbarType>Character</ToolbarType>
-                <SelectedSlot xsi:nil="true" />
-                <Slots>
-                  <Slot>
-                    <Index>0</Index>
-                    <Item />
-                    <Data xsi:type="MyObjectBuilder_ToolbarItemTerminalBlock">
-                      <Action>ActivateBehavior_On</Action>
-                      <BlockEntityId>91231966709741052</BlockEntityId>
-                    </Data>
-                  </Slot>
-                  <Slot>
-                    <Index>2</Index>
-                    <Item />
-                    <Data xsi:type="MyObjectBuilder_ToolbarItemTerminalBlock">
-                      <Action>ActivateBehavior_Off</Action>
-                      <BlockEntityId>129585063004396873</BlockEntityId>
-                    </Data>
-                  </Slot>
-                  <Slot>
-                    <Index>4</Index>
-                    <Item />
-                    <Data xsi:type="MyObjectBuilder_ToolbarItemTerminalBlock">
-                      <Action>Transmit Message 1</Action>
-                      <BlockEntityId>105379574741923789</BlockEntityId>
-                    </Data>
-                  </Slot>
-                </Slots>
-                <SlotsGamepad />
-              </Toolbar>
-              <SelectedGpsHashNew xsi:nil="true" />
-              <FleeDistance>5000</FleeDistance>
-              <EvasiveManeuvers>true</EvasiveManeuvers>
-              <EvasiveManeuverAngle>25.0000019</EvasiveManeuverAngle>
-              <EvasiveManeuverIntervalRange>30</EvasiveManeuverIntervalRange>
-              <FleeMode>AwayFromTarget</FleeMode>
-              <LastKnownEnemyPosition xsi:nil="true" />
-              <FleeMinHeightOnPlanets>-1</FleeMinHeightOnPlanets>
-              <PrevToolbarState xsi:nil="true" />
             </MyObjectBuilder_CubeBlock>
             <MyObjectBuilder_CubeBlock xsi:type="MyObjectBuilder_CubeBlock">
               <SubtypeName>TrussFrame</SubtypeName>
