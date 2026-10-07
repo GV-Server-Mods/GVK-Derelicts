@@ -6,18 +6,18 @@
       <CubeGrids>
         <CubeGrid>
           <SubtypeName />
-          <EntityId>131738123537568248</EntityId>
+          <EntityId>113699116607946564</EntityId>
           <PersistentFlags>CastShadows InScene</PersistentFlags>
-          <Name>131738123537568248</Name>
+          <Name>113699116607946564</Name>
           <PositionAndOrientation>
             <Position x="0" y="0" z="0" />
-            <Forward x="-0.429044247" y="0.6767594" z="-0.59826225" />
-            <Up x="0.503519833" y="0.729058564" z="0.4636177" />
+            <Forward x="0.933134556" y="-0.204936728" z="-0.295399576" />
+            <Up x="-0.114836439" y="-0.948488" z="0.295268238" />
             <Orientation>
-              <X>0.3250404</X>
-              <Y>0.3085735</Y>
-              <Z>-0.1726831</Z>
-              <W>0.877104163</W>
+              <X>-0.5727989</X>
+              <Y>0.155568942</Y>
+              <Z>0.8038317</Z>
+              <W>-0.0394254923</W>
             </Orientation>
           </PositionAndOrientation>
           <LocalPositionAndOrientation xsi:nil="true" />
@@ -30,7 +30,7 @@
             </MyObjectBuilder_CubeBlock>
             <MyObjectBuilder_CubeBlock xsi:type="MyObjectBuilder_CubeBlock">
               <SubtypeName>LargeArmor2x1SlopedSideTipPanelLight</SubtypeName>
-              <EntityId>105093139624723181</EntityId>
+              <EntityId>126374223792327481</EntityId>
               <Min x="-1" y="2" z="-6" />
               <BlockOrientation Forward="Up" Up="Left" />
               <SkinSubtypeId>Heavy_Rust_Armor</SkinSubtypeId>
@@ -44,7 +44,7 @@
             </MyObjectBuilder_CubeBlock>
             <MyObjectBuilder_CubeBlock xsi:type="MyObjectBuilder_Cockpit">
               <SubtypeName>LargeBlockInsetPlantCouch</SubtypeName>
-              <EntityId>120552686251347237</EntityId>
+              <EntityId>108254770317277260</EntityId>
               <Min x="-1" y="1" z="-1" />
               <SkinSubtypeId>Heavy_Rust_Armor</SkinSubtypeId>
               <ShowOnHUD>false</ShowOnHUD>
@@ -98,7 +98,7 @@
             </MyObjectBuilder_CubeBlock>
             <MyObjectBuilder_CubeBlock xsi:type="MyObjectBuilder_CubeBlock">
               <SubtypeName>LargeArmor2x1SlopedSideTipPanelLightInv</SubtypeName>
-              <EntityId>138979362990690565</EntityId>
+              <EntityId>131082679828570492</EntityId>
               <Min x="-1" y="3" z="-3" />
               <BlockOrientation Forward="Backward" Up="Right" />
               <ColorMaskHSV x="0" y="-0.8" z="0.55" />
@@ -115,7 +115,7 @@
             </MyObjectBuilder_CubeBlock>
             <MyObjectBuilder_CubeBlock xsi:type="MyObjectBuilder_CubeBlock">
               <SubtypeName>LargeHalfSlopeArmorBlock</SubtypeName>
-              <EntityId>87484246933520283</EntityId>
+              <EntityId>130692322880644133</EntityId>
               <Min x="3" y="2" z="0" />
               <IntegrityPercent>0.25</IntegrityPercent>
               <BuildPercent>0.25</BuildPercent>
@@ -132,27 +132,41 @@
               <ColorMaskHSV x="1" y="0.2" z="0.55" />
               <SkinSubtypeId>Heavy_Rust_Armor</SkinSubtypeId>
             </MyObjectBuilder_CubeBlock>
-            <MyObjectBuilder_CubeBlock xsi:type="MyObjectBuilder_DefensiveCombatBlock">
-              <SubtypeName>LargeDefensiveCombat</SubtypeName>
-              <EntityId>131722425503658488</EntityId>
+            <MyObjectBuilder_CubeBlock xsi:type="MyObjectBuilder_RemoteControl">
+              <SubtypeName>LargeBlockRemoteControl</SubtypeName>
+              <EntityId>120998325920945702</EntityId>
               <Min x="1" y="1" z="-3" />
-              <BlockOrientation Forward="Left" Up="Up" />
               <SkinSubtypeId>Heavy_Rust_Armor</SkinSubtypeId>
               <ShareMode>Faction</ShareMode>
               <ComponentContainer>
                 <Components>
                   <ComponentData>
-                    <TypeId>MySearchEnemyComponent</TypeId>
-                    <Component xsi:type="MyObjectBuilder_SearchEnemyComponent">
-                      <TargetingLockOptions>2</TargetingLockOptions>
-                      <SubsystemsToDestroy />
-                      <TargetEntityId>0</TargetEntityId>
-                    </Component>
-                  </ComponentData>
-                  <ComponentData>
-                    <TypeId>MyAiBlockComponent</TypeId>
-                    <Component xsi:type="MyObjectBuilder_AiBlockComponent">
-                      <IsActivated>false</IsActivated>
+                    <TypeId>MyAutopilotComponent</TypeId>
+                    <Component xsi:type="MyObjectBuilder_AutopilotComponent">
+                      <AutoPilotEnabled>false</AutoPilotEnabled>
+                      <FlightMode>0</FlightMode>
+                      <CurrentWaypointIndex>-1</CurrentWaypointIndex>
+                      <Waypoints />
+                      <DockingModeEnabled>false</DockingModeEnabled>
+                      <CollisionAvoidance>false</CollisionAvoidance>
+                      <Direction>0</Direction>
+                      <AutopilotSpeedLimit>100</AutopilotSpeedLimit>
+                      <WaitForFreeWay>false</WaitForFreeWay>
+                      <WaypointThresholdDistance>0</WaypointThresholdDistance>
+                      <Coords />
+                      <Names />
+                      <LookAtPosition xsi:nil="true" />
+                      <FacingDirection>Forward</FacingDirection>
+                      <AlignToGravity>true</AlignToGravity>
+                      <MinHeightAboveTerrain>25</MinHeightAboveTerrain>
+                      <IsWorkAreaReturningToStart>false</IsWorkAreaReturningToStart>
+                      <WorkAreaStartForward>
+                        <X>0</X>
+                        <Y>0</Y>
+                        <Z>0</Z>
+                      </WorkAreaStartForward>
+                      <PitchAngle>0</PitchAngle>
+                      <RollAngle>0</RollAngle>
                     </Component>
                   </ComponentData>
                 </Components>
@@ -162,38 +176,46 @@
               <ShowInToolbarConfig>true</ShowInToolbarConfig>
               <ShowInInventory>true</ShowInInventory>
               <NumberInGrid>1</NumberInGrid>
-              <Enabled>true</Enabled>
-              <FleeTrigger>Never</FleeTrigger>
-              <SelectedBeaconEntityId>0</SelectedBeaconEntityId>
-              <SelectedGpsHash xsi:nil="true" />
-              <WaypointZoneSize>250</WaypointZoneSize>
-              <LockTarget>true</LockTarget>
-              <CustomFleeCoordinates>
-                <X>0</X>
-                <Y>0</Y>
-                <Z>0</Z>
-              </CustomFleeCoordinates>
-              <UseCustomFleeCoordinates>false</UseCustomFleeCoordinates>
-              <CanTargetCharacters>false</CanTargetCharacters>
+              <UseSingleWeaponMode>false</UseSingleWeaponMode>
               <Toolbar>
                 <ToolbarType>Character</ToolbarType>
                 <SelectedSlot xsi:nil="true" />
                 <Slots />
                 <SlotsGamepad />
               </Toolbar>
-              <SelectedGpsHashNew xsi:nil="true" />
-              <FleeDistance>2500</FleeDistance>
-              <EvasiveManeuvers>true</EvasiveManeuvers>
-              <EvasiveManeuverAngle>0</EvasiveManeuverAngle>
-              <EvasiveManeuverIntervalRange>5</EvasiveManeuverIntervalRange>
-              <FleeMode>ToGpsOrBeacon</FleeMode>
-              <LastKnownEnemyPosition xsi:nil="true" />
-              <FleeMinHeightOnPlanets>-1</FleeMinHeightOnPlanets>
-              <PrevToolbarState xsi:nil="true" />
+              <SelectedGunId xsi:nil="true" />
+              <BuildToolbar>
+                <ToolbarType>Character</ToolbarType>
+                <SelectedSlot xsi:nil="true" />
+                <Slots />
+                <SlotsGamepad />
+              </BuildToolbar>
+              <OnLockedToolbar>
+                <ToolbarType>Character</ToolbarType>
+                <SelectedSlot xsi:nil="true" />
+                <Slots />
+                <SlotsGamepad />
+              </OnLockedToolbar>
+              <IsTargetLockingEnabled>false</IsTargetLockingEnabled>
+              <PreviousControlledEntityId xsi:nil="true" />
+              <AutoPilotEnabled>false</AutoPilotEnabled>
+              <FlightMode>0</FlightMode>
+              <BindedCamera>0</BindedCamera>
+              <CurrentWaypointIndex>-1</CurrentWaypointIndex>
+              <Waypoints />
+              <Direction>0</Direction>
+              <DockingModeEnabled>false</DockingModeEnabled>
+              <CollisionAvoidance>false</CollisionAvoidance>
+              <Coords />
+              <Names />
+              <WaypointThresholdDistance>0</WaypointThresholdDistance>
+              <IsMainRemoteControl>false</IsMainRemoteControl>
+              <WaitForFreeWay>false</WaitForFreeWay>
+              <IsUpdatedSave>true</IsUpdatedSave>
             </MyObjectBuilder_CubeBlock>
             <MyObjectBuilder_CubeBlock xsi:type="MyObjectBuilder_CubeBlock">
               <SubtypeName>LargeBlockInteriorWall</SubtypeName>
-              <EntityId>86408888147420482</EntityId>
+              <EntityId>108765464897743372</EntityId>
               <Min x="2" y="1" z="-3" />
               <IntegrityPercent>0.285714239</IntegrityPercent>
               <BuildPercent>0.285714239</BuildPercent>
@@ -202,7 +224,7 @@
             </MyObjectBuilder_CubeBlock>
             <MyObjectBuilder_CubeBlock xsi:type="MyObjectBuilder_CubeBlock">
               <SubtypeName>LargeHalfSlopeArmorBlock</SubtypeName>
-              <EntityId>121396926604320932</EntityId>
+              <EntityId>103824191610220735</EntityId>
               <Min x="-3" y="2" z="-2" />
               <IntegrityPercent>0.005</IntegrityPercent>
               <BuildPercent>0.005</BuildPercent>
@@ -224,7 +246,7 @@
             </MyObjectBuilder_CubeBlock>
             <MyObjectBuilder_CubeBlock xsi:type="MyObjectBuilder_CubeBlock">
               <SubtypeName>LargeHalfSlopeArmorBlock</SubtypeName>
-              <EntityId>108068190742672276</EntityId>
+              <EntityId>142733985829047418</EntityId>
               <Min x="3" y="2" z="1" />
               <IntegrityPercent>0.25</IntegrityPercent>
               <BuildPercent>0.25</BuildPercent>
@@ -234,7 +256,7 @@
             </MyObjectBuilder_CubeBlock>
             <MyObjectBuilder_CubeBlock xsi:type="MyObjectBuilder_CubeBlock">
               <SubtypeName>LargeBlockArmorHalfCorner</SubtypeName>
-              <EntityId>133856954346850006</EntityId>
+              <EntityId>102005725839231208</EntityId>
               <Min x="-3" y="0" z="-1" />
               <IntegrityPercent>0.25</IntegrityPercent>
               <BuildPercent>0.25</BuildPercent>
@@ -244,7 +266,7 @@
             </MyObjectBuilder_CubeBlock>
             <MyObjectBuilder_CubeBlock xsi:type="MyObjectBuilder_CubeBlock">
               <SubtypeName>LargeBlockArmorInvCorner2Base</SubtypeName>
-              <EntityId>128882873310119101</EntityId>
+              <EntityId>143725568333678004</EntityId>
               <Min x="1" y="2" z="-1" />
               <IntegrityPercent>0.25</IntegrityPercent>
               <BuildPercent>0.25</BuildPercent>
@@ -253,7 +275,7 @@
             </MyObjectBuilder_CubeBlock>
             <MyObjectBuilder_CubeBlock xsi:type="MyObjectBuilder_CubeBlock">
               <SubtypeName>LargeBlockArmorBlock</SubtypeName>
-              <EntityId>115026213522717708</EntityId>
+              <EntityId>102020707678453602</EntityId>
               <Min x="1" y="0" z="-4" />
               <IntegrityPercent>0.5625</IntegrityPercent>
               <BuildPercent>0.5625</BuildPercent>
@@ -262,7 +284,7 @@
             </MyObjectBuilder_CubeBlock>
             <MyObjectBuilder_CubeBlock xsi:type="MyObjectBuilder_CubeBlock">
               <SubtypeName>LargeArmorPanelLight</SubtypeName>
-              <EntityId>122840996991528321</EntityId>
+              <EntityId>76809850975119846</EntityId>
               <Min x="0" y="3" z="-4" />
               <IntegrityPercent>0.25</IntegrityPercent>
               <BuildPercent>0.25</BuildPercent>
@@ -272,7 +294,7 @@
             </MyObjectBuilder_CubeBlock>
             <MyObjectBuilder_CubeBlock xsi:type="MyObjectBuilder_CubeBlock">
               <SubtypeName>LargeHalfSlopeArmorBlock</SubtypeName>
-              <EntityId>107343585693933349</EntityId>
+              <EntityId>72537760984600943</EntityId>
               <Min x="-3" y="2" z="-3" />
               <IntegrityPercent>0.25</IntegrityPercent>
               <BuildPercent>0.25</BuildPercent>
@@ -287,7 +309,7 @@
             </MyObjectBuilder_CubeBlock>
             <MyObjectBuilder_CubeBlock xsi:type="MyObjectBuilder_CubeBlock">
               <SubtypeName>LargeGridBeamBlockHalf</SubtypeName>
-              <EntityId>135764405195507269</EntityId>
+              <EntityId>135629363636365190</EntityId>
               <Min x="-2" y="2" z="1" />
               <IntegrityPercent>0.75</IntegrityPercent>
               <BuildPercent>0.75</BuildPercent>
@@ -296,7 +318,7 @@
             </MyObjectBuilder_CubeBlock>
             <MyObjectBuilder_CubeBlock xsi:type="MyObjectBuilder_CubeBlock">
               <SubtypeName>LargeArmorPanelLight</SubtypeName>
-              <EntityId>115733555469557162</EntityId>
+              <EntityId>122426424868535117</EntityId>
               <Min x="-2" y="-1" z="5" />
               <IntegrityPercent>0.25</IntegrityPercent>
               <BuildPercent>0.25</BuildPercent>
@@ -305,14 +327,14 @@
             </MyObjectBuilder_CubeBlock>
             <MyObjectBuilder_CubeBlock xsi:type="MyObjectBuilder_CubeBlock">
               <SubtypeName>CorridorCorner</SubtypeName>
-              <EntityId>130733058953634221</EntityId>
+              <EntityId>104813992138467742</EntityId>
               <Min x="-2" y="1" z="0" />
               <BlockOrientation Forward="Backward" Up="Up" />
               <SkinSubtypeId>Heavy_Rust_Armor</SkinSubtypeId>
             </MyObjectBuilder_CubeBlock>
             <MyObjectBuilder_CubeBlock xsi:type="MyObjectBuilder_CubeBlock">
               <SubtypeName>LargeBlockArmorBlock</SubtypeName>
-              <EntityId>86310211806360912</EntityId>
+              <EntityId>73863346770065012</EntityId>
               <Min x="-2" y="0" z="-1" />
               <IntegrityPercent>0.25</IntegrityPercent>
               <BuildPercent>0.25</BuildPercent>
@@ -320,7 +342,7 @@
             </MyObjectBuilder_CubeBlock>
             <MyObjectBuilder_CubeBlock xsi:type="MyObjectBuilder_CubeBlock">
               <SubtypeName>LargeArmorSlopedSidePanelLight</SubtypeName>
-              <EntityId>120683314130373566</EntityId>
+              <EntityId>79484566972239485</EntityId>
               <Min x="1" y="3" z="-4" />
               <IntegrityPercent>0.25</IntegrityPercent>
               <BuildPercent>0.25</BuildPercent>
@@ -330,7 +352,7 @@
             </MyObjectBuilder_CubeBlock>
             <MyObjectBuilder_CubeBlock xsi:type="MyObjectBuilder_CubeBlock">
               <SubtypeName>HalfWindow</SubtypeName>
-              <EntityId>91055025177744650</EntityId>
+              <EntityId>127723093953987207</EntityId>
               <Min x="1" y="1" z="-6" />
               <IntegrityPercent>0.005</IntegrityPercent>
               <BuildPercent>0.005</BuildPercent>
@@ -339,7 +361,7 @@
             </MyObjectBuilder_CubeBlock>
             <MyObjectBuilder_CubeBlock xsi:type="MyObjectBuilder_CubeBlock">
               <SubtypeName>LargeBlockArmorSlope2Base</SubtypeName>
-              <EntityId>76343522750891140</EntityId>
+              <EntityId>113927878566401375</EntityId>
               <Min x="0" y="2" z="-5" />
               <IntegrityPercent>0.25</IntegrityPercent>
               <BuildPercent>0.25</BuildPercent>
@@ -348,7 +370,7 @@
             </MyObjectBuilder_CubeBlock>
             <MyObjectBuilder_CubeBlock xsi:type="MyObjectBuilder_ButtonPanel">
               <SubtypeName>LargeBlockInsetButtonPanel</SubtypeName>
-              <EntityId>73384846500003894</EntityId>
+              <EntityId>110988777376438259</EntityId>
               <Min x="-1" y="1" z="-3" />
               <IntegrityPercent>0.444444418</IntegrityPercent>
               <BuildPercent>0.444444418</BuildPercent>
@@ -412,6 +434,7 @@
                           <Sprites>
                             <Length>0</Length>
                           </Sprites>
+                          <UpdateStartOfFirstTexture>11076905000</UpdateStartOfFirstTexture>
                         </MySerializedTextPanelData>
                         <MySerializedTextPanelData>
                           <ChangeInterval>0</ChangeInterval>
@@ -464,6 +487,7 @@
                           <Sprites>
                             <Length>0</Length>
                           </Sprites>
+                          <UpdateStartOfFirstTexture>11076905000</UpdateStartOfFirstTexture>
                         </MySerializedTextPanelData>
                         <MySerializedTextPanelData>
                           <ChangeInterval>0</ChangeInterval>
@@ -516,6 +540,7 @@
                           <Sprites>
                             <Length>0</Length>
                           </Sprites>
+                          <UpdateStartOfFirstTexture>11076905000</UpdateStartOfFirstTexture>
                         </MySerializedTextPanelData>
                       </TextPanelsContents>
                     </Component>
@@ -541,7 +566,7 @@
             </MyObjectBuilder_CubeBlock>
             <MyObjectBuilder_CubeBlock xsi:type="MyObjectBuilder_CubeBlock">
               <SubtypeName>LargeGridBeamBlockHalf</SubtypeName>
-              <EntityId>97642251495648235</EntityId>
+              <EntityId>120416798185077749</EntityId>
               <Min x="2" y="2" z="2" />
               <IntegrityPercent>0.75</IntegrityPercent>
               <BuildPercent>0.75</BuildPercent>
@@ -550,7 +575,7 @@
             </MyObjectBuilder_CubeBlock>
             <MyObjectBuilder_CubeBlock xsi:type="MyObjectBuilder_HeatVentBlock">
               <SubtypeName>LargeHeatVentBlock</SubtypeName>
-              <EntityId>90548876460173364</EntityId>
+              <EntityId>96344302719458126</EntityId>
               <Min x="-1" y="2" z="4" />
               <IntegrityPercent>0.25</IntegrityPercent>
               <BuildPercent>0.25</BuildPercent>
@@ -597,7 +622,7 @@
             </MyObjectBuilder_CubeBlock>
             <MyObjectBuilder_CubeBlock xsi:type="MyObjectBuilder_CubeBlock">
               <SubtypeName>LargeGridBeamBlockHalf</SubtypeName>
-              <EntityId>119529187507059378</EntityId>
+              <EntityId>135031523323849200</EntityId>
               <Min x="2" y="2" z="3" />
               <IntegrityPercent>0.005</IntegrityPercent>
               <BuildPercent>0.005</BuildPercent>
@@ -606,7 +631,7 @@
             </MyObjectBuilder_CubeBlock>
             <MyObjectBuilder_CubeBlock xsi:type="MyObjectBuilder_CryoChamber">
               <SubtypeName>LargeBlockCryoRoom</SubtypeName>
-              <EntityId>75049607112900283</EntityId>
+              <EntityId>96442352246151930</EntityId>
               <Min x="1" y="1" z="-2" />
               <BlockOrientation Forward="Left" Up="Up" />
               <SkinSubtypeId>Heavy_Rust_Armor</SkinSubtypeId>
@@ -658,13 +683,13 @@
               <IsTargetLockingEnabled>false</IsTargetLockingEnabled>
               <PilotRelativeWorld>
                 <Position x="-0.27321657538414" y="-1.2525237798690796" z="-2.9600961208343506" />
-                <Forward x="0.0842132345" y="0.00139763753" z="0.9964468" />
-                <Up x="0.00497262971" y="0.999986" z="-0.00182285614" />
+                <Forward x="0.08421323" y="0.00139763742" z="0.9964468" />
+                <Up x="0.00497262925" y="0.999986" z="-0.001822856" />
                 <Orientation>
-                  <X>0.00252252445</X>
+                  <X>0.00252252421</X>
                   <Y>0.999108136</Y>
-                  <Z>-0.0008058421</Z>
-                  <W>-0.0421421677</W>
+                  <Z>-0.00080584205</Z>
+                  <W>-0.042142164</W>
                 </Orientation>
               </PilotRelativeWorld>
               <PilotGunDefinition xsi:nil="true" />
@@ -696,7 +721,7 @@
             </MyObjectBuilder_CubeBlock>
             <MyObjectBuilder_CubeBlock xsi:type="MyObjectBuilder_CubeBlock">
               <SubtypeName>LargeHalfSlopeArmorBlock</SubtypeName>
-              <EntityId>134263591358673873</EntityId>
+              <EntityId>75194448085441079</EntityId>
               <Min x="-3" y="2" z="6" />
               <IntegrityPercent>0.25</IntegrityPercent>
               <BuildPercent>0.25</BuildPercent>
@@ -706,7 +731,7 @@
             </MyObjectBuilder_CubeBlock>
             <MyObjectBuilder_CubeBlock xsi:type="MyObjectBuilder_Thrust">
               <SubtypeName>LargeBlockSmallFlatAtmosphericThrustDShape</SubtypeName>
-              <EntityId>78495242643737514</EntityId>
+              <EntityId>109371754274404906</EntityId>
               <Min x="3" y="1" z="5" />
               <IntegrityPercent>0.25</IntegrityPercent>
               <BuildPercent>0.25</BuildPercent>
@@ -740,7 +765,7 @@
             </MyObjectBuilder_CubeBlock>
             <MyObjectBuilder_CubeBlock xsi:type="MyObjectBuilder_Thrust">
               <SubtypeName>LargeBlockSmallThrustSciFi</SubtypeName>
-              <EntityId>134363692033226046</EntityId>
+              <EntityId>103034255579865728</EntityId>
               <Min x="2" y="1" z="6" />
               <IntegrityPercent>0.005</IntegrityPercent>
               <BuildPercent>0.005</BuildPercent>
@@ -773,7 +798,7 @@
             </MyObjectBuilder_CubeBlock>
             <MyObjectBuilder_CubeBlock xsi:type="MyObjectBuilder_CubeBlock">
               <SubtypeName>LargeHalfSlopeArmorBlock</SubtypeName>
-              <EntityId>122729029207388674</EntityId>
+              <EntityId>102941634796589787</EntityId>
               <Min x="-3" y="2" z="7" />
               <IntegrityPercent>0.005</IntegrityPercent>
               <BuildPercent>0.005</BuildPercent>
@@ -790,7 +815,7 @@
             </MyObjectBuilder_CubeBlock>
             <MyObjectBuilder_CubeBlock xsi:type="MyObjectBuilder_CubeBlock">
               <SubtypeName>LargeBlockArmorSlope2Tip</SubtypeName>
-              <EntityId>129439443846161438</EntityId>
+              <EntityId>125422471570227589</EntityId>
               <Min x="-1" y="2" z="6" />
               <IntegrityPercent>0.25</IntegrityPercent>
               <BuildPercent>0.25</BuildPercent>
@@ -799,7 +824,7 @@
             </MyObjectBuilder_CubeBlock>
             <MyObjectBuilder_CubeBlock xsi:type="MyObjectBuilder_CubeBlock">
               <SubtypeName>LargeBlockArmorHalfCorner</SubtypeName>
-              <EntityId>109152168384071773</EntityId>
+              <EntityId>123548542719664541</EntityId>
               <Min x="3" y="1" z="4" />
               <IntegrityPercent>0.005</IntegrityPercent>
               <BuildPercent>0.005</BuildPercent>
@@ -822,7 +847,7 @@
             </MyObjectBuilder_CubeBlock>
             <MyObjectBuilder_CubeBlock xsi:type="MyObjectBuilder_Thrust">
               <SubtypeName>LargeBlockSmallFlatAtmosphericThrustDShape</SubtypeName>
-              <EntityId>90955207526513192</EntityId>
+              <EntityId>79739988810482902</EntityId>
               <Min x="3" y="1" z="7" />
               <IntegrityPercent>0.25</IntegrityPercent>
               <BuildPercent>0.25</BuildPercent>
@@ -856,7 +881,7 @@
             </MyObjectBuilder_CubeBlock>
             <MyObjectBuilder_CubeBlock xsi:type="MyObjectBuilder_CubeBlock">
               <SubtypeName>LargeHalfArmorBlock</SubtypeName>
-              <EntityId>88101079641944277</EntityId>
+              <EntityId>122148590220213099</EntityId>
               <Min x="3" y="0" z="6" />
               <IntegrityPercent>0.005</IntegrityPercent>
               <BuildPercent>0.005</BuildPercent>
@@ -866,7 +891,7 @@
             </MyObjectBuilder_CubeBlock>
             <MyObjectBuilder_CubeBlock xsi:type="MyObjectBuilder_CubeBlock">
               <SubtypeName>LargeBlockArmorHalfSlopeInverted</SubtypeName>
-              <EntityId>74046061299155670</EntityId>
+              <EntityId>115049347030994508</EntityId>
               <Min x="-1" y="0" z="4" />
               <IntegrityPercent>0.005</IntegrityPercent>
               <BuildPercent>0.005</BuildPercent>
@@ -889,7 +914,7 @@
             </MyObjectBuilder_CubeBlock>
             <MyObjectBuilder_CubeBlock xsi:type="MyObjectBuilder_CubeBlock">
               <SubtypeName>LargeHalfArmorBlock</SubtypeName>
-              <EntityId>140244198619654122</EntityId>
+              <EntityId>107159204177755173</EntityId>
               <Min x="3" y="1" z="8" />
               <IntegrityPercent>0.005</IntegrityPercent>
               <BuildPercent>0.005</BuildPercent>
@@ -899,7 +924,7 @@
             </MyObjectBuilder_CubeBlock>
             <MyObjectBuilder_CubeBlock xsi:type="MyObjectBuilder_CubeBlock">
               <SubtypeName>LargeHalfArmorBlock</SubtypeName>
-              <EntityId>93223121665240430</EntityId>
+              <EntityId>114139505803410780</EntityId>
               <Min x="3" y="0" z="7" />
               <IntegrityPercent>0.25</IntegrityPercent>
               <BuildPercent>0.25</BuildPercent>
@@ -909,7 +934,7 @@
             </MyObjectBuilder_CubeBlock>
             <MyObjectBuilder_CubeBlock xsi:type="MyObjectBuilder_CubeBlock">
               <SubtypeName>LargeBlockArmorHalfSlopedCornerBase</SubtypeName>
-              <EntityId>88583780158204065</EntityId>
+              <EntityId>94255303953850726</EntityId>
               <Min x="1" y="0" z="6" />
               <IntegrityPercent>0.25</IntegrityPercent>
               <BuildPercent>0.25</BuildPercent>
@@ -918,7 +943,7 @@
             </MyObjectBuilder_CubeBlock>
             <MyObjectBuilder_CubeBlock xsi:type="MyObjectBuilder_CubeBlock">
               <SubtypeName>LargeBlockArmorHalfCorner</SubtypeName>
-              <EntityId>97502533178055376</EntityId>
+              <EntityId>117991347720151535</EntityId>
               <Min x="3" y="0" z="8" />
               <IntegrityPercent>0.25</IntegrityPercent>
               <BuildPercent>0.25</BuildPercent>
@@ -940,7 +965,7 @@
             </MyObjectBuilder_CubeBlock>
             <MyObjectBuilder_CubeBlock xsi:type="MyObjectBuilder_CubeBlock">
               <SubtypeName>LargeBlockArmorSlope2Base</SubtypeName>
-              <EntityId>79441478737769459</EntityId>
+              <EntityId>103477089529137323</EntityId>
               <Min x="2" y="2" z="-1" />
               <IntegrityPercent>0.25</IntegrityPercent>
               <BuildPercent>0.25</BuildPercent>
@@ -986,7 +1011,7 @@
             </MyObjectBuilder_CubeBlock>
             <MyObjectBuilder_CubeBlock xsi:type="MyObjectBuilder_Thrust">
               <SubtypeName>LargeBlockSmallThrustSciFi</SubtypeName>
-              <EntityId>123229186422090238</EntityId>
+              <EntityId>84187085275526782</EntityId>
               <Min x="2" y="1" z="-5" />
               <IntegrityPercent>0.5675</IntegrityPercent>
               <BuildPercent>0.5675</BuildPercent>
@@ -1019,7 +1044,7 @@
             </MyObjectBuilder_CubeBlock>
             <MyObjectBuilder_CubeBlock xsi:type="MyObjectBuilder_CubeBlock">
               <SubtypeName>LargeBlockArmorHalfSlopeInverted</SubtypeName>
-              <EntityId>137493794155906423</EntityId>
+              <EntityId>87119108648088249</EntityId>
               <Min x="1" y="2" z="-2" />
               <IntegrityPercent>0.25</IntegrityPercent>
               <BuildPercent>0.25</BuildPercent>
@@ -1028,7 +1053,7 @@
             </MyObjectBuilder_CubeBlock>
             <MyObjectBuilder_CubeBlock xsi:type="MyObjectBuilder_CubeBlock">
               <SubtypeName>LargeBlockArmorHalfSlopeInverted</SubtypeName>
-              <EntityId>85396285011012204</EntityId>
+              <EntityId>102190018789688686</EntityId>
               <Min x="2" y="2" z="0" />
               <IntegrityPercent>0.25</IntegrityPercent>
               <BuildPercent>0.25</BuildPercent>
@@ -1038,7 +1063,7 @@
             </MyObjectBuilder_CubeBlock>
             <MyObjectBuilder_CubeBlock xsi:type="MyObjectBuilder_CubeBlock">
               <SubtypeName>LargeArmorSlopedSidePanelLight</SubtypeName>
-              <EntityId>99267862123289682</EntityId>
+              <EntityId>98016766108509849</EntityId>
               <Min x="-1" y="3" z="-4" />
               <BlockOrientation Forward="Backward" Up="Left" />
               <ColorMaskHSV x="0" y="-0.8" z="0.55" />
@@ -1046,7 +1071,7 @@
             </MyObjectBuilder_CubeBlock>
             <MyObjectBuilder_CubeBlock xsi:type="MyObjectBuilder_InteriorTurret">
               <SubtypeName>LargeInteriorTurret</SubtypeName>
-              <EntityId>77810308945517006</EntityId>
+              <EntityId>140189204584310321</EntityId>
               <Min x="-4" y="1" z="-3" />
               <IntegrityPercent>0.005</IntegrityPercent>
               <BuildPercent>0.005</BuildPercent>
@@ -1096,15 +1121,15 @@
               <IsLargeTurret>true</IsLargeTurret>
               <MinFov>0.1</MinFov>
               <MaxFov>1.04719758</MaxFov>
-              <RemainingAmmo>50</RemainingAmmo>
+              <Range>0.1</Range>
+              <RemainingAmmo>0</RemainingAmmo>
               <Target>0</Target>
               <IsPotentialTarget>true</IsPotentialTarget>
               <PreviousControlledEntityId xsi:nil="true" />
               <Rotation>0</Rotation>
               <Elevation>0</Elevation>
               <GunBase>
-                <RemainingAmmo>50</RemainingAmmo>
-                <CurrentAmmoMagazineName>RapidFireAutomaticRifleGun_Mag_50rd</CurrentAmmoMagazineName>
+                <CurrentAmmoMagazineName>Energy</CurrentAmmoMagazineName>
                 <RemainingAmmosList />
                 <LastShootTime>0</LastShootTime>
               </GunBase>
@@ -1133,7 +1158,7 @@
             </MyObjectBuilder_CubeBlock>
             <MyObjectBuilder_CubeBlock xsi:type="MyObjectBuilder_CubeBlock">
               <SubtypeName>LargeHalfSlopeArmorBlock</SubtypeName>
-              <EntityId>88035607944045220</EntityId>
+              <EntityId>124832027499733429</EntityId>
               <Min x="-3" y="2" z="0" />
               <IntegrityPercent>0.25</IntegrityPercent>
               <BuildPercent>0.25</BuildPercent>
@@ -1143,7 +1168,7 @@
             </MyObjectBuilder_CubeBlock>
             <MyObjectBuilder_CubeBlock xsi:type="MyObjectBuilder_InteriorLight">
               <SubtypeName>LargeBlockInsetKitchen</SubtypeName>
-              <EntityId>80528242090665163</EntityId>
+              <EntityId>103183750714457427</EntityId>
               <Min x="-2" y="1" z="-2" />
               <SkinSubtypeId>Heavy_Rust_Armor</SkinSubtypeId>
               <ComponentContainer>
@@ -1193,7 +1218,7 @@
             </MyObjectBuilder_CubeBlock>
             <MyObjectBuilder_CubeBlock xsi:type="MyObjectBuilder_CubeBlock">
               <SubtypeName>LargeGridBeamBlockHalf</SubtypeName>
-              <EntityId>75568694058000121</EntityId>
+              <EntityId>76681214624749963</EntityId>
               <Min x="2" y="2" z="1" />
               <IntegrityPercent>0.75</IntegrityPercent>
               <BuildPercent>0.75</BuildPercent>
@@ -1202,7 +1227,7 @@
             </MyObjectBuilder_CubeBlock>
             <MyObjectBuilder_CubeBlock xsi:type="MyObjectBuilder_CubeBlock">
               <SubtypeName>AirDuct1</SubtypeName>
-              <EntityId>82076250688525669</EntityId>
+              <EntityId>140026012929054678</EntityId>
               <Min x="0" y="0" z="-3" />
               <BlockOrientation Forward="Backward" Up="Up" />
               <SkinSubtypeId>Heavy_Rust_Armor</SkinSubtypeId>
@@ -1216,7 +1241,7 @@
             </MyObjectBuilder_CubeBlock>
             <MyObjectBuilder_CubeBlock xsi:type="MyObjectBuilder_CubeBlock">
               <SubtypeName>LargeHalfSlopeArmorBlock</SubtypeName>
-              <EntityId>80197602189784086</EntityId>
+              <EntityId>79125631214007506</EntityId>
               <Min x="3" y="2" z="-3" />
               <IntegrityPercent>0.005</IntegrityPercent>
               <BuildPercent>0.005</BuildPercent>
@@ -1234,7 +1259,7 @@
             </MyObjectBuilder_CubeBlock>
             <MyObjectBuilder_CubeBlock xsi:type="MyObjectBuilder_CubeBlock">
               <SubtypeName>LargeBlockArmorBlock</SubtypeName>
-              <EntityId>100186911975472740</EntityId>
+              <EntityId>122517808602596715</EntityId>
               <Min x="1" y="0" z="-2" />
               <IntegrityPercent>0.005</IntegrityPercent>
               <BuildPercent>0.005</BuildPercent>
@@ -1251,7 +1276,7 @@
             </MyObjectBuilder_CubeBlock>
             <MyObjectBuilder_CubeBlock xsi:type="MyObjectBuilder_CubeBlock">
               <SubtypeName>LargeHalfSlopeArmorBlock</SubtypeName>
-              <EntityId>121711506706920571</EntityId>
+              <EntityId>121426108459591224</EntityId>
               <Min x="-3" y="2" z="1" />
               <IntegrityPercent>0.005</IntegrityPercent>
               <BuildPercent>0.005</BuildPercent>
@@ -1261,7 +1286,7 @@
             </MyObjectBuilder_CubeBlock>
             <MyObjectBuilder_CubeBlock xsi:type="MyObjectBuilder_CubeBlock">
               <SubtypeName>LargeBlockArmorBlock</SubtypeName>
-              <EntityId>112294195579734805</EntityId>
+              <EntityId>89794416217699985</EntityId>
               <Min x="1" y="0" z="-1" />
               <IntegrityPercent>0.25</IntegrityPercent>
               <BuildPercent>0.25</BuildPercent>
@@ -1270,7 +1295,7 @@
             </MyObjectBuilder_CubeBlock>
             <MyObjectBuilder_CubeBlock xsi:type="MyObjectBuilder_CubeBlock">
               <SubtypeName>LargeGridBeamBlockHalf</SubtypeName>
-              <EntityId>94514830439429697</EntityId>
+              <EntityId>79596332687592843</EntityId>
               <Min x="-2" y="2" z="2" />
               <IntegrityPercent>0.005</IntegrityPercent>
               <BuildPercent>0.005</BuildPercent>
@@ -1279,7 +1304,7 @@
             </MyObjectBuilder_CubeBlock>
             <MyObjectBuilder_CubeBlock xsi:type="MyObjectBuilder_InteriorLight">
               <SubtypeName>LargeBlockInsetLight</SubtypeName>
-              <EntityId>95940126173620353</EntityId>
+              <EntityId>86644825056840511</EntityId>
               <Min x="0" y="2" z="-2" />
               <IntegrityPercent>0.005</IntegrityPercent>
               <BuildPercent>0.005</BuildPercent>
@@ -1309,7 +1334,7 @@
             </MyObjectBuilder_CubeBlock>
             <MyObjectBuilder_CubeBlock xsi:type="MyObjectBuilder_CubeBlock">
               <SubtypeName>AngledInteriorWallA</SubtypeName>
-              <EntityId>73096911544521650</EntityId>
+              <EntityId>142694927275349668</EntityId>
               <Min x="-1" y="1" z="-4" />
               <IntegrityPercent>0.642857134</IntegrityPercent>
               <BuildPercent>0.642857134</BuildPercent>
@@ -1318,14 +1343,14 @@
             </MyObjectBuilder_CubeBlock>
             <MyObjectBuilder_CubeBlock xsi:type="MyObjectBuilder_CubeBlock">
               <SubtypeName>LargeArmorPanelLight</SubtypeName>
-              <EntityId>114074387220542084</EntityId>
+              <EntityId>112414769441725188</EntityId>
               <Min x="2" y="-1" z="5" />
               <BlockOrientation Forward="Backward" Up="Right" />
               <SkinSubtypeId>Heavy_Rust_Armor</SkinSubtypeId>
             </MyObjectBuilder_CubeBlock>
             <MyObjectBuilder_CubeBlock xsi:type="MyObjectBuilder_CubeBlock">
               <SubtypeName>LargeGridBeamBlockHalf</SubtypeName>
-              <EntityId>142308231999536496</EntityId>
+              <EntityId>84252280700899205</EntityId>
               <Min x="-2" y="2" z="3" />
               <IntegrityPercent>0.75</IntegrityPercent>
               <BuildPercent>0.75</BuildPercent>
@@ -1334,7 +1359,7 @@
             </MyObjectBuilder_CubeBlock>
             <MyObjectBuilder_CubeBlock xsi:type="MyObjectBuilder_CubeBlock">
               <SubtypeName>LargeBlockArmorCorner</SubtypeName>
-              <EntityId>81446452960774564</EntityId>
+              <EntityId>91562109350822156</EntityId>
               <Min x="-1" y="1" z="8" />
               <IntegrityPercent>0.005</IntegrityPercent>
               <BuildPercent>0.005</BuildPercent>
@@ -1350,7 +1375,7 @@
             </MyObjectBuilder_CubeBlock>
             <MyObjectBuilder_CubeBlock xsi:type="MyObjectBuilder_CubeBlock">
               <SubtypeName>LargeBlockArmorCornerInv</SubtypeName>
-              <EntityId>140623310510844407</EntityId>
+              <EntityId>113570219059177475</EntityId>
               <Min x="-2" y="0" z="4" />
               <IntegrityPercent>0.25</IntegrityPercent>
               <BuildPercent>0.25</BuildPercent>
@@ -1359,7 +1384,7 @@
             </MyObjectBuilder_CubeBlock>
             <MyObjectBuilder_CubeBlock xsi:type="MyObjectBuilder_CubeBlock">
               <SubtypeName>LargeBlockArmorHalfSlopeInverted</SubtypeName>
-              <EntityId>72145037580479027</EntityId>
+              <EntityId>129753043298866578</EntityId>
               <Min x="-2" y="2" z="4" />
               <IntegrityPercent>0.5</IntegrityPercent>
               <BuildPercent>0.5</BuildPercent>
@@ -1369,7 +1394,7 @@
             </MyObjectBuilder_CubeBlock>
             <MyObjectBuilder_CubeBlock xsi:type="MyObjectBuilder_CubeBlock">
               <SubtypeName>LargeHalfSlopeArmorBlock</SubtypeName>
-              <EntityId>134848395828581970</EntityId>
+              <EntityId>112436207029173244</EntityId>
               <Min x="3" y="2" z="3" />
               <IntegrityPercent>0.005</IntegrityPercent>
               <BuildPercent>0.005</BuildPercent>
@@ -1385,7 +1410,7 @@
             </MyObjectBuilder_CubeBlock>
             <MyObjectBuilder_CubeBlock xsi:type="MyObjectBuilder_Thrust">
               <SubtypeName>LargeBlockSmallThrustSciFi</SubtypeName>
-              <EntityId>112856896969447193</EntityId>
+              <EntityId>84758287021969451</EntityId>
               <Min x="-1" y="1" z="5" />
               <IntegrityPercent>0.5675</IntegrityPercent>
               <BuildPercent>0.5675</BuildPercent>
@@ -1418,7 +1443,7 @@
             </MyObjectBuilder_CubeBlock>
             <MyObjectBuilder_CubeBlock xsi:type="MyObjectBuilder_CubeBlock">
               <SubtypeName>LargeBlockArmorSlopedCornerTip</SubtypeName>
-              <EntityId>93079309908444432</EntityId>
+              <EntityId>136333165741234069</EntityId>
               <Min x="-1" y="2" z="8" />
               <IntegrityPercent>0.25</IntegrityPercent>
               <BuildPercent>0.25</BuildPercent>
@@ -1427,7 +1452,7 @@
             </MyObjectBuilder_CubeBlock>
             <MyObjectBuilder_CubeBlock xsi:type="MyObjectBuilder_CubeBlock">
               <SubtypeName>LargeHalfSlopeArmorBlock</SubtypeName>
-              <EntityId>84564860574982730</EntityId>
+              <EntityId>124857212574898939</EntityId>
               <Min x="-3" y="2" z="8" />
               <IntegrityPercent>0.25</IntegrityPercent>
               <BuildPercent>0.25</BuildPercent>
@@ -1437,7 +1462,7 @@
             </MyObjectBuilder_CubeBlock>
             <MyObjectBuilder_CubeBlock xsi:type="MyObjectBuilder_CubeBlock">
               <SubtypeName>LargeHalfArmorBlock</SubtypeName>
-              <EntityId>95795458596583241</EntityId>
+              <EntityId>115917583267323381</EntityId>
               <Min x="-2" y="2" z="6" />
               <IntegrityPercent>0.25</IntegrityPercent>
               <BuildPercent>0.25</BuildPercent>
@@ -1447,7 +1472,7 @@
             </MyObjectBuilder_CubeBlock>
             <MyObjectBuilder_CubeBlock xsi:type="MyObjectBuilder_CubeBlock">
               <SubtypeName>LargeHalfSlopeArmorBlock</SubtypeName>
-              <EntityId>130881767053461129</EntityId>
+              <EntityId>99094329180144728</EntityId>
               <Min x="-3" y="2" z="5" />
               <IntegrityPercent>0.25</IntegrityPercent>
               <BuildPercent>0.25</BuildPercent>
@@ -1464,7 +1489,7 @@
             </MyObjectBuilder_CubeBlock>
             <MyObjectBuilder_CubeBlock xsi:type="MyObjectBuilder_Thrust">
               <SubtypeName>LargeBlockSmallFlatAtmosphericThrustDShape</SubtypeName>
-              <EntityId>78351501432004889</EntityId>
+              <EntityId>113735533036871847</EntityId>
               <Min x="-3" y="1" z="7" />
               <IntegrityPercent>0.005</IntegrityPercent>
               <BuildPercent>0.005</BuildPercent>
@@ -1498,7 +1523,7 @@
             </MyObjectBuilder_CubeBlock>
             <MyObjectBuilder_CubeBlock xsi:type="MyObjectBuilder_CubeBlock">
               <SubtypeName>LargeBlockArmorCornerInv</SubtypeName>
-              <EntityId>131717122953907339</EntityId>
+              <EntityId>96656177554248662</EntityId>
               <Min x="-1" y="1" z="7" />
               <IntegrityPercent>0.25</IntegrityPercent>
               <BuildPercent>0.25</BuildPercent>
@@ -1507,7 +1532,7 @@
             </MyObjectBuilder_CubeBlock>
             <MyObjectBuilder_CubeBlock xsi:type="MyObjectBuilder_CubeBlock">
               <SubtypeName>Passage2</SubtypeName>
-              <EntityId>122239528213478635</EntityId>
+              <EntityId>93634690896929877</EntityId>
               <Min x="-1" y="1" z="4" />
               <IntegrityPercent>0.005</IntegrityPercent>
               <BuildPercent>0.005</BuildPercent>
@@ -1516,7 +1541,7 @@
             </MyObjectBuilder_CubeBlock>
             <MyObjectBuilder_CubeBlock xsi:type="MyObjectBuilder_CubeBlock">
               <SubtypeName>LargeBlockArmorHalfSlopedCornerBase</SubtypeName>
-              <EntityId>112936212781147568</EntityId>
+              <EntityId>91886536880197051</EntityId>
               <Min x="-2" y="2" z="8" />
               <IntegrityPercent>0.5</IntegrityPercent>
               <BuildPercent>0.5</BuildPercent>
@@ -1525,7 +1550,7 @@
             </MyObjectBuilder_CubeBlock>
             <MyObjectBuilder_CubeBlock xsi:type="MyObjectBuilder_Thrust">
               <SubtypeName>LargeBlockLargeFlatAtmosphericThrust</SubtypeName>
-              <EntityId>76466593400474769</EntityId>
+              <EntityId>87078659525163449</EntityId>
               <Min x="-1" y="1" z="1" />
               <BlockOrientation Forward="Down" Up="Backward" />
               <SkinSubtypeId>Heavy_Rust_Armor</SkinSubtypeId>
@@ -1556,7 +1581,7 @@
             </MyObjectBuilder_CubeBlock>
             <MyObjectBuilder_CubeBlock xsi:type="MyObjectBuilder_CubeBlock">
               <SubtypeName>LargeHalfArmorBlock</SubtypeName>
-              <EntityId>134493170321595296</EntityId>
+              <EntityId>92203235224272201</EntityId>
               <Min x="-2" y="2" z="5" />
               <IntegrityPercent>0.5</IntegrityPercent>
               <BuildPercent>0.5</BuildPercent>
@@ -1566,7 +1591,7 @@
             </MyObjectBuilder_CubeBlock>
             <MyObjectBuilder_CubeBlock xsi:type="MyObjectBuilder_CubeBlock">
               <SubtypeName>LargeBlockArmorHalfCorner</SubtypeName>
-              <EntityId>75654437118747186</EntityId>
+              <EntityId>85858101871014509</EntityId>
               <Min x="3" y="0" z="5" />
               <IntegrityPercent>0.005</IntegrityPercent>
               <BuildPercent>0.005</BuildPercent>
@@ -1576,7 +1601,7 @@
             </MyObjectBuilder_CubeBlock>
             <MyObjectBuilder_CubeBlock xsi:type="MyObjectBuilder_CubeBlock">
               <SubtypeName>LargeHalfArmorBlock</SubtypeName>
-              <EntityId>126093381298470255</EntityId>
+              <EntityId>94591733997845844</EntityId>
               <Min x="-2" y="2" z="7" />
               <IntegrityPercent>0.25</IntegrityPercent>
               <BuildPercent>0.25</BuildPercent>
@@ -1586,7 +1611,7 @@
             </MyObjectBuilder_CubeBlock>
             <MyObjectBuilder_CubeBlock xsi:type="MyObjectBuilder_Thrust">
               <SubtypeName>LargeBlockSmallFlatAtmosphericThrustDShape</SubtypeName>
-              <EntityId>122629778358547579</EntityId>
+              <EntityId>72901888228362636</EntityId>
               <Min x="-3" y="1" z="5" />
               <IntegrityPercent>0.005</IntegrityPercent>
               <BuildPercent>0.005</BuildPercent>
@@ -1620,7 +1645,7 @@
             </MyObjectBuilder_CubeBlock>
             <MyObjectBuilder_CubeBlock xsi:type="MyObjectBuilder_CubeBlock">
               <SubtypeName>LargeHalfSlopeArmorBlock</SubtypeName>
-              <EntityId>137158075922039020</EntityId>
+              <EntityId>101809244882316142</EntityId>
               <Min x="3" y="2" z="6" />
               <IntegrityPercent>0.25</IntegrityPercent>
               <BuildPercent>0.25</BuildPercent>
@@ -1630,7 +1655,7 @@
             </MyObjectBuilder_CubeBlock>
             <MyObjectBuilder_CubeBlock xsi:type="MyObjectBuilder_CubeBlock">
               <SubtypeName>LargeHalfSlopeArmorBlock</SubtypeName>
-              <EntityId>143348917607236423</EntityId>
+              <EntityId>103626041181433414</EntityId>
               <Min x="3" y="2" z="7" />
               <IntegrityPercent>0.005</IntegrityPercent>
               <BuildPercent>0.005</BuildPercent>
@@ -1640,7 +1665,7 @@
             </MyObjectBuilder_CubeBlock>
             <MyObjectBuilder_CubeBlock xsi:type="MyObjectBuilder_CubeBlock">
               <SubtypeName>LargeHalfArmorBlock</SubtypeName>
-              <EntityId>119889473255768256</EntityId>
+              <EntityId>87228364863275911</EntityId>
               <Min x="-3" y="1" z="8" />
               <IntegrityPercent>0.25</IntegrityPercent>
               <BuildPercent>0.25</BuildPercent>
@@ -1664,7 +1689,7 @@
             </MyObjectBuilder_CubeBlock>
             <MyObjectBuilder_CubeBlock xsi:type="MyObjectBuilder_CubeBlock">
               <SubtypeName>AngledInteriorWallA</SubtypeName>
-              <EntityId>104607388625955675</EntityId>
+              <EntityId>77326749306538989</EntityId>
               <Min x="1" y="1" z="-4" />
               <IntegrityPercent>0.005</IntegrityPercent>
               <BuildPercent>0.005</BuildPercent>
@@ -1673,15 +1698,38 @@
             </MyObjectBuilder_CubeBlock>
             <MyObjectBuilder_CubeBlock xsi:type="MyObjectBuilder_CargoContainer">
               <SubtypeName>LargeBlockSmallContainer</SubtypeName>
-              <EntityId>91745855377106030</EntityId>
+              <EntityId>73796986296345712</EntityId>
               <Min x="-3" y="1" z="-2" />
               <BlockOrientation Forward="Left" Up="Up" />
               <SkinSubtypeId>Heavy_Rust_Armor</SkinSubtypeId>
               <ShareMode>Faction</ShareMode>
+              <ComponentContainer>
+                <Components>
+                  <ComponentData>
+                    <TypeId>MyInventoryBase</TypeId>
+                    <Component xsi:type="MyObjectBuilder_Inventory">
+                      <CanPutItems>true</CanPutItems>
+                      <Items />
+                      <nextItemId>0</nextItemId>
+                      <Volume>15.625</Volume>
+                      <Mass>9223372036854.775807</Mass>
+                      <MaxItemCount>2147483647</MaxItemCount>
+                      <Size xsi:nil="true" />
+                      <InventoryFlags>CanReceive CanSend</InventoryFlags>
+                      <RemoveEntityOnEmpty>false</RemoveEntityOnEmpty>
+                    </Component>
+                  </ComponentData>
+                </Components>
+              </ComponentContainer>
+              <ShowOnHUD>false</ShowOnHUD>
+              <ShowInTerminal>true</ShowInTerminal>
+              <ShowInToolbarConfig>true</ShowInToolbarConfig>
+              <ShowInInventory>true</ShowInInventory>
+              <NumberInGrid>1</NumberInGrid>
             </MyObjectBuilder_CubeBlock>
             <MyObjectBuilder_CubeBlock xsi:type="MyObjectBuilder_CubeBlock">
               <SubtypeName>LargeBlockArmorSlopedCornerBase</SubtypeName>
-              <EntityId>89225436237197781</EntityId>
+              <EntityId>75842062578710484</EntityId>
               <Min x="1" y="2" z="-4" />
               <IntegrityPercent>0.25</IntegrityPercent>
               <BuildPercent>0.25</BuildPercent>
@@ -1697,7 +1745,7 @@
             </MyObjectBuilder_CubeBlock>
             <MyObjectBuilder_CubeBlock xsi:type="MyObjectBuilder_CubeBlock">
               <SubtypeName>AngledInteriorWallB</SubtypeName>
-              <EntityId>101747646971521079</EntityId>
+              <EntityId>88572238773066520</EntityId>
               <Min x="0" y="2" z="4" />
               <SkinSubtypeId>Heavy_Rust_Armor</SkinSubtypeId>
             </MyObjectBuilder_CubeBlock>
@@ -1708,7 +1756,7 @@
             </MyObjectBuilder_CubeBlock>
             <MyObjectBuilder_CubeBlock xsi:type="MyObjectBuilder_HeatVentBlock">
               <SubtypeName>LargeHeatVentBlock</SubtypeName>
-              <EntityId>72700091629945366</EntityId>
+              <EntityId>136401721773970550</EntityId>
               <Min x="1" y="2" z="4" />
               <SkinSubtypeId>Heavy_Rust_Armor</SkinSubtypeId>
               <ShowOnHUD>false</ShowOnHUD>
@@ -1735,7 +1783,7 @@
             </MyObjectBuilder_CubeBlock>
             <MyObjectBuilder_CubeBlock xsi:type="MyObjectBuilder_BatteryBlock">
               <SubtypeName>LargeBlockBatteryBlockWarfare2</SubtypeName>
-              <EntityId>102577739828192016</EntityId>
+              <EntityId>124868744667114332</EntityId>
               <Min x="2" y="1" z="5" />
               <IntegrityPercent>0.005</IntegrityPercent>
               <BuildPercent>0.005</BuildPercent>
@@ -1756,7 +1804,7 @@
             </MyObjectBuilder_CubeBlock>
             <MyObjectBuilder_CubeBlock xsi:type="MyObjectBuilder_BatteryBlock">
               <SubtypeName>LargeBlockBatteryBlockWarfare2</SubtypeName>
-              <EntityId>114817699579924667</EntityId>
+              <EntityId>92032264015339900</EntityId>
               <Min x="-2" y="1" z="5" />
               <IntegrityPercent>0.005</IntegrityPercent>
               <BuildPercent>0.005</BuildPercent>
@@ -1778,7 +1826,7 @@
             </MyObjectBuilder_CubeBlock>
             <MyObjectBuilder_CubeBlock xsi:type="MyObjectBuilder_CubeBlock">
               <SubtypeName>LargeBlockArmorBlock</SubtypeName>
-              <EntityId>113804039248460334</EntityId>
+              <EntityId>104345511732487997</EntityId>
               <Min x="2" y="1" z="4" />
               <IntegrityPercent>0.25</IntegrityPercent>
               <BuildPercent>0.25</BuildPercent>
@@ -1786,7 +1834,7 @@
             </MyObjectBuilder_CubeBlock>
             <MyObjectBuilder_CubeBlock xsi:type="MyObjectBuilder_CubeBlock">
               <SubtypeName>LargeBlockArmorBlock</SubtypeName>
-              <EntityId>129800876452307066</EntityId>
+              <EntityId>143368714746275818</EntityId>
               <Min x="-2" y="1" z="4" />
               <IntegrityPercent>0.005</IntegrityPercent>
               <BuildPercent>0.005</BuildPercent>
@@ -1800,7 +1848,7 @@
             </MyObjectBuilder_CubeBlock>
             <MyObjectBuilder_CubeBlock xsi:type="MyObjectBuilder_CubeBlock">
               <SubtypeName>LargeBlockArmorInvCorner2Base</SubtypeName>
-              <EntityId>92900678068745455</EntityId>
+              <EntityId>139290540865977491</EntityId>
               <Min x="1" y="2" z="-3" />
               <IntegrityPercent>0.005</IntegrityPercent>
               <BuildPercent>0.005</BuildPercent>
@@ -1809,7 +1857,7 @@
             </MyObjectBuilder_CubeBlock>
             <MyObjectBuilder_CubeBlock xsi:type="MyObjectBuilder_CubeBlock">
               <SubtypeName>LargeBlockArmorSlopedCornerTip</SubtypeName>
-              <EntityId>137222450116537276</EntityId>
+              <EntityId>121022324049751776</EntityId>
               <Min x="1" y="0" z="7" />
               <IntegrityPercent>0.25</IntegrityPercent>
               <BuildPercent>0.25</BuildPercent>
@@ -1818,7 +1866,7 @@
             </MyObjectBuilder_CubeBlock>
             <MyObjectBuilder_CubeBlock xsi:type="MyObjectBuilder_CubeBlock">
               <SubtypeName>LargeBlockArmorSlopedCornerTip</SubtypeName>
-              <EntityId>105920218394616107</EntityId>
+              <EntityId>134330500896496526</EntityId>
               <Min x="-1" y="0" z="7" />
               <IntegrityPercent>0.005</IntegrityPercent>
               <BuildPercent>0.005</BuildPercent>
@@ -1827,7 +1875,7 @@
             </MyObjectBuilder_CubeBlock>
             <MyObjectBuilder_CubeBlock xsi:type="MyObjectBuilder_Thrust">
               <SubtypeName>LargeBlockSmallFlatAtmosphericThrust</SubtypeName>
-              <EntityId>115070439687282383</EntityId>
+              <EntityId>90802361656126009</EntityId>
               <Min x="-1" y="0" z="5" />
               <IntegrityPercent>0.005</IntegrityPercent>
               <BuildPercent>0.005</BuildPercent>
@@ -1860,7 +1908,7 @@
             </MyObjectBuilder_CubeBlock>
             <MyObjectBuilder_CubeBlock xsi:type="MyObjectBuilder_Thrust">
               <SubtypeName>LargeBlockSmallFlatAtmosphericThrust</SubtypeName>
-              <EntityId>121574361683908035</EntityId>
+              <EntityId>106112850894866019</EntityId>
               <Min x="1" y="0" z="5" />
               <IntegrityPercent>0.005</IntegrityPercent>
               <BuildPercent>0.005</BuildPercent>
@@ -1893,46 +1941,46 @@
             </MyObjectBuilder_CubeBlock>
             <MyObjectBuilder_CubeBlock xsi:type="MyObjectBuilder_CubeBlock">
               <SubtypeName>CatwalkHalf</SubtypeName>
-              <EntityId>134038067386818160</EntityId>
+              <EntityId>115642050325987257</EntityId>
               <Min x="-2" y="3" z="1" />
               <BlockOrientation Forward="Backward" Up="Up" />
               <SkinSubtypeId>Heavy_Rust_Armor</SkinSubtypeId>
             </MyObjectBuilder_CubeBlock>
             <MyObjectBuilder_CubeBlock xsi:type="MyObjectBuilder_CubeBlock">
               <SubtypeName>CatwalkHalf</SubtypeName>
-              <EntityId>120522090157788536</EntityId>
+              <EntityId>97672824014297977</EntityId>
               <Min x="-2" y="3" z="2" />
               <BlockOrientation Forward="Backward" Up="Up" />
               <SkinSubtypeId>Heavy_Rust_Armor</SkinSubtypeId>
             </MyObjectBuilder_CubeBlock>
             <MyObjectBuilder_CubeBlock xsi:type="MyObjectBuilder_CubeBlock">
               <SubtypeName>CatwalkHalf</SubtypeName>
-              <EntityId>132224340511747515</EntityId>
+              <EntityId>86869756603219102</EntityId>
               <Min x="-2" y="3" z="3" />
               <BlockOrientation Forward="Backward" Up="Up" />
               <SkinSubtypeId>Heavy_Rust_Armor</SkinSubtypeId>
             </MyObjectBuilder_CubeBlock>
             <MyObjectBuilder_CubeBlock xsi:type="MyObjectBuilder_CubeBlock">
               <SubtypeName>CatwalkHalf</SubtypeName>
-              <EntityId>139336217721229586</EntityId>
+              <EntityId>102541849771031915</EntityId>
               <Min x="2" y="3" z="1" />
               <SkinSubtypeId>Heavy_Rust_Armor</SkinSubtypeId>
             </MyObjectBuilder_CubeBlock>
             <MyObjectBuilder_CubeBlock xsi:type="MyObjectBuilder_CubeBlock">
               <SubtypeName>CatwalkHalf</SubtypeName>
-              <EntityId>132566279825313457</EntityId>
+              <EntityId>131127158138670370</EntityId>
               <Min x="2" y="3" z="2" />
               <SkinSubtypeId>Heavy_Rust_Armor</SkinSubtypeId>
             </MyObjectBuilder_CubeBlock>
             <MyObjectBuilder_CubeBlock xsi:type="MyObjectBuilder_CubeBlock">
               <SubtypeName>CatwalkHalf</SubtypeName>
-              <EntityId>99576577570946945</EntityId>
+              <EntityId>88037910679736847</EntityId>
               <Min x="2" y="3" z="3" />
               <SkinSubtypeId>Heavy_Rust_Armor</SkinSubtypeId>
             </MyObjectBuilder_CubeBlock>
             <MyObjectBuilder_CubeBlock xsi:type="MyObjectBuilder_CubeBlock">
               <SubtypeName>LargeBlockArmorBlock</SubtypeName>
-              <EntityId>129303732673664297</EntityId>
+              <EntityId>129233224487492330</EntityId>
               <Min x="1" y="0" z="-3" />
               <IntegrityPercent>0.25</IntegrityPercent>
               <BuildPercent>0.25</BuildPercent>
@@ -1947,7 +1995,7 @@
             </MyObjectBuilder_CubeBlock>
             <MyObjectBuilder_CubeBlock xsi:type="MyObjectBuilder_CubeBlock">
               <SubtypeName>LargeHalfArmorBlock</SubtypeName>
-              <EntityId>101783522664844489</EntityId>
+              <EntityId>121799092452359946</EntityId>
               <Min x="-1" y="1" z="-5" />
               <IntegrityPercent>0.5</IntegrityPercent>
               <BuildPercent>0.5</BuildPercent>
@@ -1956,7 +2004,7 @@
             </MyObjectBuilder_CubeBlock>
             <MyObjectBuilder_CubeBlock xsi:type="MyObjectBuilder_Thrust">
               <SubtypeName>LargeBlockSmallThrustSciFi</SubtypeName>
-              <EntityId>93566242180444510</EntityId>
+              <EntityId>135876259087975535</EntityId>
               <Min x="2" y="0" z="1" />
               <IntegrityPercent>0.5</IntegrityPercent>
               <BuildPercent>0.5</BuildPercent>
@@ -1994,7 +2042,7 @@
             </MyObjectBuilder_CubeBlock>
             <MyObjectBuilder_CubeBlock xsi:type="MyObjectBuilder_CargoContainer">
               <SubtypeName>LargeBlockSmallContainer</SubtypeName>
-              <EntityId>111796901750062615</EntityId>
+              <EntityId>91703432691887466</EntityId>
               <Min x="2" y="1" z="0" />
               <SkinSubtypeId>Heavy_Rust_Armor</SkinSubtypeId>
               <ShareMode>Faction</ShareMode>
@@ -2025,7 +2073,7 @@
             </MyObjectBuilder_CubeBlock>
             <MyObjectBuilder_CubeBlock xsi:type="MyObjectBuilder_CubeBlock">
               <SubtypeName>LargeArmor2x1SlopedSideBasePanelLightInv</SubtypeName>
-              <EntityId>85463802800769647</EntityId>
+              <EntityId>117820972718412676</EntityId>
               <Min x="-4" y="1" z="-1" />
               <BlockOrientation Forward="Down" Up="Backward" />
               <ColorMaskHSV x="0" y="-0.8" z="0.55" />
@@ -2033,7 +2081,7 @@
             </MyObjectBuilder_CubeBlock>
             <MyObjectBuilder_CubeBlock xsi:type="MyObjectBuilder_CubeBlock">
               <SubtypeName>LargeBlockArmorSlopedCorner</SubtypeName>
-              <EntityId>75081849230622466</EntityId>
+              <EntityId>126304499690515010</EntityId>
               <Min x="1" y="2" z="-5" />
               <IntegrityPercent>0.005</IntegrityPercent>
               <BuildPercent>0.005</BuildPercent>
@@ -2050,27 +2098,27 @@
             </MyObjectBuilder_CubeBlock>
             <MyObjectBuilder_CubeBlock xsi:type="MyObjectBuilder_CubeBlock">
               <SubtypeName>CatwalkHalfOuterRailing</SubtypeName>
-              <EntityId>113993664048962901</EntityId>
+              <EntityId>118882968176011938</EntityId>
               <Min x="-1" y="0" z="3" />
               <SkinSubtypeId>Heavy_Rust_Armor</SkinSubtypeId>
             </MyObjectBuilder_CubeBlock>
             <MyObjectBuilder_CubeBlock xsi:type="MyObjectBuilder_CubeBlock">
               <SubtypeName>CatwalkHalfOuterRailing</SubtypeName>
-              <EntityId>143610051875529224</EntityId>
+              <EntityId>94726054549913208</EntityId>
               <Min x="1" y="0" z="3" />
               <BlockOrientation Forward="Backward" Up="Up" />
               <SkinSubtypeId>Heavy_Rust_Armor</SkinSubtypeId>
             </MyObjectBuilder_CubeBlock>
             <MyObjectBuilder_CubeBlock xsi:type="MyObjectBuilder_CubeBlock">
               <SubtypeName>LargeArmor2x1SlopedSideBasePanelLight</SubtypeName>
-              <EntityId>113207381640880254</EntityId>
+              <EntityId>117030642425000250</EntityId>
               <Min x="2" y="-1" z="6" />
               <BlockOrientation Forward="Left" Up="Backward" />
               <SkinSubtypeId>Heavy_Rust_Armor</SkinSubtypeId>
             </MyObjectBuilder_CubeBlock>
             <MyObjectBuilder_CubeBlock xsi:type="MyObjectBuilder_CubeBlock">
               <SubtypeName>LargeArmor2x1SlopedSideBasePanelLightInv</SubtypeName>
-              <EntityId>87544153044537858</EntityId>
+              <EntityId>107502703165986913</EntityId>
               <Min x="-2" y="-1" z="6" />
               <IntegrityPercent>0.005</IntegrityPercent>
               <BuildPercent>0.005</BuildPercent>
@@ -2079,7 +2127,7 @@
             </MyObjectBuilder_CubeBlock>
             <MyObjectBuilder_CubeBlock xsi:type="MyObjectBuilder_CubeBlock">
               <SubtypeName>LargeArmor2x1SlopedSideTipPanelLight</SubtypeName>
-              <EntityId>120297451553941300</EntityId>
+              <EntityId>87615486533038317</EntityId>
               <Min x="2" y="-1" z="7" />
               <IntegrityPercent>0.25</IntegrityPercent>
               <BuildPercent>0.25</BuildPercent>
@@ -2088,7 +2136,7 @@
             </MyObjectBuilder_CubeBlock>
             <MyObjectBuilder_CubeBlock xsi:type="MyObjectBuilder_CubeBlock">
               <SubtypeName>LargeArmor2x1SlopedSideTipPanelLightInv</SubtypeName>
-              <EntityId>124797221864429942</EntityId>
+              <EntityId>83706003000969004</EntityId>
               <Min x="-2" y="-1" z="7" />
               <IntegrityPercent>0.005</IntegrityPercent>
               <BuildPercent>0.005</BuildPercent>
@@ -2104,7 +2152,7 @@
             </MyObjectBuilder_CubeBlock>
             <MyObjectBuilder_CubeBlock xsi:type="MyObjectBuilder_CubeBlock">
               <SubtypeName>LargeBlockArmorBlock</SubtypeName>
-              <EntityId>99784075053227648</EntityId>
+              <EntityId>115108036942125017</EntityId>
               <Min x="2" y="0" z="-3" />
               <IntegrityPercent>0.005</IntegrityPercent>
               <BuildPercent>0.005</BuildPercent>
@@ -2112,7 +2160,7 @@
             </MyObjectBuilder_CubeBlock>
             <MyObjectBuilder_CubeBlock xsi:type="MyObjectBuilder_CubeBlock">
               <SubtypeName>LargeBlockArmorBlock</SubtypeName>
-              <EntityId>129781519885175562</EntityId>
+              <EntityId>75458113282318090</EntityId>
               <Min x="-1" y="0" z="-3" />
               <IntegrityPercent>0.25</IntegrityPercent>
               <BuildPercent>0.25</BuildPercent>
@@ -2128,7 +2176,7 @@
             </MyObjectBuilder_CubeBlock>
             <MyObjectBuilder_CubeBlock xsi:type="MyObjectBuilder_CubeBlock">
               <SubtypeName>LargeBlockArmorBlock</SubtypeName>
-              <EntityId>122982517373197866</EntityId>
+              <EntityId>102511767905876608</EntityId>
               <Min x="0" y="2" z="-4" />
               <IntegrityPercent>0.25</IntegrityPercent>
               <BuildPercent>0.25</BuildPercent>
@@ -2151,7 +2199,7 @@
             </MyObjectBuilder_CubeBlock>
             <MyObjectBuilder_CubeBlock xsi:type="MyObjectBuilder_CubeBlock">
               <SubtypeName>LargeHalfSlopeArmorBlock</SubtypeName>
-              <EntityId>95442016633173364</EntityId>
+              <EntityId>121333680686852793</EntityId>
               <Min x="3" y="2" z="-2" />
               <IntegrityPercent>0.005</IntegrityPercent>
               <BuildPercent>0.005</BuildPercent>
@@ -2161,20 +2209,33 @@
             </MyObjectBuilder_CubeBlock>
             <MyObjectBuilder_CubeBlock xsi:type="MyObjectBuilder_CubeBlock">
               <SubtypeName>LargeArmor2x1SlopedSideTipPanelLightInv</SubtypeName>
-              <EntityId>90859496611484439</EntityId>
+              <EntityId>110946438983770158</EntityId>
               <Min x="1" y="2" z="-6" />
               <BlockOrientation Forward="Up" Up="Right" />
               <SkinSubtypeId>Heavy_Rust_Armor</SkinSubtypeId>
             </MyObjectBuilder_CubeBlock>
-            <MyObjectBuilder_CubeBlock xsi:type="MyObjectBuilder_CubeBlock">
-              <SubtypeName>AirDuct1</SubtypeName>
-              <EntityId>132816840027545221</EntityId>
+            <MyObjectBuilder_CubeBlock xsi:type="MyObjectBuilder_BatteryBlock">
+              <SubtypeName>LargeBlockBatteryBlock</SubtypeName>
+              <EntityId>100806149599970135</EntityId>
               <Min x="0" y="0" z="-1" />
               <SkinSubtypeId>Heavy_Rust_Armor</SkinSubtypeId>
+              <ShareMode>Faction</ShareMode>
+              <ShowOnHUD>false</ShowOnHUD>
+              <ShowInTerminal>true</ShowInTerminal>
+              <ShowInToolbarConfig>true</ShowInToolbarConfig>
+              <ShowInInventory>true</ShowInInventory>
+              <NumberInGrid>1</NumberInGrid>
+              <Enabled>true</Enabled>
+              <CurrentStoredPower>0.149988741</CurrentStoredPower>
+              <ProducerEnabled>true</ProducerEnabled>
+              <MaxStoredPower>0</MaxStoredPower>
+              <SemiautoEnabled>false</SemiautoEnabled>
+              <OnlyDischargeEnabled>false</OnlyDischargeEnabled>
+              <ChargeMode>0</ChargeMode>
             </MyObjectBuilder_CubeBlock>
             <MyObjectBuilder_CubeBlock xsi:type="MyObjectBuilder_CubeBlock">
               <SubtypeName>LargeBlockArmorBlock</SubtypeName>
-              <EntityId>133716842644712332</EntityId>
+              <EntityId>130675919442273466</EntityId>
               <Min x="-2" y="0" z="5" />
               <IntegrityPercent>0.25</IntegrityPercent>
               <BuildPercent>0.25</BuildPercent>
@@ -2182,7 +2243,7 @@
             </MyObjectBuilder_CubeBlock>
             <MyObjectBuilder_CubeBlock xsi:type="MyObjectBuilder_CubeBlock">
               <SubtypeName>LargeArmor2x1SlopedSideTipPanelLight</SubtypeName>
-              <EntityId>81408321436166953</EntityId>
+              <EntityId>109670038857500394</EntityId>
               <Min x="1" y="3" z="-3" />
               <IntegrityPercent>0.005</IntegrityPercent>
               <BuildPercent>0.005</BuildPercent>
@@ -2192,7 +2253,7 @@
             </MyObjectBuilder_CubeBlock>
             <MyObjectBuilder_CubeBlock xsi:type="MyObjectBuilder_CubeBlock">
               <SubtypeName>AirDuct1</SubtypeName>
-              <EntityId>128557184571639351</EntityId>
+              <EntityId>97179630341365360</EntityId>
               <Min x="0" y="0" z="-2" />
               <BlockOrientation Forward="Backward" Up="Up" />
               <SkinSubtypeId>Heavy_Rust_Armor</SkinSubtypeId>
@@ -2220,7 +2281,7 @@
             </MyObjectBuilder_CubeBlock>
             <MyObjectBuilder_CubeBlock xsi:type="MyObjectBuilder_CubeBlock">
               <SubtypeName>LargeArmorHalfPanelLight</SubtypeName>
-              <EntityId>137178243926649244</EntityId>
+              <EntityId>93654322320005168</EntityId>
               <Min x="0" y="2" z="-6" />
               <IntegrityPercent>0.005</IntegrityPercent>
               <BuildPercent>0.005</BuildPercent>
@@ -2229,7 +2290,7 @@
             </MyObjectBuilder_CubeBlock>
             <MyObjectBuilder_CubeBlock xsi:type="MyObjectBuilder_CubeBlock">
               <SubtypeName>LargeCoverWallHalfMirrored</SubtypeName>
-              <EntityId>135329818909454173</EntityId>
+              <EntityId>139681967682455555</EntityId>
               <Min x="-3" y="1" z="1" />
               <IntegrityPercent>0.005</IntegrityPercent>
               <BuildPercent>0.005</BuildPercent>
@@ -2238,7 +2299,7 @@
             </MyObjectBuilder_CubeBlock>
             <MyObjectBuilder_CubeBlock xsi:type="MyObjectBuilder_CubeBlock">
               <SubtypeName>LargeCoverWallHalf</SubtypeName>
-              <EntityId>91023991659653559</EntityId>
+              <EntityId>119572505510875151</EntityId>
               <Min x="3" y="1" z="1" />
               <IntegrityPercent>0.005</IntegrityPercent>
               <BuildPercent>0.005</BuildPercent>
@@ -2247,7 +2308,7 @@
             </MyObjectBuilder_CubeBlock>
             <MyObjectBuilder_CubeBlock xsi:type="MyObjectBuilder_CubeBlock">
               <SubtypeName>LargeCoverWallHalf</SubtypeName>
-              <EntityId>94241498197005053</EntityId>
+              <EntityId>125402857536100926</EntityId>
               <Min x="-3" y="1" z="3" />
               <IntegrityPercent>0.005</IntegrityPercent>
               <BuildPercent>0.005</BuildPercent>
@@ -2256,7 +2317,7 @@
             </MyObjectBuilder_CubeBlock>
             <MyObjectBuilder_CubeBlock xsi:type="MyObjectBuilder_CubeBlock">
               <SubtypeName>LargeCoverWallHalfMirrored</SubtypeName>
-              <EntityId>122450298654291554</EntityId>
+              <EntityId>111371391260866443</EntityId>
               <Min x="3" y="1" z="3" />
               <IntegrityPercent>0.005</IntegrityPercent>
               <BuildPercent>0.005</BuildPercent>
@@ -2265,7 +2326,7 @@
             </MyObjectBuilder_CubeBlock>
             <MyObjectBuilder_CubeBlock xsi:type="MyObjectBuilder_CubeBlock">
               <SubtypeName>LargeCoverWall</SubtypeName>
-              <EntityId>87056696807153091</EntityId>
+              <EntityId>141604332087280505</EntityId>
               <Min x="3" y="1" z="2" />
               <IntegrityPercent>0.005</IntegrityPercent>
               <BuildPercent>0.005</BuildPercent>
@@ -2274,7 +2335,7 @@
             </MyObjectBuilder_CubeBlock>
             <MyObjectBuilder_CubeBlock xsi:type="MyObjectBuilder_CubeBlock">
               <SubtypeName>LargeCoverWall</SubtypeName>
-              <EntityId>110119184755568294</EntityId>
+              <EntityId>128332103641332141</EntityId>
               <Min x="-3" y="1" z="2" />
               <IntegrityPercent>0.005</IntegrityPercent>
               <BuildPercent>0.005</BuildPercent>
@@ -2283,7 +2344,7 @@
             </MyObjectBuilder_CubeBlock>
             <MyObjectBuilder_CubeBlock xsi:type="MyObjectBuilder_CubeBlock">
               <SubtypeName>LargeArmorPanelLight</SubtypeName>
-              <EntityId>104769404202900389</EntityId>
+              <EntityId>97463425154144687</EntityId>
               <Min x="1" y="3" z="0" />
               <IntegrityPercent>0.005</IntegrityPercent>
               <BuildPercent>0.005</BuildPercent>
@@ -2293,7 +2354,7 @@
             </MyObjectBuilder_CubeBlock>
             <MyObjectBuilder_CubeBlock xsi:type="MyObjectBuilder_CubeBlock">
               <SubtypeName>LargeArmorPanelLight</SubtypeName>
-              <EntityId>81917858798685024</EntityId>
+              <EntityId>89009869883359947</EntityId>
               <Min x="-1" y="3" z="0" />
               <BlockOrientation Forward="Right" Up="Backward" />
               <ColorMaskHSV x="0" y="-0.8" z="0.55" />
@@ -2301,7 +2362,7 @@
             </MyObjectBuilder_CubeBlock>
             <MyObjectBuilder_CubeBlock xsi:type="MyObjectBuilder_CubeBlock">
               <SubtypeName>LargeArmor2x1SlopedSideTipPanelLight</SubtypeName>
-              <EntityId>122304036208384438</EntityId>
+              <EntityId>95947875228430725</EntityId>
               <Min x="1" y="3" z="1" />
               <IntegrityPercent>0.25</IntegrityPercent>
               <BuildPercent>0.25</BuildPercent>
@@ -2311,7 +2372,7 @@
             </MyObjectBuilder_CubeBlock>
             <MyObjectBuilder_CubeBlock xsi:type="MyObjectBuilder_CubeBlock">
               <SubtypeName>LargeArmor2x1SlopedSideTipPanelLightInv</SubtypeName>
-              <EntityId>72519940657755356</EntityId>
+              <EntityId>80066107135496483</EntityId>
               <Min x="-1" y="3" z="1" />
               <BlockOrientation Forward="Backward" Up="Right" />
               <ColorMaskHSV x="0" y="-0.8" z="0.55" />
@@ -2319,7 +2380,7 @@
             </MyObjectBuilder_CubeBlock>
             <MyObjectBuilder_CubeBlock xsi:type="MyObjectBuilder_CubeBlock">
               <SubtypeName>LargeArmor2x1SlopedSideBasePanelLight</SubtypeName>
-              <EntityId>115090486455415662</EntityId>
+              <EntityId>123717893778496751</EntityId>
               <Min x="-4" y="1" z="-2" />
               <ColorMaskHSV x="0" y="-0.8" z="0.55" />
               <SkinSubtypeId>Heavy_Rust_Armor</SkinSubtypeId>
@@ -2331,7 +2392,7 @@
             </MyObjectBuilder_CubeBlock>
             <MyObjectBuilder_CubeBlock xsi:type="MyObjectBuilder_InteriorLight">
               <SubtypeName>LargeBlockInsetLight</SubtypeName>
-              <EntityId>113271506672350697</EntityId>
+              <EntityId>85193655429446312</EntityId>
               <Min x="0" y="2" z="0" />
               <IntegrityPercent>0.3475</IntegrityPercent>
               <BlockOrientation Forward="Up" Up="Forward" />
@@ -2353,14 +2414,14 @@
             </MyObjectBuilder_CubeBlock>
             <MyObjectBuilder_CubeBlock xsi:type="MyObjectBuilder_CubeBlock">
               <SubtypeName>LargeArmorSlopedSidePanelLight</SubtypeName>
-              <EntityId>97687672712372106</EntityId>
+              <EntityId>93516748195983036</EntityId>
               <Min x="2" y="-1" z="4" />
               <BlockOrientation Forward="Backward" Up="Right" />
               <SkinSubtypeId>Heavy_Rust_Armor</SkinSubtypeId>
             </MyObjectBuilder_CubeBlock>
             <MyObjectBuilder_CubeBlock xsi:type="MyObjectBuilder_CubeBlock">
               <SubtypeName>Window1x1Flat</SubtypeName>
-              <EntityId>75714765182477096</EntityId>
+              <EntityId>128942917180964229</EntityId>
               <Min x="0" y="1" z="-6" />
               <IntegrityPercent>0.005</IntegrityPercent>
               <BuildPercent>0.005</BuildPercent>
@@ -2369,7 +2430,7 @@
             </MyObjectBuilder_CubeBlock>
             <MyObjectBuilder_CubeBlock xsi:type="MyObjectBuilder_CubeBlock">
               <SubtypeName>LargeArmor2x1SlopedSideTipPanelLight</SubtypeName>
-              <EntityId>107832211274418890</EntityId>
+              <EntityId>116923389974431910</EntityId>
               <Min x="1" y="0" z="-6" />
               <IntegrityPercent>0.25</IntegrityPercent>
               <BuildPercent>0.25</BuildPercent>
@@ -2398,19 +2459,19 @@
             </MyObjectBuilder_CubeBlock>
             <MyObjectBuilder_CubeBlock xsi:type="MyObjectBuilder_CubeBlock">
               <SubtypeName>LargeBlockDeskChairless</SubtypeName>
-              <EntityId>134513302994632577</EntityId>
+              <EntityId>143187075102063353</EntityId>
               <Min x="-1" y="1" z="-2" />
               <SkinSubtypeId>Heavy_Rust_Armor</SkinSubtypeId>
             </MyObjectBuilder_CubeBlock>
             <MyObjectBuilder_CubeBlock xsi:type="MyObjectBuilder_CubeBlock">
               <SubtypeName>AirDuct2</SubtypeName>
-              <EntityId>125619963161176610</EntityId>
+              <EntityId>117498954786466275</EntityId>
               <Min x="0" y="0" z="-4" />
               <SkinSubtypeId>Heavy_Rust_Armor</SkinSubtypeId>
             </MyObjectBuilder_CubeBlock>
             <MyObjectBuilder_CubeBlock xsi:type="MyObjectBuilder_CubeBlock">
               <SubtypeName>LargeBlockArmorBlock</SubtypeName>
-              <EntityId>98540354011205719</EntityId>
+              <EntityId>94946849270675087</EntityId>
               <Min x="-2" y="0" z="-3" />
               <IntegrityPercent>0.005</IntegrityPercent>
               <BuildPercent>0.005</BuildPercent>
@@ -2430,7 +2491,7 @@
             </MyObjectBuilder_CubeBlock>
             <MyObjectBuilder_CubeBlock xsi:type="MyObjectBuilder_CubeBlock">
               <SubtypeName>HalfWindow</SubtypeName>
-              <EntityId>129313629282804968</EntityId>
+              <EntityId>89519277064496495</EntityId>
               <Min x="-1" y="1" z="-6" />
               <IntegrityPercent>0.005</IntegrityPercent>
               <BuildPercent>0.005</BuildPercent>
@@ -2439,7 +2500,7 @@
             </MyObjectBuilder_CubeBlock>
             <MyObjectBuilder_CubeBlock xsi:type="MyObjectBuilder_CubeBlock">
               <SubtypeName>LargeArmorHalfPanelLight</SubtypeName>
-              <EntityId>72182380742647840</EntityId>
+              <EntityId>138891791686617294</EntityId>
               <Min x="0" y="0" z="-6" />
               <IntegrityPercent>0.25</IntegrityPercent>
               <BuildPercent>0.25</BuildPercent>
@@ -2448,7 +2509,7 @@
             </MyObjectBuilder_CubeBlock>
             <MyObjectBuilder_CubeBlock xsi:type="MyObjectBuilder_Cockpit">
               <SubtypeName>OpenCockpitLarge</SubtypeName>
-              <EntityId>75202277880660550</EntityId>
+              <EntityId>120055202131961792</EntityId>
               <Min x="0" y="1" z="-5" />
               <IntegrityPercent>0.005</IntegrityPercent>
               <BuildPercent>0.005</BuildPercent>
@@ -2456,20 +2517,6 @@
               <ShareMode>Faction</ShareMode>
               <ComponentContainer>
                 <Components>
-                  <ComponentData>
-                    <TypeId>MyInventoryBase</TypeId>
-                    <Component xsi:type="MyObjectBuilder_Inventory">
-                      <CanPutItems>true</CanPutItems>
-                      <Items />
-                      <nextItemId>0</nextItemId>
-                      <Volume>1</Volume>
-                      <Mass>9223372036854.775807</Mass>
-                      <MaxItemCount>2147483647</MaxItemCount>
-                      <Size xsi:nil="true" />
-                      <InventoryFlags>CanReceive CanSend</InventoryFlags>
-                      <RemoveEntityOnEmpty>false</RemoveEntityOnEmpty>
-                    </Component>
-                  </ComponentData>
                   <ComponentData>
                     <TypeId>MyMultiTextPanelComponent</TypeId>
                     <Component xsi:type="MyObjectBuilder_MultiTextPanelComponent">
@@ -2527,6 +2574,7 @@
                           <Sprites>
                             <Length>0</Length>
                           </Sprites>
+                          <UpdateStartOfFirstTexture>11076905016</UpdateStartOfFirstTexture>
                         </MySerializedTextPanelData>
                         <MySerializedTextPanelData>
                           <ChangeInterval>0</ChangeInterval>
@@ -2581,6 +2629,7 @@
                           <Sprites>
                             <Length>0</Length>
                           </Sprites>
+                          <UpdateStartOfFirstTexture>11076905016</UpdateStartOfFirstTexture>
                         </MySerializedTextPanelData>
                         <MySerializedTextPanelData>
                           <ChangeInterval>0</ChangeInterval>
@@ -2635,6 +2684,7 @@
                           <Sprites>
                             <Length>0</Length>
                           </Sprites>
+                          <UpdateStartOfFirstTexture>11076905016</UpdateStartOfFirstTexture>
                         </MySerializedTextPanelData>
                         <MySerializedTextPanelData>
                           <ChangeInterval>0</ChangeInterval>
@@ -2689,6 +2739,7 @@
                           <Sprites>
                             <Length>0</Length>
                           </Sprites>
+                          <UpdateStartOfFirstTexture>11076905016</UpdateStartOfFirstTexture>
                         </MySerializedTextPanelData>
                         <MySerializedTextPanelData>
                           <ChangeInterval>0</ChangeInterval>
@@ -2741,8 +2792,23 @@
                           <Sprites>
                             <Length>0</Length>
                           </Sprites>
+                          <UpdateStartOfFirstTexture>11076905016</UpdateStartOfFirstTexture>
                         </MySerializedTextPanelData>
                       </TextPanelsContents>
+                    </Component>
+                  </ComponentData>
+                  <ComponentData>
+                    <TypeId>MyInventoryBase</TypeId>
+                    <Component xsi:type="MyObjectBuilder_Inventory">
+                      <CanPutItems>true</CanPutItems>
+                      <Items />
+                      <nextItemId>0</nextItemId>
+                      <Volume>1</Volume>
+                      <Mass>9223372036854.775807</Mass>
+                      <MaxItemCount>2147483647</MaxItemCount>
+                      <Size xsi:nil="true" />
+                      <InventoryFlags>CanReceive CanSend</InventoryFlags>
+                      <RemoveEntityOnEmpty>false</RemoveEntityOnEmpty>
                     </Component>
                   </ComponentData>
                 </Components>
@@ -2762,7 +2828,7 @@
                     <Item />
                     <Data xsi:type="MyObjectBuilder_ToolbarItemTerminalBlock">
                       <Action>View</Action>
-                      <BlockEntityId>136359472561978252</BlockEntityId>
+                      <BlockEntityId>95586124941404583</BlockEntityId>
                     </Data>
                   </Slot>
                   <Slot>
@@ -2771,7 +2837,7 @@
                     <Data xsi:type="MyObjectBuilder_ToolbarItemTerminalGroup">
                       <Action>SwitchLock</Action>
                       <GridEntityId>0</GridEntityId>
-                      <BlockEntityId>75202277880660550</BlockEntityId>
+                      <BlockEntityId>120055202131961792</BlockEntityId>
                       <GroupName>Magnetic Plates</GroupName>
                     </Data>
                   </Slot>
@@ -2781,7 +2847,7 @@
                     <Data xsi:type="MyObjectBuilder_ToolbarItemTerminalGroup">
                       <Action>OnOff</Action>
                       <GridEntityId>0</GridEntityId>
-                      <BlockEntityId>75202277880660550</BlockEntityId>
+                      <BlockEntityId>120055202131961792</BlockEntityId>
                       <GroupName>Turrets</GroupName>
                     </Data>
                   </Slot>
@@ -2791,7 +2857,7 @@
                     <Data xsi:type="MyObjectBuilder_ToolbarItemTerminalGroup">
                       <Action>OnOff</Action>
                       <GridEntityId>0</GridEntityId>
-                      <BlockEntityId>75202277880660550</BlockEntityId>
+                      <BlockEntityId>120055202131961792</BlockEntityId>
                       <GroupName>Atmospheric Thrusters</GroupName>
                     </Data>
                   </Slot>
@@ -2801,7 +2867,7 @@
                     <Data xsi:type="MyObjectBuilder_ToolbarItemTerminalGroup">
                       <Action>OnOff</Action>
                       <GridEntityId>0</GridEntityId>
-                      <BlockEntityId>75202277880660550</BlockEntityId>
+                      <BlockEntityId>120055202131961792</BlockEntityId>
                       <GroupName>Ion Thrusters</GroupName>
                     </Data>
                   </Slot>
@@ -2811,7 +2877,7 @@
                     <Data xsi:type="MyObjectBuilder_ToolbarItemTerminalGroup">
                       <Action>OnOff</Action>
                       <GridEntityId>0</GridEntityId>
-                      <BlockEntityId>75202277880660550</BlockEntityId>
+                      <BlockEntityId>120055202131961792</BlockEntityId>
                       <GroupName>Batteries</GroupName>
                     </Data>
                   </Slot>
@@ -2820,7 +2886,7 @@
                     <Item />
                     <Data xsi:type="MyObjectBuilder_ToolbarItemTerminalBlock">
                       <Action>OnOff</Action>
-                      <BlockEntityId>99734361112421601</BlockEntityId>
+                      <BlockEntityId>83624152433119592</BlockEntityId>
                     </Data>
                   </Slot>
                   <Slot>
@@ -2829,7 +2895,7 @@
                     <Data xsi:type="MyObjectBuilder_ToolbarItemTerminalGroup">
                       <Action>DecreaseOverride</Action>
                       <GridEntityId>0</GridEntityId>
-                      <BlockEntityId>75202277880660550</BlockEntityId>
+                      <BlockEntityId>120055202131961792</BlockEntityId>
                       <GroupName>Upward Thrusters</GroupName>
                     </Data>
                   </Slot>
@@ -2839,7 +2905,7 @@
                     <Data xsi:type="MyObjectBuilder_ToolbarItemTerminalGroup">
                       <Action>IncreaseOverride</Action>
                       <GridEntityId>0</GridEntityId>
-                      <BlockEntityId>75202277880660550</BlockEntityId>
+                      <BlockEntityId>120055202131961792</BlockEntityId>
                       <GroupName>Upward Thrusters</GroupName>
                     </Data>
                   </Slot>
@@ -2850,7 +2916,7 @@
                     <Item />
                     <Data xsi:type="MyObjectBuilder_ToolbarItemTerminalBlock">
                       <Action>View</Action>
-                      <BlockEntityId>136359472561978252</BlockEntityId>
+                      <BlockEntityId>95586124941404583</BlockEntityId>
                     </Data>
                   </Slot>
                   <Slot>
@@ -2859,7 +2925,7 @@
                     <Data xsi:type="MyObjectBuilder_ToolbarItemTerminalGroup">
                       <Action>SwitchLock</Action>
                       <GridEntityId>0</GridEntityId>
-                      <BlockEntityId>75202277880660550</BlockEntityId>
+                      <BlockEntityId>120055202131961792</BlockEntityId>
                       <GroupName>Magnetic Plates</GroupName>
                     </Data>
                   </Slot>
@@ -2869,7 +2935,7 @@
                     <Data xsi:type="MyObjectBuilder_ToolbarItemTerminalGroup">
                       <Action>OnOff</Action>
                       <GridEntityId>0</GridEntityId>
-                      <BlockEntityId>75202277880660550</BlockEntityId>
+                      <BlockEntityId>120055202131961792</BlockEntityId>
                       <GroupName>Turrets</GroupName>
                     </Data>
                   </Slot>
@@ -2879,7 +2945,7 @@
                     <Data xsi:type="MyObjectBuilder_ToolbarItemTerminalGroup">
                       <Action>OnOff</Action>
                       <GridEntityId>0</GridEntityId>
-                      <BlockEntityId>75202277880660550</BlockEntityId>
+                      <BlockEntityId>120055202131961792</BlockEntityId>
                       <GroupName>Atmospheric Thrusters</GroupName>
                     </Data>
                   </Slot>
@@ -2889,7 +2955,7 @@
                     <Data xsi:type="MyObjectBuilder_ToolbarItemTerminalGroup">
                       <Action>OnOff</Action>
                       <GridEntityId>0</GridEntityId>
-                      <BlockEntityId>75202277880660550</BlockEntityId>
+                      <BlockEntityId>120055202131961792</BlockEntityId>
                       <GroupName>Ion Thrusters</GroupName>
                     </Data>
                   </Slot>
@@ -2899,7 +2965,7 @@
                     <Data xsi:type="MyObjectBuilder_ToolbarItemTerminalGroup">
                       <Action>OnOff</Action>
                       <GridEntityId>0</GridEntityId>
-                      <BlockEntityId>75202277880660550</BlockEntityId>
+                      <BlockEntityId>120055202131961792</BlockEntityId>
                       <GroupName>Batteries</GroupName>
                     </Data>
                   </Slot>
@@ -2908,7 +2974,7 @@
                     <Item />
                     <Data xsi:type="MyObjectBuilder_ToolbarItemTerminalBlock">
                       <Action>OnOff</Action>
-                      <BlockEntityId>99734361112421601</BlockEntityId>
+                      <BlockEntityId>83624152433119592</BlockEntityId>
                     </Data>
                   </Slot>
                 </SlotsGamepad>
@@ -2950,7 +3016,7 @@
             </MyObjectBuilder_CubeBlock>
             <MyObjectBuilder_CubeBlock xsi:type="MyObjectBuilder_Thrust">
               <SubtypeName>LargeBlockSmallThrustSciFi</SubtypeName>
-              <EntityId>135550085101550238</EntityId>
+              <EntityId>97214136168361642</EntityId>
               <Min x="-2" y="1" z="-5" />
               <IntegrityPercent>0.125</IntegrityPercent>
               <BuildPercent>0.125</BuildPercent>
@@ -3003,7 +3069,7 @@
             </MyObjectBuilder_CubeBlock>
             <MyObjectBuilder_CubeBlock xsi:type="MyObjectBuilder_CubeBlock">
               <SubtypeName>LargeHalfArmorBlock</SubtypeName>
-              <EntityId>133027392506993679</EntityId>
+              <EntityId>143645482957570120</EntityId>
               <Min x="-3" y="0" z="-2" />
               <IntegrityPercent>0.25</IntegrityPercent>
               <BuildPercent>0.25</BuildPercent>
@@ -3013,7 +3079,7 @@
             </MyObjectBuilder_CubeBlock>
             <MyObjectBuilder_CubeBlock xsi:type="MyObjectBuilder_CubeBlock">
               <SubtypeName>LargeBlockArmorCorner</SubtypeName>
-              <EntityId>88392596262388632</EntityId>
+              <EntityId>91268757891958011</EntityId>
               <Min x="-2" y="0" z="-5" />
               <IntegrityPercent>0.25</IntegrityPercent>
               <BuildPercent>0.25</BuildPercent>
@@ -3023,7 +3089,7 @@
             </MyObjectBuilder_CubeBlock>
             <MyObjectBuilder_CubeBlock xsi:type="MyObjectBuilder_CubeBlock">
               <SubtypeName>LargeArmor2x1SlopedSideTipPanelLightInv</SubtypeName>
-              <EntityId>100629983601019196</EntityId>
+              <EntityId>79006533443717748</EntityId>
               <Min x="-1" y="0" z="-6" />
               <IntegrityPercent>0.25</IntegrityPercent>
               <BuildPercent>0.25</BuildPercent>
@@ -3039,21 +3105,21 @@
             </MyObjectBuilder_CubeBlock>
             <MyObjectBuilder_CubeBlock xsi:type="MyObjectBuilder_CubeBlock">
               <SubtypeName>LargeArmorSlopedSidePanelLight</SubtypeName>
-              <EntityId>102312218085074976</EntityId>
+              <EntityId>106050157318154302</EntityId>
               <Min x="-2" y="-1" z="-4" />
               <BlockOrientation Forward="Right" Up="Forward" />
               <SkinSubtypeId>Heavy_Rust_Armor</SkinSubtypeId>
             </MyObjectBuilder_CubeBlock>
             <MyObjectBuilder_CubeBlock xsi:type="MyObjectBuilder_CubeBlock">
               <SubtypeName>LargeArmorSlopedSidePanelLight</SubtypeName>
-              <EntityId>123418722524457753</EntityId>
+              <EntityId>133157801252190288</EntityId>
               <Min x="2" y="-1" z="-4" />
               <BlockOrientation Forward="Backward" Up="Right" />
               <SkinSubtypeId>Heavy_Rust_Armor</SkinSubtypeId>
             </MyObjectBuilder_CubeBlock>
             <MyObjectBuilder_CubeBlock xsi:type="MyObjectBuilder_CubeBlock">
               <SubtypeName>LargeArmorSlopedSidePanelLight</SubtypeName>
-              <EntityId>80586868053591499</EntityId>
+              <EntityId>101194488768135250</EntityId>
               <Min x="2" y="-1" z="0" />
               <IntegrityPercent>0.88</IntegrityPercent>
               <BlockOrientation Forward="Left" Up="Backward" />
@@ -3061,14 +3127,14 @@
             </MyObjectBuilder_CubeBlock>
             <MyObjectBuilder_CubeBlock xsi:type="MyObjectBuilder_CubeBlock">
               <SubtypeName>LargeArmorSlopedSidePanelLight</SubtypeName>
-              <EntityId>104998169117659712</EntityId>
+              <EntityId>78338582991879913</EntityId>
               <Min x="-2" y="-1" z="0" />
               <BlockOrientation Forward="Forward" Up="Left" />
               <SkinSubtypeId>Heavy_Rust_Armor</SkinSubtypeId>
             </MyObjectBuilder_CubeBlock>
             <MyObjectBuilder_CubeBlock xsi:type="MyObjectBuilder_CubeBlock">
               <SubtypeName>Catwalk</SubtypeName>
-              <EntityId>94646472243073846</EntityId>
+              <EntityId>134152522427440488</EntityId>
               <Min x="2" y="-1" z="-2" />
               <IntegrityPercent>0.4</IntegrityPercent>
               <BuildPercent>0.4</BuildPercent>
@@ -3077,7 +3143,7 @@
             </MyObjectBuilder_CubeBlock>
             <MyObjectBuilder_CubeBlock xsi:type="MyObjectBuilder_CubeBlock">
               <SubtypeName>Catwalk</SubtypeName>
-              <EntityId>72514255059551256</EntityId>
+              <EntityId>136993152951514700</EntityId>
               <Min x="2" y="-1" z="-1" />
               <IntegrityPercent>0.3</IntegrityPercent>
               <BuildPercent>0.3</BuildPercent>
@@ -3086,7 +3152,7 @@
             </MyObjectBuilder_CubeBlock>
             <MyObjectBuilder_CubeBlock xsi:type="MyObjectBuilder_CubeBlock">
               <SubtypeName>Catwalk</SubtypeName>
-              <EntityId>116541206683387154</EntityId>
+              <EntityId>130643351102145840</EntityId>
               <Min x="-2" y="-1" z="-1" />
               <IntegrityPercent>0.5</IntegrityPercent>
               <BuildPercent>0.5</BuildPercent>
@@ -3095,7 +3161,7 @@
             </MyObjectBuilder_CubeBlock>
             <MyObjectBuilder_CubeBlock xsi:type="MyObjectBuilder_CubeBlock">
               <SubtypeName>Catwalk</SubtypeName>
-              <EntityId>122193298522082697</EntityId>
+              <EntityId>126598133080254273</EntityId>
               <Min x="2" y="-1" z="-3" />
               <IntegrityPercent>0.3</IntegrityPercent>
               <BuildPercent>0.3</BuildPercent>
@@ -3104,7 +3170,7 @@
             </MyObjectBuilder_CubeBlock>
             <MyObjectBuilder_CubeBlock xsi:type="MyObjectBuilder_CubeBlock">
               <SubtypeName>Catwalk</SubtypeName>
-              <EntityId>130227453609322101</EntityId>
+              <EntityId>77040652460366946</EntityId>
               <Min x="-2" y="-1" z="-2" />
               <IntegrityPercent>0.4</IntegrityPercent>
               <BuildPercent>0.4</BuildPercent>
@@ -3113,7 +3179,7 @@
             </MyObjectBuilder_CubeBlock>
             <MyObjectBuilder_CubeBlock xsi:type="MyObjectBuilder_CubeBlock">
               <SubtypeName>Catwalk</SubtypeName>
-              <EntityId>90476970638559732</EntityId>
+              <EntityId>134663987511429539</EntityId>
               <Min x="-2" y="-1" z="-3" />
               <IntegrityPercent>0.7</IntegrityPercent>
               <BuildPercent>0.7</BuildPercent>
@@ -3122,47 +3188,70 @@
             </MyObjectBuilder_CubeBlock>
             <MyObjectBuilder_CubeBlock xsi:type="MyObjectBuilder_CargoContainer">
               <SubtypeName>LargeBlockSmallContainer</SubtypeName>
-              <EntityId>139695118083526673</EntityId>
+              <EntityId>83474492218805848</EntityId>
               <Min x="-2" y="1" z="-1" />
               <BlockOrientation Forward="Backward" Up="Up" />
               <SkinSubtypeId>Heavy_Rust_Armor</SkinSubtypeId>
               <ShareMode>Faction</ShareMode>
+              <ComponentContainer>
+                <Components>
+                  <ComponentData>
+                    <TypeId>MyInventoryBase</TypeId>
+                    <Component xsi:type="MyObjectBuilder_Inventory">
+                      <CanPutItems>true</CanPutItems>
+                      <Items />
+                      <nextItemId>0</nextItemId>
+                      <Volume>15.625</Volume>
+                      <Mass>9223372036854.775807</Mass>
+                      <MaxItemCount>2147483647</MaxItemCount>
+                      <Size xsi:nil="true" />
+                      <InventoryFlags>CanReceive CanSend</InventoryFlags>
+                      <RemoveEntityOnEmpty>false</RemoveEntityOnEmpty>
+                    </Component>
+                  </ComponentData>
+                </Components>
+              </ComponentContainer>
+              <ShowOnHUD>false</ShowOnHUD>
+              <ShowInTerminal>true</ShowInTerminal>
+              <ShowInToolbarConfig>true</ShowInToolbarConfig>
+              <ShowInInventory>true</ShowInInventory>
+              <NumberInGrid>3</NumberInGrid>
             </MyObjectBuilder_CubeBlock>
             <MyObjectBuilder_CubeBlock xsi:type="MyObjectBuilder_CubeBlock">
               <SubtypeName>GratedHalfStairsMirrored</SubtypeName>
-              <EntityId>114041600194701394</EntityId>
+              <EntityId>135684275099092940</EntityId>
               <Min x="-1" y="0" z="1" />
               <SkinSubtypeId>Heavy_Rust_Armor</SkinSubtypeId>
             </MyObjectBuilder_CubeBlock>
             <MyObjectBuilder_CubeBlock xsi:type="MyObjectBuilder_CubeBlock">
               <SubtypeName>GratedHalfStairs</SubtypeName>
-              <EntityId>107891531917394998</EntityId>
+              <EntityId>95195198897214772</EntityId>
               <Min x="1" y="0" z="1" />
               <SkinSubtypeId>Heavy_Rust_Armor</SkinSubtypeId>
             </MyObjectBuilder_CubeBlock>
             <MyObjectBuilder_CubeBlock xsi:type="MyObjectBuilder_CubeBlock">
               <SubtypeName>CatwalkHalfOuterRailing</SubtypeName>
-              <EntityId>79217496053691980</EntityId>
+              <EntityId>111724101217025460</EntityId>
               <Min x="1" y="0" z="2" />
               <BlockOrientation Forward="Backward" Up="Up" />
               <SkinSubtypeId>Heavy_Rust_Armor</SkinSubtypeId>
             </MyObjectBuilder_CubeBlock>
             <MyObjectBuilder_CubeBlock xsi:type="MyObjectBuilder_CubeBlock">
               <SubtypeName>CatwalkHalfOuterRailing</SubtypeName>
-              <EntityId>117625915900704310</EntityId>
+              <EntityId>100205372064088585</EntityId>
               <Min x="-1" y="0" z="2" />
               <SkinSubtypeId>Heavy_Rust_Armor</SkinSubtypeId>
             </MyObjectBuilder_CubeBlock>
             <MyObjectBuilder_CubeBlock xsi:type="MyObjectBuilder_CubeBlock">
               <SubtypeName>LargeArmorSlopedSidePanelLight</SubtypeName>
-              <EntityId>100507699719784917</EntityId>
+              <EntityId>114550217128732404</EntityId>
               <Min x="-2" y="-1" z="4" />
               <BlockOrientation Forward="Right" Up="Forward" />
               <SkinSubtypeId>Heavy_Rust_Armor</SkinSubtypeId>
             </MyObjectBuilder_CubeBlock>
             <MyObjectBuilder_CubeBlock xsi:type="MyObjectBuilder_CubeBlock">
               <SubtypeName>LargeBlockArmorHalfSlopeInverted</SubtypeName>
-              <EntityId>101081494600798714</EntityId>
+              <EntityId>121721249426448679</EntityId>
               <Min x="1" y="0" z="4" />
               <IntegrityPercent>0.25</IntegrityPercent>
               <BuildPercent>0.25</BuildPercent>
@@ -3171,28 +3260,28 @@
             </MyObjectBuilder_CubeBlock>
             <MyObjectBuilder_CubeBlock xsi:type="MyObjectBuilder_CubeBlock">
               <SubtypeName>CatwalkHalf</SubtypeName>
-              <EntityId>77787910188657656</EntityId>
+              <EntityId>128848110981744572</EntityId>
               <Min x="1" y="-1" z="3" />
               <BlockOrientation Forward="Forward" Up="Down" />
               <SkinSubtypeId>Heavy_Rust_Armor</SkinSubtypeId>
             </MyObjectBuilder_CubeBlock>
             <MyObjectBuilder_CubeBlock xsi:type="MyObjectBuilder_CubeBlock">
               <SubtypeName>CatwalkHalf</SubtypeName>
-              <EntityId>90880696317841102</EntityId>
+              <EntityId>91651534937460667</EntityId>
               <Min x="1" y="-1" z="2" />
               <BlockOrientation Forward="Forward" Up="Down" />
               <SkinSubtypeId>Heavy_Rust_Armor</SkinSubtypeId>
             </MyObjectBuilder_CubeBlock>
             <MyObjectBuilder_CubeBlock xsi:type="MyObjectBuilder_CubeBlock">
               <SubtypeName>CatwalkHalf</SubtypeName>
-              <EntityId>135131428554619363</EntityId>
+              <EntityId>120340777275082225</EntityId>
               <Min x="1" y="-1" z="1" />
               <BlockOrientation Forward="Forward" Up="Down" />
               <SkinSubtypeId>Heavy_Rust_Armor</SkinSubtypeId>
             </MyObjectBuilder_CubeBlock>
             <MyObjectBuilder_CubeBlock xsi:type="MyObjectBuilder_CubeBlock">
               <SubtypeName>Passage2</SubtypeName>
-              <EntityId>77870038033194065</EntityId>
+              <EntityId>144029693954116711</EntityId>
               <Min x="1" y="1" z="4" />
               <IntegrityPercent>0.005</IntegrityPercent>
               <BuildPercent>0.005</BuildPercent>
@@ -3201,56 +3290,56 @@
             </MyObjectBuilder_CubeBlock>
             <MyObjectBuilder_CubeBlock xsi:type="MyObjectBuilder_CubeBlock">
               <SubtypeName>CatwalkHalf</SubtypeName>
-              <EntityId>93290566862618319</EntityId>
+              <EntityId>82972391114363537</EntityId>
               <Min x="-1" y="-1" z="3" />
               <BlockOrientation Forward="Backward" Up="Down" />
               <SkinSubtypeId>Heavy_Rust_Armor</SkinSubtypeId>
             </MyObjectBuilder_CubeBlock>
             <MyObjectBuilder_CubeBlock xsi:type="MyObjectBuilder_CubeBlock">
               <SubtypeName>CatwalkHalf</SubtypeName>
-              <EntityId>100592240759085620</EntityId>
+              <EntityId>72540162622293788</EntityId>
               <Min x="-1" y="-1" z="2" />
               <BlockOrientation Forward="Backward" Up="Down" />
               <SkinSubtypeId>Heavy_Rust_Armor</SkinSubtypeId>
             </MyObjectBuilder_CubeBlock>
             <MyObjectBuilder_CubeBlock xsi:type="MyObjectBuilder_CubeBlock">
               <SubtypeName>CatwalkHalf</SubtypeName>
-              <EntityId>113973317451430286</EntityId>
+              <EntityId>132872638999001819</EntityId>
               <Min x="-1" y="-1" z="1" />
               <BlockOrientation Forward="Backward" Up="Down" />
               <SkinSubtypeId>Heavy_Rust_Armor</SkinSubtypeId>
             </MyObjectBuilder_CubeBlock>
             <MyObjectBuilder_CubeBlock xsi:type="MyObjectBuilder_CubeBlock">
               <SubtypeName>LargeArmor2x1SlopedSideTipPanelLightInv</SubtypeName>
-              <EntityId>107806833059587467</EntityId>
+              <EntityId>117498774845541979</EntityId>
               <Min x="1" y="-1" z="0" />
               <BlockOrientation Forward="Left" Up="Forward" />
               <SkinSubtypeId>Heavy_Rust_Armor</SkinSubtypeId>
             </MyObjectBuilder_CubeBlock>
             <MyObjectBuilder_CubeBlock xsi:type="MyObjectBuilder_CubeBlock">
               <SubtypeName>LargeArmor2x1SlopedSideTipPanelLight</SubtypeName>
-              <EntityId>75303501700652794</EntityId>
+              <EntityId>90083066085472527</EntityId>
               <Min x="-1" y="-1" z="0" />
               <BlockOrientation Forward="Right" Up="Forward" />
               <SkinSubtypeId>Heavy_Rust_Armor</SkinSubtypeId>
             </MyObjectBuilder_CubeBlock>
             <MyObjectBuilder_CubeBlock xsi:type="MyObjectBuilder_CubeBlock">
               <SubtypeName>RailingHalfRight</SubtypeName>
-              <EntityId>79858054438880237</EntityId>
+              <EntityId>133394383935719327</EntityId>
               <Min x="1" y="1" z="0" />
               <BlockOrientation Forward="Left" Up="Up" />
               <SkinSubtypeId>Heavy_Rust_Armor</SkinSubtypeId>
             </MyObjectBuilder_CubeBlock>
             <MyObjectBuilder_CubeBlock xsi:type="MyObjectBuilder_CubeBlock">
               <SubtypeName>LargeBlockConsoleModule</SubtypeName>
-              <EntityId>142205433728500471</EntityId>
+              <EntityId>117639818942264138</EntityId>
               <Min x="0" y="1" z="0" />
               <BlockOrientation Forward="Backward" Up="Up" />
               <SkinSubtypeId>Heavy_Rust_Armor</SkinSubtypeId>
             </MyObjectBuilder_CubeBlock>
             <MyObjectBuilder_CubeBlock xsi:type="MyObjectBuilder_CubeBlock">
               <SubtypeName>PipeWorkBlockB</SubtypeName>
-              <EntityId>124964508206619434</EntityId>
+              <EntityId>121251465034422137</EntityId>
               <Min x="0" y="2" z="-1" />
               <IntegrityPercent>0.005</IntegrityPercent>
               <BuildPercent>0.005</BuildPercent>
@@ -3259,7 +3348,7 @@
             </MyObjectBuilder_CubeBlock>
             <MyObjectBuilder_CubeBlock xsi:type="MyObjectBuilder_CubeBlock">
               <SubtypeName>PipeWorkBlockB</SubtypeName>
-              <EntityId>142039495849505435</EntityId>
+              <EntityId>105763575765795941</EntityId>
               <Min x="0" y="2" z="-3" />
               <IntegrityPercent>0.005</IntegrityPercent>
               <BuildPercent>0.005</BuildPercent>
@@ -3268,7 +3357,7 @@
             </MyObjectBuilder_CubeBlock>
             <MyObjectBuilder_CubeBlock xsi:type="MyObjectBuilder_CubeBlock">
               <SubtypeName>LargeArmor2x1SlopedSideTipPanelLightInv</SubtypeName>
-              <EntityId>101432845103144110</EntityId>
+              <EntityId>123166784385760314</EntityId>
               <Min x="1" y="3" z="-1" />
               <IntegrityPercent>0.5</IntegrityPercent>
               <BuildPercent>0.5</BuildPercent>
@@ -3278,7 +3367,7 @@
             </MyObjectBuilder_CubeBlock>
             <MyObjectBuilder_CubeBlock xsi:type="MyObjectBuilder_CubeBlock">
               <SubtypeName>LargeArmor2x1SlopedSideTipPanelLight</SubtypeName>
-              <EntityId>77357773655764809</EntityId>
+              <EntityId>89472702071801204</EntityId>
               <Min x="-1" y="3" z="-1" />
               <BlockOrientation Forward="Forward" Up="Right" />
               <ColorMaskHSV x="0" y="-0.8" z="0.55" />
@@ -3286,7 +3375,7 @@
             </MyObjectBuilder_CubeBlock>
             <MyObjectBuilder_CubeBlock xsi:type="MyObjectBuilder_CubeBlock">
               <SubtypeName>LargeHalfArmorBlock</SubtypeName>
-              <EntityId>136560822823112677</EntityId>
+              <EntityId>115574253076138711</EntityId>
               <Min x="1" y="1" z="-5" />
               <IntegrityPercent>0.005</IntegrityPercent>
               <BuildPercent>0.005</BuildPercent>
@@ -3295,7 +3384,7 @@
             </MyObjectBuilder_CubeBlock>
             <MyObjectBuilder_CubeBlock xsi:type="MyObjectBuilder_InteriorLight">
               <SubtypeName>SmallLight</SubtypeName>
-              <EntityId>127751732172952775</EntityId>
+              <EntityId>92163501914577305</EntityId>
               <Min x="0" y="1" z="-4" />
               <IntegrityPercent>0.005</IntegrityPercent>
               <BuildPercent>0.005</BuildPercent>
@@ -3326,7 +3415,7 @@
             </MyObjectBuilder_CubeBlock>
             <MyObjectBuilder_CubeBlock xsi:type="MyObjectBuilder_InteriorLight">
               <SubtypeName>SmallLight</SubtypeName>
-              <EntityId>91017885995794057</EntityId>
+              <EntityId>142411490757553467</EntityId>
               <Min x="0" y="3" z="-2" />
               <IntegrityPercent>0.005</IntegrityPercent>
               <BuildPercent>0.005</BuildPercent>
@@ -3349,28 +3438,28 @@
             </MyObjectBuilder_CubeBlock>
             <MyObjectBuilder_CubeBlock xsi:type="MyObjectBuilder_CubeBlock">
               <SubtypeName>RailingHalfLeft</SubtypeName>
-              <EntityId>123427437078338162</EntityId>
+              <EntityId>124375308101053857</EntityId>
               <Min x="-1" y="1" z="0" />
               <BlockOrientation Forward="Left" Up="Up" />
               <SkinSubtypeId>Heavy_Rust_Armor</SkinSubtypeId>
             </MyObjectBuilder_CubeBlock>
             <MyObjectBuilder_CubeBlock xsi:type="MyObjectBuilder_CubeBlock">
               <SubtypeName>LargeArmorHalfPanelLight</SubtypeName>
-              <EntityId>121229973915200864</EntityId>
+              <EntityId>118427257626923974</EntityId>
               <Min x="1" y="-1" z="4" />
               <BlockOrientation Forward="Forward" Up="Left" />
               <SkinSubtypeId>Heavy_Rust_Armor</SkinSubtypeId>
             </MyObjectBuilder_CubeBlock>
             <MyObjectBuilder_CubeBlock xsi:type="MyObjectBuilder_CubeBlock">
               <SubtypeName>LargeArmorHalfPanelLight</SubtypeName>
-              <EntityId>94120121862518582</EntityId>
+              <EntityId>88450984649791009</EntityId>
               <Min x="-1" y="-1" z="4" />
               <BlockOrientation Forward="Backward" Up="Right" />
               <SkinSubtypeId>Heavy_Rust_Armor</SkinSubtypeId>
             </MyObjectBuilder_CubeBlock>
             <MyObjectBuilder_CubeBlock xsi:type="MyObjectBuilder_CubeBlock">
               <SubtypeName>Freight1</SubtypeName>
-              <EntityId>106143386484934186</EntityId>
+              <EntityId>116582683627522622</EntityId>
               <Min x="0" y="1" z="-3" />
               <BlockOrientation Forward="Backward" Up="Up" />
               <SkinSubtypeId>Heavy_Rust_Armor</SkinSubtypeId>
@@ -3401,7 +3490,7 @@
             </MyObjectBuilder_CubeBlock>
             <MyObjectBuilder_CubeBlock xsi:type="MyObjectBuilder_Thrust">
               <SubtypeName>LargeBlockSmallThrustSciFi</SubtypeName>
-              <EntityId>98313463538175500</EntityId>
+              <EntityId>83756851918398161</EntityId>
               <Min x="-3" y="1" z="-1" />
               <BlockOrientation Forward="Backward" Up="Right" />
               <SkinSubtypeId>Heavy_Rust_Armor</SkinSubtypeId>
@@ -3432,7 +3521,7 @@
             </MyObjectBuilder_CubeBlock>
             <MyObjectBuilder_CubeBlock xsi:type="MyObjectBuilder_OxygenGenerator">
               <SubtypeName />
-              <EntityId>95395295703520862</EntityId>
+              <EntityId>113901547593750559</EntityId>
               <Min x="2" y="1" z="-2" />
               <BlockOrientation Forward="Left" Up="Backward" />
               <SkinSubtypeId>Heavy_Rust_Armor</SkinSubtypeId>
@@ -3486,13 +3575,30 @@
             </MyObjectBuilder_CubeBlock>
             <MyObjectBuilder_CubeBlock xsi:type="MyObjectBuilder_Door">
               <SubtypeName>SlidingHatchDoor</SubtypeName>
-              <EntityId>75916361532143823</EntityId>
+              <EntityId>86211456528083208</EntityId>
               <Min x="0" y="1" z="-1" />
               <IntegrityPercent>0.226409212</IntegrityPercent>
               <BuildPercent>0.9999992</BuildPercent>
               <BlockOrientation Forward="Down" Up="Backward" />
               <SkinSubtypeId>Heavy_Rust_Armor</SkinSubtypeId>
               <ShareMode>Faction</ShareMode>
+              <ComponentContainer>
+                <Components>
+                  <ComponentData>
+                    <TypeId>MyModStorageComponentBase</TypeId>
+                    <Component xsi:type="MyObjectBuilder_ModStorageComponent">
+                      <Storage>
+                        <dictionary>
+                          <item>
+                            <Key>74de02b3-27f9-4960-b1c4-27351f2b06d1</Key>
+                            <Value>dont_change_this_please  : |AutoCloseDelay:0|</Value>
+                          </item>
+                        </dictionary>
+                      </Storage>
+                    </Component>
+                  </ComponentData>
+                </Components>
+              </ComponentContainer>
               <ShowOnHUD>false</ShowOnHUD>
               <ShowInTerminal>true</ShowInTerminal>
               <ShowInToolbarConfig>true</ShowInToolbarConfig>
@@ -3506,14 +3612,14 @@
             </MyObjectBuilder_CubeBlock>
             <MyObjectBuilder_CubeBlock xsi:type="MyObjectBuilder_CubeBlock">
               <SubtypeName>LargeBlockSciFiWall</SubtypeName>
-              <EntityId>138969261383297804</EntityId>
+              <EntityId>86259204683999794</EntityId>
               <Min x="-2" y="1" z="-3" />
               <BlockOrientation Forward="Right" Up="Up" />
               <SkinSubtypeId>Heavy_Rust_Armor</SkinSubtypeId>
             </MyObjectBuilder_CubeBlock>
             <MyObjectBuilder_CubeBlock xsi:type="MyObjectBuilder_Beacon">
               <SubtypeName>LargeBlockBeacon</SubtypeName>
-              <EntityId>140729696907393076</EntityId>
+              <EntityId>87510826588417780</EntityId>
               <Min x="0" y="1" z="4" />
               <BlockOrientation Forward="Up" Up="Backward" />
               <SkinSubtypeId>Heavy_Rust_Armor</SkinSubtypeId>
@@ -3525,10 +3631,11 @@
               <NumberInGrid>1</NumberInGrid>
               <Enabled>true</Enabled>
               <BroadcastRadius>5000</BroadcastRadius>
+              <HudText />
             </MyObjectBuilder_CubeBlock>
             <MyObjectBuilder_CubeBlock xsi:type="MyObjectBuilder_ExhaustBlock">
               <SubtypeName>LargeExhaustPipe</SubtypeName>
-              <EntityId>140369002555756787</EntityId>
+              <EntityId>84326543317293677</EntityId>
               <Min x="0" y="1" z="6" />
               <BlockOrientation Forward="Right" Up="Backward" />
               <SkinSubtypeId>Heavy_Rust_Armor</SkinSubtypeId>
@@ -3543,7 +3650,7 @@
             </MyObjectBuilder_CubeBlock>
             <MyObjectBuilder_CubeBlock xsi:type="MyObjectBuilder_CubeBlock">
               <SubtypeName>DeadBody05</SubtypeName>
-              <EntityId>137136291038793114</EntityId>
+              <EntityId>74508695018149109</EntityId>
               <Min x="0" y="1" z="-2" />
               <BlockOrientation Forward="Left" Up="Up" />
               <ColorMaskHSV x="1" y="0.2" z="0.55" />
@@ -3577,6 +3684,42 @@
           <IsStatic>true</IsStatic>
           <Skeleton>
             <BoneInfo>
+              <BonePosition x="5" y="1" z="-9" />
+              <BoneOffset x="124" y="125" z="127" />
+            </BoneInfo>
+            <BoneInfo>
+              <BonePosition x="5" y="1" z="-8" />
+              <BoneOffset x="114" y="119" z="129" />
+            </BoneInfo>
+            <BoneInfo>
+              <BonePosition x="7" y="2" z="0" />
+              <BoneOffset x="124" y="126" z="123" />
+            </BoneInfo>
+            <BoneInfo>
+              <BonePosition x="5" y="1" z="-3" />
+              <BoneOffset x="124" y="125" z="129" />
+            </BoneInfo>
+            <BoneInfo>
+              <BonePosition x="6" y="3" z="-7" />
+              <BoneOffset x="119" y="125" z="129" />
+            </BoneInfo>
+            <BoneInfo>
+              <BonePosition x="7" y="1" z="-6" />
+              <BoneOffset x="110" y="117" z="133" />
+            </BoneInfo>
+            <BoneInfo>
+              <BonePosition x="7" y="1" z="-5" />
+              <BoneOffset x="112" y="118" z="134" />
+            </BoneInfo>
+            <BoneInfo>
+              <BonePosition x="7" y="1" z="-7" />
+              <BoneOffset x="125" y="126" z="128" />
+            </BoneInfo>
+            <BoneInfo>
+              <BonePosition x="7" y="1" z="-2" />
+              <BoneOffset x="121" y="118" z="115" />
+            </BoneInfo>
+            <BoneInfo>
               <BonePosition x="7" y="1" z="-1" />
               <BoneOffset x="123" y="124" z="121" />
             </BoneInfo>
@@ -3589,10 +3732,6 @@
               <BoneOffset x="126" y="125" z="125" />
             </BoneInfo>
             <BoneInfo>
-              <BonePosition x="5" y="0" z="-9" />
-              <BoneOffset x="124" y="125" z="127" />
-            </BoneInfo>
-            <BoneInfo>
               <BonePosition x="5" y="3" z="-7" />
               <BoneOffset x="122" y="125" z="128" />
             </BoneInfo>
@@ -3601,84 +3740,36 @@
               <BoneOffset x="119" y="134" z="121" />
             </BoneInfo>
             <BoneInfo>
+              <BonePosition x="6" y="1" z="-7" />
+              <BoneOffset x="119" y="122" z="129" />
+            </BoneInfo>
+            <BoneInfo>
               <BonePosition x="5" y="-1" z="1" />
               <BoneOffset x="125" y="129" z="126" />
             </BoneInfo>
             <BoneInfo>
-              <BonePosition x="6" y="4" z="-8" />
-              <BoneOffset x="107" y="121" z="132" />
+              <BonePosition x="6" y="1" z="-8" />
+              <BoneOffset x="117" y="122" z="128" />
             </BoneInfo>
             <BoneInfo>
-              <BonePosition x="6" y="4" z="-7" />
-              <BoneOffset x="104" y="120" z="133" />
+              <BonePosition x="-3" y="4" z="-7" />
+              <BoneOffset x="132" y="121" z="141" />
             </BoneInfo>
             <BoneInfo>
-              <BonePosition x="7" y="0" z="-2" />
-              <BoneOffset x="125" y="124" z="123" />
+              <BonePosition x="6" y="-1" z="0" />
+              <BoneOffset x="123" y="131" z="124" />
             </BoneInfo>
             <BoneInfo>
-              <BonePosition x="7" y="1" z="0" />
-              <BoneOffset x="124" y="126" z="124" />
+              <BonePosition x="-3" y="4" z="-5" />
+              <BoneOffset x="129" y="125" z="133" />
             </BoneInfo>
             <BoneInfo>
-              <BonePosition x="7" y="0" z="-4" />
-              <BoneOffset x="122" y="124" z="129" />
+              <BonePosition x="6" y="1" z="-3" />
+              <BoneOffset x="110" y="115" z="131" />
             </BoneInfo>
             <BoneInfo>
-              <BonePosition x="7" y="0" z="-5" />
-              <BoneOffset x="121" y="123" z="130" />
-            </BoneInfo>
-            <BoneInfo>
-              <BonePosition x="7" y="0" z="-6" />
-              <BoneOffset x="120" y="122" z="129" />
-            </BoneInfo>
-            <BoneInfo>
-              <BonePosition x="5" y="0" z="1" />
-              <BoneOffset x="115" y="130" z="119" />
-            </BoneInfo>
-            <BoneInfo>
-              <BonePosition x="5" y="2" z="-3" />
-              <BoneOffset x="121" y="124" z="131" />
-            </BoneInfo>
-            <BoneInfo>
-              <BonePosition x="7" y="2" z="0" />
-              <BoneOffset x="124" y="126" z="123" />
-            </BoneInfo>
-            <BoneInfo>
-              <BonePosition x="-4" y="4" z="-7" />
-              <BoneOffset x="137" y="114" z="158" />
-            </BoneInfo>
-            <BoneInfo>
-              <BonePosition x="5" y="1" z="1" />
-              <BoneOffset x="124" y="126" z="125" />
-            </BoneInfo>
-            <BoneInfo>
-              <BonePosition x="6" y="5" z="-7" />
-              <BoneOffset x="122" y="125" z="128" />
-            </BoneInfo>
-            <BoneInfo>
-              <BonePosition x="5" y="5" z="-6" />
-              <BoneOffset x="124" y="126" z="128" />
-            </BoneInfo>
-            <BoneInfo>
-              <BonePosition x="5" y="5" z="-5" />
-              <BoneOffset x="121" y="125" z="129" />
-            </BoneInfo>
-            <BoneInfo>
-              <BonePosition x="6" y="2" z="-3" />
-              <BoneOffset x="110" y="118" z="137" />
-            </BoneInfo>
-            <BoneInfo>
-              <BonePosition x="5" y="4" z="-7" />
-              <BoneOffset x="119" y="124" z="129" />
-            </BoneInfo>
-            <BoneInfo>
-              <BonePosition x="5" y="4" z="-8" />
-              <BoneOffset x="125" y="126" z="128" />
-            </BoneInfo>
-            <BoneInfo>
-              <BonePosition x="6" y="3" z="-7" />
-              <BoneOffset x="119" y="125" z="129" />
+              <BonePosition x="-3" y="4" z="-6" />
+              <BoneOffset x="132" y="123" z="138" />
             </BoneInfo>
             <BoneInfo>
               <BonePosition x="-4" y="5" z="-7" />
@@ -3689,100 +3780,52 @@
               <BoneOffset x="132" y="118" z="147" />
             </BoneInfo>
             <BoneInfo>
-              <BonePosition x="6" y="1" z="1" />
-              <BoneOffset x="124" y="126" z="125" />
+              <BonePosition x="5" y="5" z="-6" />
+              <BoneOffset x="124" y="126" z="128" />
             </BoneInfo>
             <BoneInfo>
-              <BonePosition x="-4" y="6" z="-7" />
-              <BoneOffset x="129" y="125" z="133" />
-            </BoneInfo>
-            <BoneInfo>
-              <BonePosition x="7" y="4" z="-7" />
-              <BoneOffset x="121" y="125" z="128" />
-            </BoneInfo>
-            <BoneInfo>
-              <BonePosition x="6" y="-1" z="-6" />
-              <BoneOffset x="121" y="123" z="129" />
-            </BoneInfo>
-            <BoneInfo>
-              <BonePosition x="-3" y="5" z="-4" />
-              <BoneOffset x="130" y="124" z="136" />
-            </BoneInfo>
-            <BoneInfo>
-              <BonePosition x="6" y="0" z="-7" />
-              <BoneOffset x="100" y="110" z="135" />
-            </BoneInfo>
-            <BoneInfo>
-              <BonePosition x="6" y="0" z="1" />
-              <BoneOffset x="117" y="128" z="120" />
-            </BoneInfo>
-            <BoneInfo>
-              <BonePosition x="-3" y="5" z="-8" />
-              <BoneOffset x="129" y="124" z="133" />
-            </BoneInfo>
-            <BoneInfo>
-              <BonePosition x="-3" y="5" z="-7" />
-              <BoneOffset x="134" y="120" z="145" />
-            </BoneInfo>
-            <BoneInfo>
-              <BonePosition x="-3" y="5" z="-6" />
-              <BoneOffset x="135" y="119" z="149" />
-            </BoneInfo>
-            <BoneInfo>
-              <BonePosition x="6" y="1" z="-7" />
-              <BoneOffset x="119" y="122" z="129" />
-            </BoneInfo>
-            <BoneInfo>
-              <BonePosition x="-3" y="5" z="-5" />
-              <BoneOffset x="130" y="124" z="136" />
-            </BoneInfo>
-            <BoneInfo>
-              <BonePosition x="6" y="1" z="-8" />
-              <BoneOffset x="117" y="122" z="128" />
-            </BoneInfo>
-            <BoneInfo>
-              <BonePosition x="6" y="-1" z="0" />
-              <BoneOffset x="123" y="131" z="124" />
-            </BoneInfo>
-            <BoneInfo>
-              <BonePosition x="6" y="1" z="-3" />
-              <BoneOffset x="110" y="115" z="131" />
-            </BoneInfo>
-            <BoneInfo>
-              <BonePosition x="-3" y="4" z="-7" />
-              <BoneOffset x="132" y="121" z="141" />
-            </BoneInfo>
-            <BoneInfo>
-              <BonePosition x="-3" y="4" z="-5" />
-              <BoneOffset x="129" y="125" z="133" />
-            </BoneInfo>
-            <BoneInfo>
-              <BonePosition x="-3" y="4" z="-6" />
-              <BoneOffset x="132" y="123" z="138" />
-            </BoneInfo>
-            <BoneInfo>
-              <BonePosition x="5" y="1" z="-9" />
-              <BoneOffset x="124" y="125" z="127" />
-            </BoneInfo>
-            <BoneInfo>
-              <BonePosition x="5" y="1" z="-8" />
-              <BoneOffset x="114" y="119" z="129" />
-            </BoneInfo>
-            <BoneInfo>
-              <BonePosition x="5" y="1" z="-3" />
-              <BoneOffset x="124" y="125" z="129" />
+              <BonePosition x="5" y="5" z="-5" />
+              <BoneOffset x="121" y="125" z="129" />
             </BoneInfo>
             <BoneInfo>
               <BonePosition x="-3" y="6" z="-5" />
               <BoneOffset x="128" y="126" z="131" />
             </BoneInfo>
             <BoneInfo>
-              <BonePosition x="7" y="2" z="-3" />
-              <BoneOffset x="125" y="126" z="128" />
+              <BonePosition x="6" y="1" z="1" />
+              <BoneOffset x="124" y="126" z="125" />
             </BoneInfo>
             <BoneInfo>
               <BonePosition x="-3" y="6" z="-7" />
               <BoneOffset x="128" y="126" z="130" />
+            </BoneInfo>
+            <BoneInfo>
+              <BonePosition x="6" y="4" z="-8" />
+              <BoneOffset x="107" y="121" z="132" />
+            </BoneInfo>
+            <BoneInfo>
+              <BonePosition x="6" y="4" z="-7" />
+              <BoneOffset x="104" y="120" z="133" />
+            </BoneInfo>
+            <BoneInfo>
+              <BonePosition x="6" y="-1" z="-6" />
+              <BoneOffset x="121" y="123" z="129" />
+            </BoneInfo>
+            <BoneInfo>
+              <BonePosition x="7" y="1" z="0" />
+              <BoneOffset x="124" y="126" z="124" />
+            </BoneInfo>
+            <BoneInfo>
+              <BonePosition x="6" y="2" z="-3" />
+              <BoneOffset x="110" y="118" z="137" />
+            </BoneInfo>
+            <BoneInfo>
+              <BonePosition x="5" y="1" z="1" />
+              <BoneOffset x="124" y="126" z="125" />
+            </BoneInfo>
+            <BoneInfo>
+              <BonePosition x="7" y="2" z="-3" />
+              <BoneOffset x="125" y="126" z="128" />
             </BoneInfo>
             <BoneInfo>
               <BonePosition x="7" y="2" z="-4" />
@@ -3805,14 +3848,6 @@
               <BoneOffset x="121" y="124" z="129" />
             </BoneInfo>
             <BoneInfo>
-              <BonePosition x="7" y="1" z="-6" />
-              <BoneOffset x="110" y="117" z="133" />
-            </BoneInfo>
-            <BoneInfo>
-              <BonePosition x="7" y="1" z="-5" />
-              <BoneOffset x="112" y="118" z="134" />
-            </BoneInfo>
-            <BoneInfo>
               <BonePosition x="5" y="0" z="-7" />
               <BoneOffset x="121" y="123" z="129" />
             </BoneInfo>
@@ -3821,12 +3856,84 @@
               <BoneOffset x="110" y="117" z="129" />
             </BoneInfo>
             <BoneInfo>
-              <BonePosition x="7" y="1" z="-7" />
+              <BonePosition x="-3" y="5" z="-4" />
+              <BoneOffset x="130" y="124" z="136" />
+            </BoneInfo>
+            <BoneInfo>
+              <BonePosition x="5" y="0" z="-9" />
+              <BoneOffset x="124" y="125" z="127" />
+            </BoneInfo>
+            <BoneInfo>
+              <BonePosition x="-4" y="4" z="-7" />
+              <BoneOffset x="137" y="114" z="158" />
+            </BoneInfo>
+            <BoneInfo>
+              <BonePosition x="7" y="0" z="-2" />
+              <BoneOffset x="125" y="124" z="123" />
+            </BoneInfo>
+            <BoneInfo>
+              <BonePosition x="6" y="0" z="-7" />
+              <BoneOffset x="100" y="110" z="135" />
+            </BoneInfo>
+            <BoneInfo>
+              <BonePosition x="-3" y="5" z="-8" />
+              <BoneOffset x="129" y="124" z="133" />
+            </BoneInfo>
+            <BoneInfo>
+              <BonePosition x="7" y="0" z="-4" />
+              <BoneOffset x="122" y="124" z="129" />
+            </BoneInfo>
+            <BoneInfo>
+              <BonePosition x="-3" y="5" z="-7" />
+              <BoneOffset x="134" y="120" z="145" />
+            </BoneInfo>
+            <BoneInfo>
+              <BonePosition x="7" y="0" z="-5" />
+              <BoneOffset x="121" y="123" z="130" />
+            </BoneInfo>
+            <BoneInfo>
+              <BonePosition x="-3" y="5" z="-6" />
+              <BoneOffset x="135" y="119" z="149" />
+            </BoneInfo>
+            <BoneInfo>
+              <BonePosition x="7" y="0" z="-6" />
+              <BoneOffset x="120" y="122" z="129" />
+            </BoneInfo>
+            <BoneInfo>
+              <BonePosition x="-3" y="5" z="-5" />
+              <BoneOffset x="130" y="124" z="136" />
+            </BoneInfo>
+            <BoneInfo>
+              <BonePosition x="5" y="2" z="-3" />
+              <BoneOffset x="121" y="124" z="131" />
+            </BoneInfo>
+            <BoneInfo>
+              <BonePosition x="-4" y="6" z="-7" />
+              <BoneOffset x="129" y="125" z="133" />
+            </BoneInfo>
+            <BoneInfo>
+              <BonePosition x="5" y="4" z="-7" />
+              <BoneOffset x="119" y="124" z="129" />
+            </BoneInfo>
+            <BoneInfo>
+              <BonePosition x="5" y="4" z="-8" />
               <BoneOffset x="125" y="126" z="128" />
             </BoneInfo>
             <BoneInfo>
-              <BonePosition x="7" y="1" z="-2" />
-              <BoneOffset x="121" y="118" z="115" />
+              <BonePosition x="7" y="4" z="-7" />
+              <BoneOffset x="121" y="125" z="128" />
+            </BoneInfo>
+            <BoneInfo>
+              <BonePosition x="6" y="0" z="1" />
+              <BoneOffset x="117" y="128" z="120" />
+            </BoneInfo>
+            <BoneInfo>
+              <BonePosition x="5" y="0" z="1" />
+              <BoneOffset x="115" y="130" z="119" />
+            </BoneInfo>
+            <BoneInfo>
+              <BonePosition x="6" y="5" z="-7" />
+              <BoneOffset x="122" y="125" z="128" />
             </BoneInfo>
           </Skeleton>
           <ConveyorLines>
@@ -3847,10 +3954,9 @@
               <ConveyorLineType>LARGE_LINE</ConveyorLineType>
             </MyObjectBuilder_ConveyorLine>
           </ConveyorLines>
-          <DisplayName>Abandoned Shuttle</DisplayName>
+          <DisplayName>NWS Rusted Shuttle</DisplayName>
           <DestructibleBlocks>true</DestructibleBlocks>
           <CreatePhysics>false</CreatePhysics>
-          <EnableSmallToLargeConnections>false</EnableSmallToLargeConnections>
           <IsRespawnGrid>false</IsRespawnGrid>
           <LocalCoordSys>150</LocalCoordSys>
           <TargetingTargets />
