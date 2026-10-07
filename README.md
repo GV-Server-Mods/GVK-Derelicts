@@ -105,9 +105,9 @@ Structures that spawn Defenses also set `[CustomCountersVariables:DefenseSpawn_L
 | `DroneLarge` | aircraft, cruiser, Escort, Honorguard, Production Cruiser | - | some | 12 |
 | `DroneMedium` | aircraft, Bomber, craft, Escort, Salvager, vehicle | - | some | 11 |
 | `DroneSmall` | aircraft, craft, vehicle | - | some | 11 |
-| `WreckLarge` | Base, Depot, Large signal | 8 | - | 3 |
-| `WreckMedium` | Distress Signal, Medium signal | 5, 6 | - | 2 |
-| `WreckSmall` | Comms Relay, Downed Salvager, Research Lab, Small signal, Turret Post | 0 | - | 5 |
+| `WreckLarge` | Base, Depot, Large Signal | 8 | - | 3 |
+| `WreckMedium` | Distress Signal, Medium Signal | 5, 6 | - | 2 |
+| `WreckSmall` | Comms Relay, Downed Salvager, Research Lab, Small Signal, Turret Post | 0 | - | 5 |
 <!-- /GENERATED:encounter-types -->
 
 ## Factions:

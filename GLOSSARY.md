@@ -67,7 +67,7 @@ A salvageable NPC grid of any faction, sized Small (NWS), Medium (NWM) or Large 
 _Avoid_: derelict
 
 **Signal**:
-How an unidentified Wreck appears to players before they reach it, e.g. "Small signal" or "Distress Signal".
+How an unidentified Wreck appears to players before they reach it, e.g. "Small Signal" or "Distress Signal".
 
 **Downed Salvager**:
 A crashed Coalition Salvager that a Recovery Mission asks players to recover. It is a Wreck, not a Unit.
