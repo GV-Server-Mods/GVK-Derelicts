@@ -84,8 +84,8 @@ Prefab names start with a three-letter tag, then the 4-letter faction tag, to re
 | `NST` | Static | 26 | `NST [KHAA] Carrier` |
 | `NTS` | Trade Station | 14 | `NTS [COAL] Angels Landing` |
 | `NWL` | Large Wreck | 36 | `NWL [COAL] Storage Depot` |
-| `NWM` | Medium Wreck | 40 | `NWM [GAAL] Dome` |
-| `NWS` | Small Wreck | 45 | `NWS [COAL] Combat Baserunner` |
+| `NWM` | Medium Wreck | 50 | `NWM [GAAL] Dome` |
+| `NWS` | Small Wreck | 59 | `NWS [COAL] Combat Baserunner` |
 <!-- /GENERATED:prefab-tags -->
 
 ## Behavior inits
