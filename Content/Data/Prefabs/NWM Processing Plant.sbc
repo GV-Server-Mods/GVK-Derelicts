@@ -388,8 +388,8 @@
               <Min x="-4" y="7" z="-1" />
               <ColorMaskHSV x="0" y="-0.8" z="0" />
             </MyObjectBuilder_CubeBlock>
-            <MyObjectBuilder_CubeBlock xsi:type="MyObjectBuilder_ConveyorConnector">
-              <SubtypeName>LargeBlockConveyorPipeCorner</SubtypeName>
+            <MyObjectBuilder_CubeBlock xsi:type="MyObjectBuilder_CargoContainer">
+              <SubtypeName>LargeBlockSmallContainer</SubtypeName>
               <EntityId>106927280999675584</EntityId>
               <Min x="0" y="6" z="4" />
               <BlockOrientation Forward="Left" Up="Up" />
@@ -2205,8 +2205,8 @@
               <Min x="-2" y="7" z="3" />
               <ColorMaskHSV x="0" y="-0.8" z="0" />
             </MyObjectBuilder_CubeBlock>
-            <MyObjectBuilder_CubeBlock xsi:type="MyObjectBuilder_Conveyor">
-              <SubtypeName>LargeBlockConveyorPipeT</SubtypeName>
+            <MyObjectBuilder_CubeBlock xsi:type="MyObjectBuilder_CargoContainer">
+              <SubtypeName>LargeBlockSmallContainer</SubtypeName>
               <EntityId>126322134747193481</EntityId>
               <Min x="0" y="5" z="4" />
               <BlockOrientation Forward="Left" Up="Down" />
@@ -3919,158 +3919,19 @@
                 <SlotsGamepad />
               </Toolbar>
             </MyObjectBuilder_CubeBlock>
-            <MyObjectBuilder_CubeBlock xsi:type="MyObjectBuilder_ConveyorConnector">
-              <SubtypeName>LargeBlockConveyorPipeEnd</SubtypeName>
+            <MyObjectBuilder_CubeBlock xsi:type="MyObjectBuilder_CargoContainer">
+              <SubtypeName>LargeBlockSmallContainer</SubtypeName>
               <EntityId>88131755467591630</EntityId>
               <Min x="0" y="5" z="5" />
               <BlockOrientation Forward="Left" Up="Forward" />
               <ColorMaskHSV x="0" y="-0.8" z="0" />
             </MyObjectBuilder_CubeBlock>
-            <MyObjectBuilder_CubeBlock xsi:type="MyObjectBuilder_EventControllerBlock">
-              <SubtypeName>EventControllerLarge</SubtypeName>
+            <MyObjectBuilder_CubeBlock xsi:type="MyObjectBuilder_RemoteControl">
+              <SubtypeName>RivalAIRemoteControlLarge</SubtypeName>
               <EntityId>80811076086561042</EntityId>
               <Min x="-1" y="5" z="4" />
               <ColorMaskHSV x="0" y="-0.8" z="0" />
               <ShareMode>Faction</ShareMode>
-              <ComponentContainer>
-                <Components>
-                  <ComponentData>
-                    <TypeId>MyEventAngleChanged</TypeId>
-                    <Component xsi:type="MyObjectBuilder_EventAngleChanged">
-                      <Angle>0</Angle>
-                    </Component>
-                  </ComponentData>
-                  <ComponentData>
-                    <TypeId>MyEventSurfaceHeight</TypeId>
-                    <Component xsi:type="MyObjectBuilder_EventSurfaceHeight">
-                      <Height>1</Height>
-                    </Component>
-                  </ComponentData>
-                  <ComponentData>
-                    <TypeId>MyEventGridSpeedChanged</TypeId>
-                    <Component xsi:type="MyObjectBuilder_EventGridSpeedChanged">
-                      <Speed>100</Speed>
-                    </Component>
-                  </ComponentData>
-                  <ComponentData>
-                    <TypeId>MyEventNaturalGravityChanged</TypeId>
-                    <Component xsi:type="MyObjectBuilder_EventNaturalGravityChanged">
-                      <Gravity>1</Gravity>
-                    </Component>
-                  </ComponentData>
-                  <ComponentData>
-                    <TypeId>MyEventDistanceToLockedTarget</TypeId>
-                    <Component xsi:type="MyObjectBuilder_EventDistanceToLockedTarget">
-                      <DistanceToLockedTarget>2500</DistanceToLockedTarget>
-                    </Component>
-                  </ComponentData>
-                </Components>
-              </ComponentContainer>
-              <ShowOnHUD>false</ShowOnHUD>
-              <ShowInTerminal>true</ShowInTerminal>
-              <ShowInToolbarConfig>true</ShowInToolbarConfig>
-              <ShowInInventory>true</ShowInInventory>
-              <NumberInGrid>2</NumberInGrid>
-              <Enabled>true</Enabled>
-              <Toolbar>
-                <ToolbarType>Character</ToolbarType>
-                <SelectedSlot xsi:nil="true" />
-                <Slots>
-                  <Slot>
-                    <Index>0</Index>
-                    <Item />
-                    <Data xsi:type="MyObjectBuilder_ToolbarItemTerminalBlock">
-                      <Action>TransmitRandomMessage</Action>
-                      <BlockEntityId>143911140189172270</BlockEntityId>
-                    </Data>
-                  </Slot>
-                  <Slot>
-                    <Index>2</Index>
-                    <Item />
-                    <Data xsi:type="MyObjectBuilder_ToolbarItemTerminalBlock">
-                      <Action>PlaySound</Action>
-                      <BlockEntityId>95604116760404405</BlockEntityId>
-                    </Data>
-                  </Slot>
-                  <Slot>
-                    <Index>4</Index>
-                    <Item />
-                    <Data xsi:type="MyObjectBuilder_ToolbarItemTerminalBlock">
-                      <Action>TargetNeutrals_On</Action>
-                      <BlockEntityId>81544518411599522</BlockEntityId>
-                    </Data>
-                  </Slot>
-                  <Slot>
-                    <Index>6</Index>
-                    <Item />
-                    <Data xsi:type="MyObjectBuilder_ToolbarItemTerminalBlock">
-                      <Action>TargetNeutrals_On</Action>
-                      <BlockEntityId>83857256263775035</BlockEntityId>
-                    </Data>
-                  </Slot>
-                  <Slot>
-                    <Index>8</Index>
-                    <Item />
-                    <Data xsi:type="MyObjectBuilder_ToolbarItemTerminalBlock">
-                      <Action>TargetNeutrals_On</Action>
-                      <BlockEntityId>105705329246475699</BlockEntityId>
-                    </Data>
-                  </Slot>
-                  <Slot>
-                    <Index>10</Index>
-                    <Item />
-                    <Data xsi:type="MyObjectBuilder_ToolbarItemTerminalBlock">
-                      <Action>TargetNeutrals_On</Action>
-                      <BlockEntityId>105434294977678126</BlockEntityId>
-                    </Data>
-                  </Slot>
-                  <Slot>
-                    <Index>12</Index>
-                    <Item />
-                    <Data xsi:type="MyObjectBuilder_ToolbarItemTerminalBlock">
-                      <Action>OnOff_Off</Action>
-                      <BlockEntityId>106512734243795787</BlockEntityId>
-                    </Data>
-                  </Slot>
-                  <Slot>
-                    <Index>14</Index>
-                    <Item />
-                    <Data xsi:type="MyObjectBuilder_ToolbarItemTerminalBlock">
-                      <Action>OnOff_Off</Action>
-                      <BlockEntityId>80811076086561042</BlockEntityId>
-                    </Data>
-                  </Slot>
-                </Slots>
-                <SlotsGamepad />
-              </Toolbar>
-              <Threshold>0.95</Threshold>
-              <ANDGate>false</ANDGate>
-              <SelectedEvent>2</SelectedEvent>
-              <SelectedBlocks>
-                <long>121233771121167735</long>
-                <long>134611403363294897</long>
-                <long>127465088423587359</long>
-                <long>109067498508264950</long>
-                <long>143911140189172270</long>
-                <long>105434294977678126</long>
-                <long>134953823902198721</long>
-                <long>80811076086561042</long>
-                <long>106512734243795787</long>
-                <long>106653965012748868</long>
-                <long>95318486790283670</long>
-                <long>142353072697253232</long>
-                <long>125784738325421711</long>
-                <long>114147508783513009</long>
-                <long>95489589712488959</long>
-                <long>72357653054297286</long>
-                <long>130728801581271539</long>
-                <long>133524036822051228</long>
-                <long>98978427293037809</long>
-                <long>81544518411599522</long>
-                <long>83857256263775035</long>
-                <long>105705329246475699</long>
-              </SelectedBlocks>
-              <ConditionInvert>true</ConditionInvert>
             </MyObjectBuilder_CubeBlock>
             <MyObjectBuilder_CubeBlock xsi:type="MyObjectBuilder_InteriorLight">
               <SubtypeName>LargeBlockInsetKitchen</SubtypeName>
@@ -5681,129 +5542,13 @@
               <BlockOrientation Forward="Backward" Up="Down" />
               <ColorMaskHSV x="0" y="-0.8" z="0" />
             </MyObjectBuilder_CubeBlock>
-            <MyObjectBuilder_CubeBlock xsi:type="MyObjectBuilder_EventControllerBlock">
-              <SubtypeName>EventControllerLarge</SubtypeName>
+            <MyObjectBuilder_CubeBlock xsi:type="MyObjectBuilder_CargoContainer">
+              <SubtypeName>LargeBlockSmallContainer</SubtypeName>
               <EntityId>106512734243795787</EntityId>
               <Min x="3" y="5" z="3" />
               <BlockOrientation Forward="Right" Up="Up" />
               <ColorMaskHSV x="0" y="-0.8" z="0" />
               <ShareMode>Faction</ShareMode>
-              <ComponentContainer>
-                <Components>
-                  <ComponentData>
-                    <TypeId>MyEventAngleChanged</TypeId>
-                    <Component xsi:type="MyObjectBuilder_EventAngleChanged">
-                      <Angle>0</Angle>
-                    </Component>
-                  </ComponentData>
-                  <ComponentData>
-                    <TypeId>MyEventSurfaceHeight</TypeId>
-                    <Component xsi:type="MyObjectBuilder_EventSurfaceHeight">
-                      <Height>1</Height>
-                    </Component>
-                  </ComponentData>
-                  <ComponentData>
-                    <TypeId>MyEventGridSpeedChanged</TypeId>
-                    <Component xsi:type="MyObjectBuilder_EventGridSpeedChanged">
-                      <Speed>100</Speed>
-                    </Component>
-                  </ComponentData>
-                  <ComponentData>
-                    <TypeId>MyEventNaturalGravityChanged</TypeId>
-                    <Component xsi:type="MyObjectBuilder_EventNaturalGravityChanged">
-                      <Gravity>1</Gravity>
-                    </Component>
-                  </ComponentData>
-                  <ComponentData>
-                    <TypeId>MyEventDistanceToLockedTarget</TypeId>
-                    <Component xsi:type="MyObjectBuilder_EventDistanceToLockedTarget">
-                      <DistanceToLockedTarget>2500</DistanceToLockedTarget>
-                    </Component>
-                  </ComponentData>
-                </Components>
-              </ComponentContainer>
-              <ShowOnHUD>false</ShowOnHUD>
-              <ShowInTerminal>true</ShowInTerminal>
-              <ShowInToolbarConfig>true</ShowInToolbarConfig>
-              <ShowInInventory>true</ShowInInventory>
-              <NumberInGrid>1</NumberInGrid>
-              <Enabled>true</Enabled>
-              <Toolbar>
-                <ToolbarType>Character</ToolbarType>
-                <SelectedSlot xsi:nil="true" />
-                <Slots>
-                  <Slot>
-                    <Index>1</Index>
-                    <Item />
-                    <Data xsi:type="MyObjectBuilder_ToolbarItemTerminalBlock">
-                      <Action>TransmitRandomMessage</Action>
-                      <BlockEntityId>143911140189172270</BlockEntityId>
-                    </Data>
-                  </Slot>
-                  <Slot>
-                    <Index>3</Index>
-                    <Item />
-                    <Data xsi:type="MyObjectBuilder_ToolbarItemTerminalBlock">
-                      <Action>PlaySound</Action>
-                      <BlockEntityId>95604116760404405</BlockEntityId>
-                    </Data>
-                  </Slot>
-                  <Slot>
-                    <Index>5</Index>
-                    <Item />
-                    <Data xsi:type="MyObjectBuilder_ToolbarItemTerminalBlock">
-                      <Action>TargetNeutrals_On</Action>
-                      <BlockEntityId>81544518411599522</BlockEntityId>
-                    </Data>
-                  </Slot>
-                  <Slot>
-                    <Index>7</Index>
-                    <Item />
-                    <Data xsi:type="MyObjectBuilder_ToolbarItemTerminalBlock">
-                      <Action>TargetNeutrals_On</Action>
-                      <BlockEntityId>83857256263775035</BlockEntityId>
-                    </Data>
-                  </Slot>
-                  <Slot>
-                    <Index>9</Index>
-                    <Item />
-                    <Data xsi:type="MyObjectBuilder_ToolbarItemTerminalBlock">
-                      <Action>TargetNeutrals_On</Action>
-                      <BlockEntityId>105705329246475699</BlockEntityId>
-                    </Data>
-                  </Slot>
-                  <Slot>
-                    <Index>11</Index>
-                    <Item />
-                    <Data xsi:type="MyObjectBuilder_ToolbarItemTerminalBlock">
-                      <Action>TargetNeutrals_On</Action>
-                      <BlockEntityId>105434294977678126</BlockEntityId>
-                    </Data>
-                  </Slot>
-                  <Slot>
-                    <Index>13</Index>
-                    <Item />
-                    <Data xsi:type="MyObjectBuilder_ToolbarItemTerminalBlock">
-                      <Action>OnOff_Off</Action>
-                      <BlockEntityId>80811076086561042</BlockEntityId>
-                    </Data>
-                  </Slot>
-                  <Slot>
-                    <Index>15</Index>
-                    <Item />
-                    <Data xsi:type="MyObjectBuilder_ToolbarItemTerminalBlock">
-                      <Action>OnOff_Off</Action>
-                      <BlockEntityId>106512734243795787</BlockEntityId>
-                    </Data>
-                  </Slot>
-                </Slots>
-                <SlotsGamepad />
-              </Toolbar>
-              <Threshold>0</Threshold>
-              <ANDGate>false</ANDGate>
-              <SelectedEvent>10</SelectedEvent>
-              <SelectedBlocks />
-              <ConditionInvert>false</ConditionInvert>
             </MyObjectBuilder_CubeBlock>
             <MyObjectBuilder_CubeBlock xsi:type="MyObjectBuilder_InteriorLight">
               <SubtypeName>LargeBlockInsetLight</SubtypeName>
