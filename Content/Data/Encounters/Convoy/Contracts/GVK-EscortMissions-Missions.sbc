@@ -16,6 +16,17 @@
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-ConvoySystem-Condition-NoActiveConvoyContract</SubtypeId>
+			</Id>
+			<Description>
+				[MES Event Condition]
+				[CheckFalseBooleans:true]
+				[FalseBooleans:GVK_ConvoyContractActive]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
 				<SubtypeId>GVK-EscortMission-RouteA</SubtypeId>
 			</Id>
 			<Description>
@@ -33,6 +44,29 @@
 				[OverrideFaction:COALITION]
 				[InstanceEventGroupId:GVK-EscortMissions-Group-A]
 				[ActivateBooleanNameOnSucces:GVK_EscortMissionDone_A]
+				[PersistantEventConditionIds:GVK-ConvoySystem-Condition-NoActiveConvoyContract]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-EscortMission-RouteA-Double</SubtypeId>
+			</Id>
+			<Description>
+				[MES Mission]
+				[MissionType:Custom]
+				[Title:Convoy Contract - Sevastopol Heavy (Land)]
+				[Description:A Coalition heavy land convoy with two Transports is waiting at Crossroads for an escort to Sevastopol. Gaalsien raiders will attack in force. Guard the Transports until they arrive. Primary payout is the cargo itself. This is a test contract description with no special characters.]
+				[Reward:16000]
+				[Collateral:16000]
+				[ReputationReward:0]
+				[FailReputationPrice:0]
+				[Duration:180]
+				[Exclusive:true]
+				[OverrideFaction:COALITION]
+				[InstanceEventGroupId:GVK-EscortMissions-Group-A-Double]
+				[ActivateBooleanNameOnSucces:GVK_EscortMissionDone_A_Double]
+				[PersistantEventConditionIds:GVK-ConvoySystem-Condition-NoActiveConvoyContract]
 			</Description>
 		</EntityComponent>
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
@@ -55,6 +89,7 @@
 				[OverrideFaction:COALITION]
 				[InstanceEventGroupId:GVK-EscortMissions-Group-B]
 				[ActivateBooleanNameOnSucces:GVK_EscortMissionDone_B]
+				[PersistantEventConditionIds:GVK-ConvoySystem-Condition-NoActiveConvoyContract]
 			</Description>
 		</EntityComponent>
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
@@ -77,6 +112,7 @@
 				[OverrideFaction:COALITION]
 				[InstanceEventGroupId:GVK-EscortMissions-Group-E]
 				[ActivateBooleanNameOnSucces:GVK_EscortMissionDone_E]
+				[PersistantEventConditionIds:GVK-ConvoySystem-Condition-NoActiveConvoyContract]
 			</Description>
 		</EntityComponent>
 	</EntityComponents>

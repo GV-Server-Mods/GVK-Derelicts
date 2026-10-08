@@ -49,6 +49,7 @@
 				[SpawnFactionTags:COALITION]
 				[SpawnData:GVK-Convoy-EventSpawner-CoalitionA]
 				[ChangeBooleans:true]
+				[SetBooleansTrue:GVK_ConvoyContractActive]
 				[SetBooleansFalse:GVK_EscortArrived_A]
 				[SetBooleansFalse:GVK_EscortLost_A]
 			</Description>
@@ -64,8 +65,45 @@
 				[SpawningType:CustomSpawn]
 				[StartsReady:true]
 				[ProcessAsAdminSpawn:true]
-				[SpawnGroups:GVK-PlanetaryCargoShip-Land-COALITION-SpawnGroup-ConvoyEscortA]
 				[SpawnGroups:GVK-PlanetaryCargoShip-Land-COALITION-SpawnGroup-EscortA]
+				[MinDistance:200]
+				[MaxDistance:500]
+				[MinAltitude:40]
+				[MaxAltitude:50]
+				[InheritNpcAltitude:false]
+				[IgnoreSafetyChecks:true]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Convoy-EventAction-CoalitionA-Double</SubtypeId>
+			</Id>
+			<Description>
+				[MES Event Action]
+				[SpawnEncounter:true]
+				[SpawnCoords:{X:60487.1180668017 Y:32965.0642252912 Z:44090.2929086085}]
+				[SpawnFactionTags:COALITION]
+				[SpawnData:GVK-Convoy-EventSpawner-CoalitionA-Double]
+				[ChangeBooleans:true]
+				[SetBooleansTrue:GVK_ConvoyContractActive]
+				[SetBooleansFalse:GVK_EscortArrived_A_Double]
+				[SetBooleansFalse:GVK_EscortLost_A_Lead]
+				[SetBooleansFalse:GVK_EscortLost_A_Tail]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Convoy-EventSpawner-CoalitionA-Double</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Spawn]
+				[UseSpawn:true]
+				[SpawningType:CustomSpawn]
+				[StartsReady:true]
+				[ProcessAsAdminSpawn:true]
+				[SpawnGroups:GVK-PlanetaryCargoShip-Land-COALITION-SpawnGroup-ConvoyEscortA]
 				[MinDistance:200]
 				[MaxDistance:500]
 				[MinAltitude:40]
@@ -123,6 +161,7 @@
 				[SpawnFactionTags:COALITION]
 				[SpawnData:GVK-Convoy-EventSpawner-CoalitionB]
 				[ChangeBooleans:true]
+				[SetBooleansTrue:GVK_ConvoyContractActive]
 				[SetBooleansFalse:GVK_EscortArrived_B]
 				[SetBooleansFalse:GVK_EscortLost_B]
 			</Description>
@@ -196,6 +235,7 @@
 				[SpawnFactionTags:COALITION]
 				[SpawnData:GVK-Convoy-EventSpawner-CoalitionE]
 				[ChangeBooleans:true]
+				[SetBooleansTrue:GVK_ConvoyContractActive]
 				[SetBooleansFalse:GVK_EscortArrived_E]
 				[SetBooleansFalse:GVK_EscortLost_E]
 			</Description>

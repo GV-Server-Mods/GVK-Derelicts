@@ -1,0 +1,164 @@
+<?xml version="1.0"?>
+<Definitions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+	<EntityComponents>
+		<!-- ================================================================= -->
+		<!-- GVK ESCORT CONTRACTS - ROUTE E (Skyport to Sevastopol, Air)       -->
+		<!-- Event templates, conditions, and actions.                         -->
+		<!-- ================================================================= -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-EscortMissions-Group-E</SubtypeId>
+			</Id>
+			<Description>
+				[MES Event TemplateGroup]
+				[TemplateEventIds:GVK-EscortMissions-Template-Spawn-E]
+				[TemplateEventIds:GVK-EscortMissions-Template-Arrived-E]
+				[TemplateEventIds:GVK-EscortMissions-Template-Lost-E]
+				[TemplateEventIds:GVK-EscortMissions-Template-Watchdog-E]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-EscortMissions-Template-Spawn-E</SubtypeId>
+			</Id>
+			<Description>
+				[MES Event Template]
+				[UseEvent:true]
+				[UniqueEvent:true]
+				[StartsReady:true]
+				[MinCooldownMs:0]
+				[MaxCooldownMs:1]
+				[ActionExecution:All]
+				[ActionIds:GVK-Convoy-EventAction-CoalitionE]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-EscortMissions-Template-Arrived-E</SubtypeId>
+			</Id>
+			<Description>
+				[MES Event Template]
+				[UseEvent:true]
+				[UniqueEvent:true]
+				[StartsReady:true]
+				[MinCooldownMs:1000]
+				[MaxCooldownMs:2000]
+				[UseAnyPassingCondition:false]
+				[ConditionIds:GVK-EscortMissions-EventCondition-Arrived-E]
+				[ActionExecution:All]
+				[ActionIds:GVK-EscortMissions-EventAction-Arrived-E]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-EscortMissions-Template-Lost-E</SubtypeId>
+			</Id>
+			<Description>
+				[MES Event Template]
+				[UseEvent:true]
+				[UniqueEvent:true]
+				[StartsReady:true]
+				[MinCooldownMs:1000]
+				[MaxCooldownMs:2000]
+				[UseAnyPassingCondition:false]
+				[ConditionIds:GVK-EscortMissions-EventCondition-Lost-E]
+				[ActionExecution:All]
+				[ActionIds:GVK-EscortMissions-EventAction-Lost-E]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-EscortMissions-Template-Watchdog-E</SubtypeId>
+			</Id>
+			<Description>
+				[MES Event Template]
+				[UseEvent:true]
+				[UniqueEvent:true]
+				[StartsReady:false]
+				[MinCooldownMs:180000]
+				[MaxCooldownMs:180001]
+				[Tags:GVK_EscortWatchdog_E]
+				[ActionExecution:All]
+				[ActionIds:GVK-EscortMissions-EventAction-Watchdog-E]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-EscortMissions-Action-ConvoyLost-E</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Action]
+				[Chance:100]
+				[SetSandboxBooleansTrue:GVK_EscortLost_E]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-EscortMissions-EventCondition-Arrived-E</SubtypeId>
+			</Id>
+			<Description>
+				[MES Event Condition]
+				[CheckTrueBooleans:true]
+				[TrueBooleans:GVK_EscortArrived_E]
+				[UseAnyPassingCondition:false]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-EscortMissions-EventCondition-Lost-E</SubtypeId>
+			</Id>
+			<Description>
+				[MES Event Condition]
+				[CheckTrueBooleans:true]
+				[TrueBooleans:GVK_EscortLost_E]
+				[CheckFalseBooleans:true]
+				[FalseBooleans:GVK_EscortArrived_E]
+				[UseAnyPassingCondition:false]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-EscortMissions-EventAction-Arrived-E</SubtypeId>
+			</Id>
+			<Description>
+				[MES Event Action]
+				[TryContractSuccess:true]
+				[ChangeBooleans:true]
+				[SetBooleansFalse:GVK_ConvoyContractActive]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-EscortMissions-EventAction-Lost-E</SubtypeId>
+			</Id>
+			<Description>
+				[MES Event Action]
+				[TryContractFail:true]
+				[ChangeBooleans:true]
+				[SetBooleansFalse:GVK_ConvoyContractActive]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-EscortMissions-EventAction-Watchdog-E</SubtypeId>
+			</Id>
+			<Description>
+				[MES Event Action]
+				[TryContractFail:true]
+				[ChangeBooleans:true]
+				[SetBooleansFalse:GVK_ConvoyContractActive]
+			</Description>
+		</EntityComponent>
+	</EntityComponents>
+</Definitions>

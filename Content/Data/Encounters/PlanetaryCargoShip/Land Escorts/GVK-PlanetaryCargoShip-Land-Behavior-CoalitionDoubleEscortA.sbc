@@ -1,4 +1,4 @@
-﻿<?xml version="1.0"?>
+<?xml version="1.0"?>
 <Definitions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
 	<EntityComponents>
 		<!-- Route A, Crossroads to Sevastapol -->
@@ -34,10 +34,10 @@
 				[Triggers:GVK-CargoShip-Land-COALITION-Trigger-EscortHorizonAngleHigh]
 				[Triggers:GVK-CargoShip-Land-COALITION-Trigger-EscortArriveAtWaypoint]
 				[Triggers:GVK-CargoShip-Land-COALITION-Trigger-EscortLeaveWaypoint]
-				[Triggers:GVK-CargoShip-Land-COALITION-Trigger-EscortBeaconDisabled-A]
-				[Triggers:GVK-CargoShip-Land-COALITION-Trigger-EscortCompromised-A]
-				[Triggers:GVK-CargoShip-Land-COALITION-Trigger-EscortDespawn-A]
-				[Triggers:GVK-CargoShip-Land-COALITION-Trigger-EscortDespawnMES-A]
+				[Triggers:GVK-CargoShip-Land-COALITION-Trigger-EscortBeaconDisabled-A-Lead]
+				[Triggers:GVK-CargoShip-Land-COALITION-Trigger-EscortCompromised-A-Lead]
+				[Triggers:GVK-CargoShip-Land-COALITION-Trigger-EscortDespawn-A-Lead]
+				[Triggers:GVK-CargoShip-Land-COALITION-Trigger-EscortDespawnMES-A-Lead]
 				[Triggers:GVK-CargoShip-Land-COALITION-Trigger-EscortAttacked]
 				[Triggers:GVK-CargoShip-Land-COALITION-Trigger-EscortPlayerNear]
 				[Triggers:GVK-CargoShip-Land-COALITION-Trigger-EscortPlayerStillNear]
@@ -53,8 +53,9 @@
 				[Triggers:GVK-CargoShip-Land-COALITION-Trigger-EscortInsideZ3]
 				[Triggers:GVK-CargoShip-Land-COALITION-Trigger-EscortEnemySpawnsZ3]
 				[Triggers:GVK-CargoShip-Land-COALITION-Trigger-EscortEnemySpawnsZ3Canyon]
-				[Triggers:GVK-CargoShip-Land-COALITION-Trigger-EscortSuccessTargetA]
-				[Triggers:GVK-CargoShip-Land-COALITION-Trigger-EscortSuccessCounterA]
+				[Triggers:GVK-CargoShip-Land-COALITION-Trigger-EscortSuccessTargetA-Double]
+				[Triggers:GVK-CargoShip-Land-COALITION-Trigger-EscortSuccessCounterA-Double]
+				[Triggers:GVK-CargoShip-Land-COALITION-Trigger-HeartbeatA-Double]
 				[Triggers:GVK-CargoShip-Land-COALITION-DoubleEscortA-Trigger-EncounterInit]
 				[TriggerGroups:GVK-Universal-TriggerGroup-DefeatedAndAttacked]
 				[RemoteControlCode:COALITIONRouteA]
@@ -149,10 +150,10 @@
 				[Triggers:GVK-CargoShip-Land-COALITION-Trigger-EscortHorizonAngleHigh]
 				[Triggers:GVK-CargoShip-Land-COALITION-Trigger-EscortArriveAtWaypoint]
 				[Triggers:GVK-CargoShip-Land-COALITION-Trigger-EscortLeaveWaypoint]
-				[Triggers:GVK-CargoShip-Land-COALITION-Trigger-EscortBeaconDisabled-A]
-				[Triggers:GVK-CargoShip-Land-COALITION-Trigger-EscortCompromised-A]
-				[Triggers:GVK-CargoShip-Land-COALITION-Trigger-EscortDespawn-A]
-				[Triggers:GVK-CargoShip-Land-COALITION-Trigger-EscortDespawnMES-A]
+				[Triggers:GVK-CargoShip-Land-COALITION-Trigger-EscortBeaconDisabled-A-Tail]
+				[Triggers:GVK-CargoShip-Land-COALITION-Trigger-EscortCompromised-A-Tail]
+				[Triggers:GVK-CargoShip-Land-COALITION-Trigger-EscortDespawn-A-Tail]
+				[Triggers:GVK-CargoShip-Land-COALITION-Trigger-EscortDespawnMES-A-Tail]
 				[Triggers:GVK-CargoShip-Land-COALITION-Trigger-EscortAttacked]
 				[Triggers:GVK-CargoShip-Land-COALITION-Trigger-EscortPlayerNear]
 				[Triggers:GVK-CargoShip-Land-COALITION-Trigger-EscortPlayerStillNear]
@@ -168,8 +169,9 @@
 				[Triggers:GVK-CargoShip-Land-COALITION-Trigger-EscortInsideZ3]
 				[Triggers:GVK-CargoShip-Land-COALITION-Trigger-EscortEnemySpawnsZ3]
 				[Triggers:GVK-CargoShip-Land-COALITION-Trigger-EscortEnemySpawnsZ3Canyon]
-				[Triggers:GVK-CargoShip-Land-COALITION-Trigger-EscortSuccessTargetA]
-				[Triggers:GVK-CargoShip-Land-COALITION-Trigger-EscortSuccessCounterA]
+				[Triggers:GVK-CargoShip-Land-COALITION-Trigger-EscortSuccessTargetA-Double]
+				[Triggers:GVK-CargoShip-Land-COALITION-Trigger-EscortSuccessCounterA-Double]
+				[Triggers:GVK-CargoShip-Land-COALITION-Trigger-HeartbeatA-Double]
 				[Triggers:GVK-CargoShip-Land-COALITION-DoubleEscortA-Trigger-EncounterInit]
 				[TriggerGroups:GVK-Universal-TriggerGroup-DefeatedAndAttacked]
 				[RemoteControlCode:COALITIONRouteA]
@@ -234,6 +236,261 @@
 				[SetCustomStrings:true]
 				[CustomStrings:EncounterType,CargoShip]
 				[CustomStrings:EncounterDisplayName,Transport]
+			</Description>
+		</EntityComponent>
+		<!-- Arrival and Heartbeat for Double Escort A -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-CargoShip-Land-COALITION-Trigger-EscortSuccessTargetA-Double</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Trigger]
+				[Type:TargetNear]
+				[UseTrigger:true]
+				[StartsReady:false]
+				[TargetDistance:500]
+				[ActionExecution:All]
+				[MinCooldownMs:9998]
+				[MaxCooldownMs:9999]
+				[Actions:GVK-CargoShip-Land-COALITION-Action-EscortSuccessA-Double]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-CargoShip-Land-COALITION-Trigger-EscortSuccessCounterA-Double</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Trigger]
+				[Type:Timer]
+				[UseTrigger:true]
+				[StartsReady:false]
+				[MaxActions:1]
+				[ActionExecution:All]
+				[MinCooldownMs:5000]
+				[MaxCooldownMs:5001]
+				[Conditions:GVK-CargoShip-Land-COALITION-Condition-EscortSuccessA]
+				[ConditionCheckResetsTimer:true]
+				[Actions:GVK-CargoShip-Land-COALITION-Action-EscortSuccessA-Double]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-CargoShip-Land-COALITION-Action-EscortSuccessA-Double</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Action]
+				[//DebugMessage:EscortSuccessA-Double]
+				[Chance:100]
+				[SetSandboxBooleansTrue:GVK_EscortArrived_A_Double]
+				[UseChatBroadcast:true]
+				[ChatData:GVK-CargoShip-Land-COALITION-Chat-EscortSuccessA]
+				[SpawnEncounter:true]
+				[Spawner:GVK-CargoShip-Land-COALITION-Spawner-EscortSuccessA]
+				[DisableTriggers:true]
+				[DisableTriggerNames:GVK-CargoShip-Land-COALITION-Trigger-EscortSuccessTargetA-Double]
+				[DisableTriggerNames:GVK-CargoShip-Land-COALITION-Trigger-EscortSuccessCounterA-Double]
+				[DisableTriggerNames:GVK-CargoShip-Land-COALITION-Trigger-EscortHorizonAngleHigh]
+				[DisableTriggerNames:GVK-CargoShip-Land-COALITION-Trigger-EscortPlayerNear]
+				[DisableTriggerNames:GVK-CargoShip-Land-COALITION-Trigger-EscortPlayerNotNear]
+				[DisableTriggerNames:GVK-CargoShip-Land-COALITION-Trigger-EscortInsideZ1]
+				[DisableTriggerNames:GVK-CargoShip-Land-COALITION-Trigger-EscortEnemySpawnsZ1]
+				[DisableTriggerNames:GVK-CargoShip-Land-COALITION-Trigger-EscortEnemySpawnsZ1Canyon]
+				[DisableTriggerNames:GVK-CargoShip-Land-COALITION-Trigger-EscortInsideZ2]
+				[DisableTriggerNames:GVK-CargoShip-Land-COALITION-Trigger-EscortEnemySpawnsZ2]
+				[DisableTriggerNames:GVK-CargoShip-Land-COALITION-Trigger-EscortEnemySpawnsZ2Canyon]
+				[DisableTriggerNames:GVK-CargoShip-Land-COALITION-Trigger-EscortInsideZ3]
+				[DisableTriggerNames:GVK-CargoShip-Land-COALITION-Trigger-EscortEnemySpawnsZ3]
+				[DisableTriggerNames:GVK-CargoShip-Land-COALITION-Trigger-EscortEnemySpawnsZ3Canyon]
+				[DisableTriggerNames:GVK-CargoShip-Land-COALITION-Trigger-EscortAttacked]
+				[DisableTriggerNames:GVK-CargoShip-Land-COALITION-Trigger-EscortBeaconDisabled-A-Lead]
+				[DisableTriggerNames:GVK-CargoShip-Land-COALITION-Trigger-EscortCompromised-A-Lead]
+				[DisableTriggerNames:GVK-CargoShip-Land-COALITION-Trigger-EscortDespawn-A-Lead]
+				[DisableTriggerNames:GVK-CargoShip-Land-COALITION-Trigger-EscortDespawnMES-A-Lead]
+				[DisableTriggerNames:GVK-CargoShip-Land-COALITION-Trigger-EscortBeaconDisabled-A-Tail]
+				[DisableTriggerNames:GVK-CargoShip-Land-COALITION-Trigger-EscortCompromised-A-Tail]
+				[DisableTriggerNames:GVK-CargoShip-Land-COALITION-Trigger-EscortDespawn-A-Tail]
+				[DisableTriggerNames:GVK-CargoShip-Land-COALITION-Trigger-EscortDespawnMES-A-Tail]
+				[DisableTriggerNames:GVK-CargoShip-Land-COALITION-Trigger-HeartbeatA-Double]
+				[PlayParticleEffectAtRemote:true]
+				[ParticleEffectId:CruiserPoofSmoke]
+				[ParticleEffectOffset:{X:0.0 Y:0.0 Z:0.0}]
+				[ParticleEffectScale:3.0]
+				[ParticleEffectMaxTime:2000]
+				[ParticleEffectColor:{X:1.0 Y:1.0 Z:1.0}]
+				[PlaySoundAtPosition:true]
+				[SoundAtPosition:Cruiser_Explosion]
+				[ForceDespawn:true]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-CargoShip-Land-COALITION-Trigger-HeartbeatA-Double</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Trigger]
+				[Type:Timer]
+				[UseTrigger:true]
+				[StartsReady:true]
+				[MinCooldownMs:30000]
+				[MaxCooldownMs:30001]
+				[Actions:GVK-CargoShip-Land-COALITION-Action-HeartbeatA-Double]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-CargoShip-Land-COALITION-Action-HeartbeatA-Double</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Action]
+				[ResetCooldownTimeOfEvents:true]
+				[ResetEventCooldownTags:GVK_EscortWatchdog_A_Double]
+			</Description>
+		</EntityComponent>
+		<!-- Lead Loss Triggers for Double Escort A -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-CargoShip-Land-COALITION-Trigger-EscortBeaconDisabled-A-Lead</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Trigger]
+				[Type:Timer]
+				[UseTrigger:true]
+				[StartsReady:true]
+				[Conditions:GVK-Universal-Condition-AllBeaconsDisabled]
+				[MaxActions:1]
+				[ActionExecution:All]
+				[Actions:GVK-Universal-Action-DefeatedCompromised]
+				[Actions:GVK-EscortMissions-Action-ConvoyLost-A-Lead]
+				[Actions:GVK-CargoShip-Land-COALITION-Action-EscortCompromised]
+				[Actions:GVK-Universal-Action-EditableOnCompromised]
+				[Actions:GVK-Universal-Action-Disabled]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-CargoShip-Land-COALITION-Trigger-EscortCompromised-A-Lead</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Trigger]
+				[Type:Compromised]
+				[UseTrigger:true]
+				[StartsReady:true]
+				[MaxActions:1]
+				[Actions:GVK-Universal-Action-DefeatedCompromised]
+				[Actions:GVK-EscortMissions-Action-ConvoyLost-A-Lead]
+				[Actions:GVK-CargoShip-Land-COALITION-Action-EscortCompromised]
+				[Actions:GVK-Universal-Action-EditableOnCompromised]
+				[Actions:GVK-Universal-Action-Disabled]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-CargoShip-Land-COALITION-Trigger-EscortDespawn-A-Lead</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Trigger]
+				[Type:Despawn]
+				[UseTrigger:true]
+				[StartsReady:true]
+				[MaxActions:1]
+				[ActionExecution:All]
+				[Actions:GVK-EscortMissions-Action-ConvoyLost-A-Lead]
+				[Actions:GVK-CargoShip-Land-COALITION-Action-EscortCompromised]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-CargoShip-Land-COALITION-Trigger-EscortDespawnMES-A-Lead</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Trigger]
+				[Type:DespawnMES]
+				[UseTrigger:true]
+				[StartsReady:true]
+				[MaxActions:1]
+				[ActionExecution:All]
+				[Actions:GVK-EscortMissions-Action-ConvoyLost-A-Lead]
+				[Actions:GVK-CargoShip-Land-COALITION-Action-EscortCompromised]
+			</Description>
+		</EntityComponent>
+		<!-- Tail Loss Triggers for Double Escort A -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-CargoShip-Land-COALITION-Trigger-EscortBeaconDisabled-A-Tail</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Trigger]
+				[Type:Timer]
+				[UseTrigger:true]
+				[StartsReady:true]
+				[Conditions:GVK-Universal-Condition-AllBeaconsDisabled]
+				[MaxActions:1]
+				[ActionExecution:All]
+				[Actions:GVK-Universal-Action-DefeatedCompromised]
+				[Actions:GVK-EscortMissions-Action-ConvoyLost-A-Tail]
+				[Actions:GVK-CargoShip-Land-COALITION-Action-EscortCompromised]
+				[Actions:GVK-Universal-Action-EditableOnCompromised]
+				[Actions:GVK-Universal-Action-Disabled]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-CargoShip-Land-COALITION-Trigger-EscortCompromised-A-Tail</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Trigger]
+				[Type:Compromised]
+				[UseTrigger:true]
+				[StartsReady:true]
+				[MaxActions:1]
+				[Actions:GVK-Universal-Action-DefeatedCompromised]
+				[Actions:GVK-EscortMissions-Action-ConvoyLost-A-Tail]
+				[Actions:GVK-CargoShip-Land-COALITION-Action-EscortCompromised]
+				[Actions:GVK-Universal-Action-EditableOnCompromised]
+				[Actions:GVK-Universal-Action-Disabled]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-CargoShip-Land-COALITION-Trigger-EscortDespawn-A-Tail</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Trigger]
+				[Type:Despawn]
+				[UseTrigger:true]
+				[StartsReady:true]
+				[MaxActions:1]
+				[ActionExecution:All]
+				[Actions:GVK-EscortMissions-Action-ConvoyLost-A-Tail]
+				[Actions:GVK-CargoShip-Land-COALITION-Action-EscortCompromised]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-CargoShip-Land-COALITION-Trigger-EscortDespawnMES-A-Tail</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Trigger]
+				[Type:DespawnMES]
+				[UseTrigger:true]
+				[StartsReady:true]
+				[MaxActions:1]
+				[ActionExecution:All]
+				[Actions:GVK-EscortMissions-Action-ConvoyLost-A-Tail]
+				[Actions:GVK-CargoShip-Land-COALITION-Action-EscortCompromised]
 			</Description>
 		</EntityComponent>
 	</EntityComponents>
