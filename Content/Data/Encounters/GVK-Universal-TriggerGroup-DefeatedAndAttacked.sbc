@@ -9,7 +9,7 @@
 			- Explosions
 			- NPC Disable
 			- Defeated/Despawned Chats
-			- Attacked chatter (NeutralAttacked/EnemyAttacked/FriendlyFire dialogue cues, only on behaviors with [DialogueBanks:])
+			- Attacked chatter (NeutralAttacked/EnemyAttacked/FriendlyFire dialogue cues) and last words (Defeated cue), only on behaviors with [DialogueBanks:]
 			- Crashed (if GVK_MobilityType_Aircraft true)
 			- Instant delete (if small grid true)
 			
@@ -385,6 +385,8 @@
 			<Description>
 			[MES AI Action]
 			[//DebugMessage:ManualAction-DefeatedCompromised]
+			[PlayDialogueCue:true]
+			[DialogueCueId:Defeated]
 			[ManuallyActivateTrigger:true]
 			[ManuallyActivatedTriggerTags:GVK-Alliance-TriggerTags-PointsCompromised-{EncounterType}-{Faction}]
 			[ManuallyActivatedTriggerTags:GVK-Universal-TriggerTags-Explosions-{EncounterType}-{Faction}]

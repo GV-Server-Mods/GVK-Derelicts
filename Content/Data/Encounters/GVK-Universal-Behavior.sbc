@@ -2,7 +2,7 @@
 <Definitions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
 	<EntityComponents>
 		<!-- === Trigger Sequences === -->
-		<!-- NPC Chat when target is acquired -->
+		<!-- NPC Chat when target is acquired: starts the target callout chain below -->
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
@@ -14,7 +14,7 @@
 				[UseTrigger:true]
 				[StartsReady:true]
 				[MaxActions:1]
-				[Actions:GVK-Universal-Action-TargetAcquiredChatter]
+				[Actions:GVK-Universal-Action-TargetCallout-Structure]
 			</Description>
 		</EntityComponent>
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
@@ -26,6 +26,278 @@
 				[RivalAI Action]
 				[PlayDialogueCue:true]
 				[DialogueCueId:TargetAcquired]
+			</Description>
+		</EntityComponent>
+		<!--
+		Target callouts: one cue per target lock, from the first check that passes, in this order:
+			Structure > Aircraft > Infantry > FastMover > LongRange > TargetAcquired (any other vehicle).
+		MES has no if/else, so each Manual trigger runs [ElseActions:] to try the next check. Only Manual triggers
+		use ElseActions: on the AcquiredTarget trigger they would also run on every check with no new target.
+		Every trigger list with GVK-Universal-Trigger-TargetAcquiredChatter must also list the five Manual triggers.
+		-->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Universal-Action-TargetCallout-Structure</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Action]
+				[ManuallyActivateTrigger:true]
+				[ManuallyActivatedTriggerNames:GVK-Universal-ManualTrigger-TargetCallout-Structure]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Universal-ManualTrigger-TargetCallout-Structure</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Trigger]
+				[Type:Manual]
+				[UseTrigger:true]
+				[StartsReady:true]
+				[MaxActions:-1]
+				[Conditions:GVK-Universal-Condition-TargetIsStructure]
+				[Actions:GVK-Universal-Action-TargetCalloutCue-Structure]
+				[UseElseActions:true]
+				[ElseActions:GVK-Universal-Action-TargetCallout-Aircraft]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Universal-Action-TargetCalloutCue-Structure</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Action]
+				[PlayDialogueCue:true]
+				[DialogueCueId:TargetStructure]
+			</Description>
+		</EntityComponent>
+		<!-- Target is a static grid (bases, stations, turrets) -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Universal-Condition-TargetIsStructure</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Condition]
+				[UseConditions:true]
+				[MatchAnyCondition:false]
+				[IsTargetStatic:true]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Universal-Action-TargetCallout-Aircraft</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Action]
+				[ManuallyActivateTrigger:true]
+				[ManuallyActivatedTriggerNames:GVK-Universal-ManualTrigger-TargetCallout-Aircraft]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Universal-ManualTrigger-TargetCallout-Aircraft</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Trigger]
+				[Type:Manual]
+				[UseTrigger:true]
+				[StartsReady:true]
+				[MaxActions:-1]
+				[Conditions:GVK-Universal-Condition-TargetIsAircraft]
+				[Actions:GVK-Universal-Action-TargetCalloutCue-Aircraft]
+				[UseElseActions:true]
+				[ElseActions:GVK-Universal-Action-TargetCallout-Infantry]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Universal-Action-TargetCalloutCue-Aircraft</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Action]
+				[PlayDialogueCue:true]
+				[DialogueCueId:TargetAircraft]
+			</Description>
+		</EntityComponent>
+		<!-- Target is a grid 40 m or more above the terrain -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Universal-Condition-TargetIsAircraft</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Condition]
+				[UseConditions:true]
+				[MatchAnyCondition:false]
+				[IsTargetGrid:true]
+				[TargetAltitudeCheck:true]
+				[MinTargetAltitude:40]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Universal-Action-TargetCallout-Infantry</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Action]
+				[ManuallyActivateTrigger:true]
+				[ManuallyActivatedTriggerNames:GVK-Universal-ManualTrigger-TargetCallout-Infantry]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Universal-ManualTrigger-TargetCallout-Infantry</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Trigger]
+				[Type:Manual]
+				[UseTrigger:true]
+				[StartsReady:true]
+				[MaxActions:-1]
+				[Conditions:GVK-Universal-Condition-TargetIsInfantry]
+				[Actions:GVK-Universal-Action-TargetCalloutCue-Infantry]
+				[UseElseActions:true]
+				[ElseActions:GVK-Universal-Action-TargetCallout-FastMover]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Universal-Action-TargetCalloutCue-Infantry</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Action]
+				[PlayDialogueCue:true]
+				[DialogueCueId:TargetInfantry]
+			</Description>
+		</EntityComponent>
+		<!-- Target is a player on foot -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Universal-Condition-TargetIsInfantry</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Condition]
+				[UseConditions:true]
+				[MatchAnyCondition:false]
+				[IsTargetPlayer:true]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Universal-Action-TargetCallout-FastMover</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Action]
+				[ManuallyActivateTrigger:true]
+				[ManuallyActivatedTriggerNames:GVK-Universal-ManualTrigger-TargetCallout-FastMover]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Universal-ManualTrigger-TargetCallout-FastMover</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Trigger]
+				[Type:Manual]
+				[UseTrigger:true]
+				[StartsReady:true]
+				[MaxActions:-1]
+				[Conditions:GVK-Universal-Condition-TargetIsFastMover]
+				[Actions:GVK-Universal-Action-TargetCalloutCue-FastMover]
+				[UseElseActions:true]
+				[ElseActions:GVK-Universal-Action-TargetCallout-LongRange]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Universal-Action-TargetCalloutCue-FastMover</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Action]
+				[PlayDialogueCue:true]
+				[DialogueCueId:TargetFastMover]
+			</Description>
+		</EntityComponent>
+		<!-- Target is a grid moving 60 m/s or faster -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Universal-Condition-TargetIsFastMover</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Condition]
+				[UseConditions:true]
+				[MatchAnyCondition:false]
+				[IsTargetGrid:true]
+				[CheckTargetSpeed:true]
+				[MinTargetSpeed:60]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Universal-Action-TargetCallout-LongRange</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Action]
+				[ManuallyActivateTrigger:true]
+				[ManuallyActivatedTriggerNames:GVK-Universal-ManualTrigger-TargetCallout-LongRange]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Universal-ManualTrigger-TargetCallout-LongRange</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Trigger]
+				[Type:Manual]
+				[UseTrigger:true]
+				[StartsReady:true]
+				[MaxActions:-1]
+				[Conditions:GVK-Universal-Condition-TargetIsLongRange]
+				[Actions:GVK-Universal-Action-TargetCalloutCue-LongRange]
+				[UseElseActions:true]
+				[ElseActions:GVK-Universal-Action-TargetAcquiredChatter]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Universal-Action-TargetCalloutCue-LongRange</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Action]
+				[PlayDialogueCue:true]
+				[DialogueCueId:TargetLongRange]
+			</Description>
+		</EntityComponent>
+		<!-- Target is a anything 2500 m or farther away -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Universal-Condition-TargetIsLongRange</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Condition]
+				[UseConditions:true]
+				[MatchAnyCondition:false]
+				[CheckTargetDistance:true]
+				[MinTargetDistance:2500]
 			</Description>
 		</EntityComponent>
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
