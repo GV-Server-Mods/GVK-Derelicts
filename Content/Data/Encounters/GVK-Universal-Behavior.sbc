@@ -303,6 +303,62 @@
 				[MinTargetDistance:2500]
 			</Description>
 		</EntityComponent>
+		<!-- "Lost contact" only after a target was held and then lost: LostTarget arms the NoTargets timer, which speaks once the
+		     grid has had no target for 10 s straight ([ConditionCheckResetsTimer] restarts the wait whenever a target is back),
+		     then disarms itself. At most one arm per minute per grid. -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Universal-Trigger-TargetLostChatter</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Trigger]
+				[Type:LostTarget]
+				[UseTrigger:true]
+				[StartsReady:true]
+				[MinCooldownMs:60000]
+				[MaxCooldownMs:60001]
+				[MaxActions:-1]
+				[Actions:GVK-Universal-Action-ArmNoTargetsChatter]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Universal-Action-ArmNoTargetsChatter</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Action]
+				[EnableTriggers:true]
+				[EnableTriggerNames:GVK-Universal-Trigger-NoTargetsChatter]
+				[ResetCooldownTimeOfTriggers:true]
+				[ResetTriggerCooldownNames:GVK-Universal-Trigger-NoTargetsChatter]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Universal-Condition-NoTarget</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Condition]
+				[UseConditions:true]
+				[MatchAnyCondition:false]
+				[NoTarget:true]
+			</Description>
+		</EntityComponent>
+		<!-- Its own action, so the chatter's chance roll can't skip the disarm -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Universal-Action-DisarmNoTargetsChatter</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Action]
+				[DisableTriggers:true]
+				[DisableTriggerNames:GVK-Universal-Trigger-NoTargetsChatter]
+			</Description>
+		</EntityComponent>
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
@@ -310,12 +366,16 @@
 			</Id>
 			<Description>
 				[RivalAI Trigger]
-				[Type:NoTarget]
-				[UseTrigger:true]
+				[Type:Timer]
+				[UseTrigger:false]
 				[StartsReady:false]
 				[MinCooldownMs:10000]
 				[MaxCooldownMs:10001]
-				[MaxActions:1]
+				[MaxActions:-1]
+				[ActionExecution:All]
+				[Conditions:GVK-Universal-Condition-NoTarget]
+				[ConditionCheckResetsTimer:true]
+				[Actions:GVK-Universal-Action-DisarmNoTargetsChatter]
 				[Actions:GVK-Universal-Action-NoTargetsChatter]
 			</Description>
 		</EntityComponent>

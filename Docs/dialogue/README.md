@@ -96,6 +96,8 @@ Two groups stay quieter on purpose, leaving the blue Sensors message to speak fo
 
 `Target*` cues are target-type callouts. One plays per target lock, from the first check that passes: Structure (static grid) > Aircraft (grid 40 m+ above terrain) > Infantry (player on foot) > FastMover (60 m/s+) > LongRange (2500 m+) > TargetAcquired (anything else). The chain is in `GVK-Universal-Behavior.sbc`.
 
+`NoTargets` is "lost contact": it only plays after a Unit held a target, lost it, and then had no target for 10 s straight. It never plays on spawn.
+
 ## Line rules
 
 - One sentence or two short ones, up to 90 characters. It's a chat line.
