@@ -123,9 +123,11 @@ try {
             }
             if (-not $checkedBanks.Add($bank)) { continue }
             $cues = @([regex]::Matches([IO.File]::ReadAllText((Join-Path $root $path)), '<DialogueCueId>([^<]+)</DialogueCueId>') | ForEach-Object { $_.Groups[1].Value })
-            $needed = @('EnemyAttacked')
+            $needed = @('EnemyAttacked', 'Defeated')
             if ($bankFaction -notin $hostileFactions) { $needed += 'NeutralAttacked', 'FriendlyFire' }
-            if ($category -eq 'Units') { $needed += 'TargetAcquired', 'NoTargets' }
+            if ($category -eq 'Units') {
+                $needed += 'TargetAcquired', 'NoTargets', 'TargetStructure', 'TargetAircraft', 'TargetInfantry', 'TargetFastMover', 'TargetLongRange'
+            }
             foreach ($cue in $needed | Where-Object { $_ -notin $cues }) { $warnings.Add("${bank}: missing the $cue cue") }
         }
     }

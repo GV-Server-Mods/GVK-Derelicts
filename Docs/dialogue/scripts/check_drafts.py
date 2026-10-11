@@ -1,0 +1,72 @@
+"""Check drafts/ before building banks: line counts per cue and size, length, duplicates, unit-class self-references,
+and copied text (any 5-word run shared with a transcript in reference/clean/).
+
+Usage (from Docs/dialogue): python scripts/check_drafts.py [drafts/<voice>.txt ...]
+"""
+import csv, glob, os, re, sys
+from build_banks import parse_draft, DRAFTS
+from fixes import fix
+
+HERE = os.path.dirname(os.path.abspath(__file__))
+CLEAN = os.path.join(HERE, "..", "reference", "clean")
+MAX_LEN = 90
+TARGET = 20      # lines per cue in each built bank
+SPLIT = 10       # Unit cues: 10 shared + 10 per size
+UNIT_CUES = ["TargetAcquired", "TargetStructure", "TargetAircraft", "TargetInfantry", "TargetFastMover", "TargetLongRange",
+             "NoTargets", "NeutralAttacked", "EnemyAttacked", "FriendlyFire", "Defeated"]
+OTHER_CUES = ["NeutralAttacked", "EnemyAttacked", "FriendlyFire", "Defeated"]
+HOSTILE = {"GAALSIEN", "DERELICT"}
+NOT_SPLIT = {("Units-GAALSIEN", "NeutralAttacked")}  # keeps its original 4 lines
+# Unit-class names: a size bank holds several designs, so a line must not name the speaker's own class.
+CLASS_WORDS = re.compile(r"\b(sandskimmers?|skimmers?|interceptors?|honou?rguards?|baserunners?|runners?|salvagers?|"
+                         r"LAVs?|bombers?|gunships?|horsefl(?:y|ies)|production cruisers?|torpedo|artillery cruisers?)\b", re.I)
+words = lambda t: re.sub(r"[^a-z' ]", " ", t.lower()).split()
+
+grams = set()
+for p in glob.glob(os.path.join(CLEAN, "*.tsv")):
+    with open(p, encoding="utf-8") as f:
+        for row in csv.reader(f, delimiter="\t"):
+            w = words(fix(row[-1] if not p.endswith("gameplay.tsv") else row[1]))
+            grams.update(tuple(w[i:i + 5]) for i in range(len(w) - 4))
+
+paths = sys.argv[1:] or sorted(glob.glob(os.path.join(DRAFTS, "*.txt")))
+issues = 0
+for path in paths:
+    voice = os.path.splitext(os.path.basename(path))[0]
+    category, faction = voice.split("-")
+    _, cues = parse_draft(path)
+    expected = UNIT_CUES if category == "Units" else OTHER_CUES
+    if faction in HOSTILE:
+        expected = [c for c in expected if c not in ("NeutralAttacked", "FriendlyFire")]
+        if category == "Installations":
+            expected = ["EnemyAttacked", "Defeated"]
+    report = []
+    for cue in expected:
+        entries = cues.get(cue, [])
+        if category == "Units" and (voice, cue) not in NOT_SPLIT:
+            shared = sum(1 for only, _ in entries if only is None)
+            per = {s: sum(1 for only, _ in entries if only and s in only) for s in ("Small", "Medium", "Large")}
+            if shared < SPLIT or any(n < SPLIT for n in per.values()):
+                report.append(f"{cue}: {shared} shared, S{per['Small']}/M{per['Medium']}/L{per['Large']} (want {SPLIT} each)")
+        elif len(entries) < TARGET and (voice, cue) not in NOT_SPLIT:
+            report.append(f"{cue}: {len(entries)} lines (want {TARGET})")
+    seen = {}
+    for cue, entries in cues.items():
+        for only, text in entries:
+            if len(text) > MAX_LEN:
+                report.append(f"{cue}: too long ({len(text)}): {text}")
+            key = re.sub(r"\W", "", text.lower())
+            if key in seen:
+                report.append(f"{cue}: duplicate of {seen[key]}: {text}")
+            seen[key] = cue
+            if category == "Units" and CLASS_WORDS.search(text) and not cue.startswith("Target"):
+                report.append(f"{cue}: names a unit class, check it isn't self-reference: {text}")
+            w = words(text)
+            if any(tuple(w[i:i + 5]) in grams for i in range(len(w) - 4)):
+                report.append(f"{cue}: shares 5+ words with a transcript: {text}")
+    total = sum(len(e) for e in cues.values())
+    print(f"{voice}: {total} lines, {'OK' if not report else str(len(report)) + ' issue(s)'}")
+    for r in report:
+        print("   ", r)
+    issues += len(report)
+sys.exit(1 if issues else 0)
