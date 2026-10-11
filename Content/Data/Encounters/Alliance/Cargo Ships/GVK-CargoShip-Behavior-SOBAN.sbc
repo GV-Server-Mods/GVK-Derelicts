@@ -49,7 +49,7 @@
 				[Triggers:GVK-CargoShip-SOBAN-Trigger-Defenses]
 				[Triggers:GVK-CargoShip-SOBAN-Trigger-Attackers]
 				[Triggers:GVK-CargoShip-SOBAN-Trigger-LongWait]
-				[Triggers:GVK-CargoShip-SOBAN-Trigger-CargoDrop]
+				[Triggers:GVK-CargoShip-SOBAN-Trigger-CargoCache]
 				[//Triggers:GVK-CargoShip-SOBAN-Trigger-WaypointNear]
 				[//Triggers:GVK-CargoShip-SOBAN-Trigger-WaypointFar]
 				[Triggers:GVK-CargoShip-SOBAN-Trigger-TargetNear]
@@ -734,11 +734,11 @@
 				[AutopilotProfile:Primary]
 			</Description>
 		</EntityComponent>
-		<!-- Trigger sequence to deploy CargoDrop2x if compromised -->
+		<!-- Trigger sequence to deploy CargoCache2x if compromised -->
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-CargoShip-SOBAN-Trigger-CargoDrop</SubtypeId>
+				<SubtypeId>GVK-CargoShip-SOBAN-Trigger-CargoCache</SubtypeId>
 			</Id>
 			<Description>
 				[RivalAI Trigger]
@@ -747,25 +747,25 @@
 				[Type:Manual]
 				[StartsReady:true]
 				[MaxActions:1]
-				[Actions:GVK-CargoShip-SOBAN-Action-CargoDrop]
+				[Actions:GVK-CargoShip-SOBAN-Action-CargoCache]
 			</Description>
 		</EntityComponent>
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-CargoShip-SOBAN-Action-CargoDrop</SubtypeId>
+				<SubtypeId>GVK-CargoShip-SOBAN-Action-CargoCache</SubtypeId>
 			</Id>
 			<Description>
 				[RivalAI Action]
-				[//DebugMessage:CargoDrop]
+				[//DebugMessage:CargoCache]
 				[SpawnEncounter:true]
-				[Spawner:GVK-CargoShip-SOBAN-Spawner-CargoDrop]
+				[Spawner:GVK-CargoShip-SOBAN-Spawner-CargoCache]
 			</Description>
 		</EntityComponent>
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-CargoShip-SOBAN-Spawner-CargoDrop</SubtypeId>
+				<SubtypeId>GVK-CargoShip-SOBAN-Spawner-CargoCache</SubtypeId>
 			</Id>
 			<Description>
 				[RivalAI Spawn]
@@ -775,8 +775,8 @@
 				[ProcessAsAdminSpawn:false]
 				[MaxSpawns:1]
 				[ForceSameFactionOwnership:true]
-				[SpawnGroups:GVK-Other-Loot-SpawnGroup-COALITION-CargoDrop2x]
-				[SpawnGroups:GVK-Other-Loot-SpawnGroup-COALITION-AmmoDrop]
+				[SpawnGroups:GVK-Other-Loot-SpawnGroup-COALITION-CargoCache2x]
+				[SpawnGroups:GVK-Other-Loot-SpawnGroup-COALITION-AmmoCache]
 				[MinDistance:50]
 				[MaxDistance:100]
 				[MinAltitude:10]

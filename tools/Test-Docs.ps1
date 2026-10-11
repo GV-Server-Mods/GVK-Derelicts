@@ -158,6 +158,33 @@ try {
         }
     }
 
+    # Glossary words to avoid in prefab names, profile and spawn group IDs, and beacon text (GLOSSARY.md _Avoid_ lines).
+    # "Outpost" belongs to alliance Outposts only. Legacy IDs kept until the next wipe are listed with their reason.
+    $avoidNames = [ordered]@{
+        '(?i)turret ?station' = 'Turret Post (Coalition) or Turret (alliance)'
+        '(?i)(cargo|ammo|loot) ?drop' = 'Cache'
+        '(?i)outpost' = 'Outpost is only an alliance structure; KOTH Camp, Trade Station or a wreck name'
+    }
+    $legacyNames = @(
+        'GVK-Other-KOTH-Behavior-Outpost'                 # alias for KOTH Camps spawned before the rename
+        'GVK-Store-Behavior-KOTHOutpost'                  # live KOTH-site Trade Stations use it
+        'GVK-TradeStations-SpawnGroup-KOTHOutpost[1-4]'   # static encounters: MES tracks them by spawn group name
+        'P\d+_\w*Outpost\w*'                              # vanilla spawn group names
+    )
+    $names = @(Get-ChildItem 'Content\Data\Prefabs', 'Content\Data\StorePrefabs' -Filter *.sbc | ForEach-Object { $_.BaseName })
+    $names += @($profiles.Keys)
+    foreach ($f in Get-ChildItem 'Content\Data' -Recurse -Filter *.sbc | Where-Object { $_.FullName -notmatch '\\(Store)?Prefabs\\' }) {
+        $t = [IO.File]::ReadAllText($f.FullName)
+        $names += @([regex]::Matches($t, '<SpawnGroup>\s*<Id>\s*<TypeId>[^<]*</TypeId>\s*<SubtypeId>([^<]+)</SubtypeId>') | ForEach-Object { $_.Groups[1].Value })
+        $names += @([regex]::Matches($t, '<BeaconText>([^<]+)</BeaconText>') | ForEach-Object { $_.Groups[1].Value })
+    }
+    foreach ($n in $names | Sort-Object -Unique) {
+        if ($n -match 'Alliance|^NAS |^Outpost$' -or @($legacyNames | Where-Object { $n -match "^$_$" }).Count) { continue }
+        foreach ($p in $avoidNames.Keys) {
+            if ($n -match $p) { $warnings.Add("name '$n' uses a word GLOSSARY.md avoids; use $($avoidNames[$p])") }
+        }
+    }
+
     foreach ($doc in $docs) {
         $lines = [IO.File]::ReadAllLines((Join-Path $root $doc))
         $inGenerated = $false

@@ -92,7 +92,7 @@ A Coalition gun emplacement that is a Mission Giver.
 _Avoid_: turret station
 
 **Cache**:
-A reward crate grid that spawns for players to loot, such as a Cargo Drop or Ammo Drop (NLO).
+A reward crate grid that spawns for players to loot, such as a Cargo Cache or Ammo Cache (NLO).
 _Avoid_: loot grid, drop
 
 **KOTH Site**:

@@ -4,6 +4,23 @@
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Other-KOTH-Behavior-Camp</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Behavior]
+			[BehaviorName:Passive]
+			[UseRetreatTimer:false]
+			[UseNoTargetTimer:false]
+			[UsePlayerDistanceTimer:false]
+			[RemoteControlCode:KOTHCamp]
+			[Triggers:GVK-Other-KOTH-Trigger-Timer]
+			[Triggers:GVK-Other-KOTH-Trigger-CreateSafeZone]
+			</Description>
+		</EntityComponent>
+		<!-- Legacy name for KOTH Camps spawned before the rename, so they still expire. Delete after the next wipe. -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
 				<SubtypeId>GVK-Other-KOTH-Behavior-Outpost</SubtypeId>
 			</Id>
 			<Description>
