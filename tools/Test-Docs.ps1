@@ -5,7 +5,7 @@
 .DESCRIPTION
     Flags any TODO/FIXME comment in Content/Data/Encounters (*.sbc) or ModScripts (*.cs).
     Checks the dialogue bank rules in README note 37: every DefeatedAndAttacked behavior has a bank (Research Lab
-    excepted) named GVK-<Category>-<FACTION>.xml that exists and matches the factions its spawn groups use, each
+    excepted) named GVK-<Category>-<FACTION>-<Tier>.xml that exists and matches the factions its spawn groups use, each
     -<FACTION> behavior copy matches its original apart from the bank line, and each bank has the cues its
     faction can hear.
     Checks every tracked .md file for:
@@ -107,8 +107,8 @@ try {
             }
         }
         foreach ($bank in $banks) {
-            if ($bank -cnotmatch '^GVK-(Units|Travellers|Structures|Installations)-([A-Z]+)\.xml$') {
-                $warnings.Add("${name}: bank $bank does not follow GVK-<Units|Travellers|Structures|Installations>-<FACTION>.xml")
+            if ($bank -cnotmatch '^GVK-(Units|Travellers|Structures|Installations)-([A-Z]+)-(Small|Medium|Large)\.xml$') {
+                $warnings.Add("${name}: bank $bank does not follow GVK-<Units|Travellers|Structures|Installations>-<FACTION>-<Small|Medium|Large>.xml")
                 continue
             }
             $category, $bankFaction = $Matches[1], $Matches[2]
@@ -129,6 +129,14 @@ try {
             foreach ($cue in $needed | Where-Object { $_ -notin $cues }) { $warnings.Add("${bank}: missing the $cue cue") }
         }
     }
+    # Banks are generated from Docs/dialogue/drafts; flag drafts or behaviors that changed without a rebuild.
+    if (Get-Command python -ErrorAction SilentlyContinue) {
+        $build = & python (Join-Path $root 'Docs\dialogue\scripts\build_banks.py') --check 2>&1
+        if ($LASTEXITCODE -ne 0) {
+            $build | Where-Object { $_ -match '^(WOULD|PROBLEM)' } | ForEach-Object { $warnings.Add("dialogue banks: $_ (run Docs/dialogue/scripts/build_banks.py)") }
+        }
+    }
+
     foreach ($doc in $docs) {
         $lines = [IO.File]::ReadAllLines((Join-Path $root $doc))
         $inGenerated = $false

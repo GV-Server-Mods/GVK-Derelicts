@@ -46,7 +46,7 @@ All general Modular Encounters Systems (MES) and RivalAI modding rules, tag dict
 - Prefab names: three-letter tag + 4-letter faction tag, e.g. `NWS [COAL] Combat Baserunner`. The tag list is generated in `README.md`.
 
 ### NPC Chatter (Dialogue Banks)
-Every behavior that uses `GVK-Universal-TriggerGroup-DefeatedAndAttacked` also needs a `[DialogueBanks:GVK-<Category>-<FACTION>.xml]` line, where Category is `Units`, `Travellers`, `Structures` or `Installations` and FACTION is the faction its spawn groups spawn it as. MES fixes the bank per behavior, so if two factions' spawn groups share a behavior, give each faction its own copy with its own bank and a `[//CopyOf:<original>]` line, and keep the copies identical otherwise. Details: README note 37.
+Every behavior that uses `GVK-Universal-TriggerGroup-DefeatedAndAttacked` also needs a `[DialogueBanks:]` line. Write `GVK-<Category>-<FACTION>.xml` (Category is `Units`, `Travellers`, `Structures` or `Installations`; FACTION is the faction its spawn groups spawn it as), then run `python Docs/dialogue/scripts/build_banks.py`: it adds the size tier from the Encounter Type, generates the bank and rewrites the line. New lines go in `Docs/dialogue/drafts/`, never in the bank XML. MES fixes the bank per behavior, so if two factions' spawn groups share a behavior, give each faction its own copy with its own bank and a `[//CopyOf:<original>]` line, and keep the copies identical otherwise. Details: README note 37.
 
 ### Directory Layout
 - `Content/Data/Encounters/`: Spawn groups, behaviors, and trigger groups.
