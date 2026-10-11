@@ -39,7 +39,6 @@
 			[RivalAI TriggerGroup]
 			[Triggers:GVK-ConvoySystem-Leader-Trigger-AlertPotentialEscorts]
 			[Triggers:GVK-ConvoySystem-Leader-Trigger-ProcessEscortRequest]
-			[Triggers:GVK-ConvoySystem-Leader-Trigger-SendHeartbeatCommand]
 			[Triggers:GVK-ConvoySystem-Leader-ManualTrigger-Compromised]
 			[Triggers:GVK-ConvoySystem-Leader-Trigger-UnderFire]
 			[Triggers:GVK-ConvoySystem-Leader-Trigger-EscortUnderFire]
@@ -54,10 +53,9 @@
 			[RivalAI TriggerGroup]
 			[Triggers:GVK-ConvoySystem-Escort-Trigger-AvailableToEscort]
 			[Triggers:GVK-ConvoySystem-Escort-Trigger-ReceiveEscortSlot]
-			[Triggers:GVK-ConvoySystem-Escort-Trigger-LeaderHeartbeat]
-			[Triggers:GVK-ConvoySystem-Escort-Trigger-DeadmanSwitch]
 			[Triggers:GVK-ConvoySystem-Escort-Trigger-LeaderDead]
 			[Triggers:GVK-ConvoySystem-Escort-ManualTrigger-ReturnToPatrol]
+			[Triggers:GVK-ConvoySystem-Escort-Trigger-LeaderLost]
 			[Triggers:GVK-ConvoySystem-Escort-Trigger-DefendLeader]
 			[Triggers:GVK-ConvoySystem-Escort-Trigger-UnderFire]
 			</Description>
@@ -133,8 +131,6 @@
 			[BroadcastCommandProfiles:true]
 			[CommandProfileIds:GVK-ConvoySystem-Leader-Command-ProcessEscortRequest]
 			[SetBooleansTrue:GVK_Role_Leader]
-			[EnableTriggers:true]
-			[EnableTriggerNames:GVK-ConvoySystem-Leader-Trigger-SendHeartbeatCommand]
 			</Description>
 		</EntityComponent>
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
@@ -151,49 +147,6 @@
 			[IgnoreReceiverAntennaRequirement:true]
 			[Radius:5000]
 			[CommandDelayTicks:60]
-			</Description>
-		</EntityComponent>
-		<!-- Send leader heartbeat command to escorts -->
-		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
-			<Id>
-				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-ConvoySystem-Leader-Trigger-SendHeartbeatCommand</SubtypeId>
-			</Id>
-			<Description>
-			[RivalAI Trigger]
-			[UseTrigger:false]
-			[Type:Timer]
-			[StartsReady:true]
-			[MinCooldownMs:3000]
-			[MaxCooldownMs:3001]
-			[Actions:GVK-ConvoySystem-Leader-Action-SendHeartbeatCommand]
-			</Description>
-		</EntityComponent>
-		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
-			<Id>
-				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-ConvoySystem-Leader-Action-SendHeartbeatCommand</SubtypeId>
-			</Id>
-			<Description>
-			[RivalAI Action]
-			[DebugMessage:Sending heartbeat command]
-			[BroadcastCommandProfiles:true]
-			[CommandProfileIds:GVK-ConvoySystem-Leader-Command-SendHeartbeatCommand]
-			</Description>
-		</EntityComponent>
-		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
-			<Id>
-				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-ConvoySystem-Leader-Command-SendHeartbeatCommand</SubtypeId>
-			</Id>
-			<Description>
-			[RivalAI Command]
-			[CommandCode:GVK_LeaderHeartbeat]
-			[MatchSenderReceiverOwners:true]
-			[MatchReceiverEscort:true]
-			[IgnoreAntennaRequirement:true]
-			[IgnoreReceiverAntennaRequirement:true]
-			[Radius:5000]
 			</Description>
 		</EntityComponent>
 		<!-- Compromised -->
@@ -451,52 +404,19 @@
 			[EnableTriggerTags:GVK-TriggerTags-ActiveEscortTasks]
 			</Description>
 		</EntityComponent>
-		<!-- Receive Leader heartbeat command to reset deadman switch -->
+		<!-- Leader gone (destroyed, crippled, despawned or deleted): MES raises BehaviorTriggerB on an escort whose leader stops being valid.
+		     No cooldown, because MES clears the flag at the end of every trigger pass. Only active while the escort holds a slot (ActiveEscortTasks). -->
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-ConvoySystem-Escort-Trigger-LeaderHeartbeat</SubtypeId>
+				<SubtypeId>GVK-ConvoySystem-Escort-Trigger-LeaderLost</SubtypeId>
 			</Id>
 			<Description>
 			[RivalAI Trigger]
 			[UseTrigger:false]
 			[Tags:GVK-TriggerTags-ActiveEscortTasks]
-			[Type:CommandReceived]
-			[CommandReceiveCode:GVK_LeaderHeartbeat]
+			[Type:BehaviorTriggerB]
 			[StartsReady:true]
-			[MaxActions:-1]
-			[Actions:GVK-ConvoySystem-Escort-Action-LeaderHeartbeat]
-			</Description>
-		</EntityComponent>
-		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
-			<Id>
-				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-ConvoySystem-Escort-Action-LeaderHeartbeat</SubtypeId>
-			</Id>
-			<Description>
-			[RivalAI Action]
-			[DebugMessage:Received LeaderHeartbeat command]
-			[SetBooleansTrue:GVK_Role_Escort]
-			[ResetCooldownTimeOfTriggers:true]
-			[ResetTriggerCooldownNames:GVK-ConvoySystem-Escort-Trigger-DeadmanSwitch]
-			[EnableTriggers:true]
-			[EnableTriggerNames:GVK-ConvoySystem-Escort-Trigger-DeadmanSwitch]
-			</Description>
-		</EntityComponent>
-		<!-- Deadman switch if leader heartbeat command not received in time -->
-		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
-			<Id>
-				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-ConvoySystem-Escort-Trigger-DeadmanSwitch</SubtypeId>
-			</Id>
-			<Description>
-			[RivalAI Trigger]
-			[UseTrigger:false]
-			[Tags:GVK-TriggerTags-ActiveEscortTasks]
-			[Type:Timer]
-			[StartsReady:false]
-			[MinCooldownMs:8000]
-			[MaxCooldownMs:8001]
 			[MaxActions:-1]
 			[Actions:GVK-ConvoySystem-Escort-Action-LeaderDead]
 			</Description>

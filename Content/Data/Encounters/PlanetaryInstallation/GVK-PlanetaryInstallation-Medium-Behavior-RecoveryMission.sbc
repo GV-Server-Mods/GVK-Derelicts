@@ -22,7 +22,6 @@
 			[Triggers:GVK-PlanetaryInstallation-Medium-Trigger-RecoveryMissionOnSpawn]
 			[Triggers:GVK-PlanetaryInstallation-Medium-Trigger-RecoveryMissionPlayerNear]
 			[Triggers:GVK-PlanetaryInstallation-Medium-Trigger-RecoveryMissionDespawn]
-			[Triggers:GVK-PlanetaryInstallation-Medium-Trigger-RecoveryMissionDespawnMES]
 			[Triggers:GVK-PlanetaryInstallation-Medium-Trigger-RecoveryMissionGridReturned]
 			[Triggers:GVK-PlanetaryInstallation-Medium-Trigger-RecoveryMissionGridLost]
 			[Triggers:GVK-PlanetaryInstallation-Medium-Trigger-RecoveryMissionOnFullSuccess]
@@ -332,7 +331,6 @@
 			[ContainerTypeSubtypeIds:GVK-ContainerTypes-SpecialPackage]
 			[DisableTriggers:true]
 			[DisableTriggerNames:GVK-PlanetaryInstallation-Medium-Trigger-RecoveryMissionDespawn]
-			[DisableTriggerNames:GVK-PlanetaryInstallation-Medium-Trigger-RecoveryMissionDespawnMES]
 			[DisableTriggerNames:GVK-PlanetaryInstallation-Medium-Trigger-RecoveryMissionOnPartialSuccess]
 			[DisableTriggerNames:GVK-PlanetaryInstallation-Medium-Trigger-RecoveryMissionOnFail]
 			[UseChatBroadcast:true]
@@ -422,7 +420,6 @@
 			[EnableBlockStates:On]
 			[DisableTriggers:true]
 			[DisableTriggerNames:GVK-PlanetaryInstallation-Medium-Trigger-RecoveryMissionDespawn]
-			[DisableTriggerNames:GVK-PlanetaryInstallation-Medium-Trigger-RecoveryMissionDespawnMES]
 			[DisableTriggerNames:GVK-PlanetaryInstallation-Medium-Trigger-RecoveryMissionOnFullSuccess]
 			[DisableTriggerNames:GVK-PlanetaryInstallation-Medium-Trigger-RecoveryMissionOnFail]
 			[UseChatBroadcast:true]
@@ -506,7 +503,6 @@
 			[Chance:100]
 			[DisableTriggers:true]
 			[DisableTriggerNames:GVK-PlanetaryInstallation-Medium-Trigger-RecoveryMissionDespawn]
-			[DisableTriggerNames:GVK-PlanetaryInstallation-Medium-Trigger-RecoveryMissionDespawnMES]
 			[DisableTriggerNames:GVK-PlanetaryInstallation-Medium-Trigger-RecoveryMissionOnFullSuccess]
 			[DisableTriggerNames:GVK-PlanetaryInstallation-Medium-Trigger-RecoveryMissionOnPartialSuccess]
 			[UseChatBroadcast:true]
@@ -551,22 +547,8 @@
 			</Id>
 			<Description>
 			[RivalAI Trigger]
-			[Type:Despawn]
-			[UseTrigger:true]
-			[StartsReady:true]
-			[MaxActions:1]
-			[ActionExecution:All]
-			[Actions:GVK-PlanetaryInstallation-Medium-Action-RecoveryMissionDespawn]
-			</Description>
-		</EntityComponent>
-		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
-			<Id>
-				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-PlanetaryInstallation-Medium-Trigger-RecoveryMissionDespawnMES</SubtypeId>
-			</Id>
-			<Description>
-			[RivalAI Trigger]
 			[Type:DespawnMES]
+			[DespawnTypeFromSpawner:Any]
 			[UseTrigger:true]
 			[StartsReady:true]
 			[MaxActions:1]
@@ -584,7 +566,6 @@
 			[Chance:100]
 			[DisableTriggers:true]
 			[DisableTriggerNames:GVK-PlanetaryInstallation-Medium-Trigger-RecoveryMissionDespawn]
-			[DisableTriggerNames:GVK-PlanetaryInstallation-Medium-Trigger-RecoveryMissionDespawnMES]
 			[DisableTriggerNames:GVK-PlanetaryInstallation-Medium-Trigger-RecoveryMissionOnFullSuccess]
 			[DisableTriggerNames:GVK-PlanetaryInstallation-Medium-Trigger-RecoveryMissionOnPartialSuccess]
 			[DisableTriggerNames:GVK-PlanetaryInstallation-Medium-Trigger-RecoveryMissionOnFail]

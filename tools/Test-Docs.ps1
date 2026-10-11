@@ -158,6 +158,15 @@ try {
         }
     }
 
+    # MES only runs a [Type:DespawnMES] trigger when [DespawnTypeFromSpawner:] matches why the grid was removed; an empty type matches only
+    # /MES.Debug.RemoveAllNpcs, so the trigger silently never fires (GVK-Settings#698). Use Any, which also covers the behavior's own despawn.
+    foreach ($name in $profiles.Keys | Sort-Object) {
+        $desc = $profiles[$name]
+        if ($desc -match '\[Type:DespawnMES\]' -and $desc -notmatch '\[DespawnTypeFromSpawner:[^\]]+\]') {
+            $warnings.Add("${name}: [Type:DespawnMES] without [DespawnTypeFromSpawner:] never fires; add [DespawnTypeFromSpawner:Any]")
+        }
+    }
+
     # Glossary words to avoid in prefab names, profile and spawn group IDs, and beacon text (GLOSSARY.md _Avoid_ lines).
     # "Outpost" belongs to alliance Outposts only; vanilla spawn group names are exempt.
     $avoidNames = [ordered]@{

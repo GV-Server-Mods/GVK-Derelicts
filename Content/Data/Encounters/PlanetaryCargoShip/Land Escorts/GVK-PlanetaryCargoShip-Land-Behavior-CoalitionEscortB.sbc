@@ -37,7 +37,6 @@
 				[Triggers:GVK-CargoShip-Land-COALITION-Trigger-EscortBeaconDisabled-B]
 				[Triggers:GVK-CargoShip-Land-COALITION-Trigger-EscortCompromised-B]
 				[Triggers:GVK-CargoShip-Land-COALITION-Trigger-EscortDespawn-B]
-				[Triggers:GVK-CargoShip-Land-COALITION-Trigger-EscortDespawnMES-B]
 				[Triggers:GVK-CargoShip-Land-COALITION-Trigger-EscortAttacked]
 				[Triggers:GVK-CargoShip-Land-COALITION-Trigger-EscortPlayerNear]
 				[Triggers:GVK-CargoShip-Land-COALITION-Trigger-EscortPlayerStillNear]
@@ -281,23 +280,8 @@
 			</Id>
 			<Description>
 				[RivalAI Trigger]
-				[Type:Despawn]
-				[UseTrigger:true]
-				[StartsReady:true]
-				[MaxActions:1]
-				[ActionExecution:All]
-				[Actions:GVK-EscortMissions-Action-ConvoyLost-B]
-				[Actions:GVK-CargoShip-Land-COALITION-Action-EscortCompromised]
-			</Description>
-		</EntityComponent>
-		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
-			<Id>
-				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-CargoShip-Land-COALITION-Trigger-EscortDespawnMES-B</SubtypeId>
-			</Id>
-			<Description>
-				[RivalAI Trigger]
 				[Type:DespawnMES]
+			[DespawnTypeFromSpawner:Any]
 				[UseTrigger:true]
 				[StartsReady:true]
 				[MaxActions:1]
@@ -388,7 +372,6 @@
 				[DisableTriggerNames:GVK-CargoShip-Land-COALITION-Trigger-EscortBeaconDisabled-B]
 				[DisableTriggerNames:GVK-CargoShip-Land-COALITION-Trigger-EscortCompromised-B]
 				[DisableTriggerNames:GVK-CargoShip-Land-COALITION-Trigger-EscortDespawn-B]
-				[DisableTriggerNames:GVK-CargoShip-Land-COALITION-Trigger-EscortDespawnMES-B]
 				[PlayParticleEffectAtRemote:true]
 				[ParticleEffectId:CruiserPoofSmoke]
 				[ParticleEffectOffset:{X:0.0 Y:0.0 Z:0.0}]

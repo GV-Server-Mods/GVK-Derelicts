@@ -48,7 +48,6 @@
 				[Triggers:GVK-Universal-Trigger-DefeatedCrashed]
 				[Triggers:GVK-Universal-ManualTrigger-DefeatedCompromised]
 				[Triggers:GVK-Universal-Trigger-DefeatedDespawn]
-				[Triggers:GVK-Universal-Trigger-DefeatedDespawnMES]
 				[Triggers:GVK-Universal-ManualTrigger-DefeatedDespawned]
 				[Triggers:GVK-Universal-TriggerTags-AttemptSmallDespawn]
 				[Triggers:GVK-Universal-TriggerTags-Disabled]
@@ -409,7 +408,6 @@
 			[//A defeated grid that MES cleans up later must not also count as Lost (chat, alliance points, Defense refund)]
 			[DisableTriggers:true]
 			[DisableTriggerNames:GVK-Universal-Trigger-DefeatedDespawn]
-			[DisableTriggerNames:GVK-Universal-Trigger-DefeatedDespawnMES]
 			</Description>
 		</EntityComponent>
 		<!-- trigger to adjust points if Despawned -->
@@ -420,22 +418,7 @@
 			</Id>
 			<Description>
 			[RivalAI Trigger]
-			[Type:Despawn]
-			[UseTrigger:true]
-			[MaxActions:1]
-			[ActionExecution:All]
-			[Actions:GVK-Universal-Action-DefeatedDespawned]
-			</Description>
-		</EntityComponent>
-		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
-			<Id>
-				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Universal-Trigger-DefeatedDespawnMES</SubtypeId>
-			</Id>
-			<Description>
-			[RivalAI Trigger]
 			[Type:DespawnMES]
-			[//Without Any it only fires when MES gives no despawn source, which is almost never. Behavior despawns also land here; ManualTrigger-DefeatedDespawned runs once.]
 			[DespawnTypeFromSpawner:Any]
 			[UseTrigger:true]
 			[MaxActions:1]
