@@ -9,6 +9,7 @@
 			- Explosions
 			- NPC Disable
 			- Defeated/Despawned Chats
+			- Attacked chatter (NeutralAttacked/EnemyAttacked dialogue cues, only on behaviors with [DialogueBanks:])
 			- Crashed (if GVK_MobilityType_Aircraft true)
 			- Instant delete (if small grid true)
 			
@@ -39,6 +40,8 @@
 				[RivalAI TriggerGroup]
 				[Triggers:GVK-Universal-Trigger-AttackerIsNeutralPlayer]
 				[Triggers:GVK-Universal-Trigger-AttackerIsEnemyPlayer]
+				[Triggers:GVK-Universal-Trigger-NeutralAttackedChatter]
+				[Triggers:GVK-Universal-Trigger-EnemyAttackedChatter]
 				[Triggers:GVK-Universal-Trigger-DefeatedBeaconDisabled]
 				[Triggers:GVK-Universal-Trigger-DefeatedCompromised]
 				[Triggers:GVK-Universal-Trigger-DefeatedCrashed]
@@ -193,6 +196,73 @@
 			[MES AI Action]
 			[//DebugMessage:AttackerIsEnemyPlayer]
 			[SetBooleansTrue:DamagedByEnemyPlayer]
+			</Description>
+		</EntityComponent>
+		<!-- Attacked chatter. Listed after the Attacker triggers so the first hit has already set the boolean. Cooldowns pace it, not the bank's chat profile (README note 37). -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Universal-Trigger-NeutralAttackedChatter</SubtypeId>
+			</Id>
+			<Description>
+			[MES AI Trigger]
+			[UseTrigger:true]
+			[Type:Damage]
+			[MinCooldownMs:60000]
+			[MaxCooldownMs:60001]
+			[StartsReady:true]
+			[DamageTypes:Any]
+			[ExcludedDamageTypes:Environment]
+			[ExcludedDamageTypes:Fire]
+			[ExcludedDamageTypes:Fall]
+			[ExcludedDamageTypes:Thruster]
+			[Conditions:GVK-Universal-Condition-DamagedByNeutralPlayer]
+			[Actions:GVK-Universal-Action-NeutralAttackedChatter]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Universal-Action-NeutralAttackedChatter</SubtypeId>
+			</Id>
+			<Description>
+			[MES AI Action]
+			[//DebugMessage:NeutralAttackedChatter]
+			[PlayDialogueCue:true]
+			[DialogueCueId:NeutralAttacked]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Universal-Trigger-EnemyAttackedChatter</SubtypeId>
+			</Id>
+			<Description>
+			[MES AI Trigger]
+			[UseTrigger:true]
+			[Type:Damage]
+			[MinCooldownMs:30000]
+			[MaxCooldownMs:60000]
+			[StartsReady:true]
+			[DamageTypes:Any]
+			[ExcludedDamageTypes:Environment]
+			[ExcludedDamageTypes:Fire]
+			[ExcludedDamageTypes:Fall]
+			[ExcludedDamageTypes:Thruster]
+			[Conditions:GVK-Universal-Condition-DamagedByEnemyPlayer]
+			[Actions:GVK-Universal-Action-EnemyAttackedChatter]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Universal-Action-EnemyAttackedChatter</SubtypeId>
+			</Id>
+			<Description>
+			[MES AI Action]
+			[//DebugMessage:EnemyAttackedChatter]
+			[PlayDialogueCue:true]
+			[DialogueCueId:EnemyAttacked]
 			</Description>
 		</EntityComponent>
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
