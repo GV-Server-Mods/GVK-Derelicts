@@ -84,7 +84,7 @@ Each kind of fact has exactly one home. Don't copy it anywhere else.
   - any `TODO`/`FIXME` comment in the encounter SBC files or ModScripts
   - dialogue bank mistakes: a DefeatedAndAttacked behavior with no bank, a missing or misnamed bank file, a bank whose faction doesn't match the behavior's spawn groups, a `[//CopyOf:]` copy that drifted from its original, and a bank missing a cue its faction can hear
   - dialogue draft rule breaks from `Docs/dialogue/scripts/check_drafts.py`, including a line two factions share word for word
-  - a prefab name, profile or spawn group ID, or beacon text using a word GLOSSARY.md avoids (Turret Station, Drop, a non-alliance Outpost); legacy IDs kept until the next wipe are listed in the script
+  - a prefab name, profile or spawn group ID, or beacon text using a word GLOSSARY.md avoids (Turret Station, Drop, a non-alliance Outpost)
   - a GAALSIEN behavior on a shared target profile instead of its `-GAALSIEN` copy (the shared ones skip COALITION grids so DERELICT ignores Coalition salvagers)
 
 ---
