@@ -83,6 +83,7 @@ Each kind of fact has exactly one home. Don't copy it anywhere else.
   - docs that call an MES issue/PR open after it has merged or closed
   - any `TODO`/`FIXME` comment in the encounter SBC files or ModScripts
   - dialogue bank mistakes: a DefeatedAndAttacked behavior with no bank, a missing or misnamed bank file, a bank whose faction doesn't match the behavior's spawn groups, a `[//CopyOf:]` copy that drifted from its original, and a bank missing a cue its faction can hear
+  - dialogue draft rule breaks from `Docs/dialogue/scripts/check_drafts.py`, including a line two factions share word for word
   - a GAALSIEN behavior on a shared target profile instead of its `-GAALSIEN` copy (the shared ones skip COALITION grids so DERELICT ignores Coalition salvagers)
 
 ---

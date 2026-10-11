@@ -1,5 +1,6 @@
-"""Check drafts/ before building banks: line counts per cue and size, length, duplicates, unit-class self-references,
-and copied text (any 5-word run shared with a transcript in reference/clean/).
+"""Check drafts/ before building banks: line counts per cue and size, length, duplicates (within a draft, and the same
+line in two factions' drafts), unit-class self-references, and copied text (any 5-word run shared with a transcript
+in reference/clean/).
 
 Usage (from Docs/dialogue): python scripts/check_drafts.py [drafts/<voice>.txt ...]
 """
@@ -29,6 +30,15 @@ for p in glob.glob(os.path.join(CLEAN, "*.tsv")):
         for row in csv.reader(f, delimiter="\t"):
             w = words(fix(row[-1] if not p.endswith("gameplay.tsv") else row[1]))
             grams.update(tuple(w[i:i + 5]) for i in range(len(w) - 4))
+
+norm = lambda t: re.sub(r"\W", "", t.lower())
+# Every line in every draft, so a line shared by two factions is caught even when only one draft is checked.
+owners = {}
+for p in glob.glob(os.path.join(DRAFTS, "*.txt")):
+    v = os.path.splitext(os.path.basename(p))[0]
+    for entries in parse_draft(p)[1].values():
+        for _, text in entries:
+            owners.setdefault(norm(text), set()).add((v.split("-")[1], v))
 
 paths = sys.argv[1:] or sorted(glob.glob(os.path.join(DRAFTS, "*.txt")))
 issues = 0
@@ -62,10 +72,13 @@ for path in paths:
         for only, text in entries:
             if len(text) > MAX_LEN:
                 report.append(f"{cue}: too long ({len(text)}): {text}")
-            key = re.sub(r"\W", "", text.lower())
+            key = norm(text)
             if key in seen:
                 report.append(f"{cue}: duplicate of {seen[key]}: {text}")
             seen[key] = cue
+            others = sorted(v for f, v in owners.get(key, ()) if f != faction)
+            if others:
+                report.append(f"{cue}: same line as {', '.join(others)}; each faction needs its own wording: {text}")
             if category == "Units" and CLASS_WORDS.search(text) and not cue.startswith("Target"):
                 report.append(f"{cue}: names a unit class, check it isn't self-reference: {text}")
             w = words(text)

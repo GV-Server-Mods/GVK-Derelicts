@@ -147,6 +147,15 @@ try {
         if ($LASTEXITCODE -ne 0) {
             $build | Where-Object { $_ -match '^(WOULD|PROBLEM)' } | ForEach-Object { $warnings.Add("dialogue banks: $_ (run Docs/dialogue/scripts/build_banks.py)") }
         }
+        # Line rules: counts, length, duplicates, the same line in two factions, unit-class self-reference.
+        $draftCheck = & python (Join-Path $root 'Docs\dialogue\scripts\check_drafts.py') 2>&1
+        if ($LASTEXITCODE -ne 0) {
+            $voice = ''
+            foreach ($l in $draftCheck) {
+                if ($l -match '^(\S+): \d+ lines') { $voice = $Matches[1] }
+                elseif ($l -match '^\s{4}(.+)$') { $warnings.Add("dialogue draft ${voice}: $($Matches[1])") }
+            }
+        }
     }
 
     foreach ($doc in $docs) {
