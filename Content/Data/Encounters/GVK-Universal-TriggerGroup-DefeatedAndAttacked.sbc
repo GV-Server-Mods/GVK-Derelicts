@@ -406,6 +406,10 @@
 			[ManuallyActivatedTriggerTags:GVK-Universal-TriggerTags-DefeatedChat-{EncounterType}]
 			[ManuallyActivatedTriggerTags:GVK-Universal-TriggerTags-AttemptSmallDespawn]
 			[ManuallyActivatedTriggerTags:GVK-Universal-TriggerTags-Disabled]
+			[//A defeated grid that MES cleans up later must not also count as Lost (chat, alliance points, Defense refund)]
+			[DisableTriggers:true]
+			[DisableTriggerNames:GVK-Universal-Trigger-DefeatedDespawn]
+			[DisableTriggerNames:GVK-Universal-Trigger-DefeatedDespawnMES]
 			</Description>
 		</EntityComponent>
 		<!-- trigger to adjust points if Despawned -->
@@ -431,6 +435,8 @@
 			<Description>
 			[RivalAI Trigger]
 			[Type:DespawnMES]
+			[//Without Any it only fires when MES gives no despawn source, which is almost never. Behavior despawns also land here; ManualTrigger-DefeatedDespawned runs once.]
+			[DespawnTypeFromSpawner:Any]
 			[UseTrigger:true]
 			[MaxActions:1]
 			[ActionExecution:All]
