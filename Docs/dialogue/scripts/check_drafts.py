@@ -17,6 +17,7 @@ UNIT_CUES = ["TargetAcquired", "TargetStructure", "TargetAircraft", "TargetInfan
 OTHER_CUES = ["NeutralAttacked", "EnemyAttacked", "FriendlyFire", "Defeated"]
 HOSTILE = {"GAALSIEN", "DERELICT"}
 NOT_SPLIT = {("Units-GAALSIEN", "NeutralAttacked")}  # keeps its original 4 lines
+NO_SMALL = {"Defeated"}  # Small Units (fighters, skimmers, LAVs) have no last words; the Sensors line is enough
 # Unit-class names: a size bank holds several designs, so a line must not name the speaker's own class.
 CLASS_WORDS = re.compile(r"\b(sandskimmers?|skimmers?|interceptors?|honou?rguards?|baserunners?|runners?|salvagers?|"
                          r"LAVs?|bombers?|gunships?|horsefl(?:y|ies)|production cruisers?|torpedo|artillery cruisers?)\b", re.I)
@@ -43,7 +44,13 @@ for path in paths:
     report = []
     for cue in expected:
         entries = cues.get(cue, [])
-        if category == "Units" and (voice, cue) not in NOT_SPLIT:
+        if category == "Units" and cue in NO_SMALL:
+            per = {s: sum(1 for only, _ in entries if only and s in only) for s in ("Small", "Medium", "Large")}
+            if any(only is None for only, _ in entries) or per["Small"]:
+                report.append(f"{cue}: Small Units stay silent here; tag every line [M], [L] or [ML]")
+            if per["Medium"] < TARGET or per["Large"] < TARGET:
+                report.append(f"{cue}: M{per['Medium']}/L{per['Large']} (want {TARGET} each)")
+        elif category == "Units" and (voice, cue) not in NOT_SPLIT:
             shared = sum(1 for only, _ in entries if only is None)
             per = {s: sum(1 for only, _ in entries if only and s in only) for s in ("Small", "Medium", "Large")}
             if shared < SPLIT or any(n < SPLIT for n in per.values()):

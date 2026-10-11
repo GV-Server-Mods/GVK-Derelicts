@@ -83,7 +83,8 @@ try {
             $factions | ForEach-Object { [void]$behaviorFactions[$name].Add($_) }
         }
     }
-    $noBankAllowed = 'GVK-Alliance-ResearchLab-Behavior'
+    # Silent on purpose: small wrecks only get the blue Sensors lines.
+    $noBankAllowed = 'GVK-Alliance-ResearchLab-Behavior', 'GVK-PlanetaryInstallation-Small-Behavior', 'GVK-PlanetaryInstallation-Small-Behavior-GAALSIEN'
     $hostileFactions = 'GAALSIEN', 'DERELICT'   # never neutral or friendly, so their banks skip those cues
     $bankDir = 'Content\Data\DialogueBanks'
     $checkedBanks = New-Object 'System.Collections.Generic.HashSet[string]'
@@ -99,13 +100,6 @@ try {
                 $warnings.Add("${name}: spawns as GAALSIEN but targets with $target, which ignores Coalition grids; use $target-GAALSIEN")
             }
         }
-        $banks = @([regex]::Matches($desc, '\[DialogueBanks:([^\]]+)\]') | ForEach-Object { $_.Groups[1].Value.Trim() })
-        if (-not $banks.Count) {
-            if ($desc -match '\[TriggerGroups:GVK-Universal-TriggerGroup-DefeatedAndAttacked\]' -and $name -notin $noBankAllowed) {
-                $warnings.Add("${name}: no [DialogueBanks:] line; it will never play attacked chatter")
-            }
-            continue
-        }
         # A per-faction copy ([//CopyOf:X]) must match its original apart from the bank line and a -GAALSIEN target profile.
         if ($desc -match '\[//CopyOf:([^\]]+)\]') {
             $original = $Matches[1].Trim()
@@ -113,6 +107,13 @@ try {
             elseif ((& $stripBank $desc) -ne (& $stripBank $profiles[$original])) {
                 $warnings.Add("${name}: differs from $original beyond the [DialogueBanks:] and [TargetData:] lines; edit both copies")
             }
+        }
+        $banks = @([regex]::Matches($desc, '\[DialogueBanks:([^\]]+)\]') | ForEach-Object { $_.Groups[1].Value.Trim() })
+        if (-not $banks.Count) {
+            if ($desc -match '\[TriggerGroups:GVK-Universal-TriggerGroup-DefeatedAndAttacked\]' -and $name -notin $noBankAllowed) {
+                $warnings.Add("${name}: no [DialogueBanks:] line; it will never play attacked chatter")
+            }
+            continue
         }
         foreach ($bank in $banks) {
             if ($bank -cnotmatch '^GVK-(Units|Travellers|Structures|Installations)-([A-Z]+)-(Small|Medium|Large)\.xml$') {
@@ -131,7 +132,8 @@ try {
             }
             if (-not $checkedBanks.Add($bank)) { continue }
             $cues = @([regex]::Matches([IO.File]::ReadAllText((Join-Path $root $path)), '<DialogueCueId>([^<]+)</DialogueCueId>') | ForEach-Object { $_.Groups[1].Value })
-            $needed = @('EnemyAttacked', 'Defeated')
+            $needed = @('EnemyAttacked')
+            if (-not ($category -eq 'Units' -and $bank -like '*-Small.xml')) { $needed += 'Defeated' }   # Small Units have no last words
             if ($bankFaction -notin $hostileFactions) { $needed += 'NeutralAttacked', 'FriendlyFire' }
             if ($category -eq 'Units') {
                 $needed += 'TargetAcquired', 'NoTargets', 'TargetStructure', 'TargetAircraft', 'TargetInfantry', 'TargetFastMover', 'TargetLongRange'

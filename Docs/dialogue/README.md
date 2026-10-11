@@ -90,6 +90,10 @@ The auto-captions mishear lore names. `scripts/fixes.py` is the shared correctio
 | Travellers ×3, Structures ×2, Installations COALITION | NeutralAttacked, EnemyAttacked, FriendlyFire, Defeated |
 | Installations GAALSIEN, DERELICT | EnemyAttacked, Defeated |
 
+Two groups stay quieter on purpose, leaving the blue Sensors message to speak for them:
+- **Small Units** (fighters, skimmers, interceptors, LAVs) have no `Defeated` lines. Tag every `Defeated` line in a Units draft `[M]`, `[L]` or `[ML]`.
+- **Small wrecks** (`GVK-PlanetaryInstallation-Small-Behavior` and its `-GAALSIEN` copy) have no bank at all.
+
 `Target*` cues are target-type callouts. One plays per target lock, from the first check that passes: Structure (static grid) > Aircraft (grid 40 m+ above terrain) > Infantry (player on foot) > FastMover (60 m/s+) > LongRange (2500 m+) > TargetAcquired (anything else). The chain is in `GVK-Universal-Behavior.sbc`.
 
 ## Line rules
