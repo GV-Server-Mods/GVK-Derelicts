@@ -186,6 +186,7 @@
 			[RivalAI Command]
 			[CommandCode:GVK_LeaderHeartbeat]
 			[MatchSenderReceiverOwners:true]
+			[MatchReceiverEscort:true]
 			[IgnoreAntennaRequirement:true]
 			[IgnoreReceiverAntennaRequirement:true]
 			[Radius:5000]
@@ -230,6 +231,7 @@
 			[RivalAI Command]
 			[CommandCode:GVK_LeaderDead]
 			[MatchSenderReceiverOwners:true]
+			[MatchReceiverEscort:true]
 			[IgnoreAntennaRequirement:true]
 			[IgnoreReceiverAntennaRequirement:true]
 			[Radius:5000]
@@ -339,7 +341,6 @@
 			[Type:CommandReceived]
 			[CommandReceiveCode:GVK_EscortAssigned]
 			[StartsReady:false]
-			[Conditions:GVK-Drone-All-Condition-CommandFromAssignedLeader]
 			[Actions:GVK-ConvoySystem-Escort-Action-ReceiveEscortSlot]
 			</Description>
 		</EntityComponent>
@@ -375,7 +376,6 @@
 			[CommandReceiveCode:GVK_LeaderHeartbeat]
 			[StartsReady:true]
 			[MaxActions:-1]
-			[Conditions:GVK-Drone-All-Condition-CommandFromAssignedLeader]
 			[Actions:GVK-ConvoySystem-Escort-Action-LeaderHeartbeat]
 			</Description>
 		</EntityComponent>
@@ -426,7 +426,6 @@
 			[CommandReceiveCode:GVK_LeaderDead]
 			[StartsReady:true]
 			[MaxActions:-1]
-			[Conditions:GVK-Drone-All-Condition-CommandFromAssignedLeader]
 			[Actions:GVK-ConvoySystem-Escort-Action-LeaderDead]
 			</Description>
 		</EntityComponent>
