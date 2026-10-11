@@ -60,6 +60,20 @@
 			[CheckIfDamagerIsPlayer:true]
 			</Description>
 		</EntityComponent>
+		<!-- Condition to check if attacker is friendly player (reputation 501 or higher) -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Universal-Condition-AttackerIsFriendlyPlayer</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Condition]
+			[UseConditions:true]
+			[MatchAnyCondition:false]
+			[IsAttackerFriendly:true]
+			[CheckIfDamagerIsPlayer:true]
+			</Description>
+		</EntityComponent>
 		<!-- Condition to check if previously damaged by neutral player -->
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>

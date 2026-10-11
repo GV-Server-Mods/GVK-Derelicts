@@ -9,7 +9,7 @@
 			- Explosions
 			- NPC Disable
 			- Defeated/Despawned Chats
-			- Attacked chatter (NeutralAttacked/EnemyAttacked dialogue cues, only on behaviors with [DialogueBanks:])
+			- Attacked chatter (NeutralAttacked/EnemyAttacked/FriendlyFire dialogue cues, only on behaviors with [DialogueBanks:])
 			- Crashed (if GVK_MobilityType_Aircraft true)
 			- Instant delete (if small grid true)
 			
@@ -42,6 +42,7 @@
 				[Triggers:GVK-Universal-Trigger-AttackerIsEnemyPlayer]
 				[Triggers:GVK-Universal-Trigger-NeutralAttackedChatter]
 				[Triggers:GVK-Universal-Trigger-EnemyAttackedChatter]
+				[Triggers:GVK-Universal-Trigger-FriendlyFireChatter]
 				[Triggers:GVK-Universal-Trigger-DefeatedBeaconDisabled]
 				[Triggers:GVK-Universal-Trigger-DefeatedCompromised]
 				[Triggers:GVK-Universal-Trigger-DefeatedCrashed]
@@ -263,6 +264,40 @@
 			[//DebugMessage:EnemyAttackedChatter]
 			[PlayDialogueCue:true]
 			[DialogueCueId:EnemyAttacked]
+			</Description>
+		</EntityComponent>
+		<!-- Friendly fire is usually an accident, so this checks the current attacker on each hit instead of a sticky boolean. -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Universal-Trigger-FriendlyFireChatter</SubtypeId>
+			</Id>
+			<Description>
+			[MES AI Trigger]
+			[UseTrigger:true]
+			[Type:Damage]
+			[MinCooldownMs:30000]
+			[MaxCooldownMs:30001]
+			[StartsReady:true]
+			[DamageTypes:Any]
+			[ExcludedDamageTypes:Environment]
+			[ExcludedDamageTypes:Fire]
+			[ExcludedDamageTypes:Fall]
+			[ExcludedDamageTypes:Thruster]
+			[Conditions:GVK-Universal-Condition-AttackerIsFriendlyPlayer]
+			[Actions:GVK-Universal-Action-FriendlyFireChatter]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Universal-Action-FriendlyFireChatter</SubtypeId>
+			</Id>
+			<Description>
+			[MES AI Action]
+			[//DebugMessage:FriendlyFireChatter]
+			[PlayDialogueCue:true]
+			[DialogueCueId:FriendlyFire]
 			</Description>
 		</EntityComponent>
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
