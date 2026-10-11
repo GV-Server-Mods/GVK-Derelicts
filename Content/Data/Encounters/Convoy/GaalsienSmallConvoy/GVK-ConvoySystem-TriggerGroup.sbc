@@ -86,7 +86,7 @@
 			</Id>
 			<Description>
 			[RivalAI Action]
-			[//DebugMessage:Alerting potential escorts]
+			[DebugMessage:Alerting potential escorts]
 			[BroadcastCommandProfiles:true]
 			[CommandProfileIds:GVK-ConvoySystem-Leader-Command-AlertPotentialEscorts]
 			</Description>
@@ -128,7 +128,7 @@
 			</Id>
 			<Description>
 			[RivalAI Action]
-			[//DebugMessage:Assigning escorts]
+			[DebugMessage:Assigning escorts]
 			[AssignEscortFromCommand:true]
 			[BroadcastCommandProfiles:true]
 			[CommandProfileIds:GVK-ConvoySystem-Leader-Command-ProcessEscortRequest]
@@ -176,7 +176,7 @@
 			</Id>
 			<Description>
 			[RivalAI Action]
-			[//DebugMessage:Sending heartbeat command]
+			[DebugMessage:Sending heartbeat command]
 			[BroadcastCommandProfiles:true]
 			[CommandProfileIds:GVK-ConvoySystem-Leader-Command-SendHeartbeatCommand]
 			</Description>
@@ -220,7 +220,7 @@
 			</Id>
 			<Description>
 			[RivalAI Action]
-			[//DebugMessage:sending command GVK_LeaderDead]
+			[DebugMessage:sending command GVK_LeaderDead]
 			[BroadcastCommandProfiles:true]
 			[CommandProfileIds:GVK-ConvoySystem-Leader-Command-Compromised]
 			[SetBooleansFalse:GVK_Role_Leader]
@@ -274,7 +274,7 @@
 			</Id>
 			<Description>
 			[RivalAI Action]
-			[//DebugMessage:Leader under fire; calling escorts]
+			[DebugMessage:Leader under fire; calling escorts]
 			[BroadcastCommandProfiles:true]
 			[CommandProfileIds:GVK-ConvoySystem-Leader-Command-UnderFire]
 			</Description>
@@ -322,7 +322,7 @@
 			</Id>
 			<Description>
 			[RivalAI Action]
-			[//DebugMessage:Escort under fire; taking its attacker]
+			[DebugMessage:Escort under fire; taking its attacker]
 			[SwitchToReceivedTarget:true]
 			[InheritLastAttackerFromCommand:true]
 			</Description>
@@ -353,7 +353,7 @@
 			</Id>
 			<Description>
 			[RivalAI Action]
-			[//DebugMessage:Leader available; attempting to request escort slot]
+			[DebugMessage:Leader available; attempting to request escort slot]
 			[ChangeBehaviorSubclass:true]
 			[NewBehaviorSubclass:Escort]
 			[ChangeAutopilotProfile:true]
@@ -408,7 +408,7 @@
 			</Id>
 			<Description>
 			[RivalAI Action]
-			[//DebugMessage:No escort slot received; returning to patrol]
+			[DebugMessage:No escort slot received; returning to patrol]
 			[ChangeBehaviorSubclass:true]
 			[NewBehaviorSubclass:Patrol]
 			[ChangeAutopilotProfile:true]
@@ -440,7 +440,7 @@
 			</Id>
 			<Description>
 			[RivalAI Action]
-			[//DebugMessage:Received escort slot]
+			[DebugMessage:Received escort slot]
 			[SetBooleansTrue:GVK_Role_Escort]
 			[DisableTriggers:true]
 			[DisableTriggerTags:GVK-TriggerTags-InactiveEscortTasks]
@@ -475,7 +475,7 @@
 			</Id>
 			<Description>
 			[RivalAI Action]
-			[//DebugMessage:Received LeaderHeartbeat command]
+			[DebugMessage:Received LeaderHeartbeat command]
 			[SetBooleansTrue:GVK_Role_Escort]
 			[ResetCooldownTimeOfTriggers:true]
 			[ResetTriggerCooldownNames:GVK-ConvoySystem-Escort-Trigger-DeadmanSwitch]
@@ -525,7 +525,7 @@
 			</Id>
 			<Description>
 			[RivalAI Action]
-			[//DebugMessage:Leader is dead]
+			[DebugMessage:Leader is dead]
 			[SetBooleansFalse:GVK_Role_Escort]
 			[ResetCooldownTimeOfTriggers:true]
 			[ResetTriggerCooldownTags:GVK-TriggerTags-InactiveEscortTasks]
@@ -563,7 +563,7 @@
 			</Id>
 			<Description>
 			[RivalAI Action]
-			[//DebugMessage:Leader under fire; engaging its attacker]
+			[DebugMessage:Leader under fire; engaging its attacker]
 			[SwitchToReceivedTarget:true]
 			[InheritLastAttackerFromCommand:true]
 			</Description>
@@ -600,7 +600,7 @@
 			</Id>
 			<Description>
 			[RivalAI Action]
-			[//DebugMessage:Escort under fire; reporting to leader]
+			[DebugMessage:Escort under fire; reporting to leader]
 			[BroadcastCommandProfiles:true]
 			[CommandProfileIds:GVK-ConvoySystem-Escort-Command-UnderFire]
 			</Description>
