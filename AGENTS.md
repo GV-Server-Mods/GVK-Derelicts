@@ -45,6 +45,9 @@ All general Modular Encounters Systems (MES) and RivalAI modding rules, tag dict
   - `GVK-Universal-Trigger-DespawnInZ0`
 - Prefab names: three-letter tag + 4-letter faction tag, e.g. `NWS [COAL] Combat Baserunner`. The tag list is generated in `README.md`.
 
+### NPC Chatter (Dialogue Banks)
+Every behavior that uses `GVK-Universal-TriggerGroup-DefeatedAndAttacked` also needs a `[DialogueBanks:GVK-<Category>-<FACTION>.xml]` line, where Category is `Units`, `Travellers`, `Structures` or `Installations` and FACTION is the faction its spawn groups spawn it as. MES fixes the bank per behavior, so if two factions' spawn groups share a behavior, give each faction its own copy with its own bank and a `[//CopyOf:<original>]` line, and keep the copies identical otherwise. Details: README note 37.
+
 ### Directory Layout
 - `Content/Data/Encounters/`: Spawn groups, behaviors, and trigger groups.
 - `Content/Data/Prefabs/`: Grid blueprint files (do not edit manually unless modifying block definitions).
@@ -79,6 +82,7 @@ Each kind of fact has exactly one home. Don't copy it anywhere else.
   - docs that reference profiles, prefabs or paths that no longer exist
   - docs that call an MES issue/PR open after it has merged or closed
   - any `TODO`/`FIXME` comment in the encounter SBC files or ModScripts
+  - dialogue bank mistakes: a DefeatedAndAttacked behavior with no bank, a missing or misnamed bank file, a bank whose faction doesn't match the behavior's spawn groups, a `[//CopyOf:]` copy that drifted from its original, and a bank missing a cue its faction can hear
 
 ---
 
