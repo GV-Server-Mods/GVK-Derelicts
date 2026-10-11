@@ -9,6 +9,33 @@
 			<Description>
 			[RivalAI Behavior]
 			[BehaviorName:Passive]
+			[DialogueBanks:GVK-Installations-DERELICT.xml]
+			[UsePlayerDistanceTimer:true]
+			[PlayerDistanceTimerTrigger:1800]
+			[PlayerDistanceTrigger:2000]
+			[UseNoTargetTimer:false]
+			[UseRetreatTimer:false]
+			[TargetData:GVK-Universal-Target-EnemyPlayerAndGrid3km]
+			[Triggers:GVK-Universal-Trigger-WeaponsToMaxRange]
+			[Triggers:GVK-PlanetaryInstallation-Small-Trigger-Init]
+			[Triggers:GVK-PlanetaryInstallation-Small-Trigger-SalvagerPlayerNear]
+			[Triggers:GVK-Universal-Trigger-DespawnInZ0]
+			[TriggerGroups:GVK-Universal-TriggerGroup-DefeatedAndAttacked]
+			[TriggerGroups:GVK-Universal-TriggerGroup-TerrainSkin]
+			[RemoteControlCode:GVK-SmallDerelict]
+			BountyOnKill=200000;
+			</Description>
+		</EntityComponent>
+		<!-- GAALSIEN copy of the behavior above; only the dialogue bank differs (MES picks a bank per behavior, not per faction). -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-PlanetaryInstallation-Small-Behavior-GAALSIEN</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Behavior]
+			[BehaviorName:Passive]
+			[DialogueBanks:GVK-Installations-GAALSIEN.xml]
 			[UsePlayerDistanceTimer:true]
 			[PlayerDistanceTimerTrigger:1800]
 			[PlayerDistanceTrigger:2000]

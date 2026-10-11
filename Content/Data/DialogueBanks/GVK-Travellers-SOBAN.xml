@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- SOBAN Freighter chatter. Behaviors pick this bank with [DialogueBanks:GVK-Travellers-SOBAN.xml]; actions play a cue with [PlayDialogueCue:true] + [DialogueCueId:]. -->
+<DialogueBank>
+	<ChatProfileId>GVK-Universal-Chat-UnitVoice</ChatProfileId>
+	<DialogueCue>
+		<DialogueCueId>NeutralAttacked</DialogueCueId>
+		<Entries>
+			<Entry>
+				<Message>Freighter under fire from a neutral. That truce just ended.</Message>
+				<AudioId>ArcHudGPSNotification2</AudioId>
+				<Weights>1</Weights>
+			</Entry>
+			<Entry>
+				<Message>Hold fire. This shipment belongs to Kiith Soban.</Message>
+				<AudioId>ArcHudGPSNotification2</AudioId>
+				<Weights>1</Weights>
+			</Entry>
+			<Entry>
+				<Message>You hit a Soban supply run. The Carrier will hear of it.</Message>
+				<AudioId>ArcHudGPSNotification2</AudioId>
+				<Weights>1</Weights>
+			</Entry>
+			<Entry>
+				<Message>Wrong freighter to rob.</Message>
+				<AudioId>ArcHudGPSNotification2</AudioId>
+				<Weights>1</Weights>
+			</Entry>
+		</Entries>
+	</DialogueCue>
+	<DialogueCue>
+		<DialogueCueId>EnemyAttacked</DialogueCueId>
+		<Entries>
+			<Entry>
+				<Message>Freighter taking fire. Keep the cargo moving.</Message>
+				<AudioId>ArcHudGPSNotification2</AudioId>
+				<Weights>1</Weights>
+			</Entry>
+			<Entry>
+				<Message>Contact on the supply route. Engaging.</Message>
+				<AudioId>ArcHudGPSNotification2</AudioId>
+				<Weights>1</Weights>
+			</Entry>
+			<Entry>
+				<Message>Hull's holding. Get this load to the Depot.</Message>
+				<AudioId>ArcHudGPSNotification2</AudioId>
+				<Weights>1</Weights>
+			</Entry>
+			<Entry>
+				<Message>They want the cargo? Make them pay for it.</Message>
+				<AudioId>ArcHudGPSNotification2</AudioId>
+				<Weights>1</Weights>
+			</Entry>
+		</Entries>
+	</DialogueCue>
+</DialogueBank>

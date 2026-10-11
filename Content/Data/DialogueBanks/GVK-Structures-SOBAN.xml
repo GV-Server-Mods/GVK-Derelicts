@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- SOBAN Base, Outpost and Turret chatter. Behaviors pick this bank with [DialogueBanks:GVK-Structures-SOBAN.xml]; actions play a cue with [PlayDialogueCue:true] + [DialogueCueId:]. -->
+<DialogueBank>
+	<ChatProfileId>GVK-Universal-Chat-UnitVoice</ChatProfileId>
+	<DialogueCue>
+		<DialogueCueId>NeutralAttacked</DialogueCueId>
+		<Entries>
+			<Entry>
+				<Message>Neutral fire on a Soban position. Marking the shooter.</Message>
+				<AudioId>ArcHudGPSNotification2</AudioId>
+				<Weights>1</Weights>
+			</Entry>
+			<Entry>
+				<Message>This is Soban territory. Cease fire.</Message>
+				<AudioId>ArcHudGPSNotification2</AudioId>
+				<Weights>1</Weights>
+			</Entry>
+			<Entry>
+				<Message>You broke the truce on our doorstep.</Message>
+				<AudioId>ArcHudGPSNotification2</AudioId>
+				<Weights>1</Weights>
+			</Entry>
+			<Entry>
+				<Message>Last warning. Stand down or be cut down.</Message>
+				<AudioId>ArcHudGPSNotification2</AudioId>
+				<Weights>1</Weights>
+			</Entry>
+		</Entries>
+	</DialogueCue>
+	<DialogueCue>
+		<DialogueCueId>EnemyAttacked</DialogueCueId>
+		<Entries>
+			<Entry>
+				<Message>Position under attack. All guns, return fire.</Message>
+				<AudioId>ArcHudGPSNotification2</AudioId>
+				<Weights>1</Weights>
+			</Entry>
+			<Entry>
+				<Message>Hostiles in Soban territory. Hold the line.</Message>
+				<AudioId>ArcHudGPSNotification2</AudioId>
+				<Weights>1</Weights>
+			</Entry>
+			<Entry>
+				<Message>Walls are holding. Keep them pinned.</Message>
+				<AudioId>ArcHudGPSNotification2</AudioId>
+				<Weights>1</Weights>
+			</Entry>
+			<Entry>
+				<Message>Contact at the perimeter. Engaging.</Message>
+				<AudioId>ArcHudGPSNotification2</AudioId>
+				<Weights>1</Weights>
+			</Entry>
+		</Entries>
+	</DialogueCue>
+</DialogueBank>
