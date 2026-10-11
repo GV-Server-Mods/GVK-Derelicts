@@ -41,6 +41,8 @@
 			[Triggers:GVK-ConvoySystem-Leader-Trigger-ProcessEscortRequest]
 			[Triggers:GVK-ConvoySystem-Leader-Trigger-SendHeartbeatCommand]
 			[Triggers:GVK-ConvoySystem-Leader-ManualTrigger-Compromised]
+			[Triggers:GVK-ConvoySystem-Leader-Trigger-UnderFire]
+			[Triggers:GVK-ConvoySystem-Leader-Trigger-EscortUnderFire]
 			</Description>
 		</EntityComponent>
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
@@ -56,6 +58,8 @@
 			[Triggers:GVK-ConvoySystem-Escort-Trigger-DeadmanSwitch]
 			[Triggers:GVK-ConvoySystem-Escort-Trigger-LeaderDead]
 			[Triggers:GVK-ConvoySystem-Escort-ManualTrigger-ReturnToPatrol]
+			[Triggers:GVK-ConvoySystem-Escort-Trigger-DefendLeader]
+			[Triggers:GVK-ConvoySystem-Escort-Trigger-UnderFire]
 			</Description>
 		</EntityComponent>
 		<!-- Leader ================================================================================ -->
@@ -236,6 +240,91 @@
 			[IgnoreReceiverAntennaRequirement:true]
 			[Radius:5000]
 			[CommandDelayTicks:60]
+			</Description>
+		</EntityComponent>
+		<!-- Leader under fire: its own escorts turn on the attacker -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-ConvoySystem-Leader-Trigger-UnderFire</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Trigger]
+			[UseTrigger:true]
+			[Type:Damage]
+			[StartsReady:true]
+			[MinCooldownMs:10000]
+			[MaxCooldownMs:10001]
+			[DamageTypes:Any]
+			[ExcludedDamageTypes:Environment]
+			[ExcludedDamageTypes:Deformation]
+			[ExcludedDamageTypes:Fire]
+			[ExcludedDamageTypes:Fall]
+			[ExcludedDamageTypes:Thruster]
+			[MaxActions:-1]
+			[Conditions:GVK-Universal-Condition-SendHighPriorityTarget]
+			[ConditionCheckResetsTimer:true]
+			[Actions:GVK-ConvoySystem-Leader-Action-UnderFire]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-ConvoySystem-Leader-Action-UnderFire</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Action]
+			[//DebugMessage:Leader under fire; calling escorts]
+			[BroadcastCommandProfiles:true]
+			[CommandProfileIds:GVK-ConvoySystem-Leader-Command-UnderFire]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-ConvoySystem-Leader-Command-UnderFire</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Command]
+			[CommandCode:GVK_LeaderUnderFire]
+			[MatchSenderReceiverOwners:true]
+			[MatchReceiverEscort:true]
+			[IgnoreAntennaRequirement:true]
+			[IgnoreReceiverAntennaRequirement:true]
+			[Radius:5000]
+			[SendDamagerEntityId:true]
+			[CommandDelayTicks:60]
+			</Description>
+		</EntityComponent>
+		<!-- An escort reports its attacker: the leader takes it on if it has nothing else to shoot -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-ConvoySystem-Leader-Trigger-EscortUnderFire</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Trigger]
+			[UseTrigger:true]
+			[Type:CommandReceived]
+			[CommandReceiveCode:GVK_EscortUnderFire]
+			[StartsReady:true]
+			[MinCooldownMs:10000]
+			[MaxCooldownMs:10001]
+			[MaxActions:-1]
+			[Conditions:GVK-Universal-Condition-NoTarget]
+			[Actions:GVK-ConvoySystem-Leader-Action-EscortUnderFire]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-ConvoySystem-Leader-Action-EscortUnderFire</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Action]
+			[//DebugMessage:Escort under fire; taking its attacker]
+			[SwitchToReceivedTarget:true]
+			[InheritLastAttackerFromCommand:true]
 			</Description>
 		</EntityComponent>
 		<!-- Escort ================================================================================ -->
@@ -447,6 +536,90 @@
 			[ManuallyActivateTrigger:true]
 			[ManuallyActivatedTriggerTags:GVK-TriggerTags-LeaderDead]
 			[ForceManualTriggerActivation:false]
+			</Description>
+		</EntityComponent>
+		<!-- Leader reports its attacker: turn on it ([MatchReceiverEscort] on the command means only this leader's escorts hear it) -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-ConvoySystem-Escort-Trigger-DefendLeader</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Trigger]
+			[UseTrigger:true]
+			[Type:CommandReceived]
+			[CommandReceiveCode:GVK_LeaderUnderFire]
+			[StartsReady:true]
+			[MinCooldownMs:15000]
+			[MaxCooldownMs:15001]
+			[MaxActions:-1]
+			[Actions:GVK-ConvoySystem-Escort-Action-DefendLeader]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-ConvoySystem-Escort-Action-DefendLeader</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Action]
+			[//DebugMessage:Leader under fire; engaging its attacker]
+			[SwitchToReceivedTarget:true]
+			[InheritLastAttackerFromCommand:true]
+			</Description>
+		</EntityComponent>
+		<!-- Escort under fire: report the attacker to its own leader only -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-ConvoySystem-Escort-Trigger-UnderFire</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Trigger]
+			[UseTrigger:true]
+			[Type:Damage]
+			[StartsReady:true]
+			[MinCooldownMs:10000]
+			[MaxCooldownMs:10001]
+			[DamageTypes:Any]
+			[ExcludedDamageTypes:Environment]
+			[ExcludedDamageTypes:Deformation]
+			[ExcludedDamageTypes:Fire]
+			[ExcludedDamageTypes:Fall]
+			[ExcludedDamageTypes:Thruster]
+			[MaxActions:-1]
+			[Conditions:GVK-Universal-Condition-SendHighPriorityTarget]
+			[ConditionCheckResetsTimer:true]
+			[Actions:GVK-ConvoySystem-Escort-Action-UnderFire]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-ConvoySystem-Escort-Action-UnderFire</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Action]
+			[//DebugMessage:Escort under fire; reporting to leader]
+			[BroadcastCommandProfiles:true]
+			[CommandProfileIds:GVK-ConvoySystem-Escort-Command-UnderFire]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-ConvoySystem-Escort-Command-UnderFire</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Command]
+			[CommandCode:GVK_EscortUnderFire]
+			[MatchSenderReceiverOwners:true]
+			[MatchReceiverLeader:true]
+			[IgnoreAntennaRequirement:true]
+			[IgnoreReceiverAntennaRequirement:true]
+			[Radius:5000]
+			[SendDamagerEntityId:true]
+			[CommandDelayTicks:60]
 			</Description>
 		</EntityComponent>
 	</EntityComponents>
