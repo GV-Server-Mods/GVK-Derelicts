@@ -140,7 +140,9 @@ $parts += Component "$id-Command-Assigned" @"
 			[CommandDelayTicks:30]
 "@
 
-# Confirm: the slot is already assigned (ParentEscort is set), so the Escort behavior finds its leader on its first tick
+# Confirm: the slot is already assigned (ParentEscort is set), so the Escort behavior finds its leader on its first tick.
+# The wing switches to its Secondary (combat) autopilot: an Escort never flies faster than its own IdealMaxSpeed,
+# so on the slow Patrol profile it falls behind a leader on its attack profile.
 $parts += Component "$id-Trigger-Confirm" @"
 			[RivalAI Trigger]
 			[UseTrigger:true]
@@ -155,6 +157,8 @@ $parts += Component "$id-Action-Confirm" @"
 			[RivalAI Action]
 			[ChangeBehaviorSubclass:true]
 			[NewBehaviorSubclass:Escort]
+			[ChangeAutopilotProfile:true]
+			[AutopilotProfile:Secondary]
 			[SetBooleansTrue:GVK_Role_Escort]
 			[SetBooleansFalse:GVK_Peer_Requesting]
 			[DisableTriggers:true]
