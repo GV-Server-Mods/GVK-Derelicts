@@ -1,0 +1,106 @@
+<?xml version="1.0"?>
+<Definitions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+	<EntityComponents>
+		<!--
+			Planetary installations and COALITION/SOBAN/KHAANEPH Units despawn when they land inside a KOTH 5 km zone (GVK-Universal-Zone.sbc).
+			The zone whitelist only checks where the player stands, but MES places an installation 3-15 km from the player, so a spawn
+			from outside can still land inside. One trigger per zone; GAALSIEN Units are the KOTH garrison and do not include this group.
+			Add with: [TriggerGroups:GVK-Universal-TriggerGroup-DespawnInKOTH]
+		-->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Universal-TriggerGroup-DespawnInKOTH</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI TriggerGroup]
+			[Triggers:GVK-Universal-Trigger-DespawnInKOTH01]
+			[Triggers:GVK-Universal-Trigger-DespawnInKOTH02]
+			[Triggers:GVK-Universal-Trigger-DespawnInKOTH03]
+			[Triggers:GVK-Universal-Trigger-DespawnInKOTH04]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Universal-Trigger-DespawnInKOTH01</SubtypeId>
+			</Id>
+			<Description>
+			[MES AI Trigger]
+			[UseTrigger:true]
+			[Type:InsideActiveZone]
+			[MinCooldownMs:10000]
+			[MaxCooldownMs:10001]
+			[MaxActions:1]
+			[StartsReady:true]
+			[ZoneName:KOTH Massive 01 5000]
+			[ConditionCheckResetsTimer:true]
+			[Actions:GVK-Universal-Action-DespawnInKOTH]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Universal-Trigger-DespawnInKOTH02</SubtypeId>
+			</Id>
+			<Description>
+			[MES AI Trigger]
+			[UseTrigger:true]
+			[Type:InsideActiveZone]
+			[MinCooldownMs:10000]
+			[MaxCooldownMs:10001]
+			[MaxActions:1]
+			[StartsReady:true]
+			[ZoneName:KOTH Massive 02 5000]
+			[ConditionCheckResetsTimer:true]
+			[Actions:GVK-Universal-Action-DespawnInKOTH]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Universal-Trigger-DespawnInKOTH03</SubtypeId>
+			</Id>
+			<Description>
+			[MES AI Trigger]
+			[UseTrigger:true]
+			[Type:InsideActiveZone]
+			[MinCooldownMs:10000]
+			[MaxCooldownMs:10001]
+			[MaxActions:1]
+			[StartsReady:true]
+			[ZoneName:KOTH Massive 03 5000]
+			[ConditionCheckResetsTimer:true]
+			[Actions:GVK-Universal-Action-DespawnInKOTH]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Universal-Trigger-DespawnInKOTH04</SubtypeId>
+			</Id>
+			<Description>
+			[MES AI Trigger]
+			[UseTrigger:true]
+			[Type:InsideActiveZone]
+			[MinCooldownMs:10000]
+			[MaxCooldownMs:10001]
+			[MaxActions:1]
+			[StartsReady:true]
+			[ZoneName:KOTH Massive 04 5000]
+			[ConditionCheckResetsTimer:true]
+			[Actions:GVK-Universal-Action-DespawnInKOTH]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Universal-Action-DespawnInKOTH</SubtypeId>
+			</Id>
+			<Description>
+			[MES AI Action]
+			[ForceDespawn:true]
+			</Description>
+		</EntityComponent>
+	</EntityComponents>
+</Definitions>

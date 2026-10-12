@@ -24,6 +24,9 @@
 				[Triggers:GVK-Universal-Trigger-WeaponsToMaxRange]
 				[Triggers:GVK-Convoy-Escort-Trigger-RequestEscortSlot]
 				[Triggers:GVK-Convoy-Escort-Trigger-ReceiveScatterCommand]
+					[Triggers:GVK-Convoy-Escort-Trigger-LeaderLost]
+					[Triggers:GVK-Convoy-Escort-Trigger-LeaderFound]
+					[Triggers:GVK-Convoy-Escort-Trigger-NoLeader]
 				[TriggerGroups:GVK-Universal-TriggerGroup-DefeatedAndAttacked]
 				[Triggers:GVK-Convoy-Escort-Trigger-EncounterInit-DroneMedium]
 				BountyOnKill=1000000;
@@ -52,6 +55,9 @@
 				[Triggers:GVK-Universal-Trigger-WeaponsToMaxRange]
 				[Triggers:GVK-Convoy-Escort-Trigger-RequestEscortSlot]
 				[Triggers:GVK-Convoy-Escort-Trigger-ReceiveScatterCommand]
+					[Triggers:GVK-Convoy-Escort-Trigger-LeaderLost]
+					[Triggers:GVK-Convoy-Escort-Trigger-LeaderFound]
+					[Triggers:GVK-Convoy-Escort-Trigger-NoLeader]
 				[TriggerGroups:GVK-Universal-TriggerGroup-DefeatedAndAttacked]
 				[Triggers:GVK-Convoy-Escort-Trigger-EncounterInit-DroneLarge]
 				BountyOnKill=3000000;
@@ -211,7 +217,81 @@
 				[IgnoredAntennaRangeOverride:9999999]
 			</Description>
 		</EntityComponent>
+		<!-- An escort must never sit in Escort until MES Escort.cs retreats it (it waits WaypointWaitTimeTrigger, 30 s, for a leader and then retreats).
+		     LeaderLost: the leader stopped being valid while this escort was approaching it. NoLeader: no leader accepted this escort in time.
+		     LeaderFound (leader valid) cancels NoLeader. Both fall back to the same hunt as the scatter command. -->
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Convoy-Escort-Trigger-LeaderLost</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Trigger]
+				[UseTrigger:true]
+				[Type:BehaviorTriggerB]
+				[StartsReady:true]
+				[MaxActions:-1]
+				[Actions:GVK-Convoy-Escort-Action-NoLeader]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Convoy-Escort-Trigger-LeaderFound</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Trigger]
+				[UseTrigger:true]
+				[Type:BehaviorTriggerA]
+				[StartsReady:true]
+				[MaxActions:-1]
+				[Actions:GVK-Convoy-Escort-Action-LeaderFound]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Convoy-Escort-Trigger-NoLeader</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Trigger]
+				[UseTrigger:true]
+				[Type:Timer]
+				[StartsReady:false]
+				[MinCooldownMs:15000]
+				[MaxCooldownMs:15001]
+				[MaxActions:1]
+				[Actions:GVK-Convoy-Escort-Action-NoLeader]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Convoy-Escort-Action-LeaderFound</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Action]
+				[DisableTriggers:true]
+				[DisableTriggerNames:GVK-Convoy-Escort-Trigger-NoLeader]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Convoy-Escort-Action-NoLeader</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Action]
+				[ChangeBehaviorSubclass:true]
+				[NewBehaviorSubclass:Horsefly]
+				[ChangeAutopilotProfile:true]
+				[AutopilotProfile:Secondary]
+				[ChangeAutopilotSpeed:true]
+				[NewAutopilotSpeed:70]
+				[DisableTriggers:true]
+				[DisableTriggerNames:GVK-Convoy-Escort-Trigger-NoLeader]
+			</Description>
+		</EntityComponent>		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
 				<SubtypeId>GVK-Convoy-Escort-Trigger-EncounterInit-DroneLarge</SubtypeId>

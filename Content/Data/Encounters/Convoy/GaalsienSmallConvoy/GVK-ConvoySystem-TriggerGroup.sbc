@@ -84,7 +84,7 @@
 			</Id>
 			<Description>
 			[RivalAI Action]
-			[DebugMessage:Alerting potential escorts]
+			[//DebugMessage:Alerting potential escorts]
 			[BroadcastCommandProfiles:true]
 			[CommandProfileIds:GVK-ConvoySystem-Leader-Command-AlertPotentialEscorts]
 			</Description>
@@ -126,7 +126,7 @@
 			</Id>
 			<Description>
 			[RivalAI Action]
-			[DebugMessage:Assigning escorts]
+			[//DebugMessage:Assigning escorts]
 			[AssignEscortFromCommand:true]
 			[BroadcastCommandProfiles:true]
 			[CommandProfileIds:GVK-ConvoySystem-Leader-Command-ProcessEscortRequest]
@@ -142,6 +142,7 @@
 			[RivalAI Command]
 			[CommandCode:GVK_EscortAssigned]
 			[ReturnToSender:true]
+			[MatchReceiverEscort:true]
 			[MatchSenderReceiverOwners:true]
 			[IgnoreAntennaRequirement:true]
 			[IgnoreReceiverAntennaRequirement:true]
@@ -173,7 +174,7 @@
 			</Id>
 			<Description>
 			[RivalAI Action]
-			[DebugMessage:sending command GVK_LeaderDead]
+			[//DebugMessage:sending command GVK_LeaderDead]
 			[BroadcastCommandProfiles:true]
 			[CommandProfileIds:GVK-ConvoySystem-Leader-Command-Compromised]
 			[SetBooleansFalse:GVK_Role_Leader]
@@ -192,7 +193,7 @@
 			[IgnoreAntennaRequirement:true]
 			[IgnoreReceiverAntennaRequirement:true]
 			[Radius:5000]
-			[CommandDelayTicks:60]
+			[CommandDelayTicks:0]
 			</Description>
 		</EntityComponent>
 		<!-- Leader under fire: its own escorts turn on the attacker -->
@@ -227,7 +228,7 @@
 			</Id>
 			<Description>
 			[RivalAI Action]
-			[DebugMessage:Leader under fire; calling escorts]
+			[//DebugMessage:Leader under fire; calling escorts]
 			[BroadcastCommandProfiles:true]
 			[CommandProfileIds:GVK-ConvoySystem-Leader-Command-UnderFire]
 			</Description>
@@ -275,7 +276,7 @@
 			</Id>
 			<Description>
 			[RivalAI Action]
-			[DebugMessage:Escort under fire; taking its attacker]
+			[//DebugMessage:Escort under fire; taking its attacker]
 			[SwitchToReceivedTarget:true]
 			[InheritLastAttackerFromCommand:true]
 			</Description>
@@ -306,7 +307,7 @@
 			</Id>
 			<Description>
 			[RivalAI Action]
-			[DebugMessage:Leader available; attempting to request escort slot]
+			[//DebugMessage:Leader available; attempting to request escort slot]
 			[ChangeBehaviorSubclass:true]
 			[NewBehaviorSubclass:Escort]
 			[ChangeAutopilotProfile:true]
@@ -337,7 +338,9 @@
 			[CommandDelayTicks:60]
 			</Description>
 		</EntityComponent>
-		<!-- No escort slot received in time: revert to Patrol. Enabled by AvailableToEscort, disabled by ReceiveEscortSlot. -->
+		<!-- No escort slot received in time: revert to Patrol. Enabled by AvailableToEscort, disabled by ReceiveEscortSlot.
+		     The request and the reply each wait 60 ticks (about 2 s together). This has to fire before MES Escort.cs gives up waiting for a
+		     leader (the autopilot's WaypointWaitTimeTrigger, 5 s or more on every escort-capable profile) and switches the grid to Retreat. -->
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
@@ -348,8 +351,8 @@
 			[UseTrigger:false]
 			[Type:Timer]
 			[StartsReady:false]
-			[MinCooldownMs:10000]
-			[MaxCooldownMs:10001]
+			[MinCooldownMs:4000]
+			[MaxCooldownMs:4001]
 			[MaxActions:-1]
 			[Actions:GVK-ConvoySystem-Escort-Action-ReturnToPatrol]
 			</Description>
@@ -361,7 +364,7 @@
 			</Id>
 			<Description>
 			[RivalAI Action]
-			[DebugMessage:No escort slot received; returning to patrol]
+			[//DebugMessage:No escort slot received; returning to patrol]
 			[ChangeBehaviorSubclass:true]
 			[NewBehaviorSubclass:Patrol]
 			[ChangeAutopilotProfile:true]
@@ -393,7 +396,7 @@
 			</Id>
 			<Description>
 			[RivalAI Action]
-			[DebugMessage:Received escort slot]
+			[//DebugMessage:Received escort slot]
 			[SetBooleansTrue:GVK_Role_Escort]
 			[DisableTriggers:true]
 			[DisableTriggerTags:GVK-TriggerTags-InactiveEscortTasks]
@@ -445,7 +448,7 @@
 			</Id>
 			<Description>
 			[RivalAI Action]
-			[DebugMessage:Leader is dead]
+			[//DebugMessage:Leader is dead]
 			[SetBooleansFalse:GVK_Role_Escort]
 			[ResetCooldownTimeOfTriggers:true]
 			[ResetTriggerCooldownTags:GVK-TriggerTags-InactiveEscortTasks]
@@ -483,7 +486,7 @@
 			</Id>
 			<Description>
 			[RivalAI Action]
-			[DebugMessage:Leader under fire; engaging its attacker]
+			[//DebugMessage:Leader under fire; engaging its attacker]
 			[SwitchToReceivedTarget:true]
 			[InheritLastAttackerFromCommand:true]
 			</Description>
@@ -520,7 +523,7 @@
 			</Id>
 			<Description>
 			[RivalAI Action]
-			[DebugMessage:Escort under fire; reporting to leader]
+			[//DebugMessage:Escort under fire; reporting to leader]
 			[BroadcastCommandProfiles:true]
 			[CommandProfileIds:GVK-ConvoySystem-Escort-Command-UnderFire]
 			</Description>
