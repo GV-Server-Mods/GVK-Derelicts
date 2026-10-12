@@ -77,7 +77,7 @@
 			[AutopilotProfile:Primary]
 			</Description>
 		</EntityComponent>
-		<!-- When target in 3km, become aggressive -->
+		<!-- Attack whenever a target is held: TargetNear covers the targeting profile's MaxExistingTargetDistance (6,000 m), so a fighter never cruises at Patrol speed with a target -->
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
@@ -90,7 +90,7 @@
 			[StartsReady:true]
 			[MinCooldownMs:5000]
 			[MaxCooldownMs:5001]
-			[TargetDistance:4000]
+			[TargetDistance:6000]
 			[Actions:GVK-Unit-All-PatrolStrike-Action-TargetNear]
 			</Description>
 		</EntityComponent>
@@ -135,7 +135,7 @@
 			[StartsReady:true]
 			[MinCooldownMs:5000]
 			[MaxCooldownMs:5001]
-			[TargetDistance:5500]
+			[TargetDistance:6500]
 			[AllowTargetFarWithoutTarget:true]
 			[Actions:GVK-Unit-All-PatrolStrike-Action-TargetFar]
 			</Description>
