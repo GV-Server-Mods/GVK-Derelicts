@@ -1,0 +1,26 @@
+<?xml version="1.0"?>
+<Definitions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+	<EntityComponents>
+		<!-- Targeting, weapon range and combat chatter shared by every combat behavior. The chatter only plays on behaviors with [DialogueBanks:]. -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Universal-TriggerGroup-CombatDefaults</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI TriggerGroup]
+			[Triggers:GVK-Universal-Trigger-TargetAttacker]
+			[Triggers:GVK-Universal-Trigger-TurretTarget]
+			[Triggers:GVK-Universal-Trigger-WeaponsToMaxRange]
+			[Triggers:GVK-Universal-Trigger-NoTargetsChatter]
+			[Triggers:GVK-Universal-Trigger-TargetLostChatter]
+			[Triggers:GVK-Universal-Trigger-TargetAcquiredChatter]
+			[Triggers:GVK-Universal-ManualTrigger-TargetCallout-Structure]
+			[Triggers:GVK-Universal-ManualTrigger-TargetCallout-Aircraft]
+			[Triggers:GVK-Universal-ManualTrigger-TargetCallout-Infantry]
+			[Triggers:GVK-Universal-ManualTrigger-TargetCallout-FastMover]
+			[Triggers:GVK-Universal-ManualTrigger-TargetCallout-LongRange]
+			</Description>
+		</EntityComponent>
+	</EntityComponents>
+</Definitions>
