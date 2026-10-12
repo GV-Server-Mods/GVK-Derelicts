@@ -29,7 +29,7 @@
 				[Triggers:GVK-Universal-Trigger-TargetAttacker]
 				[Triggers:GVK-Universal-Trigger-TurretTarget]
 				[Triggers:GVK-Universal-Trigger-WeaponsToMaxRange]
-				[Triggers:GVK-CargoShip-Land-COALITION-Trigger-TraderOnSpawnB]
+				[Triggers:GVK-CargoShip-Land-COALITION-Trigger-TraderOnSpawn]
 				[Triggers:GVK-CargoShip-Land-COALITION-Trigger-TransportAddWaypointsB]
 				[Triggers:GVK-CargoShip-Land-COALITION-Trigger-TransportHorizonAngleHigh]
 				[Triggers:GVK-CargoShip-Land-COALITION-Trigger-TransportArriveAtWaypoint]
@@ -46,60 +46,6 @@
 				[Triggers:GVK-CargoShip-Land-COALITION-TraderB-Trigger-EncounterInit]
 				[TriggerGroups:GVK-Universal-TriggerGroup-DefeatedAndAttacked]
 				[RemoteControlCode:COALITIONRouteB]
-			</Description>
-		</EntityComponent>
-		<!-- Trigger when Transport Spawns -->
-		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
-			<Id>
-				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-CargoShip-Land-COALITION-Trigger-TraderOnSpawnB</SubtypeId>
-			</Id>
-			<Description>
-				[RivalAI Trigger]
-				[Type:Timer]
-				[UseTrigger:true]
-				[StartsReady:false]
-				[MaxActions:1]
-				[MinCooldownMs:1000]
-				[MaxCooldownMs:1000]
-				[Actions:GVK-CargoShip-Land-COALITION-Action-TraderOnSpawnB]
-			</Description>
-		</EntityComponent>
-		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
-			<Id>
-				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-CargoShip-Land-COALITION-Action-TraderOnSpawnB</SubtypeId>
-			</Id>
-			<Description>
-				[RivalAI Action]
-				[Chance:100]
-				[ChangeAutopilotProfile:true]
-				[AutopilotProfile:Primary]
-				[SetWeaponsToMaxRange:true]
-				[UseChatBroadcast:true]
-				[ChatData:GVK-CargoShip-Land-COALITION-Chat-TraderOnSpawnB]
-			</Description>
-		</EntityComponent>
-		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
-			<Id>
-				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-CargoShip-Land-COALITION-Chat-TraderOnSpawnB</SubtypeId>
-			</Id>
-			<Description>
-				[RivalAI Chat]
-				[UseChat:true]
-				[StartsReady:true]
-				[Chance:100]
-				[MaxChats:1]
-				[BroadcastRandomly:false]
-				[Author:{Faction}]
-				[Color:{PlayerRelation}]
-				[ChatMessages:A Trader is en route from Crossroads to Mastodon.]
-				[ChatAudio:ArcHudGPSNotification2]
-				[BroadcastChatType:Both]
-				[SendToAllOnlinePlayers:true]
-				[IgnoreAntennaRequirement:true]
-				[IgnoredAntennaRangeOverride:999999]
 			</Description>
 		</EntityComponent>
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
@@ -127,6 +73,7 @@
 				[SetCustomStrings:true]
 				[CustomStrings:EncounterType,CargoShip]
 				[CustomStrings:EncounterDisplayName,Trader]
+				[CustomStrings:TraderDestination,Mastodon]
 			</Description>
 		</EntityComponent>
 	</EntityComponents>

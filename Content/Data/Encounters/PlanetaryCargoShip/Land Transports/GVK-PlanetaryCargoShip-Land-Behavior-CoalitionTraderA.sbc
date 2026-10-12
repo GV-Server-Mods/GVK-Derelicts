@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0"?>
 <Definitions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
 	<EntityComponents>
-		<!-- Route A, Crossroads to Sevastapol -->
+		<!-- Route A, Crossroads to Sevastopol -->
 		<!-- Transport Behavior for land rover following roads 
 		-->
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
@@ -30,7 +30,7 @@
 				[Triggers:GVK-Universal-Trigger-TargetAttacker]
 				[Triggers:GVK-Universal-Trigger-TurretTarget]
 				[Triggers:GVK-Universal-Trigger-WeaponsToMaxRange]
-				[Triggers:GVK-CargoShip-Land-COALITION-Trigger-TraderOnSpawnA]
+				[Triggers:GVK-CargoShip-Land-COALITION-Trigger-TraderOnSpawn]
 				[Triggers:GVK-CargoShip-Land-COALITION-Trigger-TransportAddWaypointsA]
 				[Triggers:GVK-CargoShip-Land-COALITION-Trigger-TransportHorizonAngleHigh]
 				[Triggers:GVK-CargoShip-Land-COALITION-Trigger-TransportArriveAtWaypoint]
@@ -102,11 +102,11 @@
 				[MaxSpeedTolerance:2]
 			</Description>
 		</EntityComponent>
-		<!-- Trigger when Transport Spawns -->
+		<!-- Spawn announcement, shared by the Route A and Route B Traders. TraderDestination is set by each route's EncounterInit action. -->
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-CargoShip-Land-COALITION-Trigger-TraderOnSpawnA</SubtypeId>
+				<SubtypeId>GVK-CargoShip-Land-COALITION-Trigger-TraderOnSpawn</SubtypeId>
 			</Id>
 			<Description>
 				[RivalAI Trigger]
@@ -116,13 +116,13 @@
 				[MaxActions:1]
 				[MinCooldownMs:1000]
 				[MaxCooldownMs:1000]
-				[Actions:GVK-CargoShip-Land-COALITION-Action-TraderOnSpawnA]
+				[Actions:GVK-CargoShip-Land-COALITION-Action-TraderOnSpawn]
 			</Description>
 		</EntityComponent>
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-CargoShip-Land-COALITION-Action-TraderOnSpawnA</SubtypeId>
+				<SubtypeId>GVK-CargoShip-Land-COALITION-Action-TraderOnSpawn</SubtypeId>
 			</Id>
 			<Description>
 				[RivalAI Action]
@@ -131,13 +131,13 @@
 				[AutopilotProfile:Primary]
 				[SetWeaponsToMaxRange:true]
 				[UseChatBroadcast:true]
-				[ChatData:GVK-CargoShip-Land-COALITION-Chat-TraderOnSpawnA]
+				[ChatData:GVK-CargoShip-Land-COALITION-Chat-TraderOnSpawn]
 			</Description>
 		</EntityComponent>
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-CargoShip-Land-COALITION-Chat-TraderOnSpawnA</SubtypeId>
+				<SubtypeId>GVK-CargoShip-Land-COALITION-Chat-TraderOnSpawn</SubtypeId>
 			</Id>
 			<Description>
 				[RivalAI Chat]
@@ -148,8 +148,9 @@
 				[BroadcastRandomly:false]
 				[Author:{Faction}]
 				[Color:{PlayerRelation}]
-				[ChatMessages:A Trader is en route from Crossroads to Sevastapol]
+				[ChatMessages:A Trader is en route from Crossroads to {TraderDestination}.]
 				[ChatAudio:ArcHudGPSNotification2]
+				[BroadcastChatType:Both]
 				[SendToAllOnlinePlayers:true]
 				[IgnoreAntennaRequirement:true]
 				[IgnoredAntennaRangeOverride:999999]
@@ -497,6 +498,7 @@
 				[SetCustomStrings:true]
 				[CustomStrings:EncounterType,CargoShip]
 				[CustomStrings:EncounterDisplayName,Trader]
+				[CustomStrings:TraderDestination,Sevastopol]
 			</Description>
 		</EntityComponent>
 	</EntityComponents>
