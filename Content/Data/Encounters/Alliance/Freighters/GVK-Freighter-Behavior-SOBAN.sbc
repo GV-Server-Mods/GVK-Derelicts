@@ -4,15 +4,14 @@
 		<!-- Freighter Behavior for trade station routes-->
 		<!-- 
 		
-		1. Supply Depot sends command for HQ to spawn cargo ship, every 6 hours or so
-		2. Freighter calls for available supply depot waypoints, close range, then long range
-		3. Supply depot responds with waypoint command
-		4. Cargo ship makes its way and announces it global
-		5. When it arrives at the supply depot, it sends a command to trigger a restock
-		6. Freighter returns back to HQ, and/or goes to another allied base or outpost randomly
-		
-		Notes:
-		 - Only 1 cargo ship at at time (remote control code with long range)
+		1. An owned Supply Depot that is due a restock adds 1 to <FACTION>_DepotDemand (GVK-Alliance-TriggerGroup-SupplyDepotZone.sbc)
+2. The dispatch event (GVK-Alliance-Events-Freighter.sbc) spawns one Freighter every 3 hours while that counter is at least 1
+3. Freighter asks for waypoints, close range then long range; every depot that is due answers with its waypoint, and up to 4 are queued
+4. Freighter visits them in the order they answered, announces itself, and at each one sends a command that restocks that depot
+5. A restocked depot takes its 1 off the counter; after the last depot the Freighter returns to HQ, then despawns
+
+Notes:
+		 - Only 1 Freighter per faction at a time (spawn condition: remote control code Freighter_<FACTION> with an unlimited minimum distance)
 		 - Cargo ship spawns enemies based on nearby player rep. If allied then spawn opposite enemies.
 		 - WaypointNear and WaypointFar are broken and break all other triggers (GVK-Settings#450). Workaround is to use 
 		   TargetNear and TargetFar with a target profile for Supply Depots. This inhibits the use of 

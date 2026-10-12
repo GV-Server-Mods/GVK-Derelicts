@@ -24,12 +24,9 @@
 				[Triggers:GVK-Alliance-SupplyDepot-ManualTrigger-DemandLost-SOBAN]
 				[Triggers:GVK-Alliance-SupplyDepot-ManualTrigger-DemandRelease-KHAANEPH]
 				[Triggers:GVK-Alliance-SupplyDepot-ManualTrigger-DemandRelease-SOBAN]
-				[Triggers:GVK-Alliance-SupplyDepot-Trigger-DepotGone-Compromised-KHAANEPH]
-				[Triggers:GVK-Alliance-SupplyDepot-Trigger-DepotGone-Compromised-SOBAN]
-				[Triggers:GVK-Alliance-SupplyDepot-Trigger-DepotGone-Despawn-KHAANEPH]
-				[Triggers:GVK-Alliance-SupplyDepot-Trigger-DepotGone-Despawn-SOBAN]
 				[Triggers:GVK-Alliance-SupplyDepot-Trigger-SpawnLoot]
-				[Triggers:GVK-Alliance-SupplyDepot-Trigger-ReceiveWaypointRequest]
+				[Triggers:GVK-Alliance-SupplyDepot-Trigger-ReceiveWaypointRequest-KHAANEPH]
+				[Triggers:GVK-Alliance-SupplyDepot-Trigger-ReceiveWaypointRequest-SOBAN]
 			</Description>
 		</EntityComponent>
 		<!-- Trigger to confirm it is inside KHAANEPH Zone -->
@@ -358,7 +355,7 @@
 		</EntityComponent>
 		<!-- Freighter demand. A sandbox counter per faction, <FACTION>_DepotDemand, counts that faction's owned Supply Depots whose restock is due.
 		     An owned depot adds 1 when it is captured and every 3 hours (10,800,000 ms) after its last restock, unless it already counted itself (grid boolean DemandRaised<FACTION>).
-		     It takes its 1 back when a Freighter restocks it, when it changes hands or leaves every zone, or when it is destroyed or removed.
+		     It takes its 1 back when a Freighter restocks it, or when it changes hands or leaves every zone. Depots are invulnerable and permanent, so there is no destroyed or removed case.
 		     The Freighter dispatch event (GVK-Alliance-Events-Freighter.sbc) spawns a Freighter only while the counter is at least 1.
 		     Owner<FACTION> are grid booleans: the zone currently covering this depot is that faction's. -->
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
@@ -525,39 +522,6 @@
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Alliance-SupplyDepot-Trigger-DepotGone-Compromised-KHAANEPH</SubtypeId>
-			</Id>
-			<Description>
-				[RivalAI Trigger]
-				[Type:Compromised]
-				[UseTrigger:true]
-				[StartsReady:true]
-				[MaxActions:1]
-				[ActionExecution:All]
-				[Conditions:GVK-Alliance-SupplyDepot-Condition-DemandRaised-KHAANEPH]
-				[Actions:GVK-Alliance-SupplyDepot-Action-DemandRelease-KHAANEPH]
-			</Description>
-		</EntityComponent>
-		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
-			<Id>
-				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Alliance-SupplyDepot-Trigger-DepotGone-Despawn-KHAANEPH</SubtypeId>
-			</Id>
-			<Description>
-				[RivalAI Trigger]
-				[Type:DespawnMES]
-				[DespawnTypeFromSpawner:Any]
-				[UseTrigger:true]
-				[StartsReady:true]
-				[MaxActions:1]
-				[ActionExecution:All]
-				[Conditions:GVK-Alliance-SupplyDepot-Condition-DemandRaised-KHAANEPH]
-				[Actions:GVK-Alliance-SupplyDepot-Action-DemandRelease-KHAANEPH]
-			</Description>
-		</EntityComponent>
-		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
-			<Id>
-				<TypeId>Inventory</TypeId>
 				<SubtypeId>GVK-Alliance-SupplyDepot-Condition-OwnerSOBAN</SubtypeId>
 			</Id>
 			<Description>
@@ -716,44 +680,11 @@
 				[ManuallyActivatedTriggerNames:GVK-Alliance-SupplyDepot-ManualTrigger-DemandRelease-SOBAN]
 			</Description>
 		</EntityComponent>
+		<!-- Trigger to send this depot's waypoint when a Freighter asks, only while the depot is due a restock, so one Freighter collects every due depot and skips the rest -->
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Alliance-SupplyDepot-Trigger-DepotGone-Compromised-SOBAN</SubtypeId>
-			</Id>
-			<Description>
-				[RivalAI Trigger]
-				[Type:Compromised]
-				[UseTrigger:true]
-				[StartsReady:true]
-				[MaxActions:1]
-				[ActionExecution:All]
-				[Conditions:GVK-Alliance-SupplyDepot-Condition-DemandRaised-SOBAN]
-				[Actions:GVK-Alliance-SupplyDepot-Action-DemandRelease-SOBAN]
-			</Description>
-		</EntityComponent>
-		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
-			<Id>
-				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Alliance-SupplyDepot-Trigger-DepotGone-Despawn-SOBAN</SubtypeId>
-			</Id>
-			<Description>
-				[RivalAI Trigger]
-				[Type:DespawnMES]
-				[DespawnTypeFromSpawner:Any]
-				[UseTrigger:true]
-				[StartsReady:true]
-				[MaxActions:1]
-				[ActionExecution:All]
-				[Conditions:GVK-Alliance-SupplyDepot-Condition-DemandRaised-SOBAN]
-				[Actions:GVK-Alliance-SupplyDepot-Action-DemandRelease-SOBAN]
-			</Description>
-		</EntityComponent>
-		<!-- Trigger to send waypoint when requested via command from cargo ship -->
-		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
-			<Id>
-				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Alliance-SupplyDepot-Trigger-ReceiveWaypointRequest</SubtypeId>
+				<SubtypeId>GVK-Alliance-SupplyDepot-Trigger-ReceiveWaypointRequest-KHAANEPH</SubtypeId>
 			</Id>
 			<Description>
 				[RivalAI Trigger]
@@ -765,6 +696,26 @@
 				[CommandReceiveCode:FreighterWaypointRequest]
 				[MaxActions:-1]
 				[ActionExecution:All]
+				[Conditions:GVK-Alliance-SupplyDepot-Condition-DemandRaised-KHAANEPH]
+				[Actions:GVK-Alliance-SupplyDepot-Action-ReceiveWaypointRequest]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-SupplyDepot-Trigger-ReceiveWaypointRequest-SOBAN</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Trigger]
+				[Type:CommandReceived]
+				[MinCooldownMs:30000]
+				[MaxCooldownMs:30001]
+				[UseTrigger:true]
+				[StartsReady:true]
+				[CommandReceiveCode:FreighterWaypointRequest]
+				[MaxActions:-1]
+				[ActionExecution:All]
+				[Conditions:GVK-Alliance-SupplyDepot-Condition-DemandRaised-SOBAN]
 				[Actions:GVK-Alliance-SupplyDepot-Action-ReceiveWaypointRequest]
 			</Description>
 		</EntityComponent>
