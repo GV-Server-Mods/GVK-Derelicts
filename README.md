@@ -148,7 +148,7 @@ Reputation can be changed using a plugin (I think it is Crunch Utils, or might b
 7. Set the planet rover suspension friction very low, like 12% or less, to allow it to turn reasonably.
 8. Use Patrol behavior for random encounters and a trigger sequence to switch between aggressive behaviors with secondary autopilots.
 9. Use a Manual Trigger where multiple triggers need to operate the same action to prevent repeated trigger actions.
-10. KPLs survive restarts and merge correctly as of MES 2.74.04. A KPL with a timer of 0 or less is not created, so permanent KPLs are not possible; use a long timer instead.
+10. KPLs survive restarts and merge correctly as of MES 2.74.04. A KPL with a timer of 0 or less is not created, so permanent KPLs are not possible; use a long timer instead. `KnownPlayerAreaTimer` is in minutes, and a player inside the KPL keeps resetting it. A KPL belongs to the faction of the grid that made it: while a player is inside, only that faction's spawn groups can spawn there, including RivalAI custom spawns such as Defense waves or the COALITION Units that help players against GAALSIEN (checked against the GV-Server-Mods MES fork, 5fd61d1). So COALITION Units use the non-KPL Patrol groups.
 11. `UseFailCondition` and `UseElseActions` don't appear to work with Timer Triggers because the timer always succeeds.
 12. Particles can be played similarly to sounds, but are undocumented in the wiki.
 13. Condition Profiles do not work correctly with some static SpawnGroups; instead, use those tags in the SpawnGroup directly.

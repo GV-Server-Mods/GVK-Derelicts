@@ -3,7 +3,8 @@
 	<EntityComponents>
 		<!-- Unit Patrol/Horsefly trigger group with 5km KPL and 2km targeting -->
 		<!-- requires two autopilots: pimary passive and secondary aggressive -->
-		<!-- KPL creation cooldown is short from when KPLs vanished early (fixed in MES 2.74.04); re-tune in GVK-Settings#672 -->
+		<!-- The KPL lasts 15 minutes (KnownPlayerAreaTimer is in minutes, and a player inside resets it) with no spawn cap; a cap ends the KPL as soon as
+		     it is reached, which a Wreck's Defense wave could do within seconds. While a player is inside, MES lets only this faction's spawn groups spawn there. -->
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
@@ -35,6 +36,7 @@
 				[StartsReady:true]
 				[MinCooldownMs:5000]
 				[MaxCooldownMs:5001]
+				[Conditions:GVK-Unit-All-Condition-NotEscortRole]
 				[Actions:GVK-Unit-All-PatrolHorseflyKPL-Action-SwitchToHorsefly]
 				[ToggleWithTriggerProfile:GVK-Unit-All-PatrolHorseflyKPL-ManualTrigger-SwitchToPatrol]
 			</Description>
@@ -196,8 +198,8 @@
 				[RivalAI Action]
 				[CreateKnownPlayerArea:true]
 				[KnownPlayerAreaRadius:3000]
-				[KnownPlayerAreaTimer:5]
-				[KnownPlayerAreaMaxSpawns:5]
+				[KnownPlayerAreaTimer:15]
+				[KnownPlayerAreaMaxSpawns:-1]
 			</Description>
 		</EntityComponent>
 		<!-- Check if still in KPL -->
