@@ -14,13 +14,13 @@
 			- AllianceBase
 			- AllianceOutpost
 
-			- DroneLarge
+			- UnitLarge
 			
 			Notes: 
 				- Alliance structures reset DefenseSpawn_Counter after 60 minutes so they can spawn defenses indefinitely
-				- Universal and Alliance have different TriggerGroups because the trigger distance, reset timer, and drone
+				- Universal and Alliance have different TriggerGroups because the trigger distance, reset timer, and unit
 					spawn distance are different.
-				- Chance of COALITION attackers is built into the GAALSIEN Drone default triggers (10%) so it isn't 
+				- Chance of COALITION attackers is built into the GAALSIEN Unit default triggers (10%) so it isn't 
 					needed here.
 
 		-->
@@ -50,7 +50,7 @@
 		</EntityComponent>
 		<!-- 
 		
-			Universal structure defense systems that spawn GAALSIEN drones
+			Universal structure defense systems that spawn GAALSIEN units
 			
 		-->
 		<!-- The offsets and random values in the waypoint override those in the spawner -->
@@ -130,7 +130,7 @@
 				[RivalAI Trigger]
 				[Tags:GVK-Universal-TriggerTags-AllianceBase]
 				[Tags:GVK-Universal-TriggerTags-AllianceOutpost]
-				[Tags:GVK-Universal-TriggerTags-DroneLarge]
+				[Tags:GVK-Universal-TriggerTags-UnitLarge]
 				[UseTrigger:false]
 				[Type:PlayerNear]
 				[TargetDistance:2000]
@@ -176,7 +176,7 @@
 				[RivalAI Trigger]
 				[Tags:GVK-Universal-TriggerTags-AllianceBase]
 				[Tags:GVK-Universal-TriggerTags-AllianceOutpost]
-				[Tags:GVK-Universal-TriggerTags-DroneLarge]
+				[Tags:GVK-Universal-TriggerTags-UnitLarge]
 				[UseTrigger:false]
 				[Type:TargetNear]
 				[TargetDistance:2000]
@@ -255,7 +255,7 @@
 				[ManuallyActivatedTriggerNames:GVK-Universal-Trigger-DefensesManual]
 			</Description>
 		</EntityComponent>
-		<!-- decrease DefenseSpawn_Counter if received drone despawn command -->
+		<!-- decrease DefenseSpawn_Counter if received unit despawn command -->
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
@@ -426,9 +426,9 @@
 				[StartsReady:true]
 				[ProcessAsAdminSpawn:true]
 				[//One pick per wave, weighted by each group's Frequency. Listing a group twice adds no weight.]
-				[SpawnGroups:GVK-Drone-Defense-SpawnGroup-GAALSIEN-LargeHover]
-				[SpawnGroups:GVK-Drone-Defense-SpawnGroup-GAALSIEN-MediumHoverHeavy]
-				[SpawnGroups:GVK-Drone-Defense-SpawnGroup-GAALSIEN-MediumFlyer]
+				[SpawnGroups:GVK-Unit-Defense-SpawnGroup-GAALSIEN-LargeHover]
+				[SpawnGroups:GVK-Unit-Defense-SpawnGroup-GAALSIEN-MediumHoverHeavy]
+				[SpawnGroups:GVK-Unit-Defense-SpawnGroup-GAALSIEN-MediumFlyer]
 				[MinDistance:1500]
 				[MaxDistance:1700]
 				[MinAltitude:50]
@@ -474,9 +474,9 @@
 				[SpawningType:CustomSpawn]
 				[StartsReady:true]
 				[ProcessAsAdminSpawn:true]
-				[SpawnGroups:GVK-Drone-Defense-SpawnGroup-GAALSIEN-InterceptorSingle]
-				[SpawnGroups:GVK-Drone-Defense-SpawnGroup-GAALSIEN-LightSandskimmerSquad]
-				[SpawnGroups:GVK-Drone-Defense-SpawnGroup-GAALSIEN-MediumHoverLight]
+				[SpawnGroups:GVK-Unit-Defense-SpawnGroup-GAALSIEN-InterceptorSingle]
+				[SpawnGroups:GVK-Unit-Defense-SpawnGroup-GAALSIEN-LightSandskimmerSquad]
+				[SpawnGroups:GVK-Unit-Defense-SpawnGroup-GAALSIEN-MediumHoverLight]
 				[MinDistance:1500]
 				[MaxDistance:1700]
 				[MinAltitude:50]
@@ -522,7 +522,7 @@
 				[SpawningType:CustomSpawn]
 				[StartsReady:true]
 				[ProcessAsAdminSpawn:true]
-				[SpawnGroups:GVK-Drone-Defense-SpawnGroup-GAALSIEN-LightSandskimmerSquad]
+				[SpawnGroups:GVK-Unit-Defense-SpawnGroup-GAALSIEN-LightSandskimmerSquad]
 				[MinDistance:500]
 				[MaxDistance:700]
 				[MinAltitude:50]
@@ -570,12 +570,12 @@
 				[UseWaypoint:true]
 				[Waypoint:GVK-Universal-Waypoint-DefensesManualSpawn]
 				[ProcessAsAdminSpawn:true]
-				[SpawnGroups:GVK-Drone-Defense-SpawnGroup-{Faction}-BaserunnerHeavy]
-				[SpawnGroups:GVK-Drone-Defense-SpawnGroup-{Faction}-LargeHover]
-				[SpawnGroups:GVK-Drone-Defense-SpawnGroup-{Faction}-LargeRover]
-				[SpawnGroups:GVK-Drone-Defense-SpawnGroup-{Faction}-InterceptorSquad]
-				[SpawnGroups:GVK-Drone-Defense-SpawnGroup-{Faction}-MediumHoverHeavy]
-				[SpawnGroups:GVK-Drone-Defense-SpawnGroup-{Faction}-LargeHover]
+				[SpawnGroups:GVK-Unit-Defense-SpawnGroup-{Faction}-BaserunnerHeavy]
+				[SpawnGroups:GVK-Unit-Defense-SpawnGroup-{Faction}-LargeHover]
+				[SpawnGroups:GVK-Unit-Defense-SpawnGroup-{Faction}-LargeRover]
+				[SpawnGroups:GVK-Unit-Defense-SpawnGroup-{Faction}-InterceptorSquad]
+				[SpawnGroups:GVK-Unit-Defense-SpawnGroup-{Faction}-MediumHoverHeavy]
+				[SpawnGroups:GVK-Unit-Defense-SpawnGroup-{Faction}-LargeHover]
 				[MinDistance:500]
 				[MaxDistance:700]
 				[MinAltitude:50]
@@ -623,12 +623,12 @@
 				[UseWaypoint:true]
 				[Waypoint:GVK-Universal-Waypoint-DefensesManualSpawn]
 				[ProcessAsAdminSpawn:true]
-				[SpawnGroups:GVK-Drone-Defense-SpawnGroup-{Faction}-InterceptorSingle]
-				[SpawnGroups:GVK-Drone-Defense-SpawnGroup-{Faction}-SandskimmerSquad]
-				[SpawnGroups:GVK-Drone-Defense-SpawnGroup-{Faction}-MediumHoverLight]
-				[SpawnGroups:GVK-Drone-Defense-SpawnGroup-{Faction}-LAVSquad]
-				[SpawnGroups:GVK-Drone-Defense-SpawnGroup-{Faction}-StrikeFighterSingle]
-				[SpawnGroups:GVK-Drone-Defense-SpawnGroup-{Faction}-BaserunnerLight]
+				[SpawnGroups:GVK-Unit-Defense-SpawnGroup-{Faction}-InterceptorSingle]
+				[SpawnGroups:GVK-Unit-Defense-SpawnGroup-{Faction}-SandskimmerSquad]
+				[SpawnGroups:GVK-Unit-Defense-SpawnGroup-{Faction}-MediumHoverLight]
+				[SpawnGroups:GVK-Unit-Defense-SpawnGroup-{Faction}-LAVSquad]
+				[SpawnGroups:GVK-Unit-Defense-SpawnGroup-{Faction}-StrikeFighterSingle]
+				[SpawnGroups:GVK-Unit-Defense-SpawnGroup-{Faction}-BaserunnerLight]
 				[MinDistance:500]
 				[MaxDistance:700]
 				[MinAltitude:50]

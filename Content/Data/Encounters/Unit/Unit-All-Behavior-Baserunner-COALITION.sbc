@@ -1,0 +1,61 @@
+<?xml version="1.0"?>
+<Definitions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+	<EntityComponents>
+		<!-- LAV Hover Unit Behavior -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Unit-All-Behavior-Baserunner-COALITION</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Behavior]
+			[BehaviorName:Patrol]
+			[DialogueBanks:GVK-Units-COALITION-Medium.xml]
+			[WeaponSystem:GVK-Universal-Weapons-All]
+			[UsePlayerDistanceTimer:true]
+			[PlayerDistanceTimerTrigger:240]
+			[PlayerDistanceTrigger:4000]
+			[UseNoTargetTimer:false]
+			[UseRetreatTimer:false]
+			[AutopilotData:GVK-Unit-All-Autopilot-Baserunner-Passive]
+			[SecondaryAutopilotData:GVK-Unit-All-Autopilot-Baserunner-Aggressive]
+			[TargetData:GVK-Universal-Target-EnemyGrids2km]
+			[Triggers:GVK-Unit-All-Trigger-Init-Baserunner-COALITION]
+			[TriggerGroups:GVK-Unit-All-TriggerGroup-UnitDefaults-MediumUnit-COALITION]
+			[TriggerGroups:GVK-Unit-All-TriggerGroup-PatrolHorsefly]
+			[TriggerGroups:GVK-Unit-All-TriggerGroup-FlyAwayFailsafe]
+			[TriggerGroups:GVK-ConvoySystem-Escort-TriggerGroup]
+			[TriggerGroups:GVK-Universal-TriggerGroup-ReceiveTargets]
+			[TriggerGroups:GVK-Universal-TriggerGroup-DespawnInKOTH]
+			[TriggerGroups:GVK-Universal-TriggerGroup-DefeatedAndAttacked]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Unit-All-Trigger-Init-Baserunner-COALITION</SubtypeId>
+			</Id>
+			<Description>
+			[MES AI Trigger]
+			[UseTrigger:true]
+			[Type:Session]
+			[StartsReady:true]
+			[MaxActions:-1]
+			[ActionExecution:All]
+			[Actions:GVK-Unit-All-Action-Init-Baserunner-COALITION]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Unit-All-Action-Init-Baserunner-COALITION</SubtypeId>
+			</Id>
+			<Description>
+			[MES AI Action]
+			[SetCustomStrings:true]
+			[CustomStrings:EncounterType,UnitMedium]
+			[CustomStrings:EncounterDisplayName,vehicle]
+			</Description>
+		</EntityComponent>
+	</EntityComponents>
+</Definitions>

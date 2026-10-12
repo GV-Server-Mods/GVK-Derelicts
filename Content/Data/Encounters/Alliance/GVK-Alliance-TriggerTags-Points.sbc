@@ -9,10 +9,10 @@
 		- Turret:			2 points
 		- Cargo Ship:		10 points
 		- Research Lab:		3 points
-		- Elite Drones: 	15 points
-		- Large Drones: 	4 points
-		- Medium Drones: 	2 points
-		- Small Drones: 	1 point
+		- Elite Units: 	15 points
+		- Large Units: 	4 points
+		- Medium Units: 	2 points
+		- Small Units: 	1 point
 		
 		Factions:
 		- KHAANEPH
@@ -30,7 +30,7 @@
 		[Tags:GVK-Alliance-TriggerTags-PointsAwarded-{EncounterType}]
 		
 		Notes:
-			- Drones don't have deduct points on despawn.
+			- Units don't have deduct points on despawn.
 			- ResearchLab only has PointsAwarded
 			- All check if previously damaged by an enemy or neutral player.
 
@@ -465,31 +465,31 @@
 				[ChatData:GVK-Alliance-Chat-PointsAdjustCompromised]
 			</Description>
 		</EntityComponent>
-		<!-- Elite Drones -->
+		<!-- Elite Units -->
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Alliance-TriggerTags-PointsCompromised-DroneElite-KHAANEPH</SubtypeId>
+				<SubtypeId>GVK-Alliance-TriggerTags-PointsCompromised-UnitElite-KHAANEPH</SubtypeId>
 			</Id>
 			<Description>
 				[RivalAI Trigger]
 				[UseTrigger:true]
-				[Tags:GVK-Alliance-TriggerTags-PointsCompromised-DroneElite-KHAANEPH]
+				[Tags:GVK-Alliance-TriggerTags-PointsCompromised-UnitElite-KHAANEPH]
 				[Type:Manual]
 				[StartsReady:true]
 				[Conditions:GVK-Universal-Condition-DamagedByNonFriendlyPlayer]
 				[ActionExecution:All]
-				[Actions:GVK-Alliance-Action-PointsCompromised-DroneElite-KHAANEPH]
+				[Actions:GVK-Alliance-Action-PointsCompromised-UnitElite-KHAANEPH]
 			</Description>
 		</EntityComponent>
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Alliance-Action-PointsCompromised-DroneElite-KHAANEPH</SubtypeId>
+				<SubtypeId>GVK-Alliance-Action-PointsCompromised-UnitElite-KHAANEPH</SubtypeId>
 			</Id>
 			<Description>
 				[MES AI Action]
-				[//DebugMessage:PointsCompromised-DroneElite-KHAANEPH]
+				[//DebugMessage:PointsCompromised-UnitElite-KHAANEPH]
 				[SetCustomStrings:true]
 				[CustomStrings:DecreaseFactionName,KHAANEPH]
 				[CustomStrings:IncreaseFactionName,SOBAN]
@@ -506,27 +506,27 @@
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Alliance-TriggerTags-PointsCompromised-DroneElite-SOBAN</SubtypeId>
+				<SubtypeId>GVK-Alliance-TriggerTags-PointsCompromised-UnitElite-SOBAN</SubtypeId>
 			</Id>
 			<Description>
 				[RivalAI Trigger]
 				[UseTrigger:true]
-				[Tags:GVK-Alliance-TriggerTags-PointsCompromised-DroneElite-SOBAN]
+				[Tags:GVK-Alliance-TriggerTags-PointsCompromised-UnitElite-SOBAN]
 				[Type:Manual]
 				[StartsReady:true]
 				[Conditions:GVK-Universal-Condition-DamagedByNonFriendlyPlayer]
 				[ActionExecution:All]
-				[Actions:GVK-Alliance-Action-PointsCompromised-DroneElite-SOBAN]
+				[Actions:GVK-Alliance-Action-PointsCompromised-UnitElite-SOBAN]
 			</Description>
 		</EntityComponent>
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Alliance-Action-PointsCompromised-DroneElite-SOBAN</SubtypeId>
+				<SubtypeId>GVK-Alliance-Action-PointsCompromised-UnitElite-SOBAN</SubtypeId>
 			</Id>
 			<Description>
 				[MES AI Action]
-				[//DebugMessage:PointsCompromised-DroneElite-SOBAN]
+				[//DebugMessage:PointsCompromised-UnitElite-SOBAN]
 				[SetCustomStrings:true]
 				[CustomStrings:DecreaseFactionName,SOBAN]
 				[CustomStrings:IncreaseFactionName,KHAANEPH]
@@ -540,31 +540,31 @@
 				[ChatData:GVK-Alliance-Chat-PointsAdjustCompromised]
 			</Description>
 		</EntityComponent>
-		<!-- Large Drones -->
+		<!-- Large Units -->
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Alliance-TriggerTags-PointsCompromised-DroneLarge-KHAANEPH</SubtypeId>
+				<SubtypeId>GVK-Alliance-TriggerTags-PointsCompromised-UnitLarge-KHAANEPH</SubtypeId>
 			</Id>
 			<Description>
 				[RivalAI Trigger]
 				[UseTrigger:true]
-				[Tags:GVK-Alliance-TriggerTags-PointsCompromised-DroneLarge-KHAANEPH]
+				[Tags:GVK-Alliance-TriggerTags-PointsCompromised-UnitLarge-KHAANEPH]
 				[Type:Manual]
 				[StartsReady:true]
 				[Conditions:GVK-Universal-Condition-DamagedByNonFriendlyPlayer]
 				[ActionExecution:All]
-				[Actions:GVK-Alliance-Action-PointsCompromised-DroneLarge-KHAANEPH]
+				[Actions:GVK-Alliance-Action-PointsCompromised-UnitLarge-KHAANEPH]
 			</Description>
 		</EntityComponent>
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Alliance-Action-PointsCompromised-DroneLarge-KHAANEPH</SubtypeId>
+				<SubtypeId>GVK-Alliance-Action-PointsCompromised-UnitLarge-KHAANEPH</SubtypeId>
 			</Id>
 			<Description>
 				[MES AI Action]
-				[//DebugMessage:PointsCompromised-DroneLarge-KHAANEPH]
+				[//DebugMessage:PointsCompromised-UnitLarge-KHAANEPH]
 				[SetCustomStrings:true]
 				[CustomStrings:DecreaseFactionName,KHAANEPH]
 				[CustomStrings:IncreaseFactionName,SOBAN]
@@ -581,27 +581,27 @@
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Alliance-TriggerTags-PointsCompromised-DroneLarge-SOBAN</SubtypeId>
+				<SubtypeId>GVK-Alliance-TriggerTags-PointsCompromised-UnitLarge-SOBAN</SubtypeId>
 			</Id>
 			<Description>
 				[RivalAI Trigger]
 				[UseTrigger:true]
-				[Tags:GVK-Alliance-TriggerTags-PointsCompromised-DroneLarge-SOBAN]
+				[Tags:GVK-Alliance-TriggerTags-PointsCompromised-UnitLarge-SOBAN]
 				[Type:Manual]
 				[StartsReady:true]
 				[Conditions:GVK-Universal-Condition-DamagedByNonFriendlyPlayer]
 				[ActionExecution:All]
-				[Actions:GVK-Alliance-Action-PointsCompromised-DroneLarge-SOBAN]
+				[Actions:GVK-Alliance-Action-PointsCompromised-UnitLarge-SOBAN]
 			</Description>
 		</EntityComponent>
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Alliance-Action-PointsCompromised-DroneLarge-SOBAN</SubtypeId>
+				<SubtypeId>GVK-Alliance-Action-PointsCompromised-UnitLarge-SOBAN</SubtypeId>
 			</Id>
 			<Description>
 				[MES AI Action]
-				[//DebugMessage:PointsCompromised-DroneLarge-SOBAN]
+				[//DebugMessage:PointsCompromised-UnitLarge-SOBAN]
 				[SetCustomStrings:true]
 				[CustomStrings:DecreaseFactionName,SOBAN]
 				[CustomStrings:IncreaseFactionName,KHAANEPH]
@@ -615,31 +615,31 @@
 				[ChatData:GVK-Alliance-Chat-PointsAdjustCompromised]
 			</Description>
 		</EntityComponent>
-		<!-- Medium Drones -->
+		<!-- Medium Units -->
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Alliance-TriggerTags-PointsCompromised-DroneMedium-KHAANEPH</SubtypeId>
+				<SubtypeId>GVK-Alliance-TriggerTags-PointsCompromised-UnitMedium-KHAANEPH</SubtypeId>
 			</Id>
 			<Description>
 				[RivalAI Trigger]
 				[UseTrigger:true]
-				[Tags:GVK-Alliance-TriggerTags-PointsCompromised-DroneMedium-KHAANEPH]
+				[Tags:GVK-Alliance-TriggerTags-PointsCompromised-UnitMedium-KHAANEPH]
 				[Type:Manual]
 				[StartsReady:true]
 				[Conditions:GVK-Universal-Condition-DamagedByNonFriendlyPlayer]
 				[ActionExecution:All]
-				[Actions:GVK-Alliance-Action-PointsCompromised-DroneMedium-KHAANEPH]
+				[Actions:GVK-Alliance-Action-PointsCompromised-UnitMedium-KHAANEPH]
 			</Description>
 		</EntityComponent>
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Alliance-Action-PointsCompromised-DroneMedium-KHAANEPH</SubtypeId>
+				<SubtypeId>GVK-Alliance-Action-PointsCompromised-UnitMedium-KHAANEPH</SubtypeId>
 			</Id>
 			<Description>
 				[MES AI Action]
-				[//DebugMessage:PointsCompromised-DroneMedium-KHAANEPH]
+				[//DebugMessage:PointsCompromised-UnitMedium-KHAANEPH]
 				[SetCustomStrings:true]
 				[CustomStrings:DecreaseFactionName,KHAANEPH]
 				[CustomStrings:IncreaseFactionName,SOBAN]
@@ -656,27 +656,27 @@
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Alliance-TriggerTags-PointsCompromised-DroneMedium-SOBAN</SubtypeId>
+				<SubtypeId>GVK-Alliance-TriggerTags-PointsCompromised-UnitMedium-SOBAN</SubtypeId>
 			</Id>
 			<Description>
 				[RivalAI Trigger]
 				[UseTrigger:true]
-				[Tags:GVK-Alliance-TriggerTags-PointsCompromised-DroneMedium-SOBAN]
+				[Tags:GVK-Alliance-TriggerTags-PointsCompromised-UnitMedium-SOBAN]
 				[Type:Manual]
 				[StartsReady:true]
 				[Conditions:GVK-Universal-Condition-DamagedByNonFriendlyPlayer]
 				[ActionExecution:All]
-				[Actions:GVK-Alliance-Action-PointsCompromised-DroneMedium-SOBAN]
+				[Actions:GVK-Alliance-Action-PointsCompromised-UnitMedium-SOBAN]
 			</Description>
 		</EntityComponent>
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Alliance-Action-PointsCompromised-DroneMedium-SOBAN</SubtypeId>
+				<SubtypeId>GVK-Alliance-Action-PointsCompromised-UnitMedium-SOBAN</SubtypeId>
 			</Id>
 			<Description>
 				[MES AI Action]
-				[//DebugMessage:PointsCompromised-DroneMedium-SOBAN]
+				[//DebugMessage:PointsCompromised-UnitMedium-SOBAN]
 				[SetCustomStrings:true]
 				[CustomStrings:DecreaseFactionName,SOBAN]
 				[CustomStrings:IncreaseFactionName,KHAANEPH]
@@ -690,31 +690,31 @@
 				[ChatData:GVK-Alliance-Chat-PointsAdjustCompromised]
 			</Description>
 		</EntityComponent>
-		<!-- Small Drones -->
+		<!-- Small Units -->
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Alliance-TriggerTags-PointsCompromised-DroneSmall-KHAANEPH</SubtypeId>
+				<SubtypeId>GVK-Alliance-TriggerTags-PointsCompromised-UnitSmall-KHAANEPH</SubtypeId>
 			</Id>
 			<Description>
 				[RivalAI Trigger]
 				[UseTrigger:true]
-				[Tags:GVK-Alliance-TriggerTags-PointsCompromised-DroneSmall-KHAANEPH]
+				[Tags:GVK-Alliance-TriggerTags-PointsCompromised-UnitSmall-KHAANEPH]
 				[Type:Manual]
 				[StartsReady:true]
 				[Conditions:GVK-Universal-Condition-DamagedByNonFriendlyPlayer]
 				[ActionExecution:All]
-				[Actions:GVK-Alliance-Action-PointsCompromised-DroneSmall-KHAANEPH]
+				[Actions:GVK-Alliance-Action-PointsCompromised-UnitSmall-KHAANEPH]
 			</Description>
 		</EntityComponent>
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Alliance-Action-PointsCompromised-DroneSmall-KHAANEPH</SubtypeId>
+				<SubtypeId>GVK-Alliance-Action-PointsCompromised-UnitSmall-KHAANEPH</SubtypeId>
 			</Id>
 			<Description>
 				[MES AI Action]
-				[//DebugMessage:PointsCompromised-DroneSmall-KHAANEPH]
+				[//DebugMessage:PointsCompromised-UnitSmall-KHAANEPH]
 				[SetCustomStrings:true]
 				[CustomStrings:DecreaseFactionName,KHAANEPH]
 				[CustomStrings:IncreaseFactionName,SOBAN]
@@ -731,27 +731,27 @@
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Alliance-TriggerTags-PointsCompromised-DroneSmall-SOBAN</SubtypeId>
+				<SubtypeId>GVK-Alliance-TriggerTags-PointsCompromised-UnitSmall-SOBAN</SubtypeId>
 			</Id>
 			<Description>
 				[RivalAI Trigger]
 				[UseTrigger:true]
-				[Tags:GVK-Alliance-TriggerTags-PointsCompromised-DroneSmall-SOBAN]
+				[Tags:GVK-Alliance-TriggerTags-PointsCompromised-UnitSmall-SOBAN]
 				[Type:Manual]
 				[StartsReady:true]
 				[Conditions:GVK-Universal-Condition-DamagedByNonFriendlyPlayer]
 				[ActionExecution:All]
-				[Actions:GVK-Alliance-Action-PointsCompromised-DroneSmall-SOBAN]
+				[Actions:GVK-Alliance-Action-PointsCompromised-UnitSmall-SOBAN]
 			</Description>
 		</EntityComponent>
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Alliance-Action-PointsCompromised-DroneSmall-SOBAN</SubtypeId>
+				<SubtypeId>GVK-Alliance-Action-PointsCompromised-UnitSmall-SOBAN</SubtypeId>
 			</Id>
 			<Description>
 				[MES AI Action]
-				[//DebugMessage:PointsCompromised-DroneSmall-SOBAN]
+				[//DebugMessage:PointsCompromised-UnitSmall-SOBAN]
 				[SetCustomStrings:true]
 				[CustomStrings:DecreaseFactionName,SOBAN]
 				[CustomStrings:IncreaseFactionName,KHAANEPH]

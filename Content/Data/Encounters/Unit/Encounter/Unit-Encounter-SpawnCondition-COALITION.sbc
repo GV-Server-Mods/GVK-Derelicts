@@ -1,0 +1,146 @@
+<?xml version="1.0"?>
+<Definitions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+	<EntityComponents>
+		<!-- Update GVK-Unit-Encounter-Condition-IsUnitEncounter when making changes here -->
+		<!-- This spawns 2 small flyers ONLY in Z3 -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Unit-Encounter-SpawnCondition-COALITION-SmallFlyerSquad</SubtypeId>
+			</Id>
+			<Description>
+			[MES Spawn Conditions]
+			[PlanetaryInstallation:true]
+			[PlanetaryInstallationType:Small]
+			[FactionOwner:COALITION]
+			[ReactorsOn:true]
+			[ForceStaticGrid:false]
+			[DoNotForceStaticGrid:true]
+			[SkipVoxelSpawnChecks:true]
+			[SkipGridSpawnChecks:false]
+			[ZoneConditions:GVK-Universal-ZoneConditions-WreckZone3Only]
+ 			[PrefabSpawningMode:RandomFixedCount]
+			[PrefabFixedCount:2]
+			[PrefabOffsetOverrides:{X:25 Y:350 Z:0}]
+			[PrefabOffsetOverrides:{X:-25 Y:350 Z:0}]
+			</Description>
+		</EntityComponent>
+		<!-- This spawns 1 Medium flyer in Z23 -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Unit-Encounter-SpawnCondition-COALITION-SmallFlyerSingle</SubtypeId>
+			</Id>
+			<Description>
+			[MES Spawn Conditions]
+			[PlanetaryInstallation:true]
+			[PlanetaryInstallationType:Small]
+			[FactionOwner:COALITION]
+			[ReactorsOn:true]
+			[ForceStaticGrid:false]
+			[DoNotForceStaticGrid:true]
+			[SkipVoxelSpawnChecks:true]
+			[SkipGridSpawnChecks:false]
+			[ZoneConditions:GVK-Universal-ZoneConditions-WreckZone23]
+ 			[PrefabSpawningMode:Random]
+			[PrefabOffsetOverrides:{X:0 Y:300 Z:0}]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Unit-Encounter-SpawnCondition-COALITION-LAV</SubtypeId>
+			</Id>
+			<Description>
+			[MES Spawn Conditions]
+			[PlanetaryInstallation:true]
+			[PlanetaryInstallationType:Small]
+			[FactionOwner:COALITION]
+			[ReactorsOn:true]
+			[ForceStaticGrid:false]
+			[DoNotForceStaticGrid:true]
+			[SkipVoxelSpawnChecks:true]
+			[SkipGridSpawnChecks:false]
+			[ZoneConditions:GVK-Universal-ZoneConditions-WreckZone123]
+ 			[PrefabSpawningMode:All]
+			</Description>
+		</EntityComponent>
+		<!-- This spawns 1 Hover Salvager in Z1 thru Z3-->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Unit-Encounter-SpawnCondition-COALITION-Salvager</SubtypeId>
+			</Id>
+			<Description>
+			[MES Spawn Conditions]
+			[PlanetaryInstallation:true]
+			[PlanetaryInstallationType:Small]
+			[FactionOwner:COALITION]
+			[ReactorsOn:true]
+			[ForceStaticGrid:false]
+			[DoNotForceStaticGrid:true]
+			[SkipVoxelSpawnChecks:true]
+			[SkipGridSpawnChecks:false]
+			[ZoneConditions:GVK-Universal-ZoneConditions-WreckZone123]
+ 			[PrefabSpawningMode:Random]
+			[PrefabOffsetOverrides:{X:0 Y:35 Z:0}]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Unit-Encounter-SpawnCondition-COALITION-Salvager-WreckSpawn</SubtypeId>
+			</Id>
+			<Description>
+			[MES Spawn Conditions]
+			[RivalAiAtmosphericSpawn:true]
+			[FactionOwner:COALITION]
+			[ReactorsOn:true]
+			[SkipVoxelSpawnChecks:true]
+			[SkipGridSpawnChecks:false]
+			[ZoneConditions:GVK-Universal-ZoneConditions-WreckZone123]
+ 			[PrefabSpawningMode:Random]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Unit-Encounter-SpawnCondition-COALITION-MediumRoverSingle</SubtypeId>
+			</Id>
+			<Description>
+			[MES Spawn Conditions]
+			[PlanetaryInstallation:true]
+			[PlanetaryInstallationType:Small]
+			[FactionOwner:COALITION]
+			[ReactorsOn:true]
+			[ForceStaticGrid:false]
+			[DoNotForceStaticGrid:true]
+			[SkipVoxelSpawnChecks:true]
+			[SkipGridSpawnChecks:false]
+			[ZoneConditions:GVK-Universal-ZoneConditions-WreckZone23]
+ 			[PrefabSpawningMode:Random]
+			[PrefabOffsetOverrides:{X:0 Y:30 Z:0}]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Unit-Encounter-SpawnCondition-COALITION-LargeRoverSingle</SubtypeId>
+			</Id>
+			<Description>
+			[MES Spawn Conditions]
+			[PlanetaryInstallation:true]
+			[PlanetaryInstallationType:Small]
+			[FactionOwner:COALITION]
+			[ReactorsOn:true]
+			[ForceStaticGrid:false]
+			[DoNotForceStaticGrid:true]
+			[SkipVoxelSpawnChecks:true]
+			[SkipGridSpawnChecks:false]
+			[ZoneConditions:GVK-Universal-ZoneConditions-WreckZone23]
+ 			[PrefabSpawningMode:Random]
+			[PrefabOffsetOverrides:{X:0 Y:50 Z:0}]
+			</Description>
+		</EntityComponent>
+	</EntityComponents>
+</Definitions>

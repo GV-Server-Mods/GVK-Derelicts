@@ -1,0 +1,165 @@
+<?xml version="1.0"?>
+<Definitions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+	<EntityComponents>
+		<!-- Unit Patrol/Horsefly trigger group without KPL (Soban and Khaaneph) -->
+		<!-- requires two autopilots: pimary passive and secondary aggressive -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Unit-All-TriggerGroup-PatrolHorsefly</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI TriggerGroup]
+			[Triggers:GVK-Unit-All-PatrolHorsefly-ManualTrigger-SwitchToHorsefly]
+			[Triggers:GVK-Unit-All-PatrolHorsefly-ManualTrigger-SwitchToPatrol]
+			[Triggers:GVK-Unit-All-PatrolHorsefly-Trigger-TargetNear]
+			[Triggers:GVK-Unit-All-PatrolHorsefly-Trigger-LostTarget]
+			[Triggers:GVK-Unit-All-PatrolHorsefly-Trigger-TargetFar]
+			</Description>
+		</EntityComponent>
+		<!-- manual triggers so multiple triggers can reference it without complications -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Unit-All-PatrolHorsefly-ManualTrigger-SwitchToHorsefly</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Trigger]
+			[UseTrigger:true]
+			[Type:Manual]
+			[Tags:GVK-TriggerTags-LeaderDead]
+			[StartsReady:true]
+			[MinCooldownMs:5000]
+			[MaxCooldownMs:5001]
+			[Conditions:GVK-Unit-All-Condition-NotEscortRole]
+			[Actions:GVK-Unit-All-PatrolHorsefly-Action-SwitchToHorsefly]
+			[ToggleWithTriggerProfile:GVK-Unit-All-PatrolHorsefly-ManualTrigger-SwitchToPatrol]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Unit-All-PatrolHorsefly-Action-SwitchToHorsefly</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Action]
+			[//DebugMessage:Action-SwitchToHorsefly]
+			[ChangeBehaviorSubclass:true]
+			[NewBehaviorSubclass:Horsefly]
+			[ChangeAutopilotProfile:true]
+			[AutopilotProfile:Secondary]
+			[DisableTriggers:true]
+			[DisableTriggerTags:GVK-TriggerTags-AvailableToEscort]
+			</Description>
+		</EntityComponent>
+		<!-- should start false since it already spawns in Patrol mode -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Unit-All-PatrolHorsefly-ManualTrigger-SwitchToPatrol</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Trigger]
+			[UseTrigger:false]
+			[Type:Manual]
+			[Tags:GVK-TriggerTags-LeaderDead]
+			[StartsReady:true]
+			[Conditions:GVK-Unit-All-Condition-NotEscortRole]
+			[Actions:GVK-Unit-All-PatrolHorsefly-Action-SwitchToPatrol]
+			[ToggleWithTriggerProfile:GVK-Unit-All-PatrolHorsefly-ManualTrigger-SwitchToHorsefly]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Unit-All-PatrolHorsefly-Action-SwitchToPatrol</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Action]
+			[//DebugMessage:Action-SwitchToPatrol]
+			[ChangeBehaviorSubclass:true]
+			[NewBehaviorSubclass:Patrol]
+			[ChangeAutopilotProfile:true]
+			[AutopilotProfile:Primary]
+			[EnableTriggers:true]
+			[EnableTriggerTags:GVK-TriggerTags-AvailableToEscort]
+			</Description>
+		</EntityComponent>
+		<!-- When target in 2km, become aggressive -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Unit-All-PatrolHorsefly-Trigger-TargetNear</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Trigger]
+			[UseTrigger:true]
+			[Type:TargetNear]
+			[StartsReady:true]
+			[MinCooldownMs:5000]
+			[MaxCooldownMs:5001]
+			[TargetDistance:2000]
+			[Actions:GVK-Unit-All-PatrolHorsefly-Action-TargetNear]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Unit-All-PatrolHorsefly-Action-TargetNear</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Action]
+			[//DebugMessage:Action-TargetNear]
+			[ManuallyActivateTrigger:true]
+			[ManuallyActivatedTriggerNames:GVK-Unit-All-PatrolHorsefly-ManualTrigger-SwitchToHorsefly]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Unit-All-PatrolHorsefly-Trigger-LostTarget</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Trigger]
+			[UseTrigger:true]
+			[Type:LostTarget]
+			[StartsReady:true]
+			[MinCooldownMs:5000]
+			[MaxCooldownMs:5001]
+			[TargetDistance:2000]
+			[AllowTargetFarWithoutTarget:true]
+			[Actions:GVK-Unit-All-PatrolHorsefly-Action-TargetFar]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Unit-All-PatrolHorsefly-Trigger-TargetFar</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Trigger]
+			[UseTrigger:true]
+			[Type:TargetFar]
+			[StartsReady:true]
+			[MinCooldownMs:5000]
+			[MaxCooldownMs:5001]
+			[TargetDistance:2000]
+			[AllowTargetFarWithoutTarget:true]
+			[Actions:GVK-Unit-All-PatrolHorsefly-Action-TargetFar]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Unit-All-PatrolHorsefly-Action-TargetFar</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Action]
+			[//DebugMessage:Action-TargetFar or LostTarget]
+			[EnableTriggers:true]
+			[ManuallyActivateTrigger:true]
+			[ManuallyActivatedTriggerNames:GVK-Unit-All-PatrolHorsefly-ManualTrigger-SwitchToPatrol]
+			</Description>
+		</EntityComponent>
+	</EntityComponents>
+</Definitions>

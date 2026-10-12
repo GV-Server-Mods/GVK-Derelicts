@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <Definitions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
 	<EntityComponents>
-		<!-- Medium Escort Drone Rover Behavior -->
+		<!-- Medium Escort Unit Rover Behavior -->
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
@@ -19,7 +19,7 @@
 				[UseRetreatTimer:false]
 				[TargetData:GVK-Universal-Target-EnemyGrids2km-GAALSIEN]
 				[AutopilotData:GVK-Convoy-Escort-PrimaryAutopilot]
-				[SecondaryAutopilotData:GVK-Drone-All-Autopilot-MediumHoverPatrolHorsefly-Aggressive]
+				[SecondaryAutopilotData:GVK-Unit-All-Autopilot-MediumHoverPatrolHorsefly-Aggressive]
 				[Triggers:GVK-Universal-Trigger-TargetAttacker]
 				[Triggers:GVK-Universal-Trigger-WeaponsToMaxRange]
 				[Triggers:GVK-Convoy-Escort-Trigger-RequestEscortSlot]
@@ -28,11 +28,11 @@
 					[Triggers:GVK-Convoy-Escort-Trigger-LeaderFound]
 					[Triggers:GVK-Convoy-Escort-Trigger-NoLeader]
 				[TriggerGroups:GVK-Universal-TriggerGroup-DefeatedAndAttacked]
-				[Triggers:GVK-Convoy-Escort-Trigger-EncounterInit-DroneMedium]
+				[Triggers:GVK-Convoy-Escort-Trigger-EncounterInit-UnitMedium]
 				BountyOnKill=1000000;
 			</Description>
 		</EntityComponent>
-		<!-- Large Escort Drone Rover Behavior -->
+		<!-- Large Escort Unit Rover Behavior -->
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
@@ -50,7 +50,7 @@
 				[UseRetreatTimer:false]
 				[TargetData:GVK-Universal-Target-EnemyGrids2km-GAALSIEN]
 				[AutopilotData:GVK-Convoy-Escort-PrimaryAutopilot]
-				[SecondaryAutopilotData:GVK-Drone-All-Autopilot-MediumHoverPatrolHorsefly-Aggressive]
+				[SecondaryAutopilotData:GVK-Unit-All-Autopilot-MediumHoverPatrolHorsefly-Aggressive]
 				[Triggers:GVK-Universal-Trigger-TargetAttacker]
 				[Triggers:GVK-Universal-Trigger-WeaponsToMaxRange]
 				[Triggers:GVK-Convoy-Escort-Trigger-RequestEscortSlot]
@@ -59,11 +59,11 @@
 					[Triggers:GVK-Convoy-Escort-Trigger-LeaderFound]
 					[Triggers:GVK-Convoy-Escort-Trigger-NoLeader]
 				[TriggerGroups:GVK-Universal-TriggerGroup-DefeatedAndAttacked]
-				[Triggers:GVK-Convoy-Escort-Trigger-EncounterInit-DroneLarge]
+				[Triggers:GVK-Convoy-Escort-Trigger-EncounterInit-UnitLarge]
 				BountyOnKill=3000000;
 			</Description>
 		</EntityComponent>
-		<!-- Escort Drone Rover Autopilot -->
+		<!-- Escort Unit Rover Autopilot -->
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
@@ -94,7 +94,7 @@
 				[EscortSpeedMatchMaxDistance:25]
 			</Description>
 		</EntityComponent>
-		<!-- Trigger sequence for Drone to request an escort slot from Convoy Lead -->
+		<!-- Trigger sequence for Unit to request an escort slot from Convoy Lead -->
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
@@ -294,7 +294,7 @@
 		</EntityComponent>		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Convoy-Escort-Trigger-EncounterInit-DroneLarge</SubtypeId>
+				<SubtypeId>GVK-Convoy-Escort-Trigger-EncounterInit-UnitLarge</SubtypeId>
 			</Id>
 			<Description>
 				[RivalAI Trigger]
@@ -303,25 +303,25 @@
 				[StartsReady:true]
 				[MaxActions:-1]
 				[ActionExecution:All]
-				[Actions:GVK-Convoy-Escort-Action-EncounterInit-DroneLarge]
+				[Actions:GVK-Convoy-Escort-Action-EncounterInit-UnitLarge]
 			</Description>
 		</EntityComponent>
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Convoy-Escort-Action-EncounterInit-DroneLarge</SubtypeId>
+				<SubtypeId>GVK-Convoy-Escort-Action-EncounterInit-UnitLarge</SubtypeId>
 			</Id>
 			<Description>
 				[RivalAI Action]
 				[SetCustomStrings:true]
-				[CustomStrings:EncounterType,DroneLarge]
+				[CustomStrings:EncounterType,UnitLarge]
 				[CustomStrings:EncounterDisplayName,Escort]
 			</Description>
 		</EntityComponent>
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Convoy-Escort-Trigger-EncounterInit-DroneMedium</SubtypeId>
+				<SubtypeId>GVK-Convoy-Escort-Trigger-EncounterInit-UnitMedium</SubtypeId>
 			</Id>
 			<Description>
 				[RivalAI Trigger]
@@ -330,18 +330,18 @@
 				[StartsReady:true]
 				[MaxActions:-1]
 				[ActionExecution:All]
-				[Actions:GVK-Convoy-Escort-Action-EncounterInit-DroneMedium]
+				[Actions:GVK-Convoy-Escort-Action-EncounterInit-UnitMedium]
 			</Description>
 		</EntityComponent>
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Convoy-Escort-Action-EncounterInit-DroneMedium</SubtypeId>
+				<SubtypeId>GVK-Convoy-Escort-Action-EncounterInit-UnitMedium</SubtypeId>
 			</Id>
 			<Description>
 				[RivalAI Action]
 				[SetCustomStrings:true]
-				[CustomStrings:EncounterType,DroneMedium]
+				[CustomStrings:EncounterType,UnitMedium]
 				[CustomStrings:EncounterDisplayName,Escort]
 			</Description>
 		</EntityComponent>

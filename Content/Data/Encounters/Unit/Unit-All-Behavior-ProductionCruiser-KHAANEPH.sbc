@@ -1,0 +1,138 @@
+<?xml version="1.0"?>
+<Definitions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+	<EntityComponents>
+		<!-- Production Cruiser Horsefly Behavior -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Unit-All-Behavior-ProductionCruiser-KHAANEPH</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Behavior]
+				[BehaviorName:Patrol]
+				[DialogueBanks:GVK-Units-KHAANEPH-Large.xml]
+				[WeaponSystem:GVK-Universal-Weapons-All]
+				[UsePlayerDistanceTimer:true]
+				[PlayerDistanceTimerTrigger:240]
+				[PlayerDistanceTrigger:4000]
+				[UseNoTargetTimer:false]
+				[UseRetreatTimer:false]
+				[TargetData:GVK-Universal-Target-EnemyGrids2km]
+				[AutopilotData:GVK-Unit-All-Autopilot-HoverCruiserHorsefly-Passive]
+				[SecondaryAutopilotData:GVK-Unit-All-Autopilot-HoverCruiserHorsefly-Aggressive]
+				[Triggers:GVK-Unit-All-Trigger-Init-ProductionCruiser-KHAANEPH]
+				[Triggers:GVK-Unit-All-Trigger-ProductionCruiserSpawnFighters-KHAANEPH]
+				[TriggerGroups:GVK-Unit-All-TriggerGroup-UnitDefaults-LargeUnit]
+				[TriggerGroups:GVK-Unit-All-TriggerGroup-PatrolHorsefly]
+				[TriggerGroups:GVK-Unit-All-TriggerGroup-FlyAwayFailsafe]
+				[TriggerGroups:GVK-Universal-TriggerGroup-ReceiveTargets]
+				[TriggerGroups:GVK-Universal-TriggerGroup-DespawnInKOTH]
+				[TriggerGroups:GVK-ConvoySystem-Leader-TriggerGroup]
+				[TriggerGroups:GVK-Universal-TriggerGroup-DefeatedAndAttacked]
+				[EscortOffsets:{X:150 Y:0 Z:0}]
+				[EscortOffsets:{X:-150 Y:0 Z:0}]
+				BountyOnKill=3000000;
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Unit-All-Trigger-Init-ProductionCruiser-KHAANEPH</SubtypeId>
+			</Id>
+			<Description>
+				[MES AI Trigger]
+				[UseTrigger:true]
+				[Type:Session]
+				[StartsReady:true]
+				[MaxActions:-1]
+				[ActionExecution:All]
+				[Actions:GVK-Unit-All-Action-Init-ProductionCruiser-KHAANEPH]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Unit-All-Action-Init-ProductionCruiser-KHAANEPH</SubtypeId>
+			</Id>
+			<Description>
+				[MES AI Action]
+				[SetCustomStrings:true]
+				[CustomStrings:EncounterType,UnitLarge]
+				[CustomStrings:EncounterDisplayName,Production Cruiser]
+			</Description>
+		</EntityComponent>
+		<!-- Trigger sequence for ProductionCruiser to spawn fighters -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Unit-All-Trigger-ProductionCruiserSpawnFighters-KHAANEPH</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Trigger]
+				[Type:PlayerNear]
+				[UseTrigger:true]
+				[TargetDistance:2000]
+				[StartsReady:true]
+				[MaxActions:3]
+				[MinCooldownMs:120000]
+				[MaxCooldownMs:180000]
+				[Actions:GVK-Unit-All-Action-ProductionCruiserSpawnFighters-KHAANEPH]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Unit-All-Action-ProductionCruiserSpawnFighters-KHAANEPH</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Action]
+				[Chance:100]
+				[SpawnEncounter:true]
+				[Spawner:GVK-Unit-All-Spawner-ProductionCruiserSpawnFighters-KHAANEPH]
+				[UseChatBroadcast:true]
+				[ChatData:GVK-Unit-All-Chat-ProductionCruiserSpawnFighters-KHAANEPH]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Unit-All-Spawner-ProductionCruiserSpawnFighters-KHAANEPH</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Spawn]
+				[UseSpawn:true]
+				[SpawningType:CustomSpawn]
+				[StartsReady:true]
+				[MinDistance:500]
+				[MaxDistance:1000]
+				[MinAltitude:100]
+				[MaxAltitude:400]
+				[InheritNpcAltitude:true]
+				[SpawnGroups:GVK-Unit-Defense-SpawnGroup-KHAANEPH-InterceptorSquad]
+				[ProcessAsAdminSpawn:false]
+				[IgnoreSafetyChecks:true]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Unit-All-Chat-ProductionCruiserSpawnFighters-KHAANEPH</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Chat]
+				[UseChat:true]
+				[StartsReady:true]
+				[Chance:100]
+				[BroadcastRandomly:false]
+				[Author:Production Cruiser]
+				[Color:Red]
+				[ChatMessages:Interceptors ready.]
+				[ChatAudio:ArcHudGPSNotification2]
+				[BroadcastChatType:Chat]
+				[SendToAllOnlinePlayers:false]
+				[IgnoreAntennaRequirement:true]
+				[IgnoredAntennaRangeOverride:9999999]
+			</Description>
+		</EntityComponent>
+	</EntityComponents>
+</Definitions>

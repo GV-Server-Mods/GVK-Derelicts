@@ -9,7 +9,7 @@
     -<FACTION> behavior copy matches its original apart from the bank line, and each bank has the cues its
     faction can hear.
     Checks every tracked .md file for:
-      1. Backticked profile names (GVK-*, Drone-*, RAI-*), prefab names (NWS [COAL] ...) and repo paths
+      1. Backticked profile names (GVK-*, Unit-*, RAI-*), prefab names (NWS [COAL] ...) and repo paths
          that no longer exist in Content/ or the repo.
       2. Lines that call an upstream MES issue/PR open, pending or waiting while GitHub says it is
          merged or closed. GitHub results are cached in obj/ for 12 hours.
@@ -205,7 +205,7 @@ try {
                 $token = $m.Groups[1].Value.Trim()
                 if ($token -match '[*{}<>|$]|\.\.\.|\s=\s') { continue }   # patterns and placeholders
                 $name = $token -replace '\.sbc$', ''
-                if ($name -match '^(GVK|Drone|RAI)-[A-Za-z0-9-]+$') {
+                if ($name -match '^(GVK|Drone|Unit|RAI)-[A-Za-z0-9-]+$') {
                     if (-not $known.Contains($name)) { $warnings.Add("${where}: unknown profile/file ``$token``") }
                 }
                 elseif ($name -match '^N[A-Z]{2} \[[A-Z]{4}\] .+$') {

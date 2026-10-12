@@ -1,0 +1,72 @@
+<?xml version="1.0"?>
+<Definitions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+	<EntityComponents>
+		<!-- Hongorguard Behavior -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Unit-Elite-Behavior-Hongorguard-KHAANEPH</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Behavior]
+			[BehaviorName:Patrol]
+			[DialogueBanks:GVK-Units-KHAANEPH-Large.xml]
+			[WeaponSystem:GVK-Universal-Weapons-Static10]
+			[UsePlayerDistanceTimer:true]
+			[PlayerDistanceTimerTrigger:2400]
+			[PlayerDistanceTrigger:4000]
+			[UseNoTargetTimer:false]
+			[UseRetreatTimer:false]
+			[HorseFighterTimeApproaching:30]
+			[HorseFighterTimeEngaging:30]
+			[TargetData:GVK-Universal-Target-EnemyGrids2km]
+			[AutopilotData:GVK-Unit-All-Autopilot-HoverCruiserHorsefly-Passive]
+			[SecondaryAutopilotData:GVK-Unit-All-Autopilot-Honorguard-Aggressive]
+			[TertiaryAutopilotData:GVK-Unit-All-Autopilot-Honorguard-Tertiary]
+			[Triggers:GVK-Unit-Elite-Trigger-Init-Hongorguard-KHAANEPH]
+			[Triggers:GVK-Unit-Elite-Trigger-SpawnMediumEscorts-KHAANEPH]
+			[Triggers:GVK-Unit-All-Trigger-SpawnInterceptorSingle-KHAANEPH]
+			[TriggerGroups:GVK-Unit-All-TriggerGroup-UnitDefaults-LargeUnit]
+			[TriggerGroups:GVK-Unit-All-TriggerGroup-AimAtTargetAngle]
+			[TriggerGroups:GVK-Unit-All-TriggerGroup-PatrolFighterKPL]
+			[TriggerGroups:GVK-Universal-TriggerGroup-ReceiveTargets]
+			[TriggerGroups:GVK-ConvoySystem-Leader-TriggerGroup]
+			[TriggerGroups:GVK-Universal-TriggerGroup-DespawnInKOTH]
+			[TriggerGroups:GVK-Universal-TriggerGroup-DefeatedAndAttacked]
+			[EscortOffsets:{X:150 Y:0 Z:0}]
+			[EscortOffsets:{X:-150 Y:0 Z:0}]
+			[RemoteControlCode:GVK-Boss]
+			BountyOnKill=50000000;
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Unit-Elite-Trigger-Init-Hongorguard-KHAANEPH</SubtypeId>
+			</Id>
+			<Description>
+			[MES AI Trigger]
+			[UseTrigger:true]
+			[Type:Session]
+			[StartsReady:true]
+			[MaxActions:-1]
+			[ActionExecution:All]
+			[Actions:GVK-Unit-Elite-Action-Init-Hongorguard-KHAANEPH]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Unit-Elite-Action-Init-Hongorguard-KHAANEPH</SubtypeId>
+			</Id>
+			<Description>
+			[MES AI Action]
+			[SetCustomStrings:true]
+			[CustomStrings:EncounterType,UnitElite]
+			[CustomStrings:EncounterDisplayName,Elite Honorguard]
+			[UseChatBroadcast:true]
+			[ChatData:GVK-Unit-Elite-Chat-Spawned]
+			</Description>
+		</EntityComponent>
+	</EntityComponents>
+</Definitions>

@@ -40,7 +40,7 @@ All general Modular Encounters Systems (MES) and RivalAI modding rules, tag dict
 ### Profile SubtypeId Naming
 - Format: `GVK-<SpawnType>-<SubType>-<ProfileType>-<UniqueTag>` (`<SubType>` and `<UniqueTag>` are optional).
 - Examples:
-  - `GVK-Drone-Encounter-Behavior-Salvager-COALITION`
+  - `GVK-Unit-Encounter-Behavior-Salvager-COALITION`
   - `GVK-PlanetaryInstallation-Small-Behavior`
   - `GVK-Universal-Trigger-DespawnInZ0`
 - Prefab names: three-letter tag + 4-letter faction tag, e.g. `NWS [COAL] Combat Baserunner`. The tag list is generated in `README.md`.

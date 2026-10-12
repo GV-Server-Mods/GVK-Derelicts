@@ -30,9 +30,9 @@ AUDIO = "ArcHudGPSNotification2"
 # Chat range tier per Encounter Type. Ranges live on the chat profiles GVK-Universal-Chat-Voice[-GAALSIEN]-<Tier>
 # (Small 5 km, Medium 15 km, Large server-wide) in GVK-Universal-Behavior.sbc.
 TIER = {
-    "DroneSmall": "Small", "WreckSmall": "Small", "AllianceTurret": "Small",
-    "DroneMedium": "Medium", "WreckMedium": "Medium", "CargoShip": "Medium", "AllianceOutpost": "Medium",
-    "DroneLarge": "Large", "DroneElite": "Large", "WreckLarge": "Large", "AllianceBase": "Large",
+    "UnitSmall": "Small", "WreckSmall": "Small", "AllianceTurret": "Small",
+    "UnitMedium": "Medium", "WreckMedium": "Medium", "CargoShip": "Medium", "AllianceOutpost": "Medium",
+    "UnitLarge": "Large", "UnitElite": "Large", "WreckLarge": "Large", "AllianceBase": "Large",
 }
 # Rare or unique encounters whose Encounter Type undersells them.
 TIER_OVERRIDE = {

@@ -1,0 +1,60 @@
+<?xml version="1.0"?>
+<Definitions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+	<EntityComponents>
+			<!-- SmallFlyerHorsefly Behavior -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Unit-All-Behavior-SmallFlyerHorsefly</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Behavior]
+			[BehaviorName:Horsefly]
+			[DialogueBanks:GVK-Units-GAALSIEN-Small.xml]
+			[WeaponSystem:GVK-Universal-Weapons-All]
+			[UsePlayerDistanceTimer:true]
+			[PlayerDistanceTimerTrigger:240]
+			[PlayerDistanceTrigger:4000]
+			[UseNoTargetTimer:false]
+			[UseRetreatTimer:false]
+			[TargetData:GVK-Universal-Target-EnemyGrids2km-GAALSIEN]
+			[AutopilotData:GVK-Unit-All-Autopilot-SmallFlyerHorsefly-Patrol]
+			[SecondaryAutopilotData:GVK-Unit-All-Autopilot-SmallFlyerHorsefly-Horsefly]
+			[Triggers:GVK-Unit-All-Trigger-Init-SmallFlyerHorsefly]
+			[TriggerGroups:GVK-Unit-All-TriggerGroup-UnitDefaults-SmallUnit]
+			[TriggerGroups:GVK-Unit-All-TriggerGroup-PatrolHorseflyKPL]
+			[TriggerGroups:GVK-Universal-TriggerGroup-ReceiveTargets]
+			[TriggerGroups:GVK-Universal-TriggerGroup-DefeatedAndAttacked]
+			BountyOnKill=500000;
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Unit-All-Trigger-Init-SmallFlyerHorsefly</SubtypeId>
+			</Id>
+			<Description>
+			[MES AI Trigger]
+			[UseTrigger:true]
+			[Type:Session]
+			[StartsReady:true]
+			[MaxActions:-1]
+			[ActionExecution:All]
+			[Actions:GVK-Unit-All-Action-Init-SmallFlyerHorsefly]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Unit-All-Action-Init-SmallFlyerHorsefly</SubtypeId>
+			</Id>
+			<Description>
+			[MES AI Action]
+			[SetCustomStrings:true]
+			[CustomStrings:EncounterType,UnitSmall]
+			[CustomStrings:EncounterDisplayName,aircraft]
+			[SetBooleansTrue:GVK_MobilityType_Aircraft]
+			</Description>
+		</EntityComponent>
+	</EntityComponents>
+</Definitions>

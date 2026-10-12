@@ -1,0 +1,628 @@
+<?xml version="1.0"?>
+<Definitions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+	<EntityComponents>
+		<!-- Action group to do a barrel roll if GVK_MobilityType_Aircraft is true-->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Unit-All-Trigger-BarrelRoll</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Trigger]
+				[UseTrigger:true]
+				[Type:Timer]
+				[DamageTypes:Any]
+				[MinCooldownMs:30000]
+				[MaxCooldownMs:60000]
+				[StartsReady:true]
+				[MaxActions:-1]
+				[Conditions:GVK-Universal-Condition-IsAircraftMobilityType]
+				[Actions:GVK-Unit-All-Action-BarrelRoll]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Unit-All-Action-BarrelRoll</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Action]
+				[BarrelRoll:true]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Unit-Encounter-Trigger-SpawnAnyCOALITIONAttackers</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Trigger]
+				[Type:PlayerNear]
+				[UseTrigger:true]
+				[TargetDistance:3000]
+				[StartsReady:false]
+				[MaxActions:1]
+				[MinCooldownMs:5000]
+				[MaxCooldownMs:5001]
+				[//Conditions:GVK-Unit-Encounter-Condition-IsUnitEncounter]
+				[Actions:GVK-Unit-Encounter-Action-SpawnAnyCOALITIONAttackers]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Unit-Encounter-Action-SpawnAnyCOALITIONAttackers</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Action]
+				[Chance:10]
+				[SpawnEncounter:true]
+				[Spawner:GVK-Unit-Encounter-Spawner-SpawnAnyCOALITIONAttackers]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Unit-Encounter-Spawner-SpawnAnyCOALITIONAttackers</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Spawn]
+				[UseSpawn:true]
+				[SpawningType:CustomSpawn]
+				[StartsReady:true]
+				[MinDistance:500]
+				[MaxDistance:1000]
+				[MinAltitude:25]
+				[MaxAltitude:50]
+				[InheritNpcAltitude:false]
+				[SpawnGroups:GVK-Unit-Defense-SpawnGroup-COALITION-LAV]
+				[SpawnGroups:GVK-Unit-Defense-SpawnGroup-COALITION-BaserunnerLight]
+				[SpawnGroups:GVK-Unit-Defense-SpawnGroup-COALITION-BaserunnerHeavy]
+				[SpawnGroups:GVK-Unit-Defense-SpawnGroup-COALITION-LargeRover]
+				[SpawnGroups:GVK-Unit-Defense-SpawnGroup-COALITION-StrikeFighter]
+				[ProcessAsAdminSpawn:false]
+				[IgnoreSafetyChecks:true]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Unit-Encounter-Trigger-SpawnSmallCOALITIONAttackers</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Trigger]
+				[Type:PlayerNear]
+				[UseTrigger:true]
+				[TargetDistance:3000]
+				[StartsReady:false]
+				[MaxActions:1]
+				[MinCooldownMs:5000]
+				[MaxCooldownMs:5001]
+				[//Conditions:GVK-Unit-Encounter-Condition-IsUnitEncounter]
+				[Actions:GVK-Unit-Encounter-Action-SpawnSmallCOALITIONAttackers]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Unit-Encounter-Action-SpawnSmallCOALITIONAttackers</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Action]
+				[Chance:10]
+				[SpawnEncounter:true]
+				[Spawner:GVK-Unit-Encounter-Spawner-SpawnSmallCOALITIONAttackers]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Unit-Encounter-Spawner-SpawnSmallCOALITIONAttackers</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Spawn]
+				[UseSpawn:true]
+				[SpawningType:CustomSpawn]
+				[StartsReady:true]
+				[MinDistance:500]
+				[MaxDistance:1000]
+				[MinAltitude:25]
+				[MaxAltitude:50]
+				[InheritNpcAltitude:false]
+				[SpawnGroups:GVK-Unit-Defense-SpawnGroup-COALITION-StrikeFighter]
+				[SpawnGroups:GVK-Unit-Encounter-SpawnGroup-COALITION-LAV]
+				[ProcessAsAdminSpawn:false]
+				[IgnoreSafetyChecks:true]
+			</Description>
+		</EntityComponent>
+		<!-- Sequence to spawn enemy GAALSIEN attackers (used by the unit default trigger groups) -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Unit-Encounter-Trigger-SpawnAnyGAALSIENAttackers</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Trigger]
+				[Type:PlayerNear]
+				[UseTrigger:true]
+				[TargetDistance:3000]
+				[StartsReady:false]
+				[MaxActions:1]
+				[MinCooldownMs:5000]
+				[MaxCooldownMs:5001]
+				[Conditions:GVK-Unit-Encounter-Condition-IsUnitEncounter]
+				[Actions:GVK-Unit-Encounter-Action-SpawnAnyGAALSIENAttackers]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Unit-Encounter-Action-SpawnAnyGAALSIENAttackers</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Action]
+				[Chance:10]
+				[SpawnEncounter:true]
+				[Spawner:GVK-Unit-Encounter-Spawner-SpawnAnyGAALSIENAttackers]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Unit-Encounter-Spawner-SpawnAnyGAALSIENAttackers</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Spawn]
+				[UseSpawn:true]
+				[SpawningType:CustomSpawn]
+				[StartsReady:true]
+				[MinDistance:500]
+				[MaxDistance:1000]
+				[MinAltitude:25]
+				[MaxAltitude:50]
+				[InheritNpcAltitude:false]
+				[SpawnGroups:GVK-Unit-Defense-SpawnGroup-GAALSIEN-InterceptorSingle]
+				[SpawnGroups:GVK-Unit-Defense-SpawnGroup-GAALSIEN-InterceptorSquad]
+				[SpawnGroups:GVK-Unit-Defense-SpawnGroup-GAALSIEN-LightSandskimmerSquad]
+				[SpawnGroups:GVK-Unit-Defense-SpawnGroup-GAALSIEN-MediumHoverLight]
+				[SpawnGroups:GVK-Unit-Defense-SpawnGroup-GAALSIEN-MediumHoverHeavy]
+				[SpawnGroups:GVK-Unit-Defense-SpawnGroup-GAALSIEN-LargeHover]
+				[ProcessAsAdminSpawn:false]
+				[IgnoreSafetyChecks:true]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Unit-Encounter-Trigger-SpawnSmallGAALSIENAttackers</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Trigger]
+				[Type:PlayerNear]
+				[UseTrigger:true]
+				[TargetDistance:3000]
+				[StartsReady:false]
+				[MaxActions:1]
+				[MinCooldownMs:5000]
+				[MaxCooldownMs:5001]
+				[Conditions:GVK-Unit-Encounter-Condition-IsUnitEncounter]
+				[Actions:GVK-Unit-Encounter-Action-SpawnSmallGAALSIENAttackers]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Unit-Encounter-Action-SpawnSmallGAALSIENAttackers</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Action]
+				[Chance:10]
+				[SpawnEncounter:true]
+				[Spawner:GVK-Unit-Encounter-Spawner-SpawnSmallGAALSIENAttackers]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Unit-Encounter-Spawner-SpawnSmallGAALSIENAttackers</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Spawn]
+				[UseSpawn:true]
+				[SpawningType:CustomSpawn]
+				[StartsReady:true]
+				[MinDistance:500]
+				[MaxDistance:1000]
+				[MinAltitude:25]
+				[MaxAltitude:50]
+				[InheritNpcAltitude:false]
+				[SpawnGroups:GVK-Unit-Defense-SpawnGroup-GAALSIEN-InterceptorSingle]
+				[SpawnGroups:GVK-Unit-Defense-SpawnGroup-GAALSIEN-InterceptorSquad]
+				[SpawnGroups:GVK-Unit-Defense-SpawnGroup-GAALSIEN-LightSandskimmerSquad]
+				[SpawnGroups:GVK-Unit-Defense-SpawnGroup-GAALSIEN-MediumHoverLight]
+				[ProcessAsAdminSpawn:false]
+				[IgnoreSafetyChecks:true]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Unit-All-Trigger-SpawnInterceptorSingle-GAALSIEN</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Trigger]
+				[Type:PlayerNear]
+				[UseTrigger:true]
+				[TargetDistance:1500]
+				[StartsReady:false]
+				[MaxActions:1]
+				[MinCooldownMs:10000]
+				[MaxCooldownMs:10001]
+				[Actions:GVK-Unit-All-Action-SpawnInterceptorSingle-GAALSIEN]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Unit-All-Action-SpawnInterceptorSingle-GAALSIEN</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Action]
+				[Chance:50]
+				[SpawnEncounter:true]
+				[Spawner:GVK-Unit-All-Spawner-SpawnInterceptorSingle-GAALSIEN]
+				[UseChatBroadcast:true]
+				[ChatData:GVK-Unit-All-Chat-SpawnInterceptorSingle-GAALSIEN]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Unit-All-Spawner-SpawnInterceptorSingle-GAALSIEN</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Spawn]
+				[UseSpawn:true]
+				[SpawningType:CustomSpawn]
+				[StartsReady:true]
+				[MinDistance:600]
+				[MaxDistance:800]
+				[MinAltitude:50]
+				[MaxAltitude:100]
+				[InheritNpcAltitude:false]
+				[SpawnGroups:GVK-Unit-Defense-SpawnGroup-GAALSIEN-InterceptorSingle]
+				[ProcessAsAdminSpawn:false]
+				[IgnoreSafetyChecks:true]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Unit-All-Chat-SpawnInterceptorSingle-GAALSIEN</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Chat]
+				[UseChat:true]
+				[StartsReady:true]
+				[Chance:50]
+				[BroadcastRandomly:false]
+				[Author:{Faction} Interceptor]
+				[Color:{PlayerRelation}]
+				[ChatMessages:Air support inbound.]
+				[ChatAudio:GreetingSoundId-A]
+				[BroadcastChatType:Chat]
+				[SendToAllOnlinePlayers:false]
+				[IgnoreAntennaRequirement:true]
+				[IgnoredAntennaRangeOverride:9999999]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Unit-All-Trigger-SpawnInterceptorSingle-KHAANEPH</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Trigger]
+				[Type:PlayerNear]
+				[UseTrigger:true]
+				[TargetDistance:1500]
+				[StartsReady:false]
+				[MaxActions:1]
+				[MinCooldownMs:10000]
+				[MaxCooldownMs:10001]
+				[Actions:GVK-Unit-All-Action-SpawnInterceptorSingle-KHAANEPH]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Unit-All-Action-SpawnInterceptorSingle-KHAANEPH</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Action]
+				[Chance:50]
+				[SpawnEncounter:true]
+				[Spawner:GVK-Unit-All-Spawner-SpawnInterceptorSingle-KHAANEPH]
+				[UseChatBroadcast:true]
+				[ChatData:GVK-Unit-All-Chat-SpawnInterceptorSingle-KHAANEPH]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Unit-All-Spawner-SpawnInterceptorSingle-KHAANEPH</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Spawn]
+				[UseSpawn:true]
+				[SpawningType:CustomSpawn]
+				[StartsReady:true]
+				[MinDistance:600]
+				[MaxDistance:800]
+				[MinAltitude:50]
+				[MaxAltitude:100]
+				[InheritNpcAltitude:false]
+				[SpawnGroups:GVK-Unit-Defense-SpawnGroup-KHAANEPH-InterceptorSingle]
+				[ProcessAsAdminSpawn:false]
+				[IgnoreSafetyChecks:true]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Unit-All-Chat-SpawnInterceptorSingle-KHAANEPH</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Chat]
+				[UseChat:true]
+				[StartsReady:true]
+				[Chance:50]
+				[BroadcastRandomly:false]
+				[Author:{Faction} Interceptor]
+				[Color:{PlayerRelation}]
+				[ChatMessages:Air support inbound.]
+				[ChatAudio:GreetingSoundId-A]
+				[BroadcastChatType:Chat]
+				[SendToAllOnlinePlayers:false]
+				[IgnoreAntennaRequirement:true]
+				[IgnoredAntennaRangeOverride:9999999]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Unit-All-Trigger-SpawnStrikeFighterSingle-SOBAN</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Trigger]
+				[Type:PlayerNear]
+				[UseTrigger:true]
+				[TargetDistance:1500]
+				[StartsReady:false]
+				[MaxActions:1]
+				[MinCooldownMs:10000]
+				[MaxCooldownMs:10001]
+				[Actions:GVK-Unit-All-Action-SpawnStrikeFighterSingle-SOBAN]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Unit-All-Action-SpawnStrikeFighterSingle-SOBAN</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Action]
+				[Chance:50]
+				[SpawnEncounter:true]
+				[Spawner:GVK-Unit-All-Spawner-SpawnStrikeFighterSingle-SOBAN]
+				[UseChatBroadcast:true]
+				[ChatData:GVK-Unit-All-Chat-SpawnStrikeFighterSingle-SOBAN]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Unit-All-Spawner-SpawnStrikeFighterSingle-SOBAN</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Spawn]
+				[UseSpawn:true]
+				[SpawningType:CustomSpawn]
+				[StartsReady:true]
+				[MinDistance:600]
+				[MaxDistance:800]
+				[MinAltitude:50]
+				[MaxAltitude:100]
+				[InheritNpcAltitude:false]
+				[SpawnGroups:GVK-Unit-Defense-SpawnGroup-SOBAN-StrikeFighterSingle]
+				[ProcessAsAdminSpawn:false]
+				[IgnoreSafetyChecks:true]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Unit-All-Chat-SpawnStrikeFighterSingle-SOBAN</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Chat]
+				[UseChat:true]
+				[StartsReady:true]
+				[Chance:50]
+				[BroadcastRandomly:false]
+				[Author:{Faction} Strike Fighter]
+				[Color:{PlayerRelation}]
+				[ChatMessages:Air support inbound.]
+				[ChatAudio:GreetingSoundId-A]
+				[BroadcastChatType:Chat]
+				[SendToAllOnlinePlayers:false]
+				[IgnoreAntennaRequirement:true]
+				[IgnoredAntennaRangeOverride:9999999]
+			</Description>
+		</EntityComponent>
+		<!-- Spawn two Khaaneph Escorts -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Unit-Elite-Trigger-SpawnMediumEscorts-KHAANEPH</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Trigger]
+				[Type:PlayerNear]
+				[UseTrigger:true]
+				[TargetDistance:3000]
+				[StartsReady:false]
+				[MaxActions:2]
+				[MinCooldownMs:2000]
+				[MaxCooldownMs:2001]
+				[Actions:GVK-Unit-Elite-Action-SpawnMediumEscorts-KHAANEPH]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Unit-Elite-Action-SpawnMediumEscorts-KHAANEPH</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Action]
+				[Chance:100]
+				[SpawnEncounter:true]
+				[Spawner:GVK-Unit-Elite-Spawner-SpawnMediumEscorts-KHAANEPH]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Unit-Elite-Spawner-SpawnMediumEscorts-KHAANEPH</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Spawn]
+				[UseSpawn:true]
+				[SpawningType:CustomSpawn]
+				[StartsReady:true]
+				[MinDistance:200]
+				[MaxDistance:201]
+				[MinAltitude:25]
+				[MaxAltitude:26]
+				[InheritNpcAltitude:false]
+				[SpawnGroups:GVK-Unit-Defense-SpawnGroup-KHAANEPH-MediumHoverHeavy]
+				[ProcessAsAdminSpawn:false]
+				[IgnoreSafetyChecks:true]
+			</Description>
+		</EntityComponent>
+		<!-- Spawn two GAALSIEN Escorts -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Unit-Elite-Trigger-SpawnMediumEscorts-GAALSIEN</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Trigger]
+				[Type:PlayerNear]
+				[UseTrigger:true]
+				[TargetDistance:3000]
+				[StartsReady:false]
+				[MaxActions:2]
+				[MinCooldownMs:2000]
+				[MaxCooldownMs:2001]
+				[Actions:GVK-Unit-Elite-Action-SpawnMediumEscorts-GAALSIEN]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Unit-Elite-Action-SpawnMediumEscorts-GAALSIEN</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Action]
+				[Chance:100]
+				[SpawnEncounter:true]
+				[Spawner:GVK-Unit-Elite-Spawner-SpawnMediumEscorts-GAALSIEN]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Unit-Elite-Spawner-SpawnMediumEscorts-GAALSIEN</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Spawn]
+				[UseSpawn:true]
+				[SpawningType:CustomSpawn]
+				[StartsReady:true]
+				[MinDistance:200]
+				[MaxDistance:201]
+				[MinAltitude:25]
+				[MaxAltitude:26]
+				[InheritNpcAltitude:false]
+				[SpawnGroups:GVK-Unit-Defense-SpawnGroup-GAALSIEN-MediumHoverHeavy]
+				[ProcessAsAdminSpawn:false]
+				[IgnoreSafetyChecks:true]
+			</Description>
+		</EntityComponent>
+		<!-- Spawn two SOBAN Escorts -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Unit-Elite-Trigger-SpawnMediumEscorts-SOBAN</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Trigger]
+				[Type:PlayerNear]
+				[UseTrigger:true]
+				[TargetDistance:3000]
+				[StartsReady:false]
+				[MaxActions:2]
+				[MinCooldownMs:2000]
+				[MaxCooldownMs:2001]
+				[Actions:GVK-Unit-Elite-Action-SpawnMediumEscorts-SOBAN]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Unit-Elite-Action-SpawnMediumEscorts-SOBAN</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Action]
+				[Chance:100]
+				[SpawnEncounter:true]
+				[Spawner:GVK-Unit-Elite-Spawner-SpawnMediumEscorts-SOBAN]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Unit-Elite-Spawner-SpawnMediumEscorts-SOBAN</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Spawn]
+				[UseSpawn:true]
+				[SpawningType:CustomSpawn]
+				[StartsReady:true]
+				[MinDistance:200]
+				[MaxDistance:201]
+				[MinAltitude:25]
+				[MaxAltitude:26]
+				[InheritNpcAltitude:false]
+				[SpawnGroups:GVK-Unit-Defense-SpawnGroup-SOBAN-BaserunnerHeavy]
+				[ProcessAsAdminSpawn:false]
+				[IgnoreSafetyChecks:true]
+			</Description>
+		</EntityComponent>
+		<!-- Condition check Unit isn't currently an escort -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Unit-All-Condition-NotEscortRole</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Condition]
+				[UseConditions:true]
+				[MatchAnyCondition:false]
+				[CheckFalseBooleans:true]
+				[FalseBooleans:GVK_Role_Escort]
+			</Description>
+		</EntityComponent>
+	</EntityComponents>
+</Definitions>

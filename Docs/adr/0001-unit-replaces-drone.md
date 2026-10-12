@@ -1,6 +1,6 @@
 # Retire "Drone" in favor of "Unit"
 
-GVK called every AI-piloted NPC vehicle a "Drone": the `NDR` ("NPC DRone") prefab tag, the `Drone*` Encounter Types, and the `Drone/` folders. We now call them **Units**, after the RTS term from Deserts of Kharak. The old name clashed with the MES Drone Encounter spawner, which GVK doesn't use. It also hid the cross-faction class ladder that Units now follow: Scout, Fighter, Gunship, Baserunner, Salvager, Corvette, Cruiser and Airship. The glossary switched first. The prefab tag followed as `NUN` ("NPC UNit"); the `Drone*` Encounter Types and `Drone/` folders still migrate later in GV-Server-Mods/GVK-Settings#662, because renaming Encounter Types and spawn groups touches live-world state.
+GVK called every AI-piloted NPC vehicle a "Drone": the `NDR` ("NPC DRone") prefab tag, the `Drone*` Encounter Types, and the `Drone/` folders. We now call them **Units**, after the RTS term from Deserts of Kharak. The old name clashed with the MES Drone Encounter spawner, which GVK doesn't use. It also hid the cross-faction class ladder that Units now follow: Scout, Fighter, Gunship, Baserunner, Salvager, Corvette, Cruiser and Airship. The glossary switched first. The prefab tag followed as `NUN` ("NPC UNit"); the `Drone*` Encounter Types, `Drone-*` profile ids and `Drone/` folders followed in GV-Server-Mods/GVK-Settings#662 (phase 2), while the world was not live, because renaming spawn groups touches saved state.
 
 ## Considered Options
 

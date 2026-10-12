@@ -1,0 +1,42 @@
+<?xml version="1.0"?>
+<Definitions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+	<EntityComponents>
+		<!-- Update GVK-Unit-Encounter-Condition-IsUnitEncounter when making changes here -->
+		<!-- This spawns 1 Hover Salvager in Z1 thru Z3-->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Unit-Encounter-SpawnCondition-KHAANEPH-Salvager</SubtypeId>
+			</Id>
+			<Description>
+				[MES Spawn Conditions]
+				[PlanetaryInstallation:true]
+				[PlanetaryInstallationType:Small]
+				[FactionOwner:KHAANEPH]
+				[ReactorsOn:true]
+				[ForceStaticGrid:false]
+				[DoNotForceStaticGrid:true]
+				[SkipVoxelSpawnChecks:true]
+				[SkipGridSpawnChecks:false]
+				[ZoneConditions:GVK-Alliance-ZoneConditions-KHAANEPH]
+				[PrefabOffsetOverrides:{X:0 Y:35 Z:0}]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Unit-Encounter-SpawnCondition-KHAANEPH-Salvager-WreckSpawn</SubtypeId>
+			</Id>
+			<Description>
+				[MES Spawn Conditions]
+				[RivalAiAtmosphericSpawn:true]
+				[FactionOwner:KHAANEPH]
+				[ReactorsOn:true]
+				[SkipVoxelSpawnChecks:true]
+				[SkipGridSpawnChecks:false]
+				[PrefabSpawningMode:Random]
+				[ZoneConditions:GVK-Alliance-ZoneConditions-KHAANEPH]
+			</Description>
+		</EntityComponent>
+	</EntityComponents>
+</Definitions>

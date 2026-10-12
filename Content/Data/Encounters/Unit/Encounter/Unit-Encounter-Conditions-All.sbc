@@ -1,0 +1,38 @@
+<?xml version="1.0"?>
+<Definitions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+	<EntityComponents>
+		<!-- Only for random encounters, so players can't cheese wreck defenses -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Unit-Encounter-Condition-IsUnitEncounter</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Condition]
+			[UseConditions:true]
+			[MatchAnyCondition:true]
+			[CheckForSpawnConditions:true]
+			[RequiredSpawnConditions:GVK-Unit-Encounter-SpawnCondition-GAALSIEN-Salvager]
+			[RequiredSpawnConditions:GVK-Unit-Encounter-SpawnCondition-GAALSIEN-Salvager-WreckSpawn]
+			[RequiredSpawnConditions:GVK-Unit-Encounter-SpawnCondition-GAALSIEN-SmallFlyerSingle]
+			[RequiredSpawnConditions:GVK-Unit-Encounter-SpawnCondition-GAALSIEN-SmallFlyerSquad]
+			[RequiredSpawnConditions:GVK-Unit-Encounter-SpawnCondition-GAALSIEN-MediumFlyerSingle]
+			[RequiredSpawnConditions:GVK-Unit-Encounter-SpawnCondition-GAALSIEN-SmallHoverSingle]
+			[RequiredSpawnConditions:GVK-Unit-Encounter-SpawnCondition-GAALSIEN-SmallHoverSquad]
+			[RequiredSpawnConditions:GVK-Unit-Encounter-SpawnCondition-GAALSIEN-MediumHoverSingle]
+			[RequiredSpawnConditions:GVK-Unit-Encounter-SpawnCondition-GAALSIEN-LargeHoverSingle]
+			[RequiredSpawnConditions:GVK-Unit-Encounter-SpawnCondition-GAALSIEN-Single-RouteAZone]
+			[RequiredSpawnConditions:GVK-Unit-Encounter-SpawnCondition-GAALSIEN-Squad-RouteAZone]
+			[RequiredSpawnConditions:GVK-Unit-Encounter-SpawnCondition-COALITION-SmallFlyerSquad]
+			[RequiredSpawnConditions:GVK-Unit-Encounter-SpawnCondition-COALITION-SmallFlyerSingle]
+			[RequiredSpawnConditions:GVK-Unit-Encounter-SpawnCondition-COALITION-LAV]
+			[RequiredSpawnConditions:GVK-Unit-Encounter-SpawnCondition-COALITION-Salvager]
+			[RequiredSpawnConditions:GVK-Unit-Encounter-SpawnCondition-COALITION-Salvager-WreckSpawn]
+			[RequiredSpawnConditions:GVK-Unit-Encounter-SpawnCondition-COALITION-LargeRoverSingle]
+			[RequiredSpawnConditions:GVK-Elite-SpawnCondition-GAALSIEN-LargeCruiserSingle]
+			[RequiredSpawnConditions:GVK-Elite-SpawnCondition-KHAANEPH-LargeCruiserSingle]
+			[RequiredSpawnConditions:GVK-Elite-SpawnCondition-SOBAN-LargeCruiserSingle]
+			</Description>
+		</EntityComponent>
+	</EntityComponents>
+</Definitions>
