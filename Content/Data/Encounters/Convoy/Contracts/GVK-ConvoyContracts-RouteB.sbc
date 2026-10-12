@@ -2,26 +2,26 @@
 <Definitions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
 	<EntityComponents>
 		<!-- ================================================================= -->
-		<!-- GVK ESCORT CONTRACTS - ROUTE E (Skyport to Sevastopol, Air)       -->
+		<!-- GVK ESCORT CONTRACTS - ROUTE B (Crossroads to Mastodon, Land)     -->
 		<!-- Event templates, conditions, and actions.                         -->
 		<!-- ================================================================= -->
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-EscortMissions-Group-E</SubtypeId>
+				<SubtypeId>GVK-ConvoyContracts-Group-B</SubtypeId>
 			</Id>
 			<Description>
 				[MES Event TemplateGroup]
-				[TemplateEventIds:GVK-EscortMissions-Template-Spawn-E]
-				[TemplateEventIds:GVK-EscortMissions-Template-Arrived-E]
-				[TemplateEventIds:GVK-EscortMissions-Template-Lost-E]
-				[TemplateEventIds:GVK-EscortMissions-Template-Watchdog-E]
+				[TemplateEventIds:GVK-ConvoyContracts-Template-Spawn-B]
+				[TemplateEventIds:GVK-ConvoyContracts-Template-Arrived-B]
+				[TemplateEventIds:GVK-ConvoyContracts-Template-Lost-B]
+				[TemplateEventIds:GVK-ConvoyContracts-Template-Watchdog-B]
 			</Description>
 		</EntityComponent>
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-EscortMissions-Template-Spawn-E</SubtypeId>
+				<SubtypeId>GVK-ConvoyContracts-Template-Spawn-B</SubtypeId>
 			</Id>
 			<Description>
 				[MES Event Template]
@@ -31,13 +31,13 @@
 				[MinCooldownMs:0]
 				[MaxCooldownMs:1]
 				[ActionExecution:All]
-				[ActionIds:GVK-Convoy-EventAction-CoalitionE]
+				[ActionIds:GVK-Convoy-EventAction-CoalitionB]
 			</Description>
 		</EntityComponent>
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-EscortMissions-Template-Arrived-E</SubtypeId>
+				<SubtypeId>GVK-ConvoyContracts-Template-Arrived-B</SubtypeId>
 			</Id>
 			<Description>
 				[MES Event Template]
@@ -47,15 +47,15 @@
 				[MinCooldownMs:1000]
 				[MaxCooldownMs:2000]
 				[UseAnyPassingCondition:false]
-				[ConditionIds:GVK-EscortMissions-EventCondition-Arrived-E]
+				[ConditionIds:GVK-ConvoyContracts-EventCondition-Arrived-B]
 				[ActionExecution:All]
-				[ActionIds:GVK-EscortMissions-EventAction-Arrived-E]
+				[ActionIds:GVK-ConvoyContracts-EventAction-Arrived-B]
 			</Description>
 		</EntityComponent>
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-EscortMissions-Template-Lost-E</SubtypeId>
+				<SubtypeId>GVK-ConvoyContracts-Template-Lost-B</SubtypeId>
 			</Id>
 			<Description>
 				[MES Event Template]
@@ -65,15 +65,15 @@
 				[MinCooldownMs:1000]
 				[MaxCooldownMs:2000]
 				[UseAnyPassingCondition:false]
-				[ConditionIds:GVK-EscortMissions-EventCondition-Lost-E]
+				[ConditionIds:GVK-ConvoyContracts-EventCondition-Lost-B]
 				[ActionExecution:All]
-				[ActionIds:GVK-EscortMissions-EventAction-Lost-E]
+				[ActionIds:GVK-ConvoyContracts-EventAction-Lost-B]
 			</Description>
 		</EntityComponent>
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-EscortMissions-Template-Watchdog-E</SubtypeId>
+				<SubtypeId>GVK-ConvoyContracts-Template-Watchdog-B</SubtypeId>
 			</Id>
 			<Description>
 				[MES Event Template]
@@ -82,52 +82,52 @@
 				[StartsReady:false]
 				[MinCooldownMs:180000]
 				[MaxCooldownMs:180001]
-				[Tags:GVK_EscortWatchdog_E]
+				[Tags:GVK_ConvoyContractWatchdog_B]
 				[ActionExecution:All]
-				[ActionIds:GVK-EscortMissions-EventAction-Watchdog-E]
+				[ActionIds:GVK-ConvoyContracts-EventAction-Watchdog-B]
 			</Description>
 		</EntityComponent>
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-EscortMissions-Action-ConvoyLost-E</SubtypeId>
+				<SubtypeId>GVK-ConvoyContracts-Action-ConvoyLost-B</SubtypeId>
 			</Id>
 			<Description>
 				[RivalAI Action]
 				[Chance:100]
-				[SetSandboxBooleansTrue:GVK_EscortLost_E]
+				[SetSandboxBooleansTrue:GVK_TransportLost_B]
 			</Description>
 		</EntityComponent>
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-EscortMissions-EventCondition-Arrived-E</SubtypeId>
+				<SubtypeId>GVK-ConvoyContracts-EventCondition-Arrived-B</SubtypeId>
 			</Id>
 			<Description>
 				[MES Event Condition]
 				[CheckTrueBooleans:true]
-				[TrueBooleans:GVK_EscortArrived_E]
+				[TrueBooleans:GVK_TransportArrived_B]
 				[UseAnyPassingCondition:false]
 			</Description>
 		</EntityComponent>
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-EscortMissions-EventCondition-Lost-E</SubtypeId>
+				<SubtypeId>GVK-ConvoyContracts-EventCondition-Lost-B</SubtypeId>
 			</Id>
 			<Description>
 				[MES Event Condition]
 				[CheckTrueBooleans:true]
-				[TrueBooleans:GVK_EscortLost_E]
+				[TrueBooleans:GVK_TransportLost_B]
 				[CheckFalseBooleans:true]
-				[FalseBooleans:GVK_EscortArrived_E]
+				[FalseBooleans:GVK_TransportArrived_B]
 				[UseAnyPassingCondition:false]
 			</Description>
 		</EntityComponent>
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-EscortMissions-EventAction-Arrived-E</SubtypeId>
+				<SubtypeId>GVK-ConvoyContracts-EventAction-Arrived-B</SubtypeId>
 			</Id>
 			<Description>
 				[MES Event Action]
@@ -139,7 +139,7 @@
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-EscortMissions-EventAction-Lost-E</SubtypeId>
+				<SubtypeId>GVK-ConvoyContracts-EventAction-Lost-B</SubtypeId>
 			</Id>
 			<Description>
 				[MES Event Action]
@@ -151,7 +151,7 @@
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-EscortMissions-EventAction-Watchdog-E</SubtypeId>
+				<SubtypeId>GVK-ConvoyContracts-EventAction-Watchdog-B</SubtypeId>
 			</Id>
 			<Description>
 				[MES Event Action]

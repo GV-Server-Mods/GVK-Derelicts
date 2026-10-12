@@ -4,12 +4,12 @@
 		<!-- ==================================================================== -->
 		<!-- ALLIANCE ZONE SIZE LADDER (MES Events) - STATELESS TIER MARKER DESIGN -->
 		<!-- One event per faction. State: FACTION_Tier sandbox counter holds the   -->
-		<!-- currently-announced radius in km (10/20/30/40/50/55); FACTION_Points   -->
-		<!-- holds alliance points. Missing counters read as 0, so fresh worlds     -->
+		<!-- currently-announced radius in km (10/20/30/40/50/55); FACTION_Influence   -->
+		<!-- holds alliance Influence. Missing counters read as 0, so fresh worlds     -->
 		<!-- need no init event (EventConditions.cs GetVariable default).           -->
 		<!-- [ActionExecution:Condition] runs ONLY the action whose index matches   -->
 		<!-- the satisfied condition index - ConditionIds/ActionIds stay index      -->
-		<!-- aligned. Conditions fire only when points sit in a band AND Tier differs -->
+		<!-- aligned. Conditions fire only when Influence sits in a band AND Tier differs -->
 		<!-- from the band marker: Tier < band = up-entry, Tier > band = down-entry, -->
 		<!-- so every transition announces once with a truthful direction and same- -->
 		<!-- tier re-fires are structurally impossible.                             -->
@@ -40,10 +40,10 @@
 			<Description>
 				[MES Event Condition]
 				[CheckCustomCounters:true]
-				[CustomCounters:KHAANEPH_Points]
+				[CustomCounters:KHAANEPH_Influence]
 				[CustomCountersTargets:-1]
 				[CounterCompareTypes:Greater]
-				[CustomCounters:KHAANEPH_Points]
+				[CustomCounters:KHAANEPH_Influence]
 				[CustomCountersTargets:200]
 				[CounterCompareTypes:Less]
 				[CustomCounters:KHAANEPH_Tier]
@@ -62,10 +62,10 @@
 			<Description>
 				[MES Event Condition]
 				[CheckCustomCounters:true]
-				[CustomCounters:KHAANEPH_Points]
+				[CustomCounters:KHAANEPH_Influence]
 				[CustomCountersTargets:-1]
 				[CounterCompareTypes:Greater]
-				[CustomCounters:KHAANEPH_Points]
+				[CustomCounters:KHAANEPH_Influence]
 				[CustomCountersTargets:200]
 				[CounterCompareTypes:Less]
 				[CustomCounters:KHAANEPH_Tier]
@@ -84,10 +84,10 @@
 			<Description>
 				[MES Event Condition]
 				[CheckCustomCounters:true]
-				[CustomCounters:KHAANEPH_Points]
+				[CustomCounters:KHAANEPH_Influence]
 				[CustomCountersTargets:200]
 				[CounterCompareTypes:GreaterOrEqual]
-				[CustomCounters:KHAANEPH_Points]
+				[CustomCounters:KHAANEPH_Influence]
 				[CustomCountersTargets:400]
 				[CounterCompareTypes:Less]
 				[CustomCounters:KHAANEPH_Tier]
@@ -106,10 +106,10 @@
 			<Description>
 				[MES Event Condition]
 				[CheckCustomCounters:true]
-				[CustomCounters:KHAANEPH_Points]
+				[CustomCounters:KHAANEPH_Influence]
 				[CustomCountersTargets:200]
 				[CounterCompareTypes:GreaterOrEqual]
-				[CustomCounters:KHAANEPH_Points]
+				[CustomCounters:KHAANEPH_Influence]
 				[CustomCountersTargets:400]
 				[CounterCompareTypes:Less]
 				[CustomCounters:KHAANEPH_Tier]
@@ -128,10 +128,10 @@
 			<Description>
 				[MES Event Condition]
 				[CheckCustomCounters:true]
-				[CustomCounters:KHAANEPH_Points]
+				[CustomCounters:KHAANEPH_Influence]
 				[CustomCountersTargets:400]
 				[CounterCompareTypes:GreaterOrEqual]
-				[CustomCounters:KHAANEPH_Points]
+				[CustomCounters:KHAANEPH_Influence]
 				[CustomCountersTargets:600]
 				[CounterCompareTypes:Less]
 				[CustomCounters:KHAANEPH_Tier]
@@ -150,10 +150,10 @@
 			<Description>
 				[MES Event Condition]
 				[CheckCustomCounters:true]
-				[CustomCounters:KHAANEPH_Points]
+				[CustomCounters:KHAANEPH_Influence]
 				[CustomCountersTargets:400]
 				[CounterCompareTypes:GreaterOrEqual]
-				[CustomCounters:KHAANEPH_Points]
+				[CustomCounters:KHAANEPH_Influence]
 				[CustomCountersTargets:600]
 				[CounterCompareTypes:Less]
 				[CustomCounters:KHAANEPH_Tier]
@@ -172,10 +172,10 @@
 			<Description>
 				[MES Event Condition]
 				[CheckCustomCounters:true]
-				[CustomCounters:KHAANEPH_Points]
+				[CustomCounters:KHAANEPH_Influence]
 				[CustomCountersTargets:600]
 				[CounterCompareTypes:GreaterOrEqual]
-				[CustomCounters:KHAANEPH_Points]
+				[CustomCounters:KHAANEPH_Influence]
 				[CustomCountersTargets:800]
 				[CounterCompareTypes:Less]
 				[CustomCounters:KHAANEPH_Tier]
@@ -194,10 +194,10 @@
 			<Description>
 				[MES Event Condition]
 				[CheckCustomCounters:true]
-				[CustomCounters:KHAANEPH_Points]
+				[CustomCounters:KHAANEPH_Influence]
 				[CustomCountersTargets:600]
 				[CounterCompareTypes:GreaterOrEqual]
-				[CustomCounters:KHAANEPH_Points]
+				[CustomCounters:KHAANEPH_Influence]
 				[CustomCountersTargets:800]
 				[CounterCompareTypes:Less]
 				[CustomCounters:KHAANEPH_Tier]
@@ -216,10 +216,10 @@
 			<Description>
 				[MES Event Condition]
 				[CheckCustomCounters:true]
-				[CustomCounters:KHAANEPH_Points]
+				[CustomCounters:KHAANEPH_Influence]
 				[CustomCountersTargets:800]
 				[CounterCompareTypes:GreaterOrEqual]
-				[CustomCounters:KHAANEPH_Points]
+				[CustomCounters:KHAANEPH_Influence]
 				[CustomCountersTargets:1000]
 				[CounterCompareTypes:Less]
 				[CustomCounters:KHAANEPH_Tier]
@@ -238,10 +238,10 @@
 			<Description>
 				[MES Event Condition]
 				[CheckCustomCounters:true]
-				[CustomCounters:KHAANEPH_Points]
+				[CustomCounters:KHAANEPH_Influence]
 				[CustomCountersTargets:800]
 				[CounterCompareTypes:GreaterOrEqual]
-				[CustomCounters:KHAANEPH_Points]
+				[CustomCounters:KHAANEPH_Influence]
 				[CustomCountersTargets:1000]
 				[CounterCompareTypes:Less]
 				[CustomCounters:KHAANEPH_Tier]
@@ -260,7 +260,7 @@
 			<Description>
 				[MES Event Condition]
 				[CheckCustomCounters:true]
-				[CustomCounters:KHAANEPH_Points]
+				[CustomCounters:KHAANEPH_Influence]
 				[CustomCountersTargets:1000]
 				[CounterCompareTypes:GreaterOrEqual]
 				[CustomCounters:KHAANEPH_Tier]
@@ -279,7 +279,7 @@
 			<Description>
 				[MES Event Condition]
 				[CheckCustomCounters:true]
-				[CustomCounters:KHAANEPH_Points]
+				[CustomCounters:KHAANEPH_Influence]
 				[CustomCountersTargets:-1]
 				[CounterCompareTypes:LessOrEqual]
 			</Description>
@@ -292,7 +292,7 @@
 			<Description>
 				[MES Event Condition]
 				[CheckCustomCounters:true]
-				[CustomCounters:KHAANEPH_Points]
+				[CustomCounters:KHAANEPH_Influence]
 				[CustomCountersTargets:1200]
 				[CounterCompareTypes:Greater]
 			</Description>
@@ -525,7 +525,7 @@
 			<Description>
 				[MES Event Action]
 				[ChangeCounters:true]
-				[SetCounters:KHAANEPH_Points]
+				[SetCounters:KHAANEPH_Influence]
 				[SetCountersAmount:0]
 			</Description>
 		</EntityComponent>
@@ -537,7 +537,7 @@
 			<Description>
 				[MES Event Action]
 				[ChangeCounters:true]
-				[SetCounters:KHAANEPH_Points]
+				[SetCounters:KHAANEPH_Influence]
 				[SetCountersAmount:1200]
 			</Description>
 		</EntityComponent>
@@ -591,10 +591,10 @@
 			<Description>
 				[MES Event Condition]
 				[CheckCustomCounters:true]
-				[CustomCounters:SOBAN_Points]
+				[CustomCounters:SOBAN_Influence]
 				[CustomCountersTargets:-1]
 				[CounterCompareTypes:Greater]
-				[CustomCounters:SOBAN_Points]
+				[CustomCounters:SOBAN_Influence]
 				[CustomCountersTargets:200]
 				[CounterCompareTypes:Less]
 				[CustomCounters:SOBAN_Tier]
@@ -613,10 +613,10 @@
 			<Description>
 				[MES Event Condition]
 				[CheckCustomCounters:true]
-				[CustomCounters:SOBAN_Points]
+				[CustomCounters:SOBAN_Influence]
 				[CustomCountersTargets:-1]
 				[CounterCompareTypes:Greater]
-				[CustomCounters:SOBAN_Points]
+				[CustomCounters:SOBAN_Influence]
 				[CustomCountersTargets:200]
 				[CounterCompareTypes:Less]
 				[CustomCounters:SOBAN_Tier]
@@ -635,10 +635,10 @@
 			<Description>
 				[MES Event Condition]
 				[CheckCustomCounters:true]
-				[CustomCounters:SOBAN_Points]
+				[CustomCounters:SOBAN_Influence]
 				[CustomCountersTargets:200]
 				[CounterCompareTypes:GreaterOrEqual]
-				[CustomCounters:SOBAN_Points]
+				[CustomCounters:SOBAN_Influence]
 				[CustomCountersTargets:400]
 				[CounterCompareTypes:Less]
 				[CustomCounters:SOBAN_Tier]
@@ -657,10 +657,10 @@
 			<Description>
 				[MES Event Condition]
 				[CheckCustomCounters:true]
-				[CustomCounters:SOBAN_Points]
+				[CustomCounters:SOBAN_Influence]
 				[CustomCountersTargets:200]
 				[CounterCompareTypes:GreaterOrEqual]
-				[CustomCounters:SOBAN_Points]
+				[CustomCounters:SOBAN_Influence]
 				[CustomCountersTargets:400]
 				[CounterCompareTypes:Less]
 				[CustomCounters:SOBAN_Tier]
@@ -679,10 +679,10 @@
 			<Description>
 				[MES Event Condition]
 				[CheckCustomCounters:true]
-				[CustomCounters:SOBAN_Points]
+				[CustomCounters:SOBAN_Influence]
 				[CustomCountersTargets:400]
 				[CounterCompareTypes:GreaterOrEqual]
-				[CustomCounters:SOBAN_Points]
+				[CustomCounters:SOBAN_Influence]
 				[CustomCountersTargets:600]
 				[CounterCompareTypes:Less]
 				[CustomCounters:SOBAN_Tier]
@@ -701,10 +701,10 @@
 			<Description>
 				[MES Event Condition]
 				[CheckCustomCounters:true]
-				[CustomCounters:SOBAN_Points]
+				[CustomCounters:SOBAN_Influence]
 				[CustomCountersTargets:400]
 				[CounterCompareTypes:GreaterOrEqual]
-				[CustomCounters:SOBAN_Points]
+				[CustomCounters:SOBAN_Influence]
 				[CustomCountersTargets:600]
 				[CounterCompareTypes:Less]
 				[CustomCounters:SOBAN_Tier]
@@ -723,10 +723,10 @@
 			<Description>
 				[MES Event Condition]
 				[CheckCustomCounters:true]
-				[CustomCounters:SOBAN_Points]
+				[CustomCounters:SOBAN_Influence]
 				[CustomCountersTargets:600]
 				[CounterCompareTypes:GreaterOrEqual]
-				[CustomCounters:SOBAN_Points]
+				[CustomCounters:SOBAN_Influence]
 				[CustomCountersTargets:800]
 				[CounterCompareTypes:Less]
 				[CustomCounters:SOBAN_Tier]
@@ -745,10 +745,10 @@
 			<Description>
 				[MES Event Condition]
 				[CheckCustomCounters:true]
-				[CustomCounters:SOBAN_Points]
+				[CustomCounters:SOBAN_Influence]
 				[CustomCountersTargets:600]
 				[CounterCompareTypes:GreaterOrEqual]
-				[CustomCounters:SOBAN_Points]
+				[CustomCounters:SOBAN_Influence]
 				[CustomCountersTargets:800]
 				[CounterCompareTypes:Less]
 				[CustomCounters:SOBAN_Tier]
@@ -767,10 +767,10 @@
 			<Description>
 				[MES Event Condition]
 				[CheckCustomCounters:true]
-				[CustomCounters:SOBAN_Points]
+				[CustomCounters:SOBAN_Influence]
 				[CustomCountersTargets:800]
 				[CounterCompareTypes:GreaterOrEqual]
-				[CustomCounters:SOBAN_Points]
+				[CustomCounters:SOBAN_Influence]
 				[CustomCountersTargets:1000]
 				[CounterCompareTypes:Less]
 				[CustomCounters:SOBAN_Tier]
@@ -789,10 +789,10 @@
 			<Description>
 				[MES Event Condition]
 				[CheckCustomCounters:true]
-				[CustomCounters:SOBAN_Points]
+				[CustomCounters:SOBAN_Influence]
 				[CustomCountersTargets:800]
 				[CounterCompareTypes:GreaterOrEqual]
-				[CustomCounters:SOBAN_Points]
+				[CustomCounters:SOBAN_Influence]
 				[CustomCountersTargets:1000]
 				[CounterCompareTypes:Less]
 				[CustomCounters:SOBAN_Tier]
@@ -811,7 +811,7 @@
 			<Description>
 				[MES Event Condition]
 				[CheckCustomCounters:true]
-				[CustomCounters:SOBAN_Points]
+				[CustomCounters:SOBAN_Influence]
 				[CustomCountersTargets:1000]
 				[CounterCompareTypes:GreaterOrEqual]
 				[CustomCounters:SOBAN_Tier]
@@ -830,7 +830,7 @@
 			<Description>
 				[MES Event Condition]
 				[CheckCustomCounters:true]
-				[CustomCounters:SOBAN_Points]
+				[CustomCounters:SOBAN_Influence]
 				[CustomCountersTargets:-1]
 				[CounterCompareTypes:LessOrEqual]
 			</Description>
@@ -843,7 +843,7 @@
 			<Description>
 				[MES Event Condition]
 				[CheckCustomCounters:true]
-				[CustomCounters:SOBAN_Points]
+				[CustomCounters:SOBAN_Influence]
 				[CustomCountersTargets:1200]
 				[CounterCompareTypes:Greater]
 			</Description>
@@ -1076,7 +1076,7 @@
 			<Description>
 				[MES Event Action]
 				[ChangeCounters:true]
-				[SetCounters:SOBAN_Points]
+				[SetCounters:SOBAN_Influence]
 				[SetCountersAmount:0]
 			</Description>
 		</EntityComponent>
@@ -1088,7 +1088,7 @@
 			<Description>
 				[MES Event Action]
 				[ChangeCounters:true]
-				[SetCounters:SOBAN_Points]
+				[SetCounters:SOBAN_Influence]
 				[SetCountersAmount:1200]
 			</Description>
 		</EntityComponent>
@@ -1137,19 +1137,19 @@
 		<!-- =================================================== -->
 		<!-- BOOTSTRAP: one-shot tier marker initialization       -->
 		<!-- Fires once per world (UniqueEvent). Conditions only  -->
-		<!-- reference the long-existing Points counters - never  -->
+		<!-- reference the long-existing Influence counters - never  -->
 		<!-- Tier - because a condition referencing a never-written -->
 		<!-- counter always fails (GetVariable success flag).     -->
 		<!-- =================================================== -->
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Alliance-EventCondition-ZoneLadder-Boot-PointsKHAANEPH</SubtypeId>
+				<SubtypeId>GVK-Alliance-EventCondition-ZoneLadder-Boot-InfluenceKHAANEPH</SubtypeId>
 			</Id>
 			<Description>
 				[MES Event Condition]
 				[CheckCustomCounters:true]
-				[CustomCounters:KHAANEPH_Points]
+				[CustomCounters:KHAANEPH_Influence]
 				[CustomCountersTargets:-1]
 				[CounterCompareTypes:Greater]
 			</Description>
@@ -1157,12 +1157,12 @@
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Alliance-EventCondition-ZoneLadder-Boot-PointsSOBAN</SubtypeId>
+				<SubtypeId>GVK-Alliance-EventCondition-ZoneLadder-Boot-InfluenceSOBAN</SubtypeId>
 			</Id>
 			<Description>
 				[MES Event Condition]
 				[CheckCustomCounters:true]
-				[CustomCounters:SOBAN_Points]
+				[CustomCounters:SOBAN_Influence]
 				[CustomCountersTargets:-1]
 				[CounterCompareTypes:Greater]
 			</Description>
@@ -1204,8 +1204,8 @@
 				[MinCooldownMs:5000]
 				[MaxCooldownMs:5001]
 				[UseAnyPassingCondition:true]
-				[ConditionIds:GVK-Alliance-EventCondition-ZoneLadder-Boot-PointsKHAANEPH]
-				[ConditionIds:GVK-Alliance-EventCondition-ZoneLadder-Boot-PointsSOBAN]
+				[ConditionIds:GVK-Alliance-EventCondition-ZoneLadder-Boot-InfluenceKHAANEPH]
+				[ConditionIds:GVK-Alliance-EventCondition-ZoneLadder-Boot-InfluenceSOBAN]
 				[ActionIds:GVK-Alliance-EventAction-ZoneLadder-Bootstrap-A]
 				[ActionIds:GVK-Alliance-EventAction-ZoneLadder-Bootstrap-B]
 				[ActionExecution:Condition]

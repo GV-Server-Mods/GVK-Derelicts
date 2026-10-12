@@ -1,0 +1,465 @@
+<?xml version="1.0"?>
+<Definitions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+	<EntityComponents>
+		<!-- Route A, Crossroads to Sevastapol -->
+		<!-- Transport Behavior for land rover following roads -->
+		<!-- Convoy lead with the spawn chat -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Transport-Land-COALITION-Behavior-ConvoyLeadTransportA</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Behavior]
+				[BehaviorName:CargoShip]
+				[DialogueBanks:GVK-Travellers-COALITION-Medium.xml]
+				[WeaponSystem:GVK-Universal-Weapons-All]
+				[UsePlayerDistanceTimer:false]
+				[PlayerDistanceTimerTrigger:3600]
+				[PlayerDistanceTrigger:4000]
+				[UseRetreatTimer:false]
+				[RetreatTimerTrigger:3600]
+				[UseNoTargetTimer:false]
+				[RetreatDespawnDistance:3000]
+				[AutopilotData:GVK-Transport-Land-COALITION-TransportPrimaryAutopilot]
+				[SecondaryAutopilotData:GVK-Transport-Land-COALITION-TransportSecondaryAutopilot]
+				[TertiaryAutopilotData:GVK-Transport-Land-COALITION-TransportTertiaryAutopilot]
+				[TargetData:GVK-Universal-Target-COALITIONTradeStation]
+				[Triggers:GVK-Universal-Trigger-UneditableOnSpawn]
+				[Triggers:GVK-Universal-Trigger-EditableOnCompromised]
+				[Triggers:GVK-Universal-Trigger-TargetAttacker]
+				[Triggers:GVK-Universal-Trigger-TurretTarget]
+				[Triggers:GVK-Universal-Trigger-WeaponsToMaxRange]
+				[Triggers:GVK-Transport-Land-COALITION-Trigger-ConvoyLeadTransportOnSpawnA]
+				[Triggers:GVK-Transport-Land-COALITION-Trigger-TransportAddWaypointsA]
+				[Triggers:GVK-Transport-Land-COALITION-Trigger-TransportHorizonAngleHigh]
+				[Triggers:GVK-Transport-Land-COALITION-Trigger-TransportArriveAtWaypoint]
+				[Triggers:GVK-Transport-Land-COALITION-Trigger-TransportLeaveWaypoint]
+				[Triggers:GVK-Transport-Land-COALITION-Trigger-TransportBeaconDisabled-A-Lead]
+				[Triggers:GVK-Transport-Land-COALITION-Trigger-TransportCompromised-A-Lead]
+				[Triggers:GVK-Transport-Land-COALITION-Trigger-TransportDespawn-A-Lead]
+				[Triggers:GVK-Transport-Land-COALITION-Trigger-TransportAttacked]
+				[Triggers:GVK-Transport-Land-COALITION-Trigger-TransportPlayerNear]
+				[Triggers:GVK-Transport-Land-COALITION-Trigger-TransportPlayerStillNear]
+				[Triggers:GVK-Transport-Land-COALITION-Trigger-TransportPlayerNotNear]
+				[Triggers:GVK-Transport-Land-COALITION-Trigger-TransportInsideCanyonZone]
+				[Triggers:GVK-Transport-Land-COALITION-Trigger-TransportOutsideCanyonZone]
+				[Triggers:GVK-Transport-Land-COALITION-Trigger-TransportInsideZ1]
+				[Triggers:GVK-Transport-Land-COALITION-Trigger-TransportEnemySpawnsZ1]
+				[Triggers:GVK-Transport-Land-COALITION-Trigger-TransportEnemySpawnsZ1Canyon]
+				[Triggers:GVK-Transport-Land-COALITION-Trigger-TransportInsideZ2]
+				[Triggers:GVK-Transport-Land-COALITION-Trigger-TransportEnemySpawnsZ2]
+				[Triggers:GVK-Transport-Land-COALITION-Trigger-TransportEnemySpawnsZ2Canyon]
+				[Triggers:GVK-Transport-Land-COALITION-Trigger-TransportInsideZ3]
+				[Triggers:GVK-Transport-Land-COALITION-Trigger-TransportEnemySpawnsZ3]
+				[Triggers:GVK-Transport-Land-COALITION-Trigger-TransportEnemySpawnsZ3Canyon]
+				[Triggers:GVK-Transport-Land-COALITION-Trigger-TransportSuccessTargetA-Double]
+				[Triggers:GVK-Transport-Land-COALITION-Trigger-TransportSuccessCounterA-Double]
+				[Triggers:GVK-Transport-Land-COALITION-Trigger-HeartbeatA-Double]
+				[Triggers:GVK-Transport-Land-COALITION-DoubleTransportA-Trigger-EncounterInit]
+				[TriggerGroups:GVK-Universal-TriggerGroup-DefeatedAndAttacked]
+				[RemoteControlCode:COALITIONRouteA]
+			</Description>
+		</EntityComponent>
+		<!-- Escort chat when spawned -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Transport-Land-COALITION-Trigger-ConvoyLeadTransportOnSpawnA</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Trigger]
+				[Type:Timer]
+				[UseTrigger:true]
+				[StartsReady:false]
+				[MaxActions:1]
+				[MinCooldownMs:1000]
+				[MaxCooldownMs:1000]
+				[ActionExecution:All]
+				[Actions:GVK-Transport-Land-COALITION-Action-ConvoyLeadTransportOnSpawnA]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Transport-Land-COALITION-Action-ConvoyLeadTransportOnSpawnA</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Action]
+				[Chance:100]
+				[ChangeAutopilotProfile:true]
+				[AutopilotProfile:Secondary]
+				[SetWeaponsToMaxRange:true]
+				[ResetCounters:WaypointCounter]
+				[DisableTriggers:true]
+				[DisableTriggerNames:GVK-Transport-Land-COALITION-Trigger-TransportHorizonAngleHigh]
+				[UseChatBroadcast:true]
+				[ChatData:GVK-Transport-Land-COALITION-Chat-ConvoyLeadTransportOnSpawnA]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Transport-Land-COALITION-Chat-ConvoyLeadTransportOnSpawnA</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Chat]
+				[UseChat:true]
+				[StartsReady:true]
+				[Chance:100]
+				[MaxChats:1]
+				[BroadcastRandomly:false]
+				[Author:{Faction}]
+				[Color:{PlayerRelation}]
+				[ChatMessages:A Convoy is ready for escort to Sevastopol (Very Difficult).]
+				[ChatAudio:ArcHudGPSNotification2]
+				[BroadcastChatType:Both]
+				[SendToAllOnlinePlayers:true]
+				[IgnoreAntennaRequirement:true]
+				[IgnoredAntennaRangeOverride:999999]
+			</Description>
+		</EntityComponent>
+		<!-- Convoy Tail with no spawn chat -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Transport-Land-COALITION-Behavior-ConvoyTailTransportA</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Behavior]
+				[BehaviorName:CargoShip]
+				[DialogueBanks:GVK-Travellers-COALITION-Medium.xml]
+				[WeaponSystem:GVK-Universal-Weapons-All]
+				[UsePlayerDistanceTimer:false]
+				[PlayerDistanceTimerTrigger:3600]
+				[PlayerDistanceTrigger:4000]
+				[UseRetreatTimer:false]
+				[RetreatTimerTrigger:3600]
+				[UseNoTargetTimer:false]
+				[RetreatDespawnDistance:3000]
+				[AutopilotData:GVK-Transport-Land-COALITION-TransportPrimaryAutopilot]
+				[SecondaryAutopilotData:GVK-Transport-Land-COALITION-TransportSecondaryAutopilot]
+				[TertiaryAutopilotData:GVK-Transport-Land-COALITION-TransportTertiaryAutopilot]
+				[TargetData:GVK-Universal-Target-COALITIONTradeStation]
+				[Triggers:GVK-Universal-Trigger-UneditableOnSpawn]
+				[Triggers:GVK-Universal-Trigger-EditableOnCompromised]
+				[Triggers:GVK-Universal-Trigger-TargetAttacker]
+				[Triggers:GVK-Universal-Trigger-TurretTarget]
+				[Triggers:GVK-Universal-Trigger-WeaponsToMaxRange]
+				[Triggers:GVK-Transport-Land-COALITION-Trigger-ConvoyTailTransportOnSpawnA]
+				[Triggers:GVK-Transport-Land-COALITION-Trigger-TransportAddWaypointsA]
+				[Triggers:GVK-Transport-Land-COALITION-Trigger-TransportHorizonAngleHigh]
+				[Triggers:GVK-Transport-Land-COALITION-Trigger-TransportArriveAtWaypoint]
+				[Triggers:GVK-Transport-Land-COALITION-Trigger-TransportLeaveWaypoint]
+				[Triggers:GVK-Transport-Land-COALITION-Trigger-TransportBeaconDisabled-A-Tail]
+				[Triggers:GVK-Transport-Land-COALITION-Trigger-TransportCompromised-A-Tail]
+				[Triggers:GVK-Transport-Land-COALITION-Trigger-TransportDespawn-A-Tail]
+				[Triggers:GVK-Transport-Land-COALITION-Trigger-TransportAttacked]
+				[Triggers:GVK-Transport-Land-COALITION-Trigger-TransportPlayerNear]
+				[Triggers:GVK-Transport-Land-COALITION-Trigger-TransportPlayerStillNear]
+				[Triggers:GVK-Transport-Land-COALITION-Trigger-TransportPlayerNotNear]
+				[Triggers:GVK-Transport-Land-COALITION-Trigger-TransportInsideCanyonZone]
+				[Triggers:GVK-Transport-Land-COALITION-Trigger-TransportOutsideCanyonZone]
+				[Triggers:GVK-Transport-Land-COALITION-Trigger-TransportInsideZ1]
+				[Triggers:GVK-Transport-Land-COALITION-Trigger-TransportEnemySpawnsZ1]
+				[Triggers:GVK-Transport-Land-COALITION-Trigger-TransportEnemySpawnsZ1Canyon]
+				[Triggers:GVK-Transport-Land-COALITION-Trigger-TransportInsideZ2]
+				[Triggers:GVK-Transport-Land-COALITION-Trigger-TransportEnemySpawnsZ2]
+				[Triggers:GVK-Transport-Land-COALITION-Trigger-TransportEnemySpawnsZ2Canyon]
+				[Triggers:GVK-Transport-Land-COALITION-Trigger-TransportInsideZ3]
+				[Triggers:GVK-Transport-Land-COALITION-Trigger-TransportEnemySpawnsZ3]
+				[Triggers:GVK-Transport-Land-COALITION-Trigger-TransportEnemySpawnsZ3Canyon]
+				[Triggers:GVK-Transport-Land-COALITION-Trigger-TransportSuccessTargetA-Double]
+				[Triggers:GVK-Transport-Land-COALITION-Trigger-TransportSuccessCounterA-Double]
+				[Triggers:GVK-Transport-Land-COALITION-Trigger-HeartbeatA-Double]
+				[Triggers:GVK-Transport-Land-COALITION-DoubleTransportA-Trigger-EncounterInit]
+				[TriggerGroups:GVK-Universal-TriggerGroup-DefeatedAndAttacked]
+				[RemoteControlCode:COALITIONRouteA]
+			</Description>
+		</EntityComponent>
+		<!-- Escort chat when spawned -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Transport-Land-COALITION-Trigger-ConvoyTailTransportOnSpawnA</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Trigger]
+				[Type:Timer]
+				[UseTrigger:true]
+				[StartsReady:false]
+				[MaxActions:1]
+				[MinCooldownMs:1000]
+				[MaxCooldownMs:1000]
+				[ActionExecution:All]
+				[Actions:GVK-Transport-Land-COALITION-Action-ConvoyTailTransportOnSpawnA]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Transport-Land-COALITION-Action-ConvoyTailTransportOnSpawnA</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Action]
+				[Chance:100]
+				[ChangeAutopilotProfile:true]
+				[AutopilotProfile:Secondary]
+				[SetWeaponsToMaxRange:true]
+				[ResetCounters:WaypointCounter]
+				[DisableTriggers:true]
+				[DisableTriggerNames:GVK-Transport-Land-COALITION-Trigger-TransportHorizonAngleHigh]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Transport-Land-COALITION-DoubleTransportA-Trigger-EncounterInit</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Trigger]
+				[UseTrigger:true]
+				[Type:Session]
+				[StartsReady:true]
+				[MaxActions:-1]
+				[ActionExecution:All]
+				[Actions:GVK-Transport-Land-COALITION-DoubleTransportA-Action-EncounterInit]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Transport-Land-COALITION-DoubleTransportA-Action-EncounterInit</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Action]
+				[SetCustomStrings:true]
+				[CustomStrings:EncounterType,Traveller]
+				[CustomStrings:EncounterDisplayName,Transport]
+			</Description>
+		</EntityComponent>
+		<!-- Arrival and Heartbeat for Double Escort A -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Transport-Land-COALITION-Trigger-TransportSuccessTargetA-Double</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Trigger]
+				[Type:TargetNear]
+				[UseTrigger:true]
+				[StartsReady:false]
+				[TargetDistance:500]
+				[ActionExecution:All]
+				[MinCooldownMs:9998]
+				[MaxCooldownMs:9999]
+				[Actions:GVK-Transport-Land-COALITION-Action-TransportSuccessA-Double]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Transport-Land-COALITION-Trigger-TransportSuccessCounterA-Double</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Trigger]
+				[Type:Timer]
+				[UseTrigger:true]
+				[StartsReady:false]
+				[MaxActions:1]
+				[ActionExecution:All]
+				[MinCooldownMs:5000]
+				[MaxCooldownMs:5001]
+				[Conditions:GVK-Transport-Land-COALITION-Condition-TransportSuccessA]
+				[ConditionCheckResetsTimer:true]
+				[Actions:GVK-Transport-Land-COALITION-Action-TransportSuccessA-Double]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Transport-Land-COALITION-Action-TransportSuccessA-Double</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Action]
+				[//DebugMessage:EscortSuccessA-Double]
+				[Chance:100]
+				[SetSandboxBooleansTrue:GVK_TransportArrived_A_Double]
+				[UseChatBroadcast:true]
+				[ChatData:GVK-Transport-Land-COALITION-Chat-TransportSuccessA]
+				[SpawnEncounter:true]
+				[Spawner:GVK-Transport-Land-COALITION-Spawner-TransportSuccessA]
+				[DisableTriggers:true]
+				[DisableTriggerNames:GVK-Transport-Land-COALITION-Trigger-TransportSuccessTargetA-Double]
+				[DisableTriggerNames:GVK-Transport-Land-COALITION-Trigger-TransportSuccessCounterA-Double]
+				[DisableTriggerNames:GVK-Transport-Land-COALITION-Trigger-TransportHorizonAngleHigh]
+				[DisableTriggerNames:GVK-Transport-Land-COALITION-Trigger-TransportPlayerNear]
+				[DisableTriggerNames:GVK-Transport-Land-COALITION-Trigger-TransportPlayerNotNear]
+				[DisableTriggerNames:GVK-Transport-Land-COALITION-Trigger-TransportInsideZ1]
+				[DisableTriggerNames:GVK-Transport-Land-COALITION-Trigger-TransportEnemySpawnsZ1]
+				[DisableTriggerNames:GVK-Transport-Land-COALITION-Trigger-TransportEnemySpawnsZ1Canyon]
+				[DisableTriggerNames:GVK-Transport-Land-COALITION-Trigger-TransportInsideZ2]
+				[DisableTriggerNames:GVK-Transport-Land-COALITION-Trigger-TransportEnemySpawnsZ2]
+				[DisableTriggerNames:GVK-Transport-Land-COALITION-Trigger-TransportEnemySpawnsZ2Canyon]
+				[DisableTriggerNames:GVK-Transport-Land-COALITION-Trigger-TransportInsideZ3]
+				[DisableTriggerNames:GVK-Transport-Land-COALITION-Trigger-TransportEnemySpawnsZ3]
+				[DisableTriggerNames:GVK-Transport-Land-COALITION-Trigger-TransportEnemySpawnsZ3Canyon]
+				[DisableTriggerNames:GVK-Transport-Land-COALITION-Trigger-TransportAttacked]
+				[DisableTriggerNames:GVK-Transport-Land-COALITION-Trigger-TransportBeaconDisabled-A-Lead]
+				[DisableTriggerNames:GVK-Transport-Land-COALITION-Trigger-TransportCompromised-A-Lead]
+				[DisableTriggerNames:GVK-Transport-Land-COALITION-Trigger-TransportDespawn-A-Lead]
+				[DisableTriggerNames:GVK-Transport-Land-COALITION-Trigger-TransportBeaconDisabled-A-Tail]
+				[DisableTriggerNames:GVK-Transport-Land-COALITION-Trigger-TransportCompromised-A-Tail]
+				[DisableTriggerNames:GVK-Transport-Land-COALITION-Trigger-TransportDespawn-A-Tail]
+				[DisableTriggerNames:GVK-Transport-Land-COALITION-Trigger-HeartbeatA-Double]
+				[PlayParticleEffectAtRemote:true]
+				[ParticleEffectId:CruiserPoofSmoke]
+				[ParticleEffectOffset:{X:0.0 Y:0.0 Z:0.0}]
+				[ParticleEffectScale:3.0]
+				[ParticleEffectMaxTime:2000]
+				[ParticleEffectColor:{X:1.0 Y:1.0 Z:1.0}]
+				[PlaySoundAtPosition:true]
+				[SoundAtPosition:Cruiser_Explosion]
+				[ForceDespawn:true]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Transport-Land-COALITION-Trigger-HeartbeatA-Double</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Trigger]
+				[Type:Timer]
+				[UseTrigger:true]
+				[StartsReady:true]
+				[MinCooldownMs:30000]
+				[MaxCooldownMs:30001]
+				[Actions:GVK-Transport-Land-COALITION-Action-HeartbeatA-Double]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Transport-Land-COALITION-Action-HeartbeatA-Double</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Action]
+				[ResetCooldownTimeOfEvents:true]
+				[ResetEventCooldownTags:GVK_ConvoyContractWatchdog_A_Double]
+			</Description>
+		</EntityComponent>
+		<!-- Lead Loss Triggers for Double Escort A -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Transport-Land-COALITION-Trigger-TransportBeaconDisabled-A-Lead</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Trigger]
+				[Type:Timer]
+				[UseTrigger:true]
+				[StartsReady:true]
+				[Conditions:GVK-Universal-Condition-AllBeaconsDisabled]
+				[MaxActions:1]
+				[ActionExecution:All]
+				[Actions:GVK-Universal-Action-DefeatedCompromised]
+				[Actions:GVK-ConvoyContracts-Action-ConvoyLost-A-Lead]
+				[Actions:GVK-Transport-Land-COALITION-Action-TransportCompromised]
+				[Actions:GVK-Universal-Action-EditableOnCompromised]
+				[Actions:GVK-Universal-Action-Disabled]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Transport-Land-COALITION-Trigger-TransportCompromised-A-Lead</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Trigger]
+				[Type:Compromised]
+				[UseTrigger:true]
+				[StartsReady:true]
+				[MaxActions:1]
+				[Actions:GVK-Universal-Action-DefeatedCompromised]
+				[Actions:GVK-ConvoyContracts-Action-ConvoyLost-A-Lead]
+				[Actions:GVK-Transport-Land-COALITION-Action-TransportCompromised]
+				[Actions:GVK-Universal-Action-EditableOnCompromised]
+				[Actions:GVK-Universal-Action-Disabled]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Transport-Land-COALITION-Trigger-TransportDespawn-A-Lead</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Trigger]
+				[Type:DespawnMES]
+				[DespawnTypeFromSpawner:Any]
+				[UseTrigger:true]
+				[StartsReady:true]
+				[MaxActions:1]
+				[ActionExecution:All]
+				[Actions:GVK-ConvoyContracts-Action-ConvoyLost-A-Lead]
+				[Actions:GVK-Transport-Land-COALITION-Action-TransportCompromised]
+			</Description>
+		</EntityComponent>
+		<!-- Tail Loss Triggers for Double Escort A -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Transport-Land-COALITION-Trigger-TransportBeaconDisabled-A-Tail</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Trigger]
+				[Type:Timer]
+				[UseTrigger:true]
+				[StartsReady:true]
+				[Conditions:GVK-Universal-Condition-AllBeaconsDisabled]
+				[MaxActions:1]
+				[ActionExecution:All]
+				[Actions:GVK-Universal-Action-DefeatedCompromised]
+				[Actions:GVK-ConvoyContracts-Action-ConvoyLost-A-Tail]
+				[Actions:GVK-Transport-Land-COALITION-Action-TransportCompromised]
+				[Actions:GVK-Universal-Action-EditableOnCompromised]
+				[Actions:GVK-Universal-Action-Disabled]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Transport-Land-COALITION-Trigger-TransportCompromised-A-Tail</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Trigger]
+				[Type:Compromised]
+				[UseTrigger:true]
+				[StartsReady:true]
+				[MaxActions:1]
+				[Actions:GVK-Universal-Action-DefeatedCompromised]
+				[Actions:GVK-ConvoyContracts-Action-ConvoyLost-A-Tail]
+				[Actions:GVK-Transport-Land-COALITION-Action-TransportCompromised]
+				[Actions:GVK-Universal-Action-EditableOnCompromised]
+				[Actions:GVK-Universal-Action-Disabled]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Transport-Land-COALITION-Trigger-TransportDespawn-A-Tail</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Trigger]
+				[Type:DespawnMES]
+				[DespawnTypeFromSpawner:Any]
+				[UseTrigger:true]
+				[StartsReady:true]
+				[MaxActions:1]
+				[ActionExecution:All]
+				[Actions:GVK-ConvoyContracts-Action-ConvoyLost-A-Tail]
+				[Actions:GVK-Transport-Land-COALITION-Action-TransportCompromised]
+			</Description>
+		</EntityComponent>
+	</EntityComponents>
+</Definitions>

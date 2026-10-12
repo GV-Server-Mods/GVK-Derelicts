@@ -33,7 +33,7 @@ namespace GVK_Derelicts.AerialRefueling
         private const string EscortRemoteControlCode = "COALITIONRouteE";
 
         // Behavior subtype ID of the Route E aerial escort
-        private const string EscortBehaviorSubtype = "GVK-CargoShip-Air-COALITION-Behavior-EscortE";
+        private const string EscortBehaviorSubtype = "GVK-Transport-Air-COALITION-Behavior-TransportE";
 
         // Beacon substring fallback for aerial escorts
         private const string EscortBeaconIdentifier = "Aerial Escort";

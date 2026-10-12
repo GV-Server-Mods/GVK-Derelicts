@@ -10,7 +10,7 @@
 				<SubtypeId>GVK-Convoy-Event-CoalitionA</SubtypeId>
 			</Id>
 			<!-- Ambient spawn disabled: this convoy now spawns only via escort contract missions
-			     (GVK-EscortMission-RouteA -> GVK-EscortMissions-Template-Spawn-A). Its condition,
+			     (GVK-ConvoyContract-RouteA -> GVK-ConvoyContracts-Template-Spawn-A). Its condition,
 			     action and spawner profiles are reused by those template events.
 			     Set UseEvent:true to restore the ambient spawn as well. -->
 			<Description>
@@ -50,8 +50,8 @@
 				[SpawnData:GVK-Convoy-EventSpawner-CoalitionA]
 				[ChangeBooleans:true]
 				[SetBooleansTrue:GVK_ConvoyContractActive]
-				[SetBooleansFalse:GVK_EscortArrived_A]
-				[SetBooleansFalse:GVK_EscortLost_A]
+				[SetBooleansFalse:GVK_TransportArrived_A]
+				[SetBooleansFalse:GVK_TransportLost_A]
 			</Description>
 		</EntityComponent>
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
@@ -65,7 +65,7 @@
 				[SpawningType:CustomSpawn]
 				[StartsReady:true]
 				[ProcessAsAdminSpawn:true]
-				[SpawnGroups:GVK-PlanetaryCargoShip-Land-COALITION-SpawnGroup-EscortA]
+				[SpawnGroups:GVK-PlanetaryCargoShip-Land-COALITION-SpawnGroup-TransportA]
 				[MinDistance:200]
 				[MaxDistance:500]
 				[MinAltitude:40]
@@ -87,9 +87,9 @@
 				[SpawnData:GVK-Convoy-EventSpawner-CoalitionA-Double]
 				[ChangeBooleans:true]
 				[SetBooleansTrue:GVK_ConvoyContractActive]
-				[SetBooleansFalse:GVK_EscortArrived_A_Double]
-				[SetBooleansFalse:GVK_EscortLost_A_Lead]
-				[SetBooleansFalse:GVK_EscortLost_A_Tail]
+				[SetBooleansFalse:GVK_TransportArrived_A_Double]
+				[SetBooleansFalse:GVK_TransportLost_A_Lead]
+				[SetBooleansFalse:GVK_TransportLost_A_Tail]
 			</Description>
 		</EntityComponent>
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
@@ -103,7 +103,7 @@
 				[SpawningType:CustomSpawn]
 				[StartsReady:true]
 				[ProcessAsAdminSpawn:true]
-				[SpawnGroups:GVK-PlanetaryCargoShip-Land-COALITION-SpawnGroup-ConvoyEscortA]
+				[SpawnGroups:GVK-PlanetaryCargoShip-Land-COALITION-SpawnGroup-ConvoyTransportA]
 				[MinDistance:200]
 				[MaxDistance:500]
 				[MinAltitude:40]
@@ -122,7 +122,7 @@
 				<SubtypeId>GVK-Convoy-Event-CoalitionB</SubtypeId>
 			</Id>
 			<!-- Ambient spawn disabled: this convoy now spawns only via escort contract missions
-			     (GVK-EscortMission-RouteB -> GVK-EscortMissions-Template-Spawn-B). Its condition,
+			     (GVK-ConvoyContract-RouteB -> GVK-ConvoyContracts-Template-Spawn-B). Its condition,
 			     action and spawner profiles are reused by those template events.
 			     Set UseEvent:true to restore the ambient spawn as well. -->
 			<Description>
@@ -162,8 +162,8 @@
 				[SpawnData:GVK-Convoy-EventSpawner-CoalitionB]
 				[ChangeBooleans:true]
 				[SetBooleansTrue:GVK_ConvoyContractActive]
-				[SetBooleansFalse:GVK_EscortArrived_B]
-				[SetBooleansFalse:GVK_EscortLost_B]
+				[SetBooleansFalse:GVK_TransportArrived_B]
+				[SetBooleansFalse:GVK_TransportLost_B]
 			</Description>
 		</EntityComponent>
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
@@ -177,7 +177,7 @@
 				[SpawningType:CustomSpawn]
 				[StartsReady:true]
 				[ProcessAsAdminSpawn:true]
-				[SpawnGroups:GVK-PlanetaryCargoShip-Land-COALITION-SpawnGroup-EscortB]
+				[SpawnGroups:GVK-PlanetaryCargoShip-Land-COALITION-SpawnGroup-TransportB]
 				[MinDistance:200]
 				[MaxDistance:500]
 				[MinAltitude:40]
@@ -196,7 +196,7 @@
 				<SubtypeId>GVK-Convoy-Event-CoalitionE</SubtypeId>
 			</Id>
 			<!-- Ambient spawn disabled: this convoy now spawns only via escort contract missions
-			     (GVK-EscortMission-RouteE -> GVK-EscortMissions-Template-Spawn-E). Its condition,
+			     (GVK-ConvoyContract-RouteE -> GVK-ConvoyContracts-Template-Spawn-E). Its condition,
 			     action and spawner profiles are reused by those template events.
 			     Set UseEvent:true to restore the ambient spawn as well. -->
 			<Description>
@@ -236,8 +236,8 @@
 				[SpawnData:GVK-Convoy-EventSpawner-CoalitionE]
 				[ChangeBooleans:true]
 				[SetBooleansTrue:GVK_ConvoyContractActive]
-				[SetBooleansFalse:GVK_EscortArrived_E]
-				[SetBooleansFalse:GVK_EscortLost_E]
+				[SetBooleansFalse:GVK_TransportArrived_E]
+				[SetBooleansFalse:GVK_TransportLost_E]
 			</Description>
 		</EntityComponent>
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
@@ -251,7 +251,7 @@
 				[SpawningType:CustomSpawn]
 				[StartsReady:true]
 				[ProcessAsAdminSpawn:true]
-				[SpawnGroups:GVK-PlanetaryCargoShip-Air-COALITION-SpawnGroup-EscortE]
+				[SpawnGroups:GVK-PlanetaryCargoShip-Air-COALITION-SpawnGroup-TransportE]
 				[MinDistance:200]
 				[MaxDistance:500]
 				[MinAltitude:40]

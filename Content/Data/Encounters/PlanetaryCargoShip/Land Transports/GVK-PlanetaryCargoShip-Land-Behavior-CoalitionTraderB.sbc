@@ -2,11 +2,11 @@
 <Definitions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
 	<EntityComponents>
 		<!-- Route B, Crossroads to Mastodon -->
-		<!-- Cargo Ship Behavior for land rover following roads -->
+		<!-- Transport Behavior for land rover following roads -->
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-CargoShip-Land-COALITION-Behavior-TraderB</SubtypeId>
+				<SubtypeId>GVK-Transport-Land-COALITION-Behavior-TraderB</SubtypeId>
 			</Id>
 			<Description>
 				[RivalAI Behavior]
@@ -20,39 +20,39 @@
 				[RetreatTimerTrigger:3600]
 				[UseNoTargetTimer:false]
 				[RetreatDespawnDistance:3000]
-				[AutopilotData:GVK-CargoShip-Land-COALITION-TraderPrimaryAutopilot]
-				[SecondaryAutopilotData:GVK-CargoShip-Land-COALITION-TraderSecondaryAutopilot]
-				[TertiaryAutopilotData:GVK-CargoShip-Land-COALITION-EscortTertiaryAutopilot]
+				[AutopilotData:GVK-Transport-Land-COALITION-TraderPrimaryAutopilot]
+				[SecondaryAutopilotData:GVK-Transport-Land-COALITION-TraderSecondaryAutopilot]
+				[TertiaryAutopilotData:GVK-Transport-Land-COALITION-TransportTertiaryAutopilot]
 				[TargetData:GVK-Universal-Target-COALITIONTradeStation]
 				[Triggers:GVK-Universal-Trigger-UneditableOnSpawn]
 				[Triggers:GVK-Universal-Trigger-IndestructibleOnSpawn]
 				[Triggers:GVK-Universal-Trigger-TargetAttacker]
 				[Triggers:GVK-Universal-Trigger-TurretTarget]
 				[Triggers:GVK-Universal-Trigger-WeaponsToMaxRange]
-				[Triggers:GVK-CargoShip-Land-COALITION-Trigger-TraderOnSpawnB]
-				[Triggers:GVK-CargoShip-Land-COALITION-Trigger-EscortAddWaypointsB]
-				[Triggers:GVK-CargoShip-Land-COALITION-Trigger-EscortHorizonAngleHigh]
-				[Triggers:GVK-CargoShip-Land-COALITION-Trigger-EscortArriveAtWaypoint]
-				[Triggers:GVK-CargoShip-Land-COALITION-Trigger-EscortLeaveWaypoint]
-				[Triggers:GVK-CargoShip-Land-COALITION-Trigger-TraderHeadToDespawn]
-				[Triggers:GVK-CargoShip-Land-COALITION-Trigger-EscortBeaconDisabled]
-				[Triggers:GVK-CargoShip-Land-COALITION-Trigger-EscortCompromised]
-				[Triggers:GVK-CargoShip-Land-COALITION-Trigger-EscortDespawn]
-				[Triggers:GVK-CargoShip-Land-COALITION-Trigger-EscortAttacked]
-				[Triggers:GVK-CargoShip-Land-COALITION-Trigger-TraderPlayerNear]
-				[Triggers:GVK-CargoShip-Land-COALITION-Trigger-TraderPlayerStillNear]
-				[Triggers:GVK-CargoShip-Land-COALITION-Trigger-TraderPlayerNotNear]
-				[Triggers:GVK-CargoShip-Land-COALITION-Trigger-TraderOutsideZone0]
-				[Triggers:GVK-CargoShip-Land-COALITION-TraderB-Trigger-EncounterInit]
+				[Triggers:GVK-Transport-Land-COALITION-Trigger-TraderOnSpawnB]
+				[Triggers:GVK-Transport-Land-COALITION-Trigger-TransportAddWaypointsB]
+				[Triggers:GVK-Transport-Land-COALITION-Trigger-TransportHorizonAngleHigh]
+				[Triggers:GVK-Transport-Land-COALITION-Trigger-TransportArriveAtWaypoint]
+				[Triggers:GVK-Transport-Land-COALITION-Trigger-TransportLeaveWaypoint]
+				[Triggers:GVK-Transport-Land-COALITION-Trigger-TraderHeadToDespawn]
+				[Triggers:GVK-Transport-Land-COALITION-Trigger-TransportBeaconDisabled]
+				[Triggers:GVK-Transport-Land-COALITION-Trigger-TransportCompromised]
+				[Triggers:GVK-Transport-Land-COALITION-Trigger-TransportDespawn]
+				[Triggers:GVK-Transport-Land-COALITION-Trigger-TransportAttacked]
+				[Triggers:GVK-Transport-Land-COALITION-Trigger-TraderPlayerNear]
+				[Triggers:GVK-Transport-Land-COALITION-Trigger-TraderPlayerStillNear]
+				[Triggers:GVK-Transport-Land-COALITION-Trigger-TraderPlayerNotNear]
+				[Triggers:GVK-Transport-Land-COALITION-Trigger-TraderOutsideZone0]
+				[Triggers:GVK-Transport-Land-COALITION-TraderB-Trigger-EncounterInit]
 				[TriggerGroups:GVK-Universal-TriggerGroup-DefeatedAndAttacked]
 				[RemoteControlCode:COALITIONRouteB]
 			</Description>
 		</EntityComponent>
-		<!-- Trigger when Cargo Ship Spawns -->
+		<!-- Trigger when Transport Spawns -->
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-CargoShip-Land-COALITION-Trigger-TraderOnSpawnB</SubtypeId>
+				<SubtypeId>GVK-Transport-Land-COALITION-Trigger-TraderOnSpawnB</SubtypeId>
 			</Id>
 			<Description>
 				[RivalAI Trigger]
@@ -62,13 +62,13 @@
 				[MaxActions:1]
 				[MinCooldownMs:1000]
 				[MaxCooldownMs:1000]
-				[Actions:GVK-CargoShip-Land-COALITION-Action-TraderOnSpawnB]
+				[Actions:GVK-Transport-Land-COALITION-Action-TraderOnSpawnB]
 			</Description>
 		</EntityComponent>
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-CargoShip-Land-COALITION-Action-TraderOnSpawnB</SubtypeId>
+				<SubtypeId>GVK-Transport-Land-COALITION-Action-TraderOnSpawnB</SubtypeId>
 			</Id>
 			<Description>
 				[RivalAI Action]
@@ -77,13 +77,13 @@
 				[AutopilotProfile:Primary]
 				[SetWeaponsToMaxRange:true]
 				[UseChatBroadcast:true]
-				[ChatData:GVK-CargoShip-Land-COALITION-Chat-TraderOnSpawnB]
+				[ChatData:GVK-Transport-Land-COALITION-Chat-TraderOnSpawnB]
 			</Description>
 		</EntityComponent>
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-CargoShip-Land-COALITION-Chat-TraderOnSpawnB</SubtypeId>
+				<SubtypeId>GVK-Transport-Land-COALITION-Chat-TraderOnSpawnB</SubtypeId>
 			</Id>
 			<Description>
 				[RivalAI Chat]
@@ -105,7 +105,7 @@
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-CargoShip-Land-COALITION-TraderB-Trigger-EncounterInit</SubtypeId>
+				<SubtypeId>GVK-Transport-Land-COALITION-TraderB-Trigger-EncounterInit</SubtypeId>
 			</Id>
 			<Description>
 				[RivalAI Trigger]
@@ -114,18 +114,18 @@
 				[StartsReady:true]
 				[MaxActions:-1]
 				[ActionExecution:All]
-				[Actions:GVK-CargoShip-Land-COALITION-TraderB-Action-EncounterInit]
+				[Actions:GVK-Transport-Land-COALITION-TraderB-Action-EncounterInit]
 			</Description>
 		</EntityComponent>
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-CargoShip-Land-COALITION-TraderB-Action-EncounterInit</SubtypeId>
+				<SubtypeId>GVK-Transport-Land-COALITION-TraderB-Action-EncounterInit</SubtypeId>
 			</Id>
 			<Description>
 				[RivalAI Action]
 				[SetCustomStrings:true]
-				[CustomStrings:EncounterType,CargoShip]
+				[CustomStrings:EncounterType,Traveller]
 				[CustomStrings:EncounterDisplayName,Trader]
 			</Description>
 		</EntityComponent>
