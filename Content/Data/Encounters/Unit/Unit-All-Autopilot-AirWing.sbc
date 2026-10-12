@@ -1,0 +1,35 @@
+<?xml version="1.0"?>
+<Definitions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+	<EntityComponents>
+		<!-- Air peer Wing autopilot (Tertiary on Strike Fighters and Interceptors): altitude band under the leaders' patrol altitude; see README note 41 -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Unit-All-Autopilot-AirWing</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Autopilot]
+			[WaypointAbandonTimeTrigger:30]
+			[WaypointWaitTimeTrigger:30]
+			[RotationMultiplierPitch:0.5]
+			[RotationMultiplierYaw:0.5]
+			[RotationMultiplierRoll:1]
+			[LimitRotationSpeed:false]
+			[MaxRotationMagnitude:1]
+			[FlyLevelWithGravity:false]
+			[LevelWithGravityWhenIdle:true]
+			[IdealPlanetAltitude:350]
+			[MinimumPlanetAltitude:150]
+			[AltitudeTolerance:20]
+			[WaypointTolerance:25]
+			[IdealMinSpeed:20]
+			[IdealMaxSpeed:110]
+			[MaxSpeedTolerance:5]
+			[AngleAllowedForForwardThrust:45]
+			[MaxVelocityAngleForSpeedControl:90]
+			[EscortUsesRelativeDampening:true]
+			[EscortSpeedMatchMaxDistance:200]
+			</Description>
+		</EntityComponent>
+	</EntityComponents>
+</Definitions>
