@@ -162,10 +162,10 @@ A Unit that travels with a lead grid and guards it: a Convoy's lead, an Elite Cr
 ## Route travel
 
 **Convoy**:
-A lead grid and the grids travelling with it along a Route, of any faction.
+A lead grid and the grids travelling with it along a Route, of any faction: a GAALSIEN Convoy with its Escorts, or a COALITION Double route with a lead Transport and a tail Transport.
 
 **Transport**:
-A Coalition grid in a Convoy that a Convoy Contract protects. A Convoy can carry more than one.
+A Coalition grid that a Convoy Contract protects. Most routes have one; the Double route has two, a lead and a tail, travelling as a Convoy.
 _Avoid_: escort, cargo ship
 
 **Trader**:
@@ -205,7 +205,7 @@ The top tier for Units, above Large: a Cruiser or Airship of any design, strengt
 The tier of each alliance structure (Base, Outpost, Turret), scaled to how important the structure is. A Base is worth the most.
 
 **Traveller tier**:
-The single tier that Convoy lead grids, Traders and Freighters share.
+The single tier that Convoy lead grids, Transports, Traders and Freighters share. Its Encounter Type is `CargoShip`, after the MES behavior they all run.
 
 ## Encounter lifecycle
 

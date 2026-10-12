@@ -11,9 +11,9 @@
 			[Modular Encounters SpawnGroup]
 			[IgnoreCleanupRules:true]
 			[ReplenishSystems:true]
-			[SpawnConditionsProfiles:GVK-SpawnCondition-Land-Transport-COALITIONA]
+			[SpawnConditionsProfiles:GVK-SpawnCondition-Land-CargoShip-COALITIONA]
 			[ManipulationProfiles:MES-Manipulation-RivalAi] 
-			[ManipulationProfiles:GVK-Manipulation-Trader]
+			[ManipulationProfiles:GVK-Manipulation-CargoShip-Trader]
 			[PauseAutopilotAtPlayerDistance:500]
 			</Description>
 			<IsPirate>true</IsPirate>
@@ -27,7 +27,7 @@
 					</Position>
 					<Speed>50</Speed>
 					<BeaconText>Trader (Sevast.)</BeaconText>
-					<Behaviour>GVK-Transport-Land-COALITION-Behavior-TraderA</Behaviour>
+					<Behaviour>GVK-CargoShip-Land-COALITION-Behavior-TraderA</Behaviour>
 				</Prefab>
 			</Prefabs>
 		</SpawnGroup>
@@ -41,9 +41,9 @@
 			[Modular Encounters SpawnGroup]
 			[IgnoreCleanupRules:true]
 			[ReplenishSystems:true]
-			[SpawnConditionsProfiles:GVK-SpawnCondition-Land-Transport-COALITIONB]
+			[SpawnConditionsProfiles:GVK-SpawnCondition-Land-CargoShip-COALITIONB]
 			[ManipulationProfiles:MES-Manipulation-RivalAi] 
-			[ManipulationProfiles:GVK-Manipulation-Trader]
+			[ManipulationProfiles:GVK-Manipulation-CargoShip-Trader]
 			[PauseAutopilotAtPlayerDistance:500]
 			</Description>
 			<IsPirate>true</IsPirate>
@@ -57,7 +57,7 @@
 					</Position>
 					<Speed>50</Speed>
 					<BeaconText>Trader (Masto.)</BeaconText>
-					<Behaviour>GVK-Transport-Land-COALITION-Behavior-TraderB</Behaviour>
+					<Behaviour>GVK-CargoShip-Land-COALITION-Behavior-TraderB</Behaviour>
 				</Prefab>
 			</Prefabs>
 		</SpawnGroup>
@@ -71,7 +71,7 @@
 			[Modular Encounters SpawnGroup]
 			[IgnoreCleanupRules:true]
 			[ReplenishSystems:true]
-			[SpawnConditionsProfiles:GVK-SpawnCondition-Land-Transport-COALITIONA]
+			[SpawnConditionsProfiles:GVK-SpawnCondition-Land-CargoShip-COALITIONA]
 			[ManipulationProfiles:MES-Manipulation-RivalAi] 
 			[ManipulationProfiles:GVK-PlanetaryCargoShip-Land-Manipulation]
 			</Description>
@@ -85,8 +85,8 @@
 						<Z>0.0</Z>
 					</Position>
 					<Speed>50</Speed>
-					<BeaconText>Escort (Sevast.)</BeaconText>
-					<Behaviour>GVK-Transport-Land-COALITION-Behavior-TransportA</Behaviour>
+					<BeaconText>Transport (Sevast.)</BeaconText>
+					<Behaviour>GVK-CargoShip-Land-COALITION-Behavior-TransportA</Behaviour>
 				</Prefab>
 			</Prefabs>
 		</SpawnGroup>
@@ -94,13 +94,13 @@
 		<SpawnGroup>
 			<Id>
 				<TypeId>SpawnGroupDefinition</TypeId>
-				<SubtypeId>GVK-PlanetaryCargoShip-Land-COALITION-SpawnGroup-ConvoyTransportA</SubtypeId>
+				<SubtypeId>GVK-PlanetaryCargoShip-Land-COALITION-SpawnGroup-DoubleTransportA</SubtypeId>
 			</Id>
 			<Description>
 			[Modular Encounters SpawnGroup]
 			[IgnoreCleanupRules:true]
 			[ReplenishSystems:true]
-			[SpawnConditionsProfiles:GVK-SpawnCondition-Land-Transport-COALITIONA]
+			[SpawnConditionsProfiles:GVK-SpawnCondition-Land-CargoShip-COALITIONA]
 			[ManipulationProfiles:MES-Manipulation-RivalAi] 
 			[ManipulationProfiles:GVK-PlanetaryCargoShip-Land-Manipulation]
 			</Description>
@@ -114,8 +114,8 @@
 						<Z>150</Z>
 					</Position>
 					<Speed>50</Speed>
-					<BeaconText>Escort 1 (Sevast.)</BeaconText>
-					<Behaviour>GVK-Transport-Land-COALITION-Behavior-ConvoyLeadTransportA</Behaviour>
+					<BeaconText>Transport 1 (Sevast.)</BeaconText>
+					<Behaviour>GVK-CargoShip-Land-COALITION-Behavior-DoubleTransportA-Lead</Behaviour>
 				</Prefab>
 				<Prefab SubtypeId="NCS [COAL] Cargo Cruiser">
 					<Position>
@@ -124,8 +124,8 @@
 						<Z>-150</Z>
 					</Position>
 					<Speed>50</Speed>
-					<BeaconText>Escort 2 (Sevast.)</BeaconText>
-					<Behaviour>GVK-Transport-Land-COALITION-Behavior-ConvoyTailTransportA</Behaviour>
+					<BeaconText>Transport 2 (Sevast.)</BeaconText>
+					<Behaviour>GVK-CargoShip-Land-COALITION-Behavior-DoubleTransportA-Tail</Behaviour>
 				</Prefab>
 			</Prefabs>
 		</SpawnGroup>
@@ -139,7 +139,7 @@
 			[Modular Encounters SpawnGroup]
 			[IgnoreCleanupRules:true]
 			[ReplenishSystems:true]
-			[SpawnConditionsProfiles:GVK-SpawnCondition-Land-Transport-COALITIONB]
+			[SpawnConditionsProfiles:GVK-SpawnCondition-Land-CargoShip-COALITIONB]
 			[ManipulationProfiles:MES-Manipulation-RivalAi] 
 			[ManipulationProfiles:GVK-PlanetaryCargoShip-Land-Manipulation]
 			</Description>
@@ -153,8 +153,8 @@
 						<Z>0.0</Z>
 					</Position>
 					<Speed>50</Speed>
-					<BeaconText>Escort (Masto.)</BeaconText>
-					<Behaviour>GVK-Transport-Land-COALITION-Behavior-TransportB</Behaviour>
+					<BeaconText>Transport (Masto.)</BeaconText>
+					<Behaviour>GVK-CargoShip-Land-COALITION-Behavior-TransportB</Behaviour>
 				</Prefab>
 			</Prefabs>
 		</SpawnGroup>

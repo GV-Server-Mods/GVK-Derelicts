@@ -104,7 +104,7 @@ Structures that spawn Defenses also set `[CustomCountersVariables:DefenseSpawn_L
 | `AllianceBase` | Base | 8 | - | 2 |
 | `AllianceOutpost` | Outpost | 6 | - | 2 |
 | `AllianceTurret` | Turret | - | - | 2 |
-| `Traveller` | Carrier, Convoy, Freighter, Trader, Transport | - | some | 10 |
+| `CargoShip` | Carrier, Convoy, Freighter, Trader, Transport | - | some | 10 |
 | `UnitElite` | Elite Cruiser, Elite Honorguard | - | - | 8 |
 | `UnitLarge` | aircraft, cruiser, Escort, Honorguard, Production Cruiser | - | some | 12 |
 | `UnitMedium` | aircraft, Bomber, craft, Escort, Salvager, vehicle | - | some | 11 |

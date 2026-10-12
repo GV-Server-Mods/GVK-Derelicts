@@ -31,7 +31,7 @@ AUDIO = "ArcHudGPSNotification2"
 # (Small 5 km, Medium 15 km, Large server-wide) in GVK-Universal-Behavior.sbc.
 TIER = {
     "UnitSmall": "Small", "WreckSmall": "Small", "AllianceTurret": "Small",
-    "UnitMedium": "Medium", "WreckMedium": "Medium", "Traveller": "Medium", "AllianceOutpost": "Medium",
+    "UnitMedium": "Medium", "WreckMedium": "Medium", "CargoShip": "Medium", "AllianceOutpost": "Medium",
     "UnitLarge": "Large", "UnitElite": "Large", "WreckLarge": "Large", "AllianceBase": "Large",
 }
 # Rare or unique encounters whose Encounter Type undersells them.
