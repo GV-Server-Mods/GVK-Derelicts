@@ -41,7 +41,7 @@
 				[Triggers:GVK-Freighter-SOBAN-Trigger-Init]
 				[Triggers:GVK-Freighter-SOBAN-Trigger-RequestNearWaypoint]
 				[Triggers:GVK-Freighter-SOBAN-Trigger-RequestFarWaypoint]
-				[Triggers:GVK-Freighter-SOBAN-Trigger-RequestHQWaypoint]
+				[Triggers:GVK-Freighter-SOBAN-Trigger-AddHQWaypoint]
 				[Triggers:GVK-Freighter-SOBAN-Trigger-ReceiveWaypoint]
 				[Triggers:GVK-Freighter-SOBAN-Trigger-ArriveAtWaypoint]
 				[Triggers:GVK-Freighter-SOBAN-Trigger-LeaveWaypoint]
@@ -274,7 +274,7 @@
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Freighter-SOBAN-Trigger-RequestHQWaypoint</SubtypeId>
+				<SubtypeId>GVK-Freighter-SOBAN-Trigger-AddHQWaypoint</SubtypeId>
 			</Id>
 			<Description>
 				[RivalAI Trigger]
@@ -284,36 +284,19 @@
 				[MaxActions:1]
 				[MinCooldownMs:15000]
 				[MaxCooldownMs:15000]
-				[Actions:GVK-Freighter-SOBAN-Action-RequestHQWaypoint]
+				[Actions:GVK-Freighter-SOBAN-Action-AddHQWaypoint]
 			</Description>
 		</EntityComponent>
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Freighter-SOBAN-Action-RequestHQWaypoint</SubtypeId>
+				<SubtypeId>GVK-Freighter-SOBAN-Action-AddHQWaypoint</SubtypeId>
 			</Id>
 			<Description>
 				[RivalAI Action]
-				[//DebugMessage:RequestHQWaypoint]
-				[BroadcastCommandProfiles:true]
-				[CommandProfileIds:GVK-Freighter-SOBAN-Command-RequestHQWaypoint]
+				[//DebugMessage:AddHQWaypoint]
 				[AddWaypoints:true]
 				[WaypointsToAdd:GVK-Alliance-Waypoint-HQ-SOBAN]
-			</Description>
-		</EntityComponent>
-		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
-			<Id>
-				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Freighter-SOBAN-Command-RequestHQWaypoint</SubtypeId>
-			</Id>
-			<Description>
-				[RivalAI Command]
-				[CommandCode:FreighterHQWaypointRequest]
-				[SingleRecipient:true]
-				[MatchSenderReceiverOwners:true]
-				[IgnoreAntennaRequirement:true]
-				[IgnoreReceiverAntennaRequirement:true]
-				[Radius:75000]
 			</Description>
 		</EntityComponent>
 		<!-- Trigger sequence for Freighter to receive waypoints Supply Depot and HQ -->

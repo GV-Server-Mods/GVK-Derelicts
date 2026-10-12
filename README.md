@@ -22,9 +22,11 @@ Run `/MES.Debug.ChangeBool.<Name>.true/false` to change bools. `LargeWrecksEnabl
 | `GVK_TransportLost_A_Tail` | bool | GVK-ConvoyContracts-RouteA | GVK-Convoy-Events, GVK-ConvoyContracts-Board +1 |
 | `GVK_TransportLost_B` | bool | GVK-ConvoyContracts-RouteB | GVK-Convoy-Events, GVK-ConvoyContracts-Board +1 |
 | `GVK_TransportLost_E` | bool | GVK-ConvoyContracts-RouteE | GVK-Convoy-Events, GVK-ConvoyContracts-Board +1 |
+| `KHAANEPH_DepotDemand` | bool | GVK-Alliance-Events-Freighter | GVK-Alliance-Events-Freighter, GVK-Alliance-TriggerGroup-SupplyDepotZone |
 | `KOTHsEnabled` | bool (set by admin command only) | GVK-Static-KOTH-Site-SpawnGroup | - |
 | `LargeWrecksEnabled` | bool (set by admin command only) | GVK-Convoy-GaalsienCarrierGroup-Lead-SpawnCondition, GVK-PlanetaryInstallation-All-SpawnCondition | - |
 | `MediumWrecksEnabled` | bool (set by admin command only) | GVK-Alliance-PresetBases-SpawnConditions, GVK-Convoy-GaalsienSmallConvoy-Lead-SpawnCondition +2 | - |
+| `SOBAN_DepotDemand` | bool | GVK-Alliance-Events-Freighter | GVK-Alliance-Events-Freighter, GVK-Alliance-TriggerGroup-SupplyDepotZone |
 | `SpawnStaticTown` | bool (set by admin command only) | GVK-Static-Generic-SpawnGroup | - |
 | `{Faction}_Influence` | counter | - | GVK-Alliance-TriggerTags-Influence |
 | `KHAANEPH_Influence` | counter | GVK-Alliance-Events-Freighter, GVK-Alliance-Events-ZoneSize | GVK-Alliance-Events-ZoneSize, GVK-Alliance-TriggerTags-Influence |
@@ -192,6 +194,7 @@ Reputation can be changed using a plugin (I think it is Crunch Utils, or might b
 42. KOTH 5 km zones: the zone whitelist (`GVK-Universal-Zone.sbc`) only checks where the player stands, but MES places a planetary installation or Unit 3-15 km from the player, so a spawn from outside can land inside. `GVK-Universal-TriggerGroup-DespawnInKOTH` despawns anything that lands in a `KOTH Site 0N 5000` zone, like `DespawnInZ0` does for Zone 0. All installation, alliance and COALITION/SOBAN/KHAANEPH Unit behaviors include it. GAALSIEN Units do not: the whitelisted ones are the KOTH garrison. MES spawn conditions can only require a zone, never exclude one, so a trigger is the only way. Such a despawn counts as Lost (chat, points, Defense refund), as in Zone 0.
 43. Server build: the escort, leader and Defense refund commands rely on the GV-Server-Mods MES fork (`MatchReceiverParent`, `MatchReceiverEscort`, `MatchReceiverLeader`; MeridiusIX/Modular-Encounters-Systems#384). On released MES the tags are ignored, so a command reaches every same-owner grid in range and `GVK_LeaderDead` would strip unrelated escorts. Check the dedicated server loads the fork before deploying.
 44. Admin notes: MES keeps a static encounter by its spawn group name, so renaming a static spawn group (or changing its `RemoteControlCode`) spawns a second copy beside the one already in a saved world; clean the old one up first. Store prefabs in `Content/Data/StorePrefabs/` must never ship a `.sbcB5` older than its `.sbc`: Keen loads the `.sbcB5` instead of the edited XML (`audit_prefabs.ps1` lists them; `-CleanStaleB5` deletes them).
+45. Freighter dispatch needs demand from a Supply Depot. An owned depot raises the sandbox boolean `<FACTION>_DepotDemand` when its restock is due (on capture, then every 3 hours), and the `GVK-Alliance-Event-SpawnFreighter-<FACTION>` event spawns a Freighter only while that boolean is true and the faction's Influence counter exists, clearing it as it spawns. A restock command from a Freighter, or the depot leaving every zone, clears the boolean; a restock also restarts that depot's 3-hour clock. There is one boolean per faction, not a count, so losing one depot can cancel another depot's pending request until its next 3-hour tick; a stale request can never buy more than one Freighter. MES offers no inventory check, so "needs restocking" is the timer, not the cargo contents.
 
 
 ## Helpful MES examples:

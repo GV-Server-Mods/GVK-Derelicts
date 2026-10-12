@@ -16,7 +16,12 @@
 				[Triggers:GVK-Alliance-SupplyDepot-ManualTrigger-InsideZone-SOBAN]
 				[Triggers:GVK-Alliance-SupplyDepot-ManualTrigger-OwnerChangeChat-SOBAN]
 				[Triggers:GVK-Alliance-SupplyDepot-Trigger-ResetOwnership]
-				[Triggers:GVK-Alliance-SupplyDepot-Trigger-RequestFreighter]
+				[Triggers:GVK-Alliance-SupplyDepot-Trigger-RequestFreighter-KHAANEPH]
+				[Triggers:GVK-Alliance-SupplyDepot-Trigger-RequestFreighter-SOBAN]
+				[Triggers:GVK-Alliance-SupplyDepot-Trigger-RestockClear-KHAANEPH]
+				[Triggers:GVK-Alliance-SupplyDepot-Trigger-RestockClear-SOBAN]
+				[Triggers:GVK-Alliance-SupplyDepot-ManualTrigger-DemandLost-KHAANEPH]
+				[Triggers:GVK-Alliance-SupplyDepot-ManualTrigger-DemandLost-SOBAN]
 				[Triggers:GVK-Alliance-SupplyDepot-Trigger-SpawnLoot]
 				[Triggers:GVK-Alliance-SupplyDepot-Trigger-ReceiveWaypointRequest]
 			</Description>
@@ -77,13 +82,16 @@
 			<Description>
 				[MES AI Action]
 				[//DebugMessage:InsideZone-KHAANEPH]
+				[SetBooleansTrue:OwnerKHAANEPH]
+				[SetBooleansFalse:OwnerSOBAN]
 				[ResetCooldownTimeOfTriggers:true]
 				[ResetTriggerCooldownNames:GVK-Alliance-SupplyDepot-Trigger-ResetOwnership]
 				[EnableTriggers:true]
 				[EnableTriggerNames:GVK-Alliance-SupplyDepot-Trigger-ResetOwnership]
-				[EnableTriggerNames:GVK-Alliance-SupplyDepot-Trigger-RequestFreighter]
+				[EnableTriggerNames:GVK-Alliance-SupplyDepot-Trigger-RequestFreighter-KHAANEPH]
 				[DisableTriggers:true]
 				[DisableTriggerNames:GVK-Alliance-SupplyDepot-ManualTrigger-InsideZone-SOBAN]
+				[DisableTriggerNames:GVK-Alliance-SupplyDepot-Trigger-RequestFreighter-SOBAN]
 			</Description>
 		</EntityComponent>
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
@@ -210,9 +218,10 @@
 				[ResetTriggerCooldownNames:GVK-Alliance-SupplyDepot-Trigger-ResetOwnership]
 				[EnableTriggers:true]
 				[EnableTriggerNames:GVK-Alliance-SupplyDepot-Trigger-ResetOwnership]
-				[EnableTriggerNames:GVK-Alliance-SupplyDepot-Trigger-RequestFreighter]
+				[EnableTriggerNames:GVK-Alliance-SupplyDepot-Trigger-RequestFreighter-SOBAN]
 				[DisableTriggers:true]
 				[DisableTriggerNames:GVK-Alliance-SupplyDepot-ManualTrigger-InsideZone-KHAANEPH]
+				[DisableTriggerNames:GVK-Alliance-SupplyDepot-Trigger-RequestFreighter-KHAANEPH]
 			</Description>
 		</EntityComponent>
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
@@ -309,7 +318,11 @@
 				[EnableTriggerNames:GVK-Alliance-SupplyDepot-ManualTrigger-OwnerChangeChat-SOBAN]
 				[DisableTriggers:true]
 				[DisableTriggerNames:GVK-Alliance-SupplyDepot-Trigger-ResetOwnership]
-				[DisableTriggerNames:GVK-Alliance-SupplyDepot-Trigger-RequestFreighter]
+				[DisableTriggerNames:GVK-Alliance-SupplyDepot-Trigger-RequestFreighter-KHAANEPH]
+				[DisableTriggerNames:GVK-Alliance-SupplyDepot-Trigger-RequestFreighter-SOBAN]
+				[ManuallyActivateTrigger:true]
+				[ManuallyActivatedTriggerNames:GVK-Alliance-SupplyDepot-ManualTrigger-DemandLost-KHAANEPH]
+				[ManuallyActivatedTriggerNames:GVK-Alliance-SupplyDepot-ManualTrigger-DemandLost-SOBAN]
 				[ChangeBlockOwnership:true]
 				[OwnershipBlockNames:NPC Block]
 				[OwnershipBlockFactions:UNKN]
@@ -335,11 +348,26 @@
 				[ChatData:GVK-Alliance-SupplyDepot-Chat-OwnerLostChat]
 			</Description>
 		</EntityComponent>
-		<!-- Trigger to request a cargo ship restock, every 3 hours 10,800,000 ms -->
+		<!-- Freighter demand. An owned Supply Depot raises <FACTION>_DepotDemand (a sandbox boolean) when its restock is due: on capture, then every 3 hours (10,800,000 ms).
+		     The Freighter dispatch event (GVK-Alliance-Events-Freighter.sbc) spawns a Freighter only while that boolean is true, and clears it when it does.
+		     A restock, or losing the depot, clears it, and a restock also restarts the depot's 3 hour clock. Owner<FACTION> are grid booleans: this depot is owned by that faction. -->
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Alliance-SupplyDepot-Trigger-RequestFreighter</SubtypeId>
+				<SubtypeId>GVK-Alliance-SupplyDepot-Condition-OwnerKHAANEPH</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Condition]
+				[UseConditions:true]
+				[MatchAnyCondition:false]
+				[CheckTrueBooleans:true]
+				[TrueBooleans:OwnerKHAANEPH]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-SupplyDepot-Trigger-RequestFreighter-KHAANEPH</SubtypeId>
 			</Id>
 			<Description>
 				[RivalAI Trigger]
@@ -350,34 +378,179 @@
 				[StartsReady:true]
 				[MaxActions:-1]
 				[ActionExecution:All]
-				[Actions:GVK-Alliance-SupplyDepot-Action-RequestFreighter]
+				[Actions:GVK-Alliance-SupplyDepot-Action-RequestFreighter-KHAANEPH]
 			</Description>
 		</EntityComponent>
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Alliance-SupplyDepot-Action-RequestFreighter</SubtypeId>
+				<SubtypeId>GVK-Alliance-SupplyDepot-Action-RequestFreighter-KHAANEPH</SubtypeId>
 			</Id>
 			<Description>
 				[RivalAI Action]
-				[//DebugMessage:RequestFreighter]
-				[BroadcastCommandProfiles:true]
-				[CommandProfileIds:GVK-Alliance-SupplyDepot-Command-RequestFreighter]
+				[//DebugMessage:RequestFreighter-KHAANEPH]
+				[SetSandboxBooleansTrue:KHAANEPH_DepotDemand]
 			</Description>
 		</EntityComponent>
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Alliance-SupplyDepot-Command-RequestFreighter</SubtypeId>
+				<SubtypeId>GVK-Alliance-SupplyDepot-Trigger-RestockClear-KHAANEPH</SubtypeId>
 			</Id>
 			<Description>
-				[RivalAI Command]
-				[CommandCode:RequestFreighter]
-				[SingleRecipient:true]
-				[MatchSenderReceiverOwners:true]
-				[IgnoreAntennaRequirement:true]
-				[IgnoreReceiverAntennaRequirement:true]
-				[Radius:75000]
+				[RivalAI Trigger]
+				[Type:CommandReceived]
+				[MinCooldownMs:30000]
+				[MaxCooldownMs:30001]
+				[UseTrigger:true]
+				[StartsReady:true]
+				[CommandReceiveCode:Freighter_RestockSupplyDepot]
+				[MaxActions:-1]
+				[ActionExecution:All]
+				[Conditions:GVK-Alliance-SupplyDepot-Condition-OwnerKHAANEPH]
+				[Actions:GVK-Alliance-SupplyDepot-Action-RestockClear-KHAANEPH]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-SupplyDepot-Action-RestockClear-KHAANEPH</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Action]
+				[//DebugMessage:RestockClear-KHAANEPH]
+				[SetSandboxBooleansFalse:KHAANEPH_DepotDemand]
+				[ResetCooldownTimeOfTriggers:true]
+				[ResetTriggerCooldownNames:GVK-Alliance-SupplyDepot-Trigger-RequestFreighter-KHAANEPH]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-SupplyDepot-ManualTrigger-DemandLost-KHAANEPH</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Trigger]
+				[Type:Manual]
+				[UseTrigger:true]
+				[StartsReady:true]
+				[MaxActions:-1]
+				[ActionExecution:All]
+				[Conditions:GVK-Alliance-SupplyDepot-Condition-OwnerKHAANEPH]
+				[Actions:GVK-Alliance-SupplyDepot-Action-DemandLost-KHAANEPH]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-SupplyDepot-Action-DemandLost-KHAANEPH</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Action]
+				[//DebugMessage:DemandLost-KHAANEPH]
+				[SetSandboxBooleansFalse:KHAANEPH_DepotDemand]
+				[SetBooleansFalse:OwnerKHAANEPH]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-SupplyDepot-Condition-OwnerSOBAN</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Condition]
+				[UseConditions:true]
+				[MatchAnyCondition:false]
+				[CheckTrueBooleans:true]
+				[TrueBooleans:OwnerSOBAN]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-SupplyDepot-Trigger-RequestFreighter-SOBAN</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Trigger]
+				[Type:Timer]
+				[MinCooldownMs:10800000]
+				[MaxCooldownMs:10800001]
+				[UseTrigger:false]
+				[StartsReady:true]
+				[MaxActions:-1]
+				[ActionExecution:All]
+				[Actions:GVK-Alliance-SupplyDepot-Action-RequestFreighter-SOBAN]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-SupplyDepot-Action-RequestFreighter-SOBAN</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Action]
+				[//DebugMessage:RequestFreighter-SOBAN]
+				[SetSandboxBooleansTrue:SOBAN_DepotDemand]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-SupplyDepot-Trigger-RestockClear-SOBAN</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Trigger]
+				[Type:CommandReceived]
+				[MinCooldownMs:30000]
+				[MaxCooldownMs:30001]
+				[UseTrigger:true]
+				[StartsReady:true]
+				[CommandReceiveCode:Freighter_RestockSupplyDepot]
+				[MaxActions:-1]
+				[ActionExecution:All]
+				[Conditions:GVK-Alliance-SupplyDepot-Condition-OwnerSOBAN]
+				[Actions:GVK-Alliance-SupplyDepot-Action-RestockClear-SOBAN]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-SupplyDepot-Action-RestockClear-SOBAN</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Action]
+				[//DebugMessage:RestockClear-SOBAN]
+				[SetSandboxBooleansFalse:SOBAN_DepotDemand]
+				[ResetCooldownTimeOfTriggers:true]
+				[ResetTriggerCooldownNames:GVK-Alliance-SupplyDepot-Trigger-RequestFreighter-SOBAN]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-SupplyDepot-ManualTrigger-DemandLost-SOBAN</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Trigger]
+				[Type:Manual]
+				[UseTrigger:true]
+				[StartsReady:true]
+				[MaxActions:-1]
+				[ActionExecution:All]
+				[Conditions:GVK-Alliance-SupplyDepot-Condition-OwnerSOBAN]
+				[Actions:GVK-Alliance-SupplyDepot-Action-DemandLost-SOBAN]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-SupplyDepot-Action-DemandLost-SOBAN</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Action]
+				[//DebugMessage:DemandLost-SOBAN]
+				[SetSandboxBooleansFalse:SOBAN_DepotDemand]
+				[SetBooleansFalse:OwnerSOBAN]
 			</Description>
 		</EntityComponent>
 		<!-- Trigger to send waypoint when requested via command from cargo ship -->
