@@ -1,0 +1,60 @@
+<?xml version="1.0"?>
+<Definitions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+	<EntityComponents>
+		<!-- LargeFlyerFighterPlane Behavior: Chad Shuttle and GR-650 (large-grid flyers with fixed forward guns) -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Drone-All-Behavior-LargeFlyerFighterPlane-GAALSIEN</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Behavior]
+			[BehaviorName:Patrol]
+			[DialogueBanks:GVK-Units-GAALSIEN-Large.xml]
+			[WeaponSystem:GVK-Universal-Weapons-Static10]
+			[UsePlayerDistanceTimer:true]
+			[PlayerDistanceTimerTrigger:240]
+			[PlayerDistanceTrigger:4000]
+			[UseNoTargetTimer:false]
+			[UseRetreatTimer:false]
+			[TargetData:GVK-Universal-Target-EnemyGrids-LargeFlyer-GAALSIEN]
+			[AutopilotData:GVK-Drone-All-Autopilot-LargeFlyerFighterPlane-Patrol]
+			[SecondaryAutopilotData:GVK-Drone-All-Autopilot-LargeFlyerFighterPlane-Strike]
+			[Triggers:GVK-Drone-All-Trigger-Init-LargeFlyerFighterPlane-GAALSIEN]
+			[TriggerGroups:GVK-Drone-All-TriggerGroup-DroneDefaults-LargeDrone-GAALSIEN]
+			[TriggerGroups:GVK-Drone-All-TriggerGroup-PatrolFighterPlaneLarge]
+			[TriggerGroups:GVK-Universal-TriggerGroup-ReceiveTargets]
+			[TriggerGroups:GVK-Universal-TriggerGroup-DefeatedAndAttacked]
+			BountyOnKill=1500000;
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Drone-All-Trigger-Init-LargeFlyerFighterPlane-GAALSIEN</SubtypeId>
+			</Id>
+			<Description>
+			[MES AI Trigger]
+			[UseTrigger:true]
+			[Type:Session]
+			[StartsReady:true]
+			[MaxActions:-1]
+			[ActionExecution:All]
+			[Actions:GVK-Drone-All-Action-Init-LargeFlyerFighterPlane-GAALSIEN]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Drone-All-Action-Init-LargeFlyerFighterPlane-GAALSIEN</SubtypeId>
+			</Id>
+			<Description>
+			[MES AI Action]
+			[SetCustomStrings:true]
+			[CustomStrings:EncounterType,DroneLarge]
+			[CustomStrings:EncounterDisplayName,aircraft]
+			[SetBooleansTrue:GVK_MobilityType_Aircraft]
+			</Description>
+		</EntityComponent>
+	</EntityComponents>
+</Definitions>

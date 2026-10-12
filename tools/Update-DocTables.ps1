@@ -106,8 +106,8 @@ foreach ($name in $types.Keys | Sort-Object) {
 # --- Prefab tags ---------------------------------------------------------------------
 $meaning = [ordered]@{
     NAS = 'Alliance structure (Base, Outpost, Turret)'; NCO = 'Convoy lead'; NCS = 'Transport, Trader or Freighter'
-    NDR = 'Unit'; NKO = 'KOTH Site or KOTH Camp'; NLO = 'Cache'; NMI = 'Mission Giver'
-    NST = 'Static'; NTS = 'Trade Station'; NWL = 'Large Wreck'; NWM = 'Medium Wreck'; NWS = 'Small Wreck'
+    NKO = 'KOTH Site or KOTH Camp'; NLO = 'Cache'; NMI = 'Mission Giver'
+    NST = 'Static'; NTS = 'Trade Station'; NUN = 'Unit'; NWL = 'Large Wreck'; NWM = 'Medium Wreck'; NWS = 'Small Wreck'
 }
 $prefabs = Get-ChildItem (Join-Path $data 'Prefabs') -Filter *.sbc | ForEach-Object { $_.BaseName }
 $prefabLines = @('| Tag | Meaning | Prefabs | Example |', '| --- | --- | --- | --- |')

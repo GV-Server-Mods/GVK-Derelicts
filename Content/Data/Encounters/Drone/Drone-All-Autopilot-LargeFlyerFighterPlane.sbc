@@ -1,0 +1,75 @@
+<?xml version="1.0"?>
+<Definitions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+	<EntityComponents>
+		<!-- LargeFlyerFighterPlane Autopilots: large-grid aircraft with fixed forward guns (Chad Shuttle, GR-650).
+		     Guns reach about 2000 m, so the Strike offset sits 3000-3400 m out: the run starts lined up before the target is inside gun range. -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Drone-All-Autopilot-LargeFlyerFighterPlane-Patrol</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Autopilot]
+			[UseVelocityCollisionEvasion:true]
+			[CollisionEvasionWaypointDistance:50]
+			[CollisionFallEvasionWaypointDistance:35]
+			[RotationMultiplier:0.7]
+			[DisableInertiaDampeners:false]
+			[FlyLevelWithGravity:false]
+			[LevelWithGravityWhenIdle:true]
+			[MaxVerticalSpeed:20]
+			[IdealPlanetAltitude:300]
+			[MinimumPlanetAltitude:250]
+			[AltitudeTolerance:50]
+			[CollisionEvasionWaypointCalculatedAwayFromEntity:true]
+			[WaypointTolerance:100]
+			[WaypointWaitTimeTrigger:0]
+			[WaypointAbandonTimeTrigger:30]
+			[IdealMinSpeed:50]
+			[IdealMaxSpeed:50]
+			[SlowDownOnWaypointApproach:false]
+			[OffsetPlanetMinDistFromTarget:600]
+			[OffsetPlanetMaxDistFromTarget:601]
+			[OffsetPlanetMinTargetAltitude:300]
+			[OffsetPlanetMaxTargetAltitude:500]
+			[AngleAllowedForForwardThrust:90]
+			[MaxVelocityAngleForSpeedControl:1000]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Drone-All-Autopilot-LargeFlyerFighterPlane-Strike</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Autopilot]
+			[AttackRunDistancePlanet:150]
+			[AttackRunBreakawayDistance:700]
+			[AttackRunOverrideWithDistanceAndTimer:true]
+			[AttackRunOverrideTimerTrigger:8]
+			[AttackRunOverrideDistance:500]
+			[OffsetRecalculationTime:15]
+			[AttackRunUseSafePlanetPathing:false]
+			[AttackRunUseCollisionEvasionPlanet:false]
+			[WaypointWaitTimeTrigger:0]
+			[WaypointAbandonTimeTrigger:30]
+			[RotationMultiplier:0.7]
+			[DisableInertiaDampeners:false]
+			[FlyLevelWithGravity:false]
+			[LevelWithGravityWhenIdle:false]
+			[IdealPlanetAltitude:500]
+			[MinimumPlanetAltitude:250]
+			[AltitudeTolerance:50]
+			[WaypointTolerance:200]
+			[IdealMinSpeed:60]
+			[IdealMaxSpeed:100]
+			[OffsetPlanetMinDistFromTarget:3000]
+			[OffsetPlanetMaxDistFromTarget:3400]
+			[OffsetPlanetMinTargetAltitude:-100]
+			[OffsetPlanetMaxTargetAltitude:100]
+			[AngleAllowedForForwardThrust:180]
+			[MaxVelocityAngleForSpeedControl:1000]
+			</Description>
+		</EntityComponent>
+	</EntityComponents>
+</Definitions>

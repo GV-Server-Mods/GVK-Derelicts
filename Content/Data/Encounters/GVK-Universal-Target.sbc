@@ -397,5 +397,99 @@
 				[PrioritizeSpecifiedFactions:false]
 			</Description>
 		</EntityComponent>
+		<!-- Strike Fighters orbit 2.4-2.8 km out and turn around 1 km past the target, so they need a wider acquisition and keep range than the 2 km profiles. -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Universal-Target-StrikeFighterGrids</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Target]
+				[UseCustomTargeting:true]
+				[Target:Grid]
+				[UseTargetRefresh:false]
+				[TimeUntilNextRefresh:60]
+				[TimeUntilNextEvaluation:15]
+				[MaxDistance:4000]
+				[MaxExistingTargetDistance:6000]
+				[GetTargetBy:ClosestDistance]
+				[MatchAllFilters:Relation]
+				[MatchAllFilters:OutsideOfSafezone]
+				[MatchAllFilters:TargetValue]
+				[MatchAllFilters:Powered]
+				[MatchNoneFilters:Name]
+				[MatchNoneFilters:Faction]
+				[Relations:Enemy]
+				[Names:NPC Static]
+				[Names:NPC Trade Station]
+				[Names:NPC KOTH]
+				[Names:Signpost]
+				[Names:Base Site Tower]
+				[UsePartialNameMatching:true]
+				[FactionTargets:COALITION]
+				[FactionTargets:UNKN]
+				[FactionTargets:KOTH]
+				[MinTargetValue:10]
+				[MaxTargetValue:999999]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Universal-Target-StrikeFighterBeacon</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Target]
+				[UseCustomTargeting:true]
+				[Target:Block]
+				[BlockTargets:RivalAi]
+				[UseTargetRefresh:false]
+				[TimeUntilNextRefresh:60]
+				[TimeUntilNextEvaluation:15]
+				[MaxDistance:4000]
+				[MaxExistingTargetDistance:6000]
+				[GetTargetBy:ClosestDistance]
+				[MatchAllFilters:Faction]
+				[MatchAllFilters:Powered]
+				[FactionTargets:GAALSIEN]
+				[GetTargetBy:ClosestDistance]
+				[PrioritizeSpecifiedFactions:false]
+			</Description>
+		</EntityComponent>
+		<!-- Large flyers (Chad Shuttle, GR-650) line up 3000-3400 m out and turn around 1 km past the target. -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Universal-Target-EnemyGrids-LargeFlyer-GAALSIEN</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Target]
+				[UseCustomTargeting:true]
+				[Target:Grid]
+				[UseTargetRefresh:false]
+				[TimeUntilNextRefresh:60]
+				[TimeUntilNextEvaluation:15]
+				[MaxDistance:5000]
+				[MaxExistingTargetDistance:7000]
+				[GetTargetBy:ClosestDistance]
+				[MatchAllFilters:Relation]
+				[MatchAllFilters:OutsideOfSafezone]
+				[MatchAllFilters:TargetValue]
+				[MatchAllFilters:Powered]
+				[MatchNoneFilters:Name]
+				[MatchNoneFilters:Faction]
+				[Relations:Enemy]
+				[Names:NPC Static]
+				[Names:NPC Trade Station]
+				[Names:NPC KOTH]
+				[Names:Signpost]
+				[Names:Base Site Tower]
+				[UsePartialNameMatching:true]
+				[FactionTargets:UNKN]
+				[FactionTargets:KOTH]
+				[MinTargetValue:10]
+				[MaxTargetValue:999999]
+			</Description>
+		</EntityComponent>
 	</EntityComponents>
 </Definitions>

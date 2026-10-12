@@ -74,8 +74,8 @@ A crashed Coalition Salvager that a Recovery Mission asks players to recover. It
 _Avoid_: Salvager (on its own)
 
 **Unit**:
-An AI-piloted NPC vehicle of any faction, on the ground or in the air.
-_Avoid_: drone, bot, NPC ship
+An AI-piloted NPC vehicle of any faction, on the ground or in the air (NUN, "NPC UNit").
+_Avoid_: drone, bot, NPC ship, NDR
 
 **Static**:
 A permanent NPC grid at fixed coordinates, such as a signpost, tower, bridge or race course (NST).
@@ -124,7 +124,7 @@ _Avoid_: turret station
 A class is a battlefield role shared across factions; each faction fields its own designs for it. A Unit's threat size comes from its Encounter Type, not its class.
 
 **Scout**:
-A small, fast ground raider, e.g. the LAV or the Sandskimmer.
+A small-grid, fast ground or hover raider, e.g. the LAV, the Sandskimmer or the Dragoon, Pollux and Stryker hovers. Scouts pair up with each other as peer Escorts.
 _Avoid_: LAV, Sandskimmer (as class names)
 
 **Fighter**:
@@ -157,7 +157,7 @@ A Unit or Turret that a parent grid spawns to protect itself when players come n
 _Avoid_: reinforcement
 
 **Escort**:
-A Unit whose only job is to travel with a Convoy's lead grid and guard it.
+A Unit that travels with a lead grid and guards it: a Convoy's lead, an Elite Cruiser, or, for a Scout or Fighter, one peer of its own class (the Wing) pairing with another. An Escort never retreats; it returns to Patrol when its leader is lost.
 
 ## Route travel
 
