@@ -13,7 +13,7 @@
 			[Triggers:GVK-Unit-All-PatrolStrike-ManualTrigger-SwitchToStrike]
 			[Triggers:GVK-Unit-All-PatrolStrike-ManualTrigger-SwitchToPatrol]
 			[Triggers:GVK-Unit-All-PatrolStrike-Trigger-TargetNear]
-			[Triggers:GVK-Unit-All-PatrolStrike-Trigger-LostTarget]
+			[Triggers:GVK-Unit-All-PatrolStrike-Trigger-NoTarget]
 			[Triggers:GVK-Unit-All-PatrolStrike-Trigger-TargetFar]
 			</Description>
 		</EntityComponent>
@@ -106,20 +106,20 @@
 			[ManuallyActivatedTriggerNames:GVK-Unit-All-PatrolStrike-ManualTrigger-SwitchToStrike]
 			</Description>
 		</EntityComponent>
-		<!-- If no/lost target, switch to patrol and return to origin -->
+		<!-- No target for 5 s: switch to patrol and return to origin. A Timer, not LostTarget: CombatDefaults' chatter clears the one-shot LostTarget flag first, and TargetFar never fires without a target (GVK-Settings#706) -->
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Unit-All-PatrolStrike-Trigger-LostTarget</SubtypeId>
+				<SubtypeId>GVK-Unit-All-PatrolStrike-Trigger-NoTarget</SubtypeId>
 			</Id>
 			<Description>
 			[RivalAI Trigger]
 			[UseTrigger:true]
-			[Type:LostTarget]
+			[Type:Timer]
 			[StartsReady:true]
 			[MinCooldownMs:5000]
 			[MaxCooldownMs:5001]
-			[AllowTargetFarWithoutTarget:true]
+			[Conditions:GVK-Universal-Condition-NoTarget]
 			[Actions:GVK-Unit-All-PatrolStrike-Action-TargetFar]
 			</Description>
 		</EntityComponent>
@@ -136,7 +136,6 @@
 			[MinCooldownMs:5000]
 			[MaxCooldownMs:5001]
 			[TargetDistance:5500]
-			[AllowTargetFarWithoutTarget:true]
 			[Actions:GVK-Unit-All-PatrolStrike-Action-TargetFar]
 			</Description>
 		</EntityComponent>
