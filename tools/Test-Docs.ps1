@@ -88,19 +88,22 @@ try {
     $hostileFactions = 'GAALSIEN', 'DERELICT'   # never neutral or friendly, so their banks skip those cues
     $bankDir = 'Content\Data\DialogueBanks'
     $checkedBanks = New-Object 'System.Collections.Generic.HashSet[string]'
-    $stripBank = { param($d) ($d -replace '(?m)^\s*\[(DialogueBanks|//CopyOf):[^\]]*\]\s*$', '' -replace '(\[TargetData:[^\]]+?)-GAALSIEN\]', '$1]' -replace '\s+', ' ').Trim() }
+    $stripBank = { param($d) ($d -replace '(?m)^\s*\[(DialogueBanks|//CopyOf):[^\]]*\]\s*$', '' -replace '(\[TargetData:[^\]]+?)-(GAALSIEN|DERELICT)\]', '$1]' -replace '\s+', ' ').Trim() }
     foreach ($name in $profiles.Keys | Sort-Object) {
         $desc = $profiles[$name]
         if ($desc -notmatch '\[RivalAI Behavior\]') { continue }
-        # The shared target profiles skip COALITION grids (so DERELICT ignores Coalition salvagers); Gaalsien use the -GAALSIEN copies.
+        # The shared target profiles skip COALITION and DERELICT grids; GAALSIEN (fights both) and DERELICT (also skips SOBAN and KHAANEPH) use their own copies.
         $spawnedAs = $behaviorFactions[$name]
-        if ($spawnedAs -and $spawnedAs.Contains('GAALSIEN') -and $desc -match '\[TargetData:([^\]]+)\]') {
+        if ($spawnedAs -and $desc -match '\[TargetData:([^\]]+)\]') {
             $target = $Matches[1].Trim()
-            if ($target -notmatch '-GAALSIEN$' -and $profiles.ContainsKey("$target-GAALSIEN")) {
-                $warnings.Add("${name}: spawns as GAALSIEN but targets with $target, which ignores Coalition grids; use $target-GAALSIEN")
+            $base = $target -replace '-(GAALSIEN|DERELICT)$', ''
+            foreach ($f in 'GAALSIEN', 'DERELICT') {
+                if ($spawnedAs.Contains($f) -and $target -ne "$base-$f" -and $profiles.ContainsKey("$base-$f")) {
+                    $warnings.Add("${name}: spawns as $f but targets with $target; use $base-$f")
+                }
             }
         }
-        # A per-faction copy ([//CopyOf:X]) must match its original apart from the bank line and a -GAALSIEN target profile.
+        # A per-faction copy ([//CopyOf:X]) must match its original apart from the bank line and a -GAALSIEN/-DERELICT target profile.
         if ($desc -match '\[//CopyOf:([^\]]+)\]') {
             $original = $Matches[1].Trim()
             if (-not $profiles.ContainsKey($original)) { $warnings.Add("${name}: [//CopyOf:$original] names a missing behavior") }

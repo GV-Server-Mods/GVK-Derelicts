@@ -33,6 +33,7 @@
 				[FactionTargets:COALITION]
 				[FactionTargets:UNKN]
 				[FactionTargets:KOTH]
+				[FactionTargets:DERELICT]
 			</Description>
 		</EntityComponent>
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
@@ -65,9 +66,10 @@
 				[FactionTargets:COALITION]
 				[FactionTargets:UNKN]
 				[FactionTargets:KOTH]
+				[FactionTargets:DERELICT]
 			</Description>
 		</EntityComponent>
-		<!-- GAALSIEN copy: same profile without the COALITION skip, so Gaalsien fight Coalition grids. DERELICT keeps the original. -->
+		<!-- GAALSIEN copy: same profile without the COALITION and DERELICT skips, so Gaalsien fight both. -->
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
@@ -97,6 +99,41 @@
 				[UsePartialNameMatching:true]
 				[FactionTargets:UNKN]
 				[FactionTargets:KOTH]
+			</Description>
+		</EntityComponent>
+		<!-- DERELICT copy: also skips SOBAN and KHAANEPH, which skip DERELICT through the shared profiles. GAALSIEN and DERELICT still fight. -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Universal-Target-EnemyPlayerAndGrid3km-DERELICT</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Target]
+				[UseCustomTargeting:true]
+				[Target:PlayerAndGrid]
+				[UseTargetRefresh:false]
+				[TimeUntilNextRefresh:60]
+				[TimeUntilNextEvaluation:15]
+				[MaxDistance:3000]
+				[MaxExistingTargetDistance:4000]
+				[GetTargetBy:ClosestDistance]
+				[MatchAllFilters:Relation]
+				[MatchAllFilters:OutsideOfSafezone]
+				[MatchAllFilters:Powered]
+				[MatchNoneFilters:Name]
+				[MatchNoneFilters:Faction]
+				[Relations:Enemy]
+				[Names:NPC Static]
+				[Names:NPC Trade Station]
+				[Names:NPC KOTH]
+				[Names:Signpost]
+				[Names:Base Site Tower]
+				[UsePartialNameMatching:true]
+				[FactionTargets:COALITION]
+				[FactionTargets:UNKN]
+				[FactionTargets:KOTH]
+				[FactionTargets:SOBAN]
+				[FactionTargets:KHAANEPH]
 			</Description>
 		</EntityComponent>
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
@@ -130,11 +167,12 @@
 				[FactionTargets:COALITION]
 				[FactionTargets:UNKN]
 				[FactionTargets:KOTH]
+				[FactionTargets:DERELICT]
 				[MinTargetValue:10]
 				[MaxTargetValue:999999]
 			</Description>
 		</EntityComponent>
-		<!-- GAALSIEN copy: same profile without the COALITION skip, so Gaalsien fight Coalition grids. DERELICT keeps the original. -->
+		<!-- GAALSIEN copy: same profile without the COALITION and DERELICT skips, so Gaalsien fight both. -->
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
@@ -201,6 +239,7 @@
 				[FactionTargets:COALITION]
 				[FactionTargets:UNKN]
 				[FactionTargets:KOTH]
+				[FactionTargets:DERELICT]
 				[MinTargetValue:10]
 				[MaxTargetValue:999999]
 				[PrioritizePlayerControlled:true]
@@ -236,12 +275,13 @@
 				[FactionTargets:COALITION]
 				[FactionTargets:UNKN]
 				[FactionTargets:KOTH]
+				[FactionTargets:DERELICT]
 				[MinTargetValue:100]
 				[MaxTargetValue:999999]
 				[PrioritizePlayerControlled:true]
 			</Description>
 		</EntityComponent>
-		<!-- GAALSIEN copy: same profile without the COALITION skip, so Gaalsien fight Coalition grids. DERELICT keeps the original. -->
+		<!-- GAALSIEN copy: same profile without the COALITION and DERELICT skips, so Gaalsien fight both. -->
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
@@ -429,6 +469,7 @@
 				[FactionTargets:COALITION]
 				[FactionTargets:UNKN]
 				[FactionTargets:KOTH]
+				[FactionTargets:DERELICT]
 				[MinTargetValue:10]
 				[MaxTargetValue:999999]
 			</Description>
