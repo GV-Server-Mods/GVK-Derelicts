@@ -1,25 +1,8 @@
 <?xml version="1.0"?>
 <Definitions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
 	<EntityComponents>
-		<!-- Peer escort state checks, shared by every pool (see tools/New-PeerEscortPool.ps1) -->
-		<!-- A free peer: not a wing, not leading a wing, not waiting on a request, slot still unused -->
-		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
-			<Id>
-				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Unit-All-Condition-PeerCanOffer</SubtypeId>
-			</Id>
-			<Description>
-			[RivalAI Condition]
-			[UseConditions:true]
-			[MatchAnyCondition:false]
-			[CheckFalseBooleans:true]
-			[FalseBooleans:GVK_Role_Escort]
-			[FalseBooleans:GVK_Role_Leader]
-			[FalseBooleans:GVK_Peer_Requesting]
-			[FalseBooleans:GVK_Peer_SlotSpent]
-			</Description>
-		</EntityComponent>
-		<!-- May become a wing: a former leader whose wing died still qualifies -->
+		<!-- Peer escort state checks shared by every pool (see tools/New-PeerEscortPool.ps1) -->
+		<!-- May become a wing: not a wing, not waiting on a request, no live wing of its own (a leader whose wings died qualifies). Each pool's own HasFreeSlot condition decides who may lead. -->
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
@@ -31,24 +14,11 @@
 			[MatchAnyCondition:false]
 			[CheckFalseBooleans:true]
 			[FalseBooleans:GVK_Role_Escort]
-			[FalseBooleans:GVK_Role_Leader]
 			[FalseBooleans:GVK_Peer_Requesting]
-			</Description>
-		</EntityComponent>
-		<!-- May hand out the single slot -->
-		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
-			<Id>
-				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Unit-All-Condition-PeerCanLead</SubtypeId>
-			</Id>
-			<Description>
-			[RivalAI Condition]
-			[UseConditions:true]
-			[MatchAnyCondition:false]
-			[CheckFalseBooleans:true]
-			[FalseBooleans:GVK_Role_Escort]
-			[FalseBooleans:GVK_Peer_Requesting]
-			[FalseBooleans:GVK_Peer_SlotSpent]
+			[CheckCustomCounters:true]
+			[CustomCounters:GVK_Peer_Wings]
+			[CustomCountersTargets:1]
+			[CounterCompareTypes:Less]
 			</Description>
 		</EntityComponent>
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">

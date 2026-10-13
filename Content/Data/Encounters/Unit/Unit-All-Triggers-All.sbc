@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <Definitions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
 	<EntityComponents>
-		<!-- Action group to do a barrel roll if GVK_MobilityType_Aircraft is true-->
+		<!-- Barrel roll every 30-60 s for aircraft, except while flying as an escort (a roll stops it turning toward its slot) -->
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
@@ -16,7 +16,7 @@
 				[MaxCooldownMs:60000]
 				[StartsReady:true]
 				[MaxActions:-1]
-				[Conditions:GVK-Universal-Condition-IsAircraftMobilityType]
+				[Conditions:GVK-Unit-All-Condition-AircraftNotEscort]
 				[Actions:GVK-Unit-All-Action-BarrelRoll]
 			</Description>
 		</EntityComponent>
@@ -378,6 +378,21 @@
 				[RivalAI Condition]
 				[UseConditions:true]
 				[MatchAnyCondition:false]
+				[CheckFalseBooleans:true]
+				[FalseBooleans:GVK_Role_Escort]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Unit-All-Condition-AircraftNotEscort</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Condition]
+				[UseConditions:true]
+				[MatchAnyCondition:false]
+				[CheckTrueBooleans:true]
+				[TrueBooleans:GVK_MobilityType_Aircraft]
 				[CheckFalseBooleans:true]
 				[FalseBooleans:GVK_Role_Escort]
 			</Description>
