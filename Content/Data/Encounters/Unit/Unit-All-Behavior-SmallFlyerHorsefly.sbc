@@ -20,41 +20,14 @@
 			[TargetData:GVK-Universal-Target-EnemyGrids2km-GAALSIEN]
 			[AutopilotData:GVK-Unit-All-Autopilot-SmallFlyerHorsefly-Patrol]
 			[SecondaryAutopilotData:GVK-Unit-All-Autopilot-SmallFlyerHorsefly-Horsefly]
-			[Triggers:GVK-Unit-All-Trigger-Init-SmallFlyerHorsefly]
+			[Triggers:GVK-Unit-All-Trigger-Init-SmallAircraft]
 			[TriggerGroups:GVK-Universal-TriggerGroup-CombatDefaults]
 			[TriggerGroups:GVK-Unit-All-TriggerGroup-UnitDefaults-SmallUnit]
-			[TriggerGroups:GVK-Unit-All-TriggerGroup-PatrolHorseflyKPL]
+			[TriggerGroups:GVK-Unit-All-TriggerGroup-PatrolHorsefly]
+			[TriggerGroups:GVK-Unit-All-TriggerGroup-CombatKPL]
 			[TriggerGroups:GVK-Universal-TriggerGroup-ReceiveTargets]
 			[TriggerGroups:GVK-Universal-TriggerGroup-DefeatedAndAttacked]
 			BountyOnKill=500000;
-			</Description>
-		</EntityComponent>
-		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
-			<Id>
-				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Unit-All-Trigger-Init-SmallFlyerHorsefly</SubtypeId>
-			</Id>
-			<Description>
-			[MES AI Trigger]
-			[UseTrigger:true]
-			[Type:Session]
-			[StartsReady:true]
-			[MaxActions:-1]
-			[ActionExecution:All]
-			[Actions:GVK-Unit-All-Action-Init-SmallFlyerHorsefly]
-			</Description>
-		</EntityComponent>
-		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
-			<Id>
-				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Unit-All-Action-Init-SmallFlyerHorsefly</SubtypeId>
-			</Id>
-			<Description>
-			[MES AI Action]
-			[SetCustomStrings:true]
-			[CustomStrings:EncounterType,UnitSmall]
-			[CustomStrings:EncounterDisplayName,aircraft]
-			[SetBooleansTrue:GVK_MobilityType_Aircraft]
 			</Description>
 		</EntityComponent>
 	</EntityComponents>

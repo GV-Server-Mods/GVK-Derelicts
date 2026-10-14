@@ -1,0 +1,72 @@
+<?xml version="1.0"?>
+<Definitions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+	<EntityComponents>
+		<!-- Land peer Wing autopilots (Tertiary): faster than the leader's combat profile so the wing keeps up, speed matched near the slot; see README note 41 -->
+		<!-- LAVs: the LAV jump group swaps BigAirTime into this slot in the air and puts LAVWing back on landing -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Unit-All-Autopilot-LAVWing</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Autopilot]
+			[UseVelocityCollisionEvasion:false]
+			[RotationMultiplierPitch:2]
+			[RotationMultiplierYaw:5]
+			[RotationMultiplierRoll:1]
+			[LimitRotationSpeed:true]
+			[MaxRotationMagnitude:1.5]
+			[FlyLevelWithGravity:false]
+			[LevelWithGravityWhenIdle:false]
+			[DisableInertiaDampeners:true]
+			[UseSurfaceHoverThrustMode:true]
+			[HoverPathStepDistance:76]
+			[IdealPlanetAltitude:2.75]
+			[MinimumPlanetAltitude:-100]
+			[AltitudeTolerance:100]
+			[WaypointTolerance:15]
+			[WaypointAbandonTimeTrigger:30]
+			[WaypointWaitTimeTrigger:30]
+			[IdealMinSpeed:10]
+			[IdealMaxSpeed:65]
+			[MaxSpeedTolerance:5]
+			[AngleAllowedForForwardThrust:120]
+			[MaxVelocityAngleForSpeedControl:89]
+			[EscortUsesRelativeDampening:false]
+			[EscortSpeedMatchMaxDistance:100]
+			[UseProjectileLeadPrediction:false]
+			</Description>
+		</EntityComponent>
+		<!-- Hovers: Sandskimmers, Dragoon, Pollux, Stryker -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Unit-All-Autopilot-HoverWing</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Autopilot]
+			[UseVelocityCollisionEvasion:false]
+			[RotationMultiplier:0.75]
+			[FlyLevelWithGravity:false]
+			[LevelWithGravityWhenIdle:false]
+			[DisableInertiaDampeners:false]
+			[UseSurfaceHoverThrustMode:true]
+			[HoverPathStepDistance:76]
+			[IdealPlanetAltitude:10]
+			[MinimumPlanetAltitude:3]
+			[AltitudeTolerance:10]
+			[WaypointTolerance:25]
+			[WaypointAbandonTimeTrigger:30]
+			[WaypointWaitTimeTrigger:30]
+			[IdealMinSpeed:10]
+			[IdealMaxSpeed:140]
+			[MaxSpeedTolerance:5]
+			[AngleAllowedForForwardThrust:120]
+			[MaxVelocityAngleForSpeedControl:89]
+			[EscortUsesRelativeDampening:false]
+			[EscortSpeedMatchMaxDistance:200]
+			[UseProjectileLeadPrediction:false]
+			</Description>
+		</EntityComponent>
+	</EntityComponents>
+</Definitions>

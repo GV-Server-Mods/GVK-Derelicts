@@ -21,7 +21,7 @@
 			[AutopilotData:GVK-Unit-All-Autopilot-LargeRoverHorsefly-Patrol]
 			[SecondaryAutopilotData:GVK-Unit-All-Autopilot-LargeRoverHorsefly-Horsefly]
 			[TertiaryAutopilotData:GVK-Unit-All-Autopilot-LargeRoverHorsefly-Tertiary]
-			[Triggers:GVK-Unit-All-Trigger-Init-LargeRoverHorsefly-COALITION]
+			[Triggers:GVK-Unit-All-Trigger-Init-LargeCruiser]
 			[TriggerGroups:GVK-Universal-TriggerGroup-CombatDefaults]
 			[TriggerGroups:GVK-Unit-All-TriggerGroup-UnitDefaults-LargeUnit-COALITION]
 			[TriggerGroups:GVK-Unit-All-TriggerGroup-PlayerNearStop]
@@ -33,33 +33,6 @@
 			[TriggerGroups:GVK-Universal-TriggerGroup-DefeatedAndAttacked]
 			[EscortOffsets:{X:150 Y:0 Z:0}]
 			[EscortOffsets:{X:-150 Y:0 Z:0}]
-			</Description>
-		</EntityComponent>
-		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
-			<Id>
-				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Unit-All-Trigger-Init-LargeRoverHorsefly-COALITION</SubtypeId>
-			</Id>
-			<Description>
-			[MES AI Trigger]
-			[UseTrigger:true]
-			[Type:Session]
-			[StartsReady:true]
-			[MaxActions:-1]
-			[ActionExecution:All]
-			[Actions:GVK-Unit-All-Action-Init-LargeRoverHorsefly-COALITION]
-			</Description>
-		</EntityComponent>
-		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
-			<Id>
-				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Unit-All-Action-Init-LargeRoverHorsefly-COALITION</SubtypeId>
-			</Id>
-			<Description>
-			[MES AI Action]
-			[SetCustomStrings:true]
-			[CustomStrings:EncounterType,UnitLarge]
-			[CustomStrings:EncounterDisplayName,cruiser]
 			</Description>
 		</EntityComponent>
 	</EntityComponents>

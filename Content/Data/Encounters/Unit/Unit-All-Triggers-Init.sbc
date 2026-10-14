@@ -1,0 +1,170 @@
+<?xml version="1.0"?>
+<Definitions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+	<EntityComponents>
+		<!-- Shared Unit init: sets the {EncounterType} and {EncounterDisplayName} strings other profiles read, and the aircraft flag.
+		     Behavior: [Triggers:GVK-Unit-All-Trigger-Init-<Size><Kind>]. A Unit that needs more (air support, Elite escorts) keeps its own init. -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Unit-All-Trigger-Init-SmallAircraft</SubtypeId>
+			</Id>
+			<Description>
+			[MES AI Trigger]
+			[UseTrigger:true]
+			[Type:Session]
+			[StartsReady:true]
+			[MaxActions:-1]
+			[ActionExecution:All]
+			[Actions:GVK-Unit-All-Action-Init-SmallAircraft]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Unit-All-Action-Init-SmallAircraft</SubtypeId>
+			</Id>
+			<Description>
+			[MES AI Action]
+			[SetCustomStrings:true]
+			[CustomStrings:EncounterType,UnitSmall]
+			[CustomStrings:EncounterDisplayName,aircraft]
+			[SetBooleansTrue:GVK_MobilityType_Aircraft]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Unit-All-Trigger-Init-SmallVehicle</SubtypeId>
+			</Id>
+			<Description>
+			[MES AI Trigger]
+			[UseTrigger:true]
+			[Type:Session]
+			[StartsReady:true]
+			[MaxActions:-1]
+			[ActionExecution:All]
+			[Actions:GVK-Unit-All-Action-Init-SmallVehicle]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Unit-All-Action-Init-SmallVehicle</SubtypeId>
+			</Id>
+			<Description>
+			[MES AI Action]
+			[SetCustomStrings:true]
+			[CustomStrings:EncounterType,UnitSmall]
+			[CustomStrings:EncounterDisplayName,vehicle]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Unit-All-Trigger-Init-SmallCraft</SubtypeId>
+			</Id>
+			<Description>
+			[MES AI Trigger]
+			[UseTrigger:true]
+			[Type:Session]
+			[StartsReady:true]
+			[MaxActions:-1]
+			[ActionExecution:All]
+			[Actions:GVK-Unit-All-Action-Init-SmallCraft]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Unit-All-Action-Init-SmallCraft</SubtypeId>
+			</Id>
+			<Description>
+			[MES AI Action]
+			[SetCustomStrings:true]
+			[CustomStrings:EncounterType,UnitSmall]
+			[CustomStrings:EncounterDisplayName,craft]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Unit-All-Trigger-Init-MediumCraft</SubtypeId>
+			</Id>
+			<Description>
+			[MES AI Trigger]
+			[UseTrigger:true]
+			[Type:Session]
+			[StartsReady:true]
+			[MaxActions:-1]
+			[ActionExecution:All]
+			[Actions:GVK-Unit-All-Action-Init-MediumCraft]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Unit-All-Action-Init-MediumCraft</SubtypeId>
+			</Id>
+			<Description>
+			[MES AI Action]
+			[SetCustomStrings:true]
+			[CustomStrings:EncounterType,UnitMedium]
+			[CustomStrings:EncounterDisplayName,craft]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Unit-All-Trigger-Init-MediumVehicle</SubtypeId>
+			</Id>
+			<Description>
+			[MES AI Trigger]
+			[UseTrigger:true]
+			[Type:Session]
+			[StartsReady:true]
+			[MaxActions:-1]
+			[ActionExecution:All]
+			[Actions:GVK-Unit-All-Action-Init-MediumVehicle]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Unit-All-Action-Init-MediumVehicle</SubtypeId>
+			</Id>
+			<Description>
+			[MES AI Action]
+			[SetCustomStrings:true]
+			[CustomStrings:EncounterType,UnitMedium]
+			[CustomStrings:EncounterDisplayName,vehicle]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Unit-All-Trigger-Init-LargeCruiser</SubtypeId>
+			</Id>
+			<Description>
+			[MES AI Trigger]
+			[UseTrigger:true]
+			[Type:Session]
+			[StartsReady:true]
+			[MaxActions:-1]
+			[ActionExecution:All]
+			[Actions:GVK-Unit-All-Action-Init-LargeCruiser]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Unit-All-Action-Init-LargeCruiser</SubtypeId>
+			</Id>
+			<Description>
+			[MES AI Action]
+			[SetCustomStrings:true]
+			[CustomStrings:EncounterType,UnitLarge]
+			[CustomStrings:EncounterDisplayName,cruiser]
+			</Description>
+		</EntityComponent>
+	</EntityComponents>
+</Definitions>

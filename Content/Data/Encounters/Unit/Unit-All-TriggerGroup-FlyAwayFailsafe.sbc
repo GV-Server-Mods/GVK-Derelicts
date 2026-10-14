@@ -1,7 +1,8 @@
 <?xml version="1.0"?>
 <Definitions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
 	<EntityComponents>
-		<!-- Failsafe trigger for when ground NPCs decide to fly off into the sky -->
+		<!-- Failsafe trigger for when ground NPCs decide to fly off into the sky: cut thrust until back under 100 m, and leave combat through the Patrol<Name> group.
+		     A wing keeps its Escort subclass and autopilot (the Patrol switch skips wings), so it rejoins its leader after landing. -->
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
@@ -58,11 +59,9 @@
 			<Description>
 			[RivalAI Action]
 			[//DebugMessage:Trigger AboveAltitude]
-			[ChangeBehaviorSubclass:true]
-			[NewBehaviorSubclass:Patrol]
 			[StopAllThrust:true]
-			[ChangeAutopilotProfile:true]
-			[AutopilotProfile:Primary]
+			[ManuallyActivateTrigger:true]
+			[ManuallyActivatedTriggerTags:GVK-TriggerTags-SwitchToPatrol]
 			</Description>
 		</EntityComponent>
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
@@ -105,11 +104,7 @@
 			<Description>
 			[RivalAI Action]
 			[//DebugMessage:Trigger BelowAltitude]
-			[ChangeBehaviorSubclass:true]
-			[NewBehaviorSubclass:Patrol]
 			[StopAllThrust:false]
-			[ChangeAutopilotProfile:true]
-			[AutopilotProfile:Primary]
 			</Description>
 		</EntityComponent>
 	</EntityComponents>

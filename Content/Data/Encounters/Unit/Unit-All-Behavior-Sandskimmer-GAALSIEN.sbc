@@ -22,43 +22,18 @@
 			[TargetData:GVK-Universal-Target-EnemyGrids2km-GAALSIEN]
 			[AutopilotData:GVK-Unit-All-Autopilot-Sandskimmer-Patrol]
 			[SecondaryAutopilotData:GVK-Unit-All-Autopilot-Sandskimmer-HorseFighter]
-			[Triggers:GVK-Unit-All-Trigger-Init-Sandskimmer-GAALSIEN]
+			[TertiaryAutopilotData:GVK-Unit-All-Autopilot-HoverWing]
+			[Triggers:GVK-Unit-All-Trigger-Init-SmallCraft]
 			[TriggerGroups:GVK-Universal-TriggerGroup-CombatDefaults]
 			[TriggerGroups:GVK-Unit-All-TriggerGroup-UnitDefaults-SmallUnit-GAALSIEN]
-			[TriggerGroups:GVK-Unit-All-TriggerGroup-PatrolHorseFighterKPL]
+			[TriggerGroups:GVK-Unit-All-TriggerGroup-PatrolHorseFighter]
+			[TriggerGroups:GVK-Unit-All-TriggerGroup-CombatKPL]
 			[TriggerGroups:GVK-Unit-All-TriggerGroup-PeerEscort-Land]
 			[EscortOffsets:{X:40 Y:0 Z:30}]
 			[TriggerGroups:GVK-Unit-All-TriggerGroup-FlyAwayFailsafe]
 			[TriggerGroups:GVK-Universal-TriggerGroup-ReceiveTargets]
 			[TriggerGroups:GVK-Universal-TriggerGroup-DefeatedAndAttacked]
 			BountyOnKill=500000;
-			</Description>
-		</EntityComponent>
-		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
-			<Id>
-				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Unit-All-Trigger-Init-Sandskimmer-GAALSIEN</SubtypeId>
-			</Id>
-			<Description>
-			[MES AI Trigger]
-			[UseTrigger:true]
-			[Type:Session]
-			[StartsReady:true]
-			[MaxActions:-1]
-			[ActionExecution:All]
-			[Actions:GVK-Unit-All-Action-Init-Sandskimmer-GAALSIEN]
-			</Description>
-		</EntityComponent>
-		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
-			<Id>
-				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Unit-All-Action-Init-Sandskimmer-GAALSIEN</SubtypeId>
-			</Id>
-			<Description>
-			[MES AI Action]
-			[SetCustomStrings:true]
-			[CustomStrings:EncounterType,UnitSmall]
-			[CustomStrings:EncounterDisplayName,craft]
 			</Description>
 		</EntityComponent>
 	</EntityComponents>

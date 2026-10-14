@@ -1,0 +1,152 @@
+<?xml version="1.0"?>
+<Definitions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+	<EntityComponents>
+		<!--
+			Known Player Location on engaging, for every Unit except COALITION ones (they don't target players).
+			Needs a Patrol<Name> group (tools/New-PatrolSwitchGroup.ps1): its TargetNear fires GVK-TriggerTags-CombatStarted, and
+			when the KPL is gone this group sends the Unit back to Patrol through GVK-TriggerTags-SwitchToPatrol.
+			The KPL lasts 15 minutes (KnownPlayerAreaTimer is in minutes, and a player inside resets it) with no spawn cap; a cap ends the KPL as soon as
+			it is reached, which a Wreck's Defense wave could do within seconds. While a player is inside, MES lets only this faction's spawn groups spawn there.
+		-->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Unit-All-TriggerGroup-CombatKPL</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI TriggerGroup]
+			[Triggers:GVK-Unit-All-CombatKPL-ManualTrigger-CreateKPL]
+			[Triggers:GVK-Unit-All-CombatKPL-Trigger-CheckforKPL]
+			[Triggers:GVK-Unit-All-CombatKPL-Trigger-KPLStatusBool]
+			</Description>
+		</EntityComponent>
+		<!-- Keep NPCInKPL up to date -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Unit-All-CombatKPL-Trigger-KPLStatusBool</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Trigger]
+			[UseTrigger:true]
+			[Type:PlayerKnownLocation]
+			[StartsReady:true]
+			[MinCooldownMs:2000]
+			[MaxCooldownMs:2001]
+			[Actions:GVK-Unit-All-CombatKPL-Action-InKPL]
+			[UseElseActions:true]
+			[ElseActions:GVK-Unit-All-CombatKPL-Action-NotInKPL]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Unit-All-CombatKPL-Action-InKPL</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Action]
+			[SetBooleansTrue:NPCInKPL]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Unit-All-CombatKPL-Action-NotInKPL</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Action]
+			[SetBooleansFalse:NPCInKPL]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Unit-All-CombatKPL-Condition-NotInKPL</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Condition]
+			[UseConditions:true]
+			[MatchAnyCondition:false]
+			[CheckTrueBooleans:true]
+			[TrueBooleans:NPCInKPL]
+			[UseFailCondition:true]
+			</Description>
+		</EntityComponent>
+		<!-- Create a KPL on engaging, unless already inside one -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Unit-All-CombatKPL-ManualTrigger-CreateKPL</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Trigger]
+			[UseTrigger:true]
+			[Type:Manual]
+			[Tags:GVK-TriggerTags-CombatStarted]
+			[StartsReady:false]
+			[MinCooldownMs:20000]
+			[MaxCooldownMs:20001]
+			[Conditions:GVK-Unit-All-CombatKPL-Condition-NotInKPL]
+			[Actions:GVK-Unit-All-CombatKPL-Action-CreateKPL]
+			[ToggleWithTriggerProfile:GVK-Unit-All-CombatKPL-Trigger-CheckforKPL]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Unit-All-CombatKPL-Action-CreateKPL</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Action]
+			[CreateKnownPlayerArea:true]
+			[KnownPlayerAreaRadius:3000]
+			[KnownPlayerAreaTimer:15]
+			[KnownPlayerAreaMaxSpawns:-1]
+			</Description>
+		</EntityComponent>
+		<!-- After creating one: while still inside, keep CreateKPL on cooldown; once the KPL is gone, back to Patrol and allow a new one -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Unit-All-CombatKPL-Trigger-CheckforKPL</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Trigger]
+			[UseTrigger:false]
+			[Type:PlayerKnownLocation]
+			[StartsReady:true]
+			[MinCooldownMs:10000]
+			[MaxCooldownMs:10001]
+			[Actions:GVK-Unit-All-CombatKPL-Action-StillInKPL]
+			[UseElseActions:true]
+			[ElseActions:GVK-Unit-All-CombatKPL-Action-LeftKPL]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Unit-All-CombatKPL-Action-StillInKPL</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Action]
+			[ResetCooldownTimeOfTriggers:true]
+			[ResetTriggerCooldownNames:GVK-Unit-All-CombatKPL-ManualTrigger-CreateKPL]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Unit-All-CombatKPL-Action-LeftKPL</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Action]
+			[ManuallyActivateTrigger:true]
+			[ManuallyActivatedTriggerTags:GVK-TriggerTags-SwitchToPatrol]
+			[EnableTriggers:true]
+			[EnableTriggerNames:GVK-Unit-All-CombatKPL-ManualTrigger-CreateKPL]
+			[DisableTriggers:true]
+			[DisableTriggerNames:GVK-Unit-All-CombatKPL-Trigger-CheckforKPL]
+			</Description>
+		</EntityComponent>
+	</EntityComponents>
+</Definitions>

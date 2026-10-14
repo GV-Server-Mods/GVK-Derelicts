@@ -424,7 +424,7 @@
 			[Actions:GVK-ConvoySystem-Escort-Action-LeaderDead]
 			</Description>
 		</EntityComponent>
-		<!-- LeaderDead command received -->
+		<!-- LeaderDead command received: back to Patrol, then GVK-TriggerTags-LeaderDead lets the Patrol<Name> group enter combat if it holds a target -->
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
@@ -450,6 +450,10 @@
 			[RivalAI Action]
 			[//DebugMessage:Leader is dead]
 			[SetBooleansFalse:GVK_Role_Escort]
+			[ChangeBehaviorSubclass:true]
+			[NewBehaviorSubclass:Patrol]
+			[ChangeAutopilotProfile:true]
+			[AutopilotProfile:Primary]
 			[ResetCooldownTimeOfTriggers:true]
 			[ResetTriggerCooldownTags:GVK-TriggerTags-InactiveEscortTasks]
 			[EnableTriggers:true]

@@ -20,7 +20,7 @@
 			[AutopilotData:GVK-Unit-All-Autopilot-Baserunner-Passive]
 			[SecondaryAutopilotData:GVK-Unit-All-Autopilot-Baserunner-Aggressive]
 			[TargetData:GVK-Universal-Target-EnemyGrids2km]
-			[Triggers:GVK-Unit-All-Trigger-Init-Baserunner-COALITION]
+			[Triggers:GVK-Unit-All-Trigger-Init-MediumVehicle]
 			[TriggerGroups:GVK-Universal-TriggerGroup-CombatDefaults]
 			[TriggerGroups:GVK-Unit-All-TriggerGroup-UnitDefaults-MediumUnit-COALITION]
 			[TriggerGroups:GVK-Unit-All-TriggerGroup-PatrolHorsefly]
@@ -29,33 +29,6 @@
 			[TriggerGroups:GVK-Universal-TriggerGroup-ReceiveTargets]
 			[TriggerGroups:GVK-Universal-TriggerGroup-DespawnInKOTH]
 			[TriggerGroups:GVK-Universal-TriggerGroup-DefeatedAndAttacked]
-			</Description>
-		</EntityComponent>
-		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
-			<Id>
-				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Unit-All-Trigger-Init-Baserunner-COALITION</SubtypeId>
-			</Id>
-			<Description>
-			[MES AI Trigger]
-			[UseTrigger:true]
-			[Type:Session]
-			[StartsReady:true]
-			[MaxActions:-1]
-			[ActionExecution:All]
-			[Actions:GVK-Unit-All-Action-Init-Baserunner-COALITION]
-			</Description>
-		</EntityComponent>
-		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
-			<Id>
-				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Unit-All-Action-Init-Baserunner-COALITION</SubtypeId>
-			</Id>
-			<Description>
-			[MES AI Action]
-			[SetCustomStrings:true]
-			[CustomStrings:EncounterType,UnitMedium]
-			[CustomStrings:EncounterDisplayName,vehicle]
 			</Description>
 		</EntityComponent>
 	</EntityComponents>

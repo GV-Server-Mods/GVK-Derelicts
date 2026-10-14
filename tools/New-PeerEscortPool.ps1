@@ -7,15 +7,15 @@
     To add a pool: run this script with a new -Pool name, include the generated group in each member's behavior
     (replace GVK-ConvoySystem-Escort-TriggerGroup) and give each member -Slots [EscortOffsets:{X:.. Y:0 Z:..}] lines.
 .EXAMPLE
-    pwsh tools/New-PeerEscortPool.ps1 -Pool Land -Radius 1500
+    pwsh tools/New-PeerEscortPool.ps1 -Pool Land -Radius 1500 -OfferMinMs 2000 -OfferMaxMs 6000
 .EXAMPLE
-    pwsh tools/New-PeerEscortPool.ps1 -Pool Air -Radius 3000 -WingAutopilot Tertiary -Slots 2 -OfferMinMs 2000 -OfferMaxMs 6000
+    pwsh tools/New-PeerEscortPool.ps1 -Pool Air -Radius 3000 -Slots 2 -OfferMinMs 2000 -OfferMaxMs 6000
 #>
 param(
     [Parameter(Mandatory)][ValidatePattern('^[A-Za-z]+$')][string]$Pool,
     [int]$Radius = 1500,
     [ValidateRange(1, 4)][int]$Slots = 1,
-    [ValidateSet('Secondary', 'Tertiary')][string]$WingAutopilot = 'Secondary',
+    [ValidateSet('Secondary', 'Tertiary')][string]$WingAutopilot = 'Tertiary',
     # Random wait between offers (and before the first one after spawn); a short window pairs faster but makes two peers offer at once more often, which costs one Timeout.
     [int]$OfferMinMs = 8000,
     [int]$OfferMaxMs = 20000,
@@ -149,7 +149,7 @@ $parts += Component "$id-Command-Assigned" @"
 
 # Confirm: the slot is already assigned (ParentEscort is set), so the Escort behavior finds its leader on its first tick.
 # The wing switches to -WingAutopilot: an Escort never flies faster than its own IdealMaxSpeed, so on the slow Patrol
-# profile it falls behind a leader on its attack profile. Air wings use a dedicated Tertiary profile (README note 41).
+# profile it falls behind a leader on its attack profile. Every pool member keeps a dedicated wing profile in Tertiary (README note 41).
 $parts += Component "$id-Trigger-Confirm" @"
 			[RivalAI Trigger]
 			[UseTrigger:true]

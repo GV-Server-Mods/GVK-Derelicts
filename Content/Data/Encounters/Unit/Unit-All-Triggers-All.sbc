@@ -382,6 +382,21 @@
 				[FalseBooleans:GVK_Role_Escort]
 			</Description>
 		</EntityComponent>
+		<!-- Patrol<Name> groups: enter combat only while holding a target, and never as a wing -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Unit-All-Condition-CanStartCombat</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Condition]
+				[UseConditions:true]
+				[MatchAnyCondition:false]
+				[HasTarget:true]
+				[CheckFalseBooleans:true]
+				[FalseBooleans:GVK_Role_Escort]
+			</Description>
+		</EntityComponent>
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>

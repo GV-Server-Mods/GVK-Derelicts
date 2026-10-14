@@ -8,6 +8,7 @@
     excepted) named GVK-<Category>-<FACTION>-<Tier>.xml that exists and matches the factions its spawn groups use, each
     -<FACTION> behavior copy matches its original apart from the bank line, and each bank has the cues its
     faction can hear.
+    Checks that every Unit on a Patrol<Name> group has GVK-Unit-All-TriggerGroup-CombatKPL unless it spawns as COALITION.
     Checks every tracked .md file for:
       1. Backticked profile names (GVK-*, Unit-*, RAI-*), prefab names (NWS [COAL] ...) and repo paths
          that no longer exist in Content/ or the repo.
@@ -102,6 +103,12 @@ try {
                     $warnings.Add("${name}: spawns as $f but targets with $target; use $base-$f")
                 }
             }
+        }
+        # Every Unit on a Patrol<Name> group creates KPLs on engaging, except COALITION ones (they don't target players).
+        if ($spawnedAs -and $desc -match '\[TriggerGroups:GVK-Unit-All-TriggerGroup-Patrol\w+\]') {
+            $hasKpl = $desc -match '\[TriggerGroups:GVK-Unit-All-TriggerGroup-CombatKPL\]'
+            if ($spawnedAs.Contains('COALITION') -and $hasKpl) { $warnings.Add("${name}: spawns as COALITION but has GVK-Unit-All-TriggerGroup-CombatKPL") }
+            elseif (-not $spawnedAs.Contains('COALITION') -and -not $hasKpl) { $warnings.Add("${name}: spawns as $(@($spawnedAs) -join '/') but lacks GVK-Unit-All-TriggerGroup-CombatKPL") }
         }
         # A per-faction copy ([//CopyOf:X]) must match its original apart from the bank line and a -GAALSIEN/-DERELICT target profile.
         if ($desc -match '\[//CopyOf:([^\]]+)\]') {

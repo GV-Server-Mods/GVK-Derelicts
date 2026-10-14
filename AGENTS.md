@@ -86,6 +86,7 @@ Each kind of fact has exactly one home. Don't copy it anywhere else.
   - dialogue draft rule breaks from `Docs/dialogue/scripts/check_drafts.py`, including a line two factions share word for word
   - a prefab name, profile or spawn group ID, or beacon text using a word GLOSSARY.md avoids (Turret Station, Drop, a non-alliance Outpost)
   - a `[Type:DespawnMES]` trigger without `[DespawnTypeFromSpawner:]`, which never fires (GVK-Settings#698)
+  - a Unit on a `Patrol<Name>` group without `GVK-Unit-All-TriggerGroup-CombatKPL`, or a COALITION one with it (every faction but COALITION creates KPLs)
   - a GAALSIEN or DERELICT behavior on a shared target profile instead of its `-GAALSIEN` or `-DERELICT` copy. The shared profiles skip COALITION and DERELICT grids. The GAALSIEN copies fight both factions, and the DERELICT copy also skips SOBAN and KHAANEPH.
 
 ---
