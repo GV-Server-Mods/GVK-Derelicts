@@ -8,6 +8,7 @@
     excepted) named GVK-<Category>-<FACTION>-<Tier>.xml that exists and matches the factions its spawn groups use, each
     -<FACTION> behavior copy matches its original apart from the bank line, and each bank has the cues its
     faction can hear.
+    Checks that no COALITION behavior uses a target profile that only accepts Enemies.
     Checks that every Unit on a Patrol<Name> group has GVK-Unit-All-TriggerGroup-CombatKPL unless it spawns as COALITION.
     Checks every tracked .md file for:
       1. Backticked profile names (GVK-*, Unit-*, RAI-*), prefab names (NWS [COAL] ...) and repo paths
@@ -102,6 +103,15 @@ try {
                 if ($spawnedAs.Contains($f) -and $target -ne "$base-$f" -and $profiles.ContainsKey("$base-$f")) {
                     $warnings.Add("${name}: spawns as $f but targets with $target; use $base-$f")
                 }
+            }
+        }
+        # MES reads an NPC-vs-NPC relation from the target owner's reputation with this faction, which is COALITION's StartingReputation (500, Neutral)
+        # for every other NPC, so a COALITION behavior on an Enemy-only profile never picks a GAALSIEN target. It needs a faction-based profile.
+        if ($spawnedAs -and $spawnedAs.Contains('COALITION') -and $desc -match '\[TargetData:([^\]]+)\]') {
+            $coalTarget = $Matches[1].Trim()
+            $tp = $profiles[$coalTarget]
+            if ($tp -and $tp -match '\[MatchAllFilters:Relation\]' -and $tp -match '\[Relations:Enemy\]') {
+                $warnings.Add("${name}: spawns as COALITION but targets with $coalTarget, which needs an Enemy relation it never gets from other NPCs; use GVK-Universal-Target-EnemyGAALSIENBeacon")
             }
         }
         # Every Unit on a Patrol<Name> group creates KPLs on engaging, except COALITION ones (they don't target players).
