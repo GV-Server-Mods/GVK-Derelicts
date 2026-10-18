@@ -17,7 +17,7 @@ UNIT_CUES = ["TargetAcquired", "TargetStructure", "TargetAircraft", "TargetInfan
              "NoTargets", "NeutralAttacked", "EnemyAttacked", "FriendlyFire", "Defeated"]
 OTHER_CUES = ["NeutralAttacked", "EnemyAttacked", "FriendlyFire", "Defeated"]
 HOSTILE = {"GAALSIEN", "DERELICT"}
-NOT_SPLIT = {("Units-GAALSIEN", "NeutralAttacked")}  # keeps its original 4 lines
+NOT_SPLIT = set()  # (voice, cue) pairs exempt from the line-count targets
 NO_SMALL = {"Defeated"}  # Small Units (fighters, skimmers, LAVs) have no last words; the Sensors line is enough
 # Unit-class names: a size bank holds several designs, so a line must not name the speaker's own class.
 CLASS_WORDS = re.compile(r"\b(sandskimmers?|skimmers?|interceptors?|honou?rguards?|baserunners?|runners?|salvagers?|"
@@ -52,6 +52,9 @@ for path in paths:
         if category == "Installations":
             expected = ["EnemyAttacked", "Defeated"]
     report = []
+    if faction in HOSTILE:
+        # Hostile factions are never neutral or friendly to anyone, so these cues have nothing to say
+        report += [f"{cue}: {faction} never speaks this cue; remove the section" for cue in ("NeutralAttacked", "FriendlyFire") if cue in cues]
     for cue in expected:
         entries = cues.get(cue, [])
         if category == "Units" and cue in NO_SMALL:

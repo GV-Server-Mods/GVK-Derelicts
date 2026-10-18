@@ -86,7 +86,7 @@ The auto-captions mishear lore names. `scripts/fixes.py` is the shared correctio
 | Bank | Cues |
 |---|---|
 | Units COALITION / SOBAN / KHAANEPH | TargetAcquired, TargetStructure, TargetAircraft, TargetInfantry, TargetFastMover, TargetLongRange, NoTargets, NeutralAttacked, EnemyAttacked, FriendlyFire, Defeated |
-| Units GAALSIEN | as above, without FriendlyFire (NeutralAttacked kept but rarely heard) |
+| Units GAALSIEN | as above, without NeutralAttacked or FriendlyFire (GAALSIEN is hostile to everyone) |
 | Travellers ×3, Structures ×2, Installations COALITION | NeutralAttacked, EnemyAttacked, FriendlyFire, Defeated |
 | Installations GAALSIEN, DERELICT | EnemyAttacked, Defeated |
 
