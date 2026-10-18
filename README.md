@@ -165,9 +165,11 @@ Structures that spawn Defenses also set `[CustomCountersVariables:DefenseSpawn_L
 - **Who carries it:** all installation, alliance and COALITION/SOBAN/KHAANEPH Unit behaviors. GAALSIEN Units don't, because the whitelisted ones are the KOTH garrison.
 - **Effect:** such a despawn counts as Lost (chat, points, Defense refund), as in Zone 0.
 
-**43.** Server build: the escort, leader and Defense refund commands rely on `MatchReceiverParent`, `MatchReceiverEscort` and `MatchReceiverLeader`, added by MeridiusIX/Modular-Encounters-Systems#386 (merged 2026-10-12, fixes #384).
-- **Without it**, MES ignores the tags, so a command reaches every same-owner grid in range and `GVK_LeaderDead` would strip unrelated escorts.
-- **Before deploying**, check that the dedicated server's MES build includes #386: a Workshop release made after 2026-10-12, or a local build of MES master.
+**43.** Server build: GVK needs an MES release made after master `bc71965` (2026-10-17). Workshop 2.75.01 is not enough. Older builds ignore the tags or read them differently:
+- **`MatchReceiverParent`/`Escort`/`Leader`** (MeridiusIX/Modular-Encounters-Systems#386, 2.75.00): escort, leader and Defense refund commands. Without them a command reaches every same-owner grid in range, and `GVK_LeaderDead` would strip unrelated escorts.
+- **`MaxVelocityAngleForSpeedControl:180`** (#402, 2.75.00): before it, a grid drifting away from its waypoint "braked" itself further away.
+- **`UseAircraftFlightModel`** (#390, 2.75.00): the Unit aircraft autopilots.
+- **`AllowTargetFarWithoutTarget`** (#410, after 2.75.01): the `Patrol<Name>` groups return a Unit to Patrol through it. Without it, a Unit whose target is gone stays in combat.
 
 **45.** Freighter dispatch follows Supply Depot demand.
 - **Demand counter:** the sandbox counter `<FACTION>_DepotDemand` counts that faction's owned depots whose restock is due.

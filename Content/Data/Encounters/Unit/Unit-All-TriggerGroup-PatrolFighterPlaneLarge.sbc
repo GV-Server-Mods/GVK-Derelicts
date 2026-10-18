@@ -6,7 +6,7 @@
 			Patrol <-> FighterPlane. Attack runs from a line-up point; large flyers.
 			Behavior: [TriggerGroups:GVK-Unit-All-TriggerGroup-PatrolFighterPlaneLarge], Primary autopilot for Patrol, Secondary for FighterPlane.
 			Add [TriggerGroups:GVK-Unit-All-TriggerGroup-CombatKPL] for every faction except COALITION.
-			Switches at 4800 m (TargetNear), back to Patrol beyond 6500 m (TargetFar) or after 5 s with no target.
+			Switches at 4800 m (TargetNear), back to Patrol beyond 6500 m or with no target (TargetFar).
 			Booleans: GVK_InCombat (on FighterPlane).
 		-->
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
@@ -19,7 +19,6 @@
 			[Triggers:GVK-Unit-All-PatrolFighterPlaneLarge-ManualTrigger-SwitchToFighterPlane]
 			[Triggers:GVK-Unit-All-PatrolFighterPlaneLarge-ManualTrigger-SwitchToPatrol]
 			[Triggers:GVK-Unit-All-PatrolFighterPlaneLarge-Trigger-TargetNear]
-			[Triggers:GVK-Unit-All-PatrolFighterPlaneLarge-Trigger-NoTarget]
 			[Triggers:GVK-Unit-All-PatrolFighterPlaneLarge-Trigger-TargetFar]
 			</Description>
 		</EntityComponent>
@@ -117,28 +116,13 @@
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Unit-All-PatrolFighterPlaneLarge-Trigger-NoTarget</SubtypeId>
-			</Id>
-			<Description>
-			[RivalAI Trigger]
-			[UseTrigger:true]
-			[Type:Timer]
-			[StartsReady:true]
-			[MinCooldownMs:5000]
-			[MaxCooldownMs:5001]
-			[Conditions:GVK-Universal-Condition-NoTarget]
-			[Actions:GVK-Unit-All-PatrolFighterPlaneLarge-Action-ReturnToPatrol]
-			</Description>
-		</EntityComponent>
-		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
-			<Id>
-				<TypeId>Inventory</TypeId>
 				<SubtypeId>GVK-Unit-All-PatrolFighterPlaneLarge-Trigger-TargetFar</SubtypeId>
 			</Id>
 			<Description>
 			[RivalAI Trigger]
 			[UseTrigger:true]
 			[Type:TargetFar]
+			[AllowTargetFarWithoutTarget:true]
 			[StartsReady:true]
 			[MinCooldownMs:5000]
 			[MaxCooldownMs:5001]

@@ -3,7 +3,8 @@
     Generates the Patrol <-> combat switch trigger groups for Units (Unit-All-TriggerGroup-Patrol<Name>.sbc).
 .DESCRIPTION
     Every group is the same template: a target inside -Near switches the Unit to its combat subclass on the Secondary
-    autopilot; no target for 5 s, or a target beyond -Far, switches it back to Patrol on the Primary autopilot.
+    autopilot; no target, or a target beyond -Far, switches it back to Patrol on the Primary autopilot (one TargetFar
+    trigger with AllowTargetFarWithoutTarget; needs MES with PR #410, after 2.75.01).
     The groups below are the only ones; change the table and rerun to regenerate all of them.
     - GVK_InCombat is true while the Unit is on its combat subclass, so other groups can put it back in the right state.
     - Wings (GVK_Role_Escort) never switch. A Unit enters combat only while it holds a target.
@@ -55,7 +56,6 @@ foreach ($g in $groups) {
 			[Triggers:$id-ManualTrigger-SwitchTo$sub]
 			[Triggers:$id-ManualTrigger-SwitchToPatrol]
 			[Triggers:$id-Trigger-TargetNear]
-			[Triggers:$id-Trigger-NoTarget]
 			[Triggers:$id-Trigger-TargetFar]
 "@
     # The two switches toggle each other, so exactly one is enabled: SwitchTo<combat> while patrolling.
@@ -114,21 +114,12 @@ foreach ($g in $groups) {
 			[ManuallyActivatedTriggerNames:$id-ManualTrigger-SwitchTo$sub]
 			[ManuallyActivatedTriggerTags:GVK-TriggerTags-CombatStarted]
 "@
-    # A Timer, not LostTarget: CombatDefaults' chatter clears the one-shot LostTarget flag first, and TargetFar never fires without a target (GVK-Settings#706)
-    $parts += Component "$id-Trigger-NoTarget" @"
-			[RivalAI Trigger]
-			[UseTrigger:true]
-			[Type:Timer]
-			[StartsReady:true]
-			[MinCooldownMs:5000]
-			[MaxCooldownMs:5001]
-			[Conditions:GVK-Universal-Condition-NoTarget]
-			[Actions:$id-Action-ReturnToPatrol]
-"@
+    # A state check, so it can't miss the loss the way a LostTarget edge during a cooldown can (GVK-Settings#706)
     $parts += Component "$id-Trigger-TargetFar" @"
 			[RivalAI Trigger]
 			[UseTrigger:true]
 			[Type:TargetFar]
+			[AllowTargetFarWithoutTarget:true]
 			[StartsReady:true]
 			[MinCooldownMs:5000]
 			[MaxCooldownMs:5001]
@@ -150,7 +141,7 @@ foreach ($g in $groups) {
 			Patrol <-> $sub. $($g.Note)
 			Behavior: [TriggerGroups:GVK-Unit-All-TriggerGroup-Patrol$n], Primary autopilot for Patrol, Secondary for $sub.
 			Add [TriggerGroups:GVK-Unit-All-TriggerGroup-CombatKPL] for every faction except COALITION.
-			Switches at $($g.Near) m (TargetNear), back to Patrol beyond $($g.Far) m (TargetFar) or after 5 s with no target.
+			Switches at $($g.Near) m (TargetNear), back to Patrol beyond $($g.Far) m or with no target (TargetFar).
 			Booleans: GVK_InCombat (on $sub).
 		-->
 "@
