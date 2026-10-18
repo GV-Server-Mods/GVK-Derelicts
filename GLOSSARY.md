@@ -106,7 +106,7 @@ _Avoid_: KOTH Outpost, Player KOTH
 ## Structures
 
 **Base**:
-A large, stationary, defended NPC grid that anchors a faction's presence, such as an alliance Base or a GAALSIEN Base.
+A large, stationary, defended alliance grid that anchors its faction's presence. GAALSIEN has no Bases: its Hangar and Fortress are Large Wrecks and are announced by name.
 
 **Carrier**:
 A mothership-class grid design. Each Alliance faction's Carrier is its central hub; GAALSIEN's Carrier leads a Convoy.

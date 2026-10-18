@@ -19,6 +19,16 @@ OTHER_CUES = ["NeutralAttacked", "EnemyAttacked", "FriendlyFire", "Defeated"]
 HOSTILE = {"GAALSIEN", "DERELICT"}
 NOT_SPLIT = set()  # (voice, cue) pairs exempt from the line-count targets
 NO_SMALL = {"Defeated"}  # Small Units (fighters, skimmers, LAVs) have no last words; the Sensors line is enough
+# Cues only some voices speak, and the size tag their lines need (None: untagged). LaunchCraft plays when a Unit or convoy
+# lead launches fighters or calls air support; DefensesDeployed when a structure or installation spawns its defenders.
+EXTRA = {
+    "Units-GAALSIEN": {"LaunchCraft": "Large", "DefensesDeployed": "Large"},
+    "Units-KHAANEPH": {"LaunchCraft": "Large"},
+    "Units-SOBAN": {"LaunchCraft": "Large"},
+    "Structures-KHAANEPH": {"DefensesDeployed": None},
+    "Structures-SOBAN": {"DefensesDeployed": None},
+    "Installations-GAALSIEN": {"DefensesDeployed": None},
+}
 # Unit-class names: a size bank holds several designs, so a line must not name the speaker's own class.
 CLASS_WORDS = re.compile(r"\b(sandskimmers?|skimmers?|interceptors?|honou?rguards?|baserunners?|runners?|salvagers?|"
                          r"LAVs?|bombers?|gunships?|horsefl(?:y|ies)|production cruisers?|torpedo|artillery cruisers?)\b", re.I)
@@ -70,6 +80,11 @@ for path in paths:
                 report.append(f"{cue}: {shared} shared, S{per['Small']}/M{per['Medium']}/L{per['Large']} (want {SPLIT} each)")
         elif len(entries) < TARGET and (voice, cue) not in NOT_SPLIT:
             report.append(f"{cue}: {len(entries)} lines (want {TARGET})")
+    for cue, size in EXTRA.get(voice, {}).items():
+        entries = cues.get(cue, [])
+        n = sum(1 for only, _ in entries if (size in only if only else size is None))
+        if n < TARGET:
+            report.append(f"{cue}: {n} {size or 'untagged'} lines (want {TARGET})")
     seen = {}
     for cue, entries in cues.items():
         for only, text in entries:

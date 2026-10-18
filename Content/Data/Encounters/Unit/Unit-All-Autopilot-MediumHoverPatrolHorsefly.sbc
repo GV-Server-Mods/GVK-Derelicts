@@ -24,8 +24,8 @@
 				[IdealPlanetAltitude:17]
 				[MinimumPlanetAltitude:0]
 				[AltitudeTolerance:5000]
-				[WaypointWaitTimeTrigger:10]
 				[WaypointAbandonTimeTrigger:20]
+				[WaypointWaitTimeTrigger:0]
 				[IdealMinSpeed:35]
 				[IdealMaxSpeed:40]
 				[MaxSpeedTolerance:10]
@@ -64,8 +64,8 @@
 				[IdealPlanetAltitude:17]
 				[MinimumPlanetAltitude:0]
 				[AltitudeTolerance:5000]
-				[WaypointWaitTimeTrigger:10]
 				[WaypointAbandonTimeTrigger:20]
+				[WaypointWaitTimeTrigger:0]
 				[IdealMinSpeed:35]
 				[IdealMaxSpeed:100]
 				[MaxSpeedTolerance:10]
@@ -73,6 +73,49 @@
 				[OffsetPlanetMaxDistFromTarget:1500]
 				[OffsetPlanetMinTargetAltitude:10]
 				[OffsetPlanetMaxTargetAltitude:15]
+				[OffsetMaxAngleFromTarget:180]
+				[AngleAllowedForForwardThrust:120]
+				[MaxVelocityAngleForSpeedControl:180]
+				[//Off: MES never clears relative dampening when a unit leaves an escort, so it drifts with its old lead.]
+				[EscortUsesRelativeDampening:false]
+				[EscortSpeedMatchMinDistance:0]
+				[EscortSpeedMatchMaxDistance:25]
+			</Description>
+		</EntityComponent>
+		<!-- Escort (Tertiary): the Passive profile with an 80 m/s catch-up max, so a cruiser escort outruns a leader in combat (cruisers 55 m/s).
+		     Swapped in by GVK-Unit-All-TriggerGroup-EscortAutopilot when it asks for a slot; the escort triggers put Primary back.
+		     Keep its WaypointWaitTimeTrigger at 5 s or more: MES Escort.cs uses it as the wait for the leader before a one-way Retreat. -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Unit-All-Autopilot-MediumHoverPatrolHorsefly-Escort</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Autopilot]
+				[UseVelocityCollisionEvasion:false]
+				[UseProjectileLeadPrediction:false]
+				[RotationMultiplierPitch:0.05]
+				[RotationMultiplierYaw:2]
+				[RotationMultiplierRoll:1]
+				[LimitRotationSpeed:true]
+				[MaxRotationMagnitude:0.5]
+				[FlyLevelWithGravity:false]
+				[LevelWithGravityWhenIdle:false]
+				[WaypointTolerance:75]
+				[UseSurfaceHoverThrustMode:true]
+				[HoverPathStepDistance:76]
+				[IdealPlanetAltitude:17]
+				[MinimumPlanetAltitude:0]
+				[AltitudeTolerance:5000]
+				[WaypointWaitTimeTrigger:10]
+				[WaypointAbandonTimeTrigger:20]
+				[IdealMinSpeed:35]
+				[IdealMaxSpeed:80]
+				[MaxSpeedTolerance:10]
+				[OffsetPlanetMinDistFromTarget:500]
+				[OffsetPlanetMaxDistFromTarget:501]
+				[OffsetPlanetMinTargetAltitude:0]
+				[OffsetPlanetMaxTargetAltitude:1]
 				[OffsetMaxAngleFromTarget:180]
 				[AngleAllowedForForwardThrust:120]
 				[MaxVelocityAngleForSpeedControl:180]

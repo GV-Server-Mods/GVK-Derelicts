@@ -378,7 +378,7 @@
 			[Actions:GVK-Universal-ManualAction-DefeatedCompromised]
 			</Description>
 		</EntityComponent>
-		<!-- Last words: a separate action so its 50% roll can't skip the defeat logic below -->
+		<!-- Last words: they replace the blue Sensors defeated line, so they always play (the bank's squad throttle can still drop one) -->
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
@@ -386,7 +386,6 @@
 			</Id>
 			<Description>
 			[MES AI Action]
-			[Chance:50]
 			[PlayDialogueCue:true]
 			[DialogueCueId:Defeated]
 			</Description>

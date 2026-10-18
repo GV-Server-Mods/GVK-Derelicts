@@ -46,6 +46,8 @@
 				[Triggers:GVK-Universal-Trigger-DefensesManualSpawn-WreckSmall]
 				[Triggers:GVK-Universal-Trigger-DefensesManualSpawn-AllianceBase]
 				[Triggers:GVK-Universal-Trigger-DefensesManualSpawn-AllianceOutpost]
+				[Triggers:GVK-Universal-Trigger-DefensesCallout]
+				[Triggers:GVK-Universal-Trigger-DefensesCallout-DERELICT]
 			</Description>
 		</EntityComponent>
 		<!-- 
@@ -363,6 +365,7 @@
 				[ManuallyActivatedTriggerNames:GVK-Universal-Trigger-DefensesManualSpawn-{EncounterType}]
 				[UseChatBroadcast:true]
 				[ChatData:GVK-Universal-Chat-DefensesManual]
+				[ManuallyActivatedTriggerTags:GVK-Universal-TriggerTags-DefensesCallout-{Faction}]
 			</Description>
 		</EntityComponent>
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
@@ -386,6 +389,140 @@
 				[SendToAllOnlinePlayers:false]
 				[IgnoreAntennaRequirement:true]
 				[IgnoredAntennaRangeOverride:6000]
+			</Description>
+		</EntityComponent>
+		<!-- Defense-wave callout. Each structure speaks in its own bank's DefensesDeployed voice, except DERELICT wrecks:
+		     their waves are GAALSIEN raiders, so the line comes from the raiders, as if they were closing in or springing an ambush. -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Universal-Trigger-DefensesCallout</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Trigger]
+				[UseTrigger:true]
+				[Type:Manual]
+				[Tags:GVK-Universal-TriggerTags-DefensesCallout-GAALSIEN]
+				[Tags:GVK-Universal-TriggerTags-DefensesCallout-KHAANEPH]
+				[Tags:GVK-Universal-TriggerTags-DefensesCallout-SOBAN]
+				[StartsReady:true]
+				[MaxActions:-1]
+				[Actions:GVK-Universal-Action-DefensesCallout]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Universal-Action-DefensesCallout</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Action]
+				[PlayDialogueCue:true]
+				[DialogueCueId:DefensesDeployed]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Universal-Trigger-DefensesCallout-DERELICT</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Trigger]
+				[UseTrigger:true]
+				[Type:Manual]
+				[Tags:GVK-Universal-TriggerTags-DefensesCallout-DERELICT]
+				[StartsReady:true]
+				[MaxActions:-1]
+				[Actions:GVK-Universal-Action-DefensesCallout-DERELICT]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Universal-Action-DefensesCallout-DERELICT</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Action]
+				[UseChatBroadcast:true]
+				[ChatData:GVK-Universal-Chat-DefensesCallout-DERELICT]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Universal-Chat-DefensesCallout-DERELICT</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Chat]
+				[UseChat:true]
+				[StartsReady:true]
+				[Chance:100]
+				[BroadcastRandomly:true]
+				[Author:GAALSIEN Raiders]
+				[Color:Red]
+				[SendToAllOnlinePlayers:false]
+				[IgnoreAntennaRequirement:true]
+				[IgnoredAntennaRangeOverride:15000]
+				[ChatMessages:We saw your lights over the old wreck, heretic. Now you see ours.]
+				[ChatAudio:ArcHudGPSNotification2]
+				[BroadcastChatType:Chat]
+				[ChatMessages:Scavengers on a dead machine. The sand has sent us to collect you.]
+				[ChatAudio:ArcHudGPSNotification2]
+				[BroadcastChatType:Chat]
+				[ChatMessages:You strip the bones of the old ones. We strip yours next.]
+				[ChatAudio:ArcHudGPSNotification2]
+				[BroadcastChatType:Chat]
+				[ChatMessages:Raid party closing. Northerner, you chose the wrong grave to rob.]
+				[ChatAudio:ArcHudGPSNotification2]
+				[BroadcastChatType:Chat]
+				[ChatMessages:Hold fire until they are deep in the wreck. Now. Take them.]
+				[ChatAudio:ArcHudGPSNotification2]
+				[BroadcastChatType:Chat]
+				[ChatMessages:We have waited in the dunes for a fool like you.]
+				[ChatAudio:ArcHudGPSNotification2]
+				[BroadcastChatType:Chat]
+				[ChatMessages:The wreck was bait, heretic. You took it.]
+				[ChatAudio:ArcHudGPSNotification2]
+				[BroadcastChatType:Chat]
+				[ChatMessages:Sajuuk buries what the north digs up. We are His hand.]
+				[ChatAudio:ArcHudGPSNotification2]
+				[BroadcastChatType:Chat]
+				[ChatMessages:Every salvager on this sand answers to us. Your account is due.]
+				[ChatAudio:ArcHudGPSNotification2]
+				[BroadcastChatType:Chat]
+				[ChatMessages:Ambush verified. Close the ring around the scavengers.]
+				[ChatAudio:ArcHudGPSNotification2]
+				[BroadcastChatType:Chat]
+				[ChatMessages:Your beacon sang across the desert. We heard it.]
+				[ChatAudio:ArcHudGPSNotification2]
+				[BroadcastChatType:Chat]
+				[ChatMessages:Northern looters at the wreck. Raiders, descend.]
+				[ChatAudio:ArcHudGPSNotification2]
+				[BroadcastChatType:Chat]
+				[ChatMessages:You came for scrap. You will leave as scrap.]
+				[ChatAudio:ArcHudGPSNotification2]
+				[BroadcastChatType:Chat]
+				[ChatMessages:Profaners in the open. Cut off their retreat.]
+				[ChatAudio:ArcHudGPSNotification2]
+				[BroadcastChatType:Chat]
+				[ChatMessages:The dunes have eyes, heretic. Ours.]
+				[ChatAudio:ArcHudGPSNotification2]
+				[BroadcastChatType:Chat]
+				[ChatMessages:Raid directive issued. Leave nothing for the next fool.]
+				[ChatAudio:ArcHudGPSNotification2]
+				[BroadcastChatType:Chat]
+				[ChatMessages:They are busy with their cutters. Strike now.]
+				[ChatAudio:ArcHudGPSNotification2]
+				[BroadcastChatType:Chat]
+				[ChatMessages:This relic is under Gaalsien protection. Pay with your hull.]
+				[ChatAudio:ArcHudGPSNotification2]
+				[BroadcastChatType:Chat]
+				[ChatMessages:Converging on the wreck. No heretic walks away with its metal.]
+				[ChatAudio:ArcHudGPSNotification2]
+				[BroadcastChatType:Chat]
+				[ChatMessages:The desert told us you would come. We were waiting.]
+				[ChatAudio:ArcHudGPSNotification2]
+				[BroadcastChatType:Chat]
 			</Description>
 		</EntityComponent>
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">

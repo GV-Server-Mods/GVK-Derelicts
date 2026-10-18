@@ -1,0 +1,160 @@
+<?xml version="1.0"?>
+<Definitions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+	<EntityComponents>
+		<!-- Hangar (NWL [GAAL] Hangar). Identical to the other behavior in this file apart from its display name. -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-PlanetaryInstallation-Large-Behavior-GAALSIENHangar</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Behavior]
+			[BehaviorName:Passive]
+			[DialogueBanks:GVK-Units-GAALSIEN-Large.xml]
+			[WeaponSystem:GVK-Universal-Weapons-All]
+			[UsePlayerDistanceTimer:true]
+			[PlayerDistanceTimerTrigger:3600]
+			[PlayerDistanceTrigger:6000]
+			[UseRetreatTimer:false]
+			[UseNoTargetTimer:false]
+			[TargetData:GVK-Universal-Target-EnemyGridsLongRange-GAALSIEN]
+			[Triggers:GVK-PlanetaryInstallation-Large-Trigger-GAALSIENHangarInit]
+			[Triggers:GVK-Universal-Trigger-WeaponsToMaxRange]
+			[Triggers:GVK-Universal-Trigger-JetpackInhibitor]
+			[Triggers:GVK-Universal-Trigger-TargetAcquiredChatter]
+			[Triggers:GVK-Universal-ManualTrigger-TargetCallout-Structure]
+			[Triggers:GVK-Universal-ManualTrigger-TargetCallout-Aircraft]
+			[Triggers:GVK-Universal-ManualTrigger-TargetCallout-Infantry]
+			[Triggers:GVK-Universal-ManualTrigger-TargetCallout-FastMover]
+			[Triggers:GVK-Universal-ManualTrigger-TargetCallout-LongRange]
+			[Triggers:GVK-Universal-Trigger-DespawnInZ0]
+			[TriggerGroups:GVK-Universal-TriggerGroup-DespawnInKOTH]
+			[TriggerGroups:GVK-Universal-TriggerGroup-DefeatedAndAttacked]
+			[TriggerGroups:GVK-Universal-TriggerGroup-SendTargets]
+			[TriggerGroups:GVK-Universal-TriggerGroup-SpawnDefenses]
+			[RemoteControlCode:GVK-LargeDerelict]
+			BountyOnKill=20000000;
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-PlanetaryInstallation-Large-Trigger-GAALSIENHangarInit</SubtypeId>
+			</Id>
+			<Description>
+			[MES AI Trigger]
+			[UseTrigger:true]
+			[Type:Session]
+			[StartsReady:true]
+			[MaxActions:-1]
+			[ActionExecution:All]
+			[Actions:GVK-PlanetaryInstallation-Large-Action-GAALSIENHangarInit]
+			[Actions:GVK-Universal-Action-DisableVanillaBlocks]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-PlanetaryInstallation-Large-Action-GAALSIENHangarInit</SubtypeId>
+			</Id>
+			<Description>
+			[MES AI Action]
+			[SetCustomStrings:true]
+			[CustomStrings:EncounterType,WreckLarge]
+			[CustomStrings:EncounterDisplayName,Hangar]
+			[SetCustomCountersVariables:true]
+			[CustomCountersVariables:DefenseSpawn_Limit,8]
+			[UseChatBroadcast:true]
+			[ChatData:GVK-PlanetaryInstallation-Large-Chat-GAALSIENStructureInit]
+			</Description>
+		</EntityComponent>
+		<!-- Fortress (NWL [GAAL] Fortress). Identical to the other behavior in this file apart from its display name. -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-PlanetaryInstallation-Large-Behavior-GAALSIENFortress</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Behavior]
+			[BehaviorName:Passive]
+			[DialogueBanks:GVK-Units-GAALSIEN-Large.xml]
+			[WeaponSystem:GVK-Universal-Weapons-All]
+			[UsePlayerDistanceTimer:true]
+			[PlayerDistanceTimerTrigger:3600]
+			[PlayerDistanceTrigger:6000]
+			[UseRetreatTimer:false]
+			[UseNoTargetTimer:false]
+			[TargetData:GVK-Universal-Target-EnemyGridsLongRange-GAALSIEN]
+			[Triggers:GVK-PlanetaryInstallation-Large-Trigger-GAALSIENFortressInit]
+			[Triggers:GVK-Universal-Trigger-WeaponsToMaxRange]
+			[Triggers:GVK-Universal-Trigger-JetpackInhibitor]
+			[Triggers:GVK-Universal-Trigger-TargetAcquiredChatter]
+			[Triggers:GVK-Universal-ManualTrigger-TargetCallout-Structure]
+			[Triggers:GVK-Universal-ManualTrigger-TargetCallout-Aircraft]
+			[Triggers:GVK-Universal-ManualTrigger-TargetCallout-Infantry]
+			[Triggers:GVK-Universal-ManualTrigger-TargetCallout-FastMover]
+			[Triggers:GVK-Universal-ManualTrigger-TargetCallout-LongRange]
+			[Triggers:GVK-Universal-Trigger-DespawnInZ0]
+			[TriggerGroups:GVK-Universal-TriggerGroup-DespawnInKOTH]
+			[TriggerGroups:GVK-Universal-TriggerGroup-DefeatedAndAttacked]
+			[TriggerGroups:GVK-Universal-TriggerGroup-SendTargets]
+			[TriggerGroups:GVK-Universal-TriggerGroup-SpawnDefenses]
+			[RemoteControlCode:GVK-LargeDerelict]
+			BountyOnKill=20000000;
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-PlanetaryInstallation-Large-Trigger-GAALSIENFortressInit</SubtypeId>
+			</Id>
+			<Description>
+			[MES AI Trigger]
+			[UseTrigger:true]
+			[Type:Session]
+			[StartsReady:true]
+			[MaxActions:-1]
+			[ActionExecution:All]
+			[Actions:GVK-PlanetaryInstallation-Large-Action-GAALSIENFortressInit]
+			[Actions:GVK-Universal-Action-DisableVanillaBlocks]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-PlanetaryInstallation-Large-Action-GAALSIENFortressInit</SubtypeId>
+			</Id>
+			<Description>
+			[MES AI Action]
+			[SetCustomStrings:true]
+			[CustomStrings:EncounterType,WreckLarge]
+			[CustomStrings:EncounterDisplayName,Fortress]
+			[SetCustomCountersVariables:true]
+			[CustomCountersVariables:DefenseSpawn_Limit,8]
+			[UseChatBroadcast:true]
+			[ChatData:GVK-PlanetaryInstallation-Large-Chat-GAALSIENStructureInit]
+			</Description>
+		</EntityComponent>
+		<!-- Server-wide "GAALSIEN <Hangar|Fortress> detected." on spawn -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-PlanetaryInstallation-Large-Chat-GAALSIENStructureInit</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Chat]
+			[UseChat:true]
+			[StartsReady:true]
+			[Chance:100]
+			[MaxChats:1]
+			[BroadcastRandomly:false]
+			[Author:Sensors]
+			[Color:Blue]
+			[ChatMessages:{Faction} {EncounterDisplayName} detected.]
+			[ChatAudio:ArcHudSensors]
+			[BroadcastChatType:Both]
+			[SendToAllOnlinePlayers:true]
+			</Description>
+		</EntityComponent>
+	</EntityComponents>
+</Definitions>

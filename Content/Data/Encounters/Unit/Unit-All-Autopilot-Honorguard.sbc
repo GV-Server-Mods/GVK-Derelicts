@@ -19,8 +19,10 @@
 			[IdealPlanetAltitude:15]
 			[MinimumPlanetAltitude:15]
 			[AltitudeTolerance:20]
+			[WaypointWaitTimeTrigger:0]
 			[IdealMinSpeed:30]
-			[IdealMaxSpeed:50]
+			[IdealMaxSpeed:60]
+			[MaxSpeedTolerance:5]
 			[AllowStrafing:true]
 			[StrafeMinDurationMs:1000]
 			[StrafeMaxDurationMs:5000]
@@ -34,7 +36,7 @@
 			[MaxVelocityAngleForSpeedControl:180]
 			</Description>
 		</EntityComponent>
-		<!-- Honorguard disable flylevelwithgravity to aim MAC at target -->
+		<!-- Honorguard disable flylevelwithgravity to aim MAC at target; same speeds as Aggressive, since it is only an aiming swap -->
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
@@ -52,8 +54,10 @@
 			[IdealPlanetAltitude:15]
 			[MinimumPlanetAltitude:15]
 			[AltitudeTolerance:20]
+			[WaypointWaitTimeTrigger:0]
 			[IdealMinSpeed:30]
-			[IdealMaxSpeed:100]
+			[IdealMaxSpeed:60]
+			[MaxSpeedTolerance:5]
 			[AllowStrafing:true]
 			[StrafeMinDurationMs:1000]
 			[StrafeMaxDurationMs:5000]

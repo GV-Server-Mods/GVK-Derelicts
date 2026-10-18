@@ -1,0 +1,48 @@
+<?xml version="1.0"?>
+<Definitions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+	<EntityComponents>
+		<!--
+			Cruiser escorts (GVK-ConvoySystem-Escort-TriggerGroup) switch to their Tertiary escort autopilot when they ask a leader for a slot.
+			The escort profile keeps a 5 s+ WaypointWaitTimeTrigger, which MES Escort.cs uses as its wait for the leader, so the Patrol profile can wait 0 s.
+			Behavior: [TriggerGroups:GVK-Unit-All-TriggerGroup-EscortAutopilot] and a [TertiaryAutopilotData:] escort profile.
+			The escort triggers' LeaderDead and ReturnToPatrol actions put Primary back. Salvagers use the same escort group without this one,
+			so they keep escorting on Primary.
+		-->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Unit-All-TriggerGroup-EscortAutopilot</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI TriggerGroup]
+			[Triggers:GVK-Unit-All-EscortAutopilot-ManualTrigger-Requested]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Unit-All-EscortAutopilot-ManualTrigger-Requested</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Trigger]
+			[UseTrigger:true]
+			[Type:Manual]
+			[Tags:GVK-TriggerTags-EscortRequested]
+			[StartsReady:true]
+			[MaxActions:-1]
+			[Actions:GVK-Unit-All-EscortAutopilot-Action-Requested]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Unit-All-EscortAutopilot-Action-Requested</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Action]
+			[ChangeAutopilotProfile:true]
+			[AutopilotProfile:Tertiary]
+			</Description>
+		</EntityComponent>
+	</EntityComponents>
+</Definitions>

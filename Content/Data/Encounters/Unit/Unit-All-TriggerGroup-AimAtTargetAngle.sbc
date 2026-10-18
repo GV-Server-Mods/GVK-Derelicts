@@ -3,6 +3,8 @@
 	<EntityComponents>
 		<!-- Action group switch to Tertiary autopilot when Target is near forward angle -->
 		<!-- Assumes Secondary Autopilot is FlyLevelWithGravity, and Tertiary is not -->
+		<!-- Both swaps need GVK_InCombat: without it the 3 s timer put Secondary back on after the switch to Patrol, so the Unit
+		     patrolled on its combat profile and took MES's default 100-200 m offset altitude. -->
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
@@ -40,10 +42,24 @@
 			<Description>
 			[RivalAI Condition]
 			[UseConditions:true]
-			[MatchAnyCondition:true]
+			[MatchAnyCondition:false]
 			[CheckTargetAngleFromForward:true]
 			[MinTargetAngle:0]
 			[MaxTargetAngle:15]
+			[CheckTrueBooleans:true]
+			[TrueBooleans:GVK_InCombat]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Unit-All-Condition-InCombat</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Condition]
+			[UseConditions:true]
+			[CheckTrueBooleans:true]
+			[TrueBooleans:GVK_InCombat]
 			</Description>
 		</EntityComponent>
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
@@ -72,6 +88,7 @@
 			[Type:Timer]
 			[MinCooldownMs:3000]
 			[MaxCooldownMs:3001]
+			[Conditions:GVK-Unit-All-Condition-InCombat]
 			[Actions:GVK-Unit-All-Action-FlyLevelAngle]
 			</Description>
 		</EntityComponent>

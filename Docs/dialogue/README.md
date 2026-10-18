@@ -89,6 +89,10 @@ The auto-captions mishear lore names. `scripts/fixes.py` is the shared correctio
 | Units GAALSIEN | as above, without NeutralAttacked or FriendlyFire (GAALSIEN is hostile to everyone) |
 | Travellers ×3, Structures ×2, Installations COALITION | NeutralAttacked, EnemyAttacked, FriendlyFire, Defeated |
 | Installations GAALSIEN, DERELICT | EnemyAttacked, Defeated |
+| Units GAALSIEN, KHAANEPH, SOBAN `[L]` | LaunchCraft: a cruiser calls air support, a Production Cruiser or convoy lead launches fighters |
+| Structures ×2, Installations GAALSIEN, Units GAALSIEN `[L]` | DefensesDeployed: a Base, Outpost, GAALSIEN wreck, Hangar or Fortress sends a defense wave (the blue Sensors warning still plays) |
+
+DERELICT wrecks have no DefensesDeployed cue. Their defense waves are GAALSIEN raiders, meant to look as if raiders were already closing on the site or lying in ambush, so the line comes from the raiders: the `GVK-Universal-Chat-DefensesCallout-DERELICT` chat profile (author "GAALSIEN Raiders") in `GVK-Universal-TriggerGroup-Defenses.sbc`. A bank can't do this, because its author is always the speaking grid. Those 20 lines live in that profile, not in a draft. `check_drafts.py` (`EXTRA`) wants 20 lines of each.
 
 Two groups stay quieter on purpose, leaving the blue Sensors message to speak for them:
 - **Small Units** (fighters, skimmers, interceptors, LAVs) have no `Defeated` lines. Tag every `Defeated` line in a Units draft `[M]`, `[L]` or `[ML]`.

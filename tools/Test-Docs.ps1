@@ -85,7 +85,7 @@ try {
             $factions | ForEach-Object { [void]$behaviorFactions[$name].Add($_) }
         }
     }
-    # Silent on purpose: small wrecks only get the blue Sensors lines.
+    # Silent on purpose: small wrecks only get the blue Sensors lines. They must set GVK_NoLastWords at init, or their defeat goes unannounced.
     $noBankAllowed = 'GVK-Alliance-ResearchLab-Behavior', 'GVK-PlanetaryInstallation-Small-Behavior', 'GVK-PlanetaryInstallation-Small-Behavior-GAALSIEN'
     $hostileFactions = 'GAALSIEN', 'DERELICT'   # never neutral or friendly, so their banks skip those cues
     $bankDir = 'Content\Data\DialogueBanks'
@@ -130,8 +130,11 @@ try {
         }
         $banks = @([regex]::Matches($desc, '\[DialogueBanks:([^\]]+)\]') | ForEach-Object { $_.Groups[1].Value.Trim() })
         if (-not $banks.Count) {
-            if ($desc -match '\[TriggerGroups:GVK-Universal-TriggerGroup-DefeatedAndAttacked\]' -and $name -notin $noBankAllowed) {
-                $warnings.Add("${name}: no [DialogueBanks:] line; it will never play attacked chatter")
+            if ($desc -match '\[TriggerGroups:GVK-Universal-TriggerGroup-DefeatedAndAttacked\]') {
+                if ($name -notin $noBankAllowed) { $warnings.Add("${name}: no [DialogueBanks:] line; it will never play attacked chatter") }
+                $setsNoLastWords = [regex]::Matches($desc, '\[Triggers:([^\]]+)\]') | ForEach-Object { [regex]::Matches([string]$profiles[$_.Groups[1].Value.Trim()], '\[Actions:([^\]]+)\]') } |
+                    Where-Object { [string]$profiles[$_.Groups[1].Value.Trim()] -match '\[SetBooleansTrue:GVK_NoLastWords\]' }
+                if (-not $setsNoLastWords) { $warnings.Add("${name}: no bank and no [SetBooleansTrue:GVK_NoLastWords] in an init action; its defeat would go unannounced") }
             }
             continue
         }

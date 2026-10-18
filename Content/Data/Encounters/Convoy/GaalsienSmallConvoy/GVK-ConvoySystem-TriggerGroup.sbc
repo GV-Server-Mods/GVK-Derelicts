@@ -318,6 +318,8 @@
 			[ResetTriggerCooldownNames:GVK-ConvoySystem-Escort-ManualTrigger-ReturnToPatrol]
 			[EnableTriggers:true]
 			[EnableTriggerNames:GVK-ConvoySystem-Escort-ManualTrigger-ReturnToPatrol]
+			[ManuallyActivateTrigger:true]
+			[ManuallyActivatedTriggerTags:GVK-TriggerTags-EscortRequested]
 			</Description>
 		</EntityComponent>
 		<!-- RequestEscortSlot -->
@@ -340,7 +342,8 @@
 		</EntityComponent>
 		<!-- No escort slot received in time: revert to Patrol. Enabled by AvailableToEscort, disabled by ReceiveEscortSlot.
 		     The request and the reply each wait 60 ticks (about 2 s together). This has to fire before MES Escort.cs gives up waiting for a
-		     leader (the autopilot's WaypointWaitTimeTrigger, 5 s or more on every escort-capable profile) and switches the grid to Retreat. -->
+		     leader (the WaypointWaitTimeTrigger of the autopilot it asks on, 5 s or more: Primary for Salvagers,
+		     the Tertiary escort profile that GVK-Unit-All-TriggerGroup-EscortAutopilot swaps in for hover escorts; their Patrol profiles wait 0 s) and switches the grid to Retreat. -->
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>

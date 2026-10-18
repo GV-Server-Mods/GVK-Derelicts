@@ -244,8 +244,8 @@
 				[IgnoreSafetyChecks:true]
 			</Description>
 		</EntityComponent>
-		<!-- Air support: a single aircraft of the behavior's own faction. The behavior's init action sets the custom strings
-		     AirSupportSpawnGroup (the spawn group) and AirSupportName (the chat author after the faction tag). -->
+		<!-- Air support: a single aircraft of the behavior's own faction. The behavior's init action sets the custom string
+		     AirSupportSpawnGroup (the spawn group). The call plays the bank's LaunchCraft cue. -->
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
@@ -273,8 +273,8 @@
 				[Chance:50]
 				[SpawnEncounter:true]
 				[Spawner:GVK-Unit-All-Spawner-SpawnAirSupport]
-				[UseChatBroadcast:true]
-				[ChatData:GVK-Unit-All-Chat-SpawnAirSupport]
+				[PlayDialogueCue:true]
+				[DialogueCueId:LaunchCraft]
 			</Description>
 		</EntityComponent>
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
@@ -295,27 +295,6 @@
 				[SpawnGroups:{AirSupportSpawnGroup}]
 				[ProcessAsAdminSpawn:false]
 				[IgnoreSafetyChecks:true]
-			</Description>
-		</EntityComponent>
-		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
-			<Id>
-				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Unit-All-Chat-SpawnAirSupport</SubtypeId>
-			</Id>
-			<Description>
-				[RivalAI Chat]
-				[UseChat:true]
-				[StartsReady:true]
-				[Chance:50]
-				[BroadcastRandomly:false]
-				[Author:{Faction} {AirSupportName}]
-				[Color:{PlayerRelation}]
-				[ChatMessages:Air support inbound.]
-				[ChatAudio:GreetingSoundId-A]
-				[BroadcastChatType:Chat]
-				[SendToAllOnlinePlayers:false]
-				[IgnoreAntennaRequirement:true]
-				[IgnoredAntennaRangeOverride:9999999]
 			</Description>
 		</EntityComponent>
 		<!-- Elite Escorts: two of the behavior's own faction. The Elite behavior's init action sets the custom string EliteEscortSpawnGroup. -->

@@ -20,6 +20,8 @@
 		Tags:GVK-Universal-TriggerTags-DespawnedChat-{EncounterType}
 		
 		Note: Units don't have DespawnChat
+		Note: a grid's Defeated last words (its dialogue bank) replace the Sensors defeated line. Only UnitSmall (no Defeated lines)
+		      and behaviors without a bank, which set GVK_NoLastWords at init, get the Sensors line. README note 37.
 
 		-->
 
@@ -36,6 +38,7 @@
 				[Tags:GVK-Universal-TriggerTags-DefeatedChat-AllianceBase]
 				[Type:Manual]
 				[StartsReady:true]
+				[Conditions:GVK-Universal-Condition-NoLastWords]
 				[Actions:GVK-Universal-Action-DefeatedChat-Large]
 			</Description>
 		</EntityComponent>
@@ -51,6 +54,7 @@
 				[Tags:GVK-Universal-TriggerTags-DefeatedChat-AllianceOutpost]
 				[Type:Manual]
 				[StartsReady:true]
+				[Conditions:GVK-Universal-Condition-NoLastWords]
 				[Actions:GVK-Universal-Action-DefeatedChat-Medium]
 			</Description>
 		</EntityComponent>
@@ -66,6 +70,7 @@
 				[Tags:GVK-Universal-TriggerTags-DefeatedChat-AllianceTurret]
 				[Type:Manual]
 				[StartsReady:true]
+				[Conditions:GVK-Universal-Condition-NoLastWords]
 				[Actions:GVK-Universal-Action-DefeatedChat-Small]
 			</Description>
 		</EntityComponent>
@@ -81,6 +86,7 @@
 				[Tags:GVK-Universal-TriggerTags-DefeatedChat-CargoShip]
 				[Type:Manual]
 				[StartsReady:true]
+				[Conditions:GVK-Universal-Condition-NoLastWords]
 				[Actions:GVK-Universal-Action-DefeatedChat-Large]
 			</Description>
 		</EntityComponent>
@@ -96,6 +102,7 @@
 				[Tags:GVK-Universal-TriggerTags-DefeatedChat-UnitElite]
 				[Type:Manual]
 				[StartsReady:true]
+				[Conditions:GVK-Universal-Condition-NoLastWords]
 				[Actions:GVK-Universal-Action-DefeatedChat-Large]
 			</Description>
 		</EntityComponent>
@@ -111,6 +118,7 @@
 				[Tags:GVK-Universal-TriggerTags-DefeatedChat-UnitLarge]
 				[Type:Manual]
 				[StartsReady:true]
+				[Conditions:GVK-Universal-Condition-NoLastWords]
 				[Actions:GVK-Universal-Action-DefeatedChat-Medium]
 			</Description>
 		</EntityComponent>
@@ -126,6 +134,7 @@
 				[Tags:GVK-Universal-TriggerTags-DefeatedChat-UnitMedium]
 				[Type:Manual]
 				[StartsReady:true]
+				[Conditions:GVK-Universal-Condition-NoLastWords]
 				[Actions:GVK-Universal-Action-DefeatedChat-Medium]
 			</Description>
 		</EntityComponent>
@@ -156,6 +165,7 @@
 				[Tags:GVK-Universal-TriggerTags-DefeatedChat-WreckLarge]
 				[Type:Manual]
 				[StartsReady:true]
+				[Conditions:GVK-Universal-Condition-NoLastWords]
 				[Actions:GVK-Universal-Action-DefeatedChat-Large]
 			</Description>
 		</EntityComponent>
@@ -171,6 +181,7 @@
 				[Tags:GVK-Universal-TriggerTags-DefeatedChat-WreckMedium]
 				[Type:Manual]
 				[StartsReady:true]
+				[Conditions:GVK-Universal-Condition-NoLastWords]
 				[Actions:GVK-Universal-Action-DefeatedChat-Medium]
 			</Description>
 		</EntityComponent>
@@ -186,6 +197,7 @@
 				[Tags:GVK-Universal-TriggerTags-DefeatedChat-WreckSmall]
 				[Type:Manual]
 				[StartsReady:true]
+				[Conditions:GVK-Universal-Condition-NoLastWords]
 				[Actions:GVK-Universal-Action-DefeatedChat-Small]
 			</Description>
 		</EntityComponent>
@@ -278,6 +290,18 @@
 				[Type:Manual]
 				[StartsReady:true]
 				[Actions:GVK-Universal-Action-DespawnedChat-StructureSmall]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Universal-Condition-NoLastWords</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Condition]
+				[UseConditions:true]
+				[CheckTrueBooleans:true]
+				[TrueBooleans:GVK_NoLastWords]
 			</Description>
 		</EntityComponent>
 		<!-- Action and Common Chat messages -->
