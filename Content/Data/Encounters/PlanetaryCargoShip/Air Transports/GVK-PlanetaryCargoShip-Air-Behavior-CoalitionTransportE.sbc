@@ -1,4 +1,4 @@
-﻿<?xml version="1.0"?>
+<?xml version="1.0"?>
 <Definitions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
 	<EntityComponents>
 		<!-- Route E, Aerial Crossroads to Skyport to Sevastapol -->
@@ -162,7 +162,7 @@
 				[SetWeaponsToMaxRange:true]
 				[UseChatBroadcast:true]
 				[ChatData:GVK-CargoShip-Air-COALITION-Chat-TransportOnSpawnE]
-				[ResetSandboxCounters:SandboxCounter_WaypointRouteE]
+				[ResetCounters:WaypointCounter]
 			</Description>
 		</EntityComponent>
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
@@ -386,10 +386,10 @@
 			<Description>
 				[RivalAI Condition]
 				[UseConditions:true]
-				[CheckCustomSandboxCounters:true]
-				[CustomSandboxCounters:SandboxCounter_WaypointRouteE]
-				[CustomSandboxCountersTargets:5]
-				[SandboxCounterCompareTypes:Equal]
+				[CheckCustomCounters:true]
+				[CustomCounters:WaypointCounter]
+				[CustomCountersTargets:5]
+				[CounterCompareTypes:Equal]
 			</Description>
 		</EntityComponent>
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
@@ -401,7 +401,7 @@
 				[RivalAI Action]
 				[CancelWaitingAtWaypoint:false]
 				[SwitchToNextWaypoint:false]
-				[IncreaseSandboxCounters:SandboxCounter_WaypointRouteE]
+				[IncreaseCounters:WaypointCounter]
 				[UseChatBroadcast:true]
 				[ChatData:GVK-CargoShip-Air-COALITION-Chat-TransportArriveAtSkyport]
 			</Description>
@@ -452,10 +452,10 @@
 			<Description>
 				[RivalAI Condition]
 				[UseConditions:true]
-				[CheckCustomSandboxCounters:true]
-				[CustomSandboxCounters:SandboxCounter_WaypointRouteE]
-				[CustomSandboxCountersTargets:5]
-				[SandboxCounterCompareTypes:NotEqual]
+				[CheckCustomCounters:true]
+				[CustomCounters:WaypointCounter]
+				[CustomCountersTargets:5]
+				[CounterCompareTypes:NotEqual]
 			</Description>
 		</EntityComponent>
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
@@ -468,7 +468,7 @@
 				[//DebugMessage:EscortArriveAtWaypoint]
 				[CancelWaitingAtWaypoint:true]
 				[SwitchToNextWaypoint:false]
-				[IncreaseSandboxCounters:SandboxCounter_WaypointRouteE]
+				[IncreaseCounters:WaypointCounter]
 			</Description>
 		</EntityComponent>
 		<!-- Trigger sequence when Transport leaves a waypoint -->
@@ -1054,11 +1054,11 @@
 				[RivalAI Condition]
 				[UseConditions:true]
 				[MatchAnyCondition:true]
-				[CheckCustomSandboxCounters:true]
-				[CustomSandboxCounters:SandboxCounter_WaypointRouteE]
-				[CustomSandboxCountersTargets:13]
-				[SandboxCounterCompareTypes:GreaterOrEqual]
-				[AllowAnyValidSandboxCounter:true]
+				[CheckCustomCounters:true]
+				[CustomCounters:WaypointCounter]
+				[CustomCountersTargets:13]
+				[CounterCompareTypes:GreaterOrEqual]
+				[AllowAnyValidCounter:true]
 			</Description>
 		</EntityComponent>
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">

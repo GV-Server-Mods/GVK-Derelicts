@@ -16,6 +16,7 @@
 				[TemplateEventIds:GVK-ConvoyContracts-Template-Arrived-B]
 				[TemplateEventIds:GVK-ConvoyContracts-Template-Lost-B]
 				[TemplateEventIds:GVK-ConvoyContracts-Template-Watchdog-B]
+				[TemplateEventIds:GVK-ConvoyContracts-Template-Abandoned-B]
 			</Description>
 		</EntityComponent>
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
@@ -156,6 +157,32 @@
 			<Description>
 				[MES Event Action]
 				[TryContractFail:true]
+				[ChangeBooleans:true]
+				[SetBooleansFalse:GVK_ConvoyContractActive]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-ConvoyContracts-Template-Abandoned-B</SubtypeId>
+			</Id>
+			<Description>
+				[MES Event Template]
+				[UseEvent:true]
+				[Tags:Abandoned@{InstanceId}]
+				[Tags:Failed@{InstanceId}]
+				[ActionExecution:All]
+				[ActionIds:GVK-ConvoyContracts-EventAction-Abandoned-B]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-ConvoyContracts-EventAction-Abandoned-B</SubtypeId>
+			</Id>
+			<Description>
+				[MES Event Action]
+				[RemoveThisInstanceGroup:true]
 				[ChangeBooleans:true]
 				[SetBooleansFalse:GVK_ConvoyContractActive]
 			</Description>

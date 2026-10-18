@@ -19,6 +19,7 @@
 				[TemplateEventIds:GVK-ConvoyContracts-Template-Arrived-A]
 				[TemplateEventIds:GVK-ConvoyContracts-Template-Lost-A]
 				[TemplateEventIds:GVK-ConvoyContracts-Template-Watchdog-A]
+				[TemplateEventIds:GVK-ConvoyContracts-Template-Abandoned-A]
 			</Description>
 		</EntityComponent>
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
@@ -163,6 +164,32 @@
 				[SetBooleansFalse:GVK_ConvoyContractActive]
 			</Description>
 		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-ConvoyContracts-Template-Abandoned-A</SubtypeId>
+			</Id>
+			<Description>
+				[MES Event Template]
+				[UseEvent:true]
+				[Tags:Abandoned@{InstanceId}]
+				[Tags:Failed@{InstanceId}]
+				[ActionExecution:All]
+				[ActionIds:GVK-ConvoyContracts-EventAction-Abandoned-A]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-ConvoyContracts-EventAction-Abandoned-A</SubtypeId>
+			</Id>
+			<Description>
+				[MES Event Action]
+				[RemoveThisInstanceGroup:true]
+				[ChangeBooleans:true]
+				[SetBooleansFalse:GVK_ConvoyContractActive]
+			</Description>
+		</EntityComponent>
 
 		<!-- ================= ROUTE A DOUBLE ================= -->
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
@@ -176,6 +203,7 @@
 				[TemplateEventIds:GVK-ConvoyContracts-Template-Arrived-A-Double]
 				[TemplateEventIds:GVK-ConvoyContracts-Template-Lost-A-Double]
 				[TemplateEventIds:GVK-ConvoyContracts-Template-Watchdog-A-Double]
+				[TemplateEventIds:GVK-ConvoyContracts-Template-Abandoned-A-Double]
 			</Description>
 		</EntityComponent>
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
@@ -328,6 +356,32 @@
 			<Description>
 				[MES Event Action]
 				[TryContractFail:true]
+				[ChangeBooleans:true]
+				[SetBooleansFalse:GVK_ConvoyContractActive]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-ConvoyContracts-Template-Abandoned-A-Double</SubtypeId>
+			</Id>
+			<Description>
+				[MES Event Template]
+				[UseEvent:true]
+				[Tags:Abandoned@{InstanceId}]
+				[Tags:Failed@{InstanceId}]
+				[ActionExecution:All]
+				[ActionIds:GVK-ConvoyContracts-EventAction-Abandoned-A-Double]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-ConvoyContracts-EventAction-Abandoned-A-Double</SubtypeId>
+			</Id>
+			<Description>
+				[MES Event Action]
+				[RemoveThisInstanceGroup:true]
 				[ChangeBooleans:true]
 				[SetBooleansFalse:GVK_ConvoyContractActive]
 			</Description>

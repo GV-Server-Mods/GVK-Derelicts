@@ -2,16 +2,15 @@
 <Definitions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
 	<EntityComponents>
 		<!-- ================================================================= -->
-		<!-- GVK ESCORT CONTRACT MISSIONS                                      -->
+		<!-- GVK CONVOY CONTRACT MISSIONS                                      -->
 		<!-- MES-native player-initiated Convoy Contracts (Routes A, B, E).     -->
 		<!-- MES adds these to the Coalition contract block as real contracts   -->
 		<!-- (MyContractCustom, MESContract type) and spawns the convoy on      -->
 		<!-- accept via the mission's InstanceEventGroupId. No C# required.     -->
-		<!-- Board: GVK-EscortContracts-Trigger-RefreshBoard on                 -->
+		<!-- Board: GVK-ConvoyContracts-Trigger-RefreshBoard on                 -->
 		<!-- GVK-Static-TradeStation-Behavior -> NTS [COAL] Base.               -->
-		<!-- Files: Board, Missions, EventTemplates, Signals in this folder;    -->
+		<!-- Files: Board, Missions, and Route files in this folder;            -->
 		<!-- Transport behaviors in Encounters/PlanetaryCargoShip/.             -->
-		<!-- Remaining work: GV-Server-Mods/GVK-Settings#675.                   -->
 		<!-- ================================================================= -->
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
@@ -33,8 +32,7 @@
 				[MES Mission]
 				[MissionType:Custom]
 				[Title:Convoy Contract - Sevastopol (Land)]
-				[Description:A Coalition land convoy is waiting at Crossroads for an escort to Sevastopol. Gaalsien raiders will harass it en route. Guard the Transport until it arrives. Primary
-				payout is the cargo itself. This is a test contract description with no special characters.]
+				[Description:A Coalition land convoy is waiting at Crossroads for an escort to Sevastopol. Gaalsien raiders will harass it en route. Guard the Transport until it arrives. Primary payout is the cargo itself.]
 				[Reward:8000]
 				[Collateral:8000]
 				[ReputationReward:0]
@@ -55,7 +53,7 @@
 				[MES Mission]
 				[MissionType:Custom]
 				[Title:Convoy Contract - Sevastopol Heavy (Land)]
-				[Description:A Coalition heavy land convoy with two Transports is waiting at Crossroads for an escort to Sevastopol. Gaalsien raiders will attack in force. Guard the Transports until they arrive. Primary payout is the cargo itself. This is a test contract description with no special characters.]
+				[Description:A Coalition heavy land convoy with two Transports is waiting at Crossroads for an escort to Sevastopol. Gaalsien raiders will attack in force. Guard the Transports until they arrive. Primary payout is the cargo itself.]
 				[Reward:16000]
 				[Collateral:16000]
 				[ReputationReward:0]
@@ -76,8 +74,7 @@
 				[MES Mission]
 				[MissionType:Custom]
 				[Title:Convoy Contract - Mastodon (Land)]
-				[Description:A Coalition land convoy is waiting at Crossroads for an escort to the Mastodon station. Gaalsien raiders will harass it en route. Guard the Transport until it arrives.
-				Primary payout is the cargo itself. This is a test contract description with no special characters.]
+				[Description:A Coalition land convoy is waiting at Crossroads for an escort to Mastodon Station. Gaalsien raiders will harass it en route. Guard the Transport until it arrives. Primary payout is the cargo itself.]
 				[Reward:6000]
 				[Collateral:6000]
 				[ReputationReward:0]
@@ -98,8 +95,7 @@
 				[MES Mission]
 				[MissionType:Custom]
 				[Title:Convoy Contract - Sevastopol (Air)]
-				[Description:A Coalition air Transport is waiting at the Skyport for an escort to Sevastopol. Watch the refuel stops - grounded Transports are vulnerable. Guard it until it arrives.
-				Primary payout is the cargo itself. This is a test contract description with no special characters.]
+				[Description:A Coalition air Transport is waiting at the Skyport for an escort to Sevastopol. Watch the refuel stops - grounded Transports are vulnerable. Guard it until it arrives. Primary payout is the cargo itself.]
 				[Reward:10000]
 				[Collateral:10000]
 				[ReputationReward:0]

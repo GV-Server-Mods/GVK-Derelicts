@@ -2,14 +2,14 @@
 <Definitions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
 	<EntityComponents>
 		<!-- ================================================================= -->
-		<!-- GVK ESCORT CONTRACT BOARD                                          -->
+		<!-- GVK CONVOY CONTRACT BOARD                                         -->
 		<!-- Contract Block profile: the list of missions MES publishes onto the -->
 		<!-- Coalition contract block. Applied by the board behavior below.     -->
 		<!-- ================================================================= -->
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-EscortContracts-Board</SubtypeId>
+				<SubtypeId>GVK-ConvoyContracts-Board</SubtypeId>
 			</Id>
 			<Description>
 				[MES Contract Block]
@@ -19,11 +19,11 @@
 				[MissionIds:GVK-ConvoyContract-RouteE]
 			</Description>
 		</EntityComponent>
-		<!-- Trigger to refresh the escort contract board, place on appropriate grid behaviors only -->
+		<!-- Trigger to refresh the convoy contract board, place on appropriate grid behaviors only -->
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-EscortContracts-Trigger-RefreshBoard</SubtypeId>
+				<SubtypeId>GVK-ConvoyContracts-Trigger-RefreshBoard</SubtypeId>
 			</Id>
 			<Description>
 				[RivalAI Trigger]
@@ -32,14 +32,14 @@
 				[StartsReady:true]
 				[MinCooldownMs:600000]
 				[MaxCooldownMs:600001]
-				[Conditions:GVK-EscortContracts-Condition-NoActiveContract]
-				[Actions:GVK-EscortContracts-Action-RefreshBoard]
+				[Conditions:GVK-ConvoyContracts-Condition-NoActiveContract]
+				[Actions:GVK-ConvoyContracts-Action-RefreshBoard]
 			</Description>
 		</EntityComponent>
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-EscortContracts-Condition-NoActiveContract</SubtypeId>
+				<SubtypeId>GVK-ConvoyContracts-Condition-NoActiveContract</SubtypeId>
 			</Id>
 			<Description>
 				[RivalAI Condition]
@@ -50,7 +50,7 @@
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-EscortContracts-Action-RefreshBoard</SubtypeId>
+				<SubtypeId>GVK-ConvoyContracts-Action-RefreshBoard</SubtypeId>
 			</Id>
 			<Description>
 				[RivalAI Action]
@@ -58,7 +58,7 @@
 				[ApplyContractProfiles:true]
 				[ClearContractContentsFirst:true]
 				[ContractBlocks:NPC Contracts]
-				[ContractBlockProfiles:GVK-EscortContracts-Board]
+				[ContractBlockProfiles:GVK-ConvoyContracts-Board]
 				[SetSandboxBooleansFalse:GVK_ConvoyContractActive]
 				[SetSandboxBooleansFalse:GVK_TransportArrived_A]
 				[SetSandboxBooleansFalse:GVK_TransportLost_A]
