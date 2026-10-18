@@ -2,6 +2,8 @@
 <Definitions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
 	<EntityComponents>
 		<!-- Land peer Wing autopilots (Tertiary): faster than the leader's combat profile so the wing keeps up, speed matched near the slot; see README note 41 -->
+		<!-- DisableInertiaDampeners only takes effect at spawn, from the Primary profile; a swap to these never changes it. It matches each Primary here (LAV off, hovers on) -->
+		<!-- AngleAllowedForForwardThrust stays at 90: past that, forward thrust pushes the wing away from its slot -->
 		<!-- LAVs: the LAV jump group swaps BigAirTime into this slot in the air and puts LAVWing back on landing -->
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
@@ -18,7 +20,7 @@
 				[MaxRotationMagnitude:4]
 				[FlyLevelWithGravity:false]
 				[LevelWithGravityWhenIdle:false]
-				[DisableInertiaDampeners:false]
+				[DisableInertiaDampeners:true]
 				[UseSurfaceHoverThrustMode:true]
 				[HoverPathStepDistance:76]
 				[IdealPlanetAltitude:2.75]
