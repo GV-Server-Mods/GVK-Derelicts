@@ -121,8 +121,6 @@
 				[RivalAI Action]
 				[BroadcastCommandProfiles:true]
 				[CommandProfileIds:GVK-Convoy-Escort-Command-RequestEscortSlot]
-				[UseChatBroadcast:false]
-				[ChatData:GVK-Convoy-Escort-Chat-RequestEscortSlot]
 			</Description>
 		</EntityComponent>
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
@@ -139,28 +137,6 @@
 				[Radius:5000]
 				[CommandCode:GVK_Command_Lead_RequestEscortSlot]
 				[RequestEscortSlot:true]
-			</Description>
-		</EntityComponent>
-		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
-			<Id>
-				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Convoy-Escort-Chat-RequestEscortSlot</SubtypeId>
-			</Id>
-			<Description>
-				[RivalAI Chat]
-				[UseChat:true]
-				[StartsReady:true]
-				[Chance:100]
-				[MaxChats:-1]
-				[BroadcastRandomly:false]
-				[Author:Escort]
-				[Color:Red]
-				[ChatMessages:Requesting escort slot.]
-				[ChatAudio:GreetingSoundId-A]
-				[BroadcastChatType:Chat]
-				[SendToAllOnlinePlayers:false]
-				[IgnoreAntennaRequirement:true]
-				[IgnoredAntennaRangeOverride:9999999]
 			</Description>
 		</EntityComponent>
 		<!-- Trigger sequence for Escorts to switch behaviors after Convoy Lead is disabled -->
@@ -186,36 +162,12 @@
 			</Id>
 			<Description>
 				[RivalAI Action]
-				[UseChatBroadcast:false]
-				[ChatData:GVK-Convoy-Escort-Chat-ReceiveScatterCommand]
 				[ChangeBehaviorSubclass:true]
 				[NewBehaviorSubclass:Horsefly]
 				[ChangeAutopilotProfile:true]
 				[AutopilotProfile:Secondary]
 				[ChangeAutopilotSpeed:true]
 				[NewAutopilotSpeed:70]
-			</Description>
-		</EntityComponent>
-		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
-			<Id>
-				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Convoy-Escort-Chat-ReceiveScatterCommand</SubtypeId>
-			</Id>
-			<Description>
-				[RivalAI Chat]
-				[UseChat:true]
-				[StartsReady:true]
-				[Chance:100]
-				[MaxChats:1]
-				[BroadcastRandomly:false]
-				[Author:GAALSIEN Escort]
-				[Color:Red]
-				[ChatMessages:Scattering escorts.]
-				[ChatAudio:GreetingSoundId-A]
-				[BroadcastChatType:Chat]
-				[SendToAllOnlinePlayers:false]
-				[IgnoreAntennaRequirement:true]
-				[IgnoredAntennaRangeOverride:9999999]
 			</Description>
 		</EntityComponent>
 		<!-- An escort must never sit in Escort until MES Escort.cs retreats it (it waits WaypointWaitTimeTrigger, 30 s, for a leader and then retreats).

@@ -353,30 +353,6 @@
 				[WaypointsToAdd:GVK-Convoy-WaypointStatic-LandRouteA86]
 				[WaypointsToAdd:GVK-Convoy-WaypointStatic-LandRouteA87]
 				[WaypointsToAdd:GVK-Convoy-WaypointStatic-LandRouteA88]
-				[UseChatBroadcast:true]
-				[ChatData:GVK-CargoShip-Land-COALITION-Chat-TransportAddWaypointsA]
-			</Description>
-		</EntityComponent>
-		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
-			<Id>
-				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-CargoShip-Land-COALITION-Chat-TransportAddWaypointsA</SubtypeId>
-			</Id>
-			<Description>
-				[RivalAI Chat]
-				[UseChat:false]
-				[StartsReady:true]
-				[Chance:100]
-				[MaxChats:-1]
-				[BroadcastRandomly:false]
-				[Author:Transport]
-				[Color:White]
-				[ChatMessages:Adding waypoints.]
-				[ChatAudio:GreetingSoundId-A]
-				[BroadcastChatType:Chat]
-				[SendToAllOnlinePlayers:true]
-				[IgnoreAntennaRequirement:true]
-				[IgnoredAntennaRangeOverride:9999999]
 			</Description>
 		</EntityComponent>
 		<!-- Trigger to fly level with gravity when horizon angle is high -->
@@ -550,7 +526,7 @@
 				[Author:{Faction}]
 				[Color:{PlayerRelation}]
 				[ChatMessages:A Transport has been Lost!]
-				[ChatAudio:GreetingSoundId-A]
+				[ChatAudio:ArcHudGPSNotification2]
 				[BroadcastChatType:Chat]
 				[SendToAllOnlinePlayers:true]
 				[IgnoreAntennaRequirement:true]
@@ -656,7 +632,7 @@
 				[Author:{Faction}]
 				[Color:{PlayerRelation}]
 				[ChatMessages:Transport is under attack!]
-				[ChatAudio:GreetingSoundId-A]
+				[ChatAudio:ArcHudGPSNotification2]
 				[BroadcastChatType:Chat]
 				[SendToAllOnlinePlayers:true]
 				[IgnoreAntennaRequirement:true]

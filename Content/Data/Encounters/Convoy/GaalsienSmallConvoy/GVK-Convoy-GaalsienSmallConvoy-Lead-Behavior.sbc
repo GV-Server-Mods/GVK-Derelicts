@@ -125,6 +125,7 @@
 			[ChatAudio:ArcHudGPSNotification2]
 			[BroadcastChatType:Chat]
 			[ChatMessages:A GAALSIEN Convoy has been spotted.]
+			[ChatAudio:ArcHudGPSNotification2]
 			[BroadcastChatType:Notify]
 			[SendToAllOnlinePlayers:true]
 			</Description>
@@ -203,30 +204,6 @@
 			[WaypointsToAdd:GVK-Convoy-Waypoint-LandRouteD46]
 			[WaypointsToAdd:GVK-Convoy-Waypoint-LandRouteD47]
 			[WaypointsToAdd:GVK-Convoy-Waypoint-LandRouteD48]
-			[UseChatBroadcast:false]
-			[ChatData:GVK-Convoy-GAALSIENSmallConvoy-Lead-Chat-AddWaypoints]
-			</Description>
-		</EntityComponent>
-		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
-			<Id>
-				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Convoy-GAALSIENSmallConvoy-Lead-Chat-AddWaypoints</SubtypeId>
-			</Id>
-			<Description>
-			[RivalAI Chat]
-			[UseChat:true]
-			[StartsReady:true]
-			[Chance:100]
-			[MaxChats:-1]
-			[BroadcastRandomly:false]
-			[Author:Convoy Lead]
-			[Color:White]
-			[ChatMessages:Adding waypoints.]
-			[ChatAudio:GreetingSoundId-A]
-			[BroadcastChatType:Chat]
-			[SendToAllOnlinePlayers:false]
-			[IgnoreAntennaRequirement:true]
-			[IgnoredAntennaRangeOverride:9999999]
 			</Description>
 		</EntityComponent>
 		<!-- Trigger sequence for Carrier to spawn initial defenses -->
@@ -347,8 +324,8 @@
 			[BroadcastRandomly:false]
 			[Author:{Faction}]
 			[Color:{PlayerRelation}]
-			[ChatMessages:The GAALSIEN Convoy has reached its desitnation.]
-			[ChatAudio:GreetingSoundId-A]
+			[ChatMessages:The GAALSIEN Convoy has reached its destination.]
+			[ChatAudio:ArcHudGPSNotification2]
 			[BroadcastChatType:Chat]
 			[SendToAllOnlinePlayers:false]
 			[IgnoreAntennaRequirement:true]
@@ -419,7 +396,7 @@
 			[Author:{Faction}]
 			[Color:{PlayerRelation}]
 			[ChatMessages:The GAALSIEN Convoy has been defeated!]
-			[ChatAudio:GreetingSoundId-A]
+			[ChatAudio:ArcHudGPSNotification2]
 			[BroadcastChatType:Chat]
 			[SendToAllOnlinePlayers:true]
 			</Description>
@@ -448,30 +425,6 @@
 			<Description>
 			[RivalAI Action]
 			[AssignEscortFromCommand:true]
-			[UseChatBroadcast:false]
-			[ChatData:GVK-Convoy-GAALSIENSmallConvoy-Lead-Chat-AssignEscortSlot]
-			</Description>
-		</EntityComponent>
-		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
-			<Id>
-				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Convoy-GAALSIENSmallConvoy-Lead-Chat-AssignEscortSlot</SubtypeId>
-			</Id>
-			<Description>
-			[RivalAI Chat]
-			[UseChat:true]
-			[StartsReady:true]
-			[Chance:100]
-			[MaxChats:-1]
-			[BroadcastRandomly:false]
-			[Author:GAALSIEN Production Cruiser]
-			[Color:Red]
-			[ChatMessages:Assigning an escort slot.]
-			[ChatAudio:GreetingSoundId-A]
-			[BroadcastChatType:Chat]
-			[SendToAllOnlinePlayers:false]
-			[IgnoreAntennaRequirement:true]
-			[IgnoredAntennaRangeOverride:9999999]
 			</Description>
 		</EntityComponent>
 		<!-- Trigger sequence for Carrier to disperse escorts when defeated -->
@@ -484,8 +437,6 @@
 			[RivalAI Action]
 			[BroadcastCommandProfiles:true]
 			[CommandProfileIds:GVK-Convoy-GAALSIENSmallConvoy-Lead-Command-SendScatterCommand]
-			[UseChatBroadcast:true]
-			[ChatData:GVK-Convoy-GAALSIENSmallConvoy-Lead-Chat-SendScatterCommand]
 			</Description>
 		</EntityComponent>
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
@@ -501,28 +452,6 @@
 			[IgnoreReceiverAntennaRequirement:true]
 			[Radius:5000]
 			[CommandCode:GVK_Command_Escort_Scatter]
-			</Description>
-		</EntityComponent>
-		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
-			<Id>
-				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Convoy-GAALSIENSmallConvoy-Lead-Chat-SendScatterCommand</SubtypeId>
-			</Id>
-			<Description>
-			[RivalAI Chat]
-			[UseChat:true]
-			[StartsReady:true]
-			[Chance:100]
-			[MaxChats:-1]
-			[BroadcastRandomly:false]
-			[Author:GAALSIEN Production Cruiser]
-			[Color:Red]
-			[ChatMessages:Scattering Escorts.]
-			[ChatAudio:GreetingSoundId-A]
-			[BroadcastChatType:Chat]
-			[SendToAllOnlinePlayers:false]
-			[IgnoreAntennaRequirement:true]
-			[IgnoredAntennaRangeOverride:9999999]
 			</Description>
 		</EntityComponent>
 		<!-- Trigger sequence for ProductionCruiser to spawn fighters -->

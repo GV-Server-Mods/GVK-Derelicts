@@ -226,30 +226,6 @@
 				[WaypointsToAdd:GVK-Convoy-WaypointStatic-AirRouteE10]
 				[WaypointsToAdd:GVK-Convoy-WaypointStatic-AirRouteE11]
 				[WaypointsToAdd:GVK-Convoy-WaypointStatic-AirRouteE12]
-				[UseChatBroadcast:true]
-				[ChatData:GVK-CargoShip-Air-COALITION-Chat-TransportAddWaypointsE]
-			</Description>
-		</EntityComponent>
-		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
-			<Id>
-				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-CargoShip-Air-COALITION-Chat-TransportAddWaypointsE</SubtypeId>
-			</Id>
-			<Description>
-				[RivalAI Chat]
-				[UseChat:false]
-				[StartsReady:true]
-				[Chance:100]
-				[MaxChats:-1]
-				[BroadcastRandomly:false]
-				[Author:Transport]
-				[Color:White]
-				[ChatMessages:Adding waypoints.]
-				[ChatAudio:GreetingSoundId-A]
-				[BroadcastChatType:Chat]
-				[SendToAllOnlinePlayers:true]
-				[IgnoreAntennaRequirement:true]
-				[IgnoredAntennaRangeOverride:9999999]
 			</Description>
 		</EntityComponent>
 		<!-- Trigger sequence for Transport to die -->
@@ -355,7 +331,7 @@
 				[Author:{Faction}]
 				[Color:{PlayerRelation}]
 				[ChatMessages:An air Transport has been Lost!]
-				[ChatAudio:GreetingSoundId-A]
+				[ChatAudio:ArcHudGPSNotification2]
 				[BroadcastChatType:Chat]
 				[SendToAllOnlinePlayers:true]
 				[IgnoreAntennaRequirement:true]
@@ -421,7 +397,7 @@
 				[Author:{Faction} Aerial Transport]
 				[Color:{PlayerRelation}]
 				[ChatMessages:Arrived at Skyport. Heading to Sevastapol in 1 minute.]
-				[ChatAudio:GreetingSoundId-A]
+				[ChatAudio:ArcHudGPSNotification2]
 				[BroadcastChatType:Chat]
 				[SendToAllOnlinePlayers:false]
 				[IgnoreAntennaRequirement:true]
@@ -541,7 +517,7 @@
 				[Author:{Faction}]
 				[Color:{PlayerRelation}]
 				[ChatMessages:Transport is under attack!]
-				[ChatAudio:GreetingSoundId-A]
+				[ChatAudio:ArcHudGPSNotification2]
 				[BroadcastChatType:Chat]
 				[SendToAllOnlinePlayers:true]
 				[IgnoreAntennaRequirement:true]
