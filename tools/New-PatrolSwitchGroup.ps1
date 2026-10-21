@@ -141,6 +141,7 @@ foreach ($g in $groups) {
 			Patrol <-> $sub. $($g.Note)
 			Behavior: [TriggerGroups:GVK-Unit-All-TriggerGroup-Patrol$n], Primary autopilot for Patrol, Secondary for $sub.
 			Add [TriggerGroups:GVK-Unit-All-TriggerGroup-CombatKPL] for every faction except COALITION.
+			Add [TriggerGroups:GVK-Unit-All-TriggerGroup-LeashGround] or -LeashAir (tools/New-LeashGroup.ps1) to every Unit.
 			Switches at $($g.Near) m (TargetNear), back to Patrol beyond $($g.Far) m or with no target (TargetFar).
 			Booleans: GVK_InCombat (on $sub).
 		-->

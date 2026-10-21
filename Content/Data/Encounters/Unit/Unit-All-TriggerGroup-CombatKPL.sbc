@@ -2,7 +2,8 @@
 <Definitions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
 	<EntityComponents>
 		<!--
-			Known Player Location on engaging, for every Unit except COALITION ones (they don't target players).
+			Known Player Location on engaging, for every Unit except COALITION ones (they don't target players), and only while
+			the Unit has no parent: a Unit that has heard its parent's leash (GVK_HasParent, Unit-All-TriggerGroup-Leash.sbc) never creates one.
 			Needs a Patrol<Name> group (tools/New-PatrolSwitchGroup.ps1): its TargetNear fires GVK-TriggerTags-CombatStarted, and
 			when the KPL is gone this group sends the Unit back to Patrol through GVK-TriggerTags-SwitchToPatrol.
 			The KPL lasts 15 minutes (KnownPlayerAreaTimer is in minutes, and a player inside resets it) with no spawn cap; a cap ends the KPL as soon as
@@ -61,18 +62,18 @@
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Unit-All-CombatKPL-Condition-NotInKPL</SubtypeId>
+				<SubtypeId>GVK-Unit-All-CombatKPL-Condition-CanCreateKPL</SubtypeId>
 			</Id>
 			<Description>
 			[RivalAI Condition]
 			[UseConditions:true]
 			[MatchAnyCondition:false]
-			[CheckTrueBooleans:true]
-			[TrueBooleans:NPCInKPL]
-			[UseFailCondition:true]
+			[CheckFalseBooleans:true]
+			[FalseBooleans:NPCInKPL]
+			[FalseBooleans:GVK_HasParent]
 			</Description>
 		</EntityComponent>
-		<!-- Create a KPL on engaging, unless already inside one -->
+		<!-- Create a KPL on engaging, unless already inside one or leashed to a parent -->
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
@@ -86,7 +87,7 @@
 			[StartsReady:false]
 			[MinCooldownMs:20000]
 			[MaxCooldownMs:20001]
-			[Conditions:GVK-Unit-All-CombatKPL-Condition-NotInKPL]
+			[Conditions:GVK-Unit-All-CombatKPL-Condition-CanCreateKPL]
 			[Actions:GVK-Unit-All-CombatKPL-Action-CreateKPL]
 			[ToggleWithTriggerProfile:GVK-Unit-All-CombatKPL-Trigger-CheckforKPL]
 			</Description>

@@ -361,7 +361,7 @@
 				[FalseBooleans:GVK_Role_Escort]
 			</Description>
 		</EntityComponent>
-		<!-- Patrol<Name> groups: enter combat only while holding a target, and never as a wing -->
+		<!-- Patrol<Name> groups: enter combat only while holding a target, never as a wing, and not while out of its parent's leash -->
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
@@ -374,6 +374,7 @@
 				[HasTarget:true]
 				[CheckFalseBooleans:true]
 				[FalseBooleans:GVK_Role_Escort]
+				[FalseBooleans:GVK_AwayFromHome]
 			</Description>
 		</EntityComponent>
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">

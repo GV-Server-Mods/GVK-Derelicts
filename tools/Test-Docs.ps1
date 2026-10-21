@@ -9,7 +9,9 @@
     -<FACTION> behavior copy matches its original apart from the bank line, and each bank has the cues its
     faction can hear.
     Checks that no COALITION behavior uses a target profile that only accepts Enemies.
-    Checks that every Unit on a Patrol<Name> group has GVK-Unit-All-TriggerGroup-CombatKPL unless it spawns as COALITION.
+    Checks that every Unit on a Patrol<Name> group has GVK-Unit-All-TriggerGroup-CombatKPL unless it spawns as COALITION,
+    and exactly one of GVK-Unit-All-TriggerGroup-LeashGround/-LeashAir; and that every behavior spawning Defense waves,
+    air support or Elite escorts has GVK-Universal-TriggerGroup-LeashBeacon.
     Checks every tracked .md file for:
       1. Backticked profile names (GVK-*, Unit-*, RAI-*), prefab names (NWS [COAL] ...) and repo paths
          that no longer exist in Content/ or the repo.
@@ -114,7 +116,15 @@ try {
                 $warnings.Add("${name}: spawns as COALITION but targets with $coalTarget, which needs an Enemy relation it never gets from other NPCs; use GVK-Universal-Target-EnemyGAALSIENBeacon")
             }
         }
-        # Every Unit on a Patrol<Name> group creates KPLs on engaging, except COALITION ones (they don't target players).
+        # Every Unit on a Patrol<Name> group carries exactly one leash group; the leash is inert without a parent.
+        if ($desc -match '\[TriggerGroups:GVK-Unit-All-TriggerGroup-Patrol\w+\]') {
+            $leashes = [regex]::Matches($desc, '\[TriggerGroups:GVK-Unit-All-TriggerGroup-Leash(Ground|Air)\]').Count
+            if ($leashes -ne 1) { $warnings.Add("${name}: has $leashes of GVK-Unit-All-TriggerGroup-LeashGround/-LeashAir; it needs exactly one") }
+        }
+        # A behavior that spawns Units of its own side (Defense waves, air support, Elite escorts) sends their leash signal.
+        $spawnsUnits = $desc -match '\[TriggerGroups:GVK-Universal-TriggerGroup-SpawnDefenses\]' -or $desc -match '\[Triggers:GVK-Unit-(All|Elite)-Trigger-Spawn(AirSupport|MediumEscorts)\]'
+        if ($spawnsUnits -and $desc -notmatch '\[TriggerGroups:GVK-Universal-TriggerGroup-LeashBeacon\]') { $warnings.Add("${name}: spawns Units but lacks GVK-Universal-TriggerGroup-LeashBeacon") }
+        # Every Unit on a Patrol<Name> group can create KPLs on engaging (only while it has no parent), except COALITION ones (they don't target players).
         if ($spawnedAs -and $desc -match '\[TriggerGroups:GVK-Unit-All-TriggerGroup-Patrol\w+\]') {
             $hasKpl = $desc -match '\[TriggerGroups:GVK-Unit-All-TriggerGroup-CombatKPL\]'
             if ($spawnedAs.Contains('COALITION') -and $hasKpl) { $warnings.Add("${name}: spawns as COALITION but has GVK-Unit-All-TriggerGroup-CombatKPL") }
