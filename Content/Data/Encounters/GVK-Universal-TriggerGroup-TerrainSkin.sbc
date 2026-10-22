@@ -3,9 +3,8 @@
 	<EntityComponents>
 		<!-- Swaps the Dust_Armor skin from the wreck manipulations to match the terrain. Sand and Soil keep Dust. Small wrecks only: Medium/Large spawn too far from the player for the terrain sample to match. -->
 		<!-- MatchTerrainType reads the terrain sampled at spawn time (around the spawn request position, not the grid). -->
-		<!-- MES workaround: MatchTerrainType always passes while AutoPilot.CurrentPlanet is null, which it always is on Passive grids. -->
-		<!-- Sequence: switch to Patrol so the autopilot sets CurrentPlanet, check terrain at 2 s, switch back to Passive at 3 s. -->
-		<!-- Remove the Patrol switch once MES fixes MatchTerrainType (GV-Server-Mods/GVK-Settings#678). -->
+		<!-- The checks run once at 2 s, then Finish turns them off at 3 s whether or not one matched. Trigger state is saved with the grid, so they never run again after a restart or paste. -->
+		<!-- Required until MES releases MeridiusIX/Modular-Encounters-Systems#437: a reloaded or pasted Passive grid has no planet set, so MatchTerrainType passes on any terrain (GV-Server-Mods/GVK-Settings#678). -->
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
@@ -13,38 +12,10 @@
 			</Id>
 			<Description>
 			[RivalAI TriggerGroup]
-			[Triggers:GVK-Universal-Trigger-TerrainSkinStart]
 			[Triggers:GVK-Universal-Trigger-TerrainSkinFrozen]
 			[Triggers:GVK-Universal-Trigger-TerrainSkinMossy]
 			[Triggers:GVK-Universal-Trigger-TerrainSkinBattered]
-			[Triggers:GVK-Universal-Trigger-TerrainSkinRestore]
-			</Description>
-		</EntityComponent>
-		<!-- Start: Passive -> Patrol -->
-		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
-			<Id>
-				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Universal-Trigger-TerrainSkinStart</SubtypeId>
-			</Id>
-			<Description>
-			[MES AI Trigger]
-			[UseTrigger:true]
-			[Type:Session]
-			[StartsReady:true]
-			[MaxActions:1]
-			[Actions:GVK-Universal-Action-TerrainSkinStart]
-			</Description>
-		</EntityComponent>
-		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
-			<Id>
-				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Universal-Action-TerrainSkinStart</SubtypeId>
-			</Id>
-			<Description>
-			[MES AI Action]
-			[//DebugMessage:TerrainSkinStart]
-			[ChangeBehaviorSubclass:true]
-			[NewBehaviorSubclass:Patrol]
+			[Triggers:GVK-Universal-Trigger-TerrainSkinFinish]
 			</Description>
 		</EntityComponent>
 		<!-- Frozen: Snow, Ice -->
@@ -184,11 +155,11 @@
 			[NewBlockSkins:Battered_Armor]
 			</Description>
 		</EntityComponent>
-		<!-- Restore: Patrol -> Passive, always runs -->
+		<!-- Finish: turn the checks off, always runs -->
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Universal-Trigger-TerrainSkinRestore</SubtypeId>
+				<SubtypeId>GVK-Universal-Trigger-TerrainSkinFinish</SubtypeId>
 			</Id>
 			<Description>
 			[MES AI Trigger]
@@ -198,19 +169,21 @@
 			[MinCooldownMs:3000]
 			[MaxCooldownMs:3001]
 			[MaxActions:1]
-			[Actions:GVK-Universal-Action-TerrainSkinRestore]
+			[Actions:GVK-Universal-Action-TerrainSkinFinish]
 			</Description>
 		</EntityComponent>
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Universal-Action-TerrainSkinRestore</SubtypeId>
+				<SubtypeId>GVK-Universal-Action-TerrainSkinFinish</SubtypeId>
 			</Id>
 			<Description>
 			[MES AI Action]
-			[//DebugMessage:TerrainSkinRestore]
-			[ChangeBehaviorSubclass:true]
-			[NewBehaviorSubclass:Passive]
+			[//DebugMessage:TerrainSkinFinish]
+			[DisableTriggers:true]
+			[DisableTriggerNames:GVK-Universal-Trigger-TerrainSkinFrozen]
+			[DisableTriggerNames:GVK-Universal-Trigger-TerrainSkinMossy]
+			[DisableTriggerNames:GVK-Universal-Trigger-TerrainSkinBattered]
 			</Description>
 		</EntityComponent>
 	</EntityComponents>
