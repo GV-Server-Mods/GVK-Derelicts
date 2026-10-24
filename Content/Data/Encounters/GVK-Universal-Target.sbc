@@ -497,6 +497,52 @@
 				[PrioritizeSpecifiedFactions:false]
 			</Description>
 		</EntityComponent>
+		<!-- Forced targets (an attacker, a turret target or one a squadmate sent) for every other faction. Copy of MES's RivalAI-GenericTargetProfile-EnemyOverride that skips KOTH, so a grid KOTH shoots for breaking the rules doesn't fire back at the KOTH structures. -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Universal-Target-Override</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Target]
+				[UseCustomTargeting:true]
+				[Target:Override]
+				[MaxDistance:10000]
+				[MatchAllFilters:OutsideOfSafezone]
+				[MatchAllFilters:Owner]
+				[MatchAllFilters:Relation]
+				[MatchNoneFilters:Faction]
+				[GetTargetBy:ClosestDistance]
+				[Owners:Player]
+				[Owners:NPC]
+				[Relations:Enemy]
+				[FactionTargets:KOTH]
+				[PrioritizeSpecifiedFactions:false]
+			</Description>
+		</EntityComponent>
+		<!-- COALITION's forced targets. Same, but also accepts GAALSIEN by faction, since MES rates GAALSIEN Neutral to COALITION. KOTH is Neutral to COALITION, so the Relation check already skips it. -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Universal-Target-Override-COALITION</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Target]
+				[UseCustomTargeting:true]
+				[Target:Override]
+				[MaxDistance:10000]
+				[MatchAllFilters:OutsideOfSafezone]
+				[MatchAllFilters:Owner]
+				[MatchAnyFilters:Relation]
+				[MatchAnyFilters:Faction]
+				[GetTargetBy:ClosestDistance]
+				[Owners:Player]
+				[Owners:NPC]
+				[Relations:Enemy]
+				[FactionTargets:GAALSIEN]
+				[PrioritizeSpecifiedFactions:false]
+			</Description>
+		</EntityComponent>
 		<!-- Large flyers (Chad Shuttle, GR-650) line up 3000-3400 m out and turn around 1 km past the target. -->
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>

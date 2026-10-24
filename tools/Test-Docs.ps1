@@ -8,7 +8,9 @@
     excepted) named GVK-<Category>-<FACTION>-<Tier>.xml that exists and matches the factions its spawn groups use, each
     -<FACTION> behavior copy matches its original apart from the bank line, and each bank has the cues its
     faction can hear.
-    Checks that no COALITION behavior uses a target profile that only accepts Enemies.
+    Checks that no COALITION behavior uses a target profile that only accepts Enemies, and that COALITION behaviors that fight
+    GAALSIEN use GVK-Universal-Target-Override-COALITION for forced targets; every other behavior that can force a target uses
+    GVK-Universal-Target-Override.
     Checks that every Unit on a Patrol<Name> group has GVK-Unit-All-TriggerGroup-CombatKPL unless it spawns as COALITION,
     and exactly one of GVK-Unit-All-TriggerGroup-LeashGround/-LeashAir; and that every behavior spawning Defense waves,
     air support or Elite escorts has GVK-Universal-TriggerGroup-LeashBeacon.
@@ -115,6 +117,28 @@ try {
             if ($tp -and $tp -match '\[MatchAllFilters:Relation\]' -and $tp -match '\[Relations:Enemy\]') {
                 $warnings.Add("${name}: spawns as COALITION but targets with $coalTarget, which needs an Enemy relation it never gets from other NPCs; use GVK-Universal-Target-EnemyGAALSIENBeacon")
             }
+            # Forced targets (attacker, turret target, a squadmate's target) use the override profile, and MES's default one is Enemy-only too.
+            if ($tp -and $tp -match '\[FactionTargets:GAALSIEN\]' -and $desc -notmatch '\[OverrideTargetData:GVK-Universal-Target-Override-COALITION\]') {
+                $warnings.Add("${name}: spawns as COALITION and fights GAALSIEN but lacks [OverrideTargetData:GVK-Universal-Target-Override-COALITION], so it drops every forced GAALSIEN target")
+            }
+        }
+        # Every behavior that can force a target ([SwitchToReceivedTarget:true]) sets a GVK override profile. MES's default one would let a grid
+        # that KOTH shot for breaking the rules fire back at the KOTH structures.
+        $trigNames = @([regex]::Matches($desc, '\[Triggers:([^\]]+)\]') | ForEach-Object { $_.Groups[1].Value.Trim() })
+        foreach ($g in [regex]::Matches($desc, '\[TriggerGroups:([^\]]+)\]')) {
+            $gd = $profiles[$g.Groups[1].Value.Trim()]
+            if ($gd) { $trigNames += @([regex]::Matches($gd, '\[Triggers:([^\]]+)\]') | ForEach-Object { $_.Groups[1].Value.Trim() }) }
+        }
+        $forcesTarget = $false
+        foreach ($tn in $trigNames) {
+            $td = $profiles[$tn]
+            if (-not $td) { continue }
+            foreach ($a in [regex]::Matches($td, '\[Actions:([^\]]+)\]')) {
+                if ($profiles[$a.Groups[1].Value.Trim()] -match '\[SwitchToReceivedTarget:true\]') { $forcesTarget = $true }
+            }
+        }
+        if ($forcesTarget -and $desc -notmatch '\[OverrideTargetData:GVK-Universal-Target-Override(-COALITION)?\]') {
+            $warnings.Add("${name}: can force a target but lacks [OverrideTargetData:GVK-Universal-Target-Override] (or -COALITION), so it would fire back at KOTH")
         }
         # Every Unit on a Patrol<Name> group carries exactly one leash group; the leash is inert without a parent.
         if ($desc -match '\[TriggerGroups:GVK-Unit-All-TriggerGroup-Patrol\w+\]') {
