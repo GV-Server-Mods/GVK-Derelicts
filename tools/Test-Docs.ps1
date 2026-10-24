@@ -224,6 +224,19 @@ try {
         }
     }
 
+    # Planetary installations (drone-style Units included) must not spawn on Rock: roads, cliffs and rocky ground on the S11 planet.
+    # InstallationTerrainValidation checks each spawn spot; UseTerrainTypeValidation reads the same lists around the player instead (README note 48).
+    foreach ($name in $profiles.Keys | Sort-Object) {
+        $desc = $profiles[$name]
+        if ($desc -notmatch '\[PlanetaryInstallation:true\]') { continue }
+        if ($desc -notmatch '\[InstallationTerrainValidation:true\]' -or $desc -notmatch '\[DisallowedTerrainTypes:[^\]]*\bRock\b') {
+            $warnings.Add("${name}: planetary installation without [InstallationTerrainValidation:true] and [DisallowedTerrainTypes:Rock] can spawn on roads and cliffs")
+        }
+        if ($desc -match '\[UseTerrainTypeValidation:true\]') {
+            $warnings.Add("${name}: [UseTerrainTypeValidation:true] checks the terrain around the player with the same lists, so a player on rock blocks the spawn")
+        }
+    }
+
     # Glossary words to avoid in prefab names, profile and spawn group IDs, and beacon text (GLOSSARY.md _Avoid_ lines).
     # "Outpost" belongs to alliance Outposts only; vanilla spawn group names are exempt.
     $avoidNames = [ordered]@{

@@ -89,6 +89,7 @@ Each kind of fact has exactly one home. Don't copy it anywhere else.
   - a Unit on a `Patrol<Name>` group without `GVK-Unit-All-TriggerGroup-CombatKPL`, or a COALITION one with it (every faction but COALITION creates KPLs, and only while it has no parent)
   - a Unit on a `Patrol<Name>` group without exactly one of `GVK-Unit-All-TriggerGroup-LeashGround`/`-LeashAir`, or a behavior that spawns Defense waves, air support or Elite escorts without `GVK-Universal-TriggerGroup-LeashBeacon` (README note 46)
   - a COALITION behavior on a target profile that only accepts Enemies (MES rates every other NPC Neutral to COALITION, so it would never pick a GAALSIEN target; use `GVK-Universal-Target-EnemyGAALSIENBeacon`), or one that fights GAALSIEN without `[OverrideTargetData:GVK-Universal-Target-Override-COALITION]`; and any other behavior that can force a target (`[SwitchToReceivedTarget:true]`) without `[OverrideTargetData:GVK-Universal-Target-Override]`, which keeps grids KOTH shoots from firing back (README note 47)
+  - a `[PlanetaryInstallation:true]` conditions profile without `[InstallationTerrainValidation:true]` and `[DisallowedTerrainTypes:Rock]`, or with `[UseTerrainTypeValidation:true]` (README note 48)
   - a GAALSIEN or DERELICT behavior on a shared target profile instead of its `-GAALSIEN` or `-DERELICT` copy. The shared profiles skip COALITION and DERELICT grids. The GAALSIEN copies fight both factions, and the DERELICT copy also skips SOBAN and KHAANEPH.
 
 ---
