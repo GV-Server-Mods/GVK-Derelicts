@@ -49,6 +49,7 @@
 				[Triggers:GVK-Universal-ManualTrigger-DefeatedCompromised]
 				[Triggers:GVK-Universal-Trigger-DefeatedDespawn]
 				[Triggers:GVK-Universal-ManualTrigger-DefeatedDespawned]
+				[Triggers:GVK-Universal-ManualTrigger-DespawnedCounted]
 				[Triggers:GVK-Universal-TriggerTags-AttemptSmallDespawn]
 				[Triggers:GVK-Universal-TriggerTags-Disabled]
 				[Triggers:GVK-Universal-TriggerTags-DefeatedChat-AllianceBase]
@@ -461,9 +462,51 @@
 			[MES AI Action]
 			[//DebugMessage:ManualAction-DefeatedDespawned]
 			[ManuallyActivateTrigger:true]
+			[ManuallyActivatedTriggerTags:GVK-Universal-TriggerTags-RefundDefensesCommand-{EncounterType}]
+			[ManuallyActivatedTriggerNames:GVK-Universal-ManualTrigger-DespawnedCounted]
+			</Description>
+		</EntityComponent>
+		<!-- The "lost" chat and the alliance points only count a despawn GVK didn't cause itself. GVK's own placement and
+		     territory despawns (KOTH 5 km zone, Zone 0, outside the faction zone) set GVK_DespawnedByRule first: MES
+		     placing a spawn badly, or a zone shrinking, isn't a loss for the alliance. The defense refund above still runs. -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Universal-ManualTrigger-DespawnedCounted</SubtypeId>
+			</Id>
+			<Description>
+			[MES AI Trigger]
+			[UseTrigger:true]
+			[Type:Manual]
+			[StartsReady:true]
+			[MaxActions:1]
+			[Conditions:GVK-Universal-Condition-NotDespawnedByRule]
+			[Actions:GVK-Universal-ManualAction-DespawnedCounted]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Universal-Condition-NotDespawnedByRule</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Condition]
+			[UseConditions:true]
+			[MatchAnyCondition:false]
+			[CheckFalseBooleans:true]
+			[FalseBooleans:GVK_DespawnedByRule]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Universal-ManualAction-DespawnedCounted</SubtypeId>
+			</Id>
+			<Description>
+			[MES AI Action]
+			[ManuallyActivateTrigger:true]
 			[ManuallyActivatedTriggerTags:GVK-Alliance-TriggerTags-InfluenceDespawned-{EncounterType}]
 			[ManuallyActivatedTriggerTags:GVK-Universal-TriggerTags-DespawnedChat-{EncounterType}]
-			[ManuallyActivatedTriggerTags:GVK-Universal-TriggerTags-RefundDefensesCommand-{EncounterType}]
 			</Description>
 		</EntityComponent>
 	</EntityComponents>

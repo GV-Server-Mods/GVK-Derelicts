@@ -32,6 +32,7 @@
 			</Description>
 		</EntityComponent>
 		<!-- Salvager CargoShip Autopilot -->
+		<!-- Steering: the LAVWing recipe (Unit-All-Autopilot-LandWing.sbc explains it). MaxRotationStep 0.5 keeps the gyros at full strength; MaxRotationMagnitude sets the turn rate -->
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
@@ -40,9 +41,13 @@
 			<Description>
 			[RivalAI Autopilot]
 			[UseVelocityCollisionEvasion:false]
-			[RotationMultiplier:6]
-			[LimitRotationSpeed:true]
+			[RotationMultiplierPitch:1]
+			[RotationMultiplierYaw:3]
+			[RotationMultiplierRoll:1.5]
+			[LimitRotationSpeed:false]
 			[MaxRotationMagnitude:0.5]
+			[UseAircraftFlightModel:true]
+			[MaxRotationStep:0.5]
 			[FlyLevelWithGravity:false]
 			[LevelWithGravityWhenIdle:false]
 			[IdealPlanetAltitude:10]

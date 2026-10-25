@@ -66,6 +66,7 @@
 			</Description>
 		</EntityComponent>
 		<!-- Escort Unit Rover Autopilot -->
+		<!-- Steering: MaxRotationStep 0.5 keeps the gyros at full strength (Unit-All-Autopilot-HoverCruiserHorsefly.sbc explains it); MaxRotationMagnitude sets the turn rate. FlyLevelWithGravity already stops backflips, so pitch stays 1. Banks up to 15 degrees into turns for looks -->
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
@@ -74,7 +75,15 @@
 			<Description>
 				[RivalAI Autopilot]
 				[UseVelocityCollisionEvasion:false]
-				[RotationMultiplier:1]
+				[RotationMultiplierPitch:1]
+				[RotationMultiplierYaw:3]
+				[RotationMultiplierRoll:2]
+				[LimitRotationSpeed:false]
+				[MaxRotationMagnitude:0.5]
+				[UseAircraftFlightModel:true]
+				[MaxRotationStep:0.5]
+				[RollIntoTurnsMultiplier:0.25]
+				[MaxBankAngle:15]
 				[DisableInertiaDampeners:false]
 				[FlyLevelWithGravity:true]
 				[LevelWithGravityWhenIdle:true]
@@ -92,8 +101,8 @@
 				[AngleAllowedForForwardThrust:70]
 				[MaxVelocityAngleForSpeedControl:180]
 				[EscortUsesRelativeDampening:true]
-				[EscortSpeedMatchMinDistance:0]
-				[EscortSpeedMatchMaxDistance:25]
+				[EscortSpeedMatchMinDistance:10]
+				[EscortSpeedMatchMaxDistance:200]
 				[UseProjectileLeadPrediction:false]
 			</Description>
 		</EntityComponent>

@@ -69,6 +69,7 @@
 			</Description>
 		</EntityComponent>
 		<!-- Escort Transport Ship Primary Autopilot-->
+		<!-- Steering: the LAVWing recipe (Unit-All-Autopilot-LandWing.sbc explains it). MaxRotationStep 0.5 keeps the gyros at full strength; MaxRotationMagnitude sets the turn rate -->
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
@@ -76,9 +77,13 @@
 			</Id>
 			<Description>
 				[RivalAI Autopilot]
-				[RotationMultiplier:1.25]
-				[LimitRotationSpeed:true]
-				[MaxRotationMagnitude:0.50]
+				[RotationMultiplierPitch:1]
+				[RotationMultiplierYaw:3]
+				[RotationMultiplierRoll:1.5]
+				[LimitRotationSpeed:false]
+				[MaxRotationMagnitude:0.5]
+				[UseAircraftFlightModel:true]
+				[MaxRotationStep:0.5]
 				[DisableInertiaDampeners:true]
 				[FlyLevelWithGravity:false]
 				[LevelWithGravityWhenIdle:false]
@@ -126,6 +131,7 @@
 			</Description>
 		</EntityComponent>
 		<!-- Escort Transport Ship Tertiary Autopilot-->
+		<!-- Steering: MaxRotationStep 0.5 keeps the gyros at full strength (Unit-All-Autopilot-HoverCruiserHorsefly.sbc explains it); MaxRotationMagnitude sets the turn rate. LimitRotationSpeed off: it zeroed the request mid-turn -->
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
@@ -133,9 +139,13 @@
 			</Id>
 			<Description>
 				[RivalAI Autopilot]
-				[RotationMultiplier:1.25]
-				[LimitRotationSpeed:true]
-				[MaxRotationMagnitude:0.20]
+				[RotationMultiplierPitch:1]
+				[RotationMultiplierYaw:3]
+				[RotationMultiplierRoll:1.5]
+				[LimitRotationSpeed:false]
+				[MaxRotationMagnitude:0.2]
+				[UseAircraftFlightModel:true]
+				[MaxRotationStep:0.5]
 				[DisableInertiaDampeners:true]
 				[FlyLevelWithGravity:true]
 				[LevelWithGravityWhenIdle:false]

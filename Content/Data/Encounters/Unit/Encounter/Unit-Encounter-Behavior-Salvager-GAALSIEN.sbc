@@ -65,6 +65,7 @@
 			</Description>
 		</EntityComponent>
 		<!-- Salvager Patrol Autopilot -->
+		<!-- Steering: MaxRotationStep 0.5 keeps the gyros at full strength (Unit-All-Autopilot-HoverCruiserHorsefly.sbc explains it); MaxRotationMagnitude sets the turn rate. FlyLevelWithGravity already stops backflips, so pitch stays 1. Banks up to 15 degrees into turns for looks -->
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
@@ -74,7 +75,15 @@
 			[RivalAI Autopilot]
 			[UseVelocityCollisionEvasion:false]
 			[CollisionEvasionWaypointCalculatedAwayFromEntity:true]
-			[RotationMultiplier:0.5]
+			[RotationMultiplierPitch:1]
+			[RotationMultiplierYaw:3]
+			[RotationMultiplierRoll:2]
+			[LimitRotationSpeed:false]
+			[MaxRotationMagnitude:0.5]
+			[UseAircraftFlightModel:true]
+			[MaxRotationStep:0.5]
+			[RollIntoTurnsMultiplier:0.25]
+			[MaxBankAngle:15]
 			[FlyLevelWithGravity:true]
 			[LevelWithGravityWhenIdle:true]
 			[AltitudeTolerance:5000]
@@ -101,7 +110,15 @@
 			[RivalAI Autopilot]
 			[UseVelocityCollisionEvasion:false]
 			[CollisionEvasionWaypointCalculatedAwayFromEntity:true]
-			[RotationMultiplier:0.5]
+			[RotationMultiplierPitch:1]
+			[RotationMultiplierYaw:3]
+			[RotationMultiplierRoll:2]
+			[LimitRotationSpeed:false]
+			[MaxRotationMagnitude:0.5]
+			[UseAircraftFlightModel:true]
+			[MaxRotationStep:0.5]
+			[RollIntoTurnsMultiplier:0.25]
+			[MaxBankAngle:15]
 			[FlyLevelWithGravity:true]
 			[LevelWithGravityWhenIdle:true]
 			[AltitudeTolerance:5000]

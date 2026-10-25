@@ -368,6 +368,8 @@
 			<Description>
 			[RivalAI Action]
 			[//DebugMessage:No escort slot received; returning to patrol]
+			[//Frees the slot if the leader assigned one but its reply never arrived]
+			[LeaveEscortSlot:true]
 			[ChangeBehaviorSubclass:true]
 			[NewBehaviorSubclass:Patrol]
 			[ChangeAutopilotProfile:true]
@@ -452,6 +454,7 @@
 			<Description>
 			[RivalAI Action]
 			[//DebugMessage:Leader is dead]
+			[LeaveEscortSlot:true]
 			[SetBooleansFalse:GVK_Role_Escort]
 			[ChangeBehaviorSubclass:true]
 			[NewBehaviorSubclass:Patrol]

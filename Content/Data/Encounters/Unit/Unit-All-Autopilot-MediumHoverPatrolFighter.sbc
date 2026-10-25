@@ -2,6 +2,7 @@
 <Definitions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
 	<EntityComponents>
 		<!-- Medium Hover Fighter Autopilot Primary Passive for Patrol behavior -->
+		<!-- Steering: MaxRotationStep 0.5 keeps the gyros at full strength (Unit-All-Autopilot-HoverCruiserHorsefly.sbc explains it); MaxRotationMagnitude sets the turn rate. FlyLevelWithGravity already stops backflips, so pitch stays 1. Banks up to 15 degrees into turns for looks -->
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
@@ -9,9 +10,15 @@
 			</Id>
 			<Description>
 			[RivalAI Autopilot]
-			[RotationMultiplier:0.5]
-			[LimitRotationSpeed:true]
+			[RotationMultiplierPitch:1]
+			[RotationMultiplierYaw:3]
+			[RotationMultiplierRoll:2]
+			[LimitRotationSpeed:false]
 			[MaxRotationMagnitude:0.75]
+			[UseAircraftFlightModel:true]
+			[MaxRotationStep:0.5]
+			[RollIntoTurnsMultiplier:0.25]
+			[MaxBankAngle:15]
 			[DisableInertiaDampeners:false]
 			[FlyLevelWithGravity:true]
 			[LevelWithGravityWhenIdle:true]
@@ -34,6 +41,7 @@
 			</Description>
 		</EntityComponent>
 		<!-- Medium Hover Fighter Autopilot Secondary -->
+		<!-- Steering: MaxRotationStep 0.5 keeps the gyros at full strength (Unit-All-Autopilot-HoverCruiserHorsefly.sbc explains it); MaxRotationMagnitude sets the turn rate. FlyLevelWithGravity already stops backflips, so pitch stays 1. Banks up to 15 degrees into turns for looks. MaxRotationMagnitude 1, not 4: the step also caps braking (~2 rad/s per second), and from 4 rad/s it would spin far past its heading -->
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
@@ -43,9 +51,15 @@
 			[RivalAI Autopilot]
 			[UseVelocityCollisionEvasion:false]
 			[UseProjectileLeadPrediction:false]
-			[RotationMultiplier:1]
+			[RotationMultiplierPitch:1]
+			[RotationMultiplierYaw:3]
+			[RotationMultiplierRoll:2]
 			[LimitRotationSpeed:false]
-			[MaxRotationMagnitude:4]
+			[MaxRotationMagnitude:1]
+			[UseAircraftFlightModel:true]
+			[MaxRotationStep:0.5]
+			[RollIntoTurnsMultiplier:0.25]
+			[MaxBankAngle:15]
 			[FlyLevelWithGravity:true]
 			[LevelWithGravityWhenIdle:true]
 			[IdealPlanetAltitude:15]
@@ -68,7 +82,8 @@
 			[MaxVelocityAngleForSpeedControl:180]
 			</Description>
 		</EntityComponent>
-		<!-- Medium Hover Fighter Autopilot Tertiary: AimAtTargetAngle swaps it in for 3 s while the nose is on the target (combat only) -->
+		<!-- Medium Hover Fighter Autopilot Tertiary: AimAtTargetAngle swaps it in while the nose is within 15 degrees of the target, and back once it's more than 30 off (combat only) -->
+		<!-- Steering: MaxRotationStep 0.5 keeps the gyros at full strength (Unit-All-Autopilot-HoverCruiserHorsefly.sbc explains it); MaxRotationMagnitude sets the turn rate. Pitch 1: this is the aim profile, used only while the target is ahead. Banks up to 15 degrees into turns for looks. MaxRotationMagnitude 1, not 4: the step also caps braking (~2 rad/s per second), and from 4 rad/s it would spin far past its heading -->
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
@@ -78,9 +93,15 @@
 			[RivalAI Autopilot]
 			[UseVelocityCollisionEvasion:false]
 			[UseProjectileLeadPrediction:false]
-			[RotationMultiplier:2]
+			[RotationMultiplierPitch:1]
+			[RotationMultiplierYaw:3]
+			[RotationMultiplierRoll:2]
 			[LimitRotationSpeed:false]
-			[MaxRotationMagnitude:4]
+			[MaxRotationMagnitude:1]
+			[UseAircraftFlightModel:true]
+			[MaxRotationStep:0.5]
+			[RollIntoTurnsMultiplier:0.25]
+			[MaxBankAngle:15]
 			[FlyLevelWithGravity:false]
 			[LevelWithGravityWhenIdle:false]
 			[IdealPlanetAltitude:15]

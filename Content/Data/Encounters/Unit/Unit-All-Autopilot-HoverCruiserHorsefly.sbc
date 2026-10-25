@@ -2,6 +2,16 @@
 <Definitions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
 	<EntityComponents>
 		<!-- HoverCruiserHorsefly Autopilot -->
+		<!-- Steering (Passive and Aggressive; se-dev-mes behaviors_and_autopilot.md section 3G): MaxRotationStep 0.5 (read only with UseAircraftFlightModel) keeps every gyro command
+		     inside Keen's fast gyro ramp, so the gyros push at full strength on all axes, even mid-turn. Without it a turn asked for yaw 5 x up to pi rad/s, and that big
+		     combined gap put the gyros on their slow 2 s ramp, leaving little strength to resist players flipping the cruiser.
+		     LimitPitchTurning (MES PR #453, not merged yet) stops the backflip toward a waypoint behind, where pitch and yaw both asked for the full rate. That had kept
+		     pitch at 0.05-0.1, too weak to level the nose after a bump; with the tag pitch and roll are 3 like yaw (field-tested 2026-10-25).
+		     FlyLevelWithGravity would stop the backflip too but drives the nose into rising ground on hills. Resisting a tip doesn't need a high multiplier: the step makes the gyros
+		     stop any rotation a player starts at full strength. Roll also pushes back toward level (roll never aims at the waypoint);
+		     roll 5 rocked the hull: above ~3 (MaxRotationMagnitude 0.25 / (stop angle + 0.25 s reaction)) it overshoots level on every 0.25 s update.
+		     Yaw 3 at MaxRotationMagnitude 0.25 turns without overshoot (stops in ~1 degree after a 0.25 s reaction). LimitRotationSpeed off: it zeroed the request mid-turn.
+		     RollIntoTurns: banks 0.25 degree per degree of heading error, up to 15, for looks (halved from 0.5) -->
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
@@ -10,11 +20,16 @@
 			<Description>
 			[RivalAI Autopilot]
 			[UseVelocityCollisionEvasion:false]
-			[RotationMultiplierPitch:0.1]
-			[RotationMultiplierYaw:5]
+			[RotationMultiplierPitch:3]
+			[RotationMultiplierYaw:3]
 			[RotationMultiplierRoll:3]
-			[LimitRotationSpeed:true]
+			[LimitPitchTurning:true]
+			[LimitRotationSpeed:false]
 			[MaxRotationMagnitude:0.25]
+			[UseAircraftFlightModel:true]
+			[MaxRotationStep:0.5]
+			[RollIntoTurnsMultiplier:0.25]
+			[MaxBankAngle:15]
 			[DisableInertiaDampeners:false]
 			[FlyLevelWithGravity:false]
 			[LevelWithGravityWhenIdle:false]
@@ -49,11 +64,16 @@
 			<Description>
 			[RivalAI Autopilot]
 			[UseVelocityCollisionEvasion:false]
-			[RotationMultiplierPitch:0.05]
-			[RotationMultiplierYaw:5]
-			[RotationMultiplierRoll:2]
-			[LimitRotationSpeed:true]
+			[RotationMultiplierPitch:3]
+			[RotationMultiplierYaw:3]
+			[RotationMultiplierRoll:3]
+			[LimitPitchTurning:true]
+			[LimitRotationSpeed:false]
 			[MaxRotationMagnitude:0.25]
+			[UseAircraftFlightModel:true]
+			[MaxRotationStep:0.5]
+			[RollIntoTurnsMultiplier:0.25]
+			[MaxBankAngle:15]
 			[DisableInertiaDampeners:false]
 			[FlyLevelWithGravity:false]
 			[LevelWithGravityWhenIdle:false]

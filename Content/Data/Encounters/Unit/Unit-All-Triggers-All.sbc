@@ -1,7 +1,8 @@
 <?xml version="1.0"?>
 <Definitions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
 	<EntityComponents>
-		<!-- Barrel roll every 30-60 s for aircraft, except while flying as an escort (a roll stops it turning toward its slot) -->
+		<!-- Barrel roll every 30-60 s for aircraft, except while flying as an escort (a roll stops it turning toward its slot) or leading a peer wing (the wing can't follow a roll), and only above 400 m with the nose within 30 degrees of level.
+		     MES's horizon angle is the nose's angle from level either way, so it can't tell a dive from a climb: the 30 degree cap keeps it out of dives. -->
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
@@ -16,7 +17,7 @@
 				[MaxCooldownMs:60000]
 				[StartsReady:true]
 				[MaxActions:-1]
-				[Conditions:GVK-Unit-All-Condition-AircraftNotEscort]
+				[Conditions:GVK-Unit-All-Condition-BarrelRoll]
 				[Actions:GVK-Unit-All-Action-BarrelRoll]
 			</Description>
 		</EntityComponent>
@@ -380,7 +381,7 @@
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Unit-All-Condition-AircraftNotEscort</SubtypeId>
+				<SubtypeId>GVK-Unit-All-Condition-BarrelRoll</SubtypeId>
 			</Id>
 			<Description>
 				[RivalAI Condition]
@@ -390,6 +391,14 @@
 				[TrueBooleans:GVK_MobilityType_Aircraft]
 				[CheckFalseBooleans:true]
 				[FalseBooleans:GVK_Role_Escort]
+				[CheckCustomCounters:true]
+				[CustomCounters:GVK_Peer_Wings]
+				[CustomCountersTargets:1]
+				[CounterCompareTypes:Less]
+				[AltitudeCheck:true]
+				[MinAltitude:400]
+				[CheckHorizonAngle:true]
+				[MaxHorizonAngle:30]
 			</Description>
 		</EntityComponent>
 	</EntityComponents>

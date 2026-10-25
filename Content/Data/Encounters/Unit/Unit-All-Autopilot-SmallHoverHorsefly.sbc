@@ -2,6 +2,7 @@
 <Definitions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
 	<EntityComponents>
 		<!-- SmallHoverHorsefly Autopilot -->
+		<!-- Steering: the hover cruiser recipe (Unit-All-Autopilot-HoverCruiserHorsefly.sbc explains it). Low pitch so it does not backflip toward a waypoint behind it; MaxRotationStep 0.5 keeps the gyros at full strength; MaxRotationMagnitude sets the turn rate; banks up to 15 degrees into turns for looks -->
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
@@ -11,7 +12,15 @@
 			[RivalAI Autopilot]
 			[UseVelocityCollisionEvasion:false]
 			[UseProjectileLeadPrediction:false]
-			[RotationMultiplier:1]
+			[RotationMultiplierPitch:0.1]
+			[RotationMultiplierYaw:3]
+			[RotationMultiplierRoll:2]
+			[LimitRotationSpeed:false]
+			[MaxRotationMagnitude:1]
+			[UseAircraftFlightModel:true]
+			[MaxRotationStep:0.5]
+			[RollIntoTurnsMultiplier:0.25]
+			[MaxBankAngle:15]
 			[FlyLevelWithGravity:false]
 			[LevelWithGravityWhenIdle:false]
 			[WaypointTolerance:75]
@@ -44,7 +53,15 @@
 			[RivalAI Autopilot]
 			[UseVelocityCollisionEvasion:false]
 			[UseProjectileLeadPrediction:false]
-			[RotationMultiplier:1]
+			[RotationMultiplierPitch:0.1]
+			[RotationMultiplierYaw:3]
+			[RotationMultiplierRoll:2]
+			[LimitRotationSpeed:false]
+			[MaxRotationMagnitude:1]
+			[UseAircraftFlightModel:true]
+			[MaxRotationStep:0.5]
+			[RollIntoTurnsMultiplier:0.25]
+			[MaxBankAngle:15]
 			[FlyLevelWithGravity:false]
 			[LevelWithGravityWhenIdle:false]
 			[WaypointTolerance:100]

@@ -9,9 +9,11 @@
 			</Id>
 			<Description>
 			[RivalAI Autopilot]
-			[RotationMultiplierPitch:0.5]
-			[RotationMultiplierYaw:0.5]
+			[//Steering as the Strike Fighter (Unit-All-Autopilot-StrikeFighter.sbc explains bank, pitch and MaxAngleFromVelocity); yaw 1 matches the AirWing it pairs with.]
+			[RotationMultiplierPitch:1.5]
+			[RotationMultiplierYaw:1]
 			[RotationMultiplierRoll:1]
+			[LimitPitchTurning:true]
 			[LimitRotationSpeed:false]
 			[MaxRotationMagnitude:0.75]
 			[DisableInertiaDampeners:false]
@@ -39,11 +41,11 @@
 			[AngleAllowedForForwardThrust:180]
 			[MaxVelocityAngleForSpeedControl:180]
 			[UseAircraftFlightModel:true]
-			[MaxAngleFromVelocity:35]
+			[MaxAngleFromVelocity:60]
 			[RollIntoTurnsMultiplier:0.8]
-			[MaxBankAngle:45]
+			[MaxBankAngle:60]
 			[ReturnToLevelMultiplier:0.25]
-			[MaxRotationStep:0.3]
+			[MaxRotationStep:0.5]
 			[UseProjectileLeadPrediction:false]
 			</Description>
 		</EntityComponent>
@@ -55,9 +57,11 @@
 			</Id>
 			<Description>
 			[RivalAI Autopilot]
-			[RotationMultiplierPitch:0.5]
-			[RotationMultiplierYaw:0.5]
+			[//Steering as the Strike Fighter (Unit-All-Autopilot-StrikeFighter.sbc explains bank, pitch and MaxAngleFromVelocity); yaw 1 matches the AirWing it pairs with.]
+			[RotationMultiplierPitch:2.5]
+			[RotationMultiplierYaw:1]
 			[RotationMultiplierRoll:1]
+			[LimitPitchTurning:true]
 			[LimitRotationSpeed:false]
 			[MaxRotationMagnitude:0.75]
 			[DisableInertiaDampeners:false]
@@ -67,8 +71,8 @@
 			[MinimumPlanetAltitude:250]
 			[AltitudeTolerance:30]
 			[WaypointTolerance:200]
-			[BarrelRollMinDurationMs:4000]
-			[BarrelRollMaxDurationMs:5001]
+			[BarrelRollMinDurationMs:2000]
+			[BarrelRollMaxDurationMs:2500]
 			[RamMinDurationMs:6000]
 			[RamMaxDurationMs:6001]
 			[IdealMinSpeed:70]
@@ -85,11 +89,11 @@
 			[AngleAllowedForForwardThrust:180]
 			[MaxVelocityAngleForSpeedControl:180]
 			[UseAircraftFlightModel:true]
-			[MaxAngleFromVelocity:35]
+			[MaxAngleFromVelocity:60]
 			[RollIntoTurnsMultiplier:0.8]
 			[MaxBankAngle:45]
 			[ReturnToLevelMultiplier:0.25]
-			[MaxRotationStep:0.3]
+			[MaxRotationStep:0.5]
 			[UseProjectileLeadPrediction:false]
 			</Description>
 		</EntityComponent>

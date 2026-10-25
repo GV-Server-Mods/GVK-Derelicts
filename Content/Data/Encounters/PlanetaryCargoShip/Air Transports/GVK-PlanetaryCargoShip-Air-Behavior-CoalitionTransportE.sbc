@@ -57,6 +57,7 @@
 			</Description>
 		</EntityComponent>
 		<!-- Escort Transport Ship Primary Autopilot-->
+		<!-- Steering: MaxRotationStep 0.5 keeps the gyros at full strength (Unit-All-Autopilot-HoverCruiserHorsefly.sbc explains it); MaxRotationMagnitude sets the turn rate. LimitRotationSpeed off: it zeroed the request mid-turn -->
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
@@ -64,9 +65,13 @@
 			</Id>
 			<Description>
 				[RivalAI Autopilot]
-				[RotationMultiplier:0.75]
-				[LimitRotationSpeed:true]
+				[RotationMultiplierPitch:1]
+				[RotationMultiplierYaw:3]
+				[RotationMultiplierRoll:2]
+				[LimitRotationSpeed:false]
 				[MaxRotationMagnitude:0.25]
+				[UseAircraftFlightModel:true]
+				[MaxRotationStep:0.5]
 				[DisableInertiaDampeners:false]
 				[FlyLevelWithGravity:true]
 				[LevelWithGravityWhenIdle:true]
@@ -102,9 +107,13 @@
 			</Id>
 			<Description>
 				[RivalAI Autopilot]
-				[RotationMultiplier:0.75]
-				[LimitRotationSpeed:true]
+				[RotationMultiplierPitch:1]
+				[RotationMultiplierYaw:3]
+				[RotationMultiplierRoll:2]
+				[LimitRotationSpeed:false]
 				[MaxRotationMagnitude:0.25]
+				[UseAircraftFlightModel:true]
+				[MaxRotationStep:0.5]
 				[DisableInertiaDampeners:false]
 				[FlyLevelWithGravity:true]
 				[LevelWithGravityWhenIdle:true]

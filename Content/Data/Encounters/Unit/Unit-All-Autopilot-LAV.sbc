@@ -2,6 +2,7 @@
 <Definitions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
 	<EntityComponents>
 		<!-- LAV Patrol Autopilot -->
+		<!-- Steering: the LAVWing recipe (Unit-All-Autopilot-LandWing.sbc explains it). MaxRotationStep 0.5 keeps the gyros at full strength; MaxRotationMagnitude sets the turn rate -->
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
@@ -10,11 +11,14 @@
 			<Description>
 			[RivalAI Autopilot]
 			[UseVelocityCollisionEvasion:false]
-			[RotationMultiplierPitch:2]
-			[RotationMultiplierYaw:5]
-			[RotationMultiplierRoll:1]
-			[LimitRotationSpeed:true]
-			[MaxRotationMagnitude:1.5]
+			[RotationMultiplierPitch:3]
+			[RotationMultiplierYaw:3]
+			[RotationMultiplierRoll:3]
+			[LimitPitchTurning:true]
+			[LimitRotationSpeed:false]
+			[MaxRotationMagnitude:1]
+			[UseAircraftFlightModel:true]
+			[MaxRotationStep:0.5]
 			[FlyLevelWithGravity:false]
 			[LevelWithGravityWhenIdle:false]
 			[WaypointTolerance:75]
@@ -32,7 +36,7 @@
 			[OffsetPlanetMinTargetAltitude:2]
 			[OffsetPlanetMaxTargetAltitude:5]
 			[OffsetMaxAngleFromTarget:90]
-			[DisableInertiaDampeners:true]
+			[DisableInertiaDampeners:false]
 			[MinimumPlanetAltitude:-100]
 			[AngleAllowedForForwardThrust:120]
 			[MaxVelocityAngleForSpeedControl:180]
@@ -47,11 +51,14 @@
 			<Description>
 			[RivalAI Autopilot]
 			[UseVelocityCollisionEvasion:false]
-			[RotationMultiplierPitch:2]
-			[RotationMultiplierYaw:5]
-			[RotationMultiplierRoll:1]
-			[LimitRotationSpeed:true]
-			[MaxRotationMagnitude:1.5]
+			[RotationMultiplierPitch:3]
+			[RotationMultiplierYaw:3]
+			[RotationMultiplierRoll:3]
+			[LimitPitchTurning:true]
+			[LimitRotationSpeed:false]
+			[MaxRotationMagnitude:1]
+			[UseAircraftFlightModel:true]
+			[MaxRotationStep:0.5]
 			[FlyLevelWithGravity:false]
 			[LevelWithGravityWhenIdle:false]
 			[WaypointTolerance:100]
@@ -69,44 +76,7 @@
 			[OffsetPlanetMinTargetAltitude:2]
 			[OffsetPlanetMaxTargetAltitude:5]
 			[OffsetMaxAngleFromTarget:90]
-			[DisableInertiaDampeners:true]
-			[MinimumPlanetAltitude:-100]
-			[AngleAllowedForForwardThrust:120]
-			[MaxVelocityAngleForSpeedControl:180]
-			[UseProjectileLeadPrediction:false]
-			</Description>
-		</EntityComponent>
-		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
-			<Id>
-				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Unit-All-Autopilot-LAV-BigAirTime</SubtypeId>
-			</Id>
-			<Description>
-			[RivalAI Autopilot]
-			[UseVelocityCollisionEvasion:false]
-			[RotationMultiplierPitch:2]
-			[RotationMultiplierYaw:5]
-			[RotationMultiplierRoll:1]
-			[LimitRotationSpeed:true]
-			[MaxRotationMagnitude:1.5]
-			[FlyLevelWithGravity:true]
-			[LevelWithGravityWhenIdle:true]
-			[WaypointTolerance:75]
-			[UseSurfaceHoverThrustMode:false]
-			[HoverPathStepDistance:80]
-			[IdealPlanetAltitude:2.75]
-			[AltitudeTolerance:100]
-			[WaypointAbandonTimeTrigger:10]
-			[IdealMinSpeed:25]
-			[IdealMaxSpeed:35]
-			[MaxSpeedTolerance:5]
-			[WaypointWaitTimeTrigger:0]
-			[OffsetPlanetMinDistFromTarget:300]
-			[OffsetPlanetMaxDistFromTarget:301]
-			[OffsetPlanetMinTargetAltitude:2]
-			[OffsetPlanetMaxTargetAltitude:5]
-			[OffsetMaxAngleFromTarget:90]
-			[DisableInertiaDampeners:true]
+			[DisableInertiaDampeners:false]
 			[MinimumPlanetAltitude:-100]
 			[AngleAllowedForForwardThrust:120]
 			[MaxVelocityAngleForSpeedControl:180]

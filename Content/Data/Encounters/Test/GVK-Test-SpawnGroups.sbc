@@ -1,0 +1,529 @@
+<?xml version="1.0"?>
+<Definitions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+	<!-- Admin test spawn groups: production prefabs on their production behaviors, spawnable anywhere with /MES.Spawn.DroneEncounter.<SubtypeId>.
+	     [AdminSpawnOnly:true] keeps them out of natural spawning. -->
+	<SpawnGroups>
+		<!-- /MES.Spawn.DroneEncounter.GVK-Test-SpawnGroup-LAVTrio: three SOBAN LAVs, so the Land peer pool (1 slot) can pair, lose a wing and pair again (GVK-Settings#699) -->
+		<SpawnGroup>
+			<Id>
+				<TypeId>SpawnGroupDefinition</TypeId>
+				<SubtypeId>GVK-Test-SpawnGroup-LAVTrio</SubtypeId>
+			</Id>
+			<Description>
+				[Modular Encounters SpawnGroup]
+				[IgnoreCleanupRules:true]
+				[ReplenishSystems:true]
+				[ManipulationProfiles:GVK-Unit-All-Manipulation-Hover]
+				[SpawnConditionsProfiles:GVK-Test-SpawnCondition-LAVTrio]
+			</Description>
+			<IsPirate>true</IsPirate>
+			<Frequency>1.0</Frequency>
+			<Prefabs>
+				<Prefab SubtypeId="NUN [SOBA] LAV">
+					<Position>
+						<X>0.0</X>
+						<Y>30</Y>
+						<Z>0.0</Z>
+					</Position>
+					<Speed>0</Speed>
+					<BeaconText>Test LAV A</BeaconText>
+					<Behaviour>GVK-Unit-All-Behavior-LAV-SOBAN</Behaviour>
+				</Prefab>
+				<Prefab SubtypeId="NUN [SOBA] LAV">
+					<Position>
+						<X>25.0</X>
+						<Y>30</Y>
+						<Z>0.0</Z>
+					</Position>
+					<Speed>0</Speed>
+					<BeaconText>Test LAV B</BeaconText>
+					<Behaviour>GVK-Unit-All-Behavior-LAV-SOBAN</Behaviour>
+				</Prefab>
+				<Prefab SubtypeId="NUN [SOBA] LAV">
+					<Position>
+						<X>-25.0</X>
+						<Y>30</Y>
+						<Z>0.0</Z>
+					</Position>
+					<Speed>0</Speed>
+					<BeaconText>Test LAV C</BeaconText>
+					<Behaviour>GVK-Unit-All-Behavior-LAV-SOBAN</Behaviour>
+				</Prefab>
+			</Prefabs>
+		</SpawnGroup>
+		<!-- /MES.Spawn.DroneEncounter.GVK-Test-SpawnGroup-Cruisers: a GAALSIEN Honorguard and Assault Cruiser (hover cruiser steering and flip tests) -->
+		<SpawnGroup>
+			<Id>
+				<TypeId>SpawnGroupDefinition</TypeId>
+				<SubtypeId>GVK-Test-SpawnGroup-Cruisers</SubtypeId>
+			</Id>
+			<Description>
+				[Modular Encounters SpawnGroup]
+				[IgnoreCleanupRules:true]
+				[ReplenishSystems:true]
+				[ManipulationProfiles:GVK-Universal-Manipulation-Large3x3HeavyTurrets]
+				[ManipulationProfiles:GVK-Unit-All-Manipulation-Hover]
+				[SpawnConditionsProfiles:GVK-Test-SpawnCondition-Cruisers]
+			</Description>
+			<IsPirate>true</IsPirate>
+			<Frequency>1.0</Frequency>
+			<Prefabs>
+				<Prefab SubtypeId="NUN [GAAL] Honorguard Cruiser">
+					<Position>
+						<X>0.0</X>
+						<Y>0.0</Y>
+						<Z>0.0</Z>
+					</Position>
+					<Speed>0</Speed>
+					<BeaconText>Test Honorguard</BeaconText>
+					<Behaviour>GVK-Unit-All-Behavior-Honorguard-GAALSIEN</Behaviour>
+				</Prefab>
+				<Prefab SubtypeId="NUN [GAAL] Assault Cruiser">
+					<Position>
+						<X>150.0</X>
+						<Y>0.0</Y>
+						<Z>0.0</Z>
+					</Position>
+					<Speed>0</Speed>
+					<BeaconText>Test Assault Cruiser</BeaconText>
+					<Behaviour>GVK-Unit-All-Behavior-HoverCruiserHorsefly-GAALSIEN</Behaviour>
+				</Prefab>
+			</Prefabs>
+		</SpawnGroup>
+		<!-- /MES.Spawn.DroneEncounter.GVK-Test-SpawnGroup-Rovers: one SOBAN rover per wheeled steering profile (Baserunner, LargeRoverHorsefly, LAV) -->
+		<SpawnGroup>
+			<Id>
+				<TypeId>SpawnGroupDefinition</TypeId>
+				<SubtypeId>GVK-Test-SpawnGroup-Rovers</SubtypeId>
+			</Id>
+			<Description>
+				[Modular Encounters SpawnGroup]
+				[IgnoreCleanupRules:true]
+				[ReplenishSystems:true]
+				[ManipulationProfiles:GVK-Unit-All-Manipulation-Hover]
+				[ManipulationProfiles:GVK-Universal-Manipulation-Large3x3StandardTurrets]
+				[SpawnConditionsProfiles:GVK-Test-SpawnCondition-Rovers]
+			</Description>
+			<IsPirate>true</IsPirate>
+			<Frequency>1.0</Frequency>
+			<Prefabs>
+				<!-- The Battlecruiser (45 x 92 m) sits at the spawn centre, where MES measures the drone altitude: at X 80 a rising slope buried half of it.
+				     The others sit as close beside it as fits (Baserunner ~18 m wide, LAV ~4 m): 70 m out, the Baserunner still sank into slopes -->
+				<Prefab SubtypeId="NUN [SOBA] Light Baserunner">
+					<Position>
+						<X>40.0</X>
+						<Y>0.0</Y>
+						<Z>0.0</Z>
+					</Position>
+					<Speed>0</Speed>
+					<BeaconText>Test Baserunner</BeaconText>
+					<Behaviour>GVK-Unit-All-Behavior-Baserunner-SOBAN</Behaviour>
+				</Prefab>
+				<Prefab SubtypeId="NUN [SOBA] Battlecruiser">
+					<Position>
+						<X>0.0</X>
+						<Y>0.0</Y>
+						<Z>0.0</Z>
+					</Position>
+					<Speed>0</Speed>
+					<BeaconText>Test Battlecruiser</BeaconText>
+					<Behaviour>GVK-Unit-All-Behavior-LargeRoverHorsefly-SOBAN</Behaviour>
+				</Prefab>
+				<Prefab SubtypeId="NUN [SOBA] LAV">
+					<Position>
+						<X>-35.0</X>
+						<Y>0.0</Y>
+						<Z>0.0</Z>
+					</Position>
+					<Speed>0</Speed>
+					<BeaconText>Test LAV</BeaconText>
+					<Behaviour>GVK-Unit-All-Behavior-LAV-SOBAN</Behaviour>
+				</Prefab>
+			</Prefabs>
+		</SpawnGroup>
+		<!-- /MES.Spawn.DroneEncounter.GVK-Test-SpawnGroup-Hovers: one GAALSIEN hover per steering profile (Sandskimmer, SmallHoverHorsefly, MediumHoverPatrolHorsefly, MediumHoverPatrolFighter) -->
+		<SpawnGroup>
+			<Id>
+				<TypeId>SpawnGroupDefinition</TypeId>
+				<SubtypeId>GVK-Test-SpawnGroup-Hovers</SubtypeId>
+			</Id>
+			<Description>
+				[Modular Encounters SpawnGroup]
+				[IgnoreCleanupRules:true]
+				[ReplenishSystems:true]
+				[ManipulationProfiles:GVK-Unit-All-Manipulation-Hover]
+				[ManipulationProfiles:GVK-Universal-Manipulation-Large3x3StandardTurrets]
+				[SpawnConditionsProfiles:GVK-Test-SpawnCondition-Hovers]
+			</Description>
+			<IsPirate>true</IsPirate>
+			<Frequency>1.0</Frequency>
+			<Prefabs>
+				<Prefab SubtypeId="NUN [GAAL] Sandskimmer">
+					<Position>
+						<X>0.0</X>
+						<Y>0.0</Y>
+						<Z>0.0</Z>
+					</Position>
+					<Speed>0</Speed>
+					<BeaconText>Test Sandskimmer</BeaconText>
+					<Behaviour>GVK-Unit-All-Behavior-Sandskimmer-GAALSIEN</Behaviour>
+				</Prefab>
+				<Prefab SubtypeId="NUN [GAAL] Stryker Hover">
+					<Position>
+						<X>40.0</X>
+						<Y>0.0</Y>
+						<Z>0.0</Z>
+					</Position>
+					<Speed>0</Speed>
+					<BeaconText>Test Stryker</BeaconText>
+					<Behaviour>GVK-Unit-All-Behavior-SmallHoverHorsefly-GAALSIEN</Behaviour>
+				</Prefab>
+				<Prefab SubtypeId="NUN [GAAL] Light Assault Platform">
+					<Position>
+						<X>100.0</X>
+						<Y>0.0</Y>
+						<Z>0.0</Z>
+					</Position>
+					<Speed>0</Speed>
+					<BeaconText>Test Assault Platform</BeaconText>
+					<Behaviour>GVK-Unit-All-Behavior-MediumHoverPatrolHorsefly-GAALSIEN</Behaviour>
+				</Prefab>
+				<Prefab SubtypeId="NUN [GAAL] Light Assault Cannon">
+					<Position>
+						<X>-60.0</X>
+						<Y>0.0</Y>
+						<Z>0.0</Z>
+					</Position>
+					<Speed>0</Speed>
+					<BeaconText>Test Assault Cannon</BeaconText>
+					<Behaviour>GVK-Unit-All-Behavior-MediumHoverPatrolFighter-GAALSIEN</Behaviour>
+				</Prefab>
+			</Prefabs>
+		</SpawnGroup>
+		<!-- /MES.Spawn.DroneEncounter.GVK-Test-SpawnGroup-Aircraft: GAALSIEN Bomber, Orion (MediumFlyer), Chad Shuttle (LargeFlyer) and Foxhound (SmallFlyer) -->
+		<SpawnGroup>
+			<Id>
+				<TypeId>SpawnGroupDefinition</TypeId>
+				<SubtypeId>GVK-Test-SpawnGroup-Aircraft</SubtypeId>
+			</Id>
+			<Description>
+				[Modular Encounters SpawnGroup]
+				[IgnoreCleanupRules:true]
+				[ReplenishSystems:true]
+				[ManipulationProfiles:GVK-Unit-All-Manipulation-Flyer]
+				[ManipulationProfiles:GVK-Universal-Manipulation-Large3x3StandardTurrets]
+				[SpawnConditionsProfiles:GVK-Test-SpawnCondition-Aircraft]
+			</Description>
+			<IsPirate>true</IsPirate>
+			<Frequency>1.0</Frequency>
+			<Prefabs>
+				<Prefab SubtypeId="NUN [GAAL] Bomber">
+					<Position>
+						<X>0.0</X>
+						<Y>0.0</Y>
+						<Z>0.0</Z>
+					</Position>
+					<Speed>0</Speed>
+					<BeaconText>Test Bomber</BeaconText>
+					<Behaviour>GVK-Unit-All-Behavior-Bomber</Behaviour>
+				</Prefab>
+				<Prefab SubtypeId="NUN [GAAL] Orion">
+					<Position>
+						<X>100.0</X>
+						<Y>0.0</Y>
+						<Z>0.0</Z>
+					</Position>
+					<Speed>0</Speed>
+					<BeaconText>Test Orion</BeaconText>
+					<Behaviour>GVK-Unit-All-Behavior-MediumFlyerPatrolHorsefly-GAALSIEN</Behaviour>
+				</Prefab>
+				<Prefab SubtypeId="NUN [GAAL] Chad Shuttle">
+					<Position>
+						<X>-100.0</X>
+						<Y>0.0</Y>
+						<Z>0.0</Z>
+					</Position>
+					<Speed>0</Speed>
+					<BeaconText>Test Chad Shuttle</BeaconText>
+					<Behaviour>GVK-Unit-All-Behavior-LargeFlyerFighterPlane-GAALSIEN</Behaviour>
+				</Prefab>
+				<Prefab SubtypeId="NUN [GAAL] Foxhound">
+					<Position>
+						<X>0.0</X>
+						<Y>0.0</Y>
+						<Z>100.0</Z>
+					</Position>
+					<Speed>0</Speed>
+					<BeaconText>Test Foxhound</BeaconText>
+					<Behaviour>GVK-Unit-All-Behavior-SmallFlyerPatrolHorseFighter</Behaviour>
+				</Prefab>
+			</Prefabs>
+		</SpawnGroup>
+		<!-- /MES.Spawn.DroneEncounter.GVK-Test-SpawnGroup-StrikeFightersCOALITION: the COALITION version of the group below -->
+		<SpawnGroup>
+			<Id>
+				<TypeId>SpawnGroupDefinition</TypeId>
+				<SubtypeId>GVK-Test-SpawnGroup-StrikeFightersCOALITION</SubtypeId>
+			</Id>
+			<Description>
+				[Modular Encounters SpawnGroup]
+				[IgnoreCleanupRules:true]
+				[ReplenishSystems:true]
+				[ManipulationProfiles:GVK-Unit-All-Manipulation-Interceptor]
+				[SpawnConditionsProfiles:GVK-Test-SpawnCondition-AircraftCOALITION]
+			</Description>
+			<IsPirate>true</IsPirate>
+			<Frequency>1.0</Frequency>
+			<Prefabs>
+				<Prefab SubtypeId="NUN [COAL] Strike Fighter">
+					<Position>
+						<X>0.0</X>
+						<Y>0.0</Y>
+						<Z>0.0</Z>
+					</Position>
+					<Speed>0</Speed>
+					<BeaconText>Test COAL Strike Fighter A</BeaconText>
+					<Behaviour>GVK-Unit-All-Behavior-StrikeFighter-COALITION</Behaviour>
+				</Prefab>
+				<Prefab SubtypeId="NUN [COAL] Strike Fighter">
+					<Position>
+						<X>60.0</X>
+						<Y>0.0</Y>
+						<Z>0.0</Z>
+					</Position>
+					<Speed>0</Speed>
+					<BeaconText>Test COAL Strike Fighter B</BeaconText>
+					<Behaviour>GVK-Unit-All-Behavior-StrikeFighter-COALITION</Behaviour>
+				</Prefab>
+			</Prefabs>
+		</SpawnGroup>
+		<!-- /MES.Spawn.DroneEncounter.GVK-Test-SpawnGroup-StrikeFighters: two SOBAN Strike Fighters, so one flies as the other's AirWing (attack run and wing tests).
+		     Same manipulation as the production Strike Fighter groups -->
+		<SpawnGroup>
+			<Id>
+				<TypeId>SpawnGroupDefinition</TypeId>
+				<SubtypeId>GVK-Test-SpawnGroup-StrikeFighters</SubtypeId>
+			</Id>
+			<Description>
+				[Modular Encounters SpawnGroup]
+				[IgnoreCleanupRules:true]
+				[ReplenishSystems:true]
+				[ManipulationProfiles:GVK-Unit-All-Manipulation-Interceptor]
+				[SpawnConditionsProfiles:GVK-Test-SpawnCondition-AircraftSOBAN]
+			</Description>
+			<IsPirate>true</IsPirate>
+			<Frequency>1.0</Frequency>
+			<Prefabs>
+				<Prefab SubtypeId="NUN [SOBA] Strike Fighter">
+					<Position>
+						<X>0.0</X>
+						<Y>0.0</Y>
+						<Z>0.0</Z>
+					</Position>
+					<Speed>0</Speed>
+					<BeaconText>Test Strike Fighter A</BeaconText>
+					<Behaviour>GVK-Unit-All-Behavior-StrikeFighter-SOBAN</Behaviour>
+				</Prefab>
+				<Prefab SubtypeId="NUN [SOBA] Strike Fighter">
+					<Position>
+						<X>60.0</X>
+						<Y>0.0</Y>
+						<Z>0.0</Z>
+					</Position>
+					<Speed>0</Speed>
+					<BeaconText>Test Strike Fighter B</BeaconText>
+					<Behaviour>GVK-Unit-All-Behavior-StrikeFighter-SOBAN</Behaviour>
+				</Prefab>
+			</Prefabs>
+		</SpawnGroup>
+		<!-- /MES.Spawn.DroneEncounter.GVK-Test-SpawnGroup-SmallConvoy: the GAALSIEN small convoy lead, which spawns its own escorts (fly-level lead and escort steering) -->
+		<SpawnGroup>
+			<Id>
+				<TypeId>SpawnGroupDefinition</TypeId>
+				<SubtypeId>GVK-Test-SpawnGroup-SmallConvoy</SubtypeId>
+			</Id>
+			<Description>
+				[Modular Encounters SpawnGroup]
+				[IgnoreCleanupRules:true]
+				[ReplenishSystems:true]
+				[ManipulationProfiles:MES-Manipulation-RivalAi]
+				[ManipulationProfiles:GVK-Convoy-Lead-Manipulation-GAALSIENSmallConvoy]
+				[SpawnConditionsProfiles:GVK-Test-SpawnCondition-SmallConvoy]
+			</Description>
+			<IsPirate>true</IsPirate>
+			<Frequency>1.0</Frequency>
+			<Prefabs>
+				<Prefab SubtypeId="NUN [GAAL] Production Cruiser">
+					<Position>
+						<X>0.0</X>
+						<Y>0.0</Y>
+						<Z>0.0</Z>
+					</Position>
+					<Speed>0</Speed>
+					<BeaconText>Test Convoy Lead</BeaconText>
+					<Behaviour>GVK-Convoy-GAALSIENSmallConvoy-Lead-Behavior</Behaviour>
+				</Prefab>
+			</Prefabs>
+		</SpawnGroup>
+	</SpawnGroups>
+	<EntityComponents>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Test-SpawnCondition-LAVTrio</SubtypeId>
+			</Id>
+			<Description>
+			[MES Spawn Conditions]
+			[DroneEncounter:true]
+			[AdminSpawnOnly:true]
+			[MinDroneDistance:300]
+			[MaxDroneDistance:400]
+			[//MES default drone altitude is 1000 m, measured above the surface at the spawn centre. 50 m keeps a slope under the side LAVs below them]
+			[MinDroneAltitude:50]
+			[MaxDroneAltitude:50]
+			[FactionOwner:SOBAN]
+			[ReactorsOn:true]
+			[SkipVoxelSpawnChecks:true]
+			[SkipGridSpawnChecks:false]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Test-SpawnCondition-Cruisers</SubtypeId>
+			</Id>
+			<Description>
+			[MES Spawn Conditions]
+			[DroneEncounter:true]
+			[AdminSpawnOnly:true]
+			[MinDroneDistance:600]
+			[MaxDroneDistance:800]
+			[//The hulls are ~30 m tall and up to 88 m long, spread over 150 m of terrain: 40 m sank them into dunes, so 75 m]
+			[MinDroneAltitude:75]
+			[MaxDroneAltitude:75]
+			[FactionOwner:GAALSIEN]
+			[ReactorsOn:true]
+			[SkipVoxelSpawnChecks:true]
+			[SkipGridSpawnChecks:false]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Test-SpawnCondition-Rovers</SubtypeId>
+			</Id>
+			<Description>
+			[MES Spawn Conditions]
+			[DroneEncounter:true]
+			[AdminSpawnOnly:true]
+			[MinDroneDistance:400]
+			[MaxDroneDistance:600]
+			[//Battlecruiser is the biggest: 40 m clears a slope under it without a long drop]
+			[MinDroneAltitude:40]
+			[MaxDroneAltitude:40]
+			[FactionOwner:SOBAN]
+			[ReactorsOn:true]
+			[SkipVoxelSpawnChecks:true]
+			[SkipGridSpawnChecks:false]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Test-SpawnCondition-Hovers</SubtypeId>
+			</Id>
+			<Description>
+			[MES Spawn Conditions]
+			[DroneEncounter:true]
+			[AdminSpawnOnly:true]
+			[MinDroneDistance:400]
+			[MaxDroneDistance:600]
+			[//Same as the cruiser test: hover engines pull the hull down onto the terrain below]
+			[MinDroneAltitude:75]
+			[MaxDroneAltitude:75]
+			[FactionOwner:GAALSIEN]
+			[ReactorsOn:true]
+			[SkipVoxelSpawnChecks:true]
+			[SkipGridSpawnChecks:false]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Test-SpawnCondition-Aircraft</SubtypeId>
+			</Id>
+			<Description>
+			[MES Spawn Conditions]
+			[DroneEncounter:true]
+			[AdminSpawnOnly:true]
+			[MinDroneDistance:800]
+			[MaxDroneDistance:1000]
+			[MinDroneAltitude:500]
+			[MaxDroneAltitude:500]
+			[FactionOwner:GAALSIEN]
+			[ReactorsOn:true]
+			[SkipVoxelSpawnChecks:true]
+			[SkipGridSpawnChecks:false]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Test-SpawnCondition-AircraftCOALITION</SubtypeId>
+			</Id>
+			<Description>
+			[MES Spawn Conditions]
+			[//The aircraft test condition with a COALITION owner]
+			[DroneEncounter:true]
+			[AdminSpawnOnly:true]
+			[MinDroneDistance:800]
+			[MaxDroneDistance:1000]
+			[MinDroneAltitude:500]
+			[MaxDroneAltitude:500]
+			[FactionOwner:COALITION]
+			[ReactorsOn:true]
+			[SkipVoxelSpawnChecks:true]
+			[SkipGridSpawnChecks:false]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Test-SpawnCondition-AircraftSOBAN</SubtypeId>
+			</Id>
+			<Description>
+			[MES Spawn Conditions]
+			[//The aircraft test condition with a SOBAN owner, for the Strike Fighters]
+			[DroneEncounter:true]
+			[AdminSpawnOnly:true]
+			[MinDroneDistance:800]
+			[MaxDroneDistance:1000]
+			[MinDroneAltitude:500]
+			[MaxDroneAltitude:500]
+			[FactionOwner:SOBAN]
+			[ReactorsOn:true]
+			[SkipVoxelSpawnChecks:true]
+			[SkipGridSpawnChecks:false]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Test-SpawnCondition-SmallConvoy</SubtypeId>
+			</Id>
+			<Description>
+			[MES Spawn Conditions]
+			[DroneEncounter:true]
+			[AdminSpawnOnly:true]
+			[MinDroneDistance:800]
+			[MaxDroneDistance:1000]
+			[MinDroneAltitude:75]
+			[MaxDroneAltitude:75]
+			[FactionOwner:GAALSIEN]
+			[ReactorsOn:true]
+			[SkipVoxelSpawnChecks:true]
+			[SkipGridSpawnChecks:false]
+			</Description>
+		</EntityComponent>
+	</EntityComponents>
+</Definitions>

@@ -1,10 +1,14 @@
 <?xml version="1.0"?>
 <Definitions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
 	<EntityComponents>
-		<!-- Action group switch to Tertiary autopilot when Target is near forward angle -->
-		<!-- Assumes Secondary Autopilot is FlyLevelWithGravity, and Tertiary is not -->
-		<!-- Both swaps need GVK_InCombat: without it the 3 s timer put Secondary back on after the switch to Patrol, so the Unit
-		     patrolled on its combat profile and took MES's default 100-200 m offset altitude. -->
+		<!-- Swaps to the Tertiary autopilot while the target is within 15 degrees of the nose, and back to Secondary once it is more than 30 off -->
+		<!-- Assumes Secondary keeps the nose level (FlyLevelWithGravity, or a very low pitch multiplier) and Tertiary can pitch at the target -->
+
+		<!-- Swap only on a change (GVK_AimProfile records which profile is on): every ChangeAutopilotProfile, even to the profile already on, re-activates
+		     the autopilot and stops all thrust (AutoPilotSystem.SetAutoPilotDataMode -> ActivateAutoPilot -> StopAllThrust), and a strafe's thrust is set
+		     only when it starts, so the old 1 s re-swap cut every strafe short and the Unit sat aiming and scooting. -->
+		<!-- Both swaps need GVK_InCombat: without it a swap put Secondary back on after the switch to Patrol, so the Unit patrolled on its combat profile
+		     and took MES's default 100-200 m offset altitude. Out of combat, GVK_AimProfile is cleared so the next fight starts on Secondary. -->
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
@@ -13,7 +17,8 @@
 			<Description>
 			[RivalAI TriggerGroup]
 			[Triggers:GVK-Unit-All-Trigger-TargetForwardAngle]
-			[Triggers:GVK-Unit-All-Trigger-FlyLevelAngle]			
+			[Triggers:GVK-Unit-All-Trigger-TargetOffAngle]
+			[Triggers:GVK-Unit-All-Trigger-AimProfileReset]
 			</Description>
 		</EntityComponent>
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
@@ -48,18 +53,8 @@
 			[MaxTargetAngle:15]
 			[CheckTrueBooleans:true]
 			[TrueBooleans:GVK_InCombat]
-			</Description>
-		</EntityComponent>
-		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
-			<Id>
-				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Unit-All-Condition-InCombat</SubtypeId>
-			</Id>
-			<Description>
-			[RivalAI Condition]
-			[UseConditions:true]
-			[CheckTrueBooleans:true]
-			[TrueBooleans:GVK_InCombat]
+			[CheckFalseBooleans:true]
+			[FalseBooleans:GVK_AimProfile]
 			</Description>
 		</EntityComponent>
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
@@ -69,40 +64,97 @@
 			</Id>
 			<Description>
 			[RivalAI Action]
-			[EnableTriggers:true]
-			[EnableTriggerNames:GVK-Unit-All-Trigger-FlyLevelAngle]
-			[ResetCooldownTimeOfTriggers:true]
-			[ResetTriggerCooldownNames:GVK-Unit-All-Trigger-FlyLevelAngle]
 			[ChangeAutopilotProfile:true]
 			[AutopilotProfile:Tertiary]
+			[SetBooleansTrue:GVK_AimProfile]
 			</Description>
 		</EntityComponent>
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Unit-All-Trigger-FlyLevelAngle</SubtypeId>
+				<SubtypeId>GVK-Unit-All-Trigger-TargetOffAngle</SubtypeId>
 			</Id>
 			<Description>
 			[RivalAI Trigger]
-			[UseTrigger:false]
-			[Type:Timer]
-			[MinCooldownMs:3000]
-			[MaxCooldownMs:3001]
-			[Conditions:GVK-Unit-All-Condition-InCombat]
-			[Actions:GVK-Unit-All-Action-FlyLevelAngle]
+			[UseTrigger:true]
+			[Type:TargetNear]
+			[TargetDistance:2000]
+			[MinCooldownMs:1000]
+			[MaxCooldownMs:1001]
+			[StartsReady:true]
+			[ConditionCheckResetsTimer:false]
+			[Conditions:GVK-Unit-All-Condition-TargetOffAngle]
+			[Actions:GVK-Unit-All-Action-TargetOffAngle]
 			</Description>
 		</EntityComponent>
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Unit-All-Action-FlyLevelAngle</SubtypeId>
+				<SubtypeId>GVK-Unit-All-Condition-TargetOffAngle</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Condition]
+			[UseConditions:true]
+			[MatchAnyCondition:false]
+			[CheckTargetAngleFromForward:true]
+			[MinTargetAngle:30]
+			[MaxTargetAngle:180]
+			[CheckTrueBooleans:true]
+			[TrueBooleans:GVK_InCombat]
+			[TrueBooleans:GVK_AimProfile]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Unit-All-Action-TargetOffAngle</SubtypeId>
 			</Id>
 			<Description>
 			[RivalAI Action]
-			[DisableTriggers:true]
-			[DisableTriggerNames:GVK-Unit-All-Trigger-FlyLevelAngle]
 			[ChangeAutopilotProfile:true]
 			[AutopilotProfile:Secondary]
+			[SetBooleansFalse:GVK_AimProfile]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Unit-All-Trigger-AimProfileReset</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Trigger]
+			[UseTrigger:true]
+			[Type:Timer]
+			[MinCooldownMs:1000]
+			[MaxCooldownMs:1001]
+			[StartsReady:true]
+			[Conditions:GVK-Unit-All-Condition-AimProfileReset]
+			[Actions:GVK-Unit-All-Action-AimProfileReset]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Unit-All-Condition-AimProfileReset</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Condition]
+			[UseConditions:true]
+			[MatchAnyCondition:false]
+			[CheckTrueBooleans:true]
+			[TrueBooleans:GVK_AimProfile]
+			[CheckFalseBooleans:true]
+			[FalseBooleans:GVK_InCombat]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Unit-All-Action-AimProfileReset</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Action]
+			[SetBooleansFalse:GVK_AimProfile]
 			</Description>
 		</EntityComponent>
 	</EntityComponents>

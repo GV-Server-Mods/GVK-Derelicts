@@ -2,6 +2,7 @@
 <Definitions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
 	<EntityComponents>
 		<!-- SmallHoverHorseFighter Autopilot -->
+		<!-- Steering: the hover cruiser recipe (Unit-All-Autopilot-HoverCruiserHorsefly.sbc explains it). LimitPitchTurning so it does not backflip toward a waypoint behind it; MaxRotationStep 0.5 keeps the gyros at full strength; MaxRotationMagnitude sets the turn rate; banks up to 15 degrees into turns for looks -->
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
@@ -11,7 +12,16 @@
 			[RivalAI Autopilot]
 			[UseVelocityCollisionEvasion:false]
 			[UseProjectileLeadPrediction:false]
-			[RotationMultiplier:0.75]
+			[RotationMultiplierPitch:3]
+			[RotationMultiplierYaw:3]
+			[RotationMultiplierRoll:3]
+			[LimitPitchTurning:true]
+			[LimitRotationSpeed:false]
+			[MaxRotationMagnitude:1]
+			[UseAircraftFlightModel:true]
+			[MaxRotationStep:0.5]
+			[RollIntoTurnsMultiplier:0.25]
+			[MaxBankAngle:15]
 			[DisableInertiaDampeners:false]
 			[FlyLevelWithGravity:false]
 			[LevelWithGravityWhenIdle:false]
@@ -56,7 +66,16 @@
 			[RivalAI Autopilot]
 			[UseVelocityCollisionEvasion:false]
 			[UseProjectileLeadPrediction:false]
-			[RotationMultiplier:0.75]
+			[RotationMultiplierPitch:3]
+			[RotationMultiplierYaw:3]
+			[RotationMultiplierRoll:3]
+			[LimitPitchTurning:true]
+			[LimitRotationSpeed:false]
+			[MaxRotationMagnitude:1]
+			[UseAircraftFlightModel:true]
+			[MaxRotationStep:0.5]
+			[RollIntoTurnsMultiplier:0.25]
+			[MaxBankAngle:15]
 			[DisableInertiaDampeners:false]
 			[FlyLevelWithGravity:false]
 			[LevelWithGravityWhenIdle:false]
@@ -69,7 +88,8 @@
 			[RamMinDurationMs:6000]
 			[RamMaxDurationMs:6001]
 			[IdealMinSpeed:40]
-			[IdealMaxSpeed:120]
+			[//110: 30 m/s under the HoverWing (140), so a peer wing has room to catch up.]
+			[IdealMaxSpeed:110]
 			[SlowDownOnWaypointApproach:false]
 			[ExtraSlowDownDistance:200]
 			[OffsetPlanetMinDistFromTarget:400]

@@ -2,6 +2,7 @@
 <Definitions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
 	<EntityComponents>
 		<!-- MediumHoverHorsefly Autopilot -->
+		<!-- Steering: the hover cruiser recipe (Unit-All-Autopilot-HoverCruiserHorsefly.sbc explains it). Low pitch so it does not backflip toward a waypoint behind it; MaxRotationStep 0.5 keeps the gyros at full strength; MaxRotationMagnitude sets the turn rate; banks up to 15 degrees into turns for looks -->
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
@@ -12,10 +13,14 @@
 				[UseVelocityCollisionEvasion:false]
 				[UseProjectileLeadPrediction:false]
 				[RotationMultiplierPitch:0.05]
-				[RotationMultiplierYaw:2]
-				[RotationMultiplierRoll:1]
-				[LimitRotationSpeed:true]
+				[RotationMultiplierYaw:3]
+				[RotationMultiplierRoll:2]
+				[LimitRotationSpeed:false]
 				[MaxRotationMagnitude:0.5]
+				[UseAircraftFlightModel:true]
+				[MaxRotationStep:0.5]
+				[RollIntoTurnsMultiplier:0.25]
+				[MaxBankAngle:15]
 				[FlyLevelWithGravity:false]
 				[LevelWithGravityWhenIdle:false]
 				[WaypointTolerance:75]
@@ -38,8 +43,8 @@
 				[MaxVelocityAngleForSpeedControl:180]
 				[//Off: MES never clears relative dampening when a unit leaves an escort, so it drifts with its old lead.]
 				[EscortUsesRelativeDampening:false]
-				[EscortSpeedMatchMinDistance:0]
-				[EscortSpeedMatchMaxDistance:25]
+				[EscortSpeedMatchMinDistance:10]
+				[EscortSpeedMatchMaxDistance:400]
 			</Description>
 		</EntityComponent>
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
@@ -52,10 +57,14 @@
 				[UseVelocityCollisionEvasion:false]
 				[UseProjectileLeadPrediction:false]
 				[RotationMultiplierPitch:0.05]
-				[RotationMultiplierYaw:2]
-				[RotationMultiplierRoll:1]
-				[LimitRotationSpeed:true]
+				[RotationMultiplierYaw:3]
+				[RotationMultiplierRoll:2]
+				[LimitRotationSpeed:false]
 				[MaxRotationMagnitude:0.5]
+				[UseAircraftFlightModel:true]
+				[MaxRotationStep:0.5]
+				[RollIntoTurnsMultiplier:0.25]
+				[MaxBankAngle:15]
 				[FlyLevelWithGravity:false]
 				[LevelWithGravityWhenIdle:false]
 				[WaypointTolerance:100]
@@ -78,8 +87,8 @@
 				[MaxVelocityAngleForSpeedControl:180]
 				[//Off: MES never clears relative dampening when a unit leaves an escort, so it drifts with its old lead.]
 				[EscortUsesRelativeDampening:false]
-				[EscortSpeedMatchMinDistance:0]
-				[EscortSpeedMatchMaxDistance:25]
+				[EscortSpeedMatchMinDistance:10]
+				[EscortSpeedMatchMaxDistance:400]
 			</Description>
 		</EntityComponent>
 		<!-- Escort (Tertiary): the Passive profile with an 80 m/s catch-up max, so a cruiser escort outruns a leader in combat (cruisers 55 m/s).
@@ -95,10 +104,14 @@
 				[UseVelocityCollisionEvasion:false]
 				[UseProjectileLeadPrediction:false]
 				[RotationMultiplierPitch:0.05]
-				[RotationMultiplierYaw:2]
-				[RotationMultiplierRoll:1]
-				[LimitRotationSpeed:true]
+				[RotationMultiplierYaw:3]
+				[RotationMultiplierRoll:2]
+				[LimitRotationSpeed:false]
 				[MaxRotationMagnitude:0.5]
+				[UseAircraftFlightModel:true]
+				[MaxRotationStep:0.5]
+				[RollIntoTurnsMultiplier:0.25]
+				[MaxBankAngle:15]
 				[FlyLevelWithGravity:false]
 				[LevelWithGravityWhenIdle:false]
 				[WaypointTolerance:75]
@@ -121,8 +134,8 @@
 				[MaxVelocityAngleForSpeedControl:180]
 				[//Off: MES never clears relative dampening when a unit leaves an escort, so it drifts with its old lead.]
 				[EscortUsesRelativeDampening:false]
-				[EscortSpeedMatchMinDistance:0]
-				[EscortSpeedMatchMaxDistance:25]
+				[EscortSpeedMatchMinDistance:10]
+				[EscortSpeedMatchMaxDistance:400]
 			</Description>
 		</EntityComponent>
 	</EntityComponents>

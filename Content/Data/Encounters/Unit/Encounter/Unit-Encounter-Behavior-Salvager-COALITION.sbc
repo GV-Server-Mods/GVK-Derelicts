@@ -63,6 +63,7 @@
 			</Description>
 		</EntityComponent>
 		<!-- Salvager Patrol Autopilot -->
+		<!-- Steering: the LAVWing recipe (Unit-All-Autopilot-LandWing.sbc explains it). MaxRotationStep 0.5 keeps the gyros at full strength; MaxRotationMagnitude sets the turn rate -->
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
@@ -73,10 +74,12 @@
 			[UseVelocityCollisionEvasion:false]
 			[CollisionEvasionWaypointCalculatedAwayFromEntity:true]
 			[RotationMultiplierPitch:0.25]
-			[RotationMultiplierYaw:1]
-			[RotationMultiplierRoll:1]
-			[LimitRotationSpeed:true]
-			[MaxRotationMagnitude:0.25]
+			[RotationMultiplierYaw:3]
+			[RotationMultiplierRoll:1.5]
+			[LimitRotationSpeed:false]
+			[MaxRotationMagnitude:0.5]
+			[UseAircraftFlightModel:true]
+			[MaxRotationStep:0.5]
 			[FlyLevelWithGravity:false]
 			[LevelWithGravityWhenIdle:false]
 			[UseSurfaceHoverThrustMode:true]
@@ -108,10 +111,12 @@
 			[UseVelocityCollisionEvasion:false]
 			[CollisionEvasionWaypointCalculatedAwayFromEntity:true]
 			[RotationMultiplierPitch:0.25]
-			[RotationMultiplierYaw:1]
-			[RotationMultiplierRoll:1]
-			[LimitRotationSpeed:true]
-			[MaxRotationMagnitude:0.25]
+			[RotationMultiplierYaw:3]
+			[RotationMultiplierRoll:1.5]
+			[LimitRotationSpeed:false]
+			[MaxRotationMagnitude:0.5]
+			[UseAircraftFlightModel:true]
+			[MaxRotationStep:0.5]
 			[FlyLevelWithGravity:false]
 			[LevelWithGravityWhenIdle:false]
 			[UseSurfaceHoverThrustMode:true]

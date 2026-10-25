@@ -60,6 +60,7 @@ Notes:
 			</Description>
 		</EntityComponent>
 		<!-- Freighter Autopilot-->
+		<!-- Steering: MaxRotationStep 0.5 keeps the gyros at full strength (Unit-All-Autopilot-HoverCruiserHorsefly.sbc explains it); MaxRotationMagnitude sets the turn rate. FlyLevelWithGravity already stops backflips, so pitch stays 1. Banks up to 15 degrees into turns for looks -->
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
@@ -68,7 +69,15 @@ Notes:
 			<Description>
 				[RivalAI Autopilot]
 				[UseVelocityCollisionEvasion:true]
-				[RotationMultiplier:0.3]
+				[RotationMultiplierPitch:1]
+				[RotationMultiplierYaw:3]
+				[RotationMultiplierRoll:2]
+				[LimitRotationSpeed:false]
+				[MaxRotationMagnitude:0.5]
+				[UseAircraftFlightModel:true]
+				[MaxRotationStep:0.5]
+				[RollIntoTurnsMultiplier:0.25]
+				[MaxBankAngle:15]
 				[DisableInertiaDampeners:false]
 				[FlyLevelWithGravity:true]
 				[LevelWithGravityWhenIdle:true]
@@ -85,8 +94,6 @@ Notes:
 				[WaypointWaitTimeTrigger:30]
 				[ExtraSlowDownDistance:1000]
 				[WaypointTolerance:100]
-				[LimitRotationSpeed:true]
-				[MaxRotationMagnitude:0.5]
 				[ReverseOffsetDistAltAboveHeight:false]
 				[ReverseOffsetHeight:0]
 				[AngleAllowedForForwardThrust:45]
@@ -103,7 +110,15 @@ Notes:
 			<Description>
 				[RivalAI Autopilot]
 				[UseVelocityCollisionEvasion:true]
-				[RotationMultiplier:0.3]
+				[RotationMultiplierPitch:1]
+				[RotationMultiplierYaw:3]
+				[RotationMultiplierRoll:2]
+				[LimitRotationSpeed:false]
+				[MaxRotationMagnitude:0.5]
+				[UseAircraftFlightModel:true]
+				[MaxRotationStep:0.5]
+				[RollIntoTurnsMultiplier:0.25]
+				[MaxBankAngle:15]
 				[DisableInertiaDampeners:false]
 				[FlyLevelWithGravity:true]
 				[LevelWithGravityWhenIdle:true]
@@ -120,8 +135,6 @@ Notes:
 				[WaypointWaitTimeTrigger:30]
 				[ExtraSlowDownDistance:500]
 				[WaypointTolerance:100]
-				[LimitRotationSpeed:true]
-				[MaxRotationMagnitude:0.5]
 				[ReverseOffsetDistAltAboveHeight:false]
 				[ReverseOffsetHeight:0]
 				[AngleAllowedForForwardThrust:30]

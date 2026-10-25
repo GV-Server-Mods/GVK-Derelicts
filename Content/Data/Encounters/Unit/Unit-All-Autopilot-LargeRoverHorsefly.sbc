@@ -2,6 +2,7 @@
 <Definitions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
 	<EntityComponents>
 		<!-- LargeRoverHorsefly Autopilot -->
+		<!-- Steering: the LAVWing recipe (Unit-All-Autopilot-LandWing.sbc explains it). MaxRotationStep 0.5 keeps the gyros at full strength; MaxRotationMagnitude sets the turn rate -->
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
@@ -11,12 +12,15 @@
 			[RivalAI Autopilot]
 			[UseVelocityCollisionEvasion:false]
 			[UseProjectileLeadPrediction:false]
-			[RotationMultiplierPitch:0.1]
-			[RotationMultiplierYaw:6]
+			[RotationMultiplierPitch:3]
+			[RotationMultiplierYaw:3]
 			[RotationMultiplierRoll:3]
-			[LimitRotationSpeed:true]
-			[MaxRotationMagnitude:0.20]
-			[DisableInertiaDampeners:true]
+			[LimitPitchTurning:true]
+			[LimitRotationSpeed:false]
+			[MaxRotationMagnitude:0.5]
+			[UseAircraftFlightModel:true]
+			[MaxRotationStep:0.5]
+			[DisableInertiaDampeners:false]
 			[FlyLevelWithGravity:false]
 			[LevelWithGravityWhenIdle:false]
 			[WaypointTolerance:75]
@@ -51,12 +55,15 @@
 			[RivalAI Autopilot]
 			[UseVelocityCollisionEvasion:false]
 			[UseProjectileLeadPrediction:false]
-			[RotationMultiplierPitch:0.1]
-			[RotationMultiplierYaw:6]
+			[RotationMultiplierPitch:3]
+			[RotationMultiplierYaw:3]
 			[RotationMultiplierRoll:3]
-			[LimitRotationSpeed:true]
-			[MaxRotationMagnitude:0.20]
-			[DisableInertiaDampeners:true]
+			[LimitPitchTurning:true]
+			[LimitRotationSpeed:false]
+			[MaxRotationMagnitude:0.5]
+			[UseAircraftFlightModel:true]
+			[MaxRotationStep:0.5]
+			[DisableInertiaDampeners:false]
 			[FlyLevelWithGravity:false]
 			[LevelWithGravityWhenIdle:false]
 			[WaypointTolerance:100]

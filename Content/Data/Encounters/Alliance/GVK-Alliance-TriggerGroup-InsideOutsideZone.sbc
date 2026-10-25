@@ -113,6 +113,8 @@
 			<Description>
 				[MES AI Action]
 				[//DebugMessage:Trigger OutsideAllZones]
+				[//The "abandoned" chat replaces the "lost" one, and it costs no alliance points (GVK-Universal-TriggerGroup-DefeatedAndAttacked.sbc)]
+				[SetBooleansTrue:GVK_DespawnedByRule]
 				[ForceDespawn:true]
 				[UseChatBroadcast:true]
 				[ChatData:GVK-Alliance-Chat-OutsideAllZones]
@@ -148,7 +150,8 @@
 				[BroadcastChatType:Both]
 				[SendToAllOnlinePlayers:false]
 				[IgnoreAntennaRequirement:true]
-				[IgnoredAntennaRangeOverride:5000]
+				[//It only fires with no player within 4 km, so 5 km reached nobody. 40 km, like the Outpost "lost" chat]
+				[IgnoredAntennaRangeOverride:40000]
 			</Description>
 		</EntityComponent>
 	</EntityComponents>
