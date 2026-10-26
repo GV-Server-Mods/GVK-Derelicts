@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <Definitions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
-	<!-- Admin test spawn groups: production prefabs on their production behaviors, spawnable anywhere with /MES.Spawn.DroneEncounter.<SubtypeId>.
-	     [AdminSpawnOnly:true] keeps them out of natural spawning. -->
+	<!-- Admin test spawn groups, spawnable anywhere with the /MES.Spawn command above each group. Most run production prefabs on their production behaviors;
+	     the GVK-Test-Behavior ones are small test setups. [AdminSpawnOnly:true] keeps them out of natural spawning. -->
 	<SpawnGroups>
 		<!-- /MES.Spawn.DroneEncounter.GVK-Test-SpawnGroup-LAVTrio: three SOBAN LAVs, so the Land peer pool (1 slot) can pair, lose a wing and pair again (GVK-Settings#699) -->
 		<SpawnGroup>
@@ -365,6 +365,171 @@
 				</Prefab>
 			</Prefabs>
 		</SpawnGroup>
+		<!-- /MES.Spawn.PlanetaryInstallation.GVK-Test-SpawnGroup-RecolorWreck: a small wreck, all Dust_Armor, that a RecolorGrid action reskins Frozen_Armor 120 s after spawn -->
+		<SpawnGroup>
+			<Id>
+				<TypeId>SpawnGroupDefinition</TypeId>
+				<SubtypeId>GVK-Test-SpawnGroup-RecolorWreck</SubtypeId>
+			</Id>
+			<Description>
+				[Modular Encounters SpawnGroup]
+				[IgnoreCleanupRules:true]
+				[SpawnConditionsProfiles:GVK-Test-SpawnCondition-RecolorWreck]
+				[ManipulationProfiles:GVK-Test-Manipulation-RecolorWreck]
+			</Description>
+			<IsPirate>true</IsPirate>
+			<Frequency>1.0</Frequency>
+			<Prefabs>
+				<Prefab SubtypeId="NWS Lacewing">
+					<Position>
+						<X>0.0</X>
+						<Y>11</Y>
+						<Z>0.0</Z>
+					</Position>
+					<Speed>0</Speed>
+					<BeaconText>Test Recolor Wreck</BeaconText>
+					<Behaviour>GVK-Test-Behavior-RecolorWreck</Behaviour>
+				</Prefab>
+			</Prefabs>
+		</SpawnGroup>
+		<!-- /MES.Spawn.PlanetaryInstallation.GVK-Test-SpawnGroup-RecolorColors: the same wreck; the manipulation turns its tan blocks red and olive blocks Frozen_Armor, and a RecolorGrid action turns the olive blocks blue 30 s after spawn -->
+		<SpawnGroup>
+			<Id>
+				<TypeId>SpawnGroupDefinition</TypeId>
+				<SubtypeId>GVK-Test-SpawnGroup-RecolorColors</SubtypeId>
+			</Id>
+			<Description>
+				[Modular Encounters SpawnGroup]
+				[IgnoreCleanupRules:true]
+				[SpawnConditionsProfiles:GVK-Test-SpawnCondition-RecolorWreck]
+				[ManipulationProfiles:GVK-Test-Manipulation-RecolorColors]
+			</Description>
+			<IsPirate>true</IsPirate>
+			<Frequency>1.0</Frequency>
+			<Prefabs>
+				<Prefab SubtypeId="NWS Lacewing">
+					<Position>
+						<X>0.0</X>
+						<Y>11</Y>
+						<Z>0.0</Z>
+					</Position>
+					<Speed>0</Speed>
+					<BeaconText>Test Recolor Colors</BeaconText>
+					<Behaviour>GVK-Test-Behavior-RecolorColors</Behaviour>
+				</Prefab>
+			</Prefabs>
+		</SpawnGroup>
+		<!-- /MES.Spawn.PlanetaryInstallation.GVK-Test-SpawnGroup-TerrainSkinMedium and ...-TerrainSkinLarge: a real Medium and Large wreck (production behavior and manipulation) with no zone or distance rules; 3 s after spawn the Dust_Armor blocks match the terrain under the wreck -->
+		<SpawnGroup>
+			<Id>
+				<TypeId>SpawnGroupDefinition</TypeId>
+				<SubtypeId>GVK-Test-SpawnGroup-TerrainSkinMedium</SubtypeId>
+			</Id>
+			<Description>
+				[Modular Encounters SpawnGroup]
+				[IgnoreCleanupRules:true]
+				[SpawnConditionsProfiles:GVK-Test-SpawnCondition-TerrainSkinMedium]
+				[ManipulationProfiles:GVK-PlanetaryInstallation-Medium-Manipulation]
+				[CutVoxelsAtAirtightCells:true]
+				[CutVoxelSize:15]
+			</Description>
+			<IsPirate>true</IsPirate>
+			<Frequency>1.0</Frequency>
+			<Prefabs>
+				<Prefab SubtypeId="NWM Armed Mining Tender">
+					<Position>
+						<X>0.0</X>
+						<Y>-3</Y>
+						<Z>0.0</Z>
+					</Position>
+					<Speed>0</Speed>
+					<BeaconText>Test Terrain Skin Medium</BeaconText>
+					<Behaviour>GVK-PlanetaryInstallation-Medium-Behavior</Behaviour>
+				</Prefab>
+			</Prefabs>
+		</SpawnGroup>
+		<SpawnGroup>
+			<Id>
+				<TypeId>SpawnGroupDefinition</TypeId>
+				<SubtypeId>GVK-Test-SpawnGroup-TerrainSkinLarge</SubtypeId>
+			</Id>
+			<Description>
+				[Modular Encounters SpawnGroup]
+				[IgnoreCleanupRules:true]
+				[SpawnConditionsProfiles:GVK-Test-SpawnCondition-TerrainSkinLarge]
+				[ManipulationProfiles:GVK-PlanetaryInstallation-Large-Manipulation]
+				[CutVoxelsAtAirtightCells:true]
+				[CutVoxelSize:15]
+			</Description>
+			<IsPirate>true</IsPirate>
+			<Frequency>1.0</Frequency>
+			<Prefabs>
+				<Prefab SubtypeId="NWL Falco">
+					<Position>
+						<X>0.0</X>
+						<Y>30</Y>
+						<Z>0.0</Z>
+					</Position>
+					<Speed>0</Speed>
+					<BeaconText>Test Terrain Skin Large</BeaconText>
+					<Behaviour>GVK-PlanetaryInstallation-Large-Behavior</Behaviour>
+				</Prefab>
+			</Prefabs>
+		</SpawnGroup>
+		<!-- /MES.Spawn.DroneEncounter.GVK-Test-SpawnGroup-RelationSOBAN and ...-RelationCOALITION: one parked LAV each on an Enemy-only target profile.
+		     /MES.BehaviorDebug.TargetEvaluation.true, then /MES.IGLBD.TargetEvaluation: each profile logs the relation it found for every target -->
+		<SpawnGroup>
+			<Id>
+				<TypeId>SpawnGroupDefinition</TypeId>
+				<SubtypeId>GVK-Test-SpawnGroup-RelationSOBAN</SubtypeId>
+			</Id>
+			<Description>
+				[Modular Encounters SpawnGroup]
+				[IgnoreCleanupRules:true]
+				[ManipulationProfiles:GVK-Unit-All-Manipulation-Hover]
+				[SpawnConditionsProfiles:GVK-Test-SpawnCondition-RelationSOBAN]
+			</Description>
+			<IsPirate>true</IsPirate>
+			<Frequency>1.0</Frequency>
+			<Prefabs>
+				<Prefab SubtypeId="NUN [SOBA] LAV">
+					<Position>
+						<X>0.0</X>
+						<Y>0.0</Y>
+						<Z>0.0</Z>
+					</Position>
+					<Speed>0</Speed>
+					<BeaconText>Test Relation SOBAN</BeaconText>
+					<Behaviour>GVK-Test-Behavior-RelationSOBAN</Behaviour>
+				</Prefab>
+			</Prefabs>
+		</SpawnGroup>
+		<SpawnGroup>
+			<Id>
+				<TypeId>SpawnGroupDefinition</TypeId>
+				<SubtypeId>GVK-Test-SpawnGroup-RelationCOALITION</SubtypeId>
+			</Id>
+			<Description>
+				[Modular Encounters SpawnGroup]
+				[IgnoreCleanupRules:true]
+				[ManipulationProfiles:GVK-Unit-All-Manipulation-Hover]
+				[SpawnConditionsProfiles:GVK-Test-SpawnCondition-RelationCOALITION]
+			</Description>
+			<IsPirate>true</IsPirate>
+			<Frequency>1.0</Frequency>
+			<Prefabs>
+				<Prefab SubtypeId="NUN [SOBA] LAV">
+					<Position>
+						<X>0.0</X>
+						<Y>0.0</Y>
+						<Z>0.0</Z>
+					</Position>
+					<Speed>0</Speed>
+					<BeaconText>Test Relation COALITION</BeaconText>
+					<Behaviour>GVK-Test-Behavior-RelationCOALITION</Behaviour>
+				</Prefab>
+			</Prefabs>
+		</SpawnGroup>
 	</SpawnGroups>
 	<EntityComponents>
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
@@ -523,6 +688,338 @@
 			[ReactorsOn:true]
 			[SkipVoxelSpawnChecks:true]
 			[SkipGridSpawnChecks:false]
+			</Description>
+		</EntityComponent>
+		<!-- TerrainSkinMedium and TerrainSkinLarge tests -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Test-SpawnCondition-TerrainSkinMedium</SubtypeId>
+			</Id>
+			<Description>
+			[MES Spawn Conditions]
+			[PlanetaryInstallation:true]
+			[InstallationTerrainValidation:true]
+			[DisallowedTerrainTypes:Rock]
+			[PlanetaryInstallationType:Medium]
+			[AdminSpawnOnly:true]
+			[FactionOwner:DERELICT]
+			[ForceStaticGrid:true]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Test-SpawnCondition-TerrainSkinLarge</SubtypeId>
+			</Id>
+			<Description>
+			[MES Spawn Conditions]
+			[PlanetaryInstallation:true]
+			[InstallationTerrainValidation:true]
+			[DisallowedTerrainTypes:Rock]
+			[PlanetaryInstallationType:Large]
+			[AdminSpawnOnly:true]
+			[FactionOwner:DERELICT]
+			[ForceStaticGrid:true]
+			</Description>
+		</EntityComponent>
+		<!-- RecolorWreck and RecolorColors tests -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Test-SpawnCondition-RecolorWreck</SubtypeId>
+			</Id>
+			<Description>
+			[MES Spawn Conditions]
+			[PlanetaryInstallation:true]
+			[InstallationTerrainValidation:true]
+			[DisallowedTerrainTypes:Rock]
+			[PlanetaryInstallationType:Small]
+			[AdminSpawnOnly:true]
+			[FactionOwner:DERELICT]
+			[ForceStaticGrid:true]
+			</Description>
+		</EntityComponent>
+		<!-- The small wreck manipulation without the random skins and loot, so every block starts Dust_Armor and a block the recolor missed stands out -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Test-Manipulation-RecolorWreck</SubtypeId>
+			</Id>
+			<Description>
+			[MES Manipulation]
+			[ManipulationChance:100]
+			[ClearAuthorship:true]
+			[EraseIngameScripts:true]
+			[UseRivalAi:true]
+			[RivalAiReplaceRemoteControl:true]
+			[UseBlockReplacer:true]
+			[AssignGridSkin:Dust_Armor]
+			[IgnoreGlobalBlockReplacer:false]
+			[UseBlockReplacerProfile:true]
+			[BlockReplacerProfileNames:GVK-Replacer-NPCHovers]
+			[BlockReplacerProfileNames:GVK-Replacer-LargeCockpitToRivalAI]
+			[BlockReplacerProfileNames:MES-Armor-LightToHeavy]
+			[BlockReplacerProfileNames:GVK-Replacer-ProprietaryReactors]
+			[BlockReplacerProfileNames:GVK-Replacer-NPCDisposableBeacons]
+			[BlockReplacerProfileNames:GVK-Replacer-ConveyorToCargo]
+			[ClearGridInventories:true]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Test-Behavior-RecolorWreck</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Behavior]
+			[BehaviorName:Passive]
+			[UseNoTargetTimer:false]
+			[UseRetreatTimer:false]
+			[Triggers:GVK-Test-Trigger-RecolorWreckStart]
+			[Triggers:GVK-Test-Trigger-RecolorWreck]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Test-Trigger-RecolorWreckStart</SubtypeId>
+			</Id>
+			<Description>
+			[MES AI Trigger]
+			[UseTrigger:true]
+			[Type:Session]
+			[StartsReady:true]
+			[MaxActions:1]
+			[Actions:GVK-Test-Action-RecolorWreckStart]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Test-Action-RecolorWreckStart</SubtypeId>
+			</Id>
+			<Description>
+			[MES AI Action]
+			[DebugMessage:Recolor test started. Cut a chunk off the end away from the remote control. Recolor in 120 s]
+			</Description>
+		</EntityComponent>
+		<!-- One run, 120 s after spawn. The DebugMessage runs after RecolorGrid in the same action, so it only shows if RecolorGrid finished -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Test-Trigger-RecolorWreck</SubtypeId>
+			</Id>
+			<Description>
+			[MES AI Trigger]
+			[UseTrigger:true]
+			[Type:Timer]
+			[StartsReady:false]
+			[MinCooldownMs:120000]
+			[MaxCooldownMs:120001]
+			[MaxActions:1]
+			[Actions:GVK-Test-Action-RecolorWreck]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Test-Action-RecolorWreck</SubtypeId>
+			</Id>
+			<Description>
+			[MES AI Action]
+			[RecolorGrid:true]
+			[RecolorSubGrids:true]
+			[OldBlockSkins:Dust_Armor]
+			[NewBlockSkins:Frozen_Armor]
+			[DebugMessage:Recolor finished]
+			</Description>
+		</EntityComponent>
+		<!-- The Lacewing prefab saves tan as {X:0.08055556 Y:-0.38 Z:0.11} and olive as {X:0.152777776 Y:-0.66 Z:-0.11}; the colors below are those rounded or cut to 3 decimals -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Test-Manipulation-RecolorColors</SubtypeId>
+			</Id>
+			<Description>
+			[MES Manipulation]
+			[ManipulationChance:100]
+			[ClearAuthorship:true]
+			[EraseIngameScripts:true]
+			[UseRivalAi:true]
+			[RivalAiReplaceRemoteControl:true]
+			[UseBlockReplacer:true]
+			[IgnoreGlobalBlockReplacer:false]
+			[UseBlockReplacerProfile:true]
+			[BlockReplacerProfileNames:GVK-Replacer-NPCHovers]
+			[BlockReplacerProfileNames:GVK-Replacer-LargeCockpitToRivalAI]
+			[BlockReplacerProfileNames:MES-Armor-LightToHeavy]
+			[BlockReplacerProfileNames:GVK-Replacer-ProprietaryReactors]
+			[BlockReplacerProfileNames:GVK-Replacer-NPCDisposableBeacons]
+			[BlockReplacerProfileNames:GVK-Replacer-ConveyorToCargo]
+			[ClearGridInventories:true]
+			[RecolorGrid:true]
+			[//Tan to red]
+			[RecolorOld:{X:0.081 Y:-0.38 Z:0.11}]
+			[RecolorNew:{X:0 Y:0.2 Z:0.55}]
+			[//Olive to Frozen_Armor]
+			[ReskinTarget:{X:0.153 Y:-0.66 Z:-0.11}]
+			[ReskinTexture:Frozen_Armor]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Test-Behavior-RecolorColors</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Behavior]
+			[BehaviorName:Passive]
+			[UseNoTargetTimer:false]
+			[UseRetreatTimer:false]
+			[Triggers:GVK-Test-Trigger-RecolorColors]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Test-Trigger-RecolorColors</SubtypeId>
+			</Id>
+			<Description>
+			[MES AI Trigger]
+			[UseTrigger:true]
+			[Type:Timer]
+			[StartsReady:false]
+			[MinCooldownMs:30000]
+			[MaxCooldownMs:30001]
+			[MaxActions:1]
+			[Actions:GVK-Test-Action-RecolorColors]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Test-Action-RecolorColors</SubtypeId>
+			</Id>
+			<Description>
+			[MES AI Action]
+			[//Olive to blue]
+			[RecolorGrid:true]
+			[RecolorSubGrids:true]
+			[OldBlockColors:{X:0.152 Y:-0.66 Z:-0.11}]
+			[NewBlockColors:{X:0.667 Y:0.2 Z:0.55}]
+			[DebugMessage:Recolor action ran]
+			</Description>
+		</EntityComponent>
+		<!-- Relation tests -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Test-SpawnCondition-RelationSOBAN</SubtypeId>
+			</Id>
+			<Description>
+			[MES Spawn Conditions]
+			[DroneEncounter:true]
+			[AdminSpawnOnly:true]
+			[MinDroneDistance:150]
+			[MaxDroneDistance:200]
+			[MinDroneAltitude:50]
+			[MaxDroneAltitude:50]
+			[FactionOwner:SOBAN]
+			[ReactorsOn:true]
+			[SkipVoxelSpawnChecks:true]
+			[SkipGridSpawnChecks:false]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Test-SpawnCondition-RelationCOALITION</SubtypeId>
+			</Id>
+			<Description>
+			[MES Spawn Conditions]
+			[//The SOBAN condition with a COALITION owner]
+			[DroneEncounter:true]
+			[AdminSpawnOnly:true]
+			[MinDroneDistance:150]
+			[MaxDroneDistance:200]
+			[MinDroneAltitude:50]
+			[MaxDroneAltitude:50]
+			[FactionOwner:COALITION]
+			[ReactorsOn:true]
+			[SkipVoxelSpawnChecks:true]
+			[SkipGridSpawnChecks:false]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Test-Behavior-RelationSOBAN</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Behavior]
+			[BehaviorName:Passive]
+			[UseNoTargetTimer:false]
+			[UseRetreatTimer:false]
+			[TargetData:GVK-Test-Target-RelationSOBAN]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Test-Behavior-RelationCOALITION</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Behavior]
+			[BehaviorName:Passive]
+			[UseNoTargetTimer:false]
+			[UseRetreatTimer:false]
+			[TargetData:GVK-Test-Target-RelationCOALITION]
+			</Description>
+		</EntityComponent>
+		<!-- The two target profiles are identical; separate names so the log shows which LAV is rating -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Test-Target-RelationSOBAN</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Target]
+			[UseCustomTargeting:true]
+			[Target:PlayerAndGrid]
+			[TimeUntilTargetAcquisition:2]
+			[TimeUntilNextEvaluation:5]
+			[UseTargetRefresh:true]
+			[TimeUntilNextRefresh:10]
+			[MaxDistance:3000]
+			[MatchAnyFilters:Owner]
+			[Owners:Player]
+			[Owners:NPC]
+			[MatchAllFilters:Relation]
+			[Relations:Enemy]
+			[GetTargetBy:ClosestDistance]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Test-Target-RelationCOALITION</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Target]
+			[UseCustomTargeting:true]
+			[Target:PlayerAndGrid]
+			[TimeUntilTargetAcquisition:2]
+			[TimeUntilNextEvaluation:5]
+			[UseTargetRefresh:true]
+			[TimeUntilNextRefresh:10]
+			[MaxDistance:3000]
+			[MatchAnyFilters:Owner]
+			[Owners:Player]
+			[Owners:NPC]
+			[MatchAllFilters:Relation]
+			[Relations:Enemy]
+			[GetTargetBy:ClosestDistance]
 			</Description>
 		</EntityComponent>
 	</EntityComponents>

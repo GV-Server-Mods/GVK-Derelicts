@@ -1,10 +1,10 @@
 <?xml version="1.0"?>
 <Definitions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
 	<EntityComponents>
-		<!-- Swaps the Dust_Armor skin from the wreck manipulations to match the terrain. Sand and Soil keep Dust. Small wrecks only: Medium/Large spawn too far from the player for the terrain sample to match. -->
-		<!-- MatchTerrainType reads the terrain sampled at spawn time (around the spawn request position, not the grid). -->
+		<!-- Swaps the Dust_Armor skin from the wreck manipulations to match the terrain. Sand and Soil keep Dust. Used by every wreck behavior whose manipulation assigns Dust_Armor (Small, Medium, Large). -->
+		<!-- MatchTerrainType reads the terrain under the grid. Needs MES master with MeridiusIX/Modular-Encounters-Systems#440: older MES samples around the player, which only matches for Small wrecks. -->
 		<!-- The checks run once at 2 s, then Finish turns them off at 3 s whether or not one matched. Trigger state is saved with the grid, so they never run again after a restart or paste. -->
-		<!-- Required until MES releases MeridiusIX/Modular-Encounters-Systems#437: a reloaded or pasted Passive grid has no planet set, so MatchTerrainType passes on any terrain (GV-Server-Mods/GVK-Settings#678). -->
+		<!-- Keeps reloaded or pasted grids from re-rolling their skin; before MeridiusIX/Modular-Encounters-Systems#437 a reloaded Passive grid passed MatchTerrainType on any terrain (GV-Server-Mods/GVK-Settings#678). -->
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>

@@ -111,7 +111,8 @@ try {
         }
         # MES reads an NPC-vs-NPC relation from the target owner's reputation with this faction, which is COALITION's StartingReputation (500, Neutral)
         # for every other NPC, so a COALITION behavior on an Enemy-only profile never picks a GAALSIEN target. It needs a faction-based profile.
-        if ($spawnedAs -and $spawnedAs.Contains('COALITION') -and $desc -match '\[TargetData:([^\]]+)\]') {
+        # Admin test behaviors (GVK-Test-*) may use an Enemy-only profile on purpose, to show that relation in the log.
+        if ($spawnedAs -and $spawnedAs.Contains('COALITION') -and $name -notlike 'GVK-Test-*' -and $desc -match '\[TargetData:([^\]]+)\]') {
             $coalTarget = $Matches[1].Trim()
             $tp = $profiles[$coalTarget]
             if ($tp -and $tp -match '\[MatchAllFilters:Relation\]' -and $tp -match '\[Relations:Enemy\]') {
