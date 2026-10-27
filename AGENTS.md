@@ -43,7 +43,7 @@ All general Modular Encounters Systems (MES) and RivalAI modding rules, tag dict
   - `GVK-Unit-Encounter-Behavior-Salvager-COALITION`
   - `GVK-PlanetaryInstallation-Small-Behavior`
   - `GVK-Universal-Trigger-DespawnInZ0`
-- Prefab names: three-letter tag + 4-letter faction tag, e.g. `NWS [COAL] Combat Baserunner`. The tag list is generated in `README.md`.
+- Prefab names: three-letter tag + 4-letter faction tag, e.g. `NWS [COAL] Combat Baserunner`. The tag list is generated in `Docs/reference.md`.
 
 ### NPC Chatter (Dialogue Banks)
 Every behavior that uses `GVK-Universal-TriggerGroup-DefeatedAndAttacked` also needs a `[DialogueBanks:]` line. Write `GVK-<Category>-<FACTION>.xml` (Category is `Units`, `Travellers`, `Structures` or `Installations`; FACTION is the faction its spawn groups spawn it as), then run `python Docs/dialogue/scripts/build_banks.py`: it adds the size tier from the Encounter Type, generates the bank and rewrites the line. New lines go in `Docs/dialogue/drafts/`, never in the bank XML. MES fixes the bank per behavior, so if two factions' spawn groups share a behavior, give each faction its own copy with its own bank and a `[//CopyOf:<original>]` line, and keep the copies identical otherwise. Details: README note 37.
@@ -72,10 +72,10 @@ Each kind of fact has exactly one home. Don't copy it anywhere else.
 | --- | --- |
 | Work, ideas, bugs, and the status of upstream fixes ("PR open", "waiting on MES") | GitHub issues in GVK-Settings (`upstream` label for MES/WeaponCore). Never in Markdown, and never as `TODO` comments in SBC or C#. |
 | MES tags and behavior | The MES source, through the `se-dev-mes` skill. Never vendor copies of the MES wiki. |
-| Data that lives in SBC (sandbox variables, Encounter Types, defense limits, prefab tags) | The SBC files. `tools/Update-DocTables.ps1` regenerates the README tables between `GENERATED` markers. |
+| Data that lives in SBC (sandbox variables, Encounter Types, defense limits, prefab tags) | The SBC files. `tools/Update-DocTables.ps1` regenerates the tables in `Docs/reference.md` between `GENERATED` markers. |
 | Vocabulary | `GLOSSARY.md` |
 | Hard-to-reverse decisions | `Docs/adr/` |
-| Durable lessons and admin how-tos | `README.md` notes. Say which MES version a behavior note was checked against. |
+| Durable lessons and how a GVK system is built | `Docs/design/<system>.md`. Each lists the files it `covers` and the MES version it was checked against (`checked-against`). The README stays a front door: see the se-dev-kharak skill, `references/readme-standard.md`. |
 
 - When a change alters something a doc describes, update the doc in the same commit.
 - The local Stop hook runs `tools/Test-Docs.ps1`. It flags:

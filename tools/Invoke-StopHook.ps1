@@ -1,6 +1,6 @@
 # Claude Code Stop hook (wired up in .claude/settings.local.json).
 # When Content/ changed since the last run: rebuild and deploy the mod (MDK2 -> %AppData%\SpaceEngineers\Mods\GVK_Derelicts),
-# and refresh the generated README tables.
+# and refresh the generated reference tables.
 # When Content/ or any Markdown changed: run the doc checker.
 # Prints one JSON systemMessage line for the UI, or nothing when there was nothing to do.
 $ErrorActionPreference = 'Stop'
@@ -29,7 +29,7 @@ if (Test-Changed 'content-build' $contentStamp) {
         $messages += "GVK_Derelicts build FAILED: " + (($out | Select-String -Pattern 'error' | Select-Object -First 3) -join ' | ')
     }
     $tables = & pwsh -NoProfile -File (Join-Path $PSScriptRoot 'Update-DocTables.ps1') 2>&1
-    if ("$tables" -match 'regenerated') { $messages += 'README tables regenerated.' }
+    if ("$tables" -match 'regenerated') { $messages += 'Generated docs regenerated.' }
 }
 
 $docFiles = Get-ChildItem $root -Recurse -File -Filter *.md | Where-Object { $_.FullName -notmatch '\\(bin|obj|\.git)\\' }
