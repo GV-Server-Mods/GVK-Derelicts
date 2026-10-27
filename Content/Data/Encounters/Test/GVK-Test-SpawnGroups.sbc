@@ -962,6 +962,10 @@
 			[UseNoTargetTimer:false]
 			[UseRetreatTimer:false]
 			[TargetData:GVK-Test-Target-RelationSOBAN]
+			[Triggers:GVK-Test-Trigger-RelationTimerChat]
+			[Triggers:GVK-Test-Trigger-RelationDamageFriendly]
+			[Triggers:GVK-Test-Trigger-RelationDamageNeutral]
+			[Triggers:GVK-Test-Trigger-RelationDamageHostile]
 			</Description>
 		</EntityComponent>
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
@@ -1061,12 +1065,12 @@
 			[RivalAI Chat]
 			[UseChat:true]
 			[StartsReady:true]
-			[Author:COALITION Test Unit]
+			[Author:SOBAN Test Unit]
 			[Color:{PlayerRelation}]
 			[BroadcastChatType:Chat]
 			[SendToAllOnlinePlayers:true]
 			[IgnoreAntennaRequirement:true]
-			[ChatMessages:Relation check tick (Author Color = {PlayerRelation})]
+			[ChatMessages:Relation check tick (Author name color: Green=Friend, White=Neutral, Red=Enemy)]
 			</Description>
 		</EntityComponent>
 		<!-- Relation Damage Triggers: test IsAttackerFriendly / Neutral / Hostile conditions -->
