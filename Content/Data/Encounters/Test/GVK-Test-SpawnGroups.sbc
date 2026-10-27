@@ -975,6 +975,10 @@
 			[UseNoTargetTimer:false]
 			[UseRetreatTimer:false]
 			[TargetData:GVK-Test-Target-RelationCOALITION]
+			[Triggers:GVK-Test-Trigger-RelationTimerChat]
+			[Triggers:GVK-Test-Trigger-RelationDamageFriendly]
+			[Triggers:GVK-Test-Trigger-RelationDamageNeutral]
+			[Triggers:GVK-Test-Trigger-RelationDamageHostile]
 			</Description>
 		</EntityComponent>
 		<!-- The two target profiles are identical; separate names so the log shows which LAV is rating -->
@@ -1020,6 +1024,128 @@
 			[MatchAllFilters:Relation]
 			[Relations:Enemy]
 			[GetTargetBy:ClosestDistance]
+			</Description>
+		</EntityComponent>
+		<!-- Relation Timer Chat: broadcast author name color reflects player relation -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Test-Trigger-RelationTimerChat</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Trigger]
+			[UseTrigger:true]
+			[Type:Timer]
+			[Timer:10]
+			[StartsReady:true]
+			[Actions:GVK-Test-Action-RelationTimerChat]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Test-Action-RelationTimerChat</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Action]
+			[UseChatBroadcast:true]
+			[ChatData:GVK-Test-Chat-RelationTimer]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Test-Chat-RelationTimer</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Chat]
+			[UseChat:true]
+			[StartsReady:true]
+			[Author:COALITION Test Unit]
+			[Color:{PlayerRelation}]
+			[BroadcastChatType:Chat]
+			[SendToAllOnlinePlayers:true]
+			[IgnoreAntennaRequirement:true]
+			[ChatMessages:Relation check tick (Author Color = {PlayerRelation})]
+			</Description>
+		</EntityComponent>
+		<!-- Relation Damage Triggers: test IsAttackerFriendly / Neutral / Hostile conditions -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Test-Trigger-RelationDamageFriendly</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Trigger]
+			[UseTrigger:true]
+			[Type:Damage]
+			[DamageTypes:Any]
+			[MinCooldownMs:1000]
+			[MaxCooldownMs:1001]
+			[Conditions:GVK-Universal-Condition-AttackerIsFriendlyPlayer]
+			[Actions:GVK-Test-Action-RelationDamageFriendly]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Test-Action-RelationDamageFriendly</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Action]
+			[DebugMessage:DAMAGE CHECK: Attacker evaluated as FRIENDLY]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Test-Trigger-RelationDamageNeutral</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Trigger]
+			[UseTrigger:true]
+			[Type:Damage]
+			[DamageTypes:Any]
+			[MinCooldownMs:1000]
+			[MaxCooldownMs:1001]
+			[Conditions:GVK-Universal-Condition-AttackerIsNeutralPlayer]
+			[Actions:GVK-Test-Action-RelationDamageNeutral]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Test-Action-RelationDamageNeutral</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Action]
+			[DebugMessage:DAMAGE CHECK: Attacker evaluated as NEUTRAL]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Test-Trigger-RelationDamageHostile</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Trigger]
+			[UseTrigger:true]
+			[Type:Damage]
+			[DamageTypes:Any]
+			[MinCooldownMs:1000]
+			[MaxCooldownMs:1001]
+			[Conditions:GVK-Universal-Condition-AttackerIsEnemyPlayer]
+			[Actions:GVK-Test-Action-RelationDamageHostile]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Test-Action-RelationDamageHostile</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Action]
+			[DebugMessage:DAMAGE CHECK: Attacker evaluated as HOSTILE]
 			</Description>
 		</EntityComponent>
 	</EntityComponents>
