@@ -12,6 +12,18 @@
 			[Triggers:GVK-Universal-Trigger-SendLowPriorityTarget]
 			</Description>
 		</EntityComponent>
+		<!-- Temporary COALITION copy of the send group (hub #739): remove when MeridiusIX/Modular-Encounters-Systems#462 is fixed -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Universal-TriggerGroup-SendTargets-COALITION</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI TriggerGroup]
+			[Triggers:GVK-Universal-Trigger-SendHighPriorityTarget-COALITION]
+			[Triggers:GVK-Universal-Trigger-SendLowPriorityTarget]
+			</Description>
+		</EntityComponent>
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
@@ -60,6 +72,44 @@
 			[MatchAnyCondition:true]
 			[IsAttackerHostile:true]
 			[IsAttackerNeutral:true]
+			</Description>
+		</EntityComponent>
+		<!-- COALITION: every NPC reads 500 (Friendly) to it, so the Hostile/Neutral checks above never pass for a GAALSIEN hit. Any NPC damager passes; the receivers only accept GAALSIEN or Enemy targets. Remove with hub #739. -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Universal-Trigger-SendHighPriorityTarget-COALITION</SubtypeId>
+			</Id>
+			<Description>
+			[MES AI Trigger]
+			[UseTrigger:true]
+			[Type:Damage]
+			[StartsReady:false]
+			[MinCooldownMs:10000]
+			[MaxCooldownMs:10001]
+			[DamageTypes:Any]
+			[ExcludedDamageTypes:Environment]
+			[ExcludedDamageTypes:Deformation]
+			[ExcludedDamageTypes:Fire]
+			[ExcludedDamageTypes:Fall]
+			[ExcludedDamageTypes:Thruster]
+			[MaxActions:-1]
+			[Conditions:GVK-Universal-Condition-SendHighPriorityTarget-COALITION]
+			[ConditionCheckResetsTimer:true]
+			[ActionExecution:All]
+			[Actions:GVK-Universal-Action-SendHighPriorityTarget]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Universal-Condition-SendHighPriorityTarget-COALITION</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Condition]
+			[UseConditions:true]
+			[MatchAnyCondition:false]
+			[CheckIfDamagerIsNpc:true]
 			</Description>
 		</EntityComponent>
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
