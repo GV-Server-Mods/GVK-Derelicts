@@ -17,7 +17,8 @@
 			- UnitLarge
 			
 			Notes: 
-				- Alliance structures reset DefenseSpawn_Counter after 60 minutes so they can spawn defenses indefinitely
+				- Alliance structures reset DefenseSpawn_Counter 60 minutes after their last Unit checked in (DefensesKeepAlive)
+					so they can spawn defenses indefinitely without stacking a new batch on living Units
 				- Universal and Alliance have different TriggerGroups because the trigger distance, reset timer, and unit
 					spawn distance are different.
 				- Chance of COALITION attackers is built into the GAALSIEN Unit default triggers (10%) so it isn't 
@@ -39,6 +40,7 @@
 				[Triggers:GVK-Universal-Trigger-DefensesDamage]
 				[Triggers:GVK-Universal-Trigger-DefensesRefundCounter]
 				[Triggers:GVK-Universal-Trigger-DefensesResetCounter]
+				[Triggers:GVK-Universal-Trigger-DefensesKeepAlive-Receive]
 				[Triggers:GVK-Universal-Trigger-DefensesTriggerDelay]
 				[Triggers:GVK-Universal-Trigger-DefensesManual]
 				[Triggers:GVK-Universal-Trigger-DefensesManualSpawn-WreckLarge]
@@ -332,6 +334,37 @@
 				[RivalAI Action]
 				[//DebugMessage:DefensesResetCounter]
 				[ResetCounters:DefenseSpawn_Counter]
+			</Description>
+		</EntityComponent>
+		<!-- A living Unit restarts the 60-minute reset. Wrecks get the command too, but their reset trigger stays disabled -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Universal-Trigger-DefensesKeepAlive-Receive</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Trigger]
+				[UseTrigger:true]
+				[Type:CommandReceived]
+				[StartsReady:true]
+				[MinCooldownMs:1000]
+				[MaxCooldownMs:1001]
+				[CommandReceiveCode:DefensesKeepAlive]
+				[MaxActions:-1]
+				[ActionExecution:All]
+				[Actions:GVK-Universal-Action-DefensesKeepAlive-Receive]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Universal-Action-DefensesKeepAlive-Receive</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Action]
+				[//DebugMessage:DefensesKeepAlive-Receive]
+				[ResetCooldownTimeOfTriggers:true]
+				[ResetTriggerCooldownNames:GVK-Universal-Trigger-DefensesResetCounter]
 			</Description>
 		</EntityComponent>
 		<!-- check if DefenseSpawn_Counter is under DefenseSpawn_Limit and activate manual trigger tags -->

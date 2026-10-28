@@ -4,8 +4,14 @@
 		<!--
 		
 		When called, send the command to refund a defense spawn on parent grid
-				
+
 		Tags used:GVK-Universal-TriggerTags-RefundDefensesCommand-{EncounterType}
+
+		Keep-alive: every 5 minutes a Unit tells its parent it is still alive, so an alliance structure holds off its
+		60-minute DefenseSpawn_Counter reset until its last Unit is gone. Only Unit encounter types have the tag, so
+		other children (the alliance Defense Turret) never send it.
+
+		Tags used:GVK-Universal-TriggerTags-DefensesKeepAliveCommand-{EncounterType}
 
 		-->
 		
@@ -52,6 +58,80 @@
 			[IgnoreAntennaRequirement:true]
 			[IgnoreReceiverAntennaRequirement:true]
 			[Radius:6000]
+			[CommandDelayTicks:0]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Universal-Trigger-DefensesKeepAlive</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Trigger]
+			[UseTrigger:true]
+			[Type:Timer]
+			[StartsReady:true]
+			[MinCooldownMs:300000]
+			[MaxCooldownMs:300001]
+			[MaxActions:-1]
+			[ActionExecution:All]
+			[Actions:GVK-Universal-Action-DefensesKeepAlive]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Universal-Action-DefensesKeepAlive</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Action]
+			[ManuallyActivateTrigger:true]
+			[ManuallyActivatedTriggerTags:GVK-Universal-TriggerTags-DefensesKeepAliveCommand-{EncounterType}]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Universal-TriggerTags-DefensesKeepAliveCommand</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Trigger]
+			[UseTrigger:true]
+			[Tags:GVK-Universal-TriggerTags-DefensesKeepAliveCommand-UnitLarge]
+			[Tags:GVK-Universal-TriggerTags-DefensesKeepAliveCommand-UnitMedium]
+			[Tags:GVK-Universal-TriggerTags-DefensesKeepAliveCommand-UnitSmall]
+			[Type:Manual]
+			[StartsReady:true]
+			[ActionExecution:All]
+			[Actions:GVK-Universal-Action-DefensesKeepAliveCommand]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Universal-Action-DefensesKeepAliveCommand</SubtypeId>
+			</Id>
+			<Description>
+			[//DebugMessage:DefensesKeepAliveCommand]
+			[RivalAI Action]
+			[BroadcastCommandProfiles:true]
+			[CommandProfileIds:GVK-Universal-Command-DefensesKeepAlive]
+			</Description>
+		</EntityComponent>
+		<!-- Units chase targets, so the radius is wider than the refund's; MatchReceiverParent keeps it to the one parent -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Universal-Command-DefensesKeepAlive</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Command]
+			[CommandCode:DefensesKeepAlive]
+			[MatchSenderReceiverOwners:true]
+			[MatchReceiverParent:true]
+			[IgnoreAntennaRequirement:true]
+			[IgnoreReceiverAntennaRequirement:true]
+			[Radius:15000]
 			[CommandDelayTicks:0]
 			</Description>
 		</EntityComponent>
