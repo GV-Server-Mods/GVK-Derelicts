@@ -273,7 +273,24 @@
 				[CommandReceiveCode:DefensesRefundCounter]
 				[MaxActions:-1]
 				[ActionExecution:All]
+				[Conditions:GVK-Universal-Condition-DefensesRefundCounter]
 				[Actions:GVK-Universal-Action-DefensesRefundCounter]
+			</Description>
+		</EntityComponent>
+		<!-- MES counters go below 0. Without this, Units alive at an alliance 60-minute reset refund after it and push the structure past DefenseSpawn_Limit -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Universal-Condition-DefensesRefundCounter</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Condition]
+				[UseConditions:true]
+				[MatchAnyCondition:false]
+				[CheckCustomCounters:true]
+				[CustomCounters:DefenseSpawn_Counter]
+				[CustomCountersTargets:1]
+				[CounterCompareTypes:GreaterOrEqual]
 			</Description>
 		</EntityComponent>
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
