@@ -1,4 +1,4 @@
-<?xml version="1.0"?>
+﻿<?xml version="1.0"?>
 <Definitions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
 	<!-- Admin test spawn groups, spawnable anywhere with the /MES.Spawn command above each group. Most run production prefabs on their production behaviors;
 	     the GVK-Test-Behavior ones are small test setups. [AdminSpawnOnly:true] keeps them out of natural spawning. -->
@@ -530,6 +530,32 @@
 				</Prefab>
 			</Prefabs>
 		</SpawnGroup>
+		<SpawnGroup>
+			<Id>
+				<TypeId>SpawnGroupDefinition</TypeId>
+				<SubtypeId>GVK-Test-SpawnGroup-RelationGAALSIEN</SubtypeId>
+			</Id>
+			<Description>
+				[Modular Encounters SpawnGroup]
+				[IgnoreCleanupRules:true]
+				[ManipulationProfiles:GVK-Unit-All-Manipulation-Hover]
+				[SpawnConditionsProfiles:GVK-Test-SpawnCondition-RelationGAALSIEN]
+			</Description>
+			<IsPirate>true</IsPirate>
+			<Frequency>1.0</Frequency>
+			<Prefabs>
+				<Prefab SubtypeId="NUN [GAAL] Sandskimmer">
+					<Position>
+						<X>0.0</X>
+						<Y>0.0</Y>
+						<Z>0.0</Z>
+					</Position>
+					<Speed>0</Speed>
+					<BeaconText>Test Relation GAALSIEN</BeaconText>
+					<Behaviour>GVK-Test-Behavior-RelationGAALSIEN</Behaviour>
+				</Prefab>
+			</Prefabs>
+		</SpawnGroup>
 	</SpawnGroups>
 	<EntityComponents>
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
@@ -954,6 +980,25 @@
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Test-SpawnCondition-RelationGAALSIEN</SubtypeId>
+			</Id>
+			<Description>
+			[MES Spawn Conditions]
+			[DroneEncounter:true]
+			[AdminSpawnOnly:true]
+			[MinDroneDistance:150]
+			[MaxDroneDistance:200]
+			[MinDroneAltitude:50]
+			[MaxDroneAltitude:50]
+			[FactionOwner:GAALSIEN]
+			[ReactorsOn:true]
+			[SkipVoxelSpawnChecks:true]
+			[SkipGridSpawnChecks:false]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
 				<SubtypeId>GVK-Test-Behavior-RelationSOBAN</SubtypeId>
 			</Id>
 			<Description>
@@ -979,6 +1024,23 @@
 			[UseNoTargetTimer:false]
 			[UseRetreatTimer:false]
 			[TargetData:GVK-Test-Target-RelationCOALITION]
+			[Triggers:GVK-Test-Trigger-RelationTimerChat]
+			[Triggers:GVK-Test-Trigger-RelationDamageFriendly]
+			[Triggers:GVK-Test-Trigger-RelationDamageNeutral]
+			[Triggers:GVK-Test-Trigger-RelationDamageHostile]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Test-Behavior-RelationGAALSIEN</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Behavior]
+			[BehaviorName:Passive]
+			[UseNoTargetTimer:false]
+			[UseRetreatTimer:false]
+			[TargetData:GVK-Test-Target-RelationGAALSIEN]
 			[Triggers:GVK-Test-Trigger-RelationTimerChat]
 			[Triggers:GVK-Test-Trigger-RelationDamageFriendly]
 			[Triggers:GVK-Test-Trigger-RelationDamageNeutral]
@@ -1012,6 +1074,28 @@
 			<Id>
 				<TypeId>Inventory</TypeId>
 				<SubtypeId>GVK-Test-Target-RelationCOALITION</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Target]
+			[UseCustomTargeting:true]
+			[Target:PlayerAndGrid]
+			[TimeUntilTargetAcquisition:2]
+			[TimeUntilNextEvaluation:5]
+			[UseTargetRefresh:true]
+			[TimeUntilNextRefresh:10]
+			[MaxDistance:3000]
+			[MatchAnyFilters:Owner]
+			[Owners:Player]
+			[Owners:NPC]
+			[MatchAllFilters:Relation]
+			[Relations:Enemy]
+			[GetTargetBy:ClosestDistance]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Test-Target-RelationGAALSIEN</SubtypeId>
 			</Id>
 			<Description>
 			[RivalAI Target]
@@ -1073,6 +1157,43 @@
 			[ChatMessages:Relation check tick (Author name color: Green=Friend, White=Neutral, Red=Enemy)]
 			</Description>
 		</EntityComponent>
+		<!-- Relation Damage Conditions: general attacker relation check (works for NPC or Player damager) -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Test-Condition-AttackerIsFriendly</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Condition]
+			[UseConditions:true]
+			[MatchAnyCondition:false]
+			[IsAttackerFriendly:true]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Test-Condition-AttackerIsNeutral</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Condition]
+			[UseConditions:true]
+			[MatchAnyCondition:false]
+			[IsAttackerNeutral:true]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Test-Condition-AttackerIsHostile</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Condition]
+			[UseConditions:true]
+			[MatchAnyCondition:false]
+			[IsAttackerHostile:true]
+			</Description>
+		</EntityComponent>
 		<!-- Relation Damage Triggers: test IsAttackerFriendly / Neutral / Hostile conditions -->
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
@@ -1086,7 +1207,7 @@
 			[DamageTypes:Any]
 			[MinCooldownMs:1000]
 			[MaxCooldownMs:1001]
-			[Conditions:GVK-Universal-Condition-AttackerIsFriendlyPlayer]
+			[Conditions:GVK-Test-Condition-AttackerIsFriendly]
 			[Actions:GVK-Test-Action-RelationDamageFriendly]
 			</Description>
 		</EntityComponent>
@@ -1097,7 +1218,7 @@
 			</Id>
 			<Description>
 			[RivalAI Action]
-			[DebugMessage:DAMAGE CHECK: Attacker evaluated as FRIENDLY]
+			[DebugMessage:DAMAGE CHECK [{Faction}]: Attacker evaluated as FRIENDLY]
 			</Description>
 		</EntityComponent>
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
@@ -1112,7 +1233,7 @@
 			[DamageTypes:Any]
 			[MinCooldownMs:1000]
 			[MaxCooldownMs:1001]
-			[Conditions:GVK-Universal-Condition-AttackerIsNeutralPlayer]
+			[Conditions:GVK-Test-Condition-AttackerIsNeutral]
 			[Actions:GVK-Test-Action-RelationDamageNeutral]
 			</Description>
 		</EntityComponent>
@@ -1123,7 +1244,7 @@
 			</Id>
 			<Description>
 			[RivalAI Action]
-			[DebugMessage:DAMAGE CHECK: Attacker evaluated as NEUTRAL]
+			[DebugMessage:DAMAGE CHECK [{Faction}]: Attacker evaluated as NEUTRAL]
 			</Description>
 		</EntityComponent>
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
@@ -1138,7 +1259,7 @@
 			[DamageTypes:Any]
 			[MinCooldownMs:1000]
 			[MaxCooldownMs:1001]
-			[Conditions:GVK-Universal-Condition-AttackerIsEnemyPlayer]
+			[Conditions:GVK-Test-Condition-AttackerIsHostile]
 			[Actions:GVK-Test-Action-RelationDamageHostile]
 			</Description>
 		</EntityComponent>
@@ -1149,7 +1270,7 @@
 			</Id>
 			<Description>
 			[RivalAI Action]
-			[DebugMessage:DAMAGE CHECK: Attacker evaluated as HOSTILE]
+			[DebugMessage:DAMAGE CHECK [{Faction}]: Attacker evaluated as HOSTILE]
 			</Description>
 		</EntityComponent>
 	</EntityComponents>
