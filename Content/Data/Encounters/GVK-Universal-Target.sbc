@@ -207,6 +207,81 @@
 				[MaxTargetValue:999999]
 			</Description>
 		</EntityComponent>
+		<!-- Ground copies for ground Units: also skip targets more than 150 m above the surface. Against an aircraft the Horsefly offset point sits in the sky, and hover Units can't follow it. 150 m still covers a player rover jumping and firing down. -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Universal-Target-EnemyGrids2km-Ground</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Target]
+				[UseCustomTargeting:true]
+				[Target:Grid]
+				[UseTargetRefresh:false]
+				[TimeUntilNextRefresh:60]
+				[TimeUntilNextEvaluation:15]
+				[MaxDistance:2000]
+				[MaxExistingTargetDistance:4000]
+				[GetTargetBy:ClosestDistance]
+				[MatchAllFilters:Relation]
+				[MatchAllFilters:OutsideOfSafezone]
+				[MatchAllFilters:TargetValue]
+				[MatchAllFilters:Powered]
+				[MatchAllFilters:Altitude]
+				[MatchNoneFilters:Name]
+				[MatchNoneFilters:Faction]
+				[Relations:Enemy]
+				[Names:NPC Static]
+				[Names:NPC Trade Station]
+				[Names:NPC KOTH]
+				[Names:Signpost]
+				[Names:Base Site Tower]
+				[UsePartialNameMatching:true]
+				[FactionTargets:COALITION]
+				[FactionTargets:UNKN]
+				[FactionTargets:KOTH]
+				[FactionTargets:DERELICT]
+				[MinTargetValue:10]
+				[MaxTargetValue:999999]
+				[MaxAltitude:150]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Universal-Target-EnemyGrids2km-Ground-GAALSIEN</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Target]
+				[UseCustomTargeting:true]
+				[Target:Grid]
+				[UseTargetRefresh:false]
+				[TimeUntilNextRefresh:60]
+				[TimeUntilNextEvaluation:15]
+				[MaxDistance:2000]
+				[MaxExistingTargetDistance:4000]
+				[GetTargetBy:ClosestDistance]
+				[MatchAllFilters:Relation]
+				[MatchAllFilters:OutsideOfSafezone]
+				[MatchAllFilters:TargetValue]
+				[MatchAllFilters:Powered]
+				[MatchAllFilters:Altitude]
+				[MatchNoneFilters:Name]
+				[MatchNoneFilters:Faction]
+				[Relations:Enemy]
+				[Names:NPC Static]
+				[Names:NPC Trade Station]
+				[Names:NPC KOTH]
+				[Names:Signpost]
+				[Names:Base Site Tower]
+				[UsePartialNameMatching:true]
+				[FactionTargets:UNKN]
+				[FactionTargets:KOTH]
+				[MinTargetValue:10]
+				[MaxTargetValue:999999]
+				[MaxAltitude:150]
+			</Description>
+		</EntityComponent>
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
@@ -339,6 +414,31 @@
 				[PrioritizeSpecifiedFactions:false]
 			</Description>
 		</EntityComponent>
+		<!-- Ground copy for COALITION ground Units: also skips targets more than 150 m above the surface (aircraft). -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Universal-Target-EnemyGAALSIENBeacon-Ground</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Target]
+				[UseCustomTargeting:true]
+				[Target:Block]
+				[BlockTargets:RivalAi]
+				[UseTargetRefresh:false]
+				[TimeUntilNextRefresh:60]
+				[TimeUntilNextEvaluation:15]
+				[MaxDistance:3000]
+				[MaxExistingTargetDistance:3500]
+				[GetTargetBy:ClosestDistance]
+				[MatchAllFilters:Faction]
+				[MatchAllFilters:Powered]
+				[MatchAllFilters:Altitude]
+				[FactionTargets:GAALSIEN]
+				[MaxAltitude:150]
+				[PrioritizeSpecifiedFactions:false]
+			</Description>
+		</EntityComponent>
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
@@ -438,6 +538,7 @@
 			</Description>
 		</EntityComponent>
 		<!-- Strike Fighters orbit 2.4-2.8 km out and turn around 1 km past the target, so they need a wider acquisition and keep range than the 2 km profiles. -->
+		<!-- Both Strike Fighter profiles skip targets more than 150 m above the surface: the strike run lines up above its target, so against an aircraft it climbs until both fly into space. -->
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
@@ -457,6 +558,7 @@
 				[MatchAllFilters:OutsideOfSafezone]
 				[MatchAllFilters:TargetValue]
 				[MatchAllFilters:Powered]
+				[MatchAllFilters:Altitude]
 				[MatchNoneFilters:Name]
 				[MatchNoneFilters:Faction]
 				[Relations:Enemy]
@@ -472,6 +574,7 @@
 				[FactionTargets:DERELICT]
 				[MinTargetValue:10]
 				[MaxTargetValue:999999]
+				[MaxAltitude:150]
 			</Description>
 		</EntityComponent>
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
@@ -492,7 +595,9 @@
 				[GetTargetBy:ClosestDistance]
 				[MatchAllFilters:Faction]
 				[MatchAllFilters:Powered]
+				[MatchAllFilters:Altitude]
 				[FactionTargets:GAALSIEN]
+				[MaxAltitude:150]
 				[GetTargetBy:ClosestDistance]
 				[PrioritizeSpecifiedFactions:false]
 			</Description>
@@ -540,6 +645,55 @@
 				[Owners:NPC]
 				[Relations:Enemy]
 				[FactionTargets:GAALSIEN]
+				[PrioritizeSpecifiedFactions:false]
+			</Description>
+		</EntityComponent>
+		<!-- Ground copies of the two override profiles: also drop forced targets more than 150 m above the surface, so a ground Unit never chases an aircraft that shot it or that a squadmate sent. -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Universal-Target-Override-Ground</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Target]
+				[UseCustomTargeting:true]
+				[Target:Override]
+				[MaxDistance:10000]
+				[MatchAllFilters:OutsideOfSafezone]
+				[MatchAllFilters:Owner]
+				[MatchAllFilters:Relation]
+				[MatchAllFilters:Altitude]
+				[MatchNoneFilters:Faction]
+				[GetTargetBy:ClosestDistance]
+				[Owners:Player]
+				[Owners:NPC]
+				[Relations:Enemy]
+				[FactionTargets:KOTH]
+				[MaxAltitude:150]
+				[PrioritizeSpecifiedFactions:false]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Universal-Target-Override-COALITION-Ground</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Target]
+				[UseCustomTargeting:true]
+				[Target:Override]
+				[MaxDistance:10000]
+				[MatchAllFilters:OutsideOfSafezone]
+				[MatchAllFilters:Owner]
+				[MatchAllFilters:Altitude]
+				[MatchAnyFilters:Relation]
+				[MatchAnyFilters:Faction]
+				[GetTargetBy:ClosestDistance]
+				[Owners:Player]
+				[Owners:NPC]
+				[Relations:Enemy]
+				[FactionTargets:GAALSIEN]
+				[MaxAltitude:150]
 				[PrioritizeSpecifiedFactions:false]
 			</Description>
 		</EntityComponent>
