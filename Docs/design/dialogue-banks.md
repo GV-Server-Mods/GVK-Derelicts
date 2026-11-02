@@ -5,6 +5,7 @@ covers:
   - Content/Data/DialogueBanks/*.xml
   - Docs/dialogue/scripts/*
   - tools/Test-Docs.ps1
+checked: 2026-11-01
 ---
 
 # NPC dialogue banks
