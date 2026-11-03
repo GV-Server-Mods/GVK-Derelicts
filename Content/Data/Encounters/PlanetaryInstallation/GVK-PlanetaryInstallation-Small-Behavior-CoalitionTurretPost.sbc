@@ -81,7 +81,7 @@
 			[IgnoredAntennaRangeOverride:5000]
 		  </Description>
 		</EntityComponent>
-		<!-- need two of these because there are two blocktypes and RequiredAnyFunctionalBlockNames is just broken (GVK-Settings#674) -->
+		<!-- Two conditions, one per block type (turret, sorter): CheckForBlocksOfType is checked apart from the name list. RequiredAnyFunctionalBlockNames itself works (GVK-Settings#674). -->
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
