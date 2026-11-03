@@ -49,7 +49,7 @@ Prefab names start with a three-letter tag, then the 4-letter faction tag, to re
 | `NAS` | Alliance structure (Base, Outpost, Turret) | 10 | `NAS [KHAA] Base 1` |
 | `NCO` | Convoy lead | 3 | `NCO [COAL] Kapisi` |
 | `NCS` | Transport, Trader or Freighter | 5 | `NCS [COAL] Cargo Cruiser` |
-| `NKO` | KOTH Site or KOTH Camp | 8 | `NKO [KOTH] Camp` |
+| `NKO` | KOTH Site | 7 | `NKO [KOTH] Crashed Starship` |
 | `NLO` | Cache | 2 | `NLO Ammo Cache` |
 | `NMI` | Mission Giver | 7 | `NMI [COAL] Relay Station 1` |
 | `NST` | Static | 26 | `NST [KHAA] Carrier` |
