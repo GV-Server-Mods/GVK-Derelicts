@@ -19,8 +19,9 @@
 				[Triggers:GVK-Universal-Trigger-WeaponsToMaxRange]
 				[Triggers:GVK-Universal-Trigger-DespawnInZ0]
 				[TriggerGroups:GVK-Universal-TriggerGroup-DespawnInKOTH]
-				[Triggers:GVK-Alliance-Base-Trigger-Init-SOBAN]
 				[TriggerGroups:GVK-Alliance-PresetBases-Base-TriggerGroup-SOBAN]
+				[//Init after the Base Site group: MES runs triggers in list order, so the claim's +50 Influence lands before the spawn chat reads it (GVK-Settings#688).]
+				[Triggers:GVK-Alliance-Base-Trigger-Init-SOBAN]
 				[TriggerGroups:GVK-Alliance-TriggerGroup-InsideOutsideZone]
 				[TriggerGroups:GVK-Universal-TriggerGroup-SpawnDefenses]
 				[TriggerGroups:GVK-Universal-TriggerGroup-LeashBeacon]
@@ -60,7 +61,7 @@
 				[SetCustomCountersVariables:true]
 				[CustomCountersVariables:DefenseSpawn_Limit,8]
 				[UseChatBroadcast:true]
-				[ChatData:GVK-Alliance-EncounterType-Chat-Spawned-Faction]
+				[ChatData:GVK-Alliance-Base-Chat-Spawned-SOBAN]
 			</Description>
 		</EntityComponent>
 
