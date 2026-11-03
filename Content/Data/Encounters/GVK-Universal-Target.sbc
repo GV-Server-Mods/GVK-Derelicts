@@ -538,7 +538,6 @@
 			</Description>
 		</EntityComponent>
 		<!-- Strike Fighters orbit 2.4-2.8 km out and turn around 1 km past the target, so they need a wider acquisition and keep range than the 2 km profiles. -->
-		<!-- Both Strike Fighter profiles skip targets more than 150 m above the surface: the strike run lines up above its target, so against an aircraft it climbs until both fly into space. -->
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
@@ -558,7 +557,6 @@
 				[MatchAllFilters:OutsideOfSafezone]
 				[MatchAllFilters:TargetValue]
 				[MatchAllFilters:Powered]
-				[MatchAllFilters:Altitude]
 				[MatchNoneFilters:Name]
 				[MatchNoneFilters:Faction]
 				[Relations:Enemy]
@@ -574,7 +572,6 @@
 				[FactionTargets:DERELICT]
 				[MinTargetValue:10]
 				[MaxTargetValue:999999]
-				[MaxAltitude:150]
 			</Description>
 		</EntityComponent>
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
@@ -595,9 +592,7 @@
 				[GetTargetBy:ClosestDistance]
 				[MatchAllFilters:Faction]
 				[MatchAllFilters:Powered]
-				[MatchAllFilters:Altitude]
 				[FactionTargets:GAALSIEN]
-				[MaxAltitude:150]
 				[GetTargetBy:ClosestDistance]
 				[PrioritizeSpecifiedFactions:false]
 			</Description>

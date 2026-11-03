@@ -1,0 +1,177 @@
+<?xml version="1.0"?>
+<Definitions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+	<EntityComponents>
+		<!-- Strike Fighter dogfight: against a target more than 100 m above the surface, swap the Strike slot (Secondary) for the Dogfight profile and the FighterPlane subclass for Strike; swap back once the target is under 60 m.
+		     FighterPlane lines up its next run straight ahead of the plane, so a chased Strike Fighter kept flying away from the fight; Strike picks a line-up point around the target, and the Dogfight profile keeps it close and level.
+		     Needs MES with the OverwriteAutopilotProfile fix (MeridiusIX/Modular-Encounters-Systems#464): without it the swap undoes itself and the runs line up above the aircraft again.
+		     ToDogfight checks the subclass, not GVK_Dogfight: a plane that loses its target and picks up a new one before Reset runs is back in FighterPlane with the Dogfight profile still loaded, and this puts it in Strike.
+		     Behavior: add after GVK-Unit-All-TriggerGroup-PatrolStrike. Booleans: GVK_Dogfight (the Strike slot holds the Dogfight profile). -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Unit-All-TriggerGroup-StrikeFighterDogfight</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI TriggerGroup]
+			[Triggers:GVK-Unit-All-StrikeFighterDogfight-Trigger-ToDogfight]
+			[Triggers:GVK-Unit-All-StrikeFighterDogfight-Trigger-ToStrike]
+			[Triggers:GVK-Unit-All-StrikeFighterDogfight-Trigger-Reset]
+			</Description>
+		</EntityComponent>
+		<!-- In combat on FighterPlane, not a wing, target more than 100 m up -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Unit-All-StrikeFighterDogfight-Trigger-ToDogfight</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Trigger]
+			[UseTrigger:true]
+			[Type:Timer]
+			[StartsReady:true]
+			[MinCooldownMs:3000]
+			[MaxCooldownMs:3001]
+			[Conditions:GVK-Unit-All-StrikeFighterDogfight-Condition-ToDogfight]
+			[Actions:GVK-Unit-All-StrikeFighterDogfight-Action-ToDogfight]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Unit-All-StrikeFighterDogfight-Condition-ToDogfight</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Condition]
+			[UseConditions:true]
+			[MatchAnyCondition:false]
+			[CheckTrueBooleans:true]
+			[TrueBooleans:GVK_InCombat]
+			[CheckFalseBooleans:true]
+			[FalseBooleans:GVK_Role_Escort]
+			[BehaviorSubclassCheck:true]
+			[BehaviorSubclass:FighterPlane]
+			[TargetAltitudeCheck:true]
+			[MinTargetAltitude:100]
+			[MaxTargetAltitude:-1]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Unit-All-StrikeFighterDogfight-Action-ToDogfight</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Action]
+			[//DebugMessage:Dogfight on]
+			[OverwriteAutopilotProfile:true]
+			[OverwriteAutopilotMode:Secondary]
+			[OverwriteAutopilotId:GVK-Unit-All-Autopilot-StrikeFighter-Dogfight]
+			[ChangeBehaviorSubclass:true]
+			[NewBehaviorSubclass:Strike]
+			[ChangeAutopilotProfile:true]
+			[AutopilotProfile:Secondary]
+			[SetBooleansTrue:GVK_Dogfight]
+			</Description>
+		</EntityComponent>
+		<!-- In combat, not a wing, target back under 60 m -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Unit-All-StrikeFighterDogfight-Trigger-ToStrike</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Trigger]
+			[UseTrigger:true]
+			[Type:Timer]
+			[StartsReady:true]
+			[MinCooldownMs:3000]
+			[MaxCooldownMs:3001]
+			[Conditions:GVK-Unit-All-StrikeFighterDogfight-Condition-ToStrike]
+			[Actions:GVK-Unit-All-StrikeFighterDogfight-Action-ToStrike]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Unit-All-StrikeFighterDogfight-Condition-ToStrike</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Condition]
+			[UseConditions:true]
+			[MatchAnyCondition:false]
+			[CheckTrueBooleans:true]
+			[TrueBooleans:GVK_InCombat]
+			[TrueBooleans:GVK_Dogfight]
+			[CheckFalseBooleans:true]
+			[FalseBooleans:GVK_Role_Escort]
+			[TargetAltitudeCheck:true]
+			[MinTargetAltitude:-1]
+			[MaxTargetAltitude:60]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Unit-All-StrikeFighterDogfight-Action-ToStrike</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Action]
+			[//DebugMessage:Dogfight off]
+			[OverwriteAutopilotProfile:true]
+			[OverwriteAutopilotMode:Secondary]
+			[OverwriteAutopilotId:GVK-Unit-All-Autopilot-StrikeFighter-Strike]
+			[ChangeBehaviorSubclass:true]
+			[NewBehaviorSubclass:FighterPlane]
+			[ChangeAutopilotProfile:true]
+			[AutopilotProfile:Secondary]
+			[SetBooleansFalse:GVK_Dogfight]
+			</Description>
+		</EntityComponent>
+		<!-- Combat over (Patrol already set by the PatrolStrike group): put Strike back so the next fight starts with attack runs -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Unit-All-StrikeFighterDogfight-Trigger-Reset</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Trigger]
+			[UseTrigger:true]
+			[Type:Timer]
+			[StartsReady:true]
+			[MinCooldownMs:3000]
+			[MaxCooldownMs:3001]
+			[Conditions:GVK-Unit-All-StrikeFighterDogfight-Condition-Reset]
+			[Actions:GVK-Unit-All-StrikeFighterDogfight-Action-Reset]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Unit-All-StrikeFighterDogfight-Condition-Reset</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Condition]
+			[UseConditions:true]
+			[MatchAnyCondition:false]
+			[CheckTrueBooleans:true]
+			[TrueBooleans:GVK_Dogfight]
+			[CheckFalseBooleans:true]
+			[FalseBooleans:GVK_InCombat]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Unit-All-StrikeFighterDogfight-Action-Reset</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Action]
+			[//DebugMessage:Dogfight reset]
+			[OverwriteAutopilotProfile:true]
+			[OverwriteAutopilotMode:Secondary]
+			[OverwriteAutopilotId:GVK-Unit-All-Autopilot-StrikeFighter-Strike]
+			[SetBooleansFalse:GVK_Dogfight]
+			</Description>
+		</EntityComponent>
+	</EntityComponents>
+</Definitions>
