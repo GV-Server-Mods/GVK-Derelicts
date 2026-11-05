@@ -4,6 +4,7 @@ notes: [45]
 covers:
   - Content/Data/Encounters/Alliance/Freighters/*.sbc
   - Content/Data/Encounters/Alliance/GVK-Alliance-TriggerGroup-SupplyDepotZone.sbc
+checked: 2026-11-04
 ---
 
 # Freighter dispatch and supply depots
