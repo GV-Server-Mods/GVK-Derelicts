@@ -2,7 +2,7 @@
 <Definitions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
 	<EntityComponents>
 		<!-- Peer escort state checks shared by every pool (see tools/New-PeerEscortPool.ps1) -->
-		<!-- May become a wing: not a wing, not waiting on a request, no live wing of its own (a leader whose wings died qualifies). Each pool's own HasFreeSlot condition decides who may lead. -->
+		<!-- May become a wing: not a wing, not waiting on a request (peer or parent slot, tools/New-LeashGroup.ps1), no live wing of its own (a leader whose wings died qualifies). Each pool's own HasFreeSlot condition decides who may lead. -->
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
@@ -15,6 +15,7 @@
 			[CheckFalseBooleans:true]
 			[FalseBooleans:GVK_Role_Escort]
 			[FalseBooleans:GVK_Peer_Requesting]
+			[FalseBooleans:GVK_Slot_Requesting]
 			[CheckCustomCounters:true]
 			[CustomCounters:GVK_Peer_Wings]
 			[CustomCountersTargets:1]

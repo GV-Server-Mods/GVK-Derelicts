@@ -8,6 +8,10 @@
 			[TriggerGroups:GVK-Unit-All-TriggerGroup-LeashAir]: aircraft (Strike Fighters, Interceptors, Bombers, flyers), 5000 m
 			A Unit that never hears a home signal (no parent) is unaffected.
 			Booleans: GVK_HasParent (heard its parent at least once), GVK_AwayFromHome (no signal for 15 s).
+			Escort slots (-LeashAir): a parent with GVK-Universal-TriggerGroup-LeashSlots offers slots; the Unit flies
+			in one on its Tertiary (wing) autopilot, leaves it when its Patrol<Name> group starts combat, and asks again
+			once it is back on Patrol (GVK-Settings#764).
+			Booleans: GVK_InParentSlot (holds or is joining a parent's slot; GVK_Role_Escort is true too), GVK_Slot_Requesting.
 		-->
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
@@ -147,6 +151,15 @@
 			[Triggers:GVK-Unit-All-LeashAir-Trigger-LeftHome]
 			[Triggers:GVK-Unit-All-LeashAir-Trigger-Orphaned]
 			[Triggers:GVK-Unit-All-LeashAir-Trigger-Released]
+			[Triggers:GVK-Unit-All-LeashAir-Trigger-SlotOffered]
+			[Triggers:GVK-Unit-All-LeashAir-Trigger-SlotTimeout]
+			[Triggers:GVK-Unit-All-LeashAir-Trigger-SlotAssigned]
+			[Triggers:GVK-Unit-All-LeashAir-Trigger-SlotFound]
+			[Triggers:GVK-Unit-All-LeashAir-Trigger-SlotNotFound]
+			[Triggers:GVK-Unit-All-LeashAir-Trigger-SlotRetry]
+			[Triggers:GVK-Unit-All-LeashAir-Trigger-SlotBreakOff]
+			[Triggers:GVK-Unit-All-LeashAir-Trigger-SlotLost]
+			[Triggers:GVK-Unit-All-LeashAir-Trigger-SlotReleased]
 			</Description>
 		</EntityComponent>
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
@@ -261,6 +274,331 @@
 			[DisableTriggers:true]
 			[DisableTriggerNames:GVK-Unit-All-LeashAir-Trigger-LeftHome]
 			[DisableTriggerNames:GVK-Unit-All-LeashAir-Trigger-Orphaned]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Unit-All-LeashAir-Trigger-SlotOffered</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Trigger]
+			[UseTrigger:true]
+			[Type:CommandReceived]
+			[CommandReceiveCode:GVK_LeashSlotOffer]
+			[StartsReady:true]
+			[MaxActions:-1]
+			[Conditions:GVK-Unit-All-Condition-CanTakeSlot]
+			[Actions:GVK-Unit-All-LeashAir-Action-SlotRequest]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Unit-All-LeashAir-Action-SlotRequest</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Action]
+			[SetBooleansTrue:GVK_Slot_Requesting]
+			[BroadcastCommandProfiles:true]
+			[CommandProfileIds:GVK-Unit-All-LeashAir-Command-SlotRequest]
+			[ResetCooldownTimeOfTriggers:true]
+			[ResetTriggerCooldownNames:GVK-Unit-All-LeashAir-Trigger-SlotTimeout]
+			[EnableTriggers:true]
+			[EnableTriggerNames:GVK-Unit-All-LeashAir-Trigger-SlotTimeout]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Unit-All-LeashAir-Command-SlotRequest</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Command]
+			[CommandCode:GVK_LeashSlotRequest]
+			[ReturnToSender:true]
+			[MatchSenderReceiverOwners:true]
+			[IgnoreAntennaRequirement:true]
+			[IgnoreReceiverAntennaRequirement:true]
+			[Radius:8000]
+			[RequestEscortSlot:true]
+			[CommandDelayTicks:30]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Unit-All-LeashAir-Trigger-SlotTimeout</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Trigger]
+			[UseTrigger:false]
+			[Type:Timer]
+			[StartsReady:false]
+			[MinCooldownMs:4000]
+			[MaxCooldownMs:4001]
+			[MaxActions:-1]
+			[Actions:GVK-Unit-All-LeashAir-Action-SlotTimeout]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Unit-All-LeashAir-Action-SlotTimeout</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Action]
+			[SetBooleansFalse:GVK_Slot_Requesting]
+			[DisableTriggers:true]
+			[DisableTriggerNames:GVK-Unit-All-LeashAir-Trigger-SlotTimeout]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Unit-All-LeashAir-Trigger-SlotAssigned</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Trigger]
+			[UseTrigger:true]
+			[Type:CommandReceived]
+			[CommandReceiveCode:GVK_LeashSlotAssigned]
+			[StartsReady:true]
+			[MaxActions:-1]
+			[Conditions:GVK-Unit-All-Condition-SlotIsRequesting]
+			[Actions:GVK-Unit-All-LeashAir-Action-SlotJoin]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Unit-All-LeashAir-Action-SlotJoin</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Action]
+			[ChangeBehaviorSubclass:true]
+			[NewBehaviorSubclass:Escort]
+			[ChangeAutopilotProfile:true]
+			[AutopilotProfile:Tertiary]
+			[SetBooleansTrue:GVK_Role_Escort]
+			[SetBooleansTrue:GVK_InParentSlot]
+			[SetBooleansFalse:GVK_Slot_Requesting]
+			[ResetCooldownTimeOfTriggers:true]
+			[ResetTriggerCooldownNames:GVK-Unit-All-LeashAir-Trigger-SlotNotFound]
+			[EnableTriggers:true]
+			[EnableTriggerNames:GVK-Unit-All-LeashAir-Trigger-SlotFound]
+			[EnableTriggerNames:GVK-Unit-All-LeashAir-Trigger-SlotNotFound]
+			[DisableTriggers:true]
+			[DisableTriggerNames:GVK-Unit-All-LeashAir-Trigger-SlotTimeout]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Unit-All-LeashAir-Trigger-SlotFound</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Trigger]
+			[UseTrigger:false]
+			[Type:BehaviorTriggerA]
+			[StartsReady:true]
+			[MaxActions:-1]
+			[Actions:GVK-Unit-All-LeashAir-Action-SlotFound]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Unit-All-LeashAir-Action-SlotFound</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Action]
+			[DisableTriggers:true]
+			[DisableTriggerNames:GVK-Unit-All-LeashAir-Trigger-SlotFound]
+			[DisableTriggerNames:GVK-Unit-All-LeashAir-Trigger-SlotNotFound]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Unit-All-LeashAir-Trigger-SlotNotFound</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Trigger]
+			[UseTrigger:false]
+			[Type:Timer]
+			[StartsReady:false]
+			[MinCooldownMs:5000]
+			[MaxCooldownMs:5001]
+			[MaxActions:-1]
+			[Actions:GVK-Unit-All-LeashAir-Action-SlotNotFound]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Unit-All-LeashAir-Action-SlotNotFound</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Action]
+			[LeaveEscortSlot:true]
+			[SetBooleansFalse:GVK_Role_Escort]
+			[SetBooleansFalse:GVK_InParentSlot]
+			[ChangeBehaviorSubclass:true]
+			[NewBehaviorSubclass:Patrol]
+			[ChangeAutopilotProfile:true]
+			[AutopilotProfile:Primary]
+			[ManuallyActivateTrigger:true]
+			[ManuallyActivatedTriggerTags:GVK-TriggerTags-LeaderDead]
+			[ForceManualTriggerActivation:false]
+			[DisableTriggers:true]
+			[DisableTriggerNames:GVK-Unit-All-LeashAir-Trigger-SlotFound]
+			[DisableTriggerNames:GVK-Unit-All-LeashAir-Trigger-SlotNotFound]
+			[DisableTriggerNames:GVK-Unit-All-LeashAir-Trigger-SlotOffered]
+			[ResetCooldownTimeOfTriggers:true]
+			[ResetTriggerCooldownNames:GVK-Unit-All-LeashAir-Trigger-SlotRetry]
+			[EnableTriggers:true]
+			[EnableTriggerNames:GVK-Unit-All-LeashAir-Trigger-SlotRetry]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Unit-All-LeashAir-Trigger-SlotRetry</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Trigger]
+			[UseTrigger:false]
+			[Type:Timer]
+			[StartsReady:false]
+			[MinCooldownMs:60000]
+			[MaxCooldownMs:60001]
+			[MaxActions:-1]
+			[Actions:GVK-Unit-All-LeashAir-Action-SlotRetry]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Unit-All-LeashAir-Action-SlotRetry</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Action]
+			[EnableTriggers:true]
+			[EnableTriggerNames:GVK-Unit-All-LeashAir-Trigger-SlotOffered]
+			[DisableTriggers:true]
+			[DisableTriggerNames:GVK-Unit-All-LeashAir-Trigger-SlotRetry]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Unit-All-LeashAir-Trigger-SlotBreakOff</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Trigger]
+			[UseTrigger:true]
+			[Type:Manual]
+			[Tags:GVK-TriggerTags-CombatStarted]
+			[StartsReady:true]
+			[MaxActions:-1]
+			[Conditions:GVK-Unit-All-Condition-InParentSlot]
+			[Actions:GVK-Unit-All-LeashAir-Action-SlotLeave]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Unit-All-LeashAir-Trigger-SlotLost</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Trigger]
+			[UseTrigger:true]
+			[Type:BehaviorTriggerB]
+			[StartsReady:true]
+			[MaxActions:-1]
+			[Conditions:GVK-Unit-All-Condition-InParentSlot]
+			[Actions:GVK-Unit-All-LeashAir-Action-SlotLeave]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Unit-All-LeashAir-Trigger-SlotReleased</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Trigger]
+			[UseTrigger:true]
+			[Type:CommandReceived]
+			[CommandReceiveCode:GVK_LeashRelease]
+			[StartsReady:true]
+			[MaxActions:-1]
+			[Conditions:GVK-Unit-All-Condition-InParentSlot]
+			[Actions:GVK-Unit-All-LeashAir-Action-SlotLeave]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Unit-All-LeashAir-Action-SlotLeave</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Action]
+			[LeaveEscortSlot:true]
+			[SetBooleansFalse:GVK_Role_Escort]
+			[SetBooleansFalse:GVK_InParentSlot]
+			[ChangeBehaviorSubclass:true]
+			[NewBehaviorSubclass:Patrol]
+			[ChangeAutopilotProfile:true]
+			[AutopilotProfile:Primary]
+			[ManuallyActivateTrigger:true]
+			[ManuallyActivatedTriggerTags:GVK-TriggerTags-LeaderDead]
+			[ForceManualTriggerActivation:false]
+			[DisableTriggers:true]
+			[DisableTriggerNames:GVK-Unit-All-LeashAir-Trigger-SlotFound]
+			[DisableTriggerNames:GVK-Unit-All-LeashAir-Trigger-SlotNotFound]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Unit-All-Condition-CanTakeSlot</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Condition]
+			[UseConditions:true]
+			[MatchAnyCondition:false]
+			[CheckFalseBooleans:true]
+			[FalseBooleans:GVK_Role_Escort]
+			[FalseBooleans:GVK_Peer_Requesting]
+			[FalseBooleans:GVK_Slot_Requesting]
+			[FalseBooleans:GVK_InCombat]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Unit-All-Condition-SlotIsRequesting</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Condition]
+			[UseConditions:true]
+			[MatchAnyCondition:false]
+			[CheckTrueBooleans:true]
+			[TrueBooleans:GVK_Slot_Requesting]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Unit-All-Condition-InParentSlot</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Condition]
+			[UseConditions:true]
+			[MatchAnyCondition:false]
+			[CheckTrueBooleans:true]
+			[TrueBooleans:GVK_InParentSlot]
 			</Description>
 		</EntityComponent>
 	</EntityComponents>

@@ -8,6 +8,9 @@
 			Every 5 s it sends one home signal per leash kind (Ground 3000 m, Air 5000 m) to the Units it spawned,
 			carrying its position so they patrol around it as it moves; when Compromised it sends GVK_LeashRelease.
 			Needs MES with MeridiusIX/Modular-Encounters-Systems#441 (UseCommandWaypointAsPatrolReference).
+			A parent that moves also adds [TriggerGroups:GVK-Universal-TriggerGroup-LeashSlots] and [EscortOffsets:] lines
+			(+X right, +Y up, +Z behind its Remote Control): every 5 s it offers its own-faction children
+			within 8000 m a slot, which Units on -LeashAir take (GVK-Settings#764).
 		-->
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
@@ -139,6 +142,104 @@
 			[IgnoreReceiverAntennaRequirement:true]
 			[Radius:15000]
 			[CommandDelayTicks:0]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Universal-TriggerGroup-LeashSlots</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI TriggerGroup]
+			[Triggers:GVK-Universal-LeashSlots-Trigger-Offer]
+			[Triggers:GVK-Universal-LeashSlots-Trigger-Request]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Universal-LeashSlots-Trigger-Offer</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Trigger]
+			[UseTrigger:true]
+			[Type:Timer]
+			[StartsReady:true]
+			[MinCooldownMs:5000]
+			[MaxCooldownMs:5001]
+			[MaxActions:-1]
+			[Actions:GVK-Universal-LeashSlots-Action-Offer]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Universal-LeashSlots-Action-Offer</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Action]
+			[BroadcastCommandProfiles:true]
+			[CommandProfileIds:GVK-Universal-LeashSlots-Command-Offer]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Universal-LeashSlots-Command-Offer</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Command]
+			[CommandCode:GVK_LeashSlotOffer]
+			[SingleRecipient:false]
+			[MatchSenderReceiverOwners:true]
+			[MatchReceiverChild:true]
+			[IgnoreAntennaRequirement:true]
+			[IgnoreReceiverAntennaRequirement:true]
+			[Radius:8000]
+			[CommandDelayTicks:0]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Universal-LeashSlots-Trigger-Request</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Trigger]
+			[UseTrigger:true]
+			[Type:CommandReceived]
+			[CommandReceiveCode:GVK_LeashSlotRequest]
+			[StartsReady:true]
+			[MaxActions:-1]
+			[Actions:GVK-Universal-LeashSlots-Action-Request]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Universal-LeashSlots-Action-Request</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Action]
+			[AssignEscortFromCommand:true]
+			[BroadcastCommandProfiles:true]
+			[CommandProfileIds:GVK-Universal-LeashSlots-Command-Assigned]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Universal-LeashSlots-Command-Assigned</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Command]
+			[CommandCode:GVK_LeashSlotAssigned]
+			[ReturnToSender:true]
+			[MatchSenderReceiverOwners:true]
+			[IgnoreAntennaRequirement:true]
+			[IgnoreReceiverAntennaRequirement:true]
+			[Radius:8000]
+			[CommandDelayTicks:30]
 			</Description>
 		</EntityComponent>
 	</EntityComponents>
