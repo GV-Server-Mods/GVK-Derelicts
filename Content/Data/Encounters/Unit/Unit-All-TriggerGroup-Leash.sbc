@@ -502,7 +502,7 @@
 			[Tags:GVK-TriggerTags-CombatStarted]
 			[StartsReady:true]
 			[MaxActions:-1]
-			[Conditions:GVK-Unit-All-Condition-InParentSlot]
+			[Conditions:GVK-Unit-All-Condition-SlotCanFight]
 			[Actions:GVK-Unit-All-LeashAir-Action-SlotLeave]
 			</Description>
 		</EntityComponent>
@@ -599,6 +599,21 @@
 			[MatchAnyCondition:false]
 			[CheckTrueBooleans:true]
 			[TrueBooleans:GVK_InParentSlot]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Unit-All-Condition-SlotCanFight</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Condition]
+			[UseConditions:true]
+			[MatchAnyCondition:false]
+			[CheckTrueBooleans:true]
+			[TrueBooleans:GVK_InParentSlot]
+			[CheckFalseBooleans:true]
+			[FalseBooleans:GVK_AwayFromHome]
 			</Description>
 		</EntityComponent>
 	</EntityComponents>

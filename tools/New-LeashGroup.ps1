@@ -449,7 +449,8 @@ foreach ($k in $kinds) {
 			[DisableTriggerNames:$n-Trigger-SlotRetry]
 "@
     # Break off: every Patrol<Name> TargetNear fires GVK-TriggerTags-CombatStarted at its own distance, even while its
-    # combat switch refuses an escort, so a slot Unit fights at the same range as on Patrol.
+    # combat switch refuses an escort, so a slot Unit fights at the same range as on Patrol. Not while GVK_AwayFromHome:
+    # CanStartCombat would refuse it, and it would flip between Patrol and the slot every offer; it flies home first.
     $parts += Component "$n-Trigger-SlotBreakOff" @"
 			[RivalAI Trigger]
 			[UseTrigger:true]
@@ -457,7 +458,7 @@ foreach ($k in $kinds) {
 			[Tags:GVK-TriggerTags-CombatStarted]
 			[StartsReady:true]
 			[MaxActions:-1]
-			[Conditions:GVK-Unit-All-Condition-InParentSlot]
+			[Conditions:GVK-Unit-All-Condition-SlotCanFight]
 			[Actions:$n-Action-SlotLeave]
 "@
     # Lost: Escort.cs raises BehaviorTriggerB when the parent stops being valid (destroyed, crippled, despawned).
@@ -508,6 +509,15 @@ if ($kinds | Where-Object { $_.Slots }) {
 			[MatchAnyCondition:false]
 			[CheckTrueBooleans:true]
 			[TrueBooleans:GVK_InParentSlot]
+"@
+    $parts += Component 'GVK-Unit-All-Condition-SlotCanFight' @"
+			[RivalAI Condition]
+			[UseConditions:true]
+			[MatchAnyCondition:false]
+			[CheckTrueBooleans:true]
+			[TrueBooleans:GVK_InParentSlot]
+			[CheckFalseBooleans:true]
+			[FalseBooleans:GVK_AwayFromHome]
 "@
 }
 $groups = ($kinds | ForEach-Object { "			[TriggerGroups:GVK-Unit-All-TriggerGroup-Leash$($_.Kind)]: $($_.Note), $($_.Radius) m" }) -join "`r`n"
