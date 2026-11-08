@@ -2,7 +2,7 @@
 <Definitions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
 	<!-- Bases are now handled via PresetBases -->
 	<!-- Outposts and every Turret (a Base's Defense or a lone Encounter Turret) register the RC code GVK-Alliance-Encounter. MES keeps one code per grid
-	     and each condition checks one code, so sharing it is what spaces them: Outposts and Encounter Turrets 5 km from all of them, Defense Turrets 150 m.
+	     and each condition checks one code, so sharing it is what spaces them: Outposts and Encounter Turrets 5 km from all of them, Defense Turrets 75 m.
 	     The Base Site's count caps Defense Turrets at 4. They spawn 300-500 m from the Base at one random spot per try, so a wider spacing makes most tries fail. -->
 	<EntityComponents>
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
@@ -49,7 +49,7 @@
 				[PrefabSpawningMode:Random]
 				[UseRemoteControlCodeRestrictions:true]
 				[RemoteControlCode:GVK-Alliance-Encounter]
-				[RemoteControlCodeMinDistance:150]
+				[RemoteControlCodeMinDistance:75]
 				[RemoteControlCodeMaxDistance:-1]
 			</Description>
 		</EntityComponent>
@@ -121,7 +121,7 @@
 				[PrefabSpawningMode:Random]
 				[UseRemoteControlCodeRestrictions:true]
 				[RemoteControlCode:GVK-Alliance-Encounter]
-				[RemoteControlCodeMinDistance:150]
+				[RemoteControlCodeMinDistance:75]
 				[RemoteControlCodeMaxDistance:-1]
 			</Description>
 		</EntityComponent>

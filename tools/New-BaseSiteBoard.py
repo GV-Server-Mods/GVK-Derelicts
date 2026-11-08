@@ -106,6 +106,8 @@ TCOOL, RCOOL, TCOUNT = "GVK_Site_TurretCooling", "GVK_Site_RestoreCooling", "GVK
 TPEND = "GVK_Site_TurretPending"
 ROLL, ROLLACK, TALLY = "GVK_Site_TurretRollCall", "GVK_Site_TurretRollCallAck", "GVK_Site_TurretTally"
 TURRET_CAP = 4
+# A placed Turret reports within seconds (MES runs behaviors every tick), so no report by then means no spot was found.
+TURRET_PLACE_MS = 15000
 RESET_STATE = [f"[SetBooleansFalse:{BASE['SOBAN']}]", f"[SetBooleansFalse:{BASE['KHAANEPH']}]",
                f"[SetBooleansFalse:{TCOOL}]", f"[SetBooleansFalse:{RCOOL}]", f"[SetBooleansFalse:{TPEND}]",
                f"[ResetCounters:{TCOUNT}]"]
@@ -141,7 +143,7 @@ HOSTILE = ("hostile player nearby", "Unavailable while a player hostile to {f} i
 STANDINS = [
     ("ClaimHostile", "Claim") + HOSTILE,
     ("TurretHostile", "Turret") + HOSTILE,
-    ("TurretDeploying", "Turret", "deploying", "A Defense Turret is being placed. If no spot is found, this contract opens again within a minute."),
+    ("TurretDeploying", "Turret", "deploying", f"A Defense Turret is being placed. If no spot is found, this contract opens again within {TURRET_PLACE_MS // 1000} seconds."),
     ("TurretAtCap", "Turret", f"{TURRET_CAP} of {TURRET_CAP} standing", f"This Base already has {TURRET_CAP} Defense Turrets. A slot opens within a minute of one being destroyed or removed."),
     ("TurretCooling", "Turret", "cooling down", "One Defense Turret every 20 minutes, counted from when the last one was placed."),
     ("RestoreHostile", "Restore") + HOSTILE,
@@ -353,10 +355,10 @@ for n in range(TALLY_MAX + 1):
                     refresh=True))
 
 t.append(section("COOLDOWNS (restarted by the action that starts them)"))
-# TurretPendingEnd fires only when no Turret reported within a minute of the order: the spawn found no spot.
+# TurretPendingEnd fires only when no Turret reported within the placing window: the spawn found no spot.
 TURRET_FAILED = [f"[UseChatBroadcast:true]", f"[ChatData:{P}-Site-Chat-TurretFailed]"]
 for name, flag, ms, extra in [("LockEnd", LOCK, 7200000, []), ("ClaimPendingEnd", PEND, 120000, []),
-                              ("TurretPendingEnd", TPEND, 60000, TURRET_FAILED),
+                              ("TurretPendingEnd", TPEND, TURRET_PLACE_MS, TURRET_FAILED),
                               ("TurretCoolEnd", TCOOL, TURRET_COOL_MS, []), ("RestoreCoolEnd", RCOOL, RESTORE_COOL_MS, [])]:
     t.append(trig(f"{P}-Site-Trigger-{name}", "Timer", [f"{P}-Site-Action-{name}"], f"{P}-Site-Condition-{name}",
                   starts_ready=False, cooldown=ms))
