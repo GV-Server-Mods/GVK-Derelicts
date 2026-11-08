@@ -39,4 +39,4 @@ No contract shows while a player hostile to that alliance (reputation 0 or below
 ### Limits to test in game
 - A defeated Base wreck may keep its RC code and block a re-claim at its site until the wreck is cleaned up.
 - A Turret that fails to find a spawn position still uses the 20-minute cooldown.
-- A sieged NPC shield stays off after Restore: GVK_SiegeableSafeZones_NPC marks it sieged and switches it off again whenever it is enabled.
+- Restore brings back a sieged shield only with GVK_SiegeableSafeZones_NPC 33d7711 or later. That build restores a sieged NPC shield when an NPC switches its block back on; older builds switch it off again.
