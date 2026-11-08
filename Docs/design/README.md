@@ -18,7 +18,7 @@ The old README notes live here. Note numbers are kept because hub issues and too
 | [KOTH 5 km despawn](koth-despawn.md) | 42 | 1 | - | - |
 | [How NPC relations are read](npc-relations.md) | 47 | 1 | - | MES 49b3380 |
 | [Parent leash](parent-leash.md) | 46 | 3 | - | MES d85b7b3 |
-| [Preset alliance bases](preset-bases.md) | 30 | 1 | - | MES bc71965 |
+| [Preset alliance bases](preset-bases.md) | 30 | 3 | - | MES d500922 |
 | [Server build requirements (MES release)](server-build-requirements.md) | 43 | 3 | - | MES a1895d9 |
 | [Wreck prefabs and vanilla encounters](wreck-prefabs.md) | 38, 39 | 3 | - | MES 13bcb1d |
 <!-- /GENERATED:design-docs -->
