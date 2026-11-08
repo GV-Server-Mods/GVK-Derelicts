@@ -17,5 +17,5 @@ Server build: GVK needs an MES release made after master `a1895d9` (2026-10-24).
 - **`MaxVelocityAngleForSpeedControl:180`** (#402, 2.75.00): before it, a grid drifting away from its waypoint "braked" itself further away.
 - **`UseAircraftFlightModel`** (#390, 2.75.00): the Unit aircraft autopilots.
 - **`AllowTargetFarWithoutTarget`** (#410, after 2.75.01): the `Patrol<Name>` groups return a Unit to Patrol through it. Without it, a Unit whose target is gone stays in combat.
-- **`LeaveEscortSlot`** (#408, after 2.75.01): escorts free their leader's slot (note 40). Without it, a peer leader that lost its wing offers a slot MES still counts as taken.
-- **`UseCommandWaypointAsPatrolReference`** (#441, after 2.75.01): leashed Units patrol around their moving parent (note 46). Without it, they patrol around their spawn point.
+- **`LeaveEscortSlot`** (#408, after 2.75.01): escorts free their leader's slot (note 40). Without it, a peer leader that lost its wing offers a slot MES still counts as taken, and a Unit that leaves a Freighter's escort slot to fight keeps it (note 46).
+- **`UseCommandWaypointAsPatrolReference`** (#441, after 2.75.01): leashed Units patrol around where their parent was when each patrol leg began (note 46). Without it, they patrol around their spawn point. It doesn't keep up with a moving parent (GVK-Settings#764), so Freighters use escort slots.
