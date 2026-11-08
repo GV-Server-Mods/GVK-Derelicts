@@ -4,7 +4,8 @@ notes: [45]
 covers:
   - Content/Data/Encounters/Alliance/Freighters/*.sbc
   - Content/Data/Encounters/Alliance/GVK-Alliance-TriggerGroup-SupplyDepotZone.sbc
-checked: 2026-11-04
+checked: 2026-11-08
+checked-against: MES d500922
 ---
 
 # Freighter dispatch and supply depots
@@ -22,3 +23,4 @@ Freighter dispatch follows Supply Depot demand.
 - **Ownership:** comes from the faction zone that covers the depot, not from Influence directly.
 - **Restock timing:** MES offers no inventory check, so "needs restocking" is the timer, not the cargo contents.
 - **Missing counter:** the counter is created by the first depot request; a missing counter never passes the event condition.
+- **Flight:** a Freighter spawns 100-200 m up near its HQ and cruises at 2 km (Primary autopilot), dropping to 100 m within 3 km of a Supply Depot (Secondary). So it climbs nearly straight up after spawning and after each depot. Both autopilots fly level (`FlyLevelWithGravity`) and don't bank into turns (GVK-Settings#763). They banked up to 15 degrees until 2026-11-08, when the owner reported Freighters that wobbled in place and never climbed. In level mode MES cuts all thrust while the grid tilts more than `HoverUpAngle` (10 degrees), and a bank turns the nose away from a waypoint far above, so the bank never eased off (MES `ThrustSystem.cs` `CalculateHoverThrust`, `RotationSystem.cs` `CalculateGyroRotation`, `AircraftFlightModel.cs` `ApplyRollIntoTurns`).

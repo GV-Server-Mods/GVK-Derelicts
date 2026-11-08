@@ -59,7 +59,7 @@ Notes:
 			</Description>
 		</EntityComponent>
 		<!-- Freighter Autopilot-->
-		<!-- Steering: MaxRotationStep 0.5 keeps the gyros at full strength (Unit-All-Autopilot-HoverCruiserHorsefly.sbc explains it); MaxRotationMagnitude sets the turn rate. FlyLevelWithGravity already stops backflips, so pitch stays 1. Banks up to 15 degrees into turns for looks -->
+		<!-- Steering: MaxRotationStep 0.5 keeps the gyros at full strength (Unit-All-Autopilot-HoverCruiserHorsefly.sbc explains it); MaxRotationMagnitude sets the turn rate. FlyLevelWithGravity already stops backflips, so pitch stays 1. No banking into turns: in level mode a bank past HoverUpAngle (10) cuts all thrust, and a bank turns the nose away from a waypoint far above, so banking Freighters stalled on the climb to cruise height (GVK-Settings#763) -->
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
@@ -75,8 +75,6 @@ Notes:
 				[MaxRotationMagnitude:0.5]
 				[UseAircraftFlightModel:true]
 				[MaxRotationStep:0.5]
-				[RollIntoTurnsMultiplier:0.25]
-				[MaxBankAngle:15]
 				[DisableInertiaDampeners:false]
 				[FlyLevelWithGravity:true]
 				[LevelWithGravityWhenIdle:true]
@@ -116,8 +114,6 @@ Notes:
 				[MaxRotationMagnitude:0.5]
 				[UseAircraftFlightModel:true]
 				[MaxRotationStep:0.5]
-				[RollIntoTurnsMultiplier:0.25]
-				[MaxBankAngle:15]
 				[DisableInertiaDampeners:false]
 				[FlyLevelWithGravity:true]
 				[LevelWithGravityWhenIdle:true]
