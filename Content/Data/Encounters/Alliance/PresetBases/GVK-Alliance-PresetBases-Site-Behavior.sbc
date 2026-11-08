@@ -4,8 +4,9 @@
 		<!--
 		Base Site grid (NST [UNKN] Base Site): runs the site's contract board (GVK-Settings#653, contracts in GVK-Alliance-PresetBases-Contracts.sbc).
 		State is local to each Base Site: which alliance's Base stands here, the 2-hour lock after a kill, the 20-minute turret
-		and 2-hour restore cooldowns, the standing Defense Turret count, and whether players hostile to each alliance are
-		within 5 km. Every change re-applies the one board profile that matches the new state.
+		and 2-hour restore cooldowns, the standing Defense Turret count, whether players hostile to each alliance are
+		within 5 km, and whether the site is inside each alliance's Territory (an alliance's Claim shows only while it is).
+		Every change re-applies the one board profile that matches the new state.
 		The Base reports to its Base Site with commands (GVK-Alliance-PresetBases-BaseSite.sbc). Design: Docs/design/preset-bases.md.
 		-->
 		<!-- =================================================== -->
@@ -42,6 +43,8 @@
 				[Triggers:GVK-Alliance-PresetBases-Site-Trigger-HostileArrived-SOBAN]
 				[Triggers:GVK-Alliance-PresetBases-Site-Trigger-HostileStillNear-SOBAN]
 				[Triggers:GVK-Alliance-PresetBases-Site-Trigger-HostileClear-SOBAN]
+				[Triggers:GVK-Alliance-PresetBases-Site-Trigger-EnterTerritory-SOBAN]
+				[Triggers:GVK-Alliance-PresetBases-Site-Trigger-LeaveTerritory-SOBAN]
 				[Triggers:GVK-Alliance-PresetBases-Site-Trigger-BoardUsed-Claim-SOBAN]
 				[Triggers:GVK-Alliance-PresetBases-Site-Trigger-BoardUsed-Turret-SOBAN]
 				[Triggers:GVK-Alliance-PresetBases-Site-Trigger-BoardUsed-Restore-SOBAN]
@@ -53,15 +56,22 @@
 				[Triggers:GVK-Alliance-PresetBases-Site-Trigger-HostileArrived-KHAANEPH]
 				[Triggers:GVK-Alliance-PresetBases-Site-Trigger-HostileStillNear-KHAANEPH]
 				[Triggers:GVK-Alliance-PresetBases-Site-Trigger-HostileClear-KHAANEPH]
+				[Triggers:GVK-Alliance-PresetBases-Site-Trigger-EnterTerritory-KHAANEPH]
+				[Triggers:GVK-Alliance-PresetBases-Site-Trigger-LeaveTerritory-KHAANEPH]
 				[Triggers:GVK-Alliance-PresetBases-Site-Trigger-BoardUsed-Claim-KHAANEPH]
 				[Triggers:GVK-Alliance-PresetBases-Site-Trigger-BoardUsed-Turret-KHAANEPH]
 				[Triggers:GVK-Alliance-PresetBases-Site-Trigger-BoardUsed-Restore-KHAANEPH]
 				[Triggers:GVK-Alliance-PresetBases-Site-Trigger-Refresh-Locked]
 				[Triggers:GVK-Alliance-PresetBases-Site-Trigger-Refresh-Pending]
-				[Triggers:GVK-Alliance-PresetBases-Site-Trigger-Refresh-ClaimBoth]
-				[Triggers:GVK-Alliance-PresetBases-Site-Trigger-Refresh-ClaimSOBAN]
-				[Triggers:GVK-Alliance-PresetBases-Site-Trigger-Refresh-ClaimKHAANEPH]
-				[Triggers:GVK-Alliance-PresetBases-Site-Trigger-Refresh-ClaimNone]
+				[Triggers:GVK-Alliance-PresetBases-Site-Trigger-Refresh-Claim-SOBANOpen-KHAANEPHOpen]
+				[Triggers:GVK-Alliance-PresetBases-Site-Trigger-Refresh-Claim-SOBANOpen-KHAANEPHOut]
+				[Triggers:GVK-Alliance-PresetBases-Site-Trigger-Refresh-Claim-SOBANOpen-KHAANEPHHostile]
+				[Triggers:GVK-Alliance-PresetBases-Site-Trigger-Refresh-Claim-SOBANOut-KHAANEPHOpen]
+				[Triggers:GVK-Alliance-PresetBases-Site-Trigger-Refresh-Claim-SOBANOut-KHAANEPHOut]
+				[Triggers:GVK-Alliance-PresetBases-Site-Trigger-Refresh-Claim-SOBANOut-KHAANEPHHostile]
+				[Triggers:GVK-Alliance-PresetBases-Site-Trigger-Refresh-Claim-SOBANHostile-KHAANEPHOpen]
+				[Triggers:GVK-Alliance-PresetBases-Site-Trigger-Refresh-Claim-SOBANHostile-KHAANEPHOut]
+				[Triggers:GVK-Alliance-PresetBases-Site-Trigger-Refresh-Claim-SOBANHostile-KHAANEPHHostile]
 				[Triggers:GVK-Alliance-PresetBases-Site-Trigger-Refresh-SOBAN-Hostile]
 				[Triggers:GVK-Alliance-PresetBases-Site-Trigger-Refresh-SOBAN-TurretRestore]
 				[Triggers:GVK-Alliance-PresetBases-Site-Trigger-Refresh-SOBAN-TurretOnly]
@@ -1329,6 +1339,198 @@
 		</EntityComponent>
 
 		<!-- =================================================== -->
+		<!-- SITE INSIDE EACH ALLIANCE'S TERRITORY               -->
+		<!-- =================================================== -->
+
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-PresetBases-Site-Trigger-EnterTerritory-SOBAN</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Trigger]
+				[UseTrigger:true]
+				[Type:InsideActiveZone]
+				[StartsReady:true]
+				[MinCooldownMs:10000]
+				[MaxCooldownMs:10001]
+				[ZoneName:SOBAN_Zone]
+				[MaxActions:-1]
+				[Conditions:GVK-Alliance-PresetBases-Site-Condition-OutsideTerritory-SOBAN]
+				[ActionExecution:All]
+				[Actions:GVK-Alliance-PresetBases-Site-Action-EnterTerritory-SOBAN]
+			</Description>
+		</EntityComponent>
+
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-PresetBases-Site-Condition-OutsideTerritory-SOBAN</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Condition]
+				[UseConditions:true]
+				[MatchAnyCondition:false]
+				[CheckFalseBooleans:true]
+				[FalseBooleans:GVK_Site_InTerritory_SOBAN]
+			</Description>
+		</EntityComponent>
+
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-PresetBases-Site-Action-EnterTerritory-SOBAN</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Action]
+				[SetBooleansTrue:GVK_Site_InTerritory_SOBAN]
+				[ManuallyActivateTrigger:true]
+				[ManuallyActivatedTriggerTags:GVK-Alliance-PresetBases-TriggerTags-RefreshBoard]
+			</Description>
+		</EntityComponent>
+
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-PresetBases-Site-Trigger-LeaveTerritory-SOBAN</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Trigger]
+				[UseTrigger:true]
+				[Type:OutsideActiveZone]
+				[StartsReady:true]
+				[MinCooldownMs:10000]
+				[MaxCooldownMs:10001]
+				[ZoneName:SOBAN_Zone]
+				[MaxActions:-1]
+				[Conditions:GVK-Alliance-PresetBases-Site-Condition-InsideTerritory-SOBAN]
+				[ActionExecution:All]
+				[Actions:GVK-Alliance-PresetBases-Site-Action-LeaveTerritory-SOBAN]
+			</Description>
+		</EntityComponent>
+
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-PresetBases-Site-Condition-InsideTerritory-SOBAN</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Condition]
+				[UseConditions:true]
+				[MatchAnyCondition:false]
+				[CheckTrueBooleans:true]
+				[TrueBooleans:GVK_Site_InTerritory_SOBAN]
+			</Description>
+		</EntityComponent>
+
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-PresetBases-Site-Action-LeaveTerritory-SOBAN</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Action]
+				[SetBooleansFalse:GVK_Site_InTerritory_SOBAN]
+				[ManuallyActivateTrigger:true]
+				[ManuallyActivatedTriggerTags:GVK-Alliance-PresetBases-TriggerTags-RefreshBoard]
+			</Description>
+		</EntityComponent>
+
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-PresetBases-Site-Trigger-EnterTerritory-KHAANEPH</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Trigger]
+				[UseTrigger:true]
+				[Type:InsideActiveZone]
+				[StartsReady:true]
+				[MinCooldownMs:10000]
+				[MaxCooldownMs:10001]
+				[ZoneName:KHAANEPH_Zone]
+				[MaxActions:-1]
+				[Conditions:GVK-Alliance-PresetBases-Site-Condition-OutsideTerritory-KHAANEPH]
+				[ActionExecution:All]
+				[Actions:GVK-Alliance-PresetBases-Site-Action-EnterTerritory-KHAANEPH]
+			</Description>
+		</EntityComponent>
+
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-PresetBases-Site-Condition-OutsideTerritory-KHAANEPH</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Condition]
+				[UseConditions:true]
+				[MatchAnyCondition:false]
+				[CheckFalseBooleans:true]
+				[FalseBooleans:GVK_Site_InTerritory_KHAANEPH]
+			</Description>
+		</EntityComponent>
+
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-PresetBases-Site-Action-EnterTerritory-KHAANEPH</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Action]
+				[SetBooleansTrue:GVK_Site_InTerritory_KHAANEPH]
+				[ManuallyActivateTrigger:true]
+				[ManuallyActivatedTriggerTags:GVK-Alliance-PresetBases-TriggerTags-RefreshBoard]
+			</Description>
+		</EntityComponent>
+
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-PresetBases-Site-Trigger-LeaveTerritory-KHAANEPH</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Trigger]
+				[UseTrigger:true]
+				[Type:OutsideActiveZone]
+				[StartsReady:true]
+				[MinCooldownMs:10000]
+				[MaxCooldownMs:10001]
+				[ZoneName:KHAANEPH_Zone]
+				[MaxActions:-1]
+				[Conditions:GVK-Alliance-PresetBases-Site-Condition-InsideTerritory-KHAANEPH]
+				[ActionExecution:All]
+				[Actions:GVK-Alliance-PresetBases-Site-Action-LeaveTerritory-KHAANEPH]
+			</Description>
+		</EntityComponent>
+
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-PresetBases-Site-Condition-InsideTerritory-KHAANEPH</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Condition]
+				[UseConditions:true]
+				[MatchAnyCondition:false]
+				[CheckTrueBooleans:true]
+				[TrueBooleans:GVK_Site_InTerritory_KHAANEPH]
+			</Description>
+		</EntityComponent>
+
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-PresetBases-Site-Action-LeaveTerritory-KHAANEPH</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Action]
+				[SetBooleansFalse:GVK_Site_InTerritory_KHAANEPH]
+				[ManuallyActivateTrigger:true]
+				[ManuallyActivatedTriggerTags:GVK-Alliance-PresetBases-TriggerTags-RefreshBoard]
+			</Description>
+		</EntityComponent>
+
+		<!-- =================================================== -->
 		<!-- BOARD REFRESH: exactly one rule matches each state  -->
 		<!-- =================================================== -->
 
@@ -1452,7 +1654,7 @@
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Alliance-PresetBases-Site-Trigger-Refresh-ClaimBoth</SubtypeId>
+				<SubtypeId>GVK-Alliance-PresetBases-Site-Trigger-Refresh-Claim-SOBANOpen-KHAANEPHOpen</SubtypeId>
 			</Id>
 			<Description>
 				[RivalAI Trigger]
@@ -1461,7 +1663,7 @@
 				[Tags:GVK-Alliance-PresetBases-TriggerTags-RefreshBoard]
 				[StartsReady:true]
 				[MaxActions:-1]
-				[Conditions:GVK-Alliance-PresetBases-Site-Condition-Refresh-ClaimBoth]
+				[Conditions:GVK-Alliance-PresetBases-Site-Condition-Refresh-Claim-SOBANOpen-KHAANEPHOpen]
 				[ActionExecution:All]
 				[Actions:GVK-Alliance-PresetBases-Site-Action-Board-ClaimBoth]
 			</Description>
@@ -1470,12 +1672,15 @@
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Alliance-PresetBases-Site-Condition-Refresh-ClaimBoth</SubtypeId>
+				<SubtypeId>GVK-Alliance-PresetBases-Site-Condition-Refresh-Claim-SOBANOpen-KHAANEPHOpen</SubtypeId>
 			</Id>
 			<Description>
 				[RivalAI Condition]
 				[UseConditions:true]
 				[MatchAnyCondition:false]
+				[CheckTrueBooleans:true]
+				[TrueBooleans:GVK_Site_InTerritory_SOBAN]
+				[TrueBooleans:GVK_Site_InTerritory_KHAANEPH]
 				[CheckFalseBooleans:true]
 				[FalseBooleans:GVK_Site_Base_SOBAN]
 				[FalseBooleans:GVK_Site_Base_KHAANEPH]
@@ -1489,7 +1694,7 @@
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Alliance-PresetBases-Site-Trigger-Refresh-ClaimSOBAN</SubtypeId>
+				<SubtypeId>GVK-Alliance-PresetBases-Site-Trigger-Refresh-Claim-SOBANOpen-KHAANEPHOut</SubtypeId>
 			</Id>
 			<Description>
 				[RivalAI Trigger]
@@ -1498,7 +1703,7 @@
 				[Tags:GVK-Alliance-PresetBases-TriggerTags-RefreshBoard]
 				[StartsReady:true]
 				[MaxActions:-1]
-				[Conditions:GVK-Alliance-PresetBases-Site-Condition-Refresh-ClaimSOBAN]
+				[Conditions:GVK-Alliance-PresetBases-Site-Condition-Refresh-Claim-SOBANOpen-KHAANEPHOut]
 				[ActionExecution:All]
 				[Actions:GVK-Alliance-PresetBases-Site-Action-Board-ClaimSOBAN]
 			</Description>
@@ -1507,13 +1712,54 @@
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Alliance-PresetBases-Site-Condition-Refresh-ClaimSOBAN</SubtypeId>
+				<SubtypeId>GVK-Alliance-PresetBases-Site-Condition-Refresh-Claim-SOBANOpen-KHAANEPHOut</SubtypeId>
 			</Id>
 			<Description>
 				[RivalAI Condition]
 				[UseConditions:true]
 				[MatchAnyCondition:false]
 				[CheckTrueBooleans:true]
+				[TrueBooleans:GVK_Site_InTerritory_SOBAN]
+				[CheckFalseBooleans:true]
+				[FalseBooleans:GVK_Site_Base_SOBAN]
+				[FalseBooleans:GVK_Site_Base_KHAANEPH]
+				[FalseBooleans:GVK_Site_KillLock]
+				[FalseBooleans:GVK_Site_ClaimPending]
+				[FalseBooleans:GVK_Site_HostileNear_SOBAN]
+				[FalseBooleans:GVK_Site_InTerritory_KHAANEPH]
+			</Description>
+		</EntityComponent>
+
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-PresetBases-Site-Trigger-Refresh-Claim-SOBANOpen-KHAANEPHHostile</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Trigger]
+				[UseTrigger:true]
+				[Type:Manual]
+				[Tags:GVK-Alliance-PresetBases-TriggerTags-RefreshBoard]
+				[StartsReady:true]
+				[MaxActions:-1]
+				[Conditions:GVK-Alliance-PresetBases-Site-Condition-Refresh-Claim-SOBANOpen-KHAANEPHHostile]
+				[ActionExecution:All]
+				[Actions:GVK-Alliance-PresetBases-Site-Action-Board-ClaimSOBAN]
+			</Description>
+		</EntityComponent>
+
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-PresetBases-Site-Condition-Refresh-Claim-SOBANOpen-KHAANEPHHostile</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Condition]
+				[UseConditions:true]
+				[MatchAnyCondition:false]
+				[CheckTrueBooleans:true]
+				[TrueBooleans:GVK_Site_InTerritory_SOBAN]
+				[TrueBooleans:GVK_Site_InTerritory_KHAANEPH]
 				[TrueBooleans:GVK_Site_HostileNear_KHAANEPH]
 				[CheckFalseBooleans:true]
 				[FalseBooleans:GVK_Site_Base_SOBAN]
@@ -1527,7 +1773,7 @@
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Alliance-PresetBases-Site-Trigger-Refresh-ClaimKHAANEPH</SubtypeId>
+				<SubtypeId>GVK-Alliance-PresetBases-Site-Trigger-Refresh-Claim-SOBANOut-KHAANEPHOpen</SubtypeId>
 			</Id>
 			<Description>
 				[RivalAI Trigger]
@@ -1536,7 +1782,7 @@
 				[Tags:GVK-Alliance-PresetBases-TriggerTags-RefreshBoard]
 				[StartsReady:true]
 				[MaxActions:-1]
-				[Conditions:GVK-Alliance-PresetBases-Site-Condition-Refresh-ClaimKHAANEPH]
+				[Conditions:GVK-Alliance-PresetBases-Site-Condition-Refresh-Claim-SOBANOut-KHAANEPHOpen]
 				[ActionExecution:All]
 				[Actions:GVK-Alliance-PresetBases-Site-Action-Board-ClaimKHAANEPH]
 			</Description>
@@ -1545,14 +1791,131 @@
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Alliance-PresetBases-Site-Condition-Refresh-ClaimKHAANEPH</SubtypeId>
+				<SubtypeId>GVK-Alliance-PresetBases-Site-Condition-Refresh-Claim-SOBANOut-KHAANEPHOpen</SubtypeId>
 			</Id>
 			<Description>
 				[RivalAI Condition]
 				[UseConditions:true]
 				[MatchAnyCondition:false]
 				[CheckTrueBooleans:true]
+				[TrueBooleans:GVK_Site_InTerritory_KHAANEPH]
+				[CheckFalseBooleans:true]
+				[FalseBooleans:GVK_Site_Base_SOBAN]
+				[FalseBooleans:GVK_Site_Base_KHAANEPH]
+				[FalseBooleans:GVK_Site_KillLock]
+				[FalseBooleans:GVK_Site_ClaimPending]
+				[FalseBooleans:GVK_Site_InTerritory_SOBAN]
+				[FalseBooleans:GVK_Site_HostileNear_KHAANEPH]
+			</Description>
+		</EntityComponent>
+
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-PresetBases-Site-Trigger-Refresh-Claim-SOBANOut-KHAANEPHOut</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Trigger]
+				[UseTrigger:true]
+				[Type:Manual]
+				[Tags:GVK-Alliance-PresetBases-TriggerTags-RefreshBoard]
+				[StartsReady:true]
+				[MaxActions:-1]
+				[Conditions:GVK-Alliance-PresetBases-Site-Condition-Refresh-Claim-SOBANOut-KHAANEPHOut]
+				[ActionExecution:All]
+				[Actions:GVK-Alliance-PresetBases-Site-Action-Board-Empty]
+			</Description>
+		</EntityComponent>
+
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-PresetBases-Site-Condition-Refresh-Claim-SOBANOut-KHAANEPHOut</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Condition]
+				[UseConditions:true]
+				[MatchAnyCondition:false]
+				[CheckFalseBooleans:true]
+				[FalseBooleans:GVK_Site_Base_SOBAN]
+				[FalseBooleans:GVK_Site_Base_KHAANEPH]
+				[FalseBooleans:GVK_Site_KillLock]
+				[FalseBooleans:GVK_Site_ClaimPending]
+				[FalseBooleans:GVK_Site_InTerritory_SOBAN]
+				[FalseBooleans:GVK_Site_InTerritory_KHAANEPH]
+			</Description>
+		</EntityComponent>
+
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-PresetBases-Site-Trigger-Refresh-Claim-SOBANOut-KHAANEPHHostile</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Trigger]
+				[UseTrigger:true]
+				[Type:Manual]
+				[Tags:GVK-Alliance-PresetBases-TriggerTags-RefreshBoard]
+				[StartsReady:true]
+				[MaxActions:-1]
+				[Conditions:GVK-Alliance-PresetBases-Site-Condition-Refresh-Claim-SOBANOut-KHAANEPHHostile]
+				[ActionExecution:All]
+				[Actions:GVK-Alliance-PresetBases-Site-Action-Board-Empty]
+			</Description>
+		</EntityComponent>
+
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-PresetBases-Site-Condition-Refresh-Claim-SOBANOut-KHAANEPHHostile</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Condition]
+				[UseConditions:true]
+				[MatchAnyCondition:false]
+				[CheckTrueBooleans:true]
+				[TrueBooleans:GVK_Site_InTerritory_KHAANEPH]
+				[TrueBooleans:GVK_Site_HostileNear_KHAANEPH]
+				[CheckFalseBooleans:true]
+				[FalseBooleans:GVK_Site_Base_SOBAN]
+				[FalseBooleans:GVK_Site_Base_KHAANEPH]
+				[FalseBooleans:GVK_Site_KillLock]
+				[FalseBooleans:GVK_Site_ClaimPending]
+				[FalseBooleans:GVK_Site_InTerritory_SOBAN]
+			</Description>
+		</EntityComponent>
+
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-PresetBases-Site-Trigger-Refresh-Claim-SOBANHostile-KHAANEPHOpen</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Trigger]
+				[UseTrigger:true]
+				[Type:Manual]
+				[Tags:GVK-Alliance-PresetBases-TriggerTags-RefreshBoard]
+				[StartsReady:true]
+				[MaxActions:-1]
+				[Conditions:GVK-Alliance-PresetBases-Site-Condition-Refresh-Claim-SOBANHostile-KHAANEPHOpen]
+				[ActionExecution:All]
+				[Actions:GVK-Alliance-PresetBases-Site-Action-Board-ClaimKHAANEPH]
+			</Description>
+		</EntityComponent>
+
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-PresetBases-Site-Condition-Refresh-Claim-SOBANHostile-KHAANEPHOpen</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Condition]
+				[UseConditions:true]
+				[MatchAnyCondition:false]
+				[CheckTrueBooleans:true]
+				[TrueBooleans:GVK_Site_InTerritory_SOBAN]
 				[TrueBooleans:GVK_Site_HostileNear_SOBAN]
+				[TrueBooleans:GVK_Site_InTerritory_KHAANEPH]
 				[CheckFalseBooleans:true]
 				[FalseBooleans:GVK_Site_Base_SOBAN]
 				[FalseBooleans:GVK_Site_Base_KHAANEPH]
@@ -1565,7 +1928,7 @@
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Alliance-PresetBases-Site-Trigger-Refresh-ClaimNone</SubtypeId>
+				<SubtypeId>GVK-Alliance-PresetBases-Site-Trigger-Refresh-Claim-SOBANHostile-KHAANEPHOut</SubtypeId>
 			</Id>
 			<Description>
 				[RivalAI Trigger]
@@ -1574,7 +1937,7 @@
 				[Tags:GVK-Alliance-PresetBases-TriggerTags-RefreshBoard]
 				[StartsReady:true]
 				[MaxActions:-1]
-				[Conditions:GVK-Alliance-PresetBases-Site-Condition-Refresh-ClaimNone]
+				[Conditions:GVK-Alliance-PresetBases-Site-Condition-Refresh-Claim-SOBANHostile-KHAANEPHOut]
 				[ActionExecution:All]
 				[Actions:GVK-Alliance-PresetBases-Site-Action-Board-Empty]
 			</Description>
@@ -1583,14 +1946,55 @@
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Alliance-PresetBases-Site-Condition-Refresh-ClaimNone</SubtypeId>
+				<SubtypeId>GVK-Alliance-PresetBases-Site-Condition-Refresh-Claim-SOBANHostile-KHAANEPHOut</SubtypeId>
 			</Id>
 			<Description>
 				[RivalAI Condition]
 				[UseConditions:true]
 				[MatchAnyCondition:false]
 				[CheckTrueBooleans:true]
+				[TrueBooleans:GVK_Site_InTerritory_SOBAN]
 				[TrueBooleans:GVK_Site_HostileNear_SOBAN]
+				[CheckFalseBooleans:true]
+				[FalseBooleans:GVK_Site_Base_SOBAN]
+				[FalseBooleans:GVK_Site_Base_KHAANEPH]
+				[FalseBooleans:GVK_Site_KillLock]
+				[FalseBooleans:GVK_Site_ClaimPending]
+				[FalseBooleans:GVK_Site_InTerritory_KHAANEPH]
+			</Description>
+		</EntityComponent>
+
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-PresetBases-Site-Trigger-Refresh-Claim-SOBANHostile-KHAANEPHHostile</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Trigger]
+				[UseTrigger:true]
+				[Type:Manual]
+				[Tags:GVK-Alliance-PresetBases-TriggerTags-RefreshBoard]
+				[StartsReady:true]
+				[MaxActions:-1]
+				[Conditions:GVK-Alliance-PresetBases-Site-Condition-Refresh-Claim-SOBANHostile-KHAANEPHHostile]
+				[ActionExecution:All]
+				[Actions:GVK-Alliance-PresetBases-Site-Action-Board-Empty]
+			</Description>
+		</EntityComponent>
+
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-PresetBases-Site-Condition-Refresh-Claim-SOBANHostile-KHAANEPHHostile</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Condition]
+				[UseConditions:true]
+				[MatchAnyCondition:false]
+				[CheckTrueBooleans:true]
+				[TrueBooleans:GVK_Site_InTerritory_SOBAN]
+				[TrueBooleans:GVK_Site_HostileNear_SOBAN]
+				[TrueBooleans:GVK_Site_InTerritory_KHAANEPH]
 				[TrueBooleans:GVK_Site_HostileNear_KHAANEPH]
 				[CheckFalseBooleans:true]
 				[FalseBooleans:GVK_Site_Base_SOBAN]

@@ -87,6 +87,7 @@ def command(subtype, code, radius, extra=()):
 # Local state on the Base Site (RivalAI booleans and counters, saved with the grid)
 BASE = {f: f"GVK_Site_Base_{f}" for f in F}
 HOST = {f: f"GVK_Site_HostileNear_{f}" for f in F}
+TERR = {f: f"GVK_Site_InTerritory_{f}" for f in F}
 LOCK, PEND = "GVK_Site_KillLock", "GVK_Site_ClaimPending"
 TCOOL, RCOOL, TCOUNT = "GVK_Site_TurretCooling", "GVK_Site_RestoreCooling", "GVK_Site_Turrets"
 TURRET_CAP = 4
@@ -165,17 +166,25 @@ triggers = ["Session", "PeriodicRefresh", "BaseKilled", "BaseGone", "BaseWatchdo
             "LockEnd", "ClaimPendingEnd", "TurretCoolEnd", "RestoreCoolEnd"]
 for f in F:
     triggers += [f"Claim-{f}", f"Turret-{f}", f"Restore-{f}", f"BaseUp-{f}", f"BaseAlive-{f}",
-                 f"HostileArrived-{f}", f"HostileStillNear-{f}", f"HostileClear-{f}"]
+                 f"HostileArrived-{f}", f"HostileStillNear-{f}", f"HostileClear-{f}",
+                 f"EnterTerritory-{f}", f"LeaveTerritory-{f}"]
     triggers += [f"BoardUsed-{kind}-{f}" for kind in MISSIONS]
 refresh_rules = []  # (name, true, false, counters, board)
 refresh_rules += [
     ("Locked", [LOCK], [BASE["SOBAN"], BASE["KHAANEPH"]], [], "Empty"),
     ("Pending", [PEND], [BASE["SOBAN"], BASE["KHAANEPH"], LOCK], [], "Empty"),
-    ("ClaimBoth", [], [BASE["SOBAN"], BASE["KHAANEPH"], LOCK, PEND, HOST["SOBAN"], HOST["KHAANEPH"]], [], "ClaimBoth"),
-    ("ClaimSOBAN", [HOST["KHAANEPH"]], [BASE["SOBAN"], BASE["KHAANEPH"], LOCK, PEND, HOST["SOBAN"]], [], "ClaimSOBAN"),
-    ("ClaimKHAANEPH", [HOST["SOBAN"]], [BASE["SOBAN"], BASE["KHAANEPH"], LOCK, PEND, HOST["KHAANEPH"]], [], "ClaimKHAANEPH"),
-    ("ClaimNone", [HOST["SOBAN"], HOST["KHAANEPH"]], [BASE["SOBAN"], BASE["KHAANEPH"], LOCK, PEND], [], "Empty"),
 ]
+# No Base, no lock, nothing pending: each alliance's Claim shows only while the site is inside its Territory and no
+# player hostile to it is near. Per alliance that is one of three exclusive states, so 3 x 3 rules cover every case.
+def claim_state(f, state):
+    return {"Open": ([TERR[f]], [HOST[f]]), "Out": ([], [TERR[f]]), "Hostile": ([TERR[f], HOST[f]], [])}[state]
+for s_state in ["Open", "Out", "Hostile"]:
+    for k_state in ["Open", "Out", "Hostile"]:
+        (st, sf), (kt, kf) = claim_state("SOBAN", s_state), claim_state("KHAANEPH", k_state)
+        board = {(True, True): "ClaimBoth", (True, False): "ClaimSOBAN", (False, True): "ClaimKHAANEPH",
+                 (False, False): "Empty"}[(s_state == "Open", k_state == "Open")]
+        refresh_rules.append((f"Claim-SOBAN{s_state}-KHAANEPH{k_state}", st + kt,
+                              [BASE["SOBAN"], BASE["KHAANEPH"], LOCK, PEND] + sf + kf, [], board))
 below_cap = [(TCOUNT, TURRET_CAP, "Less")]
 at_cap = [(TCOUNT, TURRET_CAP, "GreaterOrEqual")]
 for f in F:
@@ -286,6 +295,17 @@ for f in F:
     t.append(cond(f"{P}-Site-Condition-Hostile-{f}", [HOST[f]]))
     t.append(action(f"{P}-Site-Action-HostileClear-{f}", [f"[SetBooleansFalse:{HOST[f]}]"], refresh=True))
 
+t.append(section("SITE INSIDE EACH ALLIANCE'S TERRITORY"))
+for f in F:
+    t.append(trig(f"{P}-Site-Trigger-EnterTerritory-{f}", "InsideActiveZone", [f"{P}-Site-Action-EnterTerritory-{f}"],
+                  f"{P}-Site-Condition-OutsideTerritory-{f}", [f"[ZoneName:{f}_Zone]"], cooldown=10000))
+    t.append(cond(f"{P}-Site-Condition-OutsideTerritory-{f}", [], [TERR[f]]))
+    t.append(action(f"{P}-Site-Action-EnterTerritory-{f}", [f"[SetBooleansTrue:{TERR[f]}]"], refresh=True))
+    t.append(trig(f"{P}-Site-Trigger-LeaveTerritory-{f}", "OutsideActiveZone", [f"{P}-Site-Action-LeaveTerritory-{f}"],
+                  f"{P}-Site-Condition-InsideTerritory-{f}", [f"[ZoneName:{f}_Zone]"], cooldown=10000))
+    t.append(cond(f"{P}-Site-Condition-InsideTerritory-{f}", [TERR[f]]))
+    t.append(action(f"{P}-Site-Action-LeaveTerritory-{f}", [f"[SetBooleansFalse:{TERR[f]}]"], refresh=True))
+
 t.append(section("BOARD REFRESH: exactly one rule matches each state"))
 t.append(trig(f"{P}-Site-Trigger-Session", "Session", [f"{P}-Site-Action-Refresh"]))
 t.append(trig(f"{P}-Site-Trigger-PeriodicRefresh", "Timer", [f"{P}-Site-Action-Refresh"], cooldown=600000))
@@ -311,8 +331,9 @@ for f in F:
 theader = """\t\t<!--
 \t\tBase Site grid (NST [UNKN] Base Site): runs the site's contract board (GVK-Settings#653, contracts in GVK-Alliance-PresetBases-Contracts.sbc).
 \t\tState is local to each Base Site: which alliance's Base stands here, the 2-hour lock after a kill, the 20-minute turret
-\t\tand 2-hour restore cooldowns, the standing Defense Turret count, and whether players hostile to each alliance are
-\t\twithin 5 km. Every change re-applies the one board profile that matches the new state.
+\t\tand 2-hour restore cooldowns, the standing Defense Turret count, whether players hostile to each alliance are
+\t\twithin 5 km, and whether the site is inside each alliance's Territory (an alliance's Claim shows only while it is).
+\t\tEvery change re-applies the one board profile that matches the new state.
 \t\tThe Base reports to its Base Site with commands (GVK-Alliance-PresetBases-BaseSite.sbc). Design: Docs/design/preset-bases.md.
 \t\t-->"""
 write(PB / "GVK-Alliance-PresetBases-Site-Behavior.sbc", doc(theader, t))
