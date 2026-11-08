@@ -4,11 +4,11 @@
 		<!--
 		Base Site, Base and Defense Turret side (GVK-Settings#653). Each Base behavior adds its alliance's Base trigger group,
 		each Turret behavior its Turret trigger group.
-		- Base: +50 Influence once when it first spawns, a report to its tower every 5 minutes, Defense Turrets and Restore on
-		  the tower's orders, and a report when it is killed or despawned (its Defense Turrets despawn with it).
+		- Base: +50 Influence once when it first spawns, a report to its Base Site every 5 minutes, Defense Turrets and Restore on
+		  the Base Site's orders, and a report when it is killed or despawned (its Defense Turrets despawn with it).
 		- A kill costs its alliance 50 Influence even when no enemy or neutral player damaged it (closes the claim-and-kill farm).
-		- Defense Turret: reports to its parent Base when it spawns and when it is lost; the Base relays both to the tower.
-		Tower side: GVK-Alliance-PresetBases-Placeholder-Behavior.sbc. Design: Docs/design/preset-bases.md.
+		- Defense Turret: reports to its parent Base when it spawns and when it is lost; the Base relays both to the Base Site.
+		Base Site side: GVK-Alliance-PresetBases-Site-Behavior.sbc. Design: Docs/design/preset-bases.md.
 		-->
 		<!-- =================================================== -->
 		<!-- BASE TRIGGER GROUPS (one per alliance)              -->
@@ -262,7 +262,7 @@
 		</EntityComponent>
 
 		<!-- =================================================== -->
-		<!-- ORDERS FROM THE TOWER'S BOARD                       -->
+		<!-- ORDERS FROM THE BASE SITE'S BOARD                   -->
 		<!-- =================================================== -->
 
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
@@ -525,7 +525,7 @@
 		</EntityComponent>
 
 		<!-- =================================================== -->
-		<!-- DEFENSE TURRET COUNT: RELAY CHILD REPORTS TO THE TOWER -->
+		<!-- DEFENSE TURRET COUNT: RELAY CHILD REPORTS TO THE BASE SITE -->
 		<!-- =================================================== -->
 
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">

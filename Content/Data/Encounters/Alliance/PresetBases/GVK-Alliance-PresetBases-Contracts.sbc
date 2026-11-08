@@ -3,9 +3,9 @@
 	<EntityComponents>
 		<!--
 		Alliance Base Site contract board (GVK-Settings#653).
-		The tower's contract block (named "NPC Contracts") shows free contracts: Claim Base Site, Deploy Defense Turret and
-		Restore Base. Accepting one sends a command to that tower, which does the work and keeps the site's state; the
-		contract then succeeds. The tower picks which board profile to show (GVK-Alliance-PresetBases-Placeholder-Behavior.sbc).
+		The Base Site's contract block (named "NPC Contracts") shows free contracts: Claim Base Site, Deploy Defense Turret and
+		Restore Base. Accepting one sends a command to that Base Site, which does the work and keeps the site's state; the
+		contract then succeeds. The Base Site picks which board profile to show (GVK-Alliance-PresetBases-Site-Behavior.sbc).
 		Design and reasons: Docs/design/preset-bases.md.
 		-->
 		<!-- =================================================== -->
@@ -333,7 +333,7 @@
 		</EntityComponent>
 
 		<!-- =================================================== -->
-		<!-- ACCEPTED CONTRACT: TELL THE TOWER, THEN SUCCEED     -->
+		<!-- ACCEPTED CONTRACT: TELL THE BASE SITE, THEN SUCCEED -->
 		<!-- =================================================== -->
 
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
@@ -364,7 +364,7 @@
 			</Description>
 		</EntityComponent>
 
-		<!-- {ContractBlockLocation} is the board's position, so only that site's tower hears it -->
+		<!-- {ContractBlockLocation} is the board's position, so only that site's Base Site hears it -->
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>

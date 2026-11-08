@@ -1,8 +1,8 @@
-"""Generate the Base Site contract board (GVK-Settings#653): the tower behavior, the contracts, and the Base and
+"""Generate the Base Site contract board (GVK-Settings#653): the Base Site behavior, the contracts, and the Base and
 Defense Turret triggers. Edit this script and re-run it instead of editing the three generated files by hand.
 
 Usage (from the repo root): python tools/New-BaseSiteBoard.py
-Writes Content/Data/Encounters/Alliance/PresetBases/GVK-Alliance-PresetBases-{Placeholder-Behavior,Contracts,BaseSite}.sbc
+Writes Content/Data/Encounters/Alliance/PresetBases/GVK-Alliance-PresetBases-{Site-Behavior,Contracts,BaseSite}.sbc
 as UTF-8 (no BOM) with CRLF line endings. Design: Docs/design/preset-bases.md.
 """
 from pathlib import Path
@@ -84,7 +84,7 @@ def command(subtype, code, radius, extra=()):
         f"[Radius:{radius}]", "[CommandDelayTicks:0]"]
     return comp(subtype, body)
 
-# Local state on the tower (RivalAI booleans and counters, saved with the grid)
+# Local state on the Base Site (RivalAI booleans and counters, saved with the grid)
 BASE = {f: f"GVK_Site_Base_{f}" for f in F}
 HOST = {f: f"GVK_Site_HostileNear_{f}" for f in F}
 LOCK, PEND = "GVK_Site_KillLock", "GVK_Site_ClaimPending"
@@ -136,7 +136,7 @@ for f in F:
 for name, ids in BOARDS.items():
     c.append(comp(f"{P}-Board-{name}", ["[MES Contract Block]"] + [f"[MissionIds:{i}]" for i in ids]))
 
-c.append(section("ACCEPTED CONTRACT: TELL THE TOWER, THEN SUCCEED"))
+c.append(section("ACCEPTED CONTRACT: TELL THE BASE SITE, THEN SUCCEED"))
 c.append(comp(f"{P}-TemplateGroup-Contract", ["[MES Event TemplateGroup]", f"[TemplateEventIds:{P}-EventTemplate-Contract]"]))
 c.append(comp(f"{P}-EventTemplate-Contract", [
     "[MES Event Template]", "[UseEvent:true]", "[UniqueEvent:true]", "[StartsReady:true]",
@@ -146,21 +146,21 @@ c.append(comp(f"{P}-EventActionTemplate-Contract", [
     "[MES Event Action Template]", "[BroadcastCommandProfiles:true]",
     f"[CommandProfileIds:{P}-Command-Board]", "[CommandProfileOriginCoords:{ContractBlockLocation}]",
     "[OverrideCommandCode:{BoardCode}]", "[TryContractSuccess:true]"],
-    "{ContractBlockLocation} is the board's position, so only that site's tower hears it"))
+    "{ContractBlockLocation} is the board's position, so only that site's Base Site hears it"))
 c.append(command(f"{P}-Command-Board", "GVK-BaseSite-Board", 150))
 
 header = """\t\t<!--
 \t\tAlliance Base Site contract board (GVK-Settings#653).
-\t\tThe tower's contract block (named "NPC Contracts") shows free contracts: Claim Base Site, Deploy Defense Turret and
-\t\tRestore Base. Accepting one sends a command to that tower, which does the work and keeps the site's state; the
-\t\tcontract then succeeds. The tower picks which board profile to show (GVK-Alliance-PresetBases-Placeholder-Behavior.sbc).
+\t\tThe Base Site's contract block (named "NPC Contracts") shows free contracts: Claim Base Site, Deploy Defense Turret and
+\t\tRestore Base. Accepting one sends a command to that Base Site, which does the work and keeps the site's state; the
+\t\tcontract then succeeds. The Base Site picks which board profile to show (GVK-Alliance-PresetBases-Site-Behavior.sbc).
 \t\tDesign and reasons: Docs/design/preset-bases.md.
 \t\t-->"""
 write(PB / "GVK-Alliance-PresetBases-Contracts.sbc", doc(header, c))
 
-# ---------------------------------------------------------------- tower behavior file
+# ---------------------------------------------------------------- Base Site behavior file
 t = []
-t.append(section("BASE SITE TOWER BEHAVIOR"))
+t.append(section("BASE SITE BEHAVIOR"))
 triggers = ["Session", "PeriodicRefresh", "BaseKilled", "BaseGone", "BaseWatchdog", "TurretUp", "TurretLost",
             "LockEnd", "ClaimPendingEnd", "TurretCoolEnd", "RestoreCoolEnd"]
 for f in F:
@@ -191,111 +191,111 @@ for f in F:
     ]
 for r in refresh_rules:
     triggers.append(f"Refresh-{r[0]}")
-t.append(comp(f"{P}-Tower-Behavior", [
+t.append(comp(f"{P}-Site-Behavior", [
     "[MES AI Behavior]", "[BehaviorName:Passive]", "[UseRetreatTimer:false]", "[UseNoTargetTimer:false]",
-    "[UsePlayerDistanceTimer:false]"] + [f"[Triggers:{P}-Tower-Trigger-{x}]" for x in triggers]))
+    "[UsePlayerDistanceTimer:false]"] + [f"[Triggers:{P}-Site-Trigger-{x}]" for x in triggers]))
 
 t.append(section("MES PLAYER CONDITIONS FOR ZONE"))
 for f in F:
     t.append(comp(f"{P}-PlayerCondition-In{ZONE[f]}Zone", [
         "[MES Player Condition]", "[CheckPlayerInActiveZone:true]", f"[ZoneName:{f}_Zone]"]))
 
-t.append(section("CONTRACTS ACCEPTED ON THIS TOWER'S BOARD"))
+t.append(section("CONTRACTS ACCEPTED ON THIS BASE SITE'S BOARD"))
 for f in F:
     other = "KHAANEPH" if f == "SOBAN" else "SOBAN"
-    t.append(trig(f"{P}-Tower-Trigger-Claim-{f}", "CommandReceived", [f"{P}-Tower-Action-Claim-{f}"],
-                  f"{P}-Tower-Condition-CanClaim-{f}", [f"[CommandReceiveCode:GVK-BaseSite-Board-Claim-{f}]"]))
-    t.append(cond(f"{P}-Tower-Condition-CanClaim-{f}", [], [BASE[f], BASE[other], LOCK, PEND, HOST[f]]))
-    t.append(action(f"{P}-Tower-Action-Claim-{f}", [
+    t.append(trig(f"{P}-Site-Trigger-Claim-{f}", "CommandReceived", [f"{P}-Site-Action-Claim-{f}"],
+                  f"{P}-Site-Condition-CanClaim-{f}", [f"[CommandReceiveCode:GVK-BaseSite-Board-Claim-{f}]"]))
+    t.append(cond(f"{P}-Site-Condition-CanClaim-{f}", [], [BASE[f], BASE[other], LOCK, PEND, HOST[f]]))
+    t.append(action(f"{P}-Site-Action-Claim-{f}", [
         "[SpawnEncounter:true]", f"[Spawner:{P}-Spawner-Base-{f}]", f"[SetBooleansTrue:{PEND}]",
         f"[SetBooleansFalse:{TCOOL}]", f"[SetBooleansFalse:{RCOOL}]", f"[ResetCounters:{TCOUNT}]",
-        "[ResetCooldownTimeOfTriggers:true]", f"[ResetTriggerCooldownNames:{P}-Tower-Trigger-ClaimPendingEnd]"], refresh=True))
-    t.append(trig(f"{P}-Tower-Trigger-Turret-{f}", "CommandReceived", [f"{P}-Tower-Action-Turret"],
-                  f"{P}-Tower-Condition-CanTurret-{f}", [f"[CommandReceiveCode:GVK-BaseSite-Board-Turret-{f}]"]))
-    t.append(cond(f"{P}-Tower-Condition-CanTurret-{f}", [BASE[f]], [HOST[f], TCOOL], below_cap))
-    t.append(trig(f"{P}-Tower-Trigger-Restore-{f}", "CommandReceived", [f"{P}-Tower-Action-Restore"],
-                  f"{P}-Tower-Condition-CanRestore-{f}", [f"[CommandReceiveCode:GVK-BaseSite-Board-Restore-{f}]"]))
-    t.append(cond(f"{P}-Tower-Condition-CanRestore-{f}", [BASE[f]], [HOST[f], RCOOL]))
+        "[ResetCooldownTimeOfTriggers:true]", f"[ResetTriggerCooldownNames:{P}-Site-Trigger-ClaimPendingEnd]"], refresh=True))
+    t.append(trig(f"{P}-Site-Trigger-Turret-{f}", "CommandReceived", [f"{P}-Site-Action-Turret"],
+                  f"{P}-Site-Condition-CanTurret-{f}", [f"[CommandReceiveCode:GVK-BaseSite-Board-Turret-{f}]"]))
+    t.append(cond(f"{P}-Site-Condition-CanTurret-{f}", [BASE[f]], [HOST[f], TCOOL], below_cap))
+    t.append(trig(f"{P}-Site-Trigger-Restore-{f}", "CommandReceived", [f"{P}-Site-Action-Restore"],
+                  f"{P}-Site-Condition-CanRestore-{f}", [f"[CommandReceiveCode:GVK-BaseSite-Board-Restore-{f}]"]))
+    t.append(cond(f"{P}-Site-Condition-CanRestore-{f}", [BASE[f]], [HOST[f], RCOOL]))
 for f in F:
     for kind in MISSIONS:
-        t.append(trig(f"{P}-Tower-Trigger-BoardUsed-{kind}-{f}", "CommandReceived", [f"{P}-Tower-Action-Refresh"],
+        t.append(trig(f"{P}-Site-Trigger-BoardUsed-{kind}-{f}", "CommandReceived", [f"{P}-Site-Action-Refresh"],
                       extra=[f"[CommandReceiveCode:GVK-BaseSite-Board-{kind}-{f}]"]))
-t.append(action(f"{P}-Tower-Action-Turret", [
+t.append(action(f"{P}-Site-Action-Turret", [
     "[BroadcastCommandProfiles:true]", f"[CommandProfileIds:{P}-Command-SpawnDefenseTurret]", f"[SetBooleansTrue:{TCOOL}]",
-    "[ResetCooldownTimeOfTriggers:true]", f"[ResetTriggerCooldownNames:{P}-Tower-Trigger-TurretCoolEnd]"], refresh=True))
-t.append(action(f"{P}-Tower-Action-Restore", [
+    "[ResetCooldownTimeOfTriggers:true]", f"[ResetTriggerCooldownNames:{P}-Site-Trigger-TurretCoolEnd]"], refresh=True))
+t.append(action(f"{P}-Site-Action-Restore", [
     "[BroadcastCommandProfiles:true]", f"[CommandProfileIds:{P}-Command-RestoreBase]", f"[SetBooleansTrue:{RCOOL}]",
-    "[ResetCooldownTimeOfTriggers:true]", f"[ResetTriggerCooldownNames:{P}-Tower-Trigger-RestoreCoolEnd]"], refresh=True))
+    "[ResetCooldownTimeOfTriggers:true]", f"[ResetTriggerCooldownNames:{P}-Site-Trigger-RestoreCoolEnd]"], refresh=True))
 t.append(command(f"{P}-Command-SpawnDefenseTurret", "GVK-BaseSite-SpawnDefenseTurret", 1100))
 t.append(command(f"{P}-Command-RestoreBase", "GVK-BaseSite-RestoreBase", 1100))
 
 t.append(section("REPORTS FROM THIS SITE'S BASE"))
 for f in F:
     other = "KHAANEPH" if f == "SOBAN" else "SOBAN"
-    t.append(trig(f"{P}-Tower-Trigger-BaseUp-{f}", "CommandReceived", [f"{P}-Tower-Action-BaseUp-{f}"],
-                  f"{P}-Tower-Condition-NewBase-{f}", [f"[CommandReceiveCode:GVK-BaseSite-BaseUp-{f}]"]))
-    t.append(cond(f"{P}-Tower-Condition-NewBase-{f}", [], [BASE[f], LOCK]))
-    t.append(action(f"{P}-Tower-Action-BaseUp-{f}", [
+    t.append(trig(f"{P}-Site-Trigger-BaseUp-{f}", "CommandReceived", [f"{P}-Site-Action-BaseUp-{f}"],
+                  f"{P}-Site-Condition-NewBase-{f}", [f"[CommandReceiveCode:GVK-BaseSite-BaseUp-{f}]"]))
+    t.append(cond(f"{P}-Site-Condition-NewBase-{f}", [], [BASE[f], LOCK]))
+    t.append(action(f"{P}-Site-Action-BaseUp-{f}", [
         f"[SetBooleansTrue:{BASE[f]}]", f"[SetBooleansFalse:{BASE[other]}]", f"[SetBooleansFalse:{PEND}]"], refresh=True))
-    t.append(trig(f"{P}-Tower-Trigger-BaseAlive-{f}", "CommandReceived", [f"{P}-Tower-Action-BaseAlive"],
+    t.append(trig(f"{P}-Site-Trigger-BaseAlive-{f}", "CommandReceived", [f"{P}-Site-Action-BaseAlive"],
                   extra=[f"[CommandReceiveCode:GVK-BaseSite-BaseUp-{f}]"]))
-t.append(action(f"{P}-Tower-Action-BaseAlive", [
-    "[ResetCooldownTimeOfTriggers:true]", f"[ResetTriggerCooldownNames:{P}-Tower-Trigger-BaseWatchdog]"]))
-t.append(trig(f"{P}-Tower-Trigger-BaseKilled", "CommandReceived", [f"{P}-Tower-Action-BaseKilled"],
+t.append(action(f"{P}-Site-Action-BaseAlive", [
+    "[ResetCooldownTimeOfTriggers:true]", f"[ResetTriggerCooldownNames:{P}-Site-Trigger-BaseWatchdog]"]))
+t.append(trig(f"{P}-Site-Trigger-BaseKilled", "CommandReceived", [f"{P}-Site-Action-BaseKilled"],
               extra=["[CommandReceiveCode:GVK-BaseSite-BaseKilled]"]))
-t.append(action(f"{P}-Tower-Action-BaseKilled", RESET_STATE + [
+t.append(action(f"{P}-Site-Action-BaseKilled", RESET_STATE + [
     f"[SetBooleansTrue:{LOCK}]", "[ResetCooldownTimeOfTriggers:true]",
-    f"[ResetTriggerCooldownNames:{P}-Tower-Trigger-LockEnd]"], refresh=True))
-t.append(trig(f"{P}-Tower-Trigger-BaseGone", "CommandReceived", [f"{P}-Tower-Action-BaseGone"],
+    f"[ResetTriggerCooldownNames:{P}-Site-Trigger-LockEnd]"], refresh=True))
+t.append(trig(f"{P}-Site-Trigger-BaseGone", "CommandReceived", [f"{P}-Site-Action-BaseGone"],
               extra=["[CommandReceiveCode:GVK-BaseSite-BaseGone]"]))
-t.append(action(f"{P}-Tower-Action-BaseGone", RESET_STATE, refresh=True))
-t.append(trig(f"{P}-Tower-Trigger-BaseWatchdog", "Timer", [f"{P}-Tower-Action-BaseSilent"], f"{P}-Tower-Condition-AnyBase",
+t.append(action(f"{P}-Site-Action-BaseGone", RESET_STATE, refresh=True))
+t.append(trig(f"{P}-Site-Trigger-BaseWatchdog", "Timer", [f"{P}-Site-Action-BaseSilent"], f"{P}-Site-Condition-AnyBase",
               starts_ready=False, cooldown=900000))
-t.append(cond(f"{P}-Tower-Condition-AnyBase", [BASE["SOBAN"], BASE["KHAANEPH"]], any_true=True))
-t.append(action(f"{P}-Tower-Action-BaseSilent", [f"[SetBooleansFalse:{BASE['SOBAN']}]", f"[SetBooleansFalse:{BASE['KHAANEPH']}]"],
+t.append(cond(f"{P}-Site-Condition-AnyBase", [BASE["SOBAN"], BASE["KHAANEPH"]], any_true=True))
+t.append(action(f"{P}-Site-Action-BaseSilent", [f"[SetBooleansFalse:{BASE['SOBAN']}]", f"[SetBooleansFalse:{BASE['KHAANEPH']}]"],
                 refresh=True))
-t.append(trig(f"{P}-Tower-Trigger-TurretUp", "CommandReceived", [f"{P}-Tower-Action-TurretUp"],
+t.append(trig(f"{P}-Site-Trigger-TurretUp", "CommandReceived", [f"{P}-Site-Action-TurretUp"],
               extra=["[CommandReceiveCode:GVK-BaseSite-TurretUp]"]))
-t.append(action(f"{P}-Tower-Action-TurretUp", [f"[IncreaseCounters:{TCOUNT}]"], refresh=True))
-t.append(trig(f"{P}-Tower-Trigger-TurretLost", "CommandReceived", [f"{P}-Tower-Action-TurretLost"],
-              f"{P}-Tower-Condition-HasTurret", ["[CommandReceiveCode:GVK-BaseSite-TurretLost]"]))
-t.append(cond(f"{P}-Tower-Condition-HasTurret", counters=[(TCOUNT, 1, "GreaterOrEqual")]))
-t.append(action(f"{P}-Tower-Action-TurretLost", [f"[DecreaseCounters:{TCOUNT}]"], refresh=True))
+t.append(action(f"{P}-Site-Action-TurretUp", [f"[IncreaseCounters:{TCOUNT}]"], refresh=True))
+t.append(trig(f"{P}-Site-Trigger-TurretLost", "CommandReceived", [f"{P}-Site-Action-TurretLost"],
+              f"{P}-Site-Condition-HasTurret", ["[CommandReceiveCode:GVK-BaseSite-TurretLost]"]))
+t.append(cond(f"{P}-Site-Condition-HasTurret", counters=[(TCOUNT, 1, "GreaterOrEqual")]))
+t.append(action(f"{P}-Site-Action-TurretLost", [f"[DecreaseCounters:{TCOUNT}]"], refresh=True))
 
 t.append(section("COOLDOWNS (restarted by the action that starts them)"))
 for name, flag, ms in [("LockEnd", LOCK, 7200000), ("ClaimPendingEnd", PEND, 120000),
                        ("TurretCoolEnd", TCOOL, 1200000), ("RestoreCoolEnd", RCOOL, 7200000)]:
-    t.append(trig(f"{P}-Tower-Trigger-{name}", "Timer", [f"{P}-Tower-Action-{name}"], f"{P}-Tower-Condition-{name}",
+    t.append(trig(f"{P}-Site-Trigger-{name}", "Timer", [f"{P}-Site-Action-{name}"], f"{P}-Site-Condition-{name}",
                   starts_ready=False, cooldown=ms))
-    t.append(cond(f"{P}-Tower-Condition-{name}", [flag]))
-    t.append(action(f"{P}-Tower-Action-{name}", [f"[SetBooleansFalse:{flag}]"], refresh=True))
+    t.append(cond(f"{P}-Site-Condition-{name}", [flag]))
+    t.append(action(f"{P}-Site-Action-{name}", [f"[SetBooleansFalse:{flag}]"], refresh=True))
 
 t.append(section("HOSTILE PLAYERS WITHIN 5 KM (per alliance)"))
 for f in F:
     pc = f"[PlayerConditionIds:{P}-PlayerCondition-Hostile{f}]"
-    t.append(trig(f"{P}-Tower-Trigger-HostileArrived-{f}", "PlayerNear", [f"{P}-Tower-Action-HostileArrived-{f}"],
-                  f"{P}-Tower-Condition-NotHostile-{f}", ["[TargetDistance:5000]", "[UsePlayerCondition:true]", pc], cooldown=10000))
-    t.append(cond(f"{P}-Tower-Condition-NotHostile-{f}", [], [HOST[f]]))
-    t.append(action(f"{P}-Tower-Action-HostileArrived-{f}", [f"[SetBooleansTrue:{HOST[f]}]"], refresh=True))
-    t.append(trig(f"{P}-Tower-Trigger-HostileStillNear-{f}", "PlayerNear", [f"{P}-Tower-Action-HostileStillNear-{f}"],
+    t.append(trig(f"{P}-Site-Trigger-HostileArrived-{f}", "PlayerNear", [f"{P}-Site-Action-HostileArrived-{f}"],
+                  f"{P}-Site-Condition-NotHostile-{f}", ["[TargetDistance:5000]", "[UsePlayerCondition:true]", pc], cooldown=10000))
+    t.append(cond(f"{P}-Site-Condition-NotHostile-{f}", [], [HOST[f]]))
+    t.append(action(f"{P}-Site-Action-HostileArrived-{f}", [f"[SetBooleansTrue:{HOST[f]}]"], refresh=True))
+    t.append(trig(f"{P}-Site-Trigger-HostileStillNear-{f}", "PlayerNear", [f"{P}-Site-Action-HostileStillNear-{f}"],
                   extra=["[TargetDistance:5000]", "[UsePlayerCondition:true]", pc], cooldown=10000))
-    t.append(action(f"{P}-Tower-Action-HostileStillNear-{f}", [
-        "[ResetCooldownTimeOfTriggers:true]", f"[ResetTriggerCooldownNames:{P}-Tower-Trigger-HostileClear-{f}]"]))
-    t.append(trig(f"{P}-Tower-Trigger-HostileClear-{f}", "Timer", [f"{P}-Tower-Action-HostileClear-{f}"],
-                  f"{P}-Tower-Condition-Hostile-{f}", starts_ready=False, cooldown=60000))
-    t.append(cond(f"{P}-Tower-Condition-Hostile-{f}", [HOST[f]]))
-    t.append(action(f"{P}-Tower-Action-HostileClear-{f}", [f"[SetBooleansFalse:{HOST[f]}]"], refresh=True))
+    t.append(action(f"{P}-Site-Action-HostileStillNear-{f}", [
+        "[ResetCooldownTimeOfTriggers:true]", f"[ResetTriggerCooldownNames:{P}-Site-Trigger-HostileClear-{f}]"]))
+    t.append(trig(f"{P}-Site-Trigger-HostileClear-{f}", "Timer", [f"{P}-Site-Action-HostileClear-{f}"],
+                  f"{P}-Site-Condition-Hostile-{f}", starts_ready=False, cooldown=60000))
+    t.append(cond(f"{P}-Site-Condition-Hostile-{f}", [HOST[f]]))
+    t.append(action(f"{P}-Site-Action-HostileClear-{f}", [f"[SetBooleansFalse:{HOST[f]}]"], refresh=True))
 
 t.append(section("BOARD REFRESH: exactly one rule matches each state"))
-t.append(trig(f"{P}-Tower-Trigger-Session", "Session", [f"{P}-Tower-Action-Refresh"]))
-t.append(trig(f"{P}-Tower-Trigger-PeriodicRefresh", "Timer", [f"{P}-Tower-Action-Refresh"], cooldown=600000))
-t.append(action(f"{P}-Tower-Action-Refresh", [], refresh=True))
+t.append(trig(f"{P}-Site-Trigger-Session", "Session", [f"{P}-Site-Action-Refresh"]))
+t.append(trig(f"{P}-Site-Trigger-PeriodicRefresh", "Timer", [f"{P}-Site-Action-Refresh"], cooldown=600000))
+t.append(action(f"{P}-Site-Action-Refresh", [], refresh=True))
 for name, true, false, counters, board in refresh_rules:
-    t.append(trig(f"{P}-Tower-Trigger-Refresh-{name}", "Manual", [f"{P}-Tower-Action-Board-{board}"],
-                  f"{P}-Tower-Condition-Refresh-{name}", tags=[f"{P}-TriggerTags-RefreshBoard"]))
-    t.append(cond(f"{P}-Tower-Condition-Refresh-{name}", true, false, counters))
+    t.append(trig(f"{P}-Site-Trigger-Refresh-{name}", "Manual", [f"{P}-Site-Action-Board-{board}"],
+                  f"{P}-Site-Condition-Refresh-{name}", tags=[f"{P}-TriggerTags-RefreshBoard"]))
+    t.append(cond(f"{P}-Site-Condition-Refresh-{name}", true, false, counters))
 for board in BOARDS:
-    t.append(action(f"{P}-Tower-Action-Board-{board}", [
+    t.append(action(f"{P}-Site-Action-Board-{board}", [
         "[ApplyContractProfiles:true]", "[ClearContractContentsFirst:true]", "[ContractBlocks:NPC Contracts]",
         f"[ContractBlockProfiles:{P}-Board-{board}]"]))
 
@@ -309,13 +309,13 @@ for f in F:
         "One Base per site: the RC code GVK-Alliance-Base gate (1100 m) in the Base spawn conditions exceeds MaxDistance 500" if f == "SOBAN" else None))
 
 theader = """\t\t<!--
-\t\tBase Site tower: runs the site's contract board (GVK-Settings#653, contracts in GVK-Alliance-PresetBases-Contracts.sbc).
-\t\tState is local to each tower: which alliance's Base stands here, the 2-hour lock after a kill, the 20-minute turret
+\t\tBase Site grid (NST [UNKN] Base Site): runs the site's contract board (GVK-Settings#653, contracts in GVK-Alliance-PresetBases-Contracts.sbc).
+\t\tState is local to each Base Site: which alliance's Base stands here, the 2-hour lock after a kill, the 20-minute turret
 \t\tand 2-hour restore cooldowns, the standing Defense Turret count, and whether players hostile to each alliance are
 \t\twithin 5 km. Every change re-applies the one board profile that matches the new state.
-\t\tThe Base reports to its tower with commands (GVK-Alliance-PresetBases-BaseSite.sbc). Design: Docs/design/preset-bases.md.
+\t\tThe Base reports to its Base Site with commands (GVK-Alliance-PresetBases-BaseSite.sbc). Design: Docs/design/preset-bases.md.
 \t\t-->"""
-write(PB / "GVK-Alliance-PresetBases-Placeholder-Behavior.sbc", doc(theader, t))
+write(PB / "GVK-Alliance-PresetBases-Site-Behavior.sbc", doc(theader, t))
 
 # ---------------------------------------------------------------- Base and Defense Turret side
 B = f"{P}-Base"
@@ -344,7 +344,7 @@ for f in F:
     s.append(action(f"{B}-Action-Heartbeat-{f}", ["[BroadcastCommandProfiles:true]", f"[CommandProfileIds:{B}-Command-BaseUp-{f}]"]))
     s.append(command(f"{B}-Command-BaseUp-{f}", f"GVK-BaseSite-BaseUp-{f}", 1100))
 
-s.append(section("ORDERS FROM THE TOWER'S BOARD"))
+s.append(section("ORDERS FROM THE BASE SITE'S BOARD"))
 for f in F:
     s.append(trig(f"{B}-Trigger-SpawnDefenseTurret-{f}", "CommandReceived", [f"GVK-Alliance-Base-Action-SpawnTurret-{f}"],
                   f"{B}-Condition-Standing", ["[CommandReceiveCode:GVK-BaseSite-SpawnDefenseTurret]"]))
@@ -376,7 +376,7 @@ s.append(command(f"{B}-Command-BaseKilled", "GVK-BaseSite-BaseKilled", 1100))
 s.append(command(f"{B}-Command-BaseGone", "GVK-BaseSite-BaseGone", 1100))
 s.append(command(f"{B}-Command-DespawnDefenseTurrets", "GVK-BaseSite-DespawnDefenseTurrets", 1100, ["[MatchReceiverChild:true]"]))
 
-s.append(section("DEFENSE TURRET COUNT: RELAY CHILD REPORTS TO THE TOWER"))
+s.append(section("DEFENSE TURRET COUNT: RELAY CHILD REPORTS TO THE BASE SITE"))
 for d in ["Up", "Lost"]:
     s.append(trig(f"{B}-Trigger-RelayTurret{d}", "CommandReceived", [f"{B}-Action-RelayTurret{d}"], f"{B}-Condition-Standing",
                   [f"[CommandReceiveCode:GVK-BaseSite-Turret{d}-ToBase]"]))
@@ -408,11 +408,11 @@ for d in ["Up", "Lost"]:
 sheader = """\t\t<!--
 \t\tBase Site, Base and Defense Turret side (GVK-Settings#653). Each Base behavior adds its alliance's Base trigger group,
 \t\teach Turret behavior its Turret trigger group.
-\t\t- Base: +50 Influence once when it first spawns, a report to its tower every 5 minutes, Defense Turrets and Restore on
-\t\t  the tower's orders, and a report when it is killed or despawned (its Defense Turrets despawn with it).
+\t\t- Base: +50 Influence once when it first spawns, a report to its Base Site every 5 minutes, Defense Turrets and Restore on
+\t\t  the Base Site's orders, and a report when it is killed or despawned (its Defense Turrets despawn with it).
 \t\t- A kill costs its alliance 50 Influence even when no enemy or neutral player damaged it (closes the claim-and-kill farm).
-\t\t- Defense Turret: reports to its parent Base when it spawns and when it is lost; the Base relays both to the tower.
-\t\tTower side: GVK-Alliance-PresetBases-Placeholder-Behavior.sbc. Design: Docs/design/preset-bases.md.
+\t\t- Defense Turret: reports to its parent Base when it spawns and when it is lost; the Base relays both to the Base Site.
+\t\tBase Site side: GVK-Alliance-PresetBases-Site-Behavior.sbc. Design: Docs/design/preset-bases.md.
 \t\t-->"""
 write(PB / "GVK-Alliance-PresetBases-BaseSite.sbc", doc(sheader, s))
-print("rules", len(refresh_rules), "boards", len(BOARDS), "tower triggers", len(triggers))
+print("rules", len(refresh_rules), "boards", len(BOARDS), "site triggers", len(triggers))
