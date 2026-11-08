@@ -7,7 +7,8 @@
 		- Base: +50 Influence once when it first spawns, a report to its Base Site every 5 minutes, Defense Turrets and Restore on
 		  the Base Site's orders, and a report when it is killed or despawned (its Defense Turrets despawn with it).
 		- A kill costs its alliance 50 Influence even when no enemy or neutral player damaged it (closes the claim-and-kill farm).
-		- Defense Turret: reports to its parent Base when it spawns and when it is lost; the Base relays both to the Base Site.
+		- Defense Turret: reports to its parent Base when it spawns, when it is lost and at each roll call; the Base relays all
+		  three to the Base Site.
 		Base Site side: GVK-Alliance-PresetBases-Site-Behavior.sbc. Design: Docs/design/preset-bases.md.
 		-->
 		<!-- =================================================== -->
@@ -30,6 +31,8 @@
 				[Triggers:GVK-Alliance-PresetBases-Base-Trigger-Gone]
 				[Triggers:GVK-Alliance-PresetBases-Base-Trigger-RelayTurretUp]
 				[Triggers:GVK-Alliance-PresetBases-Base-Trigger-RelayTurretLost]
+				[Triggers:GVK-Alliance-PresetBases-Base-Trigger-RelayTurretHere]
+				[Triggers:GVK-Alliance-PresetBases-Base-Trigger-RollCall]
 			</Description>
 		</EntityComponent>
 
@@ -49,6 +52,8 @@
 				[Triggers:GVK-Alliance-PresetBases-Base-Trigger-Gone]
 				[Triggers:GVK-Alliance-PresetBases-Base-Trigger-RelayTurretUp]
 				[Triggers:GVK-Alliance-PresetBases-Base-Trigger-RelayTurretLost]
+				[Triggers:GVK-Alliance-PresetBases-Base-Trigger-RelayTurretHere]
+				[Triggers:GVK-Alliance-PresetBases-Base-Trigger-RollCall]
 			</Description>
 		</EntityComponent>
 
@@ -624,6 +629,115 @@
 			</Description>
 		</EntityComponent>
 
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-PresetBases-Base-Trigger-RelayTurretHere</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Trigger]
+				[UseTrigger:true]
+				[Type:CommandReceived]
+				[StartsReady:true]
+				[CommandReceiveCode:GVK-BaseSite-TurretHere-ToBase]
+				[MaxActions:-1]
+				[Conditions:GVK-Alliance-PresetBases-Base-Condition-Standing]
+				[ActionExecution:All]
+				[Actions:GVK-Alliance-PresetBases-Base-Action-RelayTurretHere]
+			</Description>
+		</EntityComponent>
+
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-PresetBases-Base-Action-RelayTurretHere</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Action]
+				[BroadcastCommandProfiles:true]
+				[CommandProfileIds:GVK-Alliance-PresetBases-Base-Command-TurretHere]
+			</Description>
+		</EntityComponent>
+
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-PresetBases-Base-Command-TurretHere</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Command]
+				[CommandCode:GVK-BaseSite-TurretHere]
+				[MatchSenderReceiverOwners:false]
+				[IgnoreAntennaRequirement:true]
+				[IgnoreReceiverAntennaRequirement:true]
+				[Radius:1100]
+				[CommandDelayTicks:0]
+			</Description>
+		</EntityComponent>
+
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-PresetBases-Base-Trigger-RollCall</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Trigger]
+				[UseTrigger:true]
+				[Type:CommandReceived]
+				[StartsReady:true]
+				[CommandReceiveCode:GVK-BaseSite-TurretRollCall]
+				[MaxActions:-1]
+				[Conditions:GVK-Alliance-PresetBases-Base-Condition-Standing]
+				[ActionExecution:All]
+				[Actions:GVK-Alliance-PresetBases-Base-Action-RollCall]
+			</Description>
+		</EntityComponent>
+
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-PresetBases-Base-Action-RollCall</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Action]
+				[BroadcastCommandProfiles:true]
+				[CommandProfileIds:GVK-Alliance-PresetBases-Base-Command-RollCallAck]
+				[CommandProfileIds:GVK-Alliance-PresetBases-Base-Command-RollCallTurrets]
+			</Description>
+		</EntityComponent>
+
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-PresetBases-Base-Command-RollCallAck</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Command]
+				[CommandCode:GVK-BaseSite-TurretRollCallAck]
+				[MatchSenderReceiverOwners:false]
+				[IgnoreAntennaRequirement:true]
+				[IgnoreReceiverAntennaRequirement:true]
+				[Radius:1100]
+				[CommandDelayTicks:0]
+			</Description>
+		</EntityComponent>
+
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-PresetBases-Base-Command-RollCallTurrets</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Command]
+				[CommandCode:GVK-BaseSite-TurretRollCall-ToTurrets]
+				[MatchReceiverChild:true]
+				[IgnoreAntennaRequirement:true]
+				[IgnoreReceiverAntennaRequirement:true]
+				[Radius:1100]
+				[CommandDelayTicks:0]
+			</Description>
+		</EntityComponent>
+
 		<!-- =================================================== -->
 		<!-- DEFENSE TURRET TRIGGER GROUPS (one per alliance)    -->
 		<!-- =================================================== -->
@@ -640,6 +754,7 @@
 				[Triggers:GVK-Alliance-PresetBases-Turret-Trigger-DespawnOrder]
 				[Triggers:GVK-Alliance-PresetBases-Turret-Trigger-Lost-SOBAN]
 				[Triggers:GVK-Alliance-PresetBases-Turret-Trigger-Despawned]
+				[Triggers:GVK-Alliance-PresetBases-Turret-Trigger-RollCall]
 			</Description>
 		</EntityComponent>
 
@@ -654,6 +769,7 @@
 				[Triggers:GVK-Alliance-PresetBases-Turret-Trigger-DespawnOrder]
 				[Triggers:GVK-Alliance-PresetBases-Turret-Trigger-Lost-KHAANEPH]
 				[Triggers:GVK-Alliance-PresetBases-Turret-Trigger-Despawned]
+				[Triggers:GVK-Alliance-PresetBases-Turret-Trigger-RollCall]
 			</Description>
 		</EntityComponent>
 
@@ -814,6 +930,36 @@
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-PresetBases-Turret-Trigger-RollCall</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Trigger]
+				[UseTrigger:true]
+				[Type:CommandReceived]
+				[StartsReady:true]
+				[CommandReceiveCode:GVK-BaseSite-TurretRollCall-ToTurrets]
+				[MaxActions:-1]
+				[Conditions:GVK-Alliance-PresetBases-Turret-Condition-NotLost]
+				[ActionExecution:All]
+				[Actions:GVK-Alliance-PresetBases-Turret-Action-RollCall]
+			</Description>
+		</EntityComponent>
+
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-PresetBases-Turret-Action-RollCall</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Action]
+				[BroadcastCommandProfiles:true]
+				[CommandProfileIds:GVK-Alliance-PresetBases-Turret-Command-TurretHere]
+			</Description>
+		</EntityComponent>
+
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
 				<SubtypeId>GVK-Alliance-PresetBases-Turret-Command-TurretUp</SubtypeId>
 			</Id>
 			<Description>
@@ -835,6 +981,22 @@
 			<Description>
 				[RivalAI Command]
 				[CommandCode:GVK-BaseSite-TurretLost-ToBase]
+				[MatchReceiverParent:true]
+				[IgnoreAntennaRequirement:true]
+				[IgnoreReceiverAntennaRequirement:true]
+				[Radius:1100]
+				[CommandDelayTicks:0]
+			</Description>
+		</EntityComponent>
+
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-PresetBases-Turret-Command-TurretHere</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Command]
+				[CommandCode:GVK-BaseSite-TurretHere-ToBase]
 				[MatchReceiverParent:true]
 				[IgnoreAntennaRequirement:true]
 				[IgnoreReceiverAntennaRequirement:true]

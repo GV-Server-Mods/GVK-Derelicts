@@ -72,6 +72,19 @@
 			</Description>
 		</EntityComponent>
 
+		<!-- Nobody passes: the condition for stand-in contracts -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-PresetBases-PlayerCondition-Never</SubtypeId>
+			</Id>
+			<Description>
+				[MES Player Condition]
+				[CheckPlayerTags:true]
+				[IncludedPlayerTags:GVK-BaseSite-StandIn]
+			</Description>
+		</EntityComponent>
+
 		<!-- =================================================== -->
 		<!-- MISSIONS (free: no reward, no collateral)           -->
 		<!-- =================================================== -->
@@ -131,7 +144,7 @@
 				[MES Mission]
 				[MissionType:Custom]
 				[Title:Deploy Defense Turret - SOBAN]
-				[Description:Places one SOBAN Defense Turret around the Base at this site. One every 20 minutes, up to 4 standing.]
+				[Description:Places one SOBAN Defense Turret around the Base at this site. One every 20 minutes, counted from when the last one was placed, up to 4 standing.]
 				[Reward:0]
 				[Collateral:0]
 				[ReputationReward:0]
@@ -154,7 +167,7 @@
 				[MES Mission]
 				[MissionType:Custom]
 				[Title:Deploy Defense Turret - KHAANEPH]
-				[Description:Places one KHAANEPH Defense Turret around the Base at this site. One every 20 minutes, up to 4 standing.]
+				[Description:Places one KHAANEPH Defense Turret around the Base at this site. One every 20 minutes, counted from when the last one was placed, up to 4 standing.]
 				[Reward:0]
 				[Collateral:0]
 				[ReputationReward:0]
@@ -214,6 +227,328 @@
 			</Description>
 		</EntityComponent>
 
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-PresetBases-Mission-ClaimHostile-SOBAN</SubtypeId>
+			</Id>
+			<Description>
+				[MES Mission]
+				[MissionType:Custom]
+				[Title:Claim Base Site - SOBAN (hostile player nearby)]
+				[Description:Unavailable while a player hostile to SOBAN is within 5 km of this site. This contract can't be accepted.]
+				[Reward:0]
+				[Collateral:0]
+				[ReputationReward:0]
+				[FailReputationPrice:0]
+				[OverrideFaction:SOBAN]
+				[SoloMission:true]
+				[LeadPlayerConditionIds:GVK-Alliance-PresetBases-PlayerCondition-Never]
+				[InstanceEventGroupId:GVK-Alliance-PresetBases-TemplateGroup-Contract]
+				[ReplaceKeys:{BoardCode}]
+				[ReplaceValues:GVK-BaseSite-Board-StandIn]
+			</Description>
+		</EntityComponent>
+
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-PresetBases-Mission-ClaimHostile-KHAANEPH</SubtypeId>
+			</Id>
+			<Description>
+				[MES Mission]
+				[MissionType:Custom]
+				[Title:Claim Base Site - KHAANEPH (hostile player nearby)]
+				[Description:Unavailable while a player hostile to KHAANEPH is within 5 km of this site. This contract can't be accepted.]
+				[Reward:0]
+				[Collateral:0]
+				[ReputationReward:0]
+				[FailReputationPrice:0]
+				[OverrideFaction:KHAANEPH]
+				[SoloMission:true]
+				[LeadPlayerConditionIds:GVK-Alliance-PresetBases-PlayerCondition-Never]
+				[InstanceEventGroupId:GVK-Alliance-PresetBases-TemplateGroup-Contract]
+				[ReplaceKeys:{BoardCode}]
+				[ReplaceValues:GVK-BaseSite-Board-StandIn]
+			</Description>
+		</EntityComponent>
+
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-PresetBases-Mission-TurretHostile-SOBAN</SubtypeId>
+			</Id>
+			<Description>
+				[MES Mission]
+				[MissionType:Custom]
+				[Title:Deploy Defense Turret - SOBAN (hostile player nearby)]
+				[Description:Unavailable while a player hostile to SOBAN is within 5 km of this site. This contract can't be accepted.]
+				[Reward:0]
+				[Collateral:0]
+				[ReputationReward:0]
+				[FailReputationPrice:0]
+				[OverrideFaction:SOBAN]
+				[SoloMission:true]
+				[LeadPlayerConditionIds:GVK-Alliance-PresetBases-PlayerCondition-Never]
+				[InstanceEventGroupId:GVK-Alliance-PresetBases-TemplateGroup-Contract]
+				[ReplaceKeys:{BoardCode}]
+				[ReplaceValues:GVK-BaseSite-Board-StandIn]
+			</Description>
+		</EntityComponent>
+
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-PresetBases-Mission-TurretHostile-KHAANEPH</SubtypeId>
+			</Id>
+			<Description>
+				[MES Mission]
+				[MissionType:Custom]
+				[Title:Deploy Defense Turret - KHAANEPH (hostile player nearby)]
+				[Description:Unavailable while a player hostile to KHAANEPH is within 5 km of this site. This contract can't be accepted.]
+				[Reward:0]
+				[Collateral:0]
+				[ReputationReward:0]
+				[FailReputationPrice:0]
+				[OverrideFaction:KHAANEPH]
+				[SoloMission:true]
+				[LeadPlayerConditionIds:GVK-Alliance-PresetBases-PlayerCondition-Never]
+				[InstanceEventGroupId:GVK-Alliance-PresetBases-TemplateGroup-Contract]
+				[ReplaceKeys:{BoardCode}]
+				[ReplaceValues:GVK-BaseSite-Board-StandIn]
+			</Description>
+		</EntityComponent>
+
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-PresetBases-Mission-TurretDeploying-SOBAN</SubtypeId>
+			</Id>
+			<Description>
+				[MES Mission]
+				[MissionType:Custom]
+				[Title:Deploy Defense Turret - SOBAN (deploying)]
+				[Description:A Defense Turret is being placed. If no spot is found, this contract opens again within a minute. This contract can't be accepted.]
+				[Reward:0]
+				[Collateral:0]
+				[ReputationReward:0]
+				[FailReputationPrice:0]
+				[OverrideFaction:SOBAN]
+				[SoloMission:true]
+				[LeadPlayerConditionIds:GVK-Alliance-PresetBases-PlayerCondition-Never]
+				[InstanceEventGroupId:GVK-Alliance-PresetBases-TemplateGroup-Contract]
+				[ReplaceKeys:{BoardCode}]
+				[ReplaceValues:GVK-BaseSite-Board-StandIn]
+			</Description>
+		</EntityComponent>
+
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-PresetBases-Mission-TurretDeploying-KHAANEPH</SubtypeId>
+			</Id>
+			<Description>
+				[MES Mission]
+				[MissionType:Custom]
+				[Title:Deploy Defense Turret - KHAANEPH (deploying)]
+				[Description:A Defense Turret is being placed. If no spot is found, this contract opens again within a minute. This contract can't be accepted.]
+				[Reward:0]
+				[Collateral:0]
+				[ReputationReward:0]
+				[FailReputationPrice:0]
+				[OverrideFaction:KHAANEPH]
+				[SoloMission:true]
+				[LeadPlayerConditionIds:GVK-Alliance-PresetBases-PlayerCondition-Never]
+				[InstanceEventGroupId:GVK-Alliance-PresetBases-TemplateGroup-Contract]
+				[ReplaceKeys:{BoardCode}]
+				[ReplaceValues:GVK-BaseSite-Board-StandIn]
+			</Description>
+		</EntityComponent>
+
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-PresetBases-Mission-TurretAtCap-SOBAN</SubtypeId>
+			</Id>
+			<Description>
+				[MES Mission]
+				[MissionType:Custom]
+				[Title:Deploy Defense Turret - SOBAN (4 of 4 standing)]
+				[Description:This Base already has 4 Defense Turrets. A slot opens within a minute of one being destroyed or removed. This contract can't be accepted.]
+				[Reward:0]
+				[Collateral:0]
+				[ReputationReward:0]
+				[FailReputationPrice:0]
+				[OverrideFaction:SOBAN]
+				[SoloMission:true]
+				[LeadPlayerConditionIds:GVK-Alliance-PresetBases-PlayerCondition-Never]
+				[InstanceEventGroupId:GVK-Alliance-PresetBases-TemplateGroup-Contract]
+				[ReplaceKeys:{BoardCode}]
+				[ReplaceValues:GVK-BaseSite-Board-StandIn]
+			</Description>
+		</EntityComponent>
+
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-PresetBases-Mission-TurretAtCap-KHAANEPH</SubtypeId>
+			</Id>
+			<Description>
+				[MES Mission]
+				[MissionType:Custom]
+				[Title:Deploy Defense Turret - KHAANEPH (4 of 4 standing)]
+				[Description:This Base already has 4 Defense Turrets. A slot opens within a minute of one being destroyed or removed. This contract can't be accepted.]
+				[Reward:0]
+				[Collateral:0]
+				[ReputationReward:0]
+				[FailReputationPrice:0]
+				[OverrideFaction:KHAANEPH]
+				[SoloMission:true]
+				[LeadPlayerConditionIds:GVK-Alliance-PresetBases-PlayerCondition-Never]
+				[InstanceEventGroupId:GVK-Alliance-PresetBases-TemplateGroup-Contract]
+				[ReplaceKeys:{BoardCode}]
+				[ReplaceValues:GVK-BaseSite-Board-StandIn]
+			</Description>
+		</EntityComponent>
+
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-PresetBases-Mission-TurretCooling-SOBAN</SubtypeId>
+			</Id>
+			<Description>
+				[MES Mission]
+				[MissionType:Custom]
+				[Title:Deploy Defense Turret - SOBAN (cooling down)]
+				[Description:One Defense Turret every 20 minutes, counted from when the last one was placed. This contract can't be accepted.]
+				[Reward:0]
+				[Collateral:0]
+				[ReputationReward:0]
+				[FailReputationPrice:0]
+				[OverrideFaction:SOBAN]
+				[SoloMission:true]
+				[LeadPlayerConditionIds:GVK-Alliance-PresetBases-PlayerCondition-Never]
+				[InstanceEventGroupId:GVK-Alliance-PresetBases-TemplateGroup-Contract]
+				[ReplaceKeys:{BoardCode}]
+				[ReplaceValues:GVK-BaseSite-Board-StandIn]
+			</Description>
+		</EntityComponent>
+
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-PresetBases-Mission-TurretCooling-KHAANEPH</SubtypeId>
+			</Id>
+			<Description>
+				[MES Mission]
+				[MissionType:Custom]
+				[Title:Deploy Defense Turret - KHAANEPH (cooling down)]
+				[Description:One Defense Turret every 20 minutes, counted from when the last one was placed. This contract can't be accepted.]
+				[Reward:0]
+				[Collateral:0]
+				[ReputationReward:0]
+				[FailReputationPrice:0]
+				[OverrideFaction:KHAANEPH]
+				[SoloMission:true]
+				[LeadPlayerConditionIds:GVK-Alliance-PresetBases-PlayerCondition-Never]
+				[InstanceEventGroupId:GVK-Alliance-PresetBases-TemplateGroup-Contract]
+				[ReplaceKeys:{BoardCode}]
+				[ReplaceValues:GVK-BaseSite-Board-StandIn]
+			</Description>
+		</EntityComponent>
+
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-PresetBases-Mission-RestoreHostile-SOBAN</SubtypeId>
+			</Id>
+			<Description>
+				[MES Mission]
+				[MissionType:Custom]
+				[Title:Restore Base - SOBAN (hostile player nearby)]
+				[Description:Unavailable while a player hostile to SOBAN is within 5 km of this site. This contract can't be accepted.]
+				[Reward:0]
+				[Collateral:0]
+				[ReputationReward:0]
+				[FailReputationPrice:0]
+				[OverrideFaction:SOBAN]
+				[SoloMission:true]
+				[LeadPlayerConditionIds:GVK-Alliance-PresetBases-PlayerCondition-Never]
+				[InstanceEventGroupId:GVK-Alliance-PresetBases-TemplateGroup-Contract]
+				[ReplaceKeys:{BoardCode}]
+				[ReplaceValues:GVK-BaseSite-Board-StandIn]
+			</Description>
+		</EntityComponent>
+
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-PresetBases-Mission-RestoreHostile-KHAANEPH</SubtypeId>
+			</Id>
+			<Description>
+				[MES Mission]
+				[MissionType:Custom]
+				[Title:Restore Base - KHAANEPH (hostile player nearby)]
+				[Description:Unavailable while a player hostile to KHAANEPH is within 5 km of this site. This contract can't be accepted.]
+				[Reward:0]
+				[Collateral:0]
+				[ReputationReward:0]
+				[FailReputationPrice:0]
+				[OverrideFaction:KHAANEPH]
+				[SoloMission:true]
+				[LeadPlayerConditionIds:GVK-Alliance-PresetBases-PlayerCondition-Never]
+				[InstanceEventGroupId:GVK-Alliance-PresetBases-TemplateGroup-Contract]
+				[ReplaceKeys:{BoardCode}]
+				[ReplaceValues:GVK-BaseSite-Board-StandIn]
+			</Description>
+		</EntityComponent>
+
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-PresetBases-Mission-RestoreCooling-SOBAN</SubtypeId>
+			</Id>
+			<Description>
+				[MES Mission]
+				[MissionType:Custom]
+				[Title:Restore Base - SOBAN (cooling down)]
+				[Description:Once every 2 hours. This contract can't be accepted.]
+				[Reward:0]
+				[Collateral:0]
+				[ReputationReward:0]
+				[FailReputationPrice:0]
+				[OverrideFaction:SOBAN]
+				[SoloMission:true]
+				[LeadPlayerConditionIds:GVK-Alliance-PresetBases-PlayerCondition-Never]
+				[InstanceEventGroupId:GVK-Alliance-PresetBases-TemplateGroup-Contract]
+				[ReplaceKeys:{BoardCode}]
+				[ReplaceValues:GVK-BaseSite-Board-StandIn]
+			</Description>
+		</EntityComponent>
+
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-PresetBases-Mission-RestoreCooling-KHAANEPH</SubtypeId>
+			</Id>
+			<Description>
+				[MES Mission]
+				[MissionType:Custom]
+				[Title:Restore Base - KHAANEPH (cooling down)]
+				[Description:Once every 2 hours. This contract can't be accepted.]
+				[Reward:0]
+				[Collateral:0]
+				[ReputationReward:0]
+				[FailReputationPrice:0]
+				[OverrideFaction:KHAANEPH]
+				[SoloMission:true]
+				[LeadPlayerConditionIds:GVK-Alliance-PresetBases-PlayerCondition-Never]
+				[InstanceEventGroupId:GVK-Alliance-PresetBases-TemplateGroup-Contract]
+				[ReplaceKeys:{BoardCode}]
+				[ReplaceValues:GVK-BaseSite-Board-StandIn]
+			</Description>
+		</EntityComponent>
+
 		<!-- =================================================== -->
 		<!-- CONTRACT BLOCK PROFILES (one per board state)       -->
 		<!-- =================================================== -->
@@ -231,7 +566,7 @@
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Alliance-PresetBases-Board-ClaimBoth</SubtypeId>
+				<SubtypeId>GVK-Alliance-PresetBases-Board-Claim-SOBAN_Claim-KHAANEPH</SubtypeId>
 			</Id>
 			<Description>
 				[MES Contract Block]
@@ -243,7 +578,7 @@
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Alliance-PresetBases-Board-ClaimSOBAN</SubtypeId>
+				<SubtypeId>GVK-Alliance-PresetBases-Board-Claim-SOBAN</SubtypeId>
 			</Id>
 			<Description>
 				[MES Contract Block]
@@ -254,41 +589,19 @@
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Alliance-PresetBases-Board-SOBAN-TurretRestore</SubtypeId>
+				<SubtypeId>GVK-Alliance-PresetBases-Board-Claim-SOBAN_ClaimHostile-KHAANEPH</SubtypeId>
 			</Id>
 			<Description>
 				[MES Contract Block]
-				[MissionIds:GVK-Alliance-PresetBases-Mission-Turret-SOBAN]
-				[MissionIds:GVK-Alliance-PresetBases-Mission-Restore-SOBAN]
+				[MissionIds:GVK-Alliance-PresetBases-Mission-Claim-SOBAN]
+				[MissionIds:GVK-Alliance-PresetBases-Mission-ClaimHostile-KHAANEPH]
 			</Description>
 		</EntityComponent>
 
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Alliance-PresetBases-Board-SOBAN-Turret</SubtypeId>
-			</Id>
-			<Description>
-				[MES Contract Block]
-				[MissionIds:GVK-Alliance-PresetBases-Mission-Turret-SOBAN]
-			</Description>
-		</EntityComponent>
-
-		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
-			<Id>
-				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Alliance-PresetBases-Board-SOBAN-Restore</SubtypeId>
-			</Id>
-			<Description>
-				[MES Contract Block]
-				[MissionIds:GVK-Alliance-PresetBases-Mission-Restore-SOBAN]
-			</Description>
-		</EntityComponent>
-
-		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
-			<Id>
-				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Alliance-PresetBases-Board-ClaimKHAANEPH</SubtypeId>
+				<SubtypeId>GVK-Alliance-PresetBases-Board-Claim-KHAANEPH</SubtypeId>
 			</Id>
 			<Description>
 				[MES Contract Block]
@@ -299,11 +612,189 @@
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Alliance-PresetBases-Board-KHAANEPH-TurretRestore</SubtypeId>
+				<SubtypeId>GVK-Alliance-PresetBases-Board-ClaimHostile-KHAANEPH</SubtypeId>
 			</Id>
 			<Description>
 				[MES Contract Block]
-				[MissionIds:GVK-Alliance-PresetBases-Mission-Turret-KHAANEPH]
+				[MissionIds:GVK-Alliance-PresetBases-Mission-ClaimHostile-KHAANEPH]
+			</Description>
+		</EntityComponent>
+
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-PresetBases-Board-ClaimHostile-SOBAN_Claim-KHAANEPH</SubtypeId>
+			</Id>
+			<Description>
+				[MES Contract Block]
+				[MissionIds:GVK-Alliance-PresetBases-Mission-ClaimHostile-SOBAN]
+				[MissionIds:GVK-Alliance-PresetBases-Mission-Claim-KHAANEPH]
+			</Description>
+		</EntityComponent>
+
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-PresetBases-Board-ClaimHostile-SOBAN</SubtypeId>
+			</Id>
+			<Description>
+				[MES Contract Block]
+				[MissionIds:GVK-Alliance-PresetBases-Mission-ClaimHostile-SOBAN]
+			</Description>
+		</EntityComponent>
+
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-PresetBases-Board-ClaimHostile-SOBAN_ClaimHostile-KHAANEPH</SubtypeId>
+			</Id>
+			<Description>
+				[MES Contract Block]
+				[MissionIds:GVK-Alliance-PresetBases-Mission-ClaimHostile-SOBAN]
+				[MissionIds:GVK-Alliance-PresetBases-Mission-ClaimHostile-KHAANEPH]
+			</Description>
+		</EntityComponent>
+
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-PresetBases-Board-TurretHostile-SOBAN_RestoreHostile-SOBAN</SubtypeId>
+			</Id>
+			<Description>
+				[MES Contract Block]
+				[MissionIds:GVK-Alliance-PresetBases-Mission-TurretHostile-SOBAN]
+				[MissionIds:GVK-Alliance-PresetBases-Mission-RestoreHostile-SOBAN]
+			</Description>
+		</EntityComponent>
+
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-PresetBases-Board-TurretDeploying-SOBAN_RestoreCooling-SOBAN</SubtypeId>
+			</Id>
+			<Description>
+				[MES Contract Block]
+				[MissionIds:GVK-Alliance-PresetBases-Mission-TurretDeploying-SOBAN]
+				[MissionIds:GVK-Alliance-PresetBases-Mission-RestoreCooling-SOBAN]
+			</Description>
+		</EntityComponent>
+
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-PresetBases-Board-TurretDeploying-SOBAN_Restore-SOBAN</SubtypeId>
+			</Id>
+			<Description>
+				[MES Contract Block]
+				[MissionIds:GVK-Alliance-PresetBases-Mission-TurretDeploying-SOBAN]
+				[MissionIds:GVK-Alliance-PresetBases-Mission-Restore-SOBAN]
+			</Description>
+		</EntityComponent>
+
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-PresetBases-Board-TurretAtCap-SOBAN_RestoreCooling-SOBAN</SubtypeId>
+			</Id>
+			<Description>
+				[MES Contract Block]
+				[MissionIds:GVK-Alliance-PresetBases-Mission-TurretAtCap-SOBAN]
+				[MissionIds:GVK-Alliance-PresetBases-Mission-RestoreCooling-SOBAN]
+			</Description>
+		</EntityComponent>
+
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-PresetBases-Board-TurretAtCap-SOBAN_Restore-SOBAN</SubtypeId>
+			</Id>
+			<Description>
+				[MES Contract Block]
+				[MissionIds:GVK-Alliance-PresetBases-Mission-TurretAtCap-SOBAN]
+				[MissionIds:GVK-Alliance-PresetBases-Mission-Restore-SOBAN]
+			</Description>
+		</EntityComponent>
+
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-PresetBases-Board-TurretCooling-SOBAN_RestoreCooling-SOBAN</SubtypeId>
+			</Id>
+			<Description>
+				[MES Contract Block]
+				[MissionIds:GVK-Alliance-PresetBases-Mission-TurretCooling-SOBAN]
+				[MissionIds:GVK-Alliance-PresetBases-Mission-RestoreCooling-SOBAN]
+			</Description>
+		</EntityComponent>
+
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-PresetBases-Board-TurretCooling-SOBAN_Restore-SOBAN</SubtypeId>
+			</Id>
+			<Description>
+				[MES Contract Block]
+				[MissionIds:GVK-Alliance-PresetBases-Mission-TurretCooling-SOBAN]
+				[MissionIds:GVK-Alliance-PresetBases-Mission-Restore-SOBAN]
+			</Description>
+		</EntityComponent>
+
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-PresetBases-Board-Turret-SOBAN_RestoreCooling-SOBAN</SubtypeId>
+			</Id>
+			<Description>
+				[MES Contract Block]
+				[MissionIds:GVK-Alliance-PresetBases-Mission-Turret-SOBAN]
+				[MissionIds:GVK-Alliance-PresetBases-Mission-RestoreCooling-SOBAN]
+			</Description>
+		</EntityComponent>
+
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-PresetBases-Board-Turret-SOBAN_Restore-SOBAN</SubtypeId>
+			</Id>
+			<Description>
+				[MES Contract Block]
+				[MissionIds:GVK-Alliance-PresetBases-Mission-Turret-SOBAN]
+				[MissionIds:GVK-Alliance-PresetBases-Mission-Restore-SOBAN]
+			</Description>
+		</EntityComponent>
+
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-PresetBases-Board-TurretHostile-KHAANEPH_RestoreHostile-KHAANEPH</SubtypeId>
+			</Id>
+			<Description>
+				[MES Contract Block]
+				[MissionIds:GVK-Alliance-PresetBases-Mission-TurretHostile-KHAANEPH]
+				[MissionIds:GVK-Alliance-PresetBases-Mission-RestoreHostile-KHAANEPH]
+			</Description>
+		</EntityComponent>
+
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-PresetBases-Board-TurretDeploying-KHAANEPH_RestoreCooling-KHAANEPH</SubtypeId>
+			</Id>
+			<Description>
+				[MES Contract Block]
+				[MissionIds:GVK-Alliance-PresetBases-Mission-TurretDeploying-KHAANEPH]
+				[MissionIds:GVK-Alliance-PresetBases-Mission-RestoreCooling-KHAANEPH]
+			</Description>
+		</EntityComponent>
+
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-PresetBases-Board-TurretDeploying-KHAANEPH_Restore-KHAANEPH</SubtypeId>
+			</Id>
+			<Description>
+				[MES Contract Block]
+				[MissionIds:GVK-Alliance-PresetBases-Mission-TurretDeploying-KHAANEPH]
 				[MissionIds:GVK-Alliance-PresetBases-Mission-Restore-KHAANEPH]
 			</Description>
 		</EntityComponent>
@@ -311,21 +802,71 @@
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Alliance-PresetBases-Board-KHAANEPH-Turret</SubtypeId>
+				<SubtypeId>GVK-Alliance-PresetBases-Board-TurretAtCap-KHAANEPH_RestoreCooling-KHAANEPH</SubtypeId>
 			</Id>
 			<Description>
 				[MES Contract Block]
-				[MissionIds:GVK-Alliance-PresetBases-Mission-Turret-KHAANEPH]
+				[MissionIds:GVK-Alliance-PresetBases-Mission-TurretAtCap-KHAANEPH]
+				[MissionIds:GVK-Alliance-PresetBases-Mission-RestoreCooling-KHAANEPH]
 			</Description>
 		</EntityComponent>
 
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Alliance-PresetBases-Board-KHAANEPH-Restore</SubtypeId>
+				<SubtypeId>GVK-Alliance-PresetBases-Board-TurretAtCap-KHAANEPH_Restore-KHAANEPH</SubtypeId>
 			</Id>
 			<Description>
 				[MES Contract Block]
+				[MissionIds:GVK-Alliance-PresetBases-Mission-TurretAtCap-KHAANEPH]
+				[MissionIds:GVK-Alliance-PresetBases-Mission-Restore-KHAANEPH]
+			</Description>
+		</EntityComponent>
+
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-PresetBases-Board-TurretCooling-KHAANEPH_RestoreCooling-KHAANEPH</SubtypeId>
+			</Id>
+			<Description>
+				[MES Contract Block]
+				[MissionIds:GVK-Alliance-PresetBases-Mission-TurretCooling-KHAANEPH]
+				[MissionIds:GVK-Alliance-PresetBases-Mission-RestoreCooling-KHAANEPH]
+			</Description>
+		</EntityComponent>
+
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-PresetBases-Board-TurretCooling-KHAANEPH_Restore-KHAANEPH</SubtypeId>
+			</Id>
+			<Description>
+				[MES Contract Block]
+				[MissionIds:GVK-Alliance-PresetBases-Mission-TurretCooling-KHAANEPH]
+				[MissionIds:GVK-Alliance-PresetBases-Mission-Restore-KHAANEPH]
+			</Description>
+		</EntityComponent>
+
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-PresetBases-Board-Turret-KHAANEPH_RestoreCooling-KHAANEPH</SubtypeId>
+			</Id>
+			<Description>
+				[MES Contract Block]
+				[MissionIds:GVK-Alliance-PresetBases-Mission-Turret-KHAANEPH]
+				[MissionIds:GVK-Alliance-PresetBases-Mission-RestoreCooling-KHAANEPH]
+			</Description>
+		</EntityComponent>
+
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-PresetBases-Board-Turret-KHAANEPH_Restore-KHAANEPH</SubtypeId>
+			</Id>
+			<Description>
+				[MES Contract Block]
+				[MissionIds:GVK-Alliance-PresetBases-Mission-Turret-KHAANEPH]
 				[MissionIds:GVK-Alliance-PresetBases-Mission-Restore-KHAANEPH]
 			</Description>
 		</EntityComponent>

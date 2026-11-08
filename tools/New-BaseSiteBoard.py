@@ -103,9 +103,12 @@ HOST = {f: f"GVK_Site_HostileNear_{f}" for f in F}
 TERR = {f: f"GVK_Site_InTerritory_{f}" for f in F}
 LOCK, PEND = "GVK_Site_KillLock", "GVK_Site_ClaimPending"
 TCOOL, RCOOL, TCOUNT = "GVK_Site_TurretCooling", "GVK_Site_RestoreCooling", "GVK_Site_Turrets"
+TPEND = "GVK_Site_TurretPending"
+ROLL, ROLLACK, TALLY = "GVK_Site_TurretRollCall", "GVK_Site_TurretRollCallAck", "GVK_Site_TurretTally"
 TURRET_CAP = 4
 RESET_STATE = [f"[SetBooleansFalse:{BASE['SOBAN']}]", f"[SetBooleansFalse:{BASE['KHAANEPH']}]",
-               f"[SetBooleansFalse:{TCOOL}]", f"[SetBooleansFalse:{RCOOL}]", f"[ResetCounters:{TCOUNT}]"]
+               f"[SetBooleansFalse:{TCOOL}]", f"[SetBooleansFalse:{RCOOL}]", f"[SetBooleansFalse:{TPEND}]",
+               f"[ResetCounters:{TCOUNT}]"]
 
 # ---------------------------------------------------------------- contracts file
 c = []
@@ -120,34 +123,85 @@ for f in F:
         "[MES Player Condition]", "[CheckPlayerReputation:true]", f"[CheckReputationwithFaction:{f}]",
         "[MinPlayerReputation:-1500]", "[MaxPlayerReputation:-1]"],
         f"Hostile to {f} (reputation below 0): blocks {f} contracts within 5 km"))
+# No player carries this tag, so a stand-in contract is always refused. MES refuses after the game accepts and says so
+# only in chat (GVK-Settings#762), so the stand-in's title carries the reason.
+c.append(comp(f"{P}-PlayerCondition-Never", [
+    "[MES Player Condition]", "[CheckPlayerTags:true]", "[IncludedPlayerTags:GVK-BaseSite-StandIn]"],
+    "Nobody passes: the condition for stand-in contracts"))
 
 c.append(section("MISSIONS (free: no reward, no collateral)"))
+TEST_NOTE = f" TEST BUILD: {TEST_COOLDOWN} s cooldowns." if TEST_COOLDOWN else ""
 MISSIONS = {
     "Claim": ("Claim Base Site", "Deploy a {f} Base at this site. Open to players in Friendly standing with {f}, while this site is inside {f} territory. Adds 50 Influence to {f}."),
-    "Turret": ("Deploy Defense Turret", "Places one {f} Defense Turret around the Base at this site. One every 20 minutes, up to 4 standing."),
+    "Turret": ("Deploy Defense Turret", "Places one {f} Defense Turret around the Base at this site. One every 20 minutes, counted from when the last one was placed, up to 4 standing."),
     "Restore": ("Restore Base", "Repairs every damaged block on the {f} Base at this site. Destroyed blocks are not rebuilt. Once every 2 hours."),
 }
+HOSTILE = ("hostile player nearby", "Unavailable while a player hostile to {f} is within 5 km of this site.")
+# Stand-ins: shown in place of a contract the site's state blocks. (name, contract, title suffix, description)
+STANDINS = [
+    ("ClaimHostile", "Claim") + HOSTILE,
+    ("TurretHostile", "Turret") + HOSTILE,
+    ("TurretDeploying", "Turret", "deploying", "A Defense Turret is being placed. If no spot is found, this contract opens again within a minute."),
+    ("TurretAtCap", "Turret", f"{TURRET_CAP} of {TURRET_CAP} standing", f"This Base already has {TURRET_CAP} Defense Turrets. A slot opens within a minute of one being destroyed or removed."),
+    ("TurretCooling", "Turret", "cooling down", "One Defense Turret every 20 minutes, counted from when the last one was placed."),
+    ("RestoreHostile", "Restore") + HOSTILE,
+    ("RestoreCooling", "Restore", "cooling down", "Once every 2 hours."),
+]
+def mission(subtype, title, desc, lead, code):
+    return comp(subtype, [
+        "[MES Mission]", "[MissionType:Custom]", f"[Title:{title}]", f"[Description:{desc}{TEST_NOTE}]",
+        "[Reward:0]", "[Collateral:0]", "[ReputationReward:0]", "[FailReputationPrice:0]",
+        f"[OverrideFaction:{lead[1]}]", "[SoloMission:true]", f"[LeadPlayerConditionIds:{lead[0]}]",
+        f"[InstanceEventGroupId:{P}-TemplateGroup-Contract]", "[ReplaceKeys:{BoardCode}]", f"[ReplaceValues:{code}]"])
 for kind, (title, desc) in MISSIONS.items():
     for f in F:
         # No player-in-territory check: the board only shows Claim while the site is inside the Territory and the player
         # stands at the board, so a second check on the player can only refuse someone who qualifies.
-        lead = [f"[LeadPlayerConditionIds:{P}-PlayerCondition-Friendly{f}]"]
-        c.append(comp(f"{P}-Mission-{kind}-{f}", [
-            "[MES Mission]", "[MissionType:Custom]", f"[Title:{title} - {f}]",
-            "[Description:" + desc.format(f=f) + (f" TEST BUILD: {TEST_COOLDOWN} s cooldowns." if TEST_COOLDOWN else "") + "]",
-            "[Reward:0]", "[Collateral:0]", "[ReputationReward:0]", "[FailReputationPrice:0]",
-            f"[OverrideFaction:{f}]", "[SoloMission:true]"] + lead + [
-            f"[InstanceEventGroupId:{P}-TemplateGroup-Contract]",
-            "[ReplaceKeys:{BoardCode}]", f"[ReplaceValues:GVK-BaseSite-Board-{kind}-{f}]"]))
+        c.append(mission(f"{P}-Mission-{kind}-{f}", f"{title} - {f}", desc.format(f=f),
+                         (f"{P}-PlayerCondition-Friendly{f}", f), f"GVK-BaseSite-Board-{kind}-{f}"))
+for name, kind, suffix, desc in STANDINS:
+    for f in F:
+        c.append(mission(f"{P}-Mission-{name}-{f}", f"{MISSIONS[kind][0]} - {f} ({suffix})",
+                         desc.format(f=f) + " This contract can't be accepted.", (f"{P}-PlayerCondition-Never", f),
+                         "GVK-BaseSite-Board-StandIn"))
+
+# Board states: exactly one refresh rule matches each state, and each rule lists the contracts its board shows.
+def m(name, f):
+    return f"{P}-Mission-{name}-{f}"
+below_cap = [(TCOUNT, TURRET_CAP, "Less")]
+at_cap = [(TCOUNT, TURRET_CAP, "GreaterOrEqual")]
+refresh_rules = [  # (name, true, false, counters, missions)
+    ("Locked", [LOCK], [BASE["SOBAN"], BASE["KHAANEPH"]], [], []),
+    ("Pending", [PEND], [BASE["SOBAN"], BASE["KHAANEPH"], LOCK], [], []),
+]
+# No Base, no lock, nothing pending. Per alliance the site is outside its Territory (no Claim), inside it (Claim), or
+# inside it with a hostile player near (stand-in), so 3 x 3 rules cover every case.
+def claim_state(f, state):
+    return {"Open": ([TERR[f]], [HOST[f]], [m("Claim", f)]), "Out": ([], [TERR[f]], []),
+            "Hostile": ([TERR[f], HOST[f]], [], [m("ClaimHostile", f)])}[state]
+for s_state in ["Open", "Out", "Hostile"]:
+    for k_state in ["Open", "Out", "Hostile"]:
+        (st, sf, sm), (kt, kf, km) = claim_state("SOBAN", s_state), claim_state("KHAANEPH", k_state)
+        refresh_rules.append((f"Claim-SOBAN{s_state}-KHAANEPH{k_state}", st + kt,
+                              [BASE["SOBAN"], BASE["KHAANEPH"], LOCK, PEND] + sf + kf, [], sm + km))
+# A Base stands. The Turret contract is deploying, at the cap, cooling down or open (checked in that order), and Restore
+# is cooling down or open: 4 x 2 rules, plus one for a hostile player near.
+TURRET_STATES = [("Deploying", [TPEND], [], [], "TurretDeploying"), ("AtCap", [], [TPEND], at_cap, "TurretAtCap"),
+                 ("Cooling", [TCOOL], [TPEND], below_cap, "TurretCooling"), ("Open", [], [TPEND, TCOOL], below_cap, "Turret")]
+RESTORE_STATES = [("Cooling", [RCOOL], [], "RestoreCooling"), ("Open", [], [RCOOL], "Restore")]
+for f in F:
+    b, h = BASE[f], HOST[f]
+    refresh_rules.append((f"{f}-Hostile", [b, h], [], [], [m("TurretHostile", f), m("RestoreHostile", f)]))
+    for ts, tt, tf, tc, tm in TURRET_STATES:
+        for rs, rt, rf, rm in RESTORE_STATES:
+            refresh_rules.append((f"{f}-Turret{ts}-Restore{rs}", [b] + tt + rt, [h] + tf + rf, tc, [m(tm, f), m(rm, f)]))
+BOARDS = {}
+for i, (name, true, false, counters, missions) in enumerate(refresh_rules):
+    board = "_".join(x[len(f"{P}-Mission-"):] for x in missions) or "Empty"
+    BOARDS[board] = missions
+    refresh_rules[i] = (name, true, false, counters, board)
 
 c.append(section("CONTRACT BLOCK PROFILES (one per board state)"))
-BOARDS = {"Empty": []}
-BOARDS["ClaimBoth"] = [f"{P}-Mission-Claim-SOBAN", f"{P}-Mission-Claim-KHAANEPH"]
-for f in F:
-    BOARDS[f"Claim{f}"] = [f"{P}-Mission-Claim-{f}"]
-    BOARDS[f"{f}-TurretRestore"] = [f"{P}-Mission-Turret-{f}", f"{P}-Mission-Restore-{f}"]
-    BOARDS[f"{f}-Turret"] = [f"{P}-Mission-Turret-{f}"]
-    BOARDS[f"{f}-Restore"] = [f"{P}-Mission-Restore-{f}"]
 for name, ids in BOARDS.items():
     c.append(comp(f"{P}-Board-{name}", ["[MES Contract Block]"] + [f"[MissionIds:{i}]" for i in ids]))
 
@@ -176,42 +230,16 @@ write(PB / "GVK-Alliance-PresetBases-Contracts.sbc", doc(header, c))
 # ---------------------------------------------------------------- Base Site behavior file
 t = []
 t.append(section("BASE SITE BEHAVIOR"))
-triggers = ["Session", "PeriodicRefresh", "BaseKilled", "BaseGone", "BaseWatchdog", "TurretUp", "TurretLost",
-            "LockEnd", "ClaimPendingEnd", "TurretCoolEnd", "RestoreCoolEnd"]
+TALLY_MAX = TURRET_CAP + 2
+triggers = ["Session", "PeriodicRefresh", "BaseKilled", "BaseGone", "BaseWatchdog", "TurretUp", "TurretUpPending",
+            "TurretLost", "TurretUpTally", "TurretLostTally", "TurretRollCall", "TurretRollCallAck", "TurretHere",
+            "TurretRollCallEnd", "LockEnd", "ClaimPendingEnd", "TurretPendingEnd", "TurretCoolEnd", "RestoreCoolEnd"]
+triggers += [f"TurretTally-{n}" for n in range(TALLY_MAX + 1)]
 for f in F:
     triggers += [f"Claim-{f}", f"Turret-{f}", f"Restore-{f}", f"BaseUp-{f}", f"BaseAlive-{f}",
                  f"HostileArrived-{f}", f"HostileStillNear-{f}", f"HostileClear-{f}",
                  f"EnterTerritory-{f}", f"LeaveTerritory-{f}"]
     triggers += [f"BoardUsed-{kind}-{f}" for kind in MISSIONS]
-refresh_rules = []  # (name, true, false, counters, board)
-refresh_rules += [
-    ("Locked", [LOCK], [BASE["SOBAN"], BASE["KHAANEPH"]], [], "Empty"),
-    ("Pending", [PEND], [BASE["SOBAN"], BASE["KHAANEPH"], LOCK], [], "Empty"),
-]
-# No Base, no lock, nothing pending: each alliance's Claim shows only while the site is inside its Territory and no
-# player hostile to it is near. Per alliance that is one of three exclusive states, so 3 x 3 rules cover every case.
-def claim_state(f, state):
-    return {"Open": ([TERR[f]], [HOST[f]]), "Out": ([], [TERR[f]]), "Hostile": ([TERR[f], HOST[f]], [])}[state]
-for s_state in ["Open", "Out", "Hostile"]:
-    for k_state in ["Open", "Out", "Hostile"]:
-        (st, sf), (kt, kf) = claim_state("SOBAN", s_state), claim_state("KHAANEPH", k_state)
-        board = {(True, True): "ClaimBoth", (True, False): "ClaimSOBAN", (False, True): "ClaimKHAANEPH",
-                 (False, False): "Empty"}[(s_state == "Open", k_state == "Open")]
-        refresh_rules.append((f"Claim-SOBAN{s_state}-KHAANEPH{k_state}", st + kt,
-                              [BASE["SOBAN"], BASE["KHAANEPH"], LOCK, PEND] + sf + kf, [], board))
-below_cap = [(TCOUNT, TURRET_CAP, "Less")]
-at_cap = [(TCOUNT, TURRET_CAP, "GreaterOrEqual")]
-for f in F:
-    b, h = BASE[f], HOST[f]
-    refresh_rules += [
-        (f"{f}-Hostile", [b, h], [], [], "Empty"),
-        (f"{f}-TurretRestore", [b], [h, TCOOL, RCOOL], below_cap, f"{f}-TurretRestore"),
-        (f"{f}-TurretOnly", [b, RCOOL], [h, TCOOL], below_cap, f"{f}-Turret"),
-        (f"{f}-RestoreCooling", [b, TCOOL], [h, RCOOL], [], f"{f}-Restore"),
-        (f"{f}-RestoreAtCap", [b], [h, TCOOL, RCOOL], at_cap, f"{f}-Restore"),
-        (f"{f}-NoneCooling", [b, TCOOL, RCOOL], [h], [], "Empty"),
-        (f"{f}-NoneAtCap", [b, RCOOL], [h, TCOOL], at_cap, "Empty"),
-    ]
 for r in refresh_rules:
     triggers.append(f"Refresh-{r[0]}")
 t.append(comp(f"{P}-Site-Behavior", [
@@ -230,7 +258,7 @@ for f in F:
         "[ResetCooldownTimeOfTriggers:true]", f"[ResetTriggerCooldownNames:{P}-Site-Trigger-ClaimPendingEnd]"], refresh=True))
     t.append(trig(f"{P}-Site-Trigger-Turret-{f}", "CommandReceived", [f"{P}-Site-Action-Turret"],
                   f"{P}-Site-Condition-CanTurret-{f}", [f"[CommandReceiveCode:GVK-BaseSite-Board-Turret-{f}]"]))
-    t.append(cond(f"{P}-Site-Condition-CanTurret-{f}", [BASE[f]], [HOST[f], TCOOL], below_cap))
+    t.append(cond(f"{P}-Site-Condition-CanTurret-{f}", [BASE[f]], [HOST[f], TCOOL, TPEND], below_cap))
     t.append(trig(f"{P}-Site-Trigger-Restore-{f}", "CommandReceived", [f"{P}-Site-Action-Restore"],
                   f"{P}-Site-Condition-CanRestore-{f}", [f"[CommandReceiveCode:GVK-BaseSite-Board-Restore-{f}]"]))
     t.append(cond(f"{P}-Site-Condition-CanRestore-{f}", [BASE[f]], [HOST[f], RCOOL]))
@@ -238,9 +266,10 @@ for f in F:
     for kind in MISSIONS:
         t.append(trig(f"{P}-Site-Trigger-BoardUsed-{kind}-{f}", "CommandReceived", [f"{P}-Site-Action-Refresh"],
                       extra=[f"[CommandReceiveCode:GVK-BaseSite-Board-{kind}-{f}]"]))
+# The cooldown starts when the Turret reports in (TurretUpPending), so a spawn that finds no spot costs nothing.
 t.append(action(f"{P}-Site-Action-Turret", [
-    "[BroadcastCommandProfiles:true]", f"[CommandProfileIds:{P}-Command-SpawnDefenseTurret]", f"[SetBooleansTrue:{TCOOL}]",
-    "[ResetCooldownTimeOfTriggers:true]", f"[ResetTriggerCooldownNames:{P}-Site-Trigger-TurretCoolEnd]"], refresh=True))
+    "[BroadcastCommandProfiles:true]", f"[CommandProfileIds:{P}-Command-SpawnDefenseTurret]", f"[SetBooleansTrue:{TPEND}]",
+    "[ResetCooldownTimeOfTriggers:true]", f"[ResetTriggerCooldownNames:{P}-Site-Trigger-TurretPendingEnd]"], refresh=True))
 t.append(action(f"{P}-Site-Action-Restore", [
     "[BroadcastCommandProfiles:true]", f"[CommandProfileIds:{P}-Command-RestoreBase]", f"[SetBooleansTrue:{RCOOL}]",
     "[ResetCooldownTimeOfTriggers:true]", f"[ResetTriggerCooldownNames:{P}-Site-Trigger-RestoreCoolEnd]"], refresh=True))
@@ -275,18 +304,70 @@ t.append(action(f"{P}-Site-Action-BaseSilent", [f"[SetBooleansFalse:{BASE['SOBAN
 t.append(trig(f"{P}-Site-Trigger-TurretUp", "CommandReceived", [f"{P}-Site-Action-TurretUp"],
               extra=["[CommandReceiveCode:GVK-BaseSite-TurretUp]"]))
 t.append(action(f"{P}-Site-Action-TurretUp", [f"[IncreaseCounters:{TCOUNT}]"], refresh=True))
+t.append(trig(f"{P}-Site-Trigger-TurretUpPending", "CommandReceived", [f"{P}-Site-Action-TurretUpPending"],
+              f"{P}-Site-Condition-TurretPendingEnd", ["[CommandReceiveCode:GVK-BaseSite-TurretUp]"]))
+t.append(action(f"{P}-Site-Action-TurretUpPending", [
+    f"[SetBooleansFalse:{TPEND}]", f"[SetBooleansTrue:{TCOOL}]", "[ResetCooldownTimeOfTriggers:true]",
+    f"[ResetTriggerCooldownNames:{P}-Site-Trigger-TurretCoolEnd]"], refresh=True))
 t.append(trig(f"{P}-Site-Trigger-TurretLost", "CommandReceived", [f"{P}-Site-Action-TurretLost"],
               f"{P}-Site-Condition-HasTurret", ["[CommandReceiveCode:GVK-BaseSite-TurretLost]"]))
 t.append(cond(f"{P}-Site-Condition-HasTurret", counters=[(TCOUNT, 1, "GreaterOrEqual")]))
 t.append(action(f"{P}-Site-Action-TurretLost", [f"[DecreaseCounters:{TCOUNT}]"], refresh=True))
 
+t.append(section("DEFENSE TURRET ROLL CALL (keeps the count right when a Turret vanishes without reporting)"))
+# Every minute the Base Site asks its Base to call its Turrets. Each live Turret answers through the Base, and when the
+# window closes the count is set to the answers. An admin delete sends no report, so without this the slot never frees.
+# The count is set only if the Base answered: a Base that isn't loaded can't count its Turrets.
+t.append(trig(f"{P}-Site-Trigger-TurretRollCall", "Timer", [f"{P}-Site-Action-TurretRollCall"],
+              f"{P}-Site-Condition-RollCallReady", cooldown=60000))
+t.append(cond(f"{P}-Site-Condition-RollCallReady", [BASE["SOBAN"], BASE["KHAANEPH"]], [ROLL], any_true=True))
+t.append(action(f"{P}-Site-Action-TurretRollCall", [
+    f"[SetBooleansTrue:{ROLL}]", f"[SetBooleansFalse:{ROLLACK}]", f"[ResetCounters:{TALLY}]",
+    "[BroadcastCommandProfiles:true]", f"[CommandProfileIds:{P}-Command-TurretRollCall]",
+    "[ResetCooldownTimeOfTriggers:true]", f"[ResetTriggerCooldownNames:{P}-Site-Trigger-TurretRollCallEnd]"]))
+t.append(command(f"{P}-Command-TurretRollCall", "GVK-BaseSite-TurretRollCall", 1100, cross_owner=True))
+t.append(cond(f"{P}-Site-Condition-RollCallOpen", [ROLL]))
+t.append(trig(f"{P}-Site-Trigger-TurretRollCallAck", "CommandReceived", [f"{P}-Site-Action-TurretRollCallAck"],
+              f"{P}-Site-Condition-RollCallOpen", ["[CommandReceiveCode:GVK-BaseSite-TurretRollCallAck]"]))
+t.append(action(f"{P}-Site-Action-TurretRollCallAck", [f"[SetBooleansTrue:{ROLLACK}]"]))
+for name, code in [("TurretHere", "GVK-BaseSite-TurretHere"), ("TurretUpTally", "GVK-BaseSite-TurretUp")]:
+    t.append(trig(f"{P}-Site-Trigger-{name}", "CommandReceived", [f"{P}-Site-Action-TallyUp"],
+                  f"{P}-Site-Condition-RollCallOpen", [f"[CommandReceiveCode:{code}]"]))
+t.append(action(f"{P}-Site-Action-TallyUp", [f"[IncreaseCounters:{TALLY}]"]))
+t.append(trig(f"{P}-Site-Trigger-TurretLostTally", "CommandReceived", [f"{P}-Site-Action-TallyDown"],
+              f"{P}-Site-Condition-RollCallHasTally", ["[CommandReceiveCode:GVK-BaseSite-TurretLost]"]))
+t.append(cond(f"{P}-Site-Condition-RollCallHasTally", [ROLL], counters=[(TALLY, 1, "GreaterOrEqual")]))
+t.append(action(f"{P}-Site-Action-TallyDown", [f"[DecreaseCounters:{TALLY}]"]))
+t.append(trig(f"{P}-Site-Trigger-TurretRollCallEnd", "Timer", [f"{P}-Site-Action-TurretRollCallEnd"],
+              f"{P}-Site-Condition-RollCallOpen", starts_ready=False, cooldown=5000))
+t.append(action(f"{P}-Site-Action-TurretRollCallEnd", [
+    f"[SetBooleansFalse:{ROLL}]", "[ManuallyActivateTrigger:true]", f"[ManuallyActivatedTriggerTags:{P}-TriggerTags-ApplyTally]"]))
+# MES drops 0 from integer lists, so a tally of 0 is matched with Less 1 and applied with ResetCounters.
+for n in range(TALLY_MAX + 1):
+    cmp = (TALLY, 1, "Less") if n == 0 else (TALLY, n, "GreaterOrEqual" if n == TALLY_MAX else "Equal")
+    t.append(trig(f"{P}-Site-Trigger-TurretTally-{n}", "Manual", [f"{P}-Site-Action-TurretTally-{n}"],
+                  f"{P}-Site-Condition-TurretTally-{n}", tags=[f"{P}-TriggerTags-ApplyTally"]))
+    t.append(cond(f"{P}-Site-Condition-TurretTally-{n}", [ROLLACK], counters=[cmp]))
+    t.append(action(f"{P}-Site-Action-TurretTally-{n}",
+                    [f"[ResetCounters:{TCOUNT}]"] if n == 0 else [f"[SetCounters:{TCOUNT}]", f"[SetCountersValues:{n}]"],
+                    refresh=True))
+
 t.append(section("COOLDOWNS (restarted by the action that starts them)"))
-for name, flag, ms in [("LockEnd", LOCK, 7200000), ("ClaimPendingEnd", PEND, 120000),
-                       ("TurretCoolEnd", TCOOL, TURRET_COOL_MS), ("RestoreCoolEnd", RCOOL, RESTORE_COOL_MS)]:
+# TurretPendingEnd fires only when no Turret reported within a minute of the order: the spawn found no spot.
+TURRET_FAILED = [f"[UseChatBroadcast:true]", f"[ChatData:{P}-Site-Chat-TurretFailed]"]
+for name, flag, ms, extra in [("LockEnd", LOCK, 7200000, []), ("ClaimPendingEnd", PEND, 120000, []),
+                              ("TurretPendingEnd", TPEND, 60000, TURRET_FAILED),
+                              ("TurretCoolEnd", TCOOL, TURRET_COOL_MS, []), ("RestoreCoolEnd", RCOOL, RESTORE_COOL_MS, [])]:
     t.append(trig(f"{P}-Site-Trigger-{name}", "Timer", [f"{P}-Site-Action-{name}"], f"{P}-Site-Condition-{name}",
                   starts_ready=False, cooldown=ms))
     t.append(cond(f"{P}-Site-Condition-{name}", [flag]))
-    t.append(action(f"{P}-Site-Action-{name}", [f"[SetBooleansFalse:{flag}]"], refresh=True))
+    t.append(action(f"{P}-Site-Action-{name}", [f"[SetBooleansFalse:{flag}]"] + extra, refresh=True))
+t.append(comp(f"{P}-Site-Chat-TurretFailed", [
+    "[RivalAI Chat]", "[UseChat:true]", "[StartsReady:true]", "[Chance:100]", "[MaxChats:-1]", "[BroadcastRandomly:false]",
+    "[Author:Base Site]", "[Color:Blue]",
+    "[ChatMessages:No clear spot was found for the Defense Turret. The contract is open again, with no cooldown.]",
+    "[ChatAudio:ArcHudSensors]", "[BroadcastChatType:Chat]", "[IgnoreAntennaRequirement:true]",
+    "[IgnoredAntennaRangeOverride:5000]"]))
 
 t.append(section("HOSTILE PLAYERS WITHIN 5 KM (per alliance)"))
 for f in F:
@@ -340,9 +421,11 @@ for f in F:
 theader = """\t\t<!--
 \t\tBase Site grid (NST [UNKN] Base Site): runs the site's contract board (GVK-Settings#653, contracts in GVK-Alliance-PresetBases-Contracts.sbc).
 \t\tState is local to each Base Site: which alliance's Base stands here, the 2-hour lock after a kill, the 20-minute turret
-\t\tand 2-hour restore cooldowns, the standing Defense Turret count, whether players hostile to each alliance are
-\t\twithin 5 km, and whether the site is inside each alliance's Territory (an alliance's Claim shows only while it is).
-\t\tEvery change re-applies the one board profile that matches the new state.
+\t\tand 2-hour restore cooldowns, a Turret being placed, the standing Defense Turret count (re-counted by a roll call every
+\t\tminute), whether players hostile to each alliance are within 5 km, and whether the site is inside each alliance's
+\t\tTerritory (an alliance's Claim shows only while it is).
+\t\tEvery change re-applies the one board profile that matches the new state. A contract the state blocks shows as a
+\t\tstand-in that names the reason and can't be accepted.
 \t\tThe Base reports to its Base Site with commands (GVK-Alliance-PresetBases-BaseSite.sbc). Design: Docs/design/preset-bases.md.
 \t\t-->"""
 write(PB / "GVK-Alliance-PresetBases-Site-Behavior.sbc", doc(theader, t))
@@ -354,7 +437,7 @@ CLAIMED, KILLED = "GVK_Site_Claimed", "GVK_Site_BaseKilled"
 REPORTED, LOSTSENT = "GVK_Site_TurretReported", "GVK_Site_TurretLostSent"
 s = []
 s.append(section("BASE TRIGGER GROUPS (one per alliance)"))
-base_shared = ["SpawnDefenseTurret", "Restore", "Gone", "RelayTurretUp", "RelayTurretLost"]
+base_shared = ["SpawnDefenseTurret", "Restore", "Gone", "RelayTurretUp", "RelayTurretLost", "RelayTurretHere", "RollCall"]
 for f in F:
     s.append(comp(f"{B}-TriggerGroup-{f}", ["[RivalAI TriggerGroup]"] +
                   [f"[Triggers:{B}-Trigger-{x}-{f}]" for x in ["Claimed", "Heartbeat", "SpawnDefenseTurret", "Killed", "FriendlyKill"]] +
@@ -407,16 +490,24 @@ s.append(command(f"{B}-Command-BaseGone", "GVK-BaseSite-BaseGone", 1100, cross_o
 s.append(command(f"{B}-Command-DespawnDefenseTurrets", "GVK-BaseSite-DespawnDefenseTurrets", 1100, ["[MatchReceiverChild:true]"]))
 
 s.append(section("DEFENSE TURRET COUNT: RELAY CHILD REPORTS TO THE BASE SITE"))
-for d in ["Up", "Lost"]:
+for d in ["Up", "Lost", "Here"]:
     s.append(trig(f"{B}-Trigger-RelayTurret{d}", "CommandReceived", [f"{B}-Action-RelayTurret{d}"], f"{B}-Condition-Standing",
                   [f"[CommandReceiveCode:GVK-BaseSite-Turret{d}-ToBase]"]))
     s.append(action(f"{B}-Action-RelayTurret{d}", ["[BroadcastCommandProfiles:true]", f"[CommandProfileIds:{B}-Command-Turret{d}]"]))
     s.append(command(f"{B}-Command-Turret{d}", f"GVK-BaseSite-Turret{d}", 1100, cross_owner=True))
+# Roll call: answer the Base Site (so it knows the count can be trusted), then call this Base's Turrets.
+s.append(trig(f"{B}-Trigger-RollCall", "CommandReceived", [f"{B}-Action-RollCall"], f"{B}-Condition-Standing",
+              ["[CommandReceiveCode:GVK-BaseSite-TurretRollCall]"]))
+s.append(action(f"{B}-Action-RollCall", ["[BroadcastCommandProfiles:true]", f"[CommandProfileIds:{B}-Command-RollCallAck]",
+                                         f"[CommandProfileIds:{B}-Command-RollCallTurrets]"]))
+s.append(command(f"{B}-Command-RollCallAck", "GVK-BaseSite-TurretRollCallAck", 1100, cross_owner=True))
+s.append(command(f"{B}-Command-RollCallTurrets", "GVK-BaseSite-TurretRollCall-ToTurrets", 1100, ["[MatchReceiverChild:true]"]))
 
 s.append(section("DEFENSE TURRET TRIGGER GROUPS (one per alliance)"))
 for f in F:
     s.append(comp(f"{T}-TriggerGroup-{f}", ["[RivalAI TriggerGroup]", f"[Triggers:{T}-Trigger-Reported]",
-                  f"[Triggers:{T}-Trigger-DespawnOrder]", f"[Triggers:{T}-Trigger-Lost-{f}]", f"[Triggers:{T}-Trigger-Despawned]"],
+                  f"[Triggers:{T}-Trigger-DespawnOrder]", f"[Triggers:{T}-Trigger-Lost-{f}]", f"[Triggers:{T}-Trigger-Despawned]",
+                  f"[Triggers:{T}-Trigger-RollCall]"],
                   "Shared with lone Encounter Turrets: with no parent Base, their reports reach no one" if f == "SOBAN" else None))
 s.append(cond(f"{T}-Condition-NotReported", [], [REPORTED]))
 s.append(cond(f"{T}-Condition-NotLost", [], [LOSTSENT]))
@@ -432,7 +523,10 @@ for f in F:
 s.append(trig(f"{T}-Trigger-Despawned", "DespawnMES", [f"{T}-Action-Lost"], f"{T}-Condition-NotLost", ["[DespawnTypeFromSpawner:Any]"]))
 s.append(action(f"{T}-Action-Lost", [f"[SetBooleansTrue:{LOSTSENT}]", "[BroadcastCommandProfiles:true]",
                                      f"[CommandProfileIds:{T}-Command-TurretLost]"]))
-for d in ["Up", "Lost"]:
+s.append(trig(f"{T}-Trigger-RollCall", "CommandReceived", [f"{T}-Action-RollCall"], f"{T}-Condition-NotLost",
+              ["[CommandReceiveCode:GVK-BaseSite-TurretRollCall-ToTurrets]"]))
+s.append(action(f"{T}-Action-RollCall", ["[BroadcastCommandProfiles:true]", f"[CommandProfileIds:{T}-Command-TurretHere]"]))
+for d in ["Up", "Lost", "Here"]:
     s.append(command(f"{T}-Command-Turret{d}", f"GVK-BaseSite-Turret{d}-ToBase", 1100, ["[MatchReceiverParent:true]"]))
 
 sheader = """\t\t<!--
@@ -441,7 +535,8 @@ sheader = """\t\t<!--
 \t\t- Base: +50 Influence once when it first spawns, a report to its Base Site every 5 minutes, Defense Turrets and Restore on
 \t\t  the Base Site's orders, and a report when it is killed or despawned (its Defense Turrets despawn with it).
 \t\t- A kill costs its alliance 50 Influence even when no enemy or neutral player damaged it (closes the claim-and-kill farm).
-\t\t- Defense Turret: reports to its parent Base when it spawns and when it is lost; the Base relays both to the Base Site.
+\t\t- Defense Turret: reports to its parent Base when it spawns, when it is lost and at each roll call; the Base relays all
+\t\t  three to the Base Site.
 \t\tBase Site side: GVK-Alliance-PresetBases-Site-Behavior.sbc. Design: Docs/design/preset-bases.md.
 \t\t-->"""
 write(PB / "GVK-Alliance-PresetBases-BaseSite.sbc", doc(sheader, s))
