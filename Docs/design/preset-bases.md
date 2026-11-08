@@ -20,7 +20,7 @@ Each Base Site (`NST [UNKN] Base Site`, a low static grid owned by UNKN) runs a 
 | Deploy Defense Turret | Friendly with the Base's alliance | The Base spawns one Turret 300-500 m out | One per 20 min from when the last one was placed, 4 standing |
 | Restore Base | Friendly with the Base's alliance | Repairs damaged blocks on the Base and its subgrids, switches its shield block on | One per 2 h |
 
-While a player hostile to an alliance (reputation below 0) is within 5 km, that alliance's contracts can't be accepted. A contract blocked by the site's state shows as a stand-in that names the reason, such as `Deploy Defense Turret - KHAANEPH (cooling down)`.
+While a player hostile to an alliance (reputation below 0) is within 2 km of the Base Site, that alliance's contracts can't be accepted. The site checks every 10 s and clears the block 60 s after it last saw one, so the contracts come back about a minute after the hostile player leaves. The range was 5 km until 2026-11-08 (owner: too far). A contract blocked by the site's state shows as a stand-in that names the reason, such as `Deploy Defense Turret - KHAANEPH (cooling down)`.
 
 ### How it is built
 - **Files:** the missions and board profiles are in `GVK-Alliance-PresetBases-Contracts.sbc`, the Base Site in `GVK-Alliance-PresetBases-Site-Behavior.sbc`, and the Base and Turret side in `GVK-Alliance-PresetBases-BaseSite.sbc`. [tools/New-BaseSiteBoard.py](../../tools/New-BaseSiteBoard.py) generates all three, so edit the script and re-run it rather than hand-editing the 29 board rules. For an in-game test, `--test-cooldown 10` in a throwaway worktree builds a copy with 10 s Turret and Restore cooldowns and marks its contracts as a test build.

@@ -108,6 +108,8 @@ ROLL, ROLLACK, TALLY = "GVK_Site_TurretRollCall", "GVK_Site_TurretRollCallAck", 
 TURRET_CAP = 4
 # A placed Turret reports within seconds (MES runs behaviors every tick), so no report by then means no spot was found.
 TURRET_PLACE_MS = 15000
+# Players hostile to an alliance within this range of the Base Site block its contracts.
+HOSTILE_RANGE_M = 2000
 RESET_STATE = [f"[SetBooleansFalse:{BASE['SOBAN']}]", f"[SetBooleansFalse:{BASE['KHAANEPH']}]",
                f"[SetBooleansFalse:{TCOOL}]", f"[SetBooleansFalse:{RCOOL}]", f"[SetBooleansFalse:{TPEND}]",
                f"[ResetCounters:{TCOUNT}]"]
@@ -124,7 +126,7 @@ for f in F:
     c.append(comp(f"{P}-PlayerCondition-Hostile{f}", [
         "[MES Player Condition]", "[CheckPlayerReputation:true]", f"[CheckReputationwithFaction:{f}]",
         "[MinPlayerReputation:-1500]", "[MaxPlayerReputation:-1]"],
-        f"Hostile to {f} (reputation below 0): blocks {f} contracts within 5 km"))
+        f"Hostile to {f} (reputation below 0): blocks {f} contracts within {HOSTILE_RANGE_M // 1000} km"))
 # No player carries this tag, so a stand-in contract is always refused. MES refuses after the game accepts and says so
 # only in chat (GVK-Settings#762), so the stand-in's title carries the reason.
 c.append(comp(f"{P}-PlayerCondition-Never", [
@@ -138,7 +140,7 @@ MISSIONS = {
     "Turret": ("Deploy Defense Turret", "Places one {f} Defense Turret around the Base at this site. One every 20 minutes, counted from when the last one was placed, up to 4 standing."),
     "Restore": ("Restore Base", "Repairs every damaged block on the {f} Base at this site. Destroyed blocks are not rebuilt. Once every 2 hours."),
 }
-HOSTILE = ("hostile player nearby", "Unavailable while a player hostile to {f} is within 5 km of this site.")
+HOSTILE = ("hostile player nearby", f"Unavailable while a player hostile to {{f}} is within {HOSTILE_RANGE_M // 1000} km of this site.")
 # Stand-ins: shown in place of a contract the site's state blocks. (name, contract, title suffix, description)
 STANDINS = [
     ("ClaimHostile", "Claim") + HOSTILE,
@@ -371,15 +373,15 @@ t.append(comp(f"{P}-Site-Chat-TurretFailed", [
     "[ChatAudio:ArcHudSensors]", "[BroadcastChatType:Chat]", "[IgnoreAntennaRequirement:true]",
     "[IgnoredAntennaRangeOverride:5000]"]))
 
-t.append(section("HOSTILE PLAYERS WITHIN 5 KM (per alliance)"))
+t.append(section(f"HOSTILE PLAYERS WITHIN {HOSTILE_RANGE_M // 1000} KM (per alliance)"))
 for f in F:
     pc = f"[PlayerConditionIds:{P}-PlayerCondition-Hostile{f}]"
     t.append(trig(f"{P}-Site-Trigger-HostileArrived-{f}", "PlayerNear", [f"{P}-Site-Action-HostileArrived-{f}"],
-                  f"{P}-Site-Condition-NotHostile-{f}", ["[TargetDistance:5000]", "[UsePlayerCondition:true]", pc], cooldown=10000))
+                  f"{P}-Site-Condition-NotHostile-{f}", [f"[TargetDistance:{HOSTILE_RANGE_M}]", "[UsePlayerCondition:true]", pc], cooldown=10000))
     t.append(cond(f"{P}-Site-Condition-NotHostile-{f}", [], [HOST[f]]))
     t.append(action(f"{P}-Site-Action-HostileArrived-{f}", [f"[SetBooleansTrue:{HOST[f]}]"], refresh=True))
     t.append(trig(f"{P}-Site-Trigger-HostileStillNear-{f}", "PlayerNear", [f"{P}-Site-Action-HostileStillNear-{f}"],
-                  extra=["[TargetDistance:5000]", "[UsePlayerCondition:true]", pc], cooldown=10000))
+                  extra=[f"[TargetDistance:{HOSTILE_RANGE_M}]", "[UsePlayerCondition:true]", pc], cooldown=10000))
     t.append(action(f"{P}-Site-Action-HostileStillNear-{f}", [
         "[ResetCooldownTimeOfTriggers:true]", f"[ResetTriggerCooldownNames:{P}-Site-Trigger-HostileClear-{f}]"]))
     t.append(trig(f"{P}-Site-Trigger-HostileClear-{f}", "Timer", [f"{P}-Site-Action-HostileClear-{f}"],
@@ -424,7 +426,7 @@ theader = """\t\t<!--
 \t\tBase Site grid (NST [UNKN] Base Site): runs the site's contract board (GVK-Settings#653, contracts in GVK-Alliance-PresetBases-Contracts.sbc).
 \t\tState is local to each Base Site: which alliance's Base stands here, the 2-hour lock after a kill, the 20-minute turret
 \t\tand 2-hour restore cooldowns, a Turret being placed, the standing Defense Turret count (re-counted by a roll call every
-\t\tminute), whether players hostile to each alliance are within 5 km, and whether the site is inside each alliance's
+\t\tminute), whether players hostile to each alliance are within 2 km, and whether the site is inside each alliance's
 \t\tTerritory (an alliance's Claim shows only while it is).
 \t\tEvery change re-applies the one board profile that matches the new state. A contract the state blocks shows as a
 \t\tstand-in that names the reason and can't be accepted.

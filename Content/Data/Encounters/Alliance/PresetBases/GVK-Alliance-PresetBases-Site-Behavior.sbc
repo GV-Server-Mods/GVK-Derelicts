@@ -5,7 +5,7 @@
 		Base Site grid (NST [UNKN] Base Site): runs the site's contract board (GVK-Settings#653, contracts in GVK-Alliance-PresetBases-Contracts.sbc).
 		State is local to each Base Site: which alliance's Base stands here, the 2-hour lock after a kill, the 20-minute turret
 		and 2-hour restore cooldowns, a Turret being placed, the standing Defense Turret count (re-counted by a roll call every
-		minute), whether players hostile to each alliance are within 5 km, and whether the site is inside each alliance's
+		minute), whether players hostile to each alliance are within 2 km, and whether the site is inside each alliance's
 		Territory (an alliance's Claim shows only while it is).
 		Every change re-applies the one board profile that matches the new state. A contract the state blocks shows as a
 		stand-in that names the reason and can't be accepted.
@@ -1774,7 +1774,7 @@
 		</EntityComponent>
 
 		<!-- =================================================== -->
-		<!-- HOSTILE PLAYERS WITHIN 5 KM (per alliance)          -->
+		<!-- HOSTILE PLAYERS WITHIN 2 KM (per alliance)          -->
 		<!-- =================================================== -->
 
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
@@ -1789,7 +1789,7 @@
 				[StartsReady:true]
 				[MinCooldownMs:10000]
 				[MaxCooldownMs:10001]
-				[TargetDistance:5000]
+				[TargetDistance:2000]
 				[UsePlayerCondition:true]
 				[PlayerConditionIds:GVK-Alliance-PresetBases-PlayerCondition-HostileSOBAN]
 				[MaxActions:-1]
@@ -1838,7 +1838,7 @@
 				[StartsReady:true]
 				[MinCooldownMs:10000]
 				[MaxCooldownMs:10001]
-				[TargetDistance:5000]
+				[TargetDistance:2000]
 				[UsePlayerCondition:true]
 				[PlayerConditionIds:GVK-Alliance-PresetBases-PlayerCondition-HostileSOBAN]
 				[MaxActions:-1]
@@ -1917,7 +1917,7 @@
 				[StartsReady:true]
 				[MinCooldownMs:10000]
 				[MaxCooldownMs:10001]
-				[TargetDistance:5000]
+				[TargetDistance:2000]
 				[UsePlayerCondition:true]
 				[PlayerConditionIds:GVK-Alliance-PresetBases-PlayerCondition-HostileKHAANEPH]
 				[MaxActions:-1]
@@ -1966,7 +1966,7 @@
 				[StartsReady:true]
 				[MinCooldownMs:10000]
 				[MaxCooldownMs:10001]
-				[TargetDistance:5000]
+				[TargetDistance:2000]
 				[UsePlayerCondition:true]
 				[PlayerConditionIds:GVK-Alliance-PresetBases-PlayerCondition-HostileKHAANEPH]
 				[MaxActions:-1]
