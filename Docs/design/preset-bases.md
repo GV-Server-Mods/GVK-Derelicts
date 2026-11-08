@@ -29,7 +29,7 @@ No contract shows while a player hostile to that alliance (reputation 0 or below
 - **Cooldowns are Timer triggers restarted** with `ResetCooldownTimeOfTriggers` by the action that starts them. Each one clears its flag when it fires.
 - **The Base reports to its Base Site** by radius (1100 m; sites are 7.9 km apart at minimum). It sends `BaseUp` on spawn and every 5 minutes, `BaseKilled` from the defeat chain and `BaseGone` from `DespawnMES`. A Base Site that hears nothing for 15 minutes clears its Base flag but keeps the Turret count and cooldowns, so a concealed Base does not reset them.
 - **Defense Turrets report to their parent Base** (`MatchReceiverParent`), which relays to the Base Site. Lone Encounter Turrets share the Turret behavior but have no parent Base, so their reports reach no one. The Base despawns its Turrets (`MatchReceiverChild`) when it is killed or despawned. They despawn as a rule despawn, so they cost no Influence.
-- **Placement:** each spawn group puts the grid at its site's GPS point raised 7.5 m along Up, because the Base Site's floor is 3 blocks below the grid origin. The 22 Up vectors meet at the planet center, so Up points away from the ground.
+- **Placement:** each spawn group puts the grid origin on its site's GPS point (`ForceExactPositionAndOrientation` places the origin there and lines grid +Y up with `StaticEncounterUp`). The Base Site is built with its up along grid -Y, like the KOTH trade station it came from: its functional blocks face grid Down. So its `StaticEncounterUp` points at the planet center. Its base is 6.25 m below the origin, the same as the old tower's.
 - **One live Base per site** is still enforced by the spawn conditions' RC code gate: `[RemoteControlCode:GVK-Alliance-Base]` with `[RemoteControlCodeMinDistance:1100]`. The gate must stay above `2 x` the spawner `MaxDistance` (500), or a redeploy can land outside it.
 
 ### Influence
@@ -38,7 +38,7 @@ No contract shows while a player hostile to that alliance (reputation 0 or below
 - **Despawns:** the abandon rule (`GVK-Alliance-TriggerGroup-InsideOutsideZone`) and other rule despawns cost nothing and start no lock.
 
 ### Limits to test in game
-- The 7.5 m raise is an estimate from the block layout: check that the floor sits on the ground at a site or two.
+- The Base Site's foundation is wider than the old tower's: check at a site or two that it sits on the ground, not buried or floating on a slope.
 - A defeated Base wreck may keep its RC code and block a re-claim at its site until the wreck is cleaned up.
 - A Turret that fails to find a spawn position still uses the 20-minute cooldown.
 - Restore brings back a sieged shield only with GVK_SiegeableSafeZones_NPC 33d7711 or later. That build restores a sieged NPC shield when an NPC switches its block back on; older builds switch it off again.
