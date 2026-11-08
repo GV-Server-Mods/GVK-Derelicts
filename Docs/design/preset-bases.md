@@ -3,13 +3,40 @@ title: Preset alliance bases
 notes: [30]
 covers:
   - Content/Data/Encounters/Alliance/PresetBases/*.sbc
-checked-against: MES bc71965
+  - Content/Data/Encounters/Alliance/GVK-Alliance-Base-Behavior-*.sbc
+  - Content/Data/Encounters/Alliance/GVK-Alliance-Turret-Behavior-*.sbc
+checked-against: MES d500922
 ---
 
 # Preset alliance bases
 
 ## Note 30
 
-Preset base deployment (`GVK-Alliance-PresetBases-*`) keeps one live base per site purely through the SpawnCondition RC code gate: `[RemoteControlCode:GVK-Alliance-Base]` with `[RemoteControlCodeMinDistance:1100]`.
-- **The 1100 m gate** must stay above `2 x` the spawner `MaxDistance` (500), or a redeploy can land outside it. Tower sites are 7.9 km apart at minimum, so the gate never leaks across sites.
-- **No per-site cooldown:** the site frees itself when the base grid is destroyed. Pressing the terminal while a base exists does nothing; the base's own "constructed" chat is the success feedback.
+Each Base Site tower (`NST Base Site Tower`) runs a contract board on its contract block `NPC Contracts` (GVK-Settings#653). The contracts are free, with no reward and no collateral. Accepting one sends a command to that tower, which does the work. The contract then succeeds at once.
+
+| Contract | Who can accept | Effect | Limit |
+| --- | --- | --- | --- |
+| Claim Base Site | Friendly (reputation 500+) with the alliance, standing in its Territory | Spawns the Base; the Base adds 50 Influence once | No Base at the site, no kill lock |
+| Deploy Defense Turret | Friendly with the Base's alliance | The Base spawns one Turret 300-500 m out | One per 20 min, 4 standing |
+| Restore Base | Friendly with the Base's alliance | Repairs damaged blocks on the Base and its subgrids, switches its shield block on | One per 2 h |
+
+No contract shows while a player hostile to that alliance (reputation 0 or below) is within 5 km.
+
+### How it is built
+- **Files:** the missions and board profiles are in `GVK-Alliance-PresetBases-Contracts.sbc`, the tower in `GVK-Alliance-PresetBases-Placeholder-Behavior.sbc`, and the Base and Turret side in `GVK-Alliance-PresetBases-BaseSite.sbc`. [tools/New-BaseSiteBoard.py](../../tools/New-BaseSiteBoard.py) generates all three, so edit the script and re-run it rather than hand-editing the 20 board rules.
+- **One mission set serves all 22 sites.** The mission's event action broadcasts the command from `{ContractBlockLocation}` with a 150 m radius, and `{BoardCode}` (a mission `ReplaceKeys` value) names the contract. `[TryContractSuccess:true]` ends the contract and removes its event instance.
+- **The tower keeps the site's state** in local booleans and a counter. These are which alliance's Base stands there, a 2 h kill lock, a 120 s claim-pending window, the Turret and Restore cooldowns, the standing Turret count, and a hostile-near flag per alliance. Each change fires the board's refresh tag. Exactly one of 20 refresh rules matches each state and re-applies its board profile with `ClearContractContentsFirst`. A Session trigger and a 10-minute timer also refresh the board.
+- **Cooldowns are Timer triggers restarted** with `ResetCooldownTimeOfTriggers` by the action that starts them. Each one clears its flag when it fires.
+- **The Base reports to the tower** by radius (1100 m; sites are 7.9 km apart at minimum). It sends `BaseUp` on spawn and every 5 minutes, `BaseKilled` from the defeat chain and `BaseGone` from `DespawnMES`. A tower that hears nothing for 15 minutes clears its Base flag but keeps the Turret count and cooldowns, so a concealed Base does not reset them.
+- **Defense Turrets report to their parent Base** (`MatchReceiverParent`), which relays to the tower. Lone Encounter Turrets share the Turret behavior but have no parent Base, so their reports reach no one. The Base despawns its Turrets (`MatchReceiverChild`) when it is killed or despawned. They despawn as a rule despawn, so they cost no Influence.
+- **One live Base per site** is still enforced by the spawn conditions' RC code gate: `[RemoteControlCode:GVK-Alliance-Base]` with `[RemoteControlCodeMinDistance:1100]`. The gate must stay above `2 x` the spawner `MaxDistance` (500), or a redeploy can land outside it.
+
+### Influence
+- **Claim:** +50 to the Base's alliance once, guarded by a local boolean, because Session triggers fire on every load.
+- **Kill:** the existing rule (-50 to the owner, +50 to the rival) applies when an enemy or neutral player damaged the Base. Any other kill now costs the owner 50 too, which closes the claim-and-kill farm.
+- **Despawns:** the abandon rule (`GVK-Alliance-TriggerGroup-InsideOutsideZone`) and other rule despawns cost nothing and start no lock.
+
+### Limits to test in game
+- A defeated Base wreck may keep its RC code and block a re-claim at its site until the wreck is cleaned up.
+- A Turret that fails to find a spawn position still uses the 20-minute cooldown.
+- A sieged NPC shield stays off after Restore: GVK_SiegeableSafeZones_NPC marks it sieged and switches it off again whenever it is enabled.

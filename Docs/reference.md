@@ -27,12 +27,12 @@ Set them with `/MES.Debug.ChangeBool.<Name>.<true|false>`. When to switch each o
 | `SpawnStaticTown` | bool (set by admin command only) | GVK-Static-Generic-SpawnGroup | - |
 | `{Faction}_Influence` | counter | - | GVK-Alliance-TriggerTags-Influence |
 | `KHAANEPH_DepotDemand` | counter | GVK-Alliance-Events-Freighter | GVK-Alliance-TriggerGroup-SupplyDepotZone |
-| `KHAANEPH_Influence` | counter | GVK-Alliance-Events-ZoneSize | GVK-Alliance-Events-ZoneSize, GVK-Alliance-TriggerTags-Influence |
+| `KHAANEPH_Influence` | counter | GVK-Alliance-Events-ZoneSize | GVK-Alliance-Events-ZoneSize, GVK-Alliance-PresetBases-BaseSite +1 |
 | `KHAANEPH_Tier` | counter | GVK-Alliance-Events-ZoneSize | GVK-Alliance-Events-ZoneSize |
 | `SandboxCounter_LargeDistressSpawns` | counter | GVK-PlanetaryInstallation-Large-Behavior-CoalitionDepot | GVK-PlanetaryInstallation-Large-Behavior-CoalitionDepot |
 | `SandboxCounter_MediumDistressSpawns` | counter | GVK-PlanetaryInstallation-Medium-Behavior-CoalitionWreck | GVK-PlanetaryInstallation-Medium-Behavior-CoalitionWreck |
 | `SOBAN_DepotDemand` | counter | GVK-Alliance-Events-Freighter | GVK-Alliance-TriggerGroup-SupplyDepotZone |
-| `SOBAN_Influence` | counter | GVK-Alliance-Events-ZoneSize | GVK-Alliance-Events-ZoneSize, GVK-Alliance-TriggerTags-Influence |
+| `SOBAN_Influence` | counter | GVK-Alliance-Events-ZoneSize | GVK-Alliance-Events-ZoneSize, GVK-Alliance-PresetBases-BaseSite +1 |
 | `SOBAN_Tier` | counter | GVK-Alliance-Events-ZoneSize | GVK-Alliance-Events-ZoneSize |
 <!-- /GENERATED:sandbox-variables -->
 

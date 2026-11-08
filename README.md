@@ -73,6 +73,7 @@ Run from the repo root.
 | `tools/Test-Docs.ps1` | Fails on dialogue, leash, terrain and other rules MES never reports |
 | `tools/Test-MesFreshness.ps1` | Checks the MES version the content was written against |
 | `tools/New-LeashGroup.ps1`, `New-PatrolSwitchGroup.ps1`, `New-PeerEscortPool.ps1` | Generate the repeated trigger groups |
+| `tools/New-BaseSiteBoard.py` | Generates the Base Site contract board: the tower behavior, the contracts, and the Base and Turret triggers ([design](Docs/design/preset-bases.md)) |
 
 The `se-dev-mes` skill's audit scripts (`audit_sbc.ps1`, `audit_mes_tags.ps1`, `audit_mes_references.ps1`) should pass with 0 errors before a commit.
 

@@ -20,7 +20,7 @@
 				[Triggers:GVK-Universal-Trigger-DespawnInZ0]
 				[TriggerGroups:GVK-Universal-TriggerGroup-DespawnInKOTH]
 				[Triggers:GVK-Alliance-Base-Trigger-Init-KHAANEPH]
-				[Triggers:GVK-Alliance-Base-Trigger-SpawnTurret-KHAANEPH]
+				[TriggerGroups:GVK-Alliance-PresetBases-Base-TriggerGroup-KHAANEPH]
 				[TriggerGroups:GVK-Alliance-TriggerGroup-InsideOutsideZone]
 				[TriggerGroups:GVK-Universal-TriggerGroup-SpawnDefenses]
 				[TriggerGroups:GVK-Universal-TriggerGroup-LeashBeacon]
@@ -64,25 +64,7 @@
 			</Description>
 		</EntityComponent>
 
-		<!-- Trigger to dynamically spawn satellite Turrets (300m - 500m) -->
-		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
-			<Id>
-				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Alliance-Base-Trigger-SpawnTurret-KHAANEPH</SubtypeId>
-			</Id>
-			<Description>
-				[MES AI Trigger]
-				[UseTrigger:true]
-				[Type:PlayerNear]
-				[TargetDistance:15000]
-				[MinCooldownMs:1200000]
-				[MaxCooldownMs:1800000]
-				[StartsReady:true]
-				[MaxActions:-1]
-				[Actions:GVK-Alliance-Base-Action-SpawnTurret-KHAANEPH]
-			</Description>
-		</EntityComponent>
-
+		<!-- Defense Turret (300m - 500m), ordered from the Base Site board (GVK-Alliance-PresetBases-BaseSite.sbc) -->
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>

@@ -1,0 +1,840 @@
+<?xml version="1.0"?>
+<Definitions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+	<EntityComponents>
+		<!--
+		Base Site, Base and Defense Turret side (GVK-Settings#653). Each Base behavior adds its alliance's Base trigger group,
+		each Turret behavior its Turret trigger group.
+		- Base: +50 Influence once when it first spawns, a report to its tower every 5 minutes, Defense Turrets and Restore on
+		  the tower's orders, and a report when it is killed or despawned (its Defense Turrets despawn with it).
+		- A kill costs its alliance 50 Influence even when no enemy or neutral player damaged it (closes the claim-and-kill farm).
+		- Defense Turret: reports to its parent Base when it spawns and when it is lost; the Base relays both to the tower.
+		Tower side: GVK-Alliance-PresetBases-Placeholder-Behavior.sbc. Design: Docs/design/preset-bases.md.
+		-->
+		<!-- =================================================== -->
+		<!-- BASE TRIGGER GROUPS (one per alliance)              -->
+		<!-- =================================================== -->
+
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-PresetBases-Base-TriggerGroup-SOBAN</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI TriggerGroup]
+				[Triggers:GVK-Alliance-PresetBases-Base-Trigger-Claimed-SOBAN]
+				[Triggers:GVK-Alliance-PresetBases-Base-Trigger-Heartbeat-SOBAN]
+				[Triggers:GVK-Alliance-PresetBases-Base-Trigger-SpawnDefenseTurret-SOBAN]
+				[Triggers:GVK-Alliance-PresetBases-Base-Trigger-Killed-SOBAN]
+				[Triggers:GVK-Alliance-PresetBases-Base-Trigger-FriendlyKill-SOBAN]
+				[Triggers:GVK-Alliance-PresetBases-Base-Trigger-Restore]
+				[Triggers:GVK-Alliance-PresetBases-Base-Trigger-Gone]
+				[Triggers:GVK-Alliance-PresetBases-Base-Trigger-RelayTurretUp]
+				[Triggers:GVK-Alliance-PresetBases-Base-Trigger-RelayTurretLost]
+			</Description>
+		</EntityComponent>
+
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-PresetBases-Base-TriggerGroup-KHAANEPH</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI TriggerGroup]
+				[Triggers:GVK-Alliance-PresetBases-Base-Trigger-Claimed-KHAANEPH]
+				[Triggers:GVK-Alliance-PresetBases-Base-Trigger-Heartbeat-KHAANEPH]
+				[Triggers:GVK-Alliance-PresetBases-Base-Trigger-SpawnDefenseTurret-KHAANEPH]
+				[Triggers:GVK-Alliance-PresetBases-Base-Trigger-Killed-KHAANEPH]
+				[Triggers:GVK-Alliance-PresetBases-Base-Trigger-FriendlyKill-KHAANEPH]
+				[Triggers:GVK-Alliance-PresetBases-Base-Trigger-Restore]
+				[Triggers:GVK-Alliance-PresetBases-Base-Trigger-Gone]
+				[Triggers:GVK-Alliance-PresetBases-Base-Trigger-RelayTurretUp]
+				[Triggers:GVK-Alliance-PresetBases-Base-Trigger-RelayTurretLost]
+			</Description>
+		</EntityComponent>
+
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-PresetBases-Base-Condition-NotClaimed</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Condition]
+				[UseConditions:true]
+				[MatchAnyCondition:false]
+				[CheckFalseBooleans:true]
+				[FalseBooleans:GVK_Site_Claimed]
+			</Description>
+		</EntityComponent>
+
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-PresetBases-Base-Condition-Standing</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Condition]
+				[UseConditions:true]
+				[MatchAnyCondition:false]
+				[CheckFalseBooleans:true]
+				[FalseBooleans:GVK_Site_BaseKilled]
+			</Description>
+		</EntityComponent>
+
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-PresetBases-Base-Condition-NotDamagedByNonFriendlyPlayer</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Condition]
+				[UseConditions:true]
+				[MatchAnyCondition:false]
+				[CheckFalseBooleans:true]
+				[FalseBooleans:DamagedByNeutralPlayer]
+				[FalseBooleans:DamagedByEnemyPlayer]
+			</Description>
+		</EntityComponent>
+
+		<!-- =================================================== -->
+		<!-- CLAIM: +50 INFLUENCE ONCE, THEN REPORT EVERY 5 MINUTES -->
+		<!-- =================================================== -->
+
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-PresetBases-Base-Trigger-Claimed-SOBAN</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Trigger]
+				[UseTrigger:true]
+				[Type:Session]
+				[StartsReady:true]
+				[MaxActions:-1]
+				[Conditions:GVK-Alliance-PresetBases-Base-Condition-NotClaimed]
+				[ActionExecution:All]
+				[Actions:GVK-Alliance-PresetBases-Base-Action-Claimed-SOBAN]
+			</Description>
+		</EntityComponent>
+
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-PresetBases-Base-Action-Claimed-SOBAN</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Action]
+				[SetBooleansTrue:GVK_Site_Claimed]
+				[SetCustomStrings:true]
+				[CustomStrings:IncreaseFactionName,SOBAN]
+				[CustomStrings:IncreaseFactionAmount,50]
+				[IncreaseSandboxCounters:SOBAN_Influence]
+				[IncreaseSandboxCountersAmount:50]
+				[UseChatBroadcast:true]
+				[ChatData:GVK-Alliance-Chat-InfluenceAdjustAwarded]
+			</Description>
+		</EntityComponent>
+
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-PresetBases-Base-Trigger-Heartbeat-SOBAN</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Trigger]
+				[UseTrigger:true]
+				[Type:Timer]
+				[StartsReady:true]
+				[MinCooldownMs:300000]
+				[MaxCooldownMs:300001]
+				[MaxActions:-1]
+				[Conditions:GVK-Alliance-PresetBases-Base-Condition-Standing]
+				[ActionExecution:All]
+				[Actions:GVK-Alliance-PresetBases-Base-Action-Heartbeat-SOBAN]
+			</Description>
+		</EntityComponent>
+
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-PresetBases-Base-Action-Heartbeat-SOBAN</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Action]
+				[BroadcastCommandProfiles:true]
+				[CommandProfileIds:GVK-Alliance-PresetBases-Base-Command-BaseUp-SOBAN]
+			</Description>
+		</EntityComponent>
+
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-PresetBases-Base-Command-BaseUp-SOBAN</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Command]
+				[CommandCode:GVK-BaseSite-BaseUp-SOBAN]
+				[IgnoreAntennaRequirement:true]
+				[IgnoreReceiverAntennaRequirement:true]
+				[Radius:1100]
+				[CommandDelayTicks:0]
+			</Description>
+		</EntityComponent>
+
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-PresetBases-Base-Trigger-Claimed-KHAANEPH</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Trigger]
+				[UseTrigger:true]
+				[Type:Session]
+				[StartsReady:true]
+				[MaxActions:-1]
+				[Conditions:GVK-Alliance-PresetBases-Base-Condition-NotClaimed]
+				[ActionExecution:All]
+				[Actions:GVK-Alliance-PresetBases-Base-Action-Claimed-KHAANEPH]
+			</Description>
+		</EntityComponent>
+
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-PresetBases-Base-Action-Claimed-KHAANEPH</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Action]
+				[SetBooleansTrue:GVK_Site_Claimed]
+				[SetCustomStrings:true]
+				[CustomStrings:IncreaseFactionName,KHAANEPH]
+				[CustomStrings:IncreaseFactionAmount,50]
+				[IncreaseSandboxCounters:KHAANEPH_Influence]
+				[IncreaseSandboxCountersAmount:50]
+				[UseChatBroadcast:true]
+				[ChatData:GVK-Alliance-Chat-InfluenceAdjustAwarded]
+			</Description>
+		</EntityComponent>
+
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-PresetBases-Base-Trigger-Heartbeat-KHAANEPH</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Trigger]
+				[UseTrigger:true]
+				[Type:Timer]
+				[StartsReady:true]
+				[MinCooldownMs:300000]
+				[MaxCooldownMs:300001]
+				[MaxActions:-1]
+				[Conditions:GVK-Alliance-PresetBases-Base-Condition-Standing]
+				[ActionExecution:All]
+				[Actions:GVK-Alliance-PresetBases-Base-Action-Heartbeat-KHAANEPH]
+			</Description>
+		</EntityComponent>
+
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-PresetBases-Base-Action-Heartbeat-KHAANEPH</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Action]
+				[BroadcastCommandProfiles:true]
+				[CommandProfileIds:GVK-Alliance-PresetBases-Base-Command-BaseUp-KHAANEPH]
+			</Description>
+		</EntityComponent>
+
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-PresetBases-Base-Command-BaseUp-KHAANEPH</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Command]
+				[CommandCode:GVK-BaseSite-BaseUp-KHAANEPH]
+				[IgnoreAntennaRequirement:true]
+				[IgnoreReceiverAntennaRequirement:true]
+				[Radius:1100]
+				[CommandDelayTicks:0]
+			</Description>
+		</EntityComponent>
+
+		<!-- =================================================== -->
+		<!-- ORDERS FROM THE TOWER'S BOARD                       -->
+		<!-- =================================================== -->
+
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-PresetBases-Base-Trigger-SpawnDefenseTurret-SOBAN</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Trigger]
+				[UseTrigger:true]
+				[Type:CommandReceived]
+				[StartsReady:true]
+				[CommandReceiveCode:GVK-BaseSite-SpawnDefenseTurret]
+				[MaxActions:-1]
+				[Conditions:GVK-Alliance-PresetBases-Base-Condition-Standing]
+				[ActionExecution:All]
+				[Actions:GVK-Alliance-Base-Action-SpawnTurret-SOBAN]
+			</Description>
+		</EntityComponent>
+
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-PresetBases-Base-Trigger-SpawnDefenseTurret-KHAANEPH</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Trigger]
+				[UseTrigger:true]
+				[Type:CommandReceived]
+				[StartsReady:true]
+				[CommandReceiveCode:GVK-BaseSite-SpawnDefenseTurret]
+				[MaxActions:-1]
+				[Conditions:GVK-Alliance-PresetBases-Base-Condition-Standing]
+				[ActionExecution:All]
+				[Actions:GVK-Alliance-Base-Action-SpawnTurret-KHAANEPH]
+			</Description>
+		</EntityComponent>
+
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-PresetBases-Base-Trigger-Restore</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Trigger]
+				[UseTrigger:true]
+				[Type:CommandReceived]
+				[StartsReady:true]
+				[CommandReceiveCode:GVK-BaseSite-RestoreBase]
+				[MaxActions:-1]
+				[Conditions:GVK-Alliance-PresetBases-Base-Condition-Standing]
+				[ActionExecution:All]
+				[Actions:GVK-Alliance-PresetBases-Base-Action-Restore]
+			</Description>
+		</EntityComponent>
+
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-PresetBases-Base-Action-Restore</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Action]
+				[RepairBlocks:true]
+				[RepairBlocksIncludeSubgrids:true]
+				[MaxProjectedBlocksToBuild:100000]
+				[ToggleBlocksOfType:true]
+				[BlockTypesToToggle:MyObjectBuilder_SafeZoneBlock/SafeZoneBlockNPC]
+				[BlockTypeToggles:On]
+				[UseChatBroadcast:true]
+				[ChatData:GVK-Alliance-PresetBases-Base-Chat-Restored]
+			</Description>
+		</EntityComponent>
+
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-PresetBases-Base-Chat-Restored</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Chat]
+				[UseChat:true]
+				[StartsReady:true]
+				[Chance:100]
+				[MaxChats:-1]
+				[BroadcastRandomly:false]
+				[Author:Sensors]
+				[Color:Blue]
+				[ChatMessages:Repair crews have restored the Base. Destroyed blocks stay lost.]
+				[ChatAudio:ArcHudSensors]
+				[BroadcastChatType:Chat]
+				[IgnoreAntennaRequirement:true]
+				[IgnoredAntennaRangeOverride:5000]
+			</Description>
+		</EntityComponent>
+
+		<!-- =================================================== -->
+		<!-- LOSING THE BASE                                     -->
+		<!-- =================================================== -->
+
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-PresetBases-Base-Trigger-Killed-SOBAN</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Trigger]
+				[UseTrigger:true]
+				[Type:Manual]
+				[Tags:GVK-Alliance-TriggerTags-InfluenceCompromised-AllianceBase-SOBAN]
+				[StartsReady:true]
+				[MaxActions:-1]
+				[ActionExecution:All]
+				[Actions:GVK-Alliance-PresetBases-Base-Action-Killed]
+			</Description>
+		</EntityComponent>
+
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-PresetBases-Base-Trigger-FriendlyKill-SOBAN</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Trigger]
+				[UseTrigger:true]
+				[Type:Manual]
+				[Tags:GVK-Alliance-TriggerTags-InfluenceCompromised-AllianceBase-SOBAN]
+				[StartsReady:true]
+				[MaxActions:-1]
+				[Conditions:GVK-Alliance-PresetBases-Base-Condition-NotDamagedByNonFriendlyPlayer]
+				[ActionExecution:All]
+				[Actions:GVK-Alliance-Action-InfluenceDespawned-AllianceBase]
+			</Description>
+		</EntityComponent>
+
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-PresetBases-Base-Trigger-Killed-KHAANEPH</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Trigger]
+				[UseTrigger:true]
+				[Type:Manual]
+				[Tags:GVK-Alliance-TriggerTags-InfluenceCompromised-AllianceBase-KHAANEPH]
+				[StartsReady:true]
+				[MaxActions:-1]
+				[ActionExecution:All]
+				[Actions:GVK-Alliance-PresetBases-Base-Action-Killed]
+			</Description>
+		</EntityComponent>
+
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-PresetBases-Base-Trigger-FriendlyKill-KHAANEPH</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Trigger]
+				[UseTrigger:true]
+				[Type:Manual]
+				[Tags:GVK-Alliance-TriggerTags-InfluenceCompromised-AllianceBase-KHAANEPH]
+				[StartsReady:true]
+				[MaxActions:-1]
+				[Conditions:GVK-Alliance-PresetBases-Base-Condition-NotDamagedByNonFriendlyPlayer]
+				[ActionExecution:All]
+				[Actions:GVK-Alliance-Action-InfluenceDespawned-AllianceBase]
+			</Description>
+		</EntityComponent>
+
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-PresetBases-Base-Action-Killed</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Action]
+				[SetBooleansTrue:GVK_Site_BaseKilled]
+				[BroadcastCommandProfiles:true]
+				[CommandProfileIds:GVK-Alliance-PresetBases-Base-Command-BaseKilled]
+				[CommandProfileIds:GVK-Alliance-PresetBases-Base-Command-DespawnDefenseTurrets]
+			</Description>
+		</EntityComponent>
+
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-PresetBases-Base-Trigger-Gone</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Trigger]
+				[UseTrigger:true]
+				[Type:DespawnMES]
+				[StartsReady:true]
+				[DespawnTypeFromSpawner:Any]
+				[MaxActions:-1]
+				[Conditions:GVK-Alliance-PresetBases-Base-Condition-Standing]
+				[ActionExecution:All]
+				[Actions:GVK-Alliance-PresetBases-Base-Action-Gone]
+			</Description>
+		</EntityComponent>
+
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-PresetBases-Base-Action-Gone</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Action]
+				[BroadcastCommandProfiles:true]
+				[CommandProfileIds:GVK-Alliance-PresetBases-Base-Command-BaseGone]
+				[CommandProfileIds:GVK-Alliance-PresetBases-Base-Command-DespawnDefenseTurrets]
+			</Description>
+		</EntityComponent>
+
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-PresetBases-Base-Command-BaseKilled</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Command]
+				[CommandCode:GVK-BaseSite-BaseKilled]
+				[IgnoreAntennaRequirement:true]
+				[IgnoreReceiverAntennaRequirement:true]
+				[Radius:1100]
+				[CommandDelayTicks:0]
+			</Description>
+		</EntityComponent>
+
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-PresetBases-Base-Command-BaseGone</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Command]
+				[CommandCode:GVK-BaseSite-BaseGone]
+				[IgnoreAntennaRequirement:true]
+				[IgnoreReceiverAntennaRequirement:true]
+				[Radius:1100]
+				[CommandDelayTicks:0]
+			</Description>
+		</EntityComponent>
+
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-PresetBases-Base-Command-DespawnDefenseTurrets</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Command]
+				[CommandCode:GVK-BaseSite-DespawnDefenseTurrets]
+				[MatchReceiverChild:true]
+				[IgnoreAntennaRequirement:true]
+				[IgnoreReceiverAntennaRequirement:true]
+				[Radius:1100]
+				[CommandDelayTicks:0]
+			</Description>
+		</EntityComponent>
+
+		<!-- =================================================== -->
+		<!-- DEFENSE TURRET COUNT: RELAY CHILD REPORTS TO THE TOWER -->
+		<!-- =================================================== -->
+
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-PresetBases-Base-Trigger-RelayTurretUp</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Trigger]
+				[UseTrigger:true]
+				[Type:CommandReceived]
+				[StartsReady:true]
+				[CommandReceiveCode:GVK-BaseSite-TurretUp-ToBase]
+				[MaxActions:-1]
+				[Conditions:GVK-Alliance-PresetBases-Base-Condition-Standing]
+				[ActionExecution:All]
+				[Actions:GVK-Alliance-PresetBases-Base-Action-RelayTurretUp]
+			</Description>
+		</EntityComponent>
+
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-PresetBases-Base-Action-RelayTurretUp</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Action]
+				[BroadcastCommandProfiles:true]
+				[CommandProfileIds:GVK-Alliance-PresetBases-Base-Command-TurretUp]
+			</Description>
+		</EntityComponent>
+
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-PresetBases-Base-Command-TurretUp</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Command]
+				[CommandCode:GVK-BaseSite-TurretUp]
+				[IgnoreAntennaRequirement:true]
+				[IgnoreReceiverAntennaRequirement:true]
+				[Radius:1100]
+				[CommandDelayTicks:0]
+			</Description>
+		</EntityComponent>
+
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-PresetBases-Base-Trigger-RelayTurretLost</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Trigger]
+				[UseTrigger:true]
+				[Type:CommandReceived]
+				[StartsReady:true]
+				[CommandReceiveCode:GVK-BaseSite-TurretLost-ToBase]
+				[MaxActions:-1]
+				[Conditions:GVK-Alliance-PresetBases-Base-Condition-Standing]
+				[ActionExecution:All]
+				[Actions:GVK-Alliance-PresetBases-Base-Action-RelayTurretLost]
+			</Description>
+		</EntityComponent>
+
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-PresetBases-Base-Action-RelayTurretLost</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Action]
+				[BroadcastCommandProfiles:true]
+				[CommandProfileIds:GVK-Alliance-PresetBases-Base-Command-TurretLost]
+			</Description>
+		</EntityComponent>
+
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-PresetBases-Base-Command-TurretLost</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Command]
+				[CommandCode:GVK-BaseSite-TurretLost]
+				[IgnoreAntennaRequirement:true]
+				[IgnoreReceiverAntennaRequirement:true]
+				[Radius:1100]
+				[CommandDelayTicks:0]
+			</Description>
+		</EntityComponent>
+
+		<!-- =================================================== -->
+		<!-- DEFENSE TURRET TRIGGER GROUPS (one per alliance)    -->
+		<!-- =================================================== -->
+
+		<!-- Shared with lone Encounter Turrets: with no parent Base, their reports reach no one -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-PresetBases-Turret-TriggerGroup-SOBAN</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI TriggerGroup]
+				[Triggers:GVK-Alliance-PresetBases-Turret-Trigger-Reported]
+				[Triggers:GVK-Alliance-PresetBases-Turret-Trigger-DespawnOrder]
+				[Triggers:GVK-Alliance-PresetBases-Turret-Trigger-Lost-SOBAN]
+				[Triggers:GVK-Alliance-PresetBases-Turret-Trigger-Despawned]
+			</Description>
+		</EntityComponent>
+
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-PresetBases-Turret-TriggerGroup-KHAANEPH</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI TriggerGroup]
+				[Triggers:GVK-Alliance-PresetBases-Turret-Trigger-Reported]
+				[Triggers:GVK-Alliance-PresetBases-Turret-Trigger-DespawnOrder]
+				[Triggers:GVK-Alliance-PresetBases-Turret-Trigger-Lost-KHAANEPH]
+				[Triggers:GVK-Alliance-PresetBases-Turret-Trigger-Despawned]
+			</Description>
+		</EntityComponent>
+
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-PresetBases-Turret-Condition-NotReported</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Condition]
+				[UseConditions:true]
+				[MatchAnyCondition:false]
+				[CheckFalseBooleans:true]
+				[FalseBooleans:GVK_Site_TurretReported]
+			</Description>
+		</EntityComponent>
+
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-PresetBases-Turret-Condition-NotLost</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Condition]
+				[UseConditions:true]
+				[MatchAnyCondition:false]
+				[CheckFalseBooleans:true]
+				[FalseBooleans:GVK_Site_TurretLostSent]
+			</Description>
+		</EntityComponent>
+
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-PresetBases-Turret-Trigger-Reported</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Trigger]
+				[UseTrigger:true]
+				[Type:Session]
+				[StartsReady:true]
+				[MaxActions:-1]
+				[Conditions:GVK-Alliance-PresetBases-Turret-Condition-NotReported]
+				[ActionExecution:All]
+				[Actions:GVK-Alliance-PresetBases-Turret-Action-Reported]
+			</Description>
+		</EntityComponent>
+
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-PresetBases-Turret-Action-Reported</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Action]
+				[SetBooleansTrue:GVK_Site_TurretReported]
+				[BroadcastCommandProfiles:true]
+				[CommandProfileIds:GVK-Alliance-PresetBases-Turret-Command-TurretUp]
+			</Description>
+		</EntityComponent>
+
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-PresetBases-Turret-Trigger-DespawnOrder</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Trigger]
+				[UseTrigger:true]
+				[Type:CommandReceived]
+				[StartsReady:true]
+				[CommandReceiveCode:GVK-BaseSite-DespawnDefenseTurrets]
+				[MaxActions:-1]
+				[ActionExecution:All]
+				[Actions:GVK-Alliance-PresetBases-Turret-Action-DespawnOrder]
+			</Description>
+		</EntityComponent>
+
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-PresetBases-Turret-Action-DespawnOrder</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Action]
+				[SetBooleansTrue:GVK_DespawnedByRule]
+				[ForceDespawn:true]
+			</Description>
+		</EntityComponent>
+
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-PresetBases-Turret-Trigger-Lost-SOBAN</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Trigger]
+				[UseTrigger:true]
+				[Type:Manual]
+				[Tags:GVK-Alliance-TriggerTags-InfluenceCompromised-AllianceTurret-SOBAN]
+				[StartsReady:true]
+				[MaxActions:-1]
+				[Conditions:GVK-Alliance-PresetBases-Turret-Condition-NotLost]
+				[ActionExecution:All]
+				[Actions:GVK-Alliance-PresetBases-Turret-Action-Lost]
+			</Description>
+		</EntityComponent>
+
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-PresetBases-Turret-Trigger-Lost-KHAANEPH</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Trigger]
+				[UseTrigger:true]
+				[Type:Manual]
+				[Tags:GVK-Alliance-TriggerTags-InfluenceCompromised-AllianceTurret-KHAANEPH]
+				[StartsReady:true]
+				[MaxActions:-1]
+				[Conditions:GVK-Alliance-PresetBases-Turret-Condition-NotLost]
+				[ActionExecution:All]
+				[Actions:GVK-Alliance-PresetBases-Turret-Action-Lost]
+			</Description>
+		</EntityComponent>
+
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-PresetBases-Turret-Trigger-Despawned</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Trigger]
+				[UseTrigger:true]
+				[Type:DespawnMES]
+				[StartsReady:true]
+				[DespawnTypeFromSpawner:Any]
+				[MaxActions:-1]
+				[Conditions:GVK-Alliance-PresetBases-Turret-Condition-NotLost]
+				[ActionExecution:All]
+				[Actions:GVK-Alliance-PresetBases-Turret-Action-Lost]
+			</Description>
+		</EntityComponent>
+
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-PresetBases-Turret-Action-Lost</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Action]
+				[SetBooleansTrue:GVK_Site_TurretLostSent]
+				[BroadcastCommandProfiles:true]
+				[CommandProfileIds:GVK-Alliance-PresetBases-Turret-Command-TurretLost]
+			</Description>
+		</EntityComponent>
+
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-PresetBases-Turret-Command-TurretUp</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Command]
+				[CommandCode:GVK-BaseSite-TurretUp-ToBase]
+				[MatchReceiverParent:true]
+				[IgnoreAntennaRequirement:true]
+				[IgnoreReceiverAntennaRequirement:true]
+				[Radius:1100]
+				[CommandDelayTicks:0]
+			</Description>
+		</EntityComponent>
+
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-PresetBases-Turret-Command-TurretLost</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Command]
+				[CommandCode:GVK-BaseSite-TurretLost-ToBase]
+				[MatchReceiverParent:true]
+				[IgnoreAntennaRequirement:true]
+				[IgnoreReceiverAntennaRequirement:true]
+				[Radius:1100]
+				[CommandDelayTicks:0]
+			</Description>
+		</EntityComponent>
+	</EntityComponents>
+</Definitions>

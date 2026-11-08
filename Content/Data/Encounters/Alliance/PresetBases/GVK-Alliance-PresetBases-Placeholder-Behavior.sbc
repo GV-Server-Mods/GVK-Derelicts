@@ -1,9 +1,17 @@
 <?xml version="1.0"?>
 <Definitions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
 	<EntityComponents>
+		<!--
+		Base Site tower: runs the site's contract board (GVK-Settings#653, contracts in GVK-Alliance-PresetBases-Contracts.sbc).
+		State is local to each tower: which alliance's Base stands here, the 2-hour lock after a kill, the 20-minute turret
+		and 2-hour restore cooldowns, the standing Defense Turret count, and whether players hostile to each alliance are
+		within 5 km. Every change re-applies the one board profile that matches the new state.
+		The Base reports to its tower with commands (GVK-Alliance-PresetBases-BaseSite.sbc). Design: Docs/design/preset-bases.md.
+		-->
 		<!-- =================================================== -->
-		<!-- BASE SITE SIGNAL TOWER BEHAVIOR                     -->
+		<!-- BASE SITE TOWER BEHAVIOR                            -->
 		<!-- =================================================== -->
+
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
@@ -15,17 +23,66 @@
 				[UseRetreatTimer:false]
 				[UseNoTargetTimer:false]
 				[UsePlayerDistanceTimer:false]
-
-				[Triggers:GVK-Alliance-PresetBases-Trigger-ButtonPress-Soban-Uncontested]
-				[Triggers:GVK-Alliance-PresetBases-Trigger-ButtonPress-Soban-Contested]
-				[Triggers:GVK-Alliance-PresetBases-Trigger-ButtonPress-Khaaneph-Uncontested]
-				[Triggers:GVK-Alliance-PresetBases-Trigger-ButtonPress-Khaaneph-Contested]
+				[Triggers:GVK-Alliance-PresetBases-Tower-Trigger-Session]
+				[Triggers:GVK-Alliance-PresetBases-Tower-Trigger-PeriodicRefresh]
+				[Triggers:GVK-Alliance-PresetBases-Tower-Trigger-BaseKilled]
+				[Triggers:GVK-Alliance-PresetBases-Tower-Trigger-BaseGone]
+				[Triggers:GVK-Alliance-PresetBases-Tower-Trigger-BaseWatchdog]
+				[Triggers:GVK-Alliance-PresetBases-Tower-Trigger-TurretUp]
+				[Triggers:GVK-Alliance-PresetBases-Tower-Trigger-TurretLost]
+				[Triggers:GVK-Alliance-PresetBases-Tower-Trigger-LockEnd]
+				[Triggers:GVK-Alliance-PresetBases-Tower-Trigger-ClaimPendingEnd]
+				[Triggers:GVK-Alliance-PresetBases-Tower-Trigger-TurretCoolEnd]
+				[Triggers:GVK-Alliance-PresetBases-Tower-Trigger-RestoreCoolEnd]
+				[Triggers:GVK-Alliance-PresetBases-Tower-Trigger-Claim-SOBAN]
+				[Triggers:GVK-Alliance-PresetBases-Tower-Trigger-Turret-SOBAN]
+				[Triggers:GVK-Alliance-PresetBases-Tower-Trigger-Restore-SOBAN]
+				[Triggers:GVK-Alliance-PresetBases-Tower-Trigger-BaseUp-SOBAN]
+				[Triggers:GVK-Alliance-PresetBases-Tower-Trigger-BaseAlive-SOBAN]
+				[Triggers:GVK-Alliance-PresetBases-Tower-Trigger-HostileArrived-SOBAN]
+				[Triggers:GVK-Alliance-PresetBases-Tower-Trigger-HostileStillNear-SOBAN]
+				[Triggers:GVK-Alliance-PresetBases-Tower-Trigger-HostileClear-SOBAN]
+				[Triggers:GVK-Alliance-PresetBases-Tower-Trigger-BoardUsed-Claim-SOBAN]
+				[Triggers:GVK-Alliance-PresetBases-Tower-Trigger-BoardUsed-Turret-SOBAN]
+				[Triggers:GVK-Alliance-PresetBases-Tower-Trigger-BoardUsed-Restore-SOBAN]
+				[Triggers:GVK-Alliance-PresetBases-Tower-Trigger-Claim-KHAANEPH]
+				[Triggers:GVK-Alliance-PresetBases-Tower-Trigger-Turret-KHAANEPH]
+				[Triggers:GVK-Alliance-PresetBases-Tower-Trigger-Restore-KHAANEPH]
+				[Triggers:GVK-Alliance-PresetBases-Tower-Trigger-BaseUp-KHAANEPH]
+				[Triggers:GVK-Alliance-PresetBases-Tower-Trigger-BaseAlive-KHAANEPH]
+				[Triggers:GVK-Alliance-PresetBases-Tower-Trigger-HostileArrived-KHAANEPH]
+				[Triggers:GVK-Alliance-PresetBases-Tower-Trigger-HostileStillNear-KHAANEPH]
+				[Triggers:GVK-Alliance-PresetBases-Tower-Trigger-HostileClear-KHAANEPH]
+				[Triggers:GVK-Alliance-PresetBases-Tower-Trigger-BoardUsed-Claim-KHAANEPH]
+				[Triggers:GVK-Alliance-PresetBases-Tower-Trigger-BoardUsed-Turret-KHAANEPH]
+				[Triggers:GVK-Alliance-PresetBases-Tower-Trigger-BoardUsed-Restore-KHAANEPH]
+				[Triggers:GVK-Alliance-PresetBases-Tower-Trigger-Refresh-Locked]
+				[Triggers:GVK-Alliance-PresetBases-Tower-Trigger-Refresh-Pending]
+				[Triggers:GVK-Alliance-PresetBases-Tower-Trigger-Refresh-ClaimBoth]
+				[Triggers:GVK-Alliance-PresetBases-Tower-Trigger-Refresh-ClaimSOBAN]
+				[Triggers:GVK-Alliance-PresetBases-Tower-Trigger-Refresh-ClaimKHAANEPH]
+				[Triggers:GVK-Alliance-PresetBases-Tower-Trigger-Refresh-ClaimNone]
+				[Triggers:GVK-Alliance-PresetBases-Tower-Trigger-Refresh-SOBAN-Hostile]
+				[Triggers:GVK-Alliance-PresetBases-Tower-Trigger-Refresh-SOBAN-TurretRestore]
+				[Triggers:GVK-Alliance-PresetBases-Tower-Trigger-Refresh-SOBAN-TurretOnly]
+				[Triggers:GVK-Alliance-PresetBases-Tower-Trigger-Refresh-SOBAN-RestoreCooling]
+				[Triggers:GVK-Alliance-PresetBases-Tower-Trigger-Refresh-SOBAN-RestoreAtCap]
+				[Triggers:GVK-Alliance-PresetBases-Tower-Trigger-Refresh-SOBAN-NoneCooling]
+				[Triggers:GVK-Alliance-PresetBases-Tower-Trigger-Refresh-SOBAN-NoneAtCap]
+				[Triggers:GVK-Alliance-PresetBases-Tower-Trigger-Refresh-KHAANEPH-Hostile]
+				[Triggers:GVK-Alliance-PresetBases-Tower-Trigger-Refresh-KHAANEPH-TurretRestore]
+				[Triggers:GVK-Alliance-PresetBases-Tower-Trigger-Refresh-KHAANEPH-TurretOnly]
+				[Triggers:GVK-Alliance-PresetBases-Tower-Trigger-Refresh-KHAANEPH-RestoreCooling]
+				[Triggers:GVK-Alliance-PresetBases-Tower-Trigger-Refresh-KHAANEPH-RestoreAtCap]
+				[Triggers:GVK-Alliance-PresetBases-Tower-Trigger-Refresh-KHAANEPH-NoneCooling]
+				[Triggers:GVK-Alliance-PresetBases-Tower-Trigger-Refresh-KHAANEPH-NoneAtCap]
 			</Description>
 		</EntityComponent>
 
 		<!-- =================================================== -->
-		<!-- MES PLAYER CONDITIONS FOR ZONE & REPUTATION         -->
+		<!-- MES PLAYER CONDITIONS FOR ZONE                      -->
 		<!-- =================================================== -->
+
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
@@ -33,19 +90,6 @@
 			</Id>
 			<Description>
 				[MES Player Condition]
-				[CheckPlayerInActiveZone:true]
-				[ZoneName:SOBAN_Zone]
-			</Description>
-		</EntityComponent>
-
-		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
-			<Id>
-				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Alliance-PresetBases-PlayerCondition-NotInSobanZone</SubtypeId>
-			</Id>
-			<Description>
-				[MES Player Condition]
-				[UseFailCondition:true]
 				[CheckPlayerInActiveZone:true]
 				[ZoneName:SOBAN_Zone]
 			</Description>
@@ -63,163 +107,2174 @@
 			</Description>
 		</EntityComponent>
 
-		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
-			<Id>
-				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Alliance-PresetBases-PlayerCondition-NotInKhaanephZone</SubtypeId>
-			</Id>
-			<Description>
-				[MES Player Condition]
-				[UseFailCondition:true]
-				[CheckPlayerInActiveZone:true]
-				[ZoneName:KHAANEPH_Zone]
-			</Description>
-		</EntityComponent>
-
-		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
-			<Id>
-				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Alliance-PresetBases-PlayerCondition-RepSoban</SubtypeId>
-			</Id>
-			<Description>
-				[MES Player Condition]
-				[CheckPlayerReputation:true]
-				[CheckReputationwithFaction:SOBAN]
-				[MinPlayerReputation:1]
-				[MaxPlayerReputation:1500]
-			</Description>
-		</EntityComponent>
-
-		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
-			<Id>
-				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Alliance-PresetBases-PlayerCondition-RepKhaaneph</SubtypeId>
-			</Id>
-			<Description>
-				[MES Player Condition]
-				[CheckPlayerReputation:true]
-				[CheckReputationwithFaction:KHAANEPH]
-				[MinPlayerReputation:1]
-				[MaxPlayerReputation:1500]
-			</Description>
-		</EntityComponent>
-
 		<!-- =================================================== -->
-		<!-- INTERACTIVE BUTTON PRESS TRIGGERS                   -->
+		<!-- CONTRACTS ACCEPTED ON THIS TOWER'S BOARD            -->
 		<!-- =================================================== -->
-		<!-- SOBAN - Uncontested (In SOBAN_Zone, Not in KHAANEPH_Zone) -->
+
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Alliance-PresetBases-Trigger-ButtonPress-Soban-Uncontested</SubtypeId>
+				<SubtypeId>GVK-Alliance-PresetBases-Tower-Trigger-Claim-SOBAN</SubtypeId>
 			</Id>
 			<Description>
-				[MES AI Trigger]
+				[RivalAI Trigger]
 				[UseTrigger:true]
-				[Type:ButtonPress]
-				[ButtonPanelName:Base Deployment Terminal]
-				[ButtonPanelIndex:-1]
-				[MinCooldownMs:1000]
-				[MaxCooldownMs:1001]
+				[Type:CommandReceived]
 				[StartsReady:true]
+				[CommandReceiveCode:GVK-BaseSite-Board-Claim-SOBAN]
 				[MaxActions:-1]
-				[UsePlayerCondition:true]
-				[PlayerConditionIds:GVK-Alliance-PresetBases-PlayerCondition-InSobanZone]
-				[PlayerConditionIds:GVK-Alliance-PresetBases-PlayerCondition-NotInKhaanephZone]
-				[PlayerConditionIds:GVK-Alliance-PresetBases-PlayerCondition-RepSoban]
-				[Actions:GVK-Alliance-PresetBases-Action-UpgradeToBase-SOBAN]
+				[Conditions:GVK-Alliance-PresetBases-Tower-Condition-CanClaim-SOBAN]
+				[ActionExecution:All]
+				[Actions:GVK-Alliance-PresetBases-Tower-Action-Claim-SOBAN]
 			</Description>
 		</EntityComponent>
 
-		<!-- SOBAN - Contested (In SOBAN_Zone, In KHAANEPH_Zone, Player Rep SOBAN >= 1) -->
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Alliance-PresetBases-Trigger-ButtonPress-Soban-Contested</SubtypeId>
+				<SubtypeId>GVK-Alliance-PresetBases-Tower-Condition-CanClaim-SOBAN</SubtypeId>
 			</Id>
 			<Description>
-				[MES AI Trigger]
-				[UseTrigger:true]
-				[Type:ButtonPress]
-				[ButtonPanelName:Base Deployment Terminal]
-				[ButtonPanelIndex:-1]
-				[MinCooldownMs:1000]
-				[MaxCooldownMs:1001]
-				[StartsReady:true]
-				[MaxActions:-1]
-				[UsePlayerCondition:true]
-				[PlayerConditionIds:GVK-Alliance-PresetBases-PlayerCondition-InSobanZone]
-				[PlayerConditionIds:GVK-Alliance-PresetBases-PlayerCondition-InKhaanephZone]
-				[PlayerConditionIds:GVK-Alliance-PresetBases-PlayerCondition-RepSoban]
-				[Actions:GVK-Alliance-PresetBases-Action-UpgradeToBase-SOBAN]
+				[RivalAI Condition]
+				[UseConditions:true]
+				[MatchAnyCondition:false]
+				[CheckFalseBooleans:true]
+				[FalseBooleans:GVK_Site_Base_SOBAN]
+				[FalseBooleans:GVK_Site_Base_KHAANEPH]
+				[FalseBooleans:GVK_Site_KillLock]
+				[FalseBooleans:GVK_Site_ClaimPending]
+				[FalseBooleans:GVK_Site_HostileNear_SOBAN]
 			</Description>
 		</EntityComponent>
 
-		<!-- KHAANEPH - Uncontested (In KHAANEPH_Zone, Not in SOBAN_Zone) -->
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Alliance-PresetBases-Trigger-ButtonPress-Khaaneph-Uncontested</SubtypeId>
+				<SubtypeId>GVK-Alliance-PresetBases-Tower-Action-Claim-SOBAN</SubtypeId>
 			</Id>
 			<Description>
-				[MES AI Trigger]
-				[UseTrigger:true]
-				[Type:ButtonPress]
-				[ButtonPanelName:Base Deployment Terminal]
-				[ButtonPanelIndex:-1]
-				[MinCooldownMs:1000]
-				[MaxCooldownMs:1001]
-				[StartsReady:true]
-				[MaxActions:-1]
-				[UsePlayerCondition:true]
-				[PlayerConditionIds:GVK-Alliance-PresetBases-PlayerCondition-InKhaanephZone]
-				[PlayerConditionIds:GVK-Alliance-PresetBases-PlayerCondition-NotInSobanZone]
-				[PlayerConditionIds:GVK-Alliance-PresetBases-PlayerCondition-RepKhaaneph]
-				[Actions:GVK-Alliance-PresetBases-Action-UpgradeToBase-KHAANEPH]
-			</Description>
-		</EntityComponent>
-
-		<!-- KHAANEPH - Contested (In KHAANEPH_Zone, In SOBAN_Zone, Player Rep KHAANEPH >= 1) -->
-		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
-			<Id>
-				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Alliance-PresetBases-Trigger-ButtonPress-Khaaneph-Contested</SubtypeId>
-			</Id>
-			<Description>
-				[MES AI Trigger]
-				[UseTrigger:true]
-				[Type:ButtonPress]
-				[ButtonPanelName:Base Deployment Terminal]
-				[ButtonPanelIndex:-1]
-				[MinCooldownMs:1000]
-				[MaxCooldownMs:1001]
-				[StartsReady:true]
-				[MaxActions:-1]
-				[UsePlayerCondition:true]
-				[PlayerConditionIds:GVK-Alliance-PresetBases-PlayerCondition-InKhaanephZone]
-				[PlayerConditionIds:GVK-Alliance-PresetBases-PlayerCondition-InSobanZone]
-				[PlayerConditionIds:GVK-Alliance-PresetBases-PlayerCondition-RepKhaaneph]
-				[Actions:GVK-Alliance-PresetBases-Action-UpgradeToBase-KHAANEPH]
-			</Description>
-		</EntityComponent>
-
-		<!-- =================================================== -->
-		<!-- BASE SPAWN ACTIONS & SPAWNERS                       -->
-		<!-- =================================================== -->
-		<!-- One-base-per-site is enforced by the RC code GVK-Alliance-Base in GVK-Alliance-PresetBases-Base-SpawnCondition-*:
-		     RemoteControlCodeMinDistance 1100 exceeds the spawner MaxDistance 500, so an existing base always blocks a redeploy. -->
-		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
-			<Id>
-				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Alliance-PresetBases-Action-UpgradeToBase-SOBAN</SubtypeId>
-			</Id>
-			<Description>
-				[MES AI Action]
+				[RivalAI Action]
 				[SpawnEncounter:true]
 				[Spawner:GVK-Alliance-PresetBases-Spawner-Base-SOBAN]
+				[SetBooleansTrue:GVK_Site_ClaimPending]
+				[SetBooleansFalse:GVK_Site_TurretCooling]
+				[SetBooleansFalse:GVK_Site_RestoreCooling]
+				[ResetCounters:GVK_Site_Turrets]
+				[ResetCooldownTimeOfTriggers:true]
+				[ResetTriggerCooldownNames:GVK-Alliance-PresetBases-Tower-Trigger-ClaimPendingEnd]
+				[ManuallyActivateTrigger:true]
+				[ManuallyActivatedTriggerTags:GVK-Alliance-PresetBases-TriggerTags-RefreshBoard]
 			</Description>
 		</EntityComponent>
 
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-PresetBases-Tower-Trigger-Turret-SOBAN</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Trigger]
+				[UseTrigger:true]
+				[Type:CommandReceived]
+				[StartsReady:true]
+				[CommandReceiveCode:GVK-BaseSite-Board-Turret-SOBAN]
+				[MaxActions:-1]
+				[Conditions:GVK-Alliance-PresetBases-Tower-Condition-CanTurret-SOBAN]
+				[ActionExecution:All]
+				[Actions:GVK-Alliance-PresetBases-Tower-Action-Turret]
+			</Description>
+		</EntityComponent>
+
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-PresetBases-Tower-Condition-CanTurret-SOBAN</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Condition]
+				[UseConditions:true]
+				[MatchAnyCondition:false]
+				[CheckTrueBooleans:true]
+				[TrueBooleans:GVK_Site_Base_SOBAN]
+				[CheckFalseBooleans:true]
+				[FalseBooleans:GVK_Site_HostileNear_SOBAN]
+				[FalseBooleans:GVK_Site_TurretCooling]
+				[CheckCustomCounters:true]
+				[CustomCounters:GVK_Site_Turrets]
+				[CustomCountersTargets:4]
+				[CounterCompareTypes:Less]
+			</Description>
+		</EntityComponent>
+
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-PresetBases-Tower-Trigger-Restore-SOBAN</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Trigger]
+				[UseTrigger:true]
+				[Type:CommandReceived]
+				[StartsReady:true]
+				[CommandReceiveCode:GVK-BaseSite-Board-Restore-SOBAN]
+				[MaxActions:-1]
+				[Conditions:GVK-Alliance-PresetBases-Tower-Condition-CanRestore-SOBAN]
+				[ActionExecution:All]
+				[Actions:GVK-Alliance-PresetBases-Tower-Action-Restore]
+			</Description>
+		</EntityComponent>
+
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-PresetBases-Tower-Condition-CanRestore-SOBAN</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Condition]
+				[UseConditions:true]
+				[MatchAnyCondition:false]
+				[CheckTrueBooleans:true]
+				[TrueBooleans:GVK_Site_Base_SOBAN]
+				[CheckFalseBooleans:true]
+				[FalseBooleans:GVK_Site_HostileNear_SOBAN]
+				[FalseBooleans:GVK_Site_RestoreCooling]
+			</Description>
+		</EntityComponent>
+
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-PresetBases-Tower-Trigger-Claim-KHAANEPH</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Trigger]
+				[UseTrigger:true]
+				[Type:CommandReceived]
+				[StartsReady:true]
+				[CommandReceiveCode:GVK-BaseSite-Board-Claim-KHAANEPH]
+				[MaxActions:-1]
+				[Conditions:GVK-Alliance-PresetBases-Tower-Condition-CanClaim-KHAANEPH]
+				[ActionExecution:All]
+				[Actions:GVK-Alliance-PresetBases-Tower-Action-Claim-KHAANEPH]
+			</Description>
+		</EntityComponent>
+
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-PresetBases-Tower-Condition-CanClaim-KHAANEPH</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Condition]
+				[UseConditions:true]
+				[MatchAnyCondition:false]
+				[CheckFalseBooleans:true]
+				[FalseBooleans:GVK_Site_Base_KHAANEPH]
+				[FalseBooleans:GVK_Site_Base_SOBAN]
+				[FalseBooleans:GVK_Site_KillLock]
+				[FalseBooleans:GVK_Site_ClaimPending]
+				[FalseBooleans:GVK_Site_HostileNear_KHAANEPH]
+			</Description>
+		</EntityComponent>
+
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-PresetBases-Tower-Action-Claim-KHAANEPH</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Action]
+				[SpawnEncounter:true]
+				[Spawner:GVK-Alliance-PresetBases-Spawner-Base-KHAANEPH]
+				[SetBooleansTrue:GVK_Site_ClaimPending]
+				[SetBooleansFalse:GVK_Site_TurretCooling]
+				[SetBooleansFalse:GVK_Site_RestoreCooling]
+				[ResetCounters:GVK_Site_Turrets]
+				[ResetCooldownTimeOfTriggers:true]
+				[ResetTriggerCooldownNames:GVK-Alliance-PresetBases-Tower-Trigger-ClaimPendingEnd]
+				[ManuallyActivateTrigger:true]
+				[ManuallyActivatedTriggerTags:GVK-Alliance-PresetBases-TriggerTags-RefreshBoard]
+			</Description>
+		</EntityComponent>
+
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-PresetBases-Tower-Trigger-Turret-KHAANEPH</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Trigger]
+				[UseTrigger:true]
+				[Type:CommandReceived]
+				[StartsReady:true]
+				[CommandReceiveCode:GVK-BaseSite-Board-Turret-KHAANEPH]
+				[MaxActions:-1]
+				[Conditions:GVK-Alliance-PresetBases-Tower-Condition-CanTurret-KHAANEPH]
+				[ActionExecution:All]
+				[Actions:GVK-Alliance-PresetBases-Tower-Action-Turret]
+			</Description>
+		</EntityComponent>
+
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-PresetBases-Tower-Condition-CanTurret-KHAANEPH</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Condition]
+				[UseConditions:true]
+				[MatchAnyCondition:false]
+				[CheckTrueBooleans:true]
+				[TrueBooleans:GVK_Site_Base_KHAANEPH]
+				[CheckFalseBooleans:true]
+				[FalseBooleans:GVK_Site_HostileNear_KHAANEPH]
+				[FalseBooleans:GVK_Site_TurretCooling]
+				[CheckCustomCounters:true]
+				[CustomCounters:GVK_Site_Turrets]
+				[CustomCountersTargets:4]
+				[CounterCompareTypes:Less]
+			</Description>
+		</EntityComponent>
+
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-PresetBases-Tower-Trigger-Restore-KHAANEPH</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Trigger]
+				[UseTrigger:true]
+				[Type:CommandReceived]
+				[StartsReady:true]
+				[CommandReceiveCode:GVK-BaseSite-Board-Restore-KHAANEPH]
+				[MaxActions:-1]
+				[Conditions:GVK-Alliance-PresetBases-Tower-Condition-CanRestore-KHAANEPH]
+				[ActionExecution:All]
+				[Actions:GVK-Alliance-PresetBases-Tower-Action-Restore]
+			</Description>
+		</EntityComponent>
+
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-PresetBases-Tower-Condition-CanRestore-KHAANEPH</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Condition]
+				[UseConditions:true]
+				[MatchAnyCondition:false]
+				[CheckTrueBooleans:true]
+				[TrueBooleans:GVK_Site_Base_KHAANEPH]
+				[CheckFalseBooleans:true]
+				[FalseBooleans:GVK_Site_HostileNear_KHAANEPH]
+				[FalseBooleans:GVK_Site_RestoreCooling]
+			</Description>
+		</EntityComponent>
+
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-PresetBases-Tower-Trigger-BoardUsed-Claim-SOBAN</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Trigger]
+				[UseTrigger:true]
+				[Type:CommandReceived]
+				[StartsReady:true]
+				[CommandReceiveCode:GVK-BaseSite-Board-Claim-SOBAN]
+				[MaxActions:-1]
+				[ActionExecution:All]
+				[Actions:GVK-Alliance-PresetBases-Tower-Action-Refresh]
+			</Description>
+		</EntityComponent>
+
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-PresetBases-Tower-Trigger-BoardUsed-Turret-SOBAN</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Trigger]
+				[UseTrigger:true]
+				[Type:CommandReceived]
+				[StartsReady:true]
+				[CommandReceiveCode:GVK-BaseSite-Board-Turret-SOBAN]
+				[MaxActions:-1]
+				[ActionExecution:All]
+				[Actions:GVK-Alliance-PresetBases-Tower-Action-Refresh]
+			</Description>
+		</EntityComponent>
+
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-PresetBases-Tower-Trigger-BoardUsed-Restore-SOBAN</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Trigger]
+				[UseTrigger:true]
+				[Type:CommandReceived]
+				[StartsReady:true]
+				[CommandReceiveCode:GVK-BaseSite-Board-Restore-SOBAN]
+				[MaxActions:-1]
+				[ActionExecution:All]
+				[Actions:GVK-Alliance-PresetBases-Tower-Action-Refresh]
+			</Description>
+		</EntityComponent>
+
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-PresetBases-Tower-Trigger-BoardUsed-Claim-KHAANEPH</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Trigger]
+				[UseTrigger:true]
+				[Type:CommandReceived]
+				[StartsReady:true]
+				[CommandReceiveCode:GVK-BaseSite-Board-Claim-KHAANEPH]
+				[MaxActions:-1]
+				[ActionExecution:All]
+				[Actions:GVK-Alliance-PresetBases-Tower-Action-Refresh]
+			</Description>
+		</EntityComponent>
+
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-PresetBases-Tower-Trigger-BoardUsed-Turret-KHAANEPH</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Trigger]
+				[UseTrigger:true]
+				[Type:CommandReceived]
+				[StartsReady:true]
+				[CommandReceiveCode:GVK-BaseSite-Board-Turret-KHAANEPH]
+				[MaxActions:-1]
+				[ActionExecution:All]
+				[Actions:GVK-Alliance-PresetBases-Tower-Action-Refresh]
+			</Description>
+		</EntityComponent>
+
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-PresetBases-Tower-Trigger-BoardUsed-Restore-KHAANEPH</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Trigger]
+				[UseTrigger:true]
+				[Type:CommandReceived]
+				[StartsReady:true]
+				[CommandReceiveCode:GVK-BaseSite-Board-Restore-KHAANEPH]
+				[MaxActions:-1]
+				[ActionExecution:All]
+				[Actions:GVK-Alliance-PresetBases-Tower-Action-Refresh]
+			</Description>
+		</EntityComponent>
+
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-PresetBases-Tower-Action-Turret</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Action]
+				[BroadcastCommandProfiles:true]
+				[CommandProfileIds:GVK-Alliance-PresetBases-Command-SpawnDefenseTurret]
+				[SetBooleansTrue:GVK_Site_TurretCooling]
+				[ResetCooldownTimeOfTriggers:true]
+				[ResetTriggerCooldownNames:GVK-Alliance-PresetBases-Tower-Trigger-TurretCoolEnd]
+				[ManuallyActivateTrigger:true]
+				[ManuallyActivatedTriggerTags:GVK-Alliance-PresetBases-TriggerTags-RefreshBoard]
+			</Description>
+		</EntityComponent>
+
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-PresetBases-Tower-Action-Restore</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Action]
+				[BroadcastCommandProfiles:true]
+				[CommandProfileIds:GVK-Alliance-PresetBases-Command-RestoreBase]
+				[SetBooleansTrue:GVK_Site_RestoreCooling]
+				[ResetCooldownTimeOfTriggers:true]
+				[ResetTriggerCooldownNames:GVK-Alliance-PresetBases-Tower-Trigger-RestoreCoolEnd]
+				[ManuallyActivateTrigger:true]
+				[ManuallyActivatedTriggerTags:GVK-Alliance-PresetBases-TriggerTags-RefreshBoard]
+			</Description>
+		</EntityComponent>
+
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-PresetBases-Command-SpawnDefenseTurret</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Command]
+				[CommandCode:GVK-BaseSite-SpawnDefenseTurret]
+				[IgnoreAntennaRequirement:true]
+				[IgnoreReceiverAntennaRequirement:true]
+				[Radius:1100]
+				[CommandDelayTicks:0]
+			</Description>
+		</EntityComponent>
+
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-PresetBases-Command-RestoreBase</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Command]
+				[CommandCode:GVK-BaseSite-RestoreBase]
+				[IgnoreAntennaRequirement:true]
+				[IgnoreReceiverAntennaRequirement:true]
+				[Radius:1100]
+				[CommandDelayTicks:0]
+			</Description>
+		</EntityComponent>
+
+		<!-- =================================================== -->
+		<!-- REPORTS FROM THIS SITE'S BASE                       -->
+		<!-- =================================================== -->
+
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-PresetBases-Tower-Trigger-BaseUp-SOBAN</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Trigger]
+				[UseTrigger:true]
+				[Type:CommandReceived]
+				[StartsReady:true]
+				[CommandReceiveCode:GVK-BaseSite-BaseUp-SOBAN]
+				[MaxActions:-1]
+				[Conditions:GVK-Alliance-PresetBases-Tower-Condition-NewBase-SOBAN]
+				[ActionExecution:All]
+				[Actions:GVK-Alliance-PresetBases-Tower-Action-BaseUp-SOBAN]
+			</Description>
+		</EntityComponent>
+
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-PresetBases-Tower-Condition-NewBase-SOBAN</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Condition]
+				[UseConditions:true]
+				[MatchAnyCondition:false]
+				[CheckFalseBooleans:true]
+				[FalseBooleans:GVK_Site_Base_SOBAN]
+				[FalseBooleans:GVK_Site_KillLock]
+			</Description>
+		</EntityComponent>
+
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-PresetBases-Tower-Action-BaseUp-SOBAN</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Action]
+				[SetBooleansTrue:GVK_Site_Base_SOBAN]
+				[SetBooleansFalse:GVK_Site_Base_KHAANEPH]
+				[SetBooleansFalse:GVK_Site_ClaimPending]
+				[ManuallyActivateTrigger:true]
+				[ManuallyActivatedTriggerTags:GVK-Alliance-PresetBases-TriggerTags-RefreshBoard]
+			</Description>
+		</EntityComponent>
+
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-PresetBases-Tower-Trigger-BaseAlive-SOBAN</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Trigger]
+				[UseTrigger:true]
+				[Type:CommandReceived]
+				[StartsReady:true]
+				[CommandReceiveCode:GVK-BaseSite-BaseUp-SOBAN]
+				[MaxActions:-1]
+				[ActionExecution:All]
+				[Actions:GVK-Alliance-PresetBases-Tower-Action-BaseAlive]
+			</Description>
+		</EntityComponent>
+
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-PresetBases-Tower-Trigger-BaseUp-KHAANEPH</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Trigger]
+				[UseTrigger:true]
+				[Type:CommandReceived]
+				[StartsReady:true]
+				[CommandReceiveCode:GVK-BaseSite-BaseUp-KHAANEPH]
+				[MaxActions:-1]
+				[Conditions:GVK-Alliance-PresetBases-Tower-Condition-NewBase-KHAANEPH]
+				[ActionExecution:All]
+				[Actions:GVK-Alliance-PresetBases-Tower-Action-BaseUp-KHAANEPH]
+			</Description>
+		</EntityComponent>
+
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-PresetBases-Tower-Condition-NewBase-KHAANEPH</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Condition]
+				[UseConditions:true]
+				[MatchAnyCondition:false]
+				[CheckFalseBooleans:true]
+				[FalseBooleans:GVK_Site_Base_KHAANEPH]
+				[FalseBooleans:GVK_Site_KillLock]
+			</Description>
+		</EntityComponent>
+
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-PresetBases-Tower-Action-BaseUp-KHAANEPH</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Action]
+				[SetBooleansTrue:GVK_Site_Base_KHAANEPH]
+				[SetBooleansFalse:GVK_Site_Base_SOBAN]
+				[SetBooleansFalse:GVK_Site_ClaimPending]
+				[ManuallyActivateTrigger:true]
+				[ManuallyActivatedTriggerTags:GVK-Alliance-PresetBases-TriggerTags-RefreshBoard]
+			</Description>
+		</EntityComponent>
+
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-PresetBases-Tower-Trigger-BaseAlive-KHAANEPH</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Trigger]
+				[UseTrigger:true]
+				[Type:CommandReceived]
+				[StartsReady:true]
+				[CommandReceiveCode:GVK-BaseSite-BaseUp-KHAANEPH]
+				[MaxActions:-1]
+				[ActionExecution:All]
+				[Actions:GVK-Alliance-PresetBases-Tower-Action-BaseAlive]
+			</Description>
+		</EntityComponent>
+
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-PresetBases-Tower-Action-BaseAlive</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Action]
+				[ResetCooldownTimeOfTriggers:true]
+				[ResetTriggerCooldownNames:GVK-Alliance-PresetBases-Tower-Trigger-BaseWatchdog]
+			</Description>
+		</EntityComponent>
+
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-PresetBases-Tower-Trigger-BaseKilled</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Trigger]
+				[UseTrigger:true]
+				[Type:CommandReceived]
+				[StartsReady:true]
+				[CommandReceiveCode:GVK-BaseSite-BaseKilled]
+				[MaxActions:-1]
+				[ActionExecution:All]
+				[Actions:GVK-Alliance-PresetBases-Tower-Action-BaseKilled]
+			</Description>
+		</EntityComponent>
+
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-PresetBases-Tower-Action-BaseKilled</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Action]
+				[SetBooleansFalse:GVK_Site_Base_SOBAN]
+				[SetBooleansFalse:GVK_Site_Base_KHAANEPH]
+				[SetBooleansFalse:GVK_Site_TurretCooling]
+				[SetBooleansFalse:GVK_Site_RestoreCooling]
+				[ResetCounters:GVK_Site_Turrets]
+				[SetBooleansTrue:GVK_Site_KillLock]
+				[ResetCooldownTimeOfTriggers:true]
+				[ResetTriggerCooldownNames:GVK-Alliance-PresetBases-Tower-Trigger-LockEnd]
+				[ManuallyActivateTrigger:true]
+				[ManuallyActivatedTriggerTags:GVK-Alliance-PresetBases-TriggerTags-RefreshBoard]
+			</Description>
+		</EntityComponent>
+
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-PresetBases-Tower-Trigger-BaseGone</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Trigger]
+				[UseTrigger:true]
+				[Type:CommandReceived]
+				[StartsReady:true]
+				[CommandReceiveCode:GVK-BaseSite-BaseGone]
+				[MaxActions:-1]
+				[ActionExecution:All]
+				[Actions:GVK-Alliance-PresetBases-Tower-Action-BaseGone]
+			</Description>
+		</EntityComponent>
+
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-PresetBases-Tower-Action-BaseGone</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Action]
+				[SetBooleansFalse:GVK_Site_Base_SOBAN]
+				[SetBooleansFalse:GVK_Site_Base_KHAANEPH]
+				[SetBooleansFalse:GVK_Site_TurretCooling]
+				[SetBooleansFalse:GVK_Site_RestoreCooling]
+				[ResetCounters:GVK_Site_Turrets]
+				[ManuallyActivateTrigger:true]
+				[ManuallyActivatedTriggerTags:GVK-Alliance-PresetBases-TriggerTags-RefreshBoard]
+			</Description>
+		</EntityComponent>
+
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-PresetBases-Tower-Trigger-BaseWatchdog</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Trigger]
+				[UseTrigger:true]
+				[Type:Timer]
+				[StartsReady:false]
+				[MinCooldownMs:900000]
+				[MaxCooldownMs:900001]
+				[MaxActions:-1]
+				[Conditions:GVK-Alliance-PresetBases-Tower-Condition-AnyBase]
+				[ActionExecution:All]
+				[Actions:GVK-Alliance-PresetBases-Tower-Action-BaseSilent]
+			</Description>
+		</EntityComponent>
+
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-PresetBases-Tower-Condition-AnyBase</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Condition]
+				[UseConditions:true]
+				[MatchAnyCondition:false]
+				[CheckTrueBooleans:true]
+				[TrueBooleans:GVK_Site_Base_SOBAN]
+				[TrueBooleans:GVK_Site_Base_KHAANEPH]
+				[AllowAnyTrueBoolean:true]
+			</Description>
+		</EntityComponent>
+
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-PresetBases-Tower-Action-BaseSilent</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Action]
+				[SetBooleansFalse:GVK_Site_Base_SOBAN]
+				[SetBooleansFalse:GVK_Site_Base_KHAANEPH]
+				[ManuallyActivateTrigger:true]
+				[ManuallyActivatedTriggerTags:GVK-Alliance-PresetBases-TriggerTags-RefreshBoard]
+			</Description>
+		</EntityComponent>
+
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-PresetBases-Tower-Trigger-TurretUp</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Trigger]
+				[UseTrigger:true]
+				[Type:CommandReceived]
+				[StartsReady:true]
+				[CommandReceiveCode:GVK-BaseSite-TurretUp]
+				[MaxActions:-1]
+				[ActionExecution:All]
+				[Actions:GVK-Alliance-PresetBases-Tower-Action-TurretUp]
+			</Description>
+		</EntityComponent>
+
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-PresetBases-Tower-Action-TurretUp</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Action]
+				[IncreaseCounters:GVK_Site_Turrets]
+				[ManuallyActivateTrigger:true]
+				[ManuallyActivatedTriggerTags:GVK-Alliance-PresetBases-TriggerTags-RefreshBoard]
+			</Description>
+		</EntityComponent>
+
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-PresetBases-Tower-Trigger-TurretLost</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Trigger]
+				[UseTrigger:true]
+				[Type:CommandReceived]
+				[StartsReady:true]
+				[CommandReceiveCode:GVK-BaseSite-TurretLost]
+				[MaxActions:-1]
+				[Conditions:GVK-Alliance-PresetBases-Tower-Condition-HasTurret]
+				[ActionExecution:All]
+				[Actions:GVK-Alliance-PresetBases-Tower-Action-TurretLost]
+			</Description>
+		</EntityComponent>
+
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-PresetBases-Tower-Condition-HasTurret</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Condition]
+				[UseConditions:true]
+				[MatchAnyCondition:false]
+				[CheckCustomCounters:true]
+				[CustomCounters:GVK_Site_Turrets]
+				[CustomCountersTargets:1]
+				[CounterCompareTypes:GreaterOrEqual]
+			</Description>
+		</EntityComponent>
+
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-PresetBases-Tower-Action-TurretLost</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Action]
+				[DecreaseCounters:GVK_Site_Turrets]
+				[ManuallyActivateTrigger:true]
+				[ManuallyActivatedTriggerTags:GVK-Alliance-PresetBases-TriggerTags-RefreshBoard]
+			</Description>
+		</EntityComponent>
+
+		<!-- =================================================== -->
+		<!-- COOLDOWNS (restarted by the action that starts them) -->
+		<!-- =================================================== -->
+
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-PresetBases-Tower-Trigger-LockEnd</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Trigger]
+				[UseTrigger:true]
+				[Type:Timer]
+				[StartsReady:false]
+				[MinCooldownMs:7200000]
+				[MaxCooldownMs:7200001]
+				[MaxActions:-1]
+				[Conditions:GVK-Alliance-PresetBases-Tower-Condition-LockEnd]
+				[ActionExecution:All]
+				[Actions:GVK-Alliance-PresetBases-Tower-Action-LockEnd]
+			</Description>
+		</EntityComponent>
+
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-PresetBases-Tower-Condition-LockEnd</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Condition]
+				[UseConditions:true]
+				[MatchAnyCondition:false]
+				[CheckTrueBooleans:true]
+				[TrueBooleans:GVK_Site_KillLock]
+			</Description>
+		</EntityComponent>
+
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-PresetBases-Tower-Action-LockEnd</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Action]
+				[SetBooleansFalse:GVK_Site_KillLock]
+				[ManuallyActivateTrigger:true]
+				[ManuallyActivatedTriggerTags:GVK-Alliance-PresetBases-TriggerTags-RefreshBoard]
+			</Description>
+		</EntityComponent>
+
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-PresetBases-Tower-Trigger-ClaimPendingEnd</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Trigger]
+				[UseTrigger:true]
+				[Type:Timer]
+				[StartsReady:false]
+				[MinCooldownMs:120000]
+				[MaxCooldownMs:120001]
+				[MaxActions:-1]
+				[Conditions:GVK-Alliance-PresetBases-Tower-Condition-ClaimPendingEnd]
+				[ActionExecution:All]
+				[Actions:GVK-Alliance-PresetBases-Tower-Action-ClaimPendingEnd]
+			</Description>
+		</EntityComponent>
+
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-PresetBases-Tower-Condition-ClaimPendingEnd</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Condition]
+				[UseConditions:true]
+				[MatchAnyCondition:false]
+				[CheckTrueBooleans:true]
+				[TrueBooleans:GVK_Site_ClaimPending]
+			</Description>
+		</EntityComponent>
+
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-PresetBases-Tower-Action-ClaimPendingEnd</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Action]
+				[SetBooleansFalse:GVK_Site_ClaimPending]
+				[ManuallyActivateTrigger:true]
+				[ManuallyActivatedTriggerTags:GVK-Alliance-PresetBases-TriggerTags-RefreshBoard]
+			</Description>
+		</EntityComponent>
+
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-PresetBases-Tower-Trigger-TurretCoolEnd</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Trigger]
+				[UseTrigger:true]
+				[Type:Timer]
+				[StartsReady:false]
+				[MinCooldownMs:1200000]
+				[MaxCooldownMs:1200001]
+				[MaxActions:-1]
+				[Conditions:GVK-Alliance-PresetBases-Tower-Condition-TurretCoolEnd]
+				[ActionExecution:All]
+				[Actions:GVK-Alliance-PresetBases-Tower-Action-TurretCoolEnd]
+			</Description>
+		</EntityComponent>
+
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-PresetBases-Tower-Condition-TurretCoolEnd</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Condition]
+				[UseConditions:true]
+				[MatchAnyCondition:false]
+				[CheckTrueBooleans:true]
+				[TrueBooleans:GVK_Site_TurretCooling]
+			</Description>
+		</EntityComponent>
+
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-PresetBases-Tower-Action-TurretCoolEnd</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Action]
+				[SetBooleansFalse:GVK_Site_TurretCooling]
+				[ManuallyActivateTrigger:true]
+				[ManuallyActivatedTriggerTags:GVK-Alliance-PresetBases-TriggerTags-RefreshBoard]
+			</Description>
+		</EntityComponent>
+
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-PresetBases-Tower-Trigger-RestoreCoolEnd</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Trigger]
+				[UseTrigger:true]
+				[Type:Timer]
+				[StartsReady:false]
+				[MinCooldownMs:7200000]
+				[MaxCooldownMs:7200001]
+				[MaxActions:-1]
+				[Conditions:GVK-Alliance-PresetBases-Tower-Condition-RestoreCoolEnd]
+				[ActionExecution:All]
+				[Actions:GVK-Alliance-PresetBases-Tower-Action-RestoreCoolEnd]
+			</Description>
+		</EntityComponent>
+
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-PresetBases-Tower-Condition-RestoreCoolEnd</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Condition]
+				[UseConditions:true]
+				[MatchAnyCondition:false]
+				[CheckTrueBooleans:true]
+				[TrueBooleans:GVK_Site_RestoreCooling]
+			</Description>
+		</EntityComponent>
+
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-PresetBases-Tower-Action-RestoreCoolEnd</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Action]
+				[SetBooleansFalse:GVK_Site_RestoreCooling]
+				[ManuallyActivateTrigger:true]
+				[ManuallyActivatedTriggerTags:GVK-Alliance-PresetBases-TriggerTags-RefreshBoard]
+			</Description>
+		</EntityComponent>
+
+		<!-- =================================================== -->
+		<!-- HOSTILE PLAYERS WITHIN 5 KM (per alliance)          -->
+		<!-- =================================================== -->
+
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-PresetBases-Tower-Trigger-HostileArrived-SOBAN</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Trigger]
+				[UseTrigger:true]
+				[Type:PlayerNear]
+				[StartsReady:true]
+				[MinCooldownMs:10000]
+				[MaxCooldownMs:10001]
+				[TargetDistance:5000]
+				[UsePlayerCondition:true]
+				[PlayerConditionIds:GVK-Alliance-PresetBases-PlayerCondition-HostileSOBAN]
+				[MaxActions:-1]
+				[Conditions:GVK-Alliance-PresetBases-Tower-Condition-NotHostile-SOBAN]
+				[ActionExecution:All]
+				[Actions:GVK-Alliance-PresetBases-Tower-Action-HostileArrived-SOBAN]
+			</Description>
+		</EntityComponent>
+
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-PresetBases-Tower-Condition-NotHostile-SOBAN</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Condition]
+				[UseConditions:true]
+				[MatchAnyCondition:false]
+				[CheckFalseBooleans:true]
+				[FalseBooleans:GVK_Site_HostileNear_SOBAN]
+			</Description>
+		</EntityComponent>
+
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-PresetBases-Tower-Action-HostileArrived-SOBAN</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Action]
+				[SetBooleansTrue:GVK_Site_HostileNear_SOBAN]
+				[ManuallyActivateTrigger:true]
+				[ManuallyActivatedTriggerTags:GVK-Alliance-PresetBases-TriggerTags-RefreshBoard]
+			</Description>
+		</EntityComponent>
+
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-PresetBases-Tower-Trigger-HostileStillNear-SOBAN</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Trigger]
+				[UseTrigger:true]
+				[Type:PlayerNear]
+				[StartsReady:true]
+				[MinCooldownMs:10000]
+				[MaxCooldownMs:10001]
+				[TargetDistance:5000]
+				[UsePlayerCondition:true]
+				[PlayerConditionIds:GVK-Alliance-PresetBases-PlayerCondition-HostileSOBAN]
+				[MaxActions:-1]
+				[ActionExecution:All]
+				[Actions:GVK-Alliance-PresetBases-Tower-Action-HostileStillNear-SOBAN]
+			</Description>
+		</EntityComponent>
+
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-PresetBases-Tower-Action-HostileStillNear-SOBAN</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Action]
+				[ResetCooldownTimeOfTriggers:true]
+				[ResetTriggerCooldownNames:GVK-Alliance-PresetBases-Tower-Trigger-HostileClear-SOBAN]
+			</Description>
+		</EntityComponent>
+
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-PresetBases-Tower-Trigger-HostileClear-SOBAN</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Trigger]
+				[UseTrigger:true]
+				[Type:Timer]
+				[StartsReady:false]
+				[MinCooldownMs:60000]
+				[MaxCooldownMs:60001]
+				[MaxActions:-1]
+				[Conditions:GVK-Alliance-PresetBases-Tower-Condition-Hostile-SOBAN]
+				[ActionExecution:All]
+				[Actions:GVK-Alliance-PresetBases-Tower-Action-HostileClear-SOBAN]
+			</Description>
+		</EntityComponent>
+
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-PresetBases-Tower-Condition-Hostile-SOBAN</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Condition]
+				[UseConditions:true]
+				[MatchAnyCondition:false]
+				[CheckTrueBooleans:true]
+				[TrueBooleans:GVK_Site_HostileNear_SOBAN]
+			</Description>
+		</EntityComponent>
+
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-PresetBases-Tower-Action-HostileClear-SOBAN</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Action]
+				[SetBooleansFalse:GVK_Site_HostileNear_SOBAN]
+				[ManuallyActivateTrigger:true]
+				[ManuallyActivatedTriggerTags:GVK-Alliance-PresetBases-TriggerTags-RefreshBoard]
+			</Description>
+		</EntityComponent>
+
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-PresetBases-Tower-Trigger-HostileArrived-KHAANEPH</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Trigger]
+				[UseTrigger:true]
+				[Type:PlayerNear]
+				[StartsReady:true]
+				[MinCooldownMs:10000]
+				[MaxCooldownMs:10001]
+				[TargetDistance:5000]
+				[UsePlayerCondition:true]
+				[PlayerConditionIds:GVK-Alliance-PresetBases-PlayerCondition-HostileKHAANEPH]
+				[MaxActions:-1]
+				[Conditions:GVK-Alliance-PresetBases-Tower-Condition-NotHostile-KHAANEPH]
+				[ActionExecution:All]
+				[Actions:GVK-Alliance-PresetBases-Tower-Action-HostileArrived-KHAANEPH]
+			</Description>
+		</EntityComponent>
+
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-PresetBases-Tower-Condition-NotHostile-KHAANEPH</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Condition]
+				[UseConditions:true]
+				[MatchAnyCondition:false]
+				[CheckFalseBooleans:true]
+				[FalseBooleans:GVK_Site_HostileNear_KHAANEPH]
+			</Description>
+		</EntityComponent>
+
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-PresetBases-Tower-Action-HostileArrived-KHAANEPH</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Action]
+				[SetBooleansTrue:GVK_Site_HostileNear_KHAANEPH]
+				[ManuallyActivateTrigger:true]
+				[ManuallyActivatedTriggerTags:GVK-Alliance-PresetBases-TriggerTags-RefreshBoard]
+			</Description>
+		</EntityComponent>
+
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-PresetBases-Tower-Trigger-HostileStillNear-KHAANEPH</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Trigger]
+				[UseTrigger:true]
+				[Type:PlayerNear]
+				[StartsReady:true]
+				[MinCooldownMs:10000]
+				[MaxCooldownMs:10001]
+				[TargetDistance:5000]
+				[UsePlayerCondition:true]
+				[PlayerConditionIds:GVK-Alliance-PresetBases-PlayerCondition-HostileKHAANEPH]
+				[MaxActions:-1]
+				[ActionExecution:All]
+				[Actions:GVK-Alliance-PresetBases-Tower-Action-HostileStillNear-KHAANEPH]
+			</Description>
+		</EntityComponent>
+
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-PresetBases-Tower-Action-HostileStillNear-KHAANEPH</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Action]
+				[ResetCooldownTimeOfTriggers:true]
+				[ResetTriggerCooldownNames:GVK-Alliance-PresetBases-Tower-Trigger-HostileClear-KHAANEPH]
+			</Description>
+		</EntityComponent>
+
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-PresetBases-Tower-Trigger-HostileClear-KHAANEPH</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Trigger]
+				[UseTrigger:true]
+				[Type:Timer]
+				[StartsReady:false]
+				[MinCooldownMs:60000]
+				[MaxCooldownMs:60001]
+				[MaxActions:-1]
+				[Conditions:GVK-Alliance-PresetBases-Tower-Condition-Hostile-KHAANEPH]
+				[ActionExecution:All]
+				[Actions:GVK-Alliance-PresetBases-Tower-Action-HostileClear-KHAANEPH]
+			</Description>
+		</EntityComponent>
+
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-PresetBases-Tower-Condition-Hostile-KHAANEPH</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Condition]
+				[UseConditions:true]
+				[MatchAnyCondition:false]
+				[CheckTrueBooleans:true]
+				[TrueBooleans:GVK_Site_HostileNear_KHAANEPH]
+			</Description>
+		</EntityComponent>
+
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-PresetBases-Tower-Action-HostileClear-KHAANEPH</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Action]
+				[SetBooleansFalse:GVK_Site_HostileNear_KHAANEPH]
+				[ManuallyActivateTrigger:true]
+				[ManuallyActivatedTriggerTags:GVK-Alliance-PresetBases-TriggerTags-RefreshBoard]
+			</Description>
+		</EntityComponent>
+
+		<!-- =================================================== -->
+		<!-- BOARD REFRESH: exactly one rule matches each state  -->
+		<!-- =================================================== -->
+
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-PresetBases-Tower-Trigger-Session</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Trigger]
+				[UseTrigger:true]
+				[Type:Session]
+				[StartsReady:true]
+				[MaxActions:-1]
+				[ActionExecution:All]
+				[Actions:GVK-Alliance-PresetBases-Tower-Action-Refresh]
+			</Description>
+		</EntityComponent>
+
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-PresetBases-Tower-Trigger-PeriodicRefresh</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Trigger]
+				[UseTrigger:true]
+				[Type:Timer]
+				[StartsReady:true]
+				[MinCooldownMs:600000]
+				[MaxCooldownMs:600001]
+				[MaxActions:-1]
+				[ActionExecution:All]
+				[Actions:GVK-Alliance-PresetBases-Tower-Action-Refresh]
+			</Description>
+		</EntityComponent>
+
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-PresetBases-Tower-Action-Refresh</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Action]
+				[ManuallyActivateTrigger:true]
+				[ManuallyActivatedTriggerTags:GVK-Alliance-PresetBases-TriggerTags-RefreshBoard]
+			</Description>
+		</EntityComponent>
+
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-PresetBases-Tower-Trigger-Refresh-Locked</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Trigger]
+				[UseTrigger:true]
+				[Type:Manual]
+				[Tags:GVK-Alliance-PresetBases-TriggerTags-RefreshBoard]
+				[StartsReady:true]
+				[MaxActions:-1]
+				[Conditions:GVK-Alliance-PresetBases-Tower-Condition-Refresh-Locked]
+				[ActionExecution:All]
+				[Actions:GVK-Alliance-PresetBases-Tower-Action-Board-Empty]
+			</Description>
+		</EntityComponent>
+
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-PresetBases-Tower-Condition-Refresh-Locked</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Condition]
+				[UseConditions:true]
+				[MatchAnyCondition:false]
+				[CheckTrueBooleans:true]
+				[TrueBooleans:GVK_Site_KillLock]
+				[CheckFalseBooleans:true]
+				[FalseBooleans:GVK_Site_Base_SOBAN]
+				[FalseBooleans:GVK_Site_Base_KHAANEPH]
+			</Description>
+		</EntityComponent>
+
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-PresetBases-Tower-Trigger-Refresh-Pending</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Trigger]
+				[UseTrigger:true]
+				[Type:Manual]
+				[Tags:GVK-Alliance-PresetBases-TriggerTags-RefreshBoard]
+				[StartsReady:true]
+				[MaxActions:-1]
+				[Conditions:GVK-Alliance-PresetBases-Tower-Condition-Refresh-Pending]
+				[ActionExecution:All]
+				[Actions:GVK-Alliance-PresetBases-Tower-Action-Board-Empty]
+			</Description>
+		</EntityComponent>
+
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-PresetBases-Tower-Condition-Refresh-Pending</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Condition]
+				[UseConditions:true]
+				[MatchAnyCondition:false]
+				[CheckTrueBooleans:true]
+				[TrueBooleans:GVK_Site_ClaimPending]
+				[CheckFalseBooleans:true]
+				[FalseBooleans:GVK_Site_Base_SOBAN]
+				[FalseBooleans:GVK_Site_Base_KHAANEPH]
+				[FalseBooleans:GVK_Site_KillLock]
+			</Description>
+		</EntityComponent>
+
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-PresetBases-Tower-Trigger-Refresh-ClaimBoth</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Trigger]
+				[UseTrigger:true]
+				[Type:Manual]
+				[Tags:GVK-Alliance-PresetBases-TriggerTags-RefreshBoard]
+				[StartsReady:true]
+				[MaxActions:-1]
+				[Conditions:GVK-Alliance-PresetBases-Tower-Condition-Refresh-ClaimBoth]
+				[ActionExecution:All]
+				[Actions:GVK-Alliance-PresetBases-Tower-Action-Board-ClaimBoth]
+			</Description>
+		</EntityComponent>
+
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-PresetBases-Tower-Condition-Refresh-ClaimBoth</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Condition]
+				[UseConditions:true]
+				[MatchAnyCondition:false]
+				[CheckFalseBooleans:true]
+				[FalseBooleans:GVK_Site_Base_SOBAN]
+				[FalseBooleans:GVK_Site_Base_KHAANEPH]
+				[FalseBooleans:GVK_Site_KillLock]
+				[FalseBooleans:GVK_Site_ClaimPending]
+				[FalseBooleans:GVK_Site_HostileNear_SOBAN]
+				[FalseBooleans:GVK_Site_HostileNear_KHAANEPH]
+			</Description>
+		</EntityComponent>
+
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-PresetBases-Tower-Trigger-Refresh-ClaimSOBAN</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Trigger]
+				[UseTrigger:true]
+				[Type:Manual]
+				[Tags:GVK-Alliance-PresetBases-TriggerTags-RefreshBoard]
+				[StartsReady:true]
+				[MaxActions:-1]
+				[Conditions:GVK-Alliance-PresetBases-Tower-Condition-Refresh-ClaimSOBAN]
+				[ActionExecution:All]
+				[Actions:GVK-Alliance-PresetBases-Tower-Action-Board-ClaimSOBAN]
+			</Description>
+		</EntityComponent>
+
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-PresetBases-Tower-Condition-Refresh-ClaimSOBAN</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Condition]
+				[UseConditions:true]
+				[MatchAnyCondition:false]
+				[CheckTrueBooleans:true]
+				[TrueBooleans:GVK_Site_HostileNear_KHAANEPH]
+				[CheckFalseBooleans:true]
+				[FalseBooleans:GVK_Site_Base_SOBAN]
+				[FalseBooleans:GVK_Site_Base_KHAANEPH]
+				[FalseBooleans:GVK_Site_KillLock]
+				[FalseBooleans:GVK_Site_ClaimPending]
+				[FalseBooleans:GVK_Site_HostileNear_SOBAN]
+			</Description>
+		</EntityComponent>
+
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-PresetBases-Tower-Trigger-Refresh-ClaimKHAANEPH</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Trigger]
+				[UseTrigger:true]
+				[Type:Manual]
+				[Tags:GVK-Alliance-PresetBases-TriggerTags-RefreshBoard]
+				[StartsReady:true]
+				[MaxActions:-1]
+				[Conditions:GVK-Alliance-PresetBases-Tower-Condition-Refresh-ClaimKHAANEPH]
+				[ActionExecution:All]
+				[Actions:GVK-Alliance-PresetBases-Tower-Action-Board-ClaimKHAANEPH]
+			</Description>
+		</EntityComponent>
+
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-PresetBases-Tower-Condition-Refresh-ClaimKHAANEPH</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Condition]
+				[UseConditions:true]
+				[MatchAnyCondition:false]
+				[CheckTrueBooleans:true]
+				[TrueBooleans:GVK_Site_HostileNear_SOBAN]
+				[CheckFalseBooleans:true]
+				[FalseBooleans:GVK_Site_Base_SOBAN]
+				[FalseBooleans:GVK_Site_Base_KHAANEPH]
+				[FalseBooleans:GVK_Site_KillLock]
+				[FalseBooleans:GVK_Site_ClaimPending]
+				[FalseBooleans:GVK_Site_HostileNear_KHAANEPH]
+			</Description>
+		</EntityComponent>
+
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-PresetBases-Tower-Trigger-Refresh-ClaimNone</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Trigger]
+				[UseTrigger:true]
+				[Type:Manual]
+				[Tags:GVK-Alliance-PresetBases-TriggerTags-RefreshBoard]
+				[StartsReady:true]
+				[MaxActions:-1]
+				[Conditions:GVK-Alliance-PresetBases-Tower-Condition-Refresh-ClaimNone]
+				[ActionExecution:All]
+				[Actions:GVK-Alliance-PresetBases-Tower-Action-Board-Empty]
+			</Description>
+		</EntityComponent>
+
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-PresetBases-Tower-Condition-Refresh-ClaimNone</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Condition]
+				[UseConditions:true]
+				[MatchAnyCondition:false]
+				[CheckTrueBooleans:true]
+				[TrueBooleans:GVK_Site_HostileNear_SOBAN]
+				[TrueBooleans:GVK_Site_HostileNear_KHAANEPH]
+				[CheckFalseBooleans:true]
+				[FalseBooleans:GVK_Site_Base_SOBAN]
+				[FalseBooleans:GVK_Site_Base_KHAANEPH]
+				[FalseBooleans:GVK_Site_KillLock]
+				[FalseBooleans:GVK_Site_ClaimPending]
+			</Description>
+		</EntityComponent>
+
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-PresetBases-Tower-Trigger-Refresh-SOBAN-Hostile</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Trigger]
+				[UseTrigger:true]
+				[Type:Manual]
+				[Tags:GVK-Alliance-PresetBases-TriggerTags-RefreshBoard]
+				[StartsReady:true]
+				[MaxActions:-1]
+				[Conditions:GVK-Alliance-PresetBases-Tower-Condition-Refresh-SOBAN-Hostile]
+				[ActionExecution:All]
+				[Actions:GVK-Alliance-PresetBases-Tower-Action-Board-Empty]
+			</Description>
+		</EntityComponent>
+
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-PresetBases-Tower-Condition-Refresh-SOBAN-Hostile</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Condition]
+				[UseConditions:true]
+				[MatchAnyCondition:false]
+				[CheckTrueBooleans:true]
+				[TrueBooleans:GVK_Site_Base_SOBAN]
+				[TrueBooleans:GVK_Site_HostileNear_SOBAN]
+			</Description>
+		</EntityComponent>
+
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-PresetBases-Tower-Trigger-Refresh-SOBAN-TurretRestore</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Trigger]
+				[UseTrigger:true]
+				[Type:Manual]
+				[Tags:GVK-Alliance-PresetBases-TriggerTags-RefreshBoard]
+				[StartsReady:true]
+				[MaxActions:-1]
+				[Conditions:GVK-Alliance-PresetBases-Tower-Condition-Refresh-SOBAN-TurretRestore]
+				[ActionExecution:All]
+				[Actions:GVK-Alliance-PresetBases-Tower-Action-Board-SOBAN-TurretRestore]
+			</Description>
+		</EntityComponent>
+
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-PresetBases-Tower-Condition-Refresh-SOBAN-TurretRestore</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Condition]
+				[UseConditions:true]
+				[MatchAnyCondition:false]
+				[CheckTrueBooleans:true]
+				[TrueBooleans:GVK_Site_Base_SOBAN]
+				[CheckFalseBooleans:true]
+				[FalseBooleans:GVK_Site_HostileNear_SOBAN]
+				[FalseBooleans:GVK_Site_TurretCooling]
+				[FalseBooleans:GVK_Site_RestoreCooling]
+				[CheckCustomCounters:true]
+				[CustomCounters:GVK_Site_Turrets]
+				[CustomCountersTargets:4]
+				[CounterCompareTypes:Less]
+			</Description>
+		</EntityComponent>
+
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-PresetBases-Tower-Trigger-Refresh-SOBAN-TurretOnly</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Trigger]
+				[UseTrigger:true]
+				[Type:Manual]
+				[Tags:GVK-Alliance-PresetBases-TriggerTags-RefreshBoard]
+				[StartsReady:true]
+				[MaxActions:-1]
+				[Conditions:GVK-Alliance-PresetBases-Tower-Condition-Refresh-SOBAN-TurretOnly]
+				[ActionExecution:All]
+				[Actions:GVK-Alliance-PresetBases-Tower-Action-Board-SOBAN-Turret]
+			</Description>
+		</EntityComponent>
+
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-PresetBases-Tower-Condition-Refresh-SOBAN-TurretOnly</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Condition]
+				[UseConditions:true]
+				[MatchAnyCondition:false]
+				[CheckTrueBooleans:true]
+				[TrueBooleans:GVK_Site_Base_SOBAN]
+				[TrueBooleans:GVK_Site_RestoreCooling]
+				[CheckFalseBooleans:true]
+				[FalseBooleans:GVK_Site_HostileNear_SOBAN]
+				[FalseBooleans:GVK_Site_TurretCooling]
+				[CheckCustomCounters:true]
+				[CustomCounters:GVK_Site_Turrets]
+				[CustomCountersTargets:4]
+				[CounterCompareTypes:Less]
+			</Description>
+		</EntityComponent>
+
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-PresetBases-Tower-Trigger-Refresh-SOBAN-RestoreCooling</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Trigger]
+				[UseTrigger:true]
+				[Type:Manual]
+				[Tags:GVK-Alliance-PresetBases-TriggerTags-RefreshBoard]
+				[StartsReady:true]
+				[MaxActions:-1]
+				[Conditions:GVK-Alliance-PresetBases-Tower-Condition-Refresh-SOBAN-RestoreCooling]
+				[ActionExecution:All]
+				[Actions:GVK-Alliance-PresetBases-Tower-Action-Board-SOBAN-Restore]
+			</Description>
+		</EntityComponent>
+
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-PresetBases-Tower-Condition-Refresh-SOBAN-RestoreCooling</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Condition]
+				[UseConditions:true]
+				[MatchAnyCondition:false]
+				[CheckTrueBooleans:true]
+				[TrueBooleans:GVK_Site_Base_SOBAN]
+				[TrueBooleans:GVK_Site_TurretCooling]
+				[CheckFalseBooleans:true]
+				[FalseBooleans:GVK_Site_HostileNear_SOBAN]
+				[FalseBooleans:GVK_Site_RestoreCooling]
+			</Description>
+		</EntityComponent>
+
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-PresetBases-Tower-Trigger-Refresh-SOBAN-RestoreAtCap</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Trigger]
+				[UseTrigger:true]
+				[Type:Manual]
+				[Tags:GVK-Alliance-PresetBases-TriggerTags-RefreshBoard]
+				[StartsReady:true]
+				[MaxActions:-1]
+				[Conditions:GVK-Alliance-PresetBases-Tower-Condition-Refresh-SOBAN-RestoreAtCap]
+				[ActionExecution:All]
+				[Actions:GVK-Alliance-PresetBases-Tower-Action-Board-SOBAN-Restore]
+			</Description>
+		</EntityComponent>
+
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-PresetBases-Tower-Condition-Refresh-SOBAN-RestoreAtCap</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Condition]
+				[UseConditions:true]
+				[MatchAnyCondition:false]
+				[CheckTrueBooleans:true]
+				[TrueBooleans:GVK_Site_Base_SOBAN]
+				[CheckFalseBooleans:true]
+				[FalseBooleans:GVK_Site_HostileNear_SOBAN]
+				[FalseBooleans:GVK_Site_TurretCooling]
+				[FalseBooleans:GVK_Site_RestoreCooling]
+				[CheckCustomCounters:true]
+				[CustomCounters:GVK_Site_Turrets]
+				[CustomCountersTargets:4]
+				[CounterCompareTypes:GreaterOrEqual]
+			</Description>
+		</EntityComponent>
+
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-PresetBases-Tower-Trigger-Refresh-SOBAN-NoneCooling</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Trigger]
+				[UseTrigger:true]
+				[Type:Manual]
+				[Tags:GVK-Alliance-PresetBases-TriggerTags-RefreshBoard]
+				[StartsReady:true]
+				[MaxActions:-1]
+				[Conditions:GVK-Alliance-PresetBases-Tower-Condition-Refresh-SOBAN-NoneCooling]
+				[ActionExecution:All]
+				[Actions:GVK-Alliance-PresetBases-Tower-Action-Board-Empty]
+			</Description>
+		</EntityComponent>
+
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-PresetBases-Tower-Condition-Refresh-SOBAN-NoneCooling</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Condition]
+				[UseConditions:true]
+				[MatchAnyCondition:false]
+				[CheckTrueBooleans:true]
+				[TrueBooleans:GVK_Site_Base_SOBAN]
+				[TrueBooleans:GVK_Site_TurretCooling]
+				[TrueBooleans:GVK_Site_RestoreCooling]
+				[CheckFalseBooleans:true]
+				[FalseBooleans:GVK_Site_HostileNear_SOBAN]
+			</Description>
+		</EntityComponent>
+
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-PresetBases-Tower-Trigger-Refresh-SOBAN-NoneAtCap</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Trigger]
+				[UseTrigger:true]
+				[Type:Manual]
+				[Tags:GVK-Alliance-PresetBases-TriggerTags-RefreshBoard]
+				[StartsReady:true]
+				[MaxActions:-1]
+				[Conditions:GVK-Alliance-PresetBases-Tower-Condition-Refresh-SOBAN-NoneAtCap]
+				[ActionExecution:All]
+				[Actions:GVK-Alliance-PresetBases-Tower-Action-Board-Empty]
+			</Description>
+		</EntityComponent>
+
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-PresetBases-Tower-Condition-Refresh-SOBAN-NoneAtCap</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Condition]
+				[UseConditions:true]
+				[MatchAnyCondition:false]
+				[CheckTrueBooleans:true]
+				[TrueBooleans:GVK_Site_Base_SOBAN]
+				[TrueBooleans:GVK_Site_RestoreCooling]
+				[CheckFalseBooleans:true]
+				[FalseBooleans:GVK_Site_HostileNear_SOBAN]
+				[FalseBooleans:GVK_Site_TurretCooling]
+				[CheckCustomCounters:true]
+				[CustomCounters:GVK_Site_Turrets]
+				[CustomCountersTargets:4]
+				[CounterCompareTypes:GreaterOrEqual]
+			</Description>
+		</EntityComponent>
+
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-PresetBases-Tower-Trigger-Refresh-KHAANEPH-Hostile</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Trigger]
+				[UseTrigger:true]
+				[Type:Manual]
+				[Tags:GVK-Alliance-PresetBases-TriggerTags-RefreshBoard]
+				[StartsReady:true]
+				[MaxActions:-1]
+				[Conditions:GVK-Alliance-PresetBases-Tower-Condition-Refresh-KHAANEPH-Hostile]
+				[ActionExecution:All]
+				[Actions:GVK-Alliance-PresetBases-Tower-Action-Board-Empty]
+			</Description>
+		</EntityComponent>
+
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-PresetBases-Tower-Condition-Refresh-KHAANEPH-Hostile</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Condition]
+				[UseConditions:true]
+				[MatchAnyCondition:false]
+				[CheckTrueBooleans:true]
+				[TrueBooleans:GVK_Site_Base_KHAANEPH]
+				[TrueBooleans:GVK_Site_HostileNear_KHAANEPH]
+			</Description>
+		</EntityComponent>
+
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-PresetBases-Tower-Trigger-Refresh-KHAANEPH-TurretRestore</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Trigger]
+				[UseTrigger:true]
+				[Type:Manual]
+				[Tags:GVK-Alliance-PresetBases-TriggerTags-RefreshBoard]
+				[StartsReady:true]
+				[MaxActions:-1]
+				[Conditions:GVK-Alliance-PresetBases-Tower-Condition-Refresh-KHAANEPH-TurretRestore]
+				[ActionExecution:All]
+				[Actions:GVK-Alliance-PresetBases-Tower-Action-Board-KHAANEPH-TurretRestore]
+			</Description>
+		</EntityComponent>
+
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-PresetBases-Tower-Condition-Refresh-KHAANEPH-TurretRestore</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Condition]
+				[UseConditions:true]
+				[MatchAnyCondition:false]
+				[CheckTrueBooleans:true]
+				[TrueBooleans:GVK_Site_Base_KHAANEPH]
+				[CheckFalseBooleans:true]
+				[FalseBooleans:GVK_Site_HostileNear_KHAANEPH]
+				[FalseBooleans:GVK_Site_TurretCooling]
+				[FalseBooleans:GVK_Site_RestoreCooling]
+				[CheckCustomCounters:true]
+				[CustomCounters:GVK_Site_Turrets]
+				[CustomCountersTargets:4]
+				[CounterCompareTypes:Less]
+			</Description>
+		</EntityComponent>
+
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-PresetBases-Tower-Trigger-Refresh-KHAANEPH-TurretOnly</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Trigger]
+				[UseTrigger:true]
+				[Type:Manual]
+				[Tags:GVK-Alliance-PresetBases-TriggerTags-RefreshBoard]
+				[StartsReady:true]
+				[MaxActions:-1]
+				[Conditions:GVK-Alliance-PresetBases-Tower-Condition-Refresh-KHAANEPH-TurretOnly]
+				[ActionExecution:All]
+				[Actions:GVK-Alliance-PresetBases-Tower-Action-Board-KHAANEPH-Turret]
+			</Description>
+		</EntityComponent>
+
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-PresetBases-Tower-Condition-Refresh-KHAANEPH-TurretOnly</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Condition]
+				[UseConditions:true]
+				[MatchAnyCondition:false]
+				[CheckTrueBooleans:true]
+				[TrueBooleans:GVK_Site_Base_KHAANEPH]
+				[TrueBooleans:GVK_Site_RestoreCooling]
+				[CheckFalseBooleans:true]
+				[FalseBooleans:GVK_Site_HostileNear_KHAANEPH]
+				[FalseBooleans:GVK_Site_TurretCooling]
+				[CheckCustomCounters:true]
+				[CustomCounters:GVK_Site_Turrets]
+				[CustomCountersTargets:4]
+				[CounterCompareTypes:Less]
+			</Description>
+		</EntityComponent>
+
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-PresetBases-Tower-Trigger-Refresh-KHAANEPH-RestoreCooling</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Trigger]
+				[UseTrigger:true]
+				[Type:Manual]
+				[Tags:GVK-Alliance-PresetBases-TriggerTags-RefreshBoard]
+				[StartsReady:true]
+				[MaxActions:-1]
+				[Conditions:GVK-Alliance-PresetBases-Tower-Condition-Refresh-KHAANEPH-RestoreCooling]
+				[ActionExecution:All]
+				[Actions:GVK-Alliance-PresetBases-Tower-Action-Board-KHAANEPH-Restore]
+			</Description>
+		</EntityComponent>
+
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-PresetBases-Tower-Condition-Refresh-KHAANEPH-RestoreCooling</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Condition]
+				[UseConditions:true]
+				[MatchAnyCondition:false]
+				[CheckTrueBooleans:true]
+				[TrueBooleans:GVK_Site_Base_KHAANEPH]
+				[TrueBooleans:GVK_Site_TurretCooling]
+				[CheckFalseBooleans:true]
+				[FalseBooleans:GVK_Site_HostileNear_KHAANEPH]
+				[FalseBooleans:GVK_Site_RestoreCooling]
+			</Description>
+		</EntityComponent>
+
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-PresetBases-Tower-Trigger-Refresh-KHAANEPH-RestoreAtCap</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Trigger]
+				[UseTrigger:true]
+				[Type:Manual]
+				[Tags:GVK-Alliance-PresetBases-TriggerTags-RefreshBoard]
+				[StartsReady:true]
+				[MaxActions:-1]
+				[Conditions:GVK-Alliance-PresetBases-Tower-Condition-Refresh-KHAANEPH-RestoreAtCap]
+				[ActionExecution:All]
+				[Actions:GVK-Alliance-PresetBases-Tower-Action-Board-KHAANEPH-Restore]
+			</Description>
+		</EntityComponent>
+
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-PresetBases-Tower-Condition-Refresh-KHAANEPH-RestoreAtCap</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Condition]
+				[UseConditions:true]
+				[MatchAnyCondition:false]
+				[CheckTrueBooleans:true]
+				[TrueBooleans:GVK_Site_Base_KHAANEPH]
+				[CheckFalseBooleans:true]
+				[FalseBooleans:GVK_Site_HostileNear_KHAANEPH]
+				[FalseBooleans:GVK_Site_TurretCooling]
+				[FalseBooleans:GVK_Site_RestoreCooling]
+				[CheckCustomCounters:true]
+				[CustomCounters:GVK_Site_Turrets]
+				[CustomCountersTargets:4]
+				[CounterCompareTypes:GreaterOrEqual]
+			</Description>
+		</EntityComponent>
+
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-PresetBases-Tower-Trigger-Refresh-KHAANEPH-NoneCooling</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Trigger]
+				[UseTrigger:true]
+				[Type:Manual]
+				[Tags:GVK-Alliance-PresetBases-TriggerTags-RefreshBoard]
+				[StartsReady:true]
+				[MaxActions:-1]
+				[Conditions:GVK-Alliance-PresetBases-Tower-Condition-Refresh-KHAANEPH-NoneCooling]
+				[ActionExecution:All]
+				[Actions:GVK-Alliance-PresetBases-Tower-Action-Board-Empty]
+			</Description>
+		</EntityComponent>
+
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-PresetBases-Tower-Condition-Refresh-KHAANEPH-NoneCooling</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Condition]
+				[UseConditions:true]
+				[MatchAnyCondition:false]
+				[CheckTrueBooleans:true]
+				[TrueBooleans:GVK_Site_Base_KHAANEPH]
+				[TrueBooleans:GVK_Site_TurretCooling]
+				[TrueBooleans:GVK_Site_RestoreCooling]
+				[CheckFalseBooleans:true]
+				[FalseBooleans:GVK_Site_HostileNear_KHAANEPH]
+			</Description>
+		</EntityComponent>
+
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-PresetBases-Tower-Trigger-Refresh-KHAANEPH-NoneAtCap</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Trigger]
+				[UseTrigger:true]
+				[Type:Manual]
+				[Tags:GVK-Alliance-PresetBases-TriggerTags-RefreshBoard]
+				[StartsReady:true]
+				[MaxActions:-1]
+				[Conditions:GVK-Alliance-PresetBases-Tower-Condition-Refresh-KHAANEPH-NoneAtCap]
+				[ActionExecution:All]
+				[Actions:GVK-Alliance-PresetBases-Tower-Action-Board-Empty]
+			</Description>
+		</EntityComponent>
+
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-PresetBases-Tower-Condition-Refresh-KHAANEPH-NoneAtCap</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Condition]
+				[UseConditions:true]
+				[MatchAnyCondition:false]
+				[CheckTrueBooleans:true]
+				[TrueBooleans:GVK_Site_Base_KHAANEPH]
+				[TrueBooleans:GVK_Site_RestoreCooling]
+				[CheckFalseBooleans:true]
+				[FalseBooleans:GVK_Site_HostileNear_KHAANEPH]
+				[FalseBooleans:GVK_Site_TurretCooling]
+				[CheckCustomCounters:true]
+				[CustomCounters:GVK_Site_Turrets]
+				[CustomCountersTargets:4]
+				[CounterCompareTypes:GreaterOrEqual]
+			</Description>
+		</EntityComponent>
+
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-PresetBases-Tower-Action-Board-Empty</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Action]
+				[ApplyContractProfiles:true]
+				[ClearContractContentsFirst:true]
+				[ContractBlocks:NPC Contracts]
+				[ContractBlockProfiles:GVK-Alliance-PresetBases-Board-Empty]
+			</Description>
+		</EntityComponent>
+
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-PresetBases-Tower-Action-Board-ClaimBoth</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Action]
+				[ApplyContractProfiles:true]
+				[ClearContractContentsFirst:true]
+				[ContractBlocks:NPC Contracts]
+				[ContractBlockProfiles:GVK-Alliance-PresetBases-Board-ClaimBoth]
+			</Description>
+		</EntityComponent>
+
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-PresetBases-Tower-Action-Board-ClaimSOBAN</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Action]
+				[ApplyContractProfiles:true]
+				[ClearContractContentsFirst:true]
+				[ContractBlocks:NPC Contracts]
+				[ContractBlockProfiles:GVK-Alliance-PresetBases-Board-ClaimSOBAN]
+			</Description>
+		</EntityComponent>
+
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-PresetBases-Tower-Action-Board-SOBAN-TurretRestore</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Action]
+				[ApplyContractProfiles:true]
+				[ClearContractContentsFirst:true]
+				[ContractBlocks:NPC Contracts]
+				[ContractBlockProfiles:GVK-Alliance-PresetBases-Board-SOBAN-TurretRestore]
+			</Description>
+		</EntityComponent>
+
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-PresetBases-Tower-Action-Board-SOBAN-Turret</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Action]
+				[ApplyContractProfiles:true]
+				[ClearContractContentsFirst:true]
+				[ContractBlocks:NPC Contracts]
+				[ContractBlockProfiles:GVK-Alliance-PresetBases-Board-SOBAN-Turret]
+			</Description>
+		</EntityComponent>
+
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-PresetBases-Tower-Action-Board-SOBAN-Restore</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Action]
+				[ApplyContractProfiles:true]
+				[ClearContractContentsFirst:true]
+				[ContractBlocks:NPC Contracts]
+				[ContractBlockProfiles:GVK-Alliance-PresetBases-Board-SOBAN-Restore]
+			</Description>
+		</EntityComponent>
+
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-PresetBases-Tower-Action-Board-ClaimKHAANEPH</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Action]
+				[ApplyContractProfiles:true]
+				[ClearContractContentsFirst:true]
+				[ContractBlocks:NPC Contracts]
+				[ContractBlockProfiles:GVK-Alliance-PresetBases-Board-ClaimKHAANEPH]
+			</Description>
+		</EntityComponent>
+
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-PresetBases-Tower-Action-Board-KHAANEPH-TurretRestore</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Action]
+				[ApplyContractProfiles:true]
+				[ClearContractContentsFirst:true]
+				[ContractBlocks:NPC Contracts]
+				[ContractBlockProfiles:GVK-Alliance-PresetBases-Board-KHAANEPH-TurretRestore]
+			</Description>
+		</EntityComponent>
+
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-PresetBases-Tower-Action-Board-KHAANEPH-Turret</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Action]
+				[ApplyContractProfiles:true]
+				[ClearContractContentsFirst:true]
+				[ContractBlocks:NPC Contracts]
+				[ContractBlockProfiles:GVK-Alliance-PresetBases-Board-KHAANEPH-Turret]
+			</Description>
+		</EntityComponent>
+
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-PresetBases-Tower-Action-Board-KHAANEPH-Restore</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Action]
+				[ApplyContractProfiles:true]
+				[ClearContractContentsFirst:true]
+				[ContractBlocks:NPC Contracts]
+				[ContractBlockProfiles:GVK-Alliance-PresetBases-Board-KHAANEPH-Restore]
+			</Description>
+		</EntityComponent>
+
+		<!-- =================================================== -->
+		<!-- BASE SPAWN SPAWNERS                                 -->
+		<!-- =================================================== -->
+
+		<!-- One Base per site: the RC code GVK-Alliance-Base gate (1100 m) in the Base spawn conditions exceeds MaxDistance 500 -->
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
@@ -244,18 +2299,6 @@
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Alliance-PresetBases-Action-UpgradeToBase-KHAANEPH</SubtypeId>
-			</Id>
-			<Description>
-				[MES AI Action]
-				[SpawnEncounter:true]
-				[Spawner:GVK-Alliance-PresetBases-Spawner-Base-KHAANEPH]
-			</Description>
-		</EntityComponent>
-
-		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
-			<Id>
-				<TypeId>Inventory</TypeId>
 				<SubtypeId>GVK-Alliance-PresetBases-Spawner-Base-KHAANEPH</SubtypeId>
 			</Id>
 			<Description>
@@ -273,6 +2316,5 @@
 				[IgnoreSafetyChecks:true]
 			</Description>
 		</EntityComponent>
-
 	</EntityComponents>
 </Definitions>
