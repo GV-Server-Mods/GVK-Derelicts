@@ -1,11 +1,20 @@
 """Generate the Base Site contract board (GVK-Settings#653): the Base Site behavior, the contracts, and the Base and
 Defense Turret triggers. Edit this script and re-run it instead of editing the three generated files by hand.
 
-Usage (from the repo root): python tools/New-BaseSiteBoard.py
+Usage (from the repo root): python tools/New-BaseSiteBoard.py [--test-cooldown SECONDS]
 Writes Content/Data/Encounters/Alliance/PresetBases/GVK-Alliance-PresetBases-{Site-Behavior,Contracts,BaseSite}.sbc
 as UTF-8 (no BOM) with CRLF line endings. Design: Docs/design/preset-bases.md.
+--test-cooldown sets the Turret and Restore cooldowns to SECONDS and marks the contracts as a test build. Run it only in
+a throwaway worktree for an in-game test, never on the files you commit.
 """
+import argparse
 from pathlib import Path
+
+ARGS = argparse.ArgumentParser()
+ARGS.add_argument("--test-cooldown", type=int, metavar="SECONDS")
+TEST_COOLDOWN = ARGS.parse_args().test_cooldown
+TURRET_COOL_MS = TEST_COOLDOWN * 1000 if TEST_COOLDOWN else 1200000
+RESTORE_COOL_MS = TEST_COOLDOWN * 1000 if TEST_COOLDOWN else 7200000
 
 ROOT = Path(__file__).resolve().parents[1]
 PB = ROOT / "Content/Data/Encounters/Alliance/PresetBases"
@@ -125,7 +134,7 @@ for kind, (title, desc) in MISSIONS.items():
         lead = [f"[LeadPlayerConditionIds:{P}-PlayerCondition-Friendly{f}]"]
         c.append(comp(f"{P}-Mission-{kind}-{f}", [
             "[MES Mission]", "[MissionType:Custom]", f"[Title:{title} - {f}]",
-            "[Description:" + desc.format(f=f) + "]",
+            "[Description:" + desc.format(f=f) + (f" TEST BUILD: {TEST_COOLDOWN} s cooldowns." if TEST_COOLDOWN else "") + "]",
             "[Reward:0]", "[Collateral:0]", "[ReputationReward:0]", "[FailReputationPrice:0]",
             f"[OverrideFaction:{f}]", "[SoloMission:true]"] + lead + [
             f"[InstanceEventGroupId:{P}-TemplateGroup-Contract]",
@@ -273,7 +282,7 @@ t.append(action(f"{P}-Site-Action-TurretLost", [f"[DecreaseCounters:{TCOUNT}]"],
 
 t.append(section("COOLDOWNS (restarted by the action that starts them)"))
 for name, flag, ms in [("LockEnd", LOCK, 7200000), ("ClaimPendingEnd", PEND, 120000),
-                       ("TurretCoolEnd", TCOOL, 1200000), ("RestoreCoolEnd", RCOOL, 7200000)]:
+                       ("TurretCoolEnd", TCOOL, TURRET_COOL_MS), ("RestoreCoolEnd", RCOOL, RESTORE_COOL_MS)]:
     t.append(trig(f"{P}-Site-Trigger-{name}", "Timer", [f"{P}-Site-Action-{name}"], f"{P}-Site-Condition-{name}",
                   starts_ready=False, cooldown=ms))
     t.append(cond(f"{P}-Site-Condition-{name}", [flag]))
