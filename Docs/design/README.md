@@ -13,12 +13,12 @@ The old README notes live here. Note numbers are kept because hub issues and too
 | [Alliance territory ladder and influence](alliance-territory-ladder.md) | 28, 35, 36 | 2 | - | - |
 | [NPC dialogue banks](dialogue-banks.md) | 37 | 3 | 2026-11-01 | - |
 | [Escorts and peer wings](escorts-and-peer-wings.md) | 40, 41 | 4 | - | - |
-| [Freighter dispatch and supply depots](freighter-dispatch.md) | 45 | 2 | - | - |
-| [Installation terrain rule](installation-terrain.md) | 48 | 2 | - | MES 103f8d0 |
+| [Freighter dispatch and supply depots](freighter-dispatch.md) | 45 | 2 | 2026-11-08 | MES d500922 |
+| [Installation terrain rule](installation-terrain.md) | 48 | 2 | 2026-11-08 | MES d500922 |
 | [KOTH 5 km despawn](koth-despawn.md) | 42 | 1 | - | - |
 | [How NPC relations are read](npc-relations.md) | 47 | 1 | 2026-11-07 | MES 49b3380 |
-| [Parent leash](parent-leash.md) | 46 | 3 | - | MES d85b7b3 |
+| [Parent leash](parent-leash.md) | 46 | 3 | - | MES d500922 |
 | [Preset alliance bases](preset-bases.md) | 30 | 3 | - | MES d500922 |
 | [Server build requirements (MES release)](server-build-requirements.md) | 43 | 3 | - | MES a1895d9 |
-| [Wreck prefabs and vanilla encounters](wreck-prefabs.md) | 38, 39 | 3 | - | MES 13bcb1d |
+| [Wreck prefabs and vanilla encounters](wreck-prefabs.md) | 38, 39 | 3 | 2026-11-04 | MES 13bcb1d |
 <!-- /GENERATED:design-docs -->
