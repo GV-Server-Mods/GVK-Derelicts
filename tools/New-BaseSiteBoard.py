@@ -10,7 +10,6 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 PB = ROOT / "Content/Data/Encounters/Alliance/PresetBases"
 F = ["SOBAN", "KHAANEPH"]
-ZONE = {"SOBAN": "Soban", "KHAANEPH": "Khaaneph"}
 P = "GVK-Alliance-PresetBases"
 
 def comp(subtype, body, comment=None):
@@ -107,22 +106,23 @@ for f in F:
         "[MES Player Condition]", "[CheckPlayerReputation:true]", f"[CheckReputationwithFaction:{f}]",
         "[MinPlayerReputation:500]", "[MaxPlayerReputation:1500]"],
         f"Friendly standing with {f}: the only players who can accept its contracts"))
+    # MES drops 0 from integer lists, so a 0 maximum leaves the lists uneven and the condition never passes: -1 is the cap.
     c.append(comp(f"{P}-PlayerCondition-Hostile{f}", [
         "[MES Player Condition]", "[CheckPlayerReputation:true]", f"[CheckReputationwithFaction:{f}]",
-        "[MinPlayerReputation:-1500]", "[MaxPlayerReputation:0]"],
-        f"Hostile to {f} (the same band the Defenses use): blocks {f} contracts within 5 km"))
+        "[MinPlayerReputation:-1500]", "[MaxPlayerReputation:-1]"],
+        f"Hostile to {f} (reputation below 0): blocks {f} contracts within 5 km"))
 
 c.append(section("MISSIONS (free: no reward, no collateral)"))
 MISSIONS = {
-    "Claim": ("Claim Base Site", "Deploy a {f} Base at this site. Open to players in Friendly standing with {f} who stand inside {f} territory. Adds 50 Influence to {f}."),
+    "Claim": ("Claim Base Site", "Deploy a {f} Base at this site. Open to players in Friendly standing with {f}, while this site is inside {f} territory. Adds 50 Influence to {f}."),
     "Turret": ("Deploy Defense Turret", "Places one {f} Defense Turret around the Base at this site. One every 20 minutes, up to 4 standing."),
     "Restore": ("Restore Base", "Repairs every damaged block on the {f} Base at this site. Destroyed blocks are not rebuilt. Once every 2 hours."),
 }
 for kind, (title, desc) in MISSIONS.items():
     for f in F:
+        # No player-in-territory check: the board only shows Claim while the site is inside the Territory and the player
+        # stands at the board, so a second check on the player can only refuse someone who qualifies.
         lead = [f"[LeadPlayerConditionIds:{P}-PlayerCondition-Friendly{f}]"]
-        if kind == "Claim":
-            lead.append(f"[LeadPlayerConditionIds:{P}-PlayerCondition-In{ZONE[f]}Zone]")
         c.append(comp(f"{P}-Mission-{kind}-{f}", [
             "[MES Mission]", "[MissionType:Custom]", f"[Title:{title} - {f}]",
             "[Description:" + desc.format(f=f) + "]",
@@ -208,11 +208,6 @@ for r in refresh_rules:
 t.append(comp(f"{P}-Site-Behavior", [
     "[MES AI Behavior]", "[BehaviorName:Passive]", "[UseRetreatTimer:false]", "[UseNoTargetTimer:false]",
     "[UsePlayerDistanceTimer:false]"] + [f"[Triggers:{P}-Site-Trigger-{x}]" for x in triggers]))
-
-t.append(section("MES PLAYER CONDITIONS FOR ZONE"))
-for f in F:
-    t.append(comp(f"{P}-PlayerCondition-In{ZONE[f]}Zone", [
-        "[MES Player Condition]", "[CheckPlayerInActiveZone:true]", f"[ZoneName:{f}_Zone]"]))
 
 t.append(section("CONTRACTS ACCEPTED ON THIS BASE SITE'S BOARD"))
 for f in F:

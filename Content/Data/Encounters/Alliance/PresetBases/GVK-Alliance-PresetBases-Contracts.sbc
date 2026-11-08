@@ -27,7 +27,7 @@
 			</Description>
 		</EntityComponent>
 
-		<!-- Hostile to SOBAN (the same band the Defenses use): blocks SOBAN contracts within 5 km -->
+		<!-- Hostile to SOBAN (reputation below 0): blocks SOBAN contracts within 5 km -->
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
@@ -38,7 +38,7 @@
 				[CheckPlayerReputation:true]
 				[CheckReputationwithFaction:SOBAN]
 				[MinPlayerReputation:-1500]
-				[MaxPlayerReputation:0]
+				[MaxPlayerReputation:-1]
 			</Description>
 		</EntityComponent>
 
@@ -57,7 +57,7 @@
 			</Description>
 		</EntityComponent>
 
-		<!-- Hostile to KHAANEPH (the same band the Defenses use): blocks KHAANEPH contracts within 5 km -->
+		<!-- Hostile to KHAANEPH (reputation below 0): blocks KHAANEPH contracts within 5 km -->
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
@@ -68,7 +68,7 @@
 				[CheckPlayerReputation:true]
 				[CheckReputationwithFaction:KHAANEPH]
 				[MinPlayerReputation:-1500]
-				[MaxPlayerReputation:0]
+				[MaxPlayerReputation:-1]
 			</Description>
 		</EntityComponent>
 
@@ -85,7 +85,7 @@
 				[MES Mission]
 				[MissionType:Custom]
 				[Title:Claim Base Site - SOBAN]
-				[Description:Deploy a SOBAN Base at this site. Open to players in Friendly standing with SOBAN who stand inside SOBAN territory. Adds 50 Influence to SOBAN.]
+				[Description:Deploy a SOBAN Base at this site. Open to players in Friendly standing with SOBAN, while this site is inside SOBAN territory. Adds 50 Influence to SOBAN.]
 				[Reward:0]
 				[Collateral:0]
 				[ReputationReward:0]
@@ -93,7 +93,6 @@
 				[OverrideFaction:SOBAN]
 				[SoloMission:true]
 				[LeadPlayerConditionIds:GVK-Alliance-PresetBases-PlayerCondition-FriendlySOBAN]
-				[LeadPlayerConditionIds:GVK-Alliance-PresetBases-PlayerCondition-InSobanZone]
 				[InstanceEventGroupId:GVK-Alliance-PresetBases-TemplateGroup-Contract]
 				[ReplaceKeys:{BoardCode}]
 				[ReplaceValues:GVK-BaseSite-Board-Claim-SOBAN]
@@ -109,7 +108,7 @@
 				[MES Mission]
 				[MissionType:Custom]
 				[Title:Claim Base Site - KHAANEPH]
-				[Description:Deploy a KHAANEPH Base at this site. Open to players in Friendly standing with KHAANEPH who stand inside KHAANEPH territory. Adds 50 Influence to KHAANEPH.]
+				[Description:Deploy a KHAANEPH Base at this site. Open to players in Friendly standing with KHAANEPH, while this site is inside KHAANEPH territory. Adds 50 Influence to KHAANEPH.]
 				[Reward:0]
 				[Collateral:0]
 				[ReputationReward:0]
@@ -117,7 +116,6 @@
 				[OverrideFaction:KHAANEPH]
 				[SoloMission:true]
 				[LeadPlayerConditionIds:GVK-Alliance-PresetBases-PlayerCondition-FriendlyKHAANEPH]
-				[LeadPlayerConditionIds:GVK-Alliance-PresetBases-PlayerCondition-InKhaanephZone]
 				[InstanceEventGroupId:GVK-Alliance-PresetBases-TemplateGroup-Contract]
 				[ReplaceKeys:{BoardCode}]
 				[ReplaceValues:GVK-BaseSite-Board-Claim-KHAANEPH]
