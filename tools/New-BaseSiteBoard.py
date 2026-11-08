@@ -78,8 +78,13 @@ def action(subtype, lines, refresh=False):
         body += ["[ManuallyActivateTrigger:true]", f"[ManuallyActivatedTriggerTags:{P}-TriggerTags-RefreshBoard]"]
     return comp(subtype, body)
 
-def command(subtype, code, radius, extra=()):
-    body = ["[RivalAI Command]", f"[CommandCode:{code}]"] + list(extra) + [
+def command(subtype, code, radius, extra=(), cross_owner=False):
+    # MES drops a grid's command when the receiver's owner differs (MatchSenderReceiverOwners defaults to true).
+    # The Base Site is owned by UNKN and the Base by its alliance, so commands between them must turn it off.
+    body = ["[RivalAI Command]", f"[CommandCode:{code}]"] + list(extra)
+    if cross_owner:
+        body.append("[MatchSenderReceiverOwners:false]")
+    body += [
         "[IgnoreAntennaRequirement:true]", "[IgnoreReceiverAntennaRequirement:true]",
         f"[Radius:{radius}]", "[CommandDelayTicks:0]"]
     return comp(subtype, body)
@@ -235,8 +240,8 @@ t.append(action(f"{P}-Site-Action-Turret", [
 t.append(action(f"{P}-Site-Action-Restore", [
     "[BroadcastCommandProfiles:true]", f"[CommandProfileIds:{P}-Command-RestoreBase]", f"[SetBooleansTrue:{RCOOL}]",
     "[ResetCooldownTimeOfTriggers:true]", f"[ResetTriggerCooldownNames:{P}-Site-Trigger-RestoreCoolEnd]"], refresh=True))
-t.append(command(f"{P}-Command-SpawnDefenseTurret", "GVK-BaseSite-SpawnDefenseTurret", 1100))
-t.append(command(f"{P}-Command-RestoreBase", "GVK-BaseSite-RestoreBase", 1100))
+t.append(command(f"{P}-Command-SpawnDefenseTurret", "GVK-BaseSite-SpawnDefenseTurret", 1100, cross_owner=True))
+t.append(command(f"{P}-Command-RestoreBase", "GVK-BaseSite-RestoreBase", 1100, cross_owner=True))
 
 t.append(section("REPORTS FROM THIS SITE'S BASE"))
 for f in F:
@@ -363,7 +368,7 @@ for f in F:
         "[IncreaseSandboxCountersAmount:50]", "[UseChatBroadcast:true]", "[ChatData:GVK-Alliance-Chat-InfluenceAdjustAwarded]"]))
     s.append(trig(f"{B}-Trigger-Heartbeat-{f}", "Timer", [f"{B}-Action-Heartbeat-{f}"], f"{B}-Condition-Standing", cooldown=300000))
     s.append(action(f"{B}-Action-Heartbeat-{f}", ["[BroadcastCommandProfiles:true]", f"[CommandProfileIds:{B}-Command-BaseUp-{f}]"]))
-    s.append(command(f"{B}-Command-BaseUp-{f}", f"GVK-BaseSite-BaseUp-{f}", 1100))
+    s.append(command(f"{B}-Command-BaseUp-{f}", f"GVK-BaseSite-BaseUp-{f}", 1100, cross_owner=True))
 
 s.append(section("ORDERS FROM THE BASE SITE'S BOARD"))
 for f in F:
@@ -393,8 +398,8 @@ s.append(trig(f"{B}-Trigger-Gone", "DespawnMES", [f"{B}-Action-Gone"], f"{B}-Con
 s.append(action(f"{B}-Action-Gone", [
     "[BroadcastCommandProfiles:true]", f"[CommandProfileIds:{B}-Command-BaseGone]",
     f"[CommandProfileIds:{B}-Command-DespawnDefenseTurrets]"]))
-s.append(command(f"{B}-Command-BaseKilled", "GVK-BaseSite-BaseKilled", 1100))
-s.append(command(f"{B}-Command-BaseGone", "GVK-BaseSite-BaseGone", 1100))
+s.append(command(f"{B}-Command-BaseKilled", "GVK-BaseSite-BaseKilled", 1100, cross_owner=True))
+s.append(command(f"{B}-Command-BaseGone", "GVK-BaseSite-BaseGone", 1100, cross_owner=True))
 s.append(command(f"{B}-Command-DespawnDefenseTurrets", "GVK-BaseSite-DespawnDefenseTurrets", 1100, ["[MatchReceiverChild:true]"]))
 
 s.append(section("DEFENSE TURRET COUNT: RELAY CHILD REPORTS TO THE BASE SITE"))
@@ -402,7 +407,7 @@ for d in ["Up", "Lost"]:
     s.append(trig(f"{B}-Trigger-RelayTurret{d}", "CommandReceived", [f"{B}-Action-RelayTurret{d}"], f"{B}-Condition-Standing",
                   [f"[CommandReceiveCode:GVK-BaseSite-Turret{d}-ToBase]"]))
     s.append(action(f"{B}-Action-RelayTurret{d}", ["[BroadcastCommandProfiles:true]", f"[CommandProfileIds:{B}-Command-Turret{d}]"]))
-    s.append(command(f"{B}-Command-Turret{d}", f"GVK-BaseSite-Turret{d}", 1100))
+    s.append(command(f"{B}-Command-Turret{d}", f"GVK-BaseSite-Turret{d}", 1100, cross_owner=True))
 
 s.append(section("DEFENSE TURRET TRIGGER GROUPS (one per alliance)"))
 for f in F:
