@@ -5,6 +5,7 @@ covers:
   - Content/Data/Encounters/PlanetaryInstallation/GVK-PlanetaryInstallation-All-SpawnCondition.sbc
   - Content/Data/Encounters/Alliance/GVK-Alliance-All-SpawnCondition.sbc
 checked-against: MES 103f8d0
+checked: 2026-11-08
 ---
 
 # Installation terrain rule
