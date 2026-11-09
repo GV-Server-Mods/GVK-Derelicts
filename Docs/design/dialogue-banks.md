@@ -5,6 +5,7 @@ covers:
   - Content/Data/DialogueBanks/*.xml
   - Docs/dialogue/scripts/*
   - tools/Test-Docs.ps1
+checked-against: MES d500922
 checked: 2026-11-08
 ---
 
@@ -18,7 +19,7 @@ NPC chatter lines live in dialogue banks, `Content/Data/DialogueBanks/GVK-<Categ
 - **Wiring:** each behavior picks its bank with `[DialogueBanks:]`, and the chatter triggers play a cue with `[PlayDialogueCue:true]` + `[DialogueCueId:]`. The DefeatedAndAttacked group plays `NeutralAttacked`, `EnemyAttacked` and `FriendlyFire` on every grid that has a bank. GAALSIEN and DERELICT banks skip the cues their faction can never hear.
 - **Last words or Sensors:** a defeated grid plays its bank's `Defeated` line every time instead of the blue Sensors "destroyed" message, so a kill gets one message, never both. Only Small Units (no `Defeated` lines) and behaviors with no bank (small wrecks, the Research Lab) get the Sensors message: the DefeatedChat triggers need `GVK_NoLastWords` for every other Encounter Type, and a no-bank behavior must set it at init (Test-Docs checks). The squad throttle can drop a last-words line, so a kill in a busy fight may go unannounced.
 - **One bank per behavior:** a behavior shared by two factions needs a copy per faction, marked `[//CopyOf:<original>]`. The generic Small/Medium/Large installation behaviors are DERELICT, and their GAALSIEN spawn groups use `-GAALSIEN` copies. KHAANEPH Salvagers use `GVK-Unit-Encounter-Behavior-Salvager-KHAANEPH`, a copy of the GAALSIEN one.
-- **Squad throttle:** `[MinTime:8]`/`[MaxTime:12]` on the `GVK-Universal-Chat-Voice-*` profiles allows one line per bank every 8-12 s however many Units speak; lines blocked by it are dropped, not queued. Keep that window short, since a long one silences a whole voice. Never set `[MaxChats:]`, which would use up the voice until restart. Per-unit pacing stays on trigger cooldowns.
+- **Squad throttle:** `[MinTime:8]`/`[MaxTime:12]` on the `GVK-Universal-Chat-Voice-*` profiles allows one line per bank every 8-11 s however many Units speak (MES rolls the gap as `Rnd.Next(MinTime, MaxTime)`, so MaxTime is exclusive, and every grid on a bank shares that bank's one chat profile); lines blocked by it are dropped, not queued. Keep that window short, since a long one silences a whole voice. Never set `[MaxChats:]`, which would use up the voice until restart. Per-unit pacing stays on trigger cooldowns.
 - **Chance:** the profiles are at `[Chance:100]`, and each cue's action rolls its own `[Chance:]`. A failed roll skips the whole action and still uses up the trigger's cooldown, so a rolled cue needs its own action, apart from any logic that must always run. The Defeated cue has no roll.
-- **Author name:** don't set `CustomChatAuthorName` on these Units; it would overwrite the shared profile's author.
+- **Author name:** don't set `CustomChatAuthorName` on these Units. The first Unit to speak would write its name into the bank's shared chat profile, and every other grid on that bank would then speak under it.
 - **Audit warnings:** `audit_mes_references.ps1` lists every `GVK-Universal-Chat-Voice-*` profile as a "Shared Chat Profile" warning. That's this design, not a defect.
