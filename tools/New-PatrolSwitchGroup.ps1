@@ -26,6 +26,7 @@ param(
 # so a Unit at the boundary doesn't flip, and both inside the target profile's MaxDistance / MaxExistingTargetDistance.
 $groups = @(
     @{ Name = 'Horsefly';          Subclass = 'Horsefly';     Near = 2000; Far = 2000; Note = 'Circles its target at the offset distance; for turret-armed Units.' }
+    @{ Name = 'HorseflyAir';       Subclass = 'Horsefly';     Near = 2000; Far = 4000; Note = 'Horsefly for aircraft (Interceptors, Bomber, Medium Flyer). Back to Patrol only beyond the 4 km its target profile keeps a target: at 2000 a target pulling away sent it down to its Patrol altitude, so it never caught a high target.' }
     @{ Name = 'HorseFighter';      Subclass = 'HorseFighter'; Near = 2000; Far = 2000; Note = 'Circles, then makes gun runs; for hover Units with forward guns.' }
     @{ Name = 'Fighter';           Subclass = 'Fighter';      Near = 2000; Far = 2000; Note = 'Strafes with its nose on the target; needs thrusters on all six sides.' }
     @{ Name = 'Strike';            Subclass = 'FighterPlane'; Near = 4000; Far = 5500; Note = 'Attack runs from a line-up point; Strike Fighters (4 km target profile).' }
