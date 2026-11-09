@@ -14,6 +14,8 @@
     Checks that every Unit on a Patrol<Name> group has GVK-Unit-All-TriggerGroup-CombatKPL unless it spawns as COALITION,
     and exactly one of GVK-Unit-All-TriggerGroup-LeashGround/-LeashAir; and that every behavior spawning Defense waves,
     air support or Elite escorts has GVK-Universal-TriggerGroup-LeashBeacon.
+    Checks that every aircraft (LeashAir) goes back to Patrol further out than it attacks, counting the range its target
+    profile acquires and keeps a target at.
     Checks every tracked .md file for:
       1. Backticked profile names (GVK-*, Unit-*, RAI-*), prefab names (NWS [COAL] ...) and repo paths
          that no longer exist in Content/ or the repo.
@@ -145,6 +147,22 @@ try {
         if ($desc -match '\[TriggerGroups:GVK-Unit-All-TriggerGroup-Patrol\w+\]') {
             $leashes = [regex]::Matches($desc, '\[TriggerGroups:GVK-Unit-All-TriggerGroup-Leash(Ground|Air)\]').Count
             if ($leashes -ne 1) { $warnings.Add("${name}: has $leashes of GVK-Unit-All-TriggerGroup-LeashGround/-LeashAir; it needs exactly one") }
+        }
+        # An aircraft (LeashAir) goes back to Patrol only beyond where it attacks. Otherwise a target that pulls away drops it to
+        # its Patrol altitude each time and it never catches a high target (GVK-Settings#764). Where it attacks is capped by the
+        # range its target profile acquires at (MaxDistance), and where it lets go by the range it keeps one (MaxExistingTargetDistance).
+        if ($desc -match '\[TriggerGroups:GVK-Unit-All-TriggerGroup-LeashAir\]' -and $desc -match '\[TriggerGroups:(GVK-Unit-All-TriggerGroup-Patrol\w+)\]') {
+            $pg = $Matches[1]
+            $gid = $pg -replace '^GVK-Unit-All-TriggerGroup-', 'GVK-Unit-All-'
+            $near = if ([string]$profiles["$gid-Trigger-TargetNear"] -match '\[TargetDistance:(\d+)\]') { [double]$Matches[1] } else { 0 }
+            $far = if ([string]$profiles["$gid-Trigger-TargetFar"] -match '\[TargetDistance:(\d+)\]') { [double]$Matches[1] } else { 0 }
+            $tp = if ($desc -match '\[TargetData:([^\]]+)\]') { [string]$profiles[$Matches[1].Trim()] } else { '' }
+            $acquire = if ($tp -match '\[MaxDistance:(\d+)\]') { [double]$Matches[1] } else { 0 }
+            $keep = if ($tp -match '\[MaxExistingTargetDistance:(\d+)\]') { [double]$Matches[1] } else { $acquire }
+            if ($near -and $far -and $acquire) {
+                $in = [Math]::Min($near, $acquire); $out = [Math]::Min($far, $keep)
+                if ($out -le $in) { $warnings.Add("${name}: aircraft on $pg attacks within $in m but goes back to Patrol beyond $out m; use a group whose TargetFar is above its TargetNear and within the target profile's MaxExistingTargetDistance") }
+            }
         }
         # A behavior that spawns Units of its own side (Defense waves, air support, Elite escorts) sends their leash signal.
         $spawnsUnits = $desc -match '\[TriggerGroups:GVK-Universal-TriggerGroup-SpawnDefenses\]' -or $desc -match '\[Triggers:GVK-Unit-(All|Elite)-Trigger-Spawn(AirSupport|MediumEscorts)\]'
