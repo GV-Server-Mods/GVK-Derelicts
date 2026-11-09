@@ -16,6 +16,8 @@
     air support or Elite escorts has GVK-Universal-TriggerGroup-LeashBeacon.
     Checks that every aircraft (LeashAir) goes back to Patrol further out than it attacks, counting the range its target
     profile acquires and keeps a target at.
+    Checks that every Unit whose Patrol<Name> group fights on FighterPlane has exactly one <Name>Dogfight group, and that it
+    puts back the Unit's own Secondary autopilot.
     Checks every tracked .md file for:
       1. Backticked profile names (GVK-*, Unit-*, RAI-*), prefab names (NWS [COAL] ...) and repo paths
          that no longer exist in Content/ or the repo.
@@ -162,6 +164,18 @@ try {
             if ($near -and $far -and $acquire) {
                 $in = [Math]::Min($near, $acquire); $out = [Math]::Min($far, $keep)
                 if ($out -le $in) { $warnings.Add("${name}: aircraft on $pg attacks within $in m but goes back to Patrol beyond $out m; use a group whose TargetFar is above its TargetNear and within the target profile's MaxExistingTargetDistance") }
+            }
+        }
+        # Every Unit whose Patrol<Name> group fights on FighterPlane carries one <Name>Dogfight group (tools/New-DogfightGroup.ps1), and that group
+        # puts back the Unit's own Secondary autopilot. Without it, against an aircraft the attack runs climb with the target.
+        foreach ($p in [regex]::Matches($desc, '\[TriggerGroups:(GVK-Unit-All-TriggerGroup-Patrol\w+)\]')) {
+            if ([string]$profiles[$p.Groups[1].Value] -notmatch 'SwitchToFighterPlane\]') { continue }
+            $dogfights = @([regex]::Matches($desc, '\[TriggerGroups:GVK-Unit-All-TriggerGroup-(\w+)Dogfight\]') | ForEach-Object { $_.Groups[1].Value })
+            if ($dogfights.Count -ne 1) { $warnings.Add("${name}: fights on FighterPlane but has $($dogfights.Count) <Name>Dogfight groups; it needs exactly one (tools/New-DogfightGroup.ps1)"); continue }
+            $attack = if ($desc -match '\[SecondaryAutopilotData:([^\]]+)\]') { $Matches[1].Trim() } else { '' }
+            $reset = [string]$profiles["GVK-Unit-All-$($dogfights[0])Dogfight-Action-Reset"]
+            if (-not $attack -or $reset -notmatch "\[OverwriteAutopilotId:$([regex]::Escape($attack))\]") {
+                $warnings.Add("${name}: GVK-Unit-All-TriggerGroup-$($dogfights[0])Dogfight puts back a different attack-run profile than its Secondary autopilot ($attack)")
             }
         }
         # A behavior that spawns Units of its own side (Defense waves, air support, Elite escorts) sends their leash signal.

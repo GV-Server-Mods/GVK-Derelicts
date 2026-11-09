@@ -98,5 +98,57 @@
 			[UseProjectileLeadPrediction:false]
 			</Description>
 		</EntityComponent>
+		<!-- Dogfight: swapped into the Secondary slot against a target more than 100 m up (GVK-Unit-All-TriggerGroup-SmallFlyerPatrolHorseFighterDogfight). -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Unit-All-Autopilot-SmallFlyerPatrolHorseFighter-Dogfight</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Autopilot]
+			[AttackRunDistancePlanet:250]
+			[AttackRunBreakawayDistance:250]
+			[AttackRunOverrideWithDistanceAndTimer:true]
+			[//A chased plane may never reach its line-up point: within 500 m of it for 3 s, it turns in anyway.]
+			[AttackRunOverrideTimerTrigger:3]
+			[AttackRunOverrideDistance:500]
+			[//The line-up point moves with the target and is only re-rolled after this many seconds; reaching one up to ~1.3 km away after a pass, with the turn, takes ~18 s at 70-120 m/s.]
+			[OffsetRecalculationTime:20]
+			[AttackRunUseSafePlanetPathing:false]
+			[AttackRunUseCollisionEvasionPlanet:false]
+			[WaypointAbandonTimeTrigger:30]
+			[WaypointWaitTimeTrigger:0]
+			[RotationMultiplierPitch:2]
+			[RotationMultiplierYaw:1]
+			[RotationMultiplierRoll:2]
+			[LimitPitchTurning:true]
+			[LimitRotationSpeed:false]
+			[MaxRotationMagnitude:1]
+			[DisableInertiaDampeners:false]
+			[FlyLevelWithGravity:false]
+			[LevelWithGravityWhenIdle:false]
+			[//A line-up point under the minimum altitude is moved up to halfway between it and the ideal one, so keep the ideal low.]
+			[IdealPlanetAltitude:200]
+			[MinimumPlanetAltitude:75]
+			[AltitudeTolerance:30]
+			[WaypointTolerance:150]
+			[IdealMinSpeed:70]
+			[IdealMaxSpeed:120]
+			[//Line-up points 600-900 m out, level with the target to 150 m below it, instead of the attack runs' 300-400 m above it, which climbed with an aircraft. Two NPC planes fighting each other only have each other's height to go by, so points above the target let the pair climb together.]
+			[OffsetPlanetMinDistFromTarget:600]
+			[OffsetPlanetMaxDistFromTarget:900]
+			[OffsetPlanetMinTargetAltitude:-150]
+			[OffsetPlanetMaxTargetAltitude:0]
+			[AngleAllowedForForwardThrust:180]
+			[MaxVelocityAngleForSpeedControl:180]
+			[UseAircraftFlightModel:true]
+			[MaxAngleFromVelocity:60]
+			[RollIntoTurnsMultiplier:0.8]
+			[MaxBankAngle:45]
+			[ReturnToLevelMultiplier:0.25]
+			[MaxRotationStep:0.5]
+			[UseProjectileLeadPrediction:false]
+			</Description>
+		</EntityComponent>
 	</EntityComponents>
 </Definitions>

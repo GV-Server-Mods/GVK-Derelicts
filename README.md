@@ -42,7 +42,7 @@ Prefab names start with a three-letter tag, then the four-letter faction tag, fo
 ## If you are building your own NPCs with this as a reference
 Worth copying:
 - **Encounter types set at init.** Every behavior's init action sets its Encounter Type and display name, which chat, despawn and refund rules key on ([reference](Docs/reference.md)).
-- **Generated trigger groups.** [tools/New-LeashGroup.ps1](tools/New-LeashGroup.ps1), [New-PatrolSwitchGroup.ps1](tools/New-PatrolSwitchGroup.ps1) and [New-PeerEscortPool.ps1](tools/New-PeerEscortPool.ps1).
+- **Generated trigger groups.** [tools/New-LeashGroup.ps1](tools/New-LeashGroup.ps1), [New-PatrolSwitchGroup.ps1](tools/New-PatrolSwitchGroup.ps1), [New-DogfightGroup.ps1](tools/New-DogfightGroup.ps1) and [New-PeerEscortPool.ps1](tools/New-PeerEscortPool.ps1).
 - **Dialogue banks.** Lines written as drafts and built into banks by [Docs/dialogue/scripts/build_banks.py](Docs/dialogue/scripts/build_banks.py); how they are wired: [Docs/design/dialogue-banks.md](Docs/design/dialogue-banks.md).
 - **Zone-gated spawns.** The zones are in `Content/Data/Encounters/GVK-Universal-Zone.sbc`.
 - **One live base per site.** [Docs/design/preset-bases.md](Docs/design/preset-bases.md).
@@ -72,7 +72,7 @@ Run from the repo root.
 | `tools/Update-DocTables.ps1` | Rebuilds [Docs/reference.md](Docs/reference.md) and the design doc index from the SBC files and the design docs. `-Check` only reports |
 | `tools/Test-Docs.ps1` | Fails on dialogue, leash, terrain and other rules MES never reports |
 | `tools/Test-MesFreshness.ps1` | Checks the MES version the content was written against |
-| `tools/New-LeashGroup.ps1`, `New-PatrolSwitchGroup.ps1`, `New-PeerEscortPool.ps1` | Generate the repeated trigger groups |
+| `tools/New-LeashGroup.ps1`, `New-PatrolSwitchGroup.ps1`, `New-DogfightGroup.ps1`, `New-PeerEscortPool.ps1` | Generate the repeated trigger groups |
 | `tools/New-BaseSiteBoard.py` | Generates the Base Site contract board: the tower behavior, the contracts, and the Base and Turret triggers ([design](Docs/design/preset-bases.md)) |
 
 The `se-dev-mes` skill's audit scripts (`audit_sbc.ps1`, `audit_mes_tags.ps1`, `audit_mes_references.ps1`) should pass with 0 errors before a commit.
