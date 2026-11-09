@@ -10,6 +10,10 @@
     - Wings (GVK_Role_Escort) never switch. A Unit enters combat only while it holds a target.
     - Both switches carry GVK-TriggerTags-LeaderDead: an escort whose leader died enters combat if it holds a target,
       and a wing that paired up mid-fight returns to Patrol.
+    - SwitchToPatrol is listed before the combat switch. A tag activation runs every trigger with the tag in list order
+      and checks each one's UseTrigger as it reaches it; the combat switch turns SwitchToPatrol on when it fires, so
+      listed after it, SwitchToPatrol fired straight away and LeaderDead always ended on Patrol (GVK-Settings#764:
+      Freighter Defenses leaving a slot went back to Patrol and took the slot again, A12 in game, 2026-11-08).
     - GVK-TriggerTags-CombatStarted (fired on TargetNear) and GVK-TriggerTags-SwitchToPatrol let optional groups hook
       in without names; GVK-Unit-All-TriggerGroup-CombatKPL uses both.
 .EXAMPLE
@@ -54,8 +58,8 @@ foreach ($g in $groups) {
     $parts = @()
     $parts += Component "GVK-Unit-All-TriggerGroup-Patrol$n" @"
 			[RivalAI TriggerGroup]
-			[Triggers:$id-ManualTrigger-SwitchTo$sub]
 			[Triggers:$id-ManualTrigger-SwitchToPatrol]
+			[Triggers:$id-ManualTrigger-SwitchTo$sub]
 			[Triggers:$id-Trigger-TargetNear]
 			[Triggers:$id-Trigger-TargetFar]
 "@
