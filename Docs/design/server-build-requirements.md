@@ -6,6 +6,7 @@ covers:
   - Content/Data/Encounters/Unit/Unit-All-TriggerGroup-Leash.sbc
   - Content/Data/Encounters/Unit/Unit-All-TriggerGroup-PeerEscort-*.sbc
 checked-against: MES a1895d9
+checked: 2026-11-09
 ---
 
 # Server build requirements (MES release)
