@@ -161,5 +161,58 @@
 			[UseProjectileLeadPrediction:false]
 			</Description>
 		</EntityComponent>
+		<!-- Break: loaded by the dogfight group's Chased trigger when the target chases the plane, and swapped back for Dogfight when the run ends. The Dogfight profile with one change. -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Unit-All-Autopilot-StrikeFighter-Break</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Autopilot]
+			[//Wider than any line-up distance, so the run starts at once and the plane turns at its chaser instead of flying to a line-up point that moves with it.]
+			[AttackRunDistancePlanet:5000]
+			[AttackRunBreakawayDistance:200]
+			[AttackRunOverrideWithDistanceAndTimer:true]
+			[AttackRunOverrideTimerTrigger:3]
+			[AttackRunOverrideDistance:500]
+			[OffsetRecalculationTime:20]
+			[AttackRunUseSafePlanetPathing:false]
+			[AttackRunUseCollisionEvasionPlanet:false]
+			[WaypointAbandonTimeTrigger:30]
+			[WaypointWaitTimeTrigger:0]
+			[RotationMultiplierPitch:2.5]
+			[RotationMultiplierYaw:1]
+			[RotationMultiplierRoll:2]
+			[LimitPitchTurning:true]
+			[LimitRotationSpeed:false]
+			[MaxRotationMagnitude:1]
+			[DisableInertiaDampeners:false]
+			[FlyLevelWithGravity:false]
+			[LevelWithGravityWhenIdle:false]
+			[IdealPlanetAltitude:300]
+			[MinimumPlanetAltitude:75]
+			[AltitudeTolerance:10]
+			[WaypointTolerance:200]
+			[RamMinDurationMs:6000]
+			[RamMaxDurationMs:6001]
+			[IdealMinSpeed:80]
+			[IdealMaxSpeed:120]
+			[BarrelRollMinDurationMs:1500]
+			[BarrelRollMaxDurationMs:2500]
+			[OffsetPlanetMinDistFromTarget:600]
+			[OffsetPlanetMaxDistFromTarget:900]
+			[OffsetPlanetMinTargetAltitude:-150]
+			[OffsetPlanetMaxTargetAltitude:0]
+			[AngleAllowedForForwardThrust:180]
+			[MaxVelocityAngleForSpeedControl:180]
+			[UseAircraftFlightModel:true]
+			[MaxAngleFromVelocity:60]
+			[RollIntoTurnsMultiplier:0.8]
+			[MaxBankAngle:45]
+			[ReturnToLevelMultiplier:0.25]
+			[MaxRotationStep:0.5]
+			[UseProjectileLeadPrediction:false]
+			</Description>
+		</EntityComponent>
 	</EntityComponents>
 </Definitions>

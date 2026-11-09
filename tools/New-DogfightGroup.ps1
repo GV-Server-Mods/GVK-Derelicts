@@ -38,12 +38,14 @@ param(
 # profile Chased loads to turn the plane at its chaser instead of picking a new line-up point.
 $groups = @(
     @{ Name = 'StrikeFighter';                Patrol = 'Strike';            Note = 'Strike Fighters (COALITION, SOBAN).'
-       Attack = 'GVK-Unit-All-Autopilot-StrikeFighter-Strike';                Dogfight = 'GVK-Unit-All-Autopilot-StrikeFighter-Dogfight' }
+       Attack = 'GVK-Unit-All-Autopilot-StrikeFighter-Strike';                Dogfight = 'GVK-Unit-All-Autopilot-StrikeFighter-Dogfight'
+       Break = 'GVK-Unit-All-Autopilot-StrikeFighter-Break' }
     @{ Name = 'LargeFlyerFighterPlane';       Patrol = 'FighterPlaneLarge'; Note = 'Large flyers with fixed forward guns (Chad Shuttle, GR-650).'
        Attack = 'GVK-Unit-All-Autopilot-LargeFlyerFighterPlane-Strike';       Dogfight = 'GVK-Unit-All-Autopilot-LargeFlyerFighterPlane-Dogfight'
        Break = 'GVK-Unit-All-Autopilot-LargeFlyerFighterPlane-Break' }
     @{ Name = 'SmallFlyerPatrolHorseFighter'; Patrol = 'Strike';            Note = 'Small flyers with forward guns.'
-       Attack = 'GVK-Unit-All-Autopilot-SmallFlyerPatrolHorseFighter-HorseFighter'; Dogfight = 'GVK-Unit-All-Autopilot-SmallFlyerPatrolHorseFighter-Dogfight' }
+       Attack = 'GVK-Unit-All-Autopilot-SmallFlyerPatrolHorseFighter-HorseFighter'; Dogfight = 'GVK-Unit-All-Autopilot-SmallFlyerPatrolHorseFighter-Dogfight'
+       Break = 'GVK-Unit-All-Autopilot-SmallFlyerPatrolHorseFighter-Break' }
 )
 if ($Name) { $groups = @($groups | Where-Object { $Name -contains $_.Name }) }
 
