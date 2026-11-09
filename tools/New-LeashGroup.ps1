@@ -395,7 +395,9 @@ foreach ($k in $kinds) {
 "@
     # Leave the slot and go back to Patrol. LeaveEscortSlot runs before the subclass change, and the LeaderDead tag runs
     # last, after GVK_Role_Escort is false, so a Unit that holds a target takes its Patrol<Name> combat switch at once,
-    # the same way a peer wing that lost its leader does.
+    # the same way a peer wing that lost its leader does. NewAutopilotSpeed -1 lifts the slot's speed cap: near the slot
+    # MES Escort.cs caps the Unit at the parent's speed and only Escort clears it, so it would fly at the Freighter's
+    # 50-60 m/s afterwards (GVK-Settings#764).
     $leave = @"
 			[LeaveEscortSlot:true]
 			[SetBooleansFalse:GVK_Role_Escort]
@@ -404,6 +406,8 @@ foreach ($k in $kinds) {
 			[NewBehaviorSubclass:Patrol]
 			[ChangeAutopilotProfile:true]
 			[AutopilotProfile:Primary]
+			[ChangeAutopilotSpeed:true]
+			[NewAutopilotSpeed:-1]
 			[ManuallyActivateTrigger:true]
 			[ManuallyActivatedTriggerTags:GVK-TriggerTags-LeaderDead]
 			[ForceManualTriggerActivation:false]

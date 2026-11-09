@@ -202,7 +202,9 @@ $parts += Component "$id-Action-Timeout" @"
 			[DisableTriggerNames:$id-Trigger-Timeout]
 "@
 
-# Leader gone (invalid while approaching, or told so by a LeaderDead command): leave the slot, back to Patrol, free to pair again
+# Leader gone (invalid while approaching, or told so by a LeaderDead command): leave the slot, back to Patrol, free to pair again.
+# NewAutopilotSpeed -1 lifts the slot's speed cap: near the slot MES Escort.cs caps the wing at the leader's speed and only
+# Escort clears it (GVK-Settings#764).
 $parts += Component "$id-Trigger-LeaderLost" @"
 			[RivalAI Trigger]
 			[UseTrigger:false]
@@ -230,6 +232,8 @@ $parts += Component "$id-Action-LeaderLost" @"
 			[NewBehaviorSubclass:Patrol]
 			[ChangeAutopilotProfile:true]
 			[AutopilotProfile:Primary]
+			[ChangeAutopilotSpeed:true]
+			[NewAutopilotSpeed:-1]
 			[DisableTriggers:true]
 			[DisableTriggerTags:GVK-TriggerTags-PeerActiveTasks]
 			[ManuallyActivateTrigger:true]
