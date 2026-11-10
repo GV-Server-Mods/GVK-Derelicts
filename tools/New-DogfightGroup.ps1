@@ -13,9 +13,16 @@
     - Chased: in a dogfight with the target behind the plane (120 degrees or more off its nose) and flying at it (within
       45 degrees): pick a new line-up point. A Strike line-up point keeps its direction from the target until it expires, so
       when the target chases the plane a point on the plane's side runs ahead of it at the target's speed and the plane flees
-      until OffsetRecalculationTime. Strike ignores BehaviorSpecificEventA and MES never parses BehaviorSpecificEventB, so the
-      new point comes from switching the subclass to FighterPlane and straight back to Strike, which restarts Strike and picks
-      a new random direction. Checked every 10 s, so a slow plane has time to turn towards the new point.
+      until OffsetRecalculationTime. While lining up Strike ignores BehaviorSpecificEventA (it only ends a run) and MES never
+      parses BehaviorSpecificEventB, so the new point comes from switching the subclass to FighterPlane and straight back to
+      Strike, which restarts Strike and picks a new random direction. Checked every 10 s, so a slow plane has time to turn
+      towards the new point.
+    - RunStart, RunLimit, RunEnd: a run ends only within the breakaway distance of the target, so two planes on runs at each
+      other at the same speed never end them and circle upward (see $runMaxSeconds below). Strike raises BehaviorTriggerB when
+      a run starts: RunStart sets GVK_AttackRun and restarts the RunLimit timer, and RunLimit ends a run still going
+      $runMaxSeconds s later (BehaviorSpecificEventA). RunEnd clears GVK_AttackRun when a run ends (BehaviorTriggerA).
+      GVK_AttackRun keeps RunLimit from ending a new run in the tick it starts, before the timer restart: MES checks every
+      trigger before it runs any action. Every action here that restarts Strike clears it too.
     - Break (groups with a Break profile only): a new point still moves with a target that follows the plane, and Strike
       starts no run with the target inside the breakaway distance. So Chased loads the Break profile instead, which starts
       the run at once and turns the plane at its chaser; BreakEnd puts the Dogfight profile back when that run ends
@@ -58,6 +65,10 @@ $behindAngle = 120; $chaseAngle = 45; $chasedMs = 10000
 # pitches nose-up, so a banked break turn climbs, and two planes breaking at each other climbed toward space (GVK-Settings#742).
 # High enough to fight players at altitude (owner, 2026-11-09).
 $breakMaxAltitude = 2500
+# Longest dogfight or break run (s). A Foxhound on a break run and a Strike Fighter on a dogfight run at each other stayed
+# 300-600 m apart, never inside the 200 m breakaway, and climbed past 7 km (GVK-Settings#742, 2026-11-09). MES has
+# [AttackRunMaxTimeTrigger:] for this but never reads the tag; once it does, that replaces these triggers (GVK-Settings#765).
+$runMaxSeconds = 10
 
 function Component($subtype, $body) {
     @"
@@ -91,6 +102,8 @@ foreach ($g in $groups) {
     $id = "GVK-Unit-All-${n}Dogfight"
     # Lines that only groups with a Break profile get.
     $breakTrigger = ''; $breakClear = ''; $breakSkip = ''; $breakCeiling = ''
+    # Actions that restart Strike or leave the dogfight end any run without BehaviorTriggerA, so they clear the run flag.
+    $runClear = "`r`n			[SetBooleansFalse:GVK_AttackRun]"
     if ($g.Break) {
         $breakTrigger = "`r`n			[Triggers:$id-Trigger-BreakEnd]"
         $breakClear = "`r`n			[SetBooleansFalse:GVK_Break]"
@@ -104,6 +117,9 @@ foreach ($g in $groups) {
 			[Triggers:$id-Trigger-ToStrike]
 			[Triggers:$id-Trigger-Reset]
 			[Triggers:$id-Trigger-Chased]$breakTrigger
+			[Triggers:$id-Trigger-RunStart]
+			[Triggers:$id-Trigger-RunLimit]
+			[Triggers:$id-Trigger-RunEnd]
 "@
     $parts += "		<!-- In combat on FighterPlane, not a wing, target more than $up m up -->"
     $parts += Timer $id 'ToDogfight'
@@ -131,7 +147,7 @@ foreach ($g in $groups) {
 			[NewBehaviorSubclass:Strike]
 			[ChangeAutopilotProfile:true]
 			[AutopilotProfile:Secondary]
-			[SetBooleansTrue:GVK_Dogfight]
+			[SetBooleansTrue:GVK_Dogfight]$runClear
 "@
     $parts += "		<!-- In combat, not a wing, target back under $down m -->"
     $parts += Timer $id 'ToStrike'
@@ -158,7 +174,7 @@ foreach ($g in $groups) {
 			[NewBehaviorSubclass:FighterPlane]
 			[ChangeAutopilotProfile:true]
 			[AutopilotProfile:Secondary]
-			[SetBooleansFalse:GVK_Dogfight]$breakClear
+			[SetBooleansFalse:GVK_Dogfight]$breakClear$runClear
 "@
     $parts += "		<!-- Combat over (Patrol already set by the Patrol$($g.Patrol) group): put the attack-run profile back so the next fight starts with attack runs -->"
     $parts += Timer $id 'Reset'
@@ -177,7 +193,7 @@ foreach ($g in $groups) {
 			[OverwriteAutopilotProfile:true]
 			[OverwriteAutopilotMode:Secondary]
 			[OverwriteAutopilotId:$($g.Attack)]
-			[SetBooleansFalse:GVK_Dogfight]$breakClear
+			[SetBooleansFalse:GVK_Dogfight]$breakClear$runClear
 "@
     $parts += "		<!-- In a dogfight with the target behind and flying at the plane: restart Strike for a new line-up point instead of fleeing -->"
     $parts += Component "$id-Trigger-Chased" @"
@@ -216,14 +232,14 @@ foreach ($g in $groups) {
 			[OverwriteAutopilotProfile:true]
 			[OverwriteAutopilotMode:Secondary]
 			[OverwriteAutopilotId:$($g.Break)]
-			[SetBooleansTrue:GVK_Break]
+			[SetBooleansTrue:GVK_Break]$runClear
 			[ChangeBehaviorSubclass:true]
 			[NewBehaviorSubclass:FighterPlane]
 "@
     } else {
         $parts += Component "$id-Action-ChasedLeaveStrike" @"
 			[RivalAI Action]
-			[//DebugMessage:Chased: new line-up point]
+			[//DebugMessage:Chased: new line-up point]$runClear
 			[ChangeBehaviorSubclass:true]
 			[NewBehaviorSubclass:FighterPlane]
 "@
@@ -260,6 +276,77 @@ foreach ($g in $groups) {
 			[SetBooleansFalse:GVK_Break]
 "@
     }
+    $parts += "		<!-- A dogfight run started (Strike raises BehaviorTriggerB): restart the RunLimit timer -->"
+    $parts += Component "$id-Trigger-RunStart" @"
+			[RivalAI Trigger]
+			[UseTrigger:true]
+			[Type:BehaviorTriggerB]
+			[StartsReady:true]
+			[MaxActions:-1]
+			[Conditions:$id-Condition-RunStart]
+			[Actions:$id-Action-RunStart]
+"@
+    $parts += Component "$id-Condition-RunStart" @"
+			[RivalAI Condition]
+			[UseConditions:true]
+			[MatchAnyCondition:false]
+			[CheckTrueBooleans:true]
+			[TrueBooleans:GVK_Dogfight]
+"@
+    $parts += Component "$id-Action-RunStart" @"
+			[RivalAI Action]
+			[SetBooleansTrue:GVK_AttackRun]
+			[ResetCooldownTimeOfTriggers:true]
+			[ResetTriggerCooldownNames:$id-Trigger-RunLimit]
+"@
+    $parts += "		<!-- A run still going $runMaxSeconds s after it started: end it (two planes on runs at each other never get inside the breakaway distance) -->"
+    $parts += Component "$id-Trigger-RunLimit" @"
+			[RivalAI Trigger]
+			[UseTrigger:true]
+			[Type:Timer]
+			[StartsReady:false]
+			[MinCooldownMs:$($runMaxSeconds * 1000)]
+			[MaxCooldownMs:$($runMaxSeconds * 1000 + 1)]
+			[Conditions:$id-Condition-RunLimit]
+			[Actions:$id-Action-RunLimit]
+"@
+    $parts += Component "$id-Condition-RunLimit" @"
+			[RivalAI Condition]
+			[UseConditions:true]
+			[MatchAnyCondition:false]
+			[CheckTrueBooleans:true]
+			[TrueBooleans:GVK_Dogfight]
+			[TrueBooleans:GVK_AttackRun]
+			[BehaviorModeCheck:true]
+			[CurrentBehaviorMode:EngageTarget]
+"@
+    $parts += Component "$id-Action-RunLimit" @"
+			[RivalAI Action]
+			[//DebugMessage:Run time up]
+			[BehaviorSpecificEventA:true]
+			[SetBooleansFalse:GVK_AttackRun]
+"@
+    $parts += "		<!-- The run is over (Strike raises BehaviorTriggerA) -->"
+    $parts += Component "$id-Trigger-RunEnd" @"
+			[RivalAI Trigger]
+			[UseTrigger:true]
+			[Type:BehaviorTriggerA]
+			[StartsReady:true]
+			[MaxActions:-1]
+			[Conditions:$id-Condition-RunEnd]
+			[Actions:$id-Action-RunEnd]
+"@
+    $parts += Component "$id-Condition-RunEnd" @"
+			[RivalAI Condition]
+			[UseConditions:true]
+			[MatchAnyCondition:false]
+			[CheckTrueBooleans:true]
+			[TrueBooleans:GVK_AttackRun]
+"@
+    $parts += Component "$id-Action-RunEnd" @"
+			[RivalAI Action]
+			[SetBooleansFalse:GVK_AttackRun]
+"@
 
     $breakNote = ''; $breakBoolean = ''
     if ($g.Break) {
@@ -277,9 +364,10 @@ foreach ($g in $groups) {
 			FighterPlane lines up its next run straight ahead of the plane, so a chased plane keeps flying away from the fight; Strike picks a line-up point around the target, and the Dogfight profile keeps it close and level.
 			Needs MES with the OverwriteAutopilotProfile fix (MeridiusIX/Modular-Encounters-Systems#464): without it the swap undoes itself.
 			Chased: a Strike line-up point keeps its direction from the target, so when the target chases the plane the point can run ahead of it at the target's speed. With the target behind and flying at it, switching to FighterPlane and back restarts Strike, which picks a new point.$breakNote
+			Run limit: a run ends only within the breakaway distance, so two planes on runs at each other at the same speed circle and climb without end. RunStart (BehaviorTriggerB) sets GVK_AttackRun and restarts the RunLimit timer; RunLimit ends a run still going after $runMaxSeconds s; RunEnd (BehaviorTriggerA) clears GVK_AttackRun.
 			ToDogfight checks the subclass, not GVK_Dogfight: a plane that loses its target and picks up a new one before Reset runs is back in FighterPlane with the Dogfight profile still loaded, and this puts it in Strike.
 			Behavior: [TriggerGroups:GVK-Unit-All-TriggerGroup-${n}Dogfight] after GVK-Unit-All-TriggerGroup-Patrol$($g.Patrol), with [SecondaryAutopilotData:$($g.Attack)].
-			Booleans: GVK_Dogfight (the Secondary slot holds the Dogfight profile)$breakBoolean.
+			Booleans: GVK_Dogfight (the Secondary slot holds the Dogfight profile)$breakBoolean, GVK_AttackRun (a dogfight run is going).
 		-->
 "@
     $footer = @"

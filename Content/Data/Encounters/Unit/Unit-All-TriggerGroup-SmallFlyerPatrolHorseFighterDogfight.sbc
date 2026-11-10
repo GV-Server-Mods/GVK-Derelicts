@@ -9,9 +9,10 @@
 			Needs MES with the OverwriteAutopilotProfile fix (MeridiusIX/Modular-Encounters-Systems#464): without it the swap undoes itself.
 			Chased: a Strike line-up point keeps its direction from the target, so when the target chases the plane the point can run ahead of it at the target's speed. With the target behind and flying at it, switching to FighterPlane and back restarts Strike, which picks a new point.
 			Break: a new point still moves with a target that follows the plane, and Strike starts no run with the target inside the breakaway distance, so Chased loads GVK-Unit-All-Autopilot-SmallFlyerPatrolHorseFighter-Break instead: it starts the run at once and turns the plane at its chaser. BreakEnd puts the Dogfight profile back when the run ends.
+			Run limit: a run ends only within the breakaway distance, so two planes on runs at each other at the same speed circle and climb without end. RunStart (BehaviorTriggerB) sets GVK_AttackRun and restarts the RunLimit timer; RunLimit ends a run still going after 10 s; RunEnd (BehaviorTriggerA) clears GVK_AttackRun.
 			ToDogfight checks the subclass, not GVK_Dogfight: a plane that loses its target and picks up a new one before Reset runs is back in FighterPlane with the Dogfight profile still loaded, and this puts it in Strike.
 			Behavior: [TriggerGroups:GVK-Unit-All-TriggerGroup-SmallFlyerPatrolHorseFighterDogfight] after GVK-Unit-All-TriggerGroup-PatrolStrike, with [SecondaryAutopilotData:GVK-Unit-All-Autopilot-SmallFlyerPatrolHorseFighter-HorseFighter].
-			Booleans: GVK_Dogfight (the Secondary slot holds the Dogfight profile), GVK_Break (the Secondary slot holds the Break profile).
+			Booleans: GVK_Dogfight (the Secondary slot holds the Dogfight profile), GVK_Break (the Secondary slot holds the Break profile), GVK_AttackRun (a dogfight run is going).
 		-->
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
@@ -25,6 +26,9 @@
 			[Triggers:GVK-Unit-All-SmallFlyerPatrolHorseFighterDogfight-Trigger-Reset]
 			[Triggers:GVK-Unit-All-SmallFlyerPatrolHorseFighterDogfight-Trigger-Chased]
 			[Triggers:GVK-Unit-All-SmallFlyerPatrolHorseFighterDogfight-Trigger-BreakEnd]
+			[Triggers:GVK-Unit-All-SmallFlyerPatrolHorseFighterDogfight-Trigger-RunStart]
+			[Triggers:GVK-Unit-All-SmallFlyerPatrolHorseFighterDogfight-Trigger-RunLimit]
+			[Triggers:GVK-Unit-All-SmallFlyerPatrolHorseFighterDogfight-Trigger-RunEnd]
 			</Description>
 		</EntityComponent>
 		<!-- In combat on FighterPlane, not a wing, target more than 100 m up -->
@@ -80,6 +84,7 @@
 			[ChangeAutopilotProfile:true]
 			[AutopilotProfile:Secondary]
 			[SetBooleansTrue:GVK_Dogfight]
+			[SetBooleansFalse:GVK_AttackRun]
 			</Description>
 		</EntityComponent>
 		<!-- In combat, not a wing, target back under 60 m -->
@@ -135,6 +140,7 @@
 			[AutopilotProfile:Secondary]
 			[SetBooleansFalse:GVK_Dogfight]
 			[SetBooleansFalse:GVK_Break]
+			[SetBooleansFalse:GVK_AttackRun]
 			</Description>
 		</EntityComponent>
 		<!-- Combat over (Patrol already set by the PatrolStrike group): put the attack-run profile back so the next fight starts with attack runs -->
@@ -182,6 +188,7 @@
 			[OverwriteAutopilotId:GVK-Unit-All-Autopilot-SmallFlyerPatrolHorseFighter-HorseFighter]
 			[SetBooleansFalse:GVK_Dogfight]
 			[SetBooleansFalse:GVK_Break]
+			[SetBooleansFalse:GVK_AttackRun]
 			</Description>
 		</EntityComponent>
 		<!-- In a dogfight with the target behind and flying at the plane: restart Strike for a new line-up point instead of fleeing -->
@@ -242,6 +249,7 @@
 			[OverwriteAutopilotMode:Secondary]
 			[OverwriteAutopilotId:GVK-Unit-All-Autopilot-SmallFlyerPatrolHorseFighter-Break]
 			[SetBooleansTrue:GVK_Break]
+			[SetBooleansFalse:GVK_AttackRun]
 			[ChangeBehaviorSubclass:true]
 			[NewBehaviorSubclass:FighterPlane]
 			</Description>
@@ -298,6 +306,131 @@
 			[OverwriteAutopilotMode:Secondary]
 			[OverwriteAutopilotId:GVK-Unit-All-Autopilot-SmallFlyerPatrolHorseFighter-Dogfight]
 			[SetBooleansFalse:GVK_Break]
+			</Description>
+		</EntityComponent>
+		<!-- A dogfight run started (Strike raises BehaviorTriggerB): restart the RunLimit timer -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Unit-All-SmallFlyerPatrolHorseFighterDogfight-Trigger-RunStart</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Trigger]
+			[UseTrigger:true]
+			[Type:BehaviorTriggerB]
+			[StartsReady:true]
+			[MaxActions:-1]
+			[Conditions:GVK-Unit-All-SmallFlyerPatrolHorseFighterDogfight-Condition-RunStart]
+			[Actions:GVK-Unit-All-SmallFlyerPatrolHorseFighterDogfight-Action-RunStart]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Unit-All-SmallFlyerPatrolHorseFighterDogfight-Condition-RunStart</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Condition]
+			[UseConditions:true]
+			[MatchAnyCondition:false]
+			[CheckTrueBooleans:true]
+			[TrueBooleans:GVK_Dogfight]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Unit-All-SmallFlyerPatrolHorseFighterDogfight-Action-RunStart</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Action]
+			[SetBooleansTrue:GVK_AttackRun]
+			[ResetCooldownTimeOfTriggers:true]
+			[ResetTriggerCooldownNames:GVK-Unit-All-SmallFlyerPatrolHorseFighterDogfight-Trigger-RunLimit]
+			</Description>
+		</EntityComponent>
+		<!-- A run still going 10 s after it started: end it (two planes on runs at each other never get inside the breakaway distance) -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Unit-All-SmallFlyerPatrolHorseFighterDogfight-Trigger-RunLimit</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Trigger]
+			[UseTrigger:true]
+			[Type:Timer]
+			[StartsReady:false]
+			[MinCooldownMs:10000]
+			[MaxCooldownMs:10001]
+			[Conditions:GVK-Unit-All-SmallFlyerPatrolHorseFighterDogfight-Condition-RunLimit]
+			[Actions:GVK-Unit-All-SmallFlyerPatrolHorseFighterDogfight-Action-RunLimit]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Unit-All-SmallFlyerPatrolHorseFighterDogfight-Condition-RunLimit</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Condition]
+			[UseConditions:true]
+			[MatchAnyCondition:false]
+			[CheckTrueBooleans:true]
+			[TrueBooleans:GVK_Dogfight]
+			[TrueBooleans:GVK_AttackRun]
+			[BehaviorModeCheck:true]
+			[CurrentBehaviorMode:EngageTarget]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Unit-All-SmallFlyerPatrolHorseFighterDogfight-Action-RunLimit</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Action]
+			[//DebugMessage:Run time up]
+			[BehaviorSpecificEventA:true]
+			[SetBooleansFalse:GVK_AttackRun]
+			</Description>
+		</EntityComponent>
+		<!-- The run is over (Strike raises BehaviorTriggerA) -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Unit-All-SmallFlyerPatrolHorseFighterDogfight-Trigger-RunEnd</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Trigger]
+			[UseTrigger:true]
+			[Type:BehaviorTriggerA]
+			[StartsReady:true]
+			[MaxActions:-1]
+			[Conditions:GVK-Unit-All-SmallFlyerPatrolHorseFighterDogfight-Condition-RunEnd]
+			[Actions:GVK-Unit-All-SmallFlyerPatrolHorseFighterDogfight-Action-RunEnd]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Unit-All-SmallFlyerPatrolHorseFighterDogfight-Condition-RunEnd</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Condition]
+			[UseConditions:true]
+			[MatchAnyCondition:false]
+			[CheckTrueBooleans:true]
+			[TrueBooleans:GVK_AttackRun]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Unit-All-SmallFlyerPatrolHorseFighterDogfight-Action-RunEnd</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Action]
+			[SetBooleansFalse:GVK_AttackRun]
 			</Description>
 		</EntityComponent>
 	</EntityComponents>
