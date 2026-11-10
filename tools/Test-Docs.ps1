@@ -17,7 +17,8 @@
     Checks that every aircraft (LeashAir) goes back to Patrol further out than it attacks, counting the range its target
     profile acquires and keeps a target at.
     Checks that every Unit whose Patrol<Name> group fights on FighterPlane has exactly one <Name>Dogfight group, and that it
-    puts back the Unit's own Secondary autopilot.
+    puts back the Unit's own Secondary autopilot; and that every dogfight High copy matches its original apart from
+    LimitPitchTurning.
     Checks every tracked .md file for:
       1. Backticked profile names (GVK-*, Unit-*, RAI-*), prefab names (NWS [COAL] ...) and repo paths
          that no longer exist in Content/ or the repo.
@@ -245,6 +246,16 @@ try {
                 if ($l -match '^(\S+): \d+ lines') { $voice = $Matches[1] }
                 elseif ($l -match '^\s{4}(.+)$') { $warnings.Add("dialogue draft ${voice}: $($Matches[1])") }
             }
+        }
+    }
+
+    # The dogfight High copies (tools/New-DogfightGroup.ps1) match their hand-written Dogfight or Break profile apart from
+    # LimitPitchTurning; a copy left behind after editing the original flies the old values above 1000 m.
+    foreach ($name in $profiles.Keys | Where-Object { $_ -match '^GVK-Unit-All-Autopilot-.+-(Dogfight|Break)High$' } | Sort-Object) {
+        $original = $name -replace 'High$', ''
+        if (-not $profiles.ContainsKey($original)) { $warnings.Add("${name}: its original $original is missing; rerun tools/New-DogfightGroup.ps1"); continue }
+        if ($profiles[$name] -ne ($profiles[$original] -replace '\[LimitPitchTurning:true\]', '[LimitPitchTurning:false]')) {
+            $warnings.Add("${name}: differs from $original beyond LimitPitchTurning; rerun tools/New-DogfightGroup.ps1")
         }
     }
 

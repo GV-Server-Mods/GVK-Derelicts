@@ -23,6 +23,13 @@
       $runMaxSeconds s later (BehaviorSpecificEventA). RunEnd clears GVK_AttackRun when a run ends (BehaviorTriggerA).
       GVK_AttackRun keeps RunLimit from ending a new run in the tick it starts, before the timer restart: MES checks every
       trigger before it runs any action. Every action here that restarts Strike clears it too.
+    - HighDogfight, HighBreak, LowDogfight, LowBreak: above $highUp m the Secondary slot gets a copy of the Dogfight or Break
+      profile with LimitPitchTurning off, and under $highDown m the original goes back (checked every second). The copies are
+      generated here from the hand-written profiles into Unit-All-Autopilot-<Name>-High.sbc; edit the originals and rerun.
+      LimitPitchTurning stops steep dives near the ground, but toward a target behind it the plane can only pitch nose-up,
+      so dogfights kept drifting up even with the run limit and line-up points 150-300 m below the target (GVK-Settings#742,
+      owner 2026-11-09). Every other action here that loads a profile loads the original and clears GVK_DogfightHigh, so
+      the High triggers swap the copy back in within a second.
     - Break (groups with a Break profile only): a new point still moves with a target that follows the plane, and Strike
       starts no run with the target inside the breakaway distance. So Chased loads the Break profile instead, which starts
       the run at once and turns the plane at its chaser; BreakEnd puts the Dogfight profile back when that run ends
@@ -67,6 +74,9 @@ $behindAngle = 120; $chaseAngle = 45; $chasedMs = 10000
 # 300-600 m apart, never inside the 200 m breakaway, and climbed past 7 km (GVK-Settings#742, 2026-11-09). MES has
 # [AttackRunMaxTimeTrigger:] for this but never reads the tag; once it does, that replaces these triggers (GVK-Settings#765).
 $runMaxSeconds = 10
+# LimitPitchTurning is off above $highUp m (m above the surface) and back on under $highDown m; the gap stops a plane near
+# one height flipping the profile every second. A nose-down half loop loses about 250 m, so $highUp leaves room for one.
+$highUp = 1000; $highDown = 900; $highCheckMs = 1000
 
 function Component($subtype, $body) {
     @"
@@ -102,13 +112,24 @@ foreach ($g in $groups) {
     $breakTrigger = ''; $breakClear = ''; $breakSkip = ''
     # Actions that restart Strike or leave the dogfight end any run without BehaviorTriggerA, so they clear the run flag.
     $runClear = "`r`n			[SetBooleansFalse:GVK_AttackRun]"
+    # Actions that load an original profile into Secondary clear the High flag, so the High triggers swap the copy back in.
+    $highClear = "`r`n			[SetBooleansFalse:GVK_DogfightHigh]"
+    $highBreakTriggers = ''; $lowBreakSkip = ''
     if ($g.Break) {
         $breakTrigger = "`r`n			[Triggers:$id-Trigger-BreakEnd]"
         $breakClear = "`r`n			[SetBooleansFalse:GVK_Break]"
-        $breakSkip = "`r`n			[FalseBooleans:GVK_Break]"    }
+        $breakSkip = "`r`n			[FalseBooleans:GVK_Break]"
+        $highBreakTriggers = "`r`n			[Triggers:$id-Trigger-HighBreak]`r`n			[Triggers:$id-Trigger-LowBreak]"
+        $lowBreakSkip = "`r`n			[CheckFalseBooleans:true]`r`n			[FalseBooleans:GVK_Break]"
+    }
     $parts = @()
+    # The High and Low swaps come first: MES checks every trigger before it runs any action, and runs the actions in this
+    # order, so when a swap and another profile load fire in the same tick, the other load runs last and wins (it clears
+    # GVK_DogfightHigh, and the swap runs again a second later).
     $parts += Component "GVK-Unit-All-TriggerGroup-${n}Dogfight" @"
 			[RivalAI TriggerGroup]
+			[Triggers:$id-Trigger-HighDogfight]
+			[Triggers:$id-Trigger-LowDogfight]$highBreakTriggers
 			[Triggers:$id-Trigger-ToDogfight]
 			[Triggers:$id-Trigger-ToStrike]
 			[Triggers:$id-Trigger-Reset]
@@ -143,7 +164,7 @@ foreach ($g in $groups) {
 			[NewBehaviorSubclass:Strike]
 			[ChangeAutopilotProfile:true]
 			[AutopilotProfile:Secondary]
-			[SetBooleansTrue:GVK_Dogfight]$runClear
+			[SetBooleansTrue:GVK_Dogfight]$runClear$highClear
 "@
     $parts += "		<!-- In combat, not a wing, target back under $down m -->"
     $parts += Timer $id 'ToStrike'
@@ -170,7 +191,7 @@ foreach ($g in $groups) {
 			[NewBehaviorSubclass:FighterPlane]
 			[ChangeAutopilotProfile:true]
 			[AutopilotProfile:Secondary]
-			[SetBooleansFalse:GVK_Dogfight]$breakClear$runClear
+			[SetBooleansFalse:GVK_Dogfight]$breakClear$runClear$highClear
 "@
     $parts += "		<!-- Combat over (Patrol already set by the Patrol$($g.Patrol) group): put the attack-run profile back so the next fight starts with attack runs -->"
     $parts += Timer $id 'Reset'
@@ -189,7 +210,7 @@ foreach ($g in $groups) {
 			[OverwriteAutopilotProfile:true]
 			[OverwriteAutopilotMode:Secondary]
 			[OverwriteAutopilotId:$($g.Attack)]
-			[SetBooleansFalse:GVK_Dogfight]$breakClear$runClear
+			[SetBooleansFalse:GVK_Dogfight]$breakClear$runClear$highClear
 "@
     $parts += "		<!-- In a dogfight with the target behind and flying at the plane: restart Strike for a new line-up point instead of fleeing -->"
     $parts += Component "$id-Trigger-Chased" @"
@@ -228,7 +249,7 @@ foreach ($g in $groups) {
 			[OverwriteAutopilotProfile:true]
 			[OverwriteAutopilotMode:Secondary]
 			[OverwriteAutopilotId:$($g.Break)]
-			[SetBooleansTrue:GVK_Break]$runClear
+			[SetBooleansTrue:GVK_Break]$runClear$highClear
 			[ChangeBehaviorSubclass:true]
 			[NewBehaviorSubclass:FighterPlane]
 "@
@@ -269,7 +290,7 @@ foreach ($g in $groups) {
 			[OverwriteAutopilotProfile:true]
 			[OverwriteAutopilotMode:Secondary]
 			[OverwriteAutopilotId:$($g.Dogfight)]
-			[SetBooleansFalse:GVK_Break]
+			[SetBooleansFalse:GVK_Break]$highClear
 "@
     }
     $parts += "		<!-- A dogfight run started (Strike raises BehaviorTriggerB): restart the RunLimit timer -->"
@@ -343,6 +364,53 @@ foreach ($g in $groups) {
 			[RivalAI Action]
 			[SetBooleansFalse:GVK_AttackRun]
 "@
+    # High: a copy with LimitPitchTurning off above $highUp m, the original back under $highDown m. Slots: Dogfight, then Break.
+    $swaps = @(@{ Step = 'Dogfight'; Profile = $g.Dogfight; Need = ''; Skip = $breakSkip; LowSkip = $lowBreakSkip })
+    if ($g.Break) { $swaps += @{ Step = 'Break'; Profile = $g.Break; Need = "`r`n			[TrueBooleans:GVK_Break]"; Skip = ''; LowSkip = '' } }
+    foreach ($s in $swaps) {
+        foreach ($side in 'High', 'Low') {
+            $step = "$side$($s.Step)"
+            if ($side -eq 'High') {
+                $note = "Above $highUp m with the $($s.Step) profile loaded: load its copy with LimitPitchTurning off"
+                $flags = "$($s.Need)`r`n			[CheckFalseBooleans:true]`r`n			[FalseBooleans:GVK_DogfightHigh]$($s.Skip)"
+                $height = "[MinAltitude:$highUp]`r`n			[MaxAltitude:-1]"
+                $load = "$($s.Profile)High"; $flag = '[SetBooleansTrue:GVK_DogfightHigh]'; $msg = 'LimitPitchTurning off'
+            } else {
+                $note = "Under $highDown m with the $($s.Step) copy loaded: put the original back"
+                $flags = "$($s.Need)`r`n			[TrueBooleans:GVK_DogfightHigh]$($s.LowSkip)"
+                $height = "[MinAltitude:-1]`r`n			[MaxAltitude:$highDown]"
+                $load = $s.Profile; $flag = '[SetBooleansFalse:GVK_DogfightHigh]'; $msg = 'LimitPitchTurning on'
+            }
+            $parts += "		<!-- $note -->"
+            $parts += Component "$id-Trigger-$step" @"
+			[RivalAI Trigger]
+			[UseTrigger:true]
+			[Type:Timer]
+			[StartsReady:true]
+			[MinCooldownMs:$highCheckMs]
+			[MaxCooldownMs:$($highCheckMs + 1)]
+			[Conditions:$id-Condition-$step]
+			[Actions:$id-Action-$step]
+"@
+            $parts += Component "$id-Condition-$step" @"
+			[RivalAI Condition]
+			[UseConditions:true]
+			[MatchAnyCondition:false]
+			[CheckTrueBooleans:true]
+			[TrueBooleans:GVK_Dogfight]$flags
+			[AltitudeCheck:true]
+			$height
+"@
+            $parts += Component "$id-Action-$step" @"
+			[RivalAI Action]
+			[//DebugMessage:$msg]
+			[OverwriteAutopilotProfile:true]
+			[OverwriteAutopilotMode:Secondary]
+			[OverwriteAutopilotId:$load]
+			$flag
+"@
+        }
+    }
 
     $breakNote = ''; $breakBoolean = ''
     if ($g.Break) {
@@ -361,9 +429,10 @@ foreach ($g in $groups) {
 			Needs MES with the OverwriteAutopilotProfile fix (MeridiusIX/Modular-Encounters-Systems#464): without it the swap undoes itself.
 			Chased: a Strike line-up point keeps its direction from the target, so when the target chases the plane the point can run ahead of it at the target's speed. With the target behind and flying at it, switching to FighterPlane and back restarts Strike, which picks a new point.$breakNote
 			Run limit: a run ends only within the breakaway distance, so two planes on runs at each other at the same speed circle and climb without end. RunStart (BehaviorTriggerB) sets GVK_AttackRun and restarts the RunLimit timer; RunLimit ends a run still going after $runMaxSeconds s; RunEnd (BehaviorTriggerA) clears GVK_AttackRun.
+			High: above $highUp m the Secondary slot gets a copy of the loaded profile with LimitPitchTurning off (Unit-All-Autopilot-$n-High.sbc), and under $highDown m the original goes back: toward a target behind it a plane on LimitPitchTurning can only pitch nose-up, so dogfights drifted up. Other actions load the original and clear GVK_DogfightHigh.
 			ToDogfight checks the subclass, not GVK_Dogfight: a plane that loses its target and picks up a new one before Reset runs is back in FighterPlane with the Dogfight profile still loaded, and this puts it in Strike.
 			Behavior: [TriggerGroups:GVK-Unit-All-TriggerGroup-${n}Dogfight] after GVK-Unit-All-TriggerGroup-Patrol$($g.Patrol), with [SecondaryAutopilotData:$($g.Attack)].
-			Booleans: GVK_Dogfight (the Secondary slot holds the Dogfight profile)$breakBoolean, GVK_AttackRun (a dogfight run is going).
+			Booleans: GVK_Dogfight (the Secondary slot holds the Dogfight profile)$breakBoolean, GVK_AttackRun (a dogfight run is going), GVK_DogfightHigh (the Secondary slot holds a copy with LimitPitchTurning off).
 		-->
 "@
     $footer = @"
@@ -375,4 +444,32 @@ foreach ($g in $groups) {
     $out = Join-Path $OutDir "Unit-All-TriggerGroup-${n}Dogfight.sbc"
     [IO.File]::WriteAllText($out, $text, (New-Object Text.UTF8Encoding($false)))
     Write-Host "Wrote $out"
+
+    # The High copies: the hand-written Dogfight and Break profiles with LimitPitchTurning off.
+    $apSource = Join-Path $OutDir "Unit-All-Autopilot-$n.sbc"
+    $apText = [IO.File]::ReadAllText($apSource)
+    $copies = @()
+    foreach ($src in @($g.Dogfight, $g.Break) | Where-Object { $_ }) {
+        $pattern = '(?s)[ \t]*<EntityComponent\b[^>]*>\s*<Id>\s*<TypeId>[^<]*</TypeId>\s*<SubtypeId>' + [regex]::Escape($src) + '</SubtypeId>.*?</EntityComponent>'
+        $found = [regex]::Matches($apText, $pattern)
+        if ($found.Count -ne 1) { throw "${src}: found $($found.Count) times in $apSource" }
+        $block = $found[0].Value
+        if ([regex]::Matches($block, '\[LimitPitchTurning:true\]').Count -ne 1) { throw "${src}: needs exactly one [LimitPitchTurning:true]" }
+        $copies += "		<!-- $src with LimitPitchTurning off, loaded above $highUp m -->"
+        $copies += $block.Replace("<SubtypeId>$src</SubtypeId>", "<SubtypeId>${src}High</SubtypeId>").Replace('[LimitPitchTurning:true]', '[LimitPitchTurning:false]')
+    }
+    $apHeader = @"
+<?xml version="1.0"?>
+<Definitions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+	<EntityComponents>
+		<!--
+			GENERATED by tools/New-DogfightGroup.ps1 (group $n) from Unit-All-Autopilot-$n.sbc. Do not edit by hand; edit the original profiles and rerun the script.
+			Copies of the Dogfight and Break profiles with LimitPitchTurning off. GVK-Unit-All-TriggerGroup-${n}Dogfight loads them above $highUp m and puts the originals back under $highDown m.
+		-->
+"@
+    $apOut = Join-Path $OutDir "Unit-All-Autopilot-$n-High.sbc"
+    $apText = $apHeader + "`r`n" + ($copies -join "`r`n") + "`r`n" + $footer + "`r`n"
+    $apText = ($apText -replace "`r`n", "`n") -replace "`n", "`r`n"
+    [IO.File]::WriteAllText($apOut, $apText, (New-Object Text.UTF8Encoding($false)))
+    Write-Host "Wrote $apOut"
 }
