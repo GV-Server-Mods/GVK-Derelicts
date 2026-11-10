@@ -26,8 +26,9 @@
     - Break (groups with a Break profile only): a new point still moves with a target that follows the plane, and Strike
       starts no run with the target inside the breakaway distance. So Chased loads the Break profile instead, which starts
       the run at once and turns the plane at its chaser; BreakEnd puts the Dogfight profile back when that run ends
-      (Strike raises BehaviorTriggerA). GVK_Break is true meanwhile, so Chased waits. Chased fires only below
-      $breakMaxAltitude m, since a break turn climbs (see the value below).
+      (Strike raises BehaviorTriggerA). GVK_Break is true meanwhile, so Chased waits. Breaks happen at any height: RunLimit
+      ends a break that never closes on its chaser (a 2500 m ceiling on Chased didn't stop the climb, since it doesn't end a
+      break already going, and above it a chased plane fled; dropped, owner 2026-11-09).
     Needs MES with the OverwriteAutopilotProfile fix (MeridiusIX/Modular-Encounters-Systems#464): without it the swap undoes itself.
     The groups below are the only ones; change the table and rerun to regenerate all of them. Test-Docs checks that every
     Unit on a FighterPlane Patrol<Name> group carries the group whose Attack profile is its Secondary autopilot.
@@ -61,11 +62,8 @@ if ($Name) { $groups = @($groups | Where-Object { $Name -contains $_.Name }) }
 $up = 100; $down = 60; $checkMs = 3000
 # Chased: target at least $behindAngle degrees off the nose and its velocity within $chaseAngle degrees of pointing at the plane.
 $behindAngle = 120; $chaseAngle = 45; $chasedMs = 10000
-# Break turns only below this altitude (m above the surface). With LimitPitchTurning a plane whose target is behind it only
-# pitches nose-up, so a banked break turn climbs, and two planes breaking at each other climbed toward space (GVK-Settings#742).
-# High enough to fight players at altitude (owner, 2026-11-09).
-$breakMaxAltitude = 2500
-# Longest dogfight or break run (s). A Foxhound on a break run and a Strike Fighter on a dogfight run at each other stayed
+# Longest dogfight or break run (s). With LimitPitchTurning a plane whose target is behind it only pitches nose-up, so a run
+# at a target circling beside or behind it climbs. A Foxhound on a break run and a Strike Fighter on a dogfight run at each other stayed
 # 300-600 m apart, never inside the 200 m breakaway, and climbed past 7 km (GVK-Settings#742, 2026-11-09). MES has
 # [AttackRunMaxTimeTrigger:] for this but never reads the tag; once it does, that replaces these triggers (GVK-Settings#765).
 $runMaxSeconds = 10
@@ -101,15 +99,13 @@ foreach ($g in $groups) {
     $n = $g.Name
     $id = "GVK-Unit-All-${n}Dogfight"
     # Lines that only groups with a Break profile get.
-    $breakTrigger = ''; $breakClear = ''; $breakSkip = ''; $breakCeiling = ''
+    $breakTrigger = ''; $breakClear = ''; $breakSkip = ''
     # Actions that restart Strike or leave the dogfight end any run without BehaviorTriggerA, so they clear the run flag.
     $runClear = "`r`n			[SetBooleansFalse:GVK_AttackRun]"
     if ($g.Break) {
         $breakTrigger = "`r`n			[Triggers:$id-Trigger-BreakEnd]"
         $breakClear = "`r`n			[SetBooleansFalse:GVK_Break]"
-        $breakSkip = "`r`n			[FalseBooleans:GVK_Break]"
-        $breakCeiling = "`r`n			[AltitudeCheck:true]`r`n			[MinAltitude:-1]`r`n			[MaxAltitude:$breakMaxAltitude]"
-    }
+        $breakSkip = "`r`n			[FalseBooleans:GVK_Break]"    }
     $parts = @()
     $parts += Component "GVK-Unit-All-TriggerGroup-${n}Dogfight" @"
 			[RivalAI TriggerGroup]
@@ -223,7 +219,7 @@ foreach ($g in $groups) {
 			[MaxTargetAngle:-1]
 			[CheckIfTargetIsChasing:true]
 			[MinTargetChaseAngle:-1]
-			[MaxTargetChaseAngle:$chaseAngle]$breakCeiling
+			[MaxTargetChaseAngle:$chaseAngle]
 "@
     if ($g.Break) {
         $parts += Component "$id-Action-ChasedLeaveStrike" @"
