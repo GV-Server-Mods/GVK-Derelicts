@@ -27,7 +27,7 @@
       profile with LimitPitchTurning off, and under $highDown m the original goes back (checked every second). The copies are
       generated here from the hand-written profiles into Unit-All-Autopilot-<Name>-High.sbc; edit the originals and rerun.
       LimitPitchTurning stops steep dives near the ground, but toward a target behind it the plane can only pitch nose-up,
-      so dogfights kept drifting up even with the run limit and line-up points 150-300 m below the target (GVK-Settings#742,
+      so dogfights kept drifting up even with the run limit and lower line-up points (GVK-Settings#742,
       owner 2026-11-09). Every other action here that loads a profile loads the original and clears GVK_DogfightHigh, so
       the High triggers swap the copy back in within a second.
     - Break (groups with a Break profile only): a new point still moves with a target that follows the plane, and Strike
