@@ -91,7 +91,7 @@
 			[MaxVelocityAngleForSpeedControl:180]
 			[UseAircraftFlightModel:true]
 			[MaxAngleFromVelocity:60]
-			[RollIntoTurnsMultiplier:0.8]
+			[RollIntoTurnsMultiplier:1]
 			[MaxBankAngle:45]
 			[ReturnToLevelMultiplier:0.25]
 			[MaxRotationStep:0.5]
@@ -143,14 +143,15 @@
 			[MaxVelocityAngleForSpeedControl:180]
 			[UseAircraftFlightModel:true]
 			[MaxAngleFromVelocity:60]
-			[RollIntoTurnsMultiplier:0.8]
-			[MaxBankAngle:45]
+			[RollIntoTurnsMultiplier:1]
+			[//Dogfight turns run far off heading, so they bank at this cap (45 until GVK-Settings#730). If a plane dives in a turn, raise MaxAngleFromVelocity first, then lower this.]
+			[MaxBankAngle:55]
 			[ReturnToLevelMultiplier:0.25]
 			[MaxRotationStep:0.5]
 			[UseProjectileLeadPrediction:false]
 			</Description>
 		</EntityComponent>
-		<!-- Break: loaded by the dogfight group's Chased trigger when the target chases the plane, and swapped back for Dogfight when the run ends. The Dogfight profile with two changes. -->
+		<!-- Break: loaded by the dogfight group's Chased trigger when the target chases the plane, and swapped back for Dogfight when the run ends. The Dogfight profile with only the run distances and bank cap changed (tools/Test-Docs.ps1 checks). -->
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
@@ -193,8 +194,9 @@
 			[MaxVelocityAngleForSpeedControl:180]
 			[UseAircraftFlightModel:true]
 			[MaxAngleFromVelocity:60]
-			[RollIntoTurnsMultiplier:0.8]
-			[MaxBankAngle:45]
+			[RollIntoTurnsMultiplier:1]
+			[//5 above Dogfight's cap, never below it: the break turn lasts a few seconds, so it costs little height.]
+			[MaxBankAngle:60]
 			[ReturnToLevelMultiplier:0.25]
 			[MaxRotationStep:0.5]
 			[UseProjectileLeadPrediction:false]
