@@ -16,7 +16,7 @@ The old README notes live here. Note numbers are kept because hub issues and too
 | [Freighter dispatch and supply depots](freighter-dispatch.md) | 45 | 2 | 2026-11-08 | MES d500922 |
 | [Installation terrain rule](installation-terrain.md) | 48 | 2 | 2026-11-08 | MES d500922 |
 | [KOTH 5 km despawn](koth-despawn.md) | 42 | 1 | - | - |
-| [How NPC relations are read](npc-relations.md) | 47 | 1 | 2026-11-07 | MES 49b3380 |
+| [How NPC relations are read](npc-relations.md) | 47 | 1 | 2026-11-11 | MES 49b3380 |
 | [Parent leash](parent-leash.md) | 46 | 3 | - | MES d500922 |
 | [Preset alliance bases](preset-bases.md) | 30 | 3 | - | MES d500922 |
 | [Server build requirements (MES release)](server-build-requirements.md) | 43 | 3 | 2026-11-09 | MES a1895d9 |
