@@ -5,7 +5,7 @@
 		<!-- DisableInertiaDampeners only takes effect at spawn, from the Primary profile; a swap to these never changes it. It matches each Primary here (all on). With dampeners off the LAV never fired its side or down thrusters;
 		     on, it floated off bumps on its upward thruster, so that thruster is saved turned off in the LAV prefabs -->
 		<!-- AngleAllowedForForwardThrust never above 90: past that, forward thrust pushes the wing away from its slot.
-		     The LAV uses 45: with dampeners off, at 90 it thrusted toward a slot beside it and orbited the slot at full speed. Try 90 with dampeners on -->
+		     The LAV uses 45: with dampeners off, at 90 it thrusted toward a slot beside it and orbited the slot at full speed. The HoverWing tried 90 with dampeners on and swung side to side around its slot, so it uses 45 too (C20, 2026-11-11) -->
 		<!-- EscortSpeedMatchMinDistance 20 (the LAVWing; the HoverWing uses the air wing's approach, see its profile): inside it the wing holds the leader's speed, so it doesn't overshoot its slot and turn back. At 10 the air wing still overshot -->
 		<!-- LAVWing steering: LimitRotationSpeed caps the turn rate at the heading error in radians per second (before the yaw multiplier) and cuts the gyro when it's exceeded,
 		     so a higher RotationMultiplierYaw only made it jerk. It's off here; MaxRotationStep (read only with UseAircraftFlightModel, which does nothing else on a ground unit
@@ -75,8 +75,7 @@
 				[MaxRotationMagnitude:1]
 				[UseAircraftFlightModel:true]
 				[MaxRotationStep:0.5]
-				[RollIntoTurnsMultiplier:0.5]
-				[MaxBankAngle:30]
+				[//No banking, as the LAVWing: a banked hover pushes sideways on its hover engines, and the wing swung side to side around its slot (C20, 2026-11-11).]
 				[FlyLevelWithGravity:false]
 				[LevelWithGravityWhenIdle:false]
 				[DisableInertiaDampeners:false]
@@ -93,7 +92,8 @@
 				[IdealMaxSpeed:125]
 				[//2: MES brakes only above the speed cap plus this, so at 5 the wing could reach its slot 5 m/s faster than the leader.]
 				[MaxSpeedTolerance:2]
-				[AngleAllowedForForwardThrust:90]
+				[//45, as the LAVWing: at 90 a slot beside the wing still drew forward thrust, so it swung side to side around its slot (C20, 2026-11-11) the way the LAV orbited its slot.]
+				[AngleAllowedForForwardThrust:45]
 				[MaxVelocityAngleForSpeedControl:180]
 				[EscortUsesRelativeDampening:false]
 				[//Min 40, Max 250, the air wing's approach (170/300) scaled to a hover: it holds the leader's speed from 40 m out and slows over 210 m, so it arrives at the leader's speed and settles about 40 m behind its slot (the Sandskimmer slots sit 25 m ahead to match). 20/200 at 150 m/s overshot (C18); 80/350 stopped that but reacted slowly to the leader (C19, 2026-11-11). Sandskimmers spawn at 8x thrust (GVK-Unit-All-Manipulation-Sandskimmer, about 12 m/s2 braking); at 5x, 30 m/s of overspeed still fits in 210 m.]

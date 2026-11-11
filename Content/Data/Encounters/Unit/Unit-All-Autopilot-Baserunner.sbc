@@ -2,7 +2,7 @@
 <Definitions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
 	<EntityComponents>
 		<!-- Baserunner Patrol Autopilot -->
-		<!-- Steering: the LAVWing recipe (Unit-All-Autopilot-LandWing.sbc explains it). MaxRotationStep 0.5 keeps the gyros at full strength; MaxRotationMagnitude sets the turn rate -->
+		<!-- Steering: the LAVWing recipe (Unit-All-Autopilot-LandWing.sbc explains it). MaxRotationStep 0.5 keeps the gyros at full strength; MaxRotationMagnitude sets the turn rate; LimitPitchTurning so it turns with yaw instead of pointing its nose up at a waypoint behind it (owner, 2026-11-11) -->
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
@@ -15,6 +15,7 @@
 				[RotationMultiplierPitch:3]
 				[RotationMultiplierYaw:3]
 				[RotationMultiplierRoll:1.5]
+				[LimitPitchTurning:true]
 				[LimitRotationSpeed:false]
 				[MaxRotationMagnitude:1]
 				[UseAircraftFlightModel:true]
@@ -58,6 +59,7 @@
 				[RotationMultiplierPitch:3]
 				[RotationMultiplierYaw:3]
 				[RotationMultiplierRoll:1.5]
+				[LimitPitchTurning:true]
 				[LimitRotationSpeed:false]
 				[MaxRotationMagnitude:1]
 				[UseAircraftFlightModel:true]
@@ -104,6 +106,7 @@
 				[RotationMultiplierPitch:3]
 				[RotationMultiplierYaw:3]
 				[RotationMultiplierRoll:1.5]
+				[LimitPitchTurning:true]
 				[LimitRotationSpeed:false]
 				[MaxRotationMagnitude:1]
 				[UseAircraftFlightModel:true]
