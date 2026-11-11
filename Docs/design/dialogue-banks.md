@@ -6,7 +6,7 @@ covers:
   - Docs/dialogue/scripts/*
   - tools/Test-Docs.ps1
 checked-against: MES d500922
-checked: 2026-11-08
+checked: 2026-11-10
 ---
 
 # NPC dialogue banks
