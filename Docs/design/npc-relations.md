@@ -4,7 +4,7 @@ notes: [47]
 covers:
   - Content/Data/Encounters/GVK-Universal-Target.sbc
 checked-against: MES 49b3380
-checked: 2026-11-07
+checked: 2026-11-11
 ---
 
 # How NPC relations are read
