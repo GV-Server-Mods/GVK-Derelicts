@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <Definitions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
 	<EntityComponents>
-		<!-- SmallHoverHorseFighter Autopilot -->
+		<!-- Sandskimmer Patrol autopilot -->
 		<!-- Steering: the hover cruiser recipe (Unit-All-Autopilot-HoverCruiserHorsefly.sbc explains it). LimitPitchTurning so it does not backflip toward a waypoint behind it; MaxRotationStep 0.5 keeps the gyros at full strength; MaxRotationMagnitude sets the turn rate; banks up to 15 degrees into turns for looks -->
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
@@ -56,11 +56,11 @@
 			[MaxVelocityAngleForSpeedControl:180]
 			</Description>
 		</EntityComponent>
-		<!-- SmallHoverHorseFighter Autopilot -->
+		<!-- Sandskimmer Strike autopilot: attack runs from line-up points around the target -->
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Unit-All-Autopilot-Sandskimmer-HorseFighter</SubtypeId>
+				<SubtypeId>GVK-Unit-All-Autopilot-Sandskimmer-Strike</SubtypeId>
 			</Id>
 			<Description>
 			[RivalAI Autopilot]
@@ -85,8 +85,6 @@
 			[IdealPlanetAltitude:10]
 			[MinimumPlanetAltitude:3]
 			[AltitudeTolerance:10]
-			[RamMinDurationMs:6000]
-			[RamMaxDurationMs:6001]
 			[IdealMinSpeed:40]
 			[//110: 30 m/s under the HoverWing (140), so a peer wing has room to catch up.]
 			[IdealMaxSpeed:110]
@@ -99,9 +97,14 @@
 			[OffsetMaxAngleFromTarget:90]
 			[WaypointWaitTimeTrigger:0]
 			[WaypointAbandonTimeTrigger:30]
-			[//Fallback for the behavior HorseFighterTime tags, which MES drops after a subclass switch (GVK-Settings#743).]
-			[TargetApproachTimer:8]
-			[TargetEngageTimer:15]
+			[//Line up 400-700 m from the target (offsets above), start the run within 150 m of that point, end it 250 m from the target.]
+			[AttackRunDistancePlanet:150]
+			[AttackRunBreakawayDistance:250]
+			[//Unused off: MES otherwise ends a run on a collision course within 5 s (about 550 m at 110 m/s), and skimming at the target's height every run is one.]
+			[Unused:false]
+			[//Hover pathing during the run too, so a pass follows the dunes instead of a straight line through them.]
+			[AttackRunUseSafePlanetPathing:true]
+			[AttackRunUseCollisionEvasionPlanet:false]
 			[AllowStrafing:true]
 			[StrafeMinDurationMs:1500]
 			[StrafeMaxDurationMs:5000]

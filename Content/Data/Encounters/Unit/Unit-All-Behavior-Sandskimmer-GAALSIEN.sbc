@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <Definitions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
 	<EntityComponents>
-		<!-- SmallHoverHorseFighter Behavior -->
+		<!-- Sandskimmer Behavior: Patrol, attack runs on the Strike subclass in combat -->
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
@@ -12,11 +12,6 @@
 			[BehaviorName:Patrol]
 			[DialogueBanks:GVK-Units-GAALSIEN-Small.xml]
 			[WeaponSystem:GVK-Universal-Weapons-All]
-			[HorseFighterWaypointWaitTimeTrigger:0]
-			[HorseFighterEngageDistancePlanet:850]
-			[HorseFighterDisengageDistancePlanet:950]
-			[HorseFighterTimeApproaching:8]
-			[HorseFighterTimeEngaging:15]
 			[UsePlayerDistanceTimer:true]
 			[PlayerDistanceTimerTrigger:240]
 			[PlayerDistanceTrigger:4000]
@@ -25,12 +20,12 @@
 			[TargetData:GVK-Universal-Target-EnemyGrids2km-Ground-GAALSIEN]
 			[OverrideTargetData:GVK-Universal-Target-Override-Ground]
 			[AutopilotData:GVK-Unit-All-Autopilot-Sandskimmer-Patrol]
-			[SecondaryAutopilotData:GVK-Unit-All-Autopilot-Sandskimmer-HorseFighter]
+			[SecondaryAutopilotData:GVK-Unit-All-Autopilot-Sandskimmer-Strike]
 			[TertiaryAutopilotData:GVK-Unit-All-Autopilot-HoverWing]
 			[Triggers:GVK-Unit-All-Trigger-Init-SmallCraft]
 			[TriggerGroups:GVK-Universal-TriggerGroup-CombatDefaults]
 			[TriggerGroups:GVK-Unit-All-TriggerGroup-UnitDefaults-SmallUnit-GAALSIEN]
-			[TriggerGroups:GVK-Unit-All-TriggerGroup-PatrolHorseFighter]
+			[TriggerGroups:GVK-Unit-All-TriggerGroup-PatrolStrikeHover]
 			[TriggerGroups:GVK-Unit-All-TriggerGroup-LeashGround]
 			[TriggerGroups:GVK-Unit-All-TriggerGroup-CombatKPL]
 			[TriggerGroups:GVK-Unit-All-TriggerGroup-PeerEscort-Land]
