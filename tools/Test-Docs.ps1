@@ -17,8 +17,9 @@
     Checks that every aircraft (LeashAir) goes back to Patrol further out than it attacks, counting the range its target
     profile acquires and keeps a target at.
     Checks that every Unit whose Patrol<Name> group fights on FighterPlane has exactly one <Name>Dogfight group, and that it
-    puts back the Unit's own Secondary autopilot; and that every dogfight High copy matches its original apart from
-    LimitPitchTurning.
+    puts back the Unit's own Secondary autopilot; that every dogfight High copy matches its original apart from
+    LimitPitchTurning; and that every Break autopilot matches its Dogfight profile apart from the run distances and a bank
+    cap no lower than Dogfight's.
     Checks every tracked .md file for:
       1. Backticked profile names (GVK-*, Unit-*, RAI-*), prefab names (NWS [COAL] ...) and repo paths
          that no longer exist in Content/ or the repo.
@@ -257,6 +258,32 @@ try {
         if ($profiles[$name] -ne ($profiles[$original] -replace '\[LimitPitchTurning:true\]', '[LimitPitchTurning:false]')) {
             $warnings.Add("${name}: differs from $original beyond LimitPitchTurning; rerun tools/New-DogfightGroup.ps1")
         }
+    }
+
+    # Each Break profile is its Dogfight profile with the run distances changed and a bank cap at least as high (the break turn lasts
+    # seconds; GVK-Settings#730). Tuning one without the other leaves the break turn on old values. Comments ([//...]) are ignored.
+    $breakOnly = '^(AttackRunDistancePlanet|AttackRunBreakawayDistance|MaxBankAngle):'
+    foreach ($name in $profiles.Keys | Where-Object { $_ -match '^GVK-Unit-All-Autopilot-.+-Break$' } | Sort-Object) {
+        $dogfight = $name -replace 'Break$', 'Dogfight'
+        if (-not $profiles.ContainsKey($dogfight)) { $warnings.Add("${name}: its Dogfight profile $dogfight is missing"); continue }
+        $tags = @{}
+        foreach ($p in $name, $dogfight) {
+            $tags[$p] = @([regex]::Matches($profiles[$p], '\[([^\[\]]+)\]') | ForEach-Object { $_.Groups[1].Value.Trim() } | Where-Object { $_ -notmatch '^//' })
+        }
+        $shared = @{}
+        foreach ($p in $name, $dogfight) { $shared[$p] = @($tags[$p] | Where-Object { $_ -notmatch $breakOnly }) }
+        if (($shared[$name] -join "`n") -ne ($shared[$dogfight] -join "`n")) {
+            $diff = @(Compare-Object $shared[$dogfight] $shared[$name] | ForEach-Object { if ($_.SideIndicator -eq '=>') { "Break [$($_.InputObject)]" } else { "Dogfight [$($_.InputObject)]" } })
+            if (-not $diff) { $diff = @('the same tags in another order') }
+            $warnings.Add("${name}: differs from $dogfight beyond the run distances and bank cap: $($diff -join ', ')")
+        }
+        $bank = @{}
+        foreach ($p in $name, $dogfight) {
+            $m = @($tags[$p] | Where-Object { $_ -match '^MaxBankAngle:' })
+            $bank[$p] = if ($m.Count -eq 1) { [double]::Parse(($m[0] -replace '^MaxBankAngle:', ''), [Globalization.CultureInfo]::InvariantCulture) } else { $null }
+        }
+        if ($null -eq $bank[$name] -or $null -eq $bank[$dogfight]) { $warnings.Add("${name}: it and $dogfight need exactly one [MaxBankAngle:] each") }
+        elseif ($bank[$name] -lt $bank[$dogfight]) { $warnings.Add("${name}: banks less ($($bank[$name])) than $dogfight ($($bank[$dogfight])); the break turn banks at least as hard") }
     }
 
     # MES only runs a [Type:DespawnMES] trigger when [DespawnTypeFromSpawner:] matches why the grid was removed; an empty type matches only
