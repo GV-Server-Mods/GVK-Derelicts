@@ -55,7 +55,7 @@ Prefab names start with a three-letter tag, then the 4-letter faction tag, to re
 | `NMI` | Mission Giver | 7 | `NMI [COAL] Relay Station 1` |
 | `NST` | Static | 26 | `NST [KHAA] Carrier` |
 | `NTS` | Trade Station | 14 | `NTS [COAL] Angels Landing` |
-| `NUN` | Unit | 67 | `NUN [COAL] Assault Cruiser` |
+| `NUN` | Unit | 65 | `NUN [COAL] Assault Cruiser` |
 | `NWL` | Large Wreck | 36 | `NWL [COAL] Storage Depot` |
 | `NWM` | Medium Wreck | 50 | `NWM [GAAL] Dome` |
 | `NWS` | Small Wreck | 58 | `NWS [COAL] Combat Baserunner` |
