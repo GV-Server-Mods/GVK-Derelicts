@@ -11,7 +11,7 @@
 			Break: a new point still moves with a target that follows the plane, and Strike starts no run with the target inside the breakaway distance, so Chased loads GVK-Unit-All-Autopilot-SmallFlyerPatrolHorseFighter-Break instead: it starts the run at once and turns the plane at its chaser. BreakEnd puts the Dogfight profile back when the run ends.
 			Run limit: a run ends only within the breakaway distance, so two planes on runs at each other at the same speed circle and climb without end. RunStart (BehaviorTriggerB) sets GVK_AttackRun and restarts the RunLimit timer; RunLimit ends a run still going after 10 s; RunEnd (BehaviorTriggerA) clears GVK_AttackRun.
 			High: above 1000 m the Secondary slot gets a copy of the loaded profile with LimitPitchTurning off (Unit-All-Autopilot-SmallFlyerPatrolHorseFighter-High.sbc), and under 900 m the original goes back: toward a target behind it a plane on LimitPitchTurning can only pitch nose-up, so dogfights drifted up. Other actions load the original and clear GVK_DogfightHigh.
-			ToDogfight checks the subclass, not GVK_Dogfight: a plane that loses its target and picks up a new one before Reset runs is back in FighterPlane with the Dogfight profile still loaded, and this puts it in Strike.
+			ToDogfight checks the subclass, not GVK_Dogfight: a plane that loses its target and picks up a new one before Reset runs is back in FighterPlane with the Dogfight profile still loaded, and this puts it in Strike. Against a target under 100 m Leftover loads the attack-run profile instead, whatever the flags say. Reset runs whatever GVK_Dogfight says. Chased and BreakEnd come before ToStrike, Leftover and Reset, so a profile load in the same tick never puts the Dogfight profile back after they clear GVK_Dogfight.
 			Behavior: [TriggerGroups:GVK-Unit-All-TriggerGroup-SmallFlyerPatrolHorseFighterDogfight] after GVK-Unit-All-TriggerGroup-PatrolStrike, with [SecondaryAutopilotData:GVK-Unit-All-Autopilot-SmallFlyerPatrolHorseFighter-HorseFighter].
 			Booleans: GVK_Dogfight (the Secondary slot holds the Dogfight profile), GVK_Break (the Secondary slot holds the Break profile), GVK_AttackRun (a dogfight run is going), GVK_DogfightHigh (the Secondary slot holds a copy with LimitPitchTurning off).
 		-->
@@ -26,11 +26,12 @@
 			[Triggers:GVK-Unit-All-SmallFlyerPatrolHorseFighterDogfight-Trigger-LowDogfight]
 			[Triggers:GVK-Unit-All-SmallFlyerPatrolHorseFighterDogfight-Trigger-HighBreak]
 			[Triggers:GVK-Unit-All-SmallFlyerPatrolHorseFighterDogfight-Trigger-LowBreak]
-			[Triggers:GVK-Unit-All-SmallFlyerPatrolHorseFighterDogfight-Trigger-ToDogfight]
-			[Triggers:GVK-Unit-All-SmallFlyerPatrolHorseFighterDogfight-Trigger-ToStrike]
-			[Triggers:GVK-Unit-All-SmallFlyerPatrolHorseFighterDogfight-Trigger-Reset]
 			[Triggers:GVK-Unit-All-SmallFlyerPatrolHorseFighterDogfight-Trigger-Chased]
 			[Triggers:GVK-Unit-All-SmallFlyerPatrolHorseFighterDogfight-Trigger-BreakEnd]
+			[Triggers:GVK-Unit-All-SmallFlyerPatrolHorseFighterDogfight-Trigger-ToDogfight]
+			[Triggers:GVK-Unit-All-SmallFlyerPatrolHorseFighterDogfight-Trigger-ToStrike]
+			[Triggers:GVK-Unit-All-SmallFlyerPatrolHorseFighterDogfight-Trigger-Leftover]
+			[Triggers:GVK-Unit-All-SmallFlyerPatrolHorseFighterDogfight-Trigger-Reset]
 			[Triggers:GVK-Unit-All-SmallFlyerPatrolHorseFighterDogfight-Trigger-RunStart]
 			[Triggers:GVK-Unit-All-SmallFlyerPatrolHorseFighterDogfight-Trigger-RunLimit]
 			[Triggers:GVK-Unit-All-SmallFlyerPatrolHorseFighterDogfight-Trigger-RunEnd]
@@ -150,7 +151,58 @@
 			[SetBooleansFalse:GVK_DogfightHigh]
 			</Description>
 		</EntityComponent>
-		<!-- Combat over (Patrol already set by the PatrolStrike group): put the attack-run profile back so the next fight starts with attack runs -->
+		<!-- In combat on FighterPlane, target under 100 m: only the attack-run profile belongs in Secondary (a dogfight runs on Strike); loads it again on every check -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Unit-All-SmallFlyerPatrolHorseFighterDogfight-Trigger-Leftover</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Trigger]
+			[UseTrigger:true]
+			[Type:Timer]
+			[StartsReady:true]
+			[MinCooldownMs:3000]
+			[MaxCooldownMs:3001]
+			[Conditions:GVK-Unit-All-SmallFlyerPatrolHorseFighterDogfight-Condition-Leftover]
+			[Actions:GVK-Unit-All-SmallFlyerPatrolHorseFighterDogfight-Action-Leftover]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Unit-All-SmallFlyerPatrolHorseFighterDogfight-Condition-Leftover</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Condition]
+			[UseConditions:true]
+			[MatchAnyCondition:false]
+			[CheckTrueBooleans:true]
+			[TrueBooleans:GVK_InCombat]
+			[BehaviorSubclassCheck:true]
+			[BehaviorSubclass:FighterPlane]
+			[TargetAltitudeCheck:true]
+			[MinTargetAltitude:-1]
+			[MaxTargetAltitude:100]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Unit-All-SmallFlyerPatrolHorseFighterDogfight-Action-Leftover</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Action]
+			[OverwriteAutopilotProfile:true]
+			[OverwriteAutopilotMode:Secondary]
+			[OverwriteAutopilotId:GVK-Unit-All-Autopilot-SmallFlyerPatrolHorseFighter-HorseFighter]
+			[SetBooleansFalse:GVK_Dogfight]
+			[SetBooleansFalse:GVK_Break]
+			[SetBooleansFalse:GVK_AttackRun]
+			[SetBooleansFalse:GVK_DogfightHigh]
+			</Description>
+		</EntityComponent>
+		<!-- Not in combat (Patrol already set by the PatrolStrike group): put the attack-run profile back so the next fight starts with attack runs; runs whatever GVK_Dogfight says -->
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
@@ -176,8 +228,6 @@
 			[RivalAI Condition]
 			[UseConditions:true]
 			[MatchAnyCondition:false]
-			[CheckTrueBooleans:true]
-			[TrueBooleans:GVK_Dogfight]
 			[CheckFalseBooleans:true]
 			[FalseBooleans:GVK_InCombat]
 			</Description>

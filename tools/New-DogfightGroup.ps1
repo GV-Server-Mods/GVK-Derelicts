@@ -8,8 +8,13 @@
     - ToDogfight: in combat on FighterPlane, not a wing, target more than 100 m above the surface: the Dogfight profile goes
       into the Secondary slot, the subclass becomes Strike (line-up points all around the target), GVK_Dogfight true.
     - ToStrike: target back under 60 m: the attack-run profile goes back into Secondary, subclass FighterPlane.
-    - Reset: combat over (the Patrol<Name> group already set Patrol): the attack-run profile goes back, so the next fight
-      starts with attack runs.
+    - Leftover: in combat on FighterPlane, target under 100 m: the attack-run profile goes into Secondary and every flag
+      here is cleared. A dogfight runs on Strike, so on FighterPlane only the attack-run profile belongs there, and this
+      loads the same profile again on every check. A Dogfight profile left over from an earlier fight (a new target
+      picked up before Reset ran, or a flag out of step) made a Chad on a ground target line up on the Dogfight profile:
+      it turned in from far out, climbed back to 400 m after each run and started runs from overhead (owner, 2026-11-11).
+    - Reset: not in combat (the Patrol<Name> group already set Patrol): the attack-run profile goes back, so the next fight
+      starts with attack runs. It runs on every check whatever GVK_Dogfight says.
     - Chased: in a dogfight with the target behind the plane (120 degrees or more off its nose) and flying at it (within
       45 degrees): pick a new line-up point. A Strike line-up point keeps its direction from the target until it expires, so
       when the target chases the plane a point on the plane's side runs ahead of it at the target's speed and the plane flees
@@ -123,17 +128,19 @@ foreach ($g in $groups) {
         $lowBreakSkip = "`r`n			[CheckFalseBooleans:true]`r`n			[FalseBooleans:GVK_Break]"
     }
     $parts = @()
-    # The High and Low swaps come first: MES checks every trigger before it runs any action, and runs the actions in this
-    # order, so when a swap and another profile load fire in the same tick, the other load runs last and wins (it clears
-    # GVK_DogfightHigh, and the swap runs again a second later).
+    # MES checks every trigger before it runs any action, and runs the actions in this order, so when two profile loads
+    # fire in the same tick the later one wins. The High and Low swaps come first (the other load clears GVK_DogfightHigh,
+    # and the swap runs again a second later). Chased and BreakEnd come before ToStrike, Leftover and Reset: after them
+    # they put a Break or Dogfight profile back in the tick ToStrike or Reset cleared GVK_Dogfight, and nothing reset it.
     $parts += Component "GVK-Unit-All-TriggerGroup-${n}Dogfight" @"
 			[RivalAI TriggerGroup]
 			[Triggers:$id-Trigger-HighDogfight]
 			[Triggers:$id-Trigger-LowDogfight]$highBreakTriggers
+			[Triggers:$id-Trigger-Chased]$breakTrigger
 			[Triggers:$id-Trigger-ToDogfight]
 			[Triggers:$id-Trigger-ToStrike]
+			[Triggers:$id-Trigger-Leftover]
 			[Triggers:$id-Trigger-Reset]
-			[Triggers:$id-Trigger-Chased]$breakTrigger
 			[Triggers:$id-Trigger-RunStart]
 			[Triggers:$id-Trigger-RunLimit]
 			[Triggers:$id-Trigger-RunEnd]
@@ -193,14 +200,33 @@ foreach ($g in $groups) {
 			[AutopilotProfile:Secondary]
 			[SetBooleansFalse:GVK_Dogfight]$breakClear$runClear$highClear
 "@
-    $parts += "		<!-- Combat over (Patrol already set by the Patrol$($g.Patrol) group): put the attack-run profile back so the next fight starts with attack runs -->"
+    $parts += "		<!-- In combat on FighterPlane, target under $up m: only the attack-run profile belongs in Secondary (a dogfight runs on Strike); loads it again on every check -->"
+    $parts += Timer $id 'Leftover'
+    $parts += Component "$id-Condition-Leftover" @"
+			[RivalAI Condition]
+			[UseConditions:true]
+			[MatchAnyCondition:false]
+			[CheckTrueBooleans:true]
+			[TrueBooleans:GVK_InCombat]
+			[BehaviorSubclassCheck:true]
+			[BehaviorSubclass:FighterPlane]
+			[TargetAltitudeCheck:true]
+			[MinTargetAltitude:-1]
+			[MaxTargetAltitude:$up]
+"@
+    $parts += Component "$id-Action-Leftover" @"
+			[RivalAI Action]
+			[OverwriteAutopilotProfile:true]
+			[OverwriteAutopilotMode:Secondary]
+			[OverwriteAutopilotId:$($g.Attack)]
+			[SetBooleansFalse:GVK_Dogfight]$breakClear$runClear$highClear
+"@
+    $parts += "		<!-- Not in combat (Patrol already set by the Patrol$($g.Patrol) group): put the attack-run profile back so the next fight starts with attack runs; runs whatever GVK_Dogfight says -->"
     $parts += Timer $id 'Reset'
     $parts += Component "$id-Condition-Reset" @"
 			[RivalAI Condition]
 			[UseConditions:true]
 			[MatchAnyCondition:false]
-			[CheckTrueBooleans:true]
-			[TrueBooleans:GVK_Dogfight]
 			[CheckFalseBooleans:true]
 			[FalseBooleans:GVK_InCombat]
 "@
@@ -430,7 +456,7 @@ foreach ($g in $groups) {
 			Chased: a Strike line-up point keeps its direction from the target, so when the target chases the plane the point can run ahead of it at the target's speed. With the target behind and flying at it, switching to FighterPlane and back restarts Strike, which picks a new point.$breakNote
 			Run limit: a run ends only within the breakaway distance, so two planes on runs at each other at the same speed circle and climb without end. RunStart (BehaviorTriggerB) sets GVK_AttackRun and restarts the RunLimit timer; RunLimit ends a run still going after $runMaxSeconds s; RunEnd (BehaviorTriggerA) clears GVK_AttackRun.
 			High: above $highUp m the Secondary slot gets a copy of the loaded profile with LimitPitchTurning off (Unit-All-Autopilot-$n-High.sbc), and under $highDown m the original goes back: toward a target behind it a plane on LimitPitchTurning can only pitch nose-up, so dogfights drifted up. Other actions load the original and clear GVK_DogfightHigh.
-			ToDogfight checks the subclass, not GVK_Dogfight: a plane that loses its target and picks up a new one before Reset runs is back in FighterPlane with the Dogfight profile still loaded, and this puts it in Strike.
+			ToDogfight checks the subclass, not GVK_Dogfight: a plane that loses its target and picks up a new one before Reset runs is back in FighterPlane with the Dogfight profile still loaded, and this puts it in Strike. Against a target under $up m Leftover loads the attack-run profile instead, whatever the flags say. Reset runs whatever GVK_Dogfight says. Chased and BreakEnd come before ToStrike, Leftover and Reset, so a profile load in the same tick never puts the Dogfight profile back after they clear GVK_Dogfight.
 			Behavior: [TriggerGroups:GVK-Unit-All-TriggerGroup-${n}Dogfight] after GVK-Unit-All-TriggerGroup-Patrol$($g.Patrol), with [SecondaryAutopilotData:$($g.Attack)].
 			Booleans: GVK_Dogfight (the Secondary slot holds the Dogfight profile)$breakBoolean, GVK_AttackRun (a dogfight run is going), GVK_DogfightHigh (the Secondary slot holds a copy with LimitPitchTurning off).
 		-->
