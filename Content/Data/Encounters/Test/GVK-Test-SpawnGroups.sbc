@@ -1,7 +1,10 @@
 <?xml version="1.0"?>
 <Definitions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
 	<!-- Admin test spawn groups, spawnable anywhere with the /MES.Spawn command above each group. Most run production prefabs on their production behaviors;
-	     the GVK-Test-Behavior ones are small test setups. [AdminSpawnOnly:true] keeps them out of natural spawning. -->
+	     the GVK-Test-Behavior ones are small test setups. [AdminSpawnOnly:true] keeps them out of natural spawning.
+	     A random admin spawn (/MES.SPI or /MES.SDE with no group name) is an admin spawn too, so they also need the GVK_TestSpawns switch:
+	     /MES.Debug.ChangeBool.GVK_TestSpawns.true at the start of a test session, .false at the end. Frequency 0.1 (one slot in a random pick instead of ten)
+	     keeps a random spawn from picking them often while the switch is on (owner, 2026-11-11; GVK-Settings#730). -->
 	<SpawnGroups>
 		<!-- /MES.Spawn.DroneEncounter.GVK-Test-SpawnGroup-LAVTrio: three SOBAN LAVs, so the Land peer pool (1 slot) can pair, lose a wing and pair again (GVK-Settings#699) -->
 		<SpawnGroup>
@@ -17,7 +20,7 @@
 				[SpawnConditionsProfiles:GVK-Test-SpawnCondition-LAVTrio]
 			</Description>
 			<IsPirate>true</IsPirate>
-			<Frequency>1.0</Frequency>
+			<Frequency>0.1</Frequency>
 			<Prefabs>
 				<Prefab SubtypeId="NUN [SOBA] LAV">
 					<Position>
@@ -66,7 +69,7 @@
 				[SpawnConditionsProfiles:GVK-Test-SpawnCondition-Cruisers]
 			</Description>
 			<IsPirate>true</IsPirate>
-			<Frequency>1.0</Frequency>
+			<Frequency>0.1</Frequency>
 			<Prefabs>
 				<Prefab SubtypeId="NUN [GAAL] Honorguard Cruiser">
 					<Position>
@@ -105,7 +108,7 @@
 				[SpawnConditionsProfiles:GVK-Test-SpawnCondition-Rovers]
 			</Description>
 			<IsPirate>true</IsPirate>
-			<Frequency>1.0</Frequency>
+			<Frequency>0.1</Frequency>
 			<Prefabs>
 				<!-- The Battlecruiser (45 x 92 m) sits at the spawn centre, where MES measures the drone altitude: at X 80 a rising slope buried half of it.
 				     The others sit as close beside it as fits (Baserunner ~18 m wide, LAV ~4 m): 70 m out, the Baserunner still sank into slopes -->
@@ -156,7 +159,7 @@
 				[SpawnConditionsProfiles:GVK-Test-SpawnCondition-Hovers]
 			</Description>
 			<IsPirate>true</IsPirate>
-			<Frequency>1.0</Frequency>
+			<Frequency>0.1</Frequency>
 			<Prefabs>
 				<Prefab SubtypeId="NUN [GAAL] Sandskimmer">
 					<Position>
@@ -215,7 +218,7 @@
 				[SpawnConditionsProfiles:GVK-Test-SpawnCondition-Aircraft]
 			</Description>
 			<IsPirate>true</IsPirate>
-			<Frequency>1.0</Frequency>
+			<Frequency>0.1</Frequency>
 			<Prefabs>
 				<Prefab SubtypeId="NUN [GAAL] Bomber">
 					<Position>
@@ -274,7 +277,7 @@
 				[SpawnConditionsProfiles:GVK-Test-SpawnCondition-Aircraft]
 			</Description>
 			<IsPirate>true</IsPirate>
-			<Frequency>1.0</Frequency>
+			<Frequency>0.1</Frequency>
 			<Prefabs>
 				<Prefab SubtypeId="NUN [GAAL] Chad Shuttle">
 					<Position>
@@ -303,7 +306,7 @@
 				[SpawnConditionsProfiles:GVK-Test-SpawnCondition-Aircraft]
 			</Description>
 			<IsPirate>true</IsPirate>
-			<Frequency>1.0</Frequency>
+			<Frequency>0.1</Frequency>
 			<Prefabs>
 				<Prefab SubtypeId="NUN [GAAL] GR-650">
 					<Position>
@@ -331,7 +334,7 @@
 				[SpawnConditionsProfiles:GVK-Test-SpawnCondition-Aircraft]
 			</Description>
 			<IsPirate>true</IsPirate>
-			<Frequency>1.0</Frequency>
+			<Frequency>0.1</Frequency>
 			<Prefabs>
 				<Prefab SubtypeId="NUN [GAAL] Foxhound">
 					<Position>
@@ -359,7 +362,7 @@
 				[SpawnConditionsProfiles:GVK-Test-SpawnCondition-Hovers]
 			</Description>
 			<IsPirate>true</IsPirate>
-			<Frequency>1.0</Frequency>
+			<Frequency>0.1</Frequency>
 			<Prefabs>
 				<Prefab SubtypeId="NUN [GAAL] Sandskimmer">
 					<Position>
@@ -388,7 +391,7 @@
 				[SpawnConditionsProfiles:GVK-Test-SpawnCondition-Cruisers]
 			</Description>
 			<IsPirate>true</IsPirate>
-			<Frequency>1.0</Frequency>
+			<Frequency>0.1</Frequency>
 			<Prefabs>
 				<Prefab SubtypeId="NUN [GAAL] Honorguard Cruiser">
 					<Position>
@@ -417,7 +420,7 @@
 				[SpawnConditionsProfiles:GVK-Test-SpawnCondition-Cruisers]
 			</Description>
 			<IsPirate>true</IsPirate>
-			<Frequency>1.0</Frequency>
+			<Frequency>0.1</Frequency>
 			<Prefabs>
 				<Prefab SubtypeId="NUN [GAAL] Assault Cruiser">
 					<Position>
@@ -446,7 +449,7 @@
 				[SpawnConditionsProfiles:GVK-Test-SpawnCondition-Rovers]
 			</Description>
 			<IsPirate>true</IsPirate>
-			<Frequency>1.0</Frequency>
+			<Frequency>0.1</Frequency>
 			<Prefabs>
 				<Prefab SubtypeId="NUN [SOBA] Battlecruiser">
 					<Position>
@@ -474,7 +477,7 @@
 				[SpawnConditionsProfiles:GVK-Test-SpawnCondition-Rovers]
 			</Description>
 			<IsPirate>true</IsPirate>
-			<Frequency>1.0</Frequency>
+			<Frequency>0.1</Frequency>
 			<Prefabs>
 				<Prefab SubtypeId="NUN [SOBA] Salvager">
 					<Position>
@@ -502,7 +505,7 @@
 				[SpawnConditionsProfiles:GVK-Test-SpawnCondition-AircraftCOALITION]
 			</Description>
 			<IsPirate>true</IsPirate>
-			<Frequency>1.0</Frequency>
+			<Frequency>0.1</Frequency>
 			<Prefabs>
 				<Prefab SubtypeId="NUN [COAL] Strike Fighter">
 					<Position>
@@ -541,7 +544,7 @@
 				[SpawnConditionsProfiles:GVK-Test-SpawnCondition-AircraftSOBAN]
 			</Description>
 			<IsPirate>true</IsPirate>
-			<Frequency>1.0</Frequency>
+			<Frequency>0.1</Frequency>
 			<Prefabs>
 				<Prefab SubtypeId="NUN [SOBA] Strike Fighter">
 					<Position>
@@ -580,7 +583,7 @@
 				[SpawnConditionsProfiles:GVK-Test-SpawnCondition-SmallConvoy]
 			</Description>
 			<IsPirate>true</IsPirate>
-			<Frequency>1.0</Frequency>
+			<Frequency>0.1</Frequency>
 			<Prefabs>
 				<Prefab SubtypeId="NUN [GAAL] Production Cruiser">
 					<Position>
@@ -607,7 +610,7 @@
 				[ManipulationProfiles:GVK-Test-Manipulation-RecolorWreck]
 			</Description>
 			<IsPirate>true</IsPirate>
-			<Frequency>1.0</Frequency>
+			<Frequency>0.1</Frequency>
 			<Prefabs>
 				<Prefab SubtypeId="NWS Lacewing">
 					<Position>
@@ -634,7 +637,7 @@
 				[ManipulationProfiles:GVK-Test-Manipulation-RecolorColors]
 			</Description>
 			<IsPirate>true</IsPirate>
-			<Frequency>1.0</Frequency>
+			<Frequency>0.1</Frequency>
 			<Prefabs>
 				<Prefab SubtypeId="NWS Lacewing">
 					<Position>
@@ -663,7 +666,7 @@
 				[CutVoxelSize:15]
 			</Description>
 			<IsPirate>true</IsPirate>
-			<Frequency>1.0</Frequency>
+			<Frequency>0.1</Frequency>
 			<Prefabs>
 				<Prefab SubtypeId="NWM Armed Mining Tender">
 					<Position>
@@ -691,7 +694,7 @@
 				[CutVoxelSize:15]
 			</Description>
 			<IsPirate>true</IsPirate>
-			<Frequency>1.0</Frequency>
+			<Frequency>0.1</Frequency>
 			<Prefabs>
 				<Prefab SubtypeId="NWL Falco">
 					<Position>
@@ -719,7 +722,7 @@
 				[SpawnConditionsProfiles:GVK-Test-SpawnCondition-RelationSOBAN]
 			</Description>
 			<IsPirate>true</IsPirate>
-			<Frequency>1.0</Frequency>
+			<Frequency>0.1</Frequency>
 			<Prefabs>
 				<Prefab SubtypeId="NUN [SOBA] LAV">
 					<Position>
@@ -745,7 +748,7 @@
 				[SpawnConditionsProfiles:GVK-Test-SpawnCondition-RelationCOALITION]
 			</Description>
 			<IsPirate>true</IsPirate>
-			<Frequency>1.0</Frequency>
+			<Frequency>0.1</Frequency>
 			<Prefabs>
 				<Prefab SubtypeId="NUN [SOBA] LAV">
 					<Position>
@@ -770,6 +773,7 @@
 			[MES Spawn Conditions]
 			[DroneEncounter:true]
 			[AdminSpawnOnly:true]
+			[SandboxVariables:GVK_TestSpawns]
 			[MinDroneDistance:300]
 			[MaxDroneDistance:400]
 			[//MES default drone altitude is 1000 m, measured above the surface at the spawn centre. 50 m keeps a slope under the side LAVs below them]
@@ -790,6 +794,7 @@
 			[MES Spawn Conditions]
 			[DroneEncounter:true]
 			[AdminSpawnOnly:true]
+			[SandboxVariables:GVK_TestSpawns]
 			[MinDroneDistance:600]
 			[MaxDroneDistance:800]
 			[//The hulls are ~30 m tall and up to 88 m long, spread over 150 m of terrain: 40 m sank them into dunes, so 75 m]
@@ -810,6 +815,7 @@
 			[MES Spawn Conditions]
 			[DroneEncounter:true]
 			[AdminSpawnOnly:true]
+			[SandboxVariables:GVK_TestSpawns]
 			[MinDroneDistance:400]
 			[MaxDroneDistance:600]
 			[//Battlecruiser is the biggest: 40 m clears a slope under it without a long drop]
@@ -830,6 +836,7 @@
 			[MES Spawn Conditions]
 			[DroneEncounter:true]
 			[AdminSpawnOnly:true]
+			[SandboxVariables:GVK_TestSpawns]
 			[MinDroneDistance:400]
 			[MaxDroneDistance:600]
 			[//Same as the cruiser test: hover engines pull the hull down onto the terrain below]
@@ -850,6 +857,7 @@
 			[MES Spawn Conditions]
 			[DroneEncounter:true]
 			[AdminSpawnOnly:true]
+			[SandboxVariables:GVK_TestSpawns]
 			[MinDroneDistance:800]
 			[MaxDroneDistance:1000]
 			[MinDroneAltitude:500]
@@ -870,6 +878,7 @@
 			[//The aircraft test condition with a COALITION owner]
 			[DroneEncounter:true]
 			[AdminSpawnOnly:true]
+			[SandboxVariables:GVK_TestSpawns]
 			[MinDroneDistance:800]
 			[MaxDroneDistance:1000]
 			[MinDroneAltitude:500]
@@ -890,6 +899,7 @@
 			[//The aircraft test condition with a SOBAN owner, for the Strike Fighters]
 			[DroneEncounter:true]
 			[AdminSpawnOnly:true]
+			[SandboxVariables:GVK_TestSpawns]
 			[MinDroneDistance:800]
 			[MaxDroneDistance:1000]
 			[MinDroneAltitude:500]
@@ -909,6 +919,7 @@
 			[MES Spawn Conditions]
 			[DroneEncounter:true]
 			[AdminSpawnOnly:true]
+			[SandboxVariables:GVK_TestSpawns]
 			[MinDroneDistance:800]
 			[MaxDroneDistance:1000]
 			[MinDroneAltitude:75]
@@ -932,6 +943,7 @@
 			[DisallowedTerrainTypes:Rock]
 			[PlanetaryInstallationType:Medium]
 			[AdminSpawnOnly:true]
+			[SandboxVariables:GVK_TestSpawns]
 			[FactionOwner:DERELICT]
 			[ForceStaticGrid:true]
 			</Description>
@@ -948,6 +960,7 @@
 			[DisallowedTerrainTypes:Rock]
 			[PlanetaryInstallationType:Large]
 			[AdminSpawnOnly:true]
+			[SandboxVariables:GVK_TestSpawns]
 			[FactionOwner:DERELICT]
 			[ForceStaticGrid:true]
 			</Description>
@@ -965,6 +978,7 @@
 			[DisallowedTerrainTypes:Rock]
 			[PlanetaryInstallationType:Small]
 			[AdminSpawnOnly:true]
+			[SandboxVariables:GVK_TestSpawns]
 			[FactionOwner:DERELICT]
 			[ForceStaticGrid:true]
 			</Description>
@@ -1150,6 +1164,7 @@
 			[MES Spawn Conditions]
 			[DroneEncounter:true]
 			[AdminSpawnOnly:true]
+			[SandboxVariables:GVK_TestSpawns]
 			[MinDroneDistance:150]
 			[MaxDroneDistance:200]
 			[MinDroneAltitude:50]
@@ -1170,6 +1185,7 @@
 			[//The SOBAN condition with a COALITION owner]
 			[DroneEncounter:true]
 			[AdminSpawnOnly:true]
+			[SandboxVariables:GVK_TestSpawns]
 			[MinDroneDistance:150]
 			[MaxDroneDistance:200]
 			[MinDroneAltitude:50]

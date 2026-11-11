@@ -12,6 +12,7 @@ Set them with `/MES.Debug.ChangeBool.<Name>.<true|false>`. When to switch each o
 | Variable | Kind | Read in | Written in |
 | --- | --- | --- | --- |
 | `GVK_ConvoyContractActive` | bool | GVK-ConvoyContracts-Missions | GVK-Convoy-Events, GVK-ConvoyContracts-Board +3 |
+| `GVK_TestSpawns` | bool (set by admin command only) | GVK-Test-SpawnGroups | - |
 | `GVK_TransportArrived_A` | bool | GVK-ConvoyContracts-RouteA | GVK-Convoy-Events, GVK-ConvoyContracts-Board +1 |
 | `GVK_TransportArrived_A_Double` | bool | GVK-ConvoyContracts-RouteA | GVK-Convoy-Events, GVK-ConvoyContracts-Board +1 |
 | `GVK_TransportArrived_B` | bool | GVK-ConvoyContracts-RouteB | GVK-Convoy-Events, GVK-ConvoyContracts-Board +1 |
