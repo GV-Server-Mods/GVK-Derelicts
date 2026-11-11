@@ -6,7 +6,7 @@
 		     on, it floated off bumps on its upward thruster, so that thruster is saved turned off in the LAV prefabs -->
 		<!-- AngleAllowedForForwardThrust never above 90: past that, forward thrust pushes the wing away from its slot.
 		     The LAV uses 45: with dampeners off, at 90 it thrusted toward a slot beside it and orbited the slot at full speed. Try 90 with dampeners on -->
-		<!-- EscortSpeedMatchMinDistance 20 (both wings, the same speed-match setup): inside it the wing holds the leader's speed, so it doesn't overshoot its slot and turn back. At 10 the air wing still overshot -->
+		<!-- EscortSpeedMatchMinDistance 20 (the LAVWing; the HoverWing uses the air wing's approach, see its profile): inside it the wing holds the leader's speed, so it doesn't overshoot its slot and turn back. At 10 the air wing still overshot -->
 		<!-- LAVWing steering: LimitRotationSpeed caps the turn rate at the heading error in radians per second (before the yaw multiplier) and cuts the gyro when it's exceeded,
 		     so a higher RotationMultiplierYaw only made it jerk. It's off here; MaxRotationStep (read only with UseAircraftFlightModel, which does nothing else on a ground unit
 		     without the other flight model tags) smooths the turn instead. MaxRotationMagnitude isn't a cap on the request: once an axis already turns faster than it, MES asks for 0 on that axis.
@@ -89,15 +89,16 @@
 				[WaypointAbandonTimeTrigger:30]
 				[WaypointWaitTimeTrigger:30]
 				[IdealMinSpeed:10]
-				[//150: the engine's small-grid speed cap (GVK_Pertam_Planet Environment.sbc); 55 m/s over the Sandskimmer's Strike runs (95) and 50 over the Small Hover Horsefly (100). Within EscortSpeedMatchMaxDistance the wing's edge shrinks toward its slot, so it needs a large one to catch up.]
-				[IdealMaxSpeed:150]
+				[//125: 30 m/s over the Sandskimmer's Strike runs (95), 25 over the Small Hover Horsefly (100). A Sandskimmer brakes on only 2 small thrusters (about 7.7 m/s2 at 5x NPC thrust), so it sheds 30 m/s in about 60 m; at 150 it needed about 200 m and passed its slot (C18, 2026-11-11).]
+				[IdealMaxSpeed:125]
 				[//2: MES brakes only above the speed cap plus this, so at 5 the wing could reach its slot 5 m/s faster than the leader.]
 				[MaxSpeedTolerance:2]
 				[AngleAllowedForForwardThrust:90]
 				[MaxVelocityAngleForSpeedControl:180]
 				[EscortUsesRelativeDampening:false]
-				[EscortSpeedMatchMinDistance:20]
-				[EscortSpeedMatchMaxDistance:200]
+				[//Min 80, Max 350, as the air wing (170/300): the wing holds the leader's speed from 80 m out and slows over 270 m, so it arrives at the leader's speed and settles about 80 m behind its slot (the Sandskimmer slots sit 50 m ahead to match). At 20/200 it reached the slot still fast and overshot (C18, 2026-11-11).]
+				[EscortSpeedMatchMinDistance:80]
+				[EscortSpeedMatchMaxDistance:350]
 				[UseProjectileLeadPrediction:false]
 			</Description>
 		</EntityComponent>
