@@ -11,16 +11,16 @@ Set them with `/MES.Debug.ChangeBool.<Name>.<true|false>`. When to switch each o
 
 | Variable | Kind | Read in | Written in |
 | --- | --- | --- | --- |
-| `GVK_ConvoyContractActive` | bool | GVK-ConvoyContracts-Missions | GVK-ConvoyContracts-Board, GVK-ConvoyContracts-RouteA +3 |
-| `GVK_TransportArrived_A` | bool | GVK-ConvoyContracts-RouteA | GVK-ConvoyContracts-Board, GVK-Convoy-Events +1 |
-| `GVK_TransportArrived_A_Double` | bool | GVK-ConvoyContracts-RouteA | GVK-ConvoyContracts-Board, GVK-Convoy-Events +1 |
-| `GVK_TransportArrived_B` | bool | GVK-ConvoyContracts-RouteB | GVK-ConvoyContracts-Board, GVK-Convoy-Events +1 |
-| `GVK_TransportArrived_E` | bool | GVK-ConvoyContracts-RouteE | GVK-ConvoyContracts-Board, GVK-Convoy-Events +1 |
-| `GVK_TransportLost_A` | bool | GVK-ConvoyContracts-RouteA | GVK-ConvoyContracts-Board, GVK-ConvoyContracts-RouteA +1 |
-| `GVK_TransportLost_A_Lead` | bool | GVK-ConvoyContracts-RouteA | GVK-ConvoyContracts-Board, GVK-ConvoyContracts-RouteA +1 |
-| `GVK_TransportLost_A_Tail` | bool | GVK-ConvoyContracts-RouteA | GVK-ConvoyContracts-Board, GVK-ConvoyContracts-RouteA +1 |
-| `GVK_TransportLost_B` | bool | GVK-ConvoyContracts-RouteB | GVK-ConvoyContracts-Board, GVK-ConvoyContracts-RouteB +1 |
-| `GVK_TransportLost_E` | bool | GVK-ConvoyContracts-RouteE | GVK-ConvoyContracts-Board, GVK-ConvoyContracts-RouteE +1 |
+| `GVK_ConvoyContractActive` | bool | GVK-ConvoyContracts-Missions | GVK-Convoy-Events, GVK-ConvoyContracts-Board +3 |
+| `GVK_TransportArrived_A` | bool | GVK-ConvoyContracts-RouteA | GVK-Convoy-Events, GVK-ConvoyContracts-Board +1 |
+| `GVK_TransportArrived_A_Double` | bool | GVK-ConvoyContracts-RouteA | GVK-Convoy-Events, GVK-ConvoyContracts-Board +1 |
+| `GVK_TransportArrived_B` | bool | GVK-ConvoyContracts-RouteB | GVK-Convoy-Events, GVK-ConvoyContracts-Board +1 |
+| `GVK_TransportArrived_E` | bool | GVK-ConvoyContracts-RouteE | GVK-Convoy-Events, GVK-ConvoyContracts-Board +1 |
+| `GVK_TransportLost_A` | bool | GVK-ConvoyContracts-RouteA | GVK-Convoy-Events, GVK-ConvoyContracts-Board +1 |
+| `GVK_TransportLost_A_Lead` | bool | GVK-ConvoyContracts-RouteA | GVK-Convoy-Events, GVK-ConvoyContracts-Board +1 |
+| `GVK_TransportLost_A_Tail` | bool | GVK-ConvoyContracts-RouteA | GVK-Convoy-Events, GVK-ConvoyContracts-Board +1 |
+| `GVK_TransportLost_B` | bool | GVK-ConvoyContracts-RouteB | GVK-Convoy-Events, GVK-ConvoyContracts-Board +1 |
+| `GVK_TransportLost_E` | bool | GVK-ConvoyContracts-RouteE | GVK-Convoy-Events, GVK-ConvoyContracts-Board +1 |
 | `KOTHsEnabled` | bool (set by admin command only) | GVK-Static-KOTH-Site-SpawnGroup | - |
 | `LargeWrecksEnabled` | bool (set by admin command only) | GVK-Convoy-GaalsienCarrierGroup-Lead-SpawnCondition, GVK-PlanetaryInstallation-All-SpawnCondition | - |
 | `MediumWrecksEnabled` | bool (set by admin command only) | GVK-Alliance-PresetBases-SpawnConditions, GVK-Convoy-GaalsienSmallConvoy-Lead-SpawnCondition +2 | - |
@@ -52,12 +52,12 @@ Prefab names start with a three-letter tag, then the 4-letter faction tag, to re
 | `NKO` | KOTH Site | 7 | `NKO [KOTH] Crashed Starship` |
 | `NLO` | Cache | 2 | `NLO Ammo Cache` |
 | `NMI` | Mission Giver | 7 | `NMI [COAL] Relay Station 1` |
-| `NST` | Static | 26 | `NST Convoy Station` |
-| `NTS` | Trade Station | 14 | `NTS Store Test` |
+| `NST` | Static | 26 | `NST [KHAA] Carrier` |
+| `NTS` | Trade Station | 14 | `NTS [COAL] Angels Landing` |
 | `NUN` | Unit | 67 | `NUN [COAL] Assault Cruiser` |
-| `NWL` | Large Wreck | 36 | `NWL Crusader back` |
-| `NWM` | Medium Wreck | 50 | `NWM Ambassador Explorer` |
-| `NWS` | Small Wreck | 58 | `NWS Abandoned Farmstead` |
+| `NWL` | Large Wreck | 36 | `NWL [COAL] Storage Depot` |
+| `NWM` | Medium Wreck | 50 | `NWM [GAAL] Dome` |
+| `NWS` | Small Wreck | 58 | `NWS [COAL] Combat Baserunner` |
 <!-- /GENERATED:prefab-tags -->
 
 ## Behavior inits
