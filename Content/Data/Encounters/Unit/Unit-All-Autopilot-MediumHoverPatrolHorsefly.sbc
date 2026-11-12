@@ -2,7 +2,7 @@
 <Definitions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
 	<EntityComponents>
 		<!-- MediumHoverHorsefly Autopilot -->
-		<!-- Steering: the hover cruiser recipe (Unit-All-Autopilot-HoverCruiserHorsefly.sbc explains it). Low pitch so it does not backflip toward a waypoint behind it; MaxRotationStep 0.5 keeps the gyros at full strength; MaxRotationMagnitude sets the turn rate; banks up to 15 degrees into turns for looks -->
+		<!-- Steering: the hover cruiser recipe (Unit-All-Autopilot-HoverCruiserHorsefly.sbc explains it). Pitch 3 like the LAV: LimitPitchTurning stops the backflip toward a waypoint behind it, and at 0.05 (kept low for that before) the Light Assault Platform had almost no pitch control (C23, 2026-11-11); MaxRotationStep 0.5 keeps the gyros at full strength; MaxRotationMagnitude sets the turn rate; banks up to 15 degrees into turns for looks -->
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
@@ -12,7 +12,7 @@
 				[RivalAI Autopilot]
 				[UseVelocityCollisionEvasion:false]
 				[UseProjectileLeadPrediction:false]
-				[RotationMultiplierPitch:0.05]
+				[RotationMultiplierPitch:3]
 				[RotationMultiplierYaw:3]
 				[RotationMultiplierRoll:2]
 				[//LimitPitchTurning: turns with yaw instead of pointing its nose up at a waypoint behind it, as the baserunners (owner, 2026-11-11).]
@@ -58,7 +58,7 @@
 				[RivalAI Autopilot]
 				[UseVelocityCollisionEvasion:false]
 				[UseProjectileLeadPrediction:false]
-				[RotationMultiplierPitch:0.05]
+				[RotationMultiplierPitch:3]
 				[RotationMultiplierYaw:3]
 				[RotationMultiplierRoll:2]
 				[LimitPitchTurning:true]
@@ -106,7 +106,7 @@
 				[RivalAI Autopilot]
 				[UseVelocityCollisionEvasion:false]
 				[UseProjectileLeadPrediction:false]
-				[RotationMultiplierPitch:0.05]
+				[RotationMultiplierPitch:3]
 				[RotationMultiplierYaw:3]
 				[RotationMultiplierRoll:2]
 				[LimitPitchTurning:true]
