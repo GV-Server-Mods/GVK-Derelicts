@@ -10,6 +10,8 @@
 			</Id>
 			<Description>
 			[RivalAI Autopilot]
+			[//Off, as every other ground profile: near the ground MES often picks an evade point straight up, so a grid, shield or safe zone in its path could send it climbing (GVK-Settings#731; owner, 2026-11-11).]
+			[UseVelocityCollisionEvasion:false]
 			[RotationMultiplierPitch:1]
 			[RotationMultiplierYaw:3]
 			[RotationMultiplierRoll:2]
@@ -21,6 +23,8 @@
 			[MaxBankAngle:15]
 			[DisableInertiaDampeners:false]
 			[FlyLevelWithGravity:true]
+			[//25, not the default 10: in level mode MES cuts up and forward thrust once the grid tilts past this, and the bank into turns reaches 10 degrees in any turn sharper than about 40, so it coasted through sharp turns (GVK-Settings#731; owner, 2026-11-11).]
+			[HoverUpAngle:25]
 			[LevelWithGravityWhenIdle:true]
 			[IdealPlanetAltitude:15]
 			[MinimumPlanetAltitude:15]
@@ -61,6 +65,7 @@
 			[RollIntoTurnsMultiplier:0.25]
 			[MaxBankAngle:15]
 			[FlyLevelWithGravity:true]
+			[HoverUpAngle:25]
 			[LevelWithGravityWhenIdle:true]
 			[IdealPlanetAltitude:15]
 			[MinimumPlanetAltitude:15]
