@@ -5,8 +5,8 @@
 		<!-- ALLIANCE ZONE SIZE LADDER (MES Events) - STATELESS TIER MARKER DESIGN -->
 		<!-- One event per faction. State: FACTION_Tier sandbox counter holds the   -->
 		<!-- currently-announced radius in km (10/20/30/40/50/55); FACTION_Influence   -->
-		<!-- holds alliance Influence. Missing counters read as 0, so fresh worlds     -->
-		<!-- need no init event (EventConditions.cs GetVariable default).           -->
+		<!-- holds alliance Influence. A missing counter fails every condition (see -->
+		<!-- CRITICAL below), so two Bootstrap events create the counters.          -->
 		<!-- [ActionExecution:Condition] runs ONLY the action whose index matches   -->
 		<!-- the satisfied condition index - ConditionIds/ActionIds stay index      -->
 		<!-- aligned. Conditions fire only when Influence sits in a band AND Tier differs -->
@@ -31,6 +31,9 @@
 		<!-- Bootstrap event (UniqueEvent:true - RunCount is serialized, so it      -->
 		<!-- fires exactly once per world) creates both Tier markers before any     -->
 		<!-- band condition can reference them; without it the ladder deadlocks.    -->
+		<!-- Its conditions read Influence, so the Influence Bootstrap (no         -->
+		<!-- conditions, +1 then -1) creates both Influence counters first; an      -->
+		<!-- existing counter keeps its value (GVK-Settings#688).                   -->
 		<!-- ==================================================================== -->
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
@@ -1132,6 +1135,40 @@
 				[ActionIds:GVK-Alliance-EventAction-ZoneLadder-12-SOBAN]
 				[ActionIds:GVK-Alliance-EventAction-ZoneLadder-13-SOBAN]
 				[ActionExecution:Condition]
+			</Description>
+		</EntityComponent>
+		<!-- =================================================== -->
+		<!-- BOOTSTRAP: one-shot Influence counter creation        -->
+		<!-- Fires once per world (UniqueEvent), with no          -->
+		<!-- conditions. +1 then -1 in one action: a missing      -->
+		<!-- counter becomes 0, an existing one keeps its value.  -->
+		<!-- =================================================== -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-EventAction-Influence-Bootstrap</SubtypeId>
+			</Id>
+			<Description>
+				[MES Event Action]
+				[ChangeCounters:true]
+				[IncreaseCounters:KHAANEPH_Influence,SOBAN_Influence]
+				[IncreaseCountersAmount:1,1]
+				[DecreaseCounters:KHAANEPH_Influence,SOBAN_Influence]
+				[DecreaseCountersAmount:1,1]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Alliance-Event-Influence-Bootstrap</SubtypeId>
+			</Id>
+			<Description>
+				[MES Event]
+				[UseEvent:true]
+				[UniqueEvent:true]
+				[StartsReady:true]
+				[ActionIds:GVK-Alliance-EventAction-Influence-Bootstrap]
+				[ActionExecution:All]
 			</Description>
 		</EntityComponent>
 		<!-- =================================================== -->
