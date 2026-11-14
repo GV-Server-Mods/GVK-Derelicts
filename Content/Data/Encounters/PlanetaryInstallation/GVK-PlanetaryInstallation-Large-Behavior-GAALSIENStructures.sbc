@@ -19,6 +19,7 @@
 			[UseNoTargetTimer:false]
 			[TargetData:GVK-Universal-Target-EnemyGridsLongRange-GAALSIEN]
 			[Triggers:GVK-PlanetaryInstallation-Large-Trigger-GAALSIENHangarInit]
+			[Triggers:GVK-PlanetaryInstallation-Large-Trigger-GAALSIENStructureInitChat]
 			[Triggers:GVK-Universal-Trigger-WeaponsToMaxRange]
 			[Triggers:GVK-Universal-Trigger-TargetAcquiredChatter]
 			[Triggers:GVK-Universal-ManualTrigger-TargetCallout-Structure]
@@ -64,8 +65,8 @@
 			[CustomStrings:EncounterDisplayName,Hangar]
 			[SetCustomCountersVariables:true]
 			[CustomCountersVariables:DefenseSpawn_Limit,8]
-			[UseChatBroadcast:true]
-			[ChatData:GVK-PlanetaryInstallation-Large-Chat-GAALSIENStructureInit]
+			[EnableTriggers:true]
+			[EnableTriggerNames:GVK-PlanetaryInstallation-Large-Trigger-GAALSIENStructureInitChat]
 			</Description>
 		</EntityComponent>
 		<!-- Fortress (NWL [GAAL] Fortress). Identical to the other behavior in this file apart from its display name. -->
@@ -86,6 +87,7 @@
 			[UseNoTargetTimer:false]
 			[TargetData:GVK-Universal-Target-EnemyGridsLongRange-GAALSIEN]
 			[Triggers:GVK-PlanetaryInstallation-Large-Trigger-GAALSIENFortressInit]
+			[Triggers:GVK-PlanetaryInstallation-Large-Trigger-GAALSIENStructureInitChat]
 			[Triggers:GVK-Universal-Trigger-WeaponsToMaxRange]
 			[Triggers:GVK-Universal-Trigger-TargetAcquiredChatter]
 			[Triggers:GVK-Universal-ManualTrigger-TargetCallout-Structure]
@@ -131,8 +133,8 @@
 			[CustomStrings:EncounterDisplayName,Fortress]
 			[SetCustomCountersVariables:true]
 			[CustomCountersVariables:DefenseSpawn_Limit,8]
-			[UseChatBroadcast:true]
-			[ChatData:GVK-PlanetaryInstallation-Large-Chat-GAALSIENStructureInit]
+			[EnableTriggers:true]
+			[EnableTriggerNames:GVK-PlanetaryInstallation-Large-Trigger-GAALSIENStructureInitChat]
 			</Description>
 		</EntityComponent>
 		<!-- Server-wide "GAALSIEN <Hangar|Fortress> detected." on spawn -->
@@ -154,6 +156,35 @@
 			[ChatAudio:ArcHudSensors]
 			[BroadcastChatType:Both]
 			[SendToAllOnlinePlayers:true]
+			</Description>
+		</EntityComponent>
+		<!-- Spawn chat: off until the init turns it on, so it first runs a trigger pass after the KOTH and Zone 0 despawn checks (Docs/design/koth-despawn.md) -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-PlanetaryInstallation-Large-Trigger-GAALSIENStructureInitChat</SubtypeId>
+			</Id>
+			<Description>
+			[MES AI Trigger]
+			[UseTrigger:false]
+			[Type:Timer]
+			[StartsReady:true]
+			[MinCooldownMs:1000]
+			[MaxCooldownMs:1001]
+			[MaxActions:1]
+			[Conditions:GVK-Universal-Condition-NotDespawnedByRule]
+			[Actions:GVK-PlanetaryInstallation-Large-Action-GAALSIENStructureInitChat]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-PlanetaryInstallation-Large-Action-GAALSIENStructureInitChat</SubtypeId>
+			</Id>
+			<Description>
+			[MES AI Action]
+			[UseChatBroadcast:true]
+			[ChatData:GVK-PlanetaryInstallation-Large-Chat-GAALSIENStructureInit]
 			</Description>
 		</EntityComponent>
 	</EntityComponents>

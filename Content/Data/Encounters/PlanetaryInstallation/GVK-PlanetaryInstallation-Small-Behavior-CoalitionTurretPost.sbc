@@ -22,6 +22,7 @@
 			[Triggers:GVK-PlanetaryInstallation-Small-Trigger-COALITIONTurretPostRepaired1]
 			[Triggers:GVK-PlanetaryInstallation-Small-Trigger-COALITIONTurretPostRepaired2]
 			[Triggers:GVK-PlanetaryInstallation-Small-Trigger-COALITIONTurretPostOnSpawn]
+			[Triggers:GVK-PlanetaryInstallation-Small-Trigger-COALITIONTurretPostOnSpawnChat]
 			[Triggers:GVK-PlanetaryInstallation-Small-Trigger-COALITIONTurretPostButtonPress]
 			[TriggerGroups:GVK-Universal-TriggerGroup-DespawnInKOTH]
 			[TriggerGroups:GVK-Universal-TriggerGroup-SendTargets]
@@ -54,8 +55,8 @@
 			<Description>
 			[RivalAI Action]
 			[Chance:100]
-			[UseChatBroadcast:true]
-			[ChatData:GVK-PlanetaryInstallation-Small-Chat-COALITIONTurretPostOnSpawn]
+			[EnableTriggers:true]
+			[EnableTriggerNames:GVK-PlanetaryInstallation-Small-Trigger-COALITIONTurretPostOnSpawnChat]
 			</Description>
 		</EntityComponent>
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
@@ -328,6 +329,35 @@
 				[SetCustomStrings:true]
 				[CustomStrings:EncounterType,WreckSmall]
 				[CustomStrings:EncounterDisplayName,Turret Post]
+			</Description>
+		</EntityComponent>
+		<!-- Spawn chat: off until the init turns it on, so it first runs a trigger pass after the KOTH and Zone 0 despawn checks (Docs/design/koth-despawn.md) -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-PlanetaryInstallation-Small-Trigger-COALITIONTurretPostOnSpawnChat</SubtypeId>
+			</Id>
+			<Description>
+			[MES AI Trigger]
+			[UseTrigger:false]
+			[Type:Timer]
+			[StartsReady:true]
+			[MinCooldownMs:1000]
+			[MaxCooldownMs:1001]
+			[MaxActions:1]
+			[Conditions:GVK-Universal-Condition-NotDespawnedByRule]
+			[Actions:GVK-PlanetaryInstallation-Small-Action-COALITIONTurretPostOnSpawnChat]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-PlanetaryInstallation-Small-Action-COALITIONTurretPostOnSpawnChat</SubtypeId>
+			</Id>
+			<Description>
+			[MES AI Action]
+			[UseChatBroadcast:true]
+			[ChatData:GVK-PlanetaryInstallation-Small-Chat-COALITIONTurretPostOnSpawn]
 			</Description>
 		</EntityComponent>
 	</EntityComponents>

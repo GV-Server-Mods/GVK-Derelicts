@@ -21,6 +21,7 @@
 				[Triggers:GVK-Universal-Trigger-UneditableOnSpawn]
 				[Triggers:GVK-Universal-Trigger-WeaponsToMaxRange]
 				[Triggers:GVK-PlanetaryInstallation-Medium-Trigger-COALITIONWreckInit1]
+				[Triggers:GVK-PlanetaryInstallation-Medium-Trigger-COALITIONWreckInitChat]
 				[Triggers:GVK-PlanetaryInstallation-Medium-Trigger-COALITIONWreckInit2]
 				[Triggers:GVK-PlanetaryInstallation-Medium-Trigger-COALITIONWreckCompromised]
 				[Triggers:GVK-PlanetaryInstallation-Medium-Trigger-COALITIONWreckHasTarget]
@@ -62,8 +63,8 @@
 				[CustomStrings:EncounterDisplayName,Distress Signal]
 				[SetCustomCountersVariables:true]
 				[CustomCountersVariables:DefenseSpawn_Limit,6]
-				[UseChatBroadcast:true]
-				[ChatData:GVK-PlanetaryInstallation-Medium-Chat-COALITIONWreckInit1]
+				[EnableTriggers:true]
+				[EnableTriggerNames:GVK-PlanetaryInstallation-Medium-Trigger-COALITIONWreckInitChat]
 			</Description>
 		</EntityComponent>
 		<!-- Unique chat just for this encounter -->
@@ -453,6 +454,35 @@
 				[MaxAltitude:51]
 				[InheritNpcAltitude:false]
 				[IgnoreSafetyChecks:true]
+			</Description>
+		</EntityComponent>
+		<!-- Spawn chat: off until the init turns it on, so it first runs a trigger pass after the KOTH and Zone 0 despawn checks (Docs/design/koth-despawn.md) -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-PlanetaryInstallation-Medium-Trigger-COALITIONWreckInitChat</SubtypeId>
+			</Id>
+			<Description>
+			[MES AI Trigger]
+			[UseTrigger:false]
+			[Type:Timer]
+			[StartsReady:true]
+			[MinCooldownMs:1000]
+			[MaxCooldownMs:1001]
+			[MaxActions:1]
+			[Conditions:GVK-Universal-Condition-NotDespawnedByRule]
+			[Actions:GVK-PlanetaryInstallation-Medium-Action-COALITIONWreckInitChat]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-PlanetaryInstallation-Medium-Action-COALITIONWreckInitChat</SubtypeId>
+			</Id>
+			<Description>
+			[MES AI Action]
+			[UseChatBroadcast:true]
+			[ChatData:GVK-PlanetaryInstallation-Medium-Chat-COALITIONWreckInit1]
 			</Description>
 		</EntityComponent>
 	</EntityComponents>
