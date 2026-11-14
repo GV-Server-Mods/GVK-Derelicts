@@ -212,5 +212,23 @@
 			[IgnoreSafetyChecks:true]
 			</Description>
 		</EntityComponent>
+		<!-- Scraptown, Z3, captured on foot. Same defenders as Khar Toba (owner, 2026-11-14: keep them), plus the store
+		     refresh so the Store-Scraptown stores stock the ScrapTownKoth profile (it buys Smuggled Goods) around the clock. -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Static-KOTH-Site04-Behavior</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Behavior]
+			[BehaviorName:Passive]
+			[UseRetreatTimer:false]
+			[UseNoTargetTimer:false]
+			[UsePlayerDistanceTimer:false]
+			[Triggers:GVK-Static-KOTH-Site01-Trigger-PlayerNear]
+			[TriggerGroups:GVK-Store-TriggerGroup-UpdateStores]
+			[RemoteControlCode:GVK-Static]
+			</Description>
+		</EntityComponent>
 	</EntityComponents>
 </Definitions>
