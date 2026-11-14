@@ -1,9 +1,9 @@
 # GVK_Derelicts
 
-Every NPC on the **GV: Deserts of Kharak (GVK)** server: wrecks, Units, convoys, alliance bases, freighters, KOTH sites and what they say. It is MES (Modular Encounters Systems) and RivalAI data, plus two small scripts. Workshop item: GVK11 MES NPC Addon (2653133286).
+Every NPC on the **GV: Deserts of Kharak (GVK)** server: wrecks, Units, convoys, alliance bases, freighters, KOTH sites and what they say. It is MES (Modular Encounters Systems) and RivalAI data, plus three small scripts. Workshop item: GVK11 MES NPC Addon (2653133286).
 
 ## How it is built
-- **NPC behavior is data.** Spawn groups, conditions, behaviors, triggers, autopilots and chatter are SBC and XML files that MES reads. The only C# is in `ModScripts/`: a weekly scheduler that fires events through the MES API, and the refuelling tether for the Coalition Route E aerial escort.
+- **NPC behavior is data.** Spawn groups, conditions, behaviors, triggers, autopilots and chatter are SBC and XML files that MES reads. The only C# is in `ModScripts/`: a weekly scheduler that fires events through the MES API, the refuelling tether for the Coalition Route E aerial escort, and the removal of a defeated NPC's core beacons ([design](Docs/design/npc-core-removal.md)).
 - **Repeated structures are generated.** The leash, patrol switch and peer-escort trigger groups come from the `tools/New-*.ps1` generators, so ten behaviors cannot disagree about one rule.
 - **One vocabulary.** Terms (Unit, Wreck, Convoy Contract, Territory and so on) are defined once in [GLOSSARY.md](GLOSSARY.md).
 - **The docs check themselves.** Reference tables are rebuilt from the SBC files, and `tools/Test-Docs.ps1` fails on the mistakes MES never reports.
@@ -55,7 +55,7 @@ Traps this repo hit and documented: escorts falling into MES's one-way retreat (
 | --- | --- |
 | `Content/Data/Encounters/` | Spawn groups, conditions, behaviors, triggers, autopilots, zones, per faction and system |
 | `Content/Data/Prefabs/` | The NPC grids |
-| `ModScripts/` | The weekly event scheduler (`WeeklyScheduler_*.cs`) and the aerial escort refuel session |
+| `ModScripts/` | The weekly event scheduler (`WeeklyScheduler_*.cs`), the aerial escort refuel session and the defeated-NPC core removal (`NpcCoreRemovalSession.cs`) |
 | `Content/Data/StorePrefabs/`, `StoreItems/` | Grids and items the stores sell |
 | `Content/Data/DialogueBanks/` | NPC chat, built from `Docs/dialogue/` |
 | `Docs/design/` | How each system is built ([index](Docs/design/README.md)) |
