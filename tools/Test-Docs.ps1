@@ -20,6 +20,7 @@
     puts back the Unit's own Secondary autopilot; that every dogfight High copy matches its original apart from
     LimitPitchTurning; and that every Break autopilot matches its Dogfight profile apart from the run distances and a bank
     cap no lower than Dogfight's.
+    Checks that no prefab or store prefab carries the Sections plugin's mod storage key (cd844fa4-...).
     Checks every tracked .md file for:
       1. Backticked profile names (GVK-*, Unit-*, RAI-*), prefab names (NWS [COAL] ...) and repo paths
          that no longer exist in Content/ or the repo.
@@ -330,6 +331,15 @@ try {
         foreach ($p in $avoidNames.Keys) {
             if ($n -match $p) { $warnings.Add("name '$n' uses a word GLOSSARY.md avoids; use $($avoidNames[$p])") }
         }
+    }
+
+    # The Sections client plugin (Pulsar) tags blocks with its own mod storage key while the owner builds. No mod registers it,
+    # so a game without the plugin logs a mod storage error for every tagged prefab (GVK-Settings#492). Strip it on import.
+    $sectionsKey = 'cd844fa4-4ac0-4d9c-8a01-73416b225772'
+    $tagged = Get-ChildItem 'Content\Data\Prefabs', 'Content\Data\StorePrefabs' -Filter *.sbc |
+        Select-String -SimpleMatch -Pattern $sectionsKey -List
+    foreach ($hit in $tagged) {
+        $warnings.Add("$($hit.Filename): mod storage key $sectionsKey from the Sections plugin; strip the key and the storage sections it leaves empty")
     }
 
     foreach ($doc in $docs) {
