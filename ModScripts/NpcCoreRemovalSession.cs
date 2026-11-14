@@ -15,7 +15,7 @@ namespace GVK_Derelicts.NpcCoreRemoval
     /// MES reports every RivalAI action just before it runs. When GVK-Universal-Action-Disabled runs,
     /// the grid is queued; a few ticks later, in this component's own update on the game thread, every
     /// NPC-owned core beacon in the grid's mechanical group, and in the pieces split off the same original
-    /// grid, is removed. MES sends that report from inside
+    /// grid, is removed, with its ZoneBlocks (the defeat action used to raze those itself). MES sends that report from inside
     /// the game's damage, grind and close callbacks, so the handler only queues and never throws.
     /// </summary>
     [MySessionComponentDescriptor(MyUpdateOrder.AfterSimulation)]
@@ -31,6 +31,10 @@ namespace GVK_Derelicts.NpcCoreRemoval
         private const int DelayTicks = 10;
 
         private const string LogPrefix = "[GVK NpcCoreRemoval] ";
+
+        // ZoneBlock is not a core; the defeat action used to raze it inside the damage callback, so it is
+        // removed here instead (NPC-owned or unowned). Other zone beacons and cargo scanners stay.
+        private const string ZoneBlockSubtype = "ZoneBlock";
 
         // Every Ship Core core subtype in the GVK pack (GVK_ShipCoreFramework Content/Data/*_core.xml).
         // Zone beacons (ZoneBlock, DrillBlocker, LimitedProdZone, GVK_No*Zone) and cargo scanners are not cores.
@@ -360,7 +364,7 @@ namespace GVK_Derelicts.NpcCoreRemoval
             _toRemove.Clear();
 
             if (removed > 0)
-                MyLog.Default.WriteLineAndConsole(LogPrefix + "Removed " + removed + " core beacon(s) from defeated NPC '" + gridName + "' (" + gridId + ").");
+                MyLog.Default.WriteLineAndConsole(LogPrefix + "Removed " + removed + " core beacon(s) and ZoneBlock(s) from defeated NPC '" + gridName + "' (" + gridId + ").");
         }
 
         private static bool IsNpcCore(IMySlimBlock slim)
@@ -369,7 +373,11 @@ namespace GVK_Derelicts.NpcCoreRemoval
             if (block == null || block.MarkedForClose)
                 return false;
 
-            return CoreSubtypes.Contains(block.BlockDefinition.SubtypeName) && IsNpcIdentity(block.OwnerId);
+            string subtype = block.BlockDefinition.SubtypeName;
+            if (subtype == ZoneBlockSubtype)
+                return block.OwnerId == 0 || IsNpcIdentity(block.OwnerId);
+
+            return CoreSubtypes.Contains(subtype) && IsNpcIdentity(block.OwnerId);
         }
 
         // Same test MES uses for an NPC owner: no Steam id, and a faction made only of NPCs
