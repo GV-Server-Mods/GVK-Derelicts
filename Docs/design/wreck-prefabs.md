@@ -6,7 +6,7 @@ covers:
   - Content/Data/Encounters/GVK-Universal-SpawnGroup-VanillaPlanetaryDisabled.sbc
   - Content/Data/Prefabs/NW*.sbc
 checked-against: MES 13bcb1d
-checked: 2026-11-04
+checked: 2026-11-14
 ---
 
 # Wreck prefabs and vanilla encounters
