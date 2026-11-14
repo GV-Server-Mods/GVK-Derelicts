@@ -20,6 +20,7 @@
     puts back the Unit's own Secondary autopilot; that every dogfight High copy matches its original apart from
     LimitPitchTurning; and that every Break autopilot matches its Dogfight profile apart from the run distances and a bank
     cap no lower than Dogfight's.
+    Checks that no behavior with a KOTH or Zone 0 despawn sends a chat on its spawn pass, before that despawn can stop it.
     Checks that no prefab or store prefab carries the Sections plugin's mod storage key (cd844fa4-...).
     Checks every tracked .md file for:
       1. Backticked profile names (GVK-*, Unit-*, RAI-*), prefab names (NWS [COAL] ...) and repo paths
@@ -147,6 +148,36 @@ try {
         }
         if ($forcesTarget -and $desc -notmatch '\[OverrideTargetData:GVK-Universal-Target-Override(-COALITION)?(-Ground)?\]') {
             $warnings.Add("${name}: can force a target but lacks [OverrideTargetData:GVK-Universal-Target-Override] (or -COALITION), so it would fire back at KOTH")
+        }
+        # A spawn chat waits for the KOTH and Zone 0 despawn checks (Docs/design/koth-despawn.md). MES checks every ready trigger before it runs
+        # any action, so a chat sent on the spawn pass (an init, an early timer, or a manual trigger either one fires) goes out with the despawn.
+        # Triggers with conditions are left out: they wait for something other than the spawn.
+        $despawnsOnSpawn = $false
+        $spawnChats = New-Object System.Collections.Generic.List[string]
+        foreach ($tn in $trigNames) {
+            $td = [string]$profiles[$tn]
+            if (-not $td -or $td -match '\[UseTrigger:false\]') { continue }
+            $acts = @([regex]::Matches($td, '\[Actions:([^\]]+)\]') | ForEach-Object { $_.Groups[1].Value.Trim() })
+            if ($td -match '\[StartsReady:true\]' -and @($acts | Where-Object { [string]$profiles[$_] -match '\[SetBooleansTrue:GVK_DespawnedByRule\]' }).Count) { $despawnsOnSpawn = $true }
+            $minCooldown = if ($td -match '\[MinCooldownMs:(\d+)\]') { [int]$Matches[1] } else { 0 }
+            $onSpawnPass = $td -match '\[Type:Session\]' -or ($td -match '\[Type:Timer\]' -and ($td -match '\[StartsReady:true\]' -or $minCooldown -le 5000))
+            if (-not $onSpawnPass -or $td -match '\[Conditions:') { continue }
+            $seen = New-Object 'System.Collections.Generic.HashSet[string]'
+            $queue = New-Object 'System.Collections.Generic.Queue[string]'
+            $acts | ForEach-Object { $queue.Enqueue($_) }
+            while ($queue.Count) {
+                $an = $queue.Dequeue()
+                if (-not $seen.Add($an)) { continue }
+                $ad = [string]$profiles[$an]
+                if ($ad -match '\[UseChatBroadcast:true\]') { $spawnChats.Add("$tn ($an)") }
+                if ($ad -notmatch '\[ManuallyActivateTrigger:true\]') { continue }
+                foreach ($mt in [regex]::Matches($ad, '\[ManuallyActivatedTriggerNames:([^\]]+)\]')) {
+                    [regex]::Matches([string]$profiles[$mt.Groups[1].Value.Trim()], '\[Actions:([^\]]+)\]') | ForEach-Object { $queue.Enqueue($_.Groups[1].Value.Trim()) }
+                }
+            }
+        }
+        if ($despawnsOnSpawn) {
+            foreach ($sc in $spawnChats) { $warnings.Add("${name}: $sc sends a chat on the spawn pass, before the KOTH/Zone 0 despawn can stop it; send it from a [UseTrigger:false] trigger the init switches on (Docs/design/koth-despawn.md)") }
         }
         # Every Unit on a Patrol<Name> group carries exactly one leash group; the leash is inert without a parent.
         if ($desc -match '\[TriggerGroups:GVK-Unit-All-TriggerGroup-Patrol\w+\]') {

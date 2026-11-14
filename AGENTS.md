@@ -86,6 +86,7 @@ Each kind of fact has exactly one home. Don't copy it anywhere else.
   - dialogue draft rule breaks from `Docs/dialogue/scripts/check_drafts.py`, including a line two factions share word for word
   - a prefab name, profile or spawn group ID, or beacon text using a word GLOSSARY.md avoids (Turret Station, Drop, a non-alliance Outpost)
   - a `[Type:DespawnMES]` trigger without `[DespawnTypeFromSpawner:]`, which never fires (GVK-Settings#698)
+  - a behavior with a KOTH or Zone 0 despawn that sends a chat on its spawn pass (from an init, an early timer, or a manual trigger either one fires). MES checks every ready trigger before it runs any action, so that chat goes out even when the despawn runs. Send it from a `[UseTrigger:false]` trigger the init switches on (`Docs/design/koth-despawn.md`).
   - a Unit on a `Patrol<Name>` group without `GVK-Unit-All-TriggerGroup-CombatKPL`, or a COALITION one with it (every faction but COALITION creates KPLs, and only while it has no parent)
   - a Unit on a `Patrol<Name>` group without exactly one of `GVK-Unit-All-TriggerGroup-LeashGround`/`-LeashAir`, or a behavior that spawns Defense waves, air support or Elite escorts without `GVK-Universal-TriggerGroup-LeashBeacon` (README note 46)
   - an aircraft (`-LeashAir`) whose `Patrol<Name>` group goes back to Patrol no further out than it attacks, counting the range its target profile acquires and keeps a target at. Otherwise a target pulling away drops it to its Patrol altitude every time, and it never catches a high target (GVK-Settings#764)
