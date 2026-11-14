@@ -21,5 +21,5 @@ The old README notes live here. Note numbers are kept because hub issues and too
 | [Parent leash](parent-leash.md) | 46 | 3 | - | MES d500922 |
 | [Preset alliance bases](preset-bases.md) | 30 | 3 | - | MES d500922 |
 | [Server build requirements (MES release)](server-build-requirements.md) | 43 | 3 | 2026-11-09 | MES a1895d9 |
-| [Wreck prefabs and vanilla encounters](wreck-prefabs.md) | 38, 39 | 3 | 2026-11-04 | MES 13bcb1d |
+| [Wreck prefabs and vanilla encounters](wreck-prefabs.md) | 38, 39 | 3 | 2026-11-14 | MES 13bcb1d |
 <!-- /GENERATED:design-docs -->
