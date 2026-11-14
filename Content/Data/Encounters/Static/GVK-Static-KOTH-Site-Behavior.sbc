@@ -214,7 +214,8 @@
 		</EntityComponent>
 		<!-- Scraptown, Z3, captured on foot. Same defenders as Khar Toba (owner, 2026-11-14: keep them), plus the store
 		     refresh: Store-Scraptown gets the ScrapTownKoth profile (it buys Smuggled Goods) and Store-VendingMachine the
-		     VendingMachine one. The stores are saved off; each Respawn_N room's sensor switches its store on after 30 s. -->
+		     VendingMachine one. The stores are saved off; each Respawn_N room's sensor switches its store on after 30 s.
+		     Its spawn points are named PublicSpawnPoint and share with all, as at the KOTH camps (owner, 2026-11-14). -->
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
@@ -227,38 +228,9 @@
 			[UseNoTargetTimer:false]
 			[UsePlayerDistanceTimer:false]
 			[Triggers:GVK-Static-KOTH-Site01-Trigger-PlayerNear]
-			[Triggers:GVK-Static-KOTH-Site04-Trigger-ShareSpawnPoints]
+			[Triggers:GVK-Universal-Trigger-PublicSpawnPoint]
 			[TriggerGroups:GVK-Store-TriggerGroup-UpdateStores]
 			[RemoteControlCode:GVK-Static]
-			</Description>
-		</EntityComponent>
-		<!-- A prefab spawn sets every block to faction share, so the town's spawn points are set to share with all
-		     after the spawn (owner, 2026-11-14); the 10-minute repeat covers a rebuilt block. -->
-		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
-			<Id>
-				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Static-KOTH-Site04-Trigger-ShareSpawnPoints</SubtypeId>
-			</Id>
-			<Description>
-			[MES AI Trigger]
-			[UseTrigger:true]
-			[Type:Timer]
-			[MinCooldownMs:600000]
-			[MaxCooldownMs:600001]
-			[StartsReady:true]
-			[MaxActions:-1]
-			[Actions:GVK-Static-KOTH-Site04-Action-ShareSpawnPoints]
-			</Description>
-		</EntityComponent>
-		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
-			<Id>
-				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Static-KOTH-Site04-Action-ShareSpawnPoints</SubtypeId>
-			</Id>
-			<Description>
-			[MES AI Action]
-			[ChangeBlocksShareModeAll:true]
-			[BlockNamesShareModeAll:Spawn_Point_IR - Respawn_1,Spawn_Point_IR - Respawn_2,Spawn_Point_IR - Respawn_3,Spawn_Point_IR - Respawn_4,Spawn_Point_IR - Respawn_5]
 			</Description>
 		</EntityComponent>
 	</EntityComponents>
