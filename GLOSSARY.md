@@ -1,6 +1,6 @@
 # GVK Derelicts
 
-The NPC encounter content (spawned grids, their factions and the world they spawn into) for the GV: Deserts of Kharak server. Modular Encounters Systems (MES) engine terms are not defined here. A GVK term reuses an MES name only where the GVK concept matches that MES mechanic's name and intent.
+The NPC encounter content (spawned grids, their factions and the world they spawn into) for the GV: Deserts of Kharak server. Modular Encounters Systems (MES) engine terms are not defined here. A GVK term reuses an MES name only where the GVK concept matches that MES mechanic's name and intent. Server-wide words (cores, shields, items, production blocks) and their in-game names are in the [GVK Player Wiki glossary](https://gv-server-mods.github.io/GVK-Settings/glossary/).
 
 **Encounter**:
 An NPC grid, or a group of NPC grids, that this mod spawns into the world. Wrecks, Units, Convoys, Statics, Trade Stations and Caches are all encounters.
