@@ -51,6 +51,62 @@
 			[RemoteControlCodeMaxDistance:-1]
 			</Description>
 		</EntityComponent>
+		<!-- Both Traders share this condition and the COALITIONTrader remote control code, so only one Trader runs at a time.
+		     The Convoy Contract Transports keep COALITIONRouteA/B, so a Trader never blocks a contract. -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-SpawnCondition-Land-CargoShip-COALITION-Trader</SubtypeId>
+			</Id>
+			<Description>
+			[MES Spawn Conditions]
+			[AdminSpawnOnly:false]
+			[RivalAiAnySpawn:true]
+			[AtmosphericCargoShip:false]
+			[AtmosphericCargoShipChance:25]
+			[SkipAirDensityCheck:true]
+			[FactionOwner:COALITION]
+			[ReactorsOn:true]
+			[CustomPathStartAltitude:10]
+			[CustomPathEndAltitude:10]
+			[SkipVoxelSpawnChecks:false]
+			[SkipGridSpawnChecks:false]
+			[ZoneConditions:GVK-Universal-ZoneConditions-WreckZone0]
+			[UseRemoteControlCodeRestrictions:true]
+			[RemoteControlCode:COALITIONTrader]
+			[RemoteControlCodeMinDistance:999999]
+			[RemoteControlCodeMaxDistance:-1]
+			</Description>
+		</EntityComponent>
+		<!-- Admin test spawn for both Traders: /MES.Spawn.DroneEncounter.GVK-PlanetaryCargoShip-Land-COALITION-SpawnGroup-TraderA (or TraderB)
+		     while standing at that route's yard, with the GVK_TestSpawns switch on (see Encounters/Test/GVK-Test-SpawnGroups.sbc).
+		     Same placement as the Trader event spawner and the same COALITIONTrader lock, so it refuses a second Trader too. -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-SpawnCondition-Land-CargoShip-COALITION-Trader-Test</SubtypeId>
+			</Id>
+			<Description>
+				[MES Spawn Conditions]
+				[DroneEncounter:true]
+				[AdminSpawnOnly:true]
+				[SandboxVariables:GVK_TestSpawns]
+				[MinDroneDistance:200]
+				[MaxDroneDistance:500]
+				[MinDroneAltitude:40]
+				[MaxDroneAltitude:50]
+				[FactionOwner:COALITION]
+				[ReactorsOn:true]
+				[//The event spawner skips placement checks (IgnoreSafetyChecks), so the test does too. With the checks on, MES refuses a drone spot near terrain whenever any grid is within the world's 5000 m MinDistanceFromOtherEntities, the admin's own vehicle included]
+				[SkipVoxelSpawnChecks:true]
+				[SkipGridSpawnChecks:true]
+				[ZoneConditions:GVK-Universal-ZoneConditions-WreckZone0]
+				[UseRemoteControlCodeRestrictions:true]
+				[RemoteControlCode:COALITIONTrader]
+				[RemoteControlCodeMinDistance:999999]
+				[RemoteControlCodeMaxDistance:-1]
+			</Description>
+		</EntityComponent>
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>

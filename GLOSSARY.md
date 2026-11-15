@@ -169,7 +169,7 @@ A Coalition grid that a Convoy Contract protects. Most routes have one; the Doub
 _Avoid_: escort, cargo ship
 
 **Trader**:
-A lone Coalition grid that travels a Route and stops at stations to trade. It is not a Convoy.
+A lone Coalition grid that travels a Route and stops at stations to trade. It is not a Convoy. Only one Trader runs at a time, on Route A or Route B.
 
 **Freighter**:
 An alliance supply ship that carries shipments from its faction's Carrier to a Supply Depot.

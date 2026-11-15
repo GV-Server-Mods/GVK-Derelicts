@@ -37,6 +37,9 @@
 				[Triggers:GVK-CargoShip-Land-COALITION-Trigger-TransportArriveAtWaypoint]
 				[Triggers:GVK-CargoShip-Land-COALITION-Trigger-TransportLeaveWaypoint]
 				[Triggers:GVK-CargoShip-Land-COALITION-Trigger-TraderHeadToDespawn]
+				[Triggers:GVK-CargoShip-Land-COALITION-Trigger-TraderDespawnWhenClear]
+				[Triggers:GVK-CargoShip-Land-COALITION-Trigger-TraderLifetime]
+				[Triggers:GVK-CargoShip-Land-COALITION-Trigger-TraderHardLifetime]
 				[Triggers:GVK-CargoShip-Land-COALITION-Trigger-TransportBeaconDisabled]
 				[Triggers:GVK-CargoShip-Land-COALITION-Trigger-TransportCompromised]
 				[Triggers:GVK-CargoShip-Land-COALITION-Trigger-TransportDespawn]
@@ -46,7 +49,7 @@
 				[Triggers:GVK-CargoShip-Land-COALITION-Trigger-TraderPlayerNotNear]
 				[Triggers:GVK-CargoShip-Land-COALITION-TraderA-Trigger-EncounterInit]
 				[TriggerGroups:GVK-Universal-TriggerGroup-DefeatedAndAttacked]
-				[RemoteControlCode:COALITIONRouteA]
+				[RemoteControlCode:COALITIONTrader]
 			</Description>
 		</EntityComponent>
 		<!-- Trader Transport Ship Autopilot-->
@@ -270,6 +273,7 @@
 				[StartsReady:false]
 				[MinCooldownMs:11000]
 				[MaxCooldownMs:11001]
+				[Conditions:GVK-CargoShip-Land-COALITION-Condition-TraderRouteNotDone]
 				[Actions:GVK-CargoShip-Land-COALITION-Action-TraderPlayerNotNear]
 			</Description>
 		</EntityComponent>
@@ -371,6 +375,96 @@
 				[Actions:GVK-CargoShip-Land-COALITION-Action-TransportCompromised]
 			</Description>
 		</EntityComponent>
+		<!-- Trader despawn. Both Traders share the COALITIONTrader remote control code, and MES counts a code until its grid is gone,
+		     so a Trader must despawn for the next one to spawn. At the route end TraderHeadToDespawn switches on TraderDespawnWhenClear;
+		     TraderLifetime removes a Trader stuck on the way after 3 h; both wait until no player is within 1 km.
+		     TraderHardLifetime removes it after 5 h whoever is near, so a player parked beside it cannot hold the lock. -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-CargoShip-Land-COALITION-Trigger-TraderDespawnWhenClear</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Trigger]
+				[Type:PlayerFar]
+				[TargetDistance:1000]
+				[UseTrigger:false]
+				[StartsReady:true]
+				[MaxActions:1]
+				[Actions:GVK-CargoShip-Land-COALITION-Action-TraderDespawn]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-CargoShip-Land-COALITION-Trigger-TraderLifetime</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Trigger]
+				[Type:PlayerFar]
+				[TargetDistance:1000]
+				[UseTrigger:true]
+				[StartsReady:false]
+				[MinCooldownMs:10800000]
+				[MaxCooldownMs:10800000]
+				[MaxActions:1]
+				[Actions:GVK-CargoShip-Land-COALITION-Action-TraderDespawn]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-CargoShip-Land-COALITION-Trigger-TraderHardLifetime</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Trigger]
+				[Type:Timer]
+				[UseTrigger:true]
+				[StartsReady:false]
+				[MinCooldownMs:18000000]
+				[MaxCooldownMs:18000000]
+				[MaxActions:1]
+				[Actions:GVK-CargoShip-Land-COALITION-Action-TraderDespawn]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-CargoShip-Land-COALITION-Condition-TraderRouteNotDone</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Condition]
+				[UseConditions:true]
+				[MatchAnyCondition:false]
+				[CheckFalseBooleans:true]
+				[FalseBooleans:GVK_TraderRouteDone]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-CargoShip-Land-COALITION-Action-TraderDespawn</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Action]
+				[DisableTriggers:true]
+				[DisableTriggerNames:GVK-CargoShip-Land-COALITION-Trigger-TransportDespawn]
+				[DisableTriggerNames:GVK-CargoShip-Land-COALITION-Trigger-TransportCompromised]
+				[DisableTriggerNames:GVK-CargoShip-Land-COALITION-Trigger-TransportBeaconDisabled]
+				[DisableTriggerNames:GVK-CargoShip-Land-COALITION-Trigger-TraderDespawnWhenClear]
+				[DisableTriggerNames:GVK-CargoShip-Land-COALITION-Trigger-TraderLifetime]
+				[DisableTriggerNames:GVK-CargoShip-Land-COALITION-Trigger-TraderHardLifetime]
+				[PlayParticleEffectAtRemote:true]
+				[ParticleEffectId:CruiserPoofSmoke]
+				[ParticleEffectOffset:{X:0.0 Y:0.0 Z:0.0}]
+				[ParticleEffectScale:3.0]
+				[ParticleEffectMaxTime:2000]
+				[ParticleEffectColor:{X:1.0 Y:1.0 Z:1.0}]
+				[PlaySoundAtPosition:true]
+				[SoundAtPosition:Cruiser_Explosion]
+				[ForceDespawn:true]
+			</Description>
+		</EntityComponent>
 		<!-- Trigger sequence when Transport departs to despawn waypoint (completed route) -->
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
@@ -410,6 +504,10 @@
 				[DisableTriggerNames:GVK-CargoShip-Land-COALITION-Trigger-TraderPlayerNotNear]
 				[DisableTriggerNames:GVK-CargoShip-Land-COALITION-Trigger-TransportCompromised]
 				[DisableTriggerNames:GVK-CargoShip-Land-COALITION-Trigger-TransportDespawn]
+				[//The beacons are razed below and the behavior keeps running until TraderDespawn, so switch off the beacon and crash defeat checks]
+				[DisableTriggerNames:GVK-CargoShip-Land-COALITION-Trigger-TransportBeaconDisabled]
+				[DisableTriggerNames:GVK-Universal-Trigger-DefeatedBeaconDisabled]
+				[DisableTriggerNames:GVK-Universal-Trigger-DefeatedCrashed]
 				[EnableBlocks:true]
 				[EnableBlockNames:NPC Beacon]
 				[EnableBlockStates:Off]
@@ -427,7 +525,10 @@
 				[BlockTypeToggles:Off]
 				[BlockTypesToToggle:MyObjectBuilder_Beacon/DisposableNpcBeaconLarge]
 				[BlockTypeToggles:Off]
-				[TerminateBehavior:true]
+				[//A trade stop that passed in the same check would resume the route; RouteNotDone on TraderPlayerNotNear stops that]
+				[SetBooleansTrue:GVK_TraderRouteDone]
+				[EnableTriggers:true]
+				[EnableTriggerNames:GVK-CargoShip-Land-COALITION-Trigger-TraderDespawnWhenClear]
 			</Description>
 		</EntityComponent>
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">

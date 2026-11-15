@@ -392,5 +392,112 @@
 				[IgnoreSafetyChecks:true]
 			</Description>
 		</EntityComponent>
+		<!-- =================================================== -->
+		<!-- COALITION TRADERS (Land)                            -->
+		<!-- =================================================== -->
+		<!-- One event for both routes: each firing picks Trader A (Sevastopol) or Trader B (Mastodon) at random.
+		     The shared COALITIONTrader code refuses a second Trader while one is alive. A Trader never starts while a
+		     Convoy Contract runs, but a contract accepted mid-run can share the road with it.
+		     A refused attempt still uses up the cooldown, so a Trader can be up to about 2 h late.
+		     The Traders announce themselves (TraderOnSpawn), so the actions send no chat. -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Convoy-Event-Trader</SubtypeId>
+			</Id>
+			<Description>
+				[MES Event]
+				[UseEvent:true]
+				[UniqueEvent:false]
+				[StartsReady:true]
+				[MinCooldownMs:4800000]
+				[MaxCooldownMs:7200000]
+				[UseAnyPassingCondition:false]
+				[ConditionIds:GVK-Convoy-EventCondition-TraderPlayerOnPlanet]
+				[ConditionIds:GVK-ConvoySystem-Condition-NoActiveConvoyContract]
+				[ActionIds:GVK-Convoy-EventAction-TraderA]
+				[ActionIds:GVK-Convoy-EventAction-TraderB]
+				[ActionExecution:Random]
+			</Description>
+		</EntityComponent>
+		<!-- Any player within 300 km of Crossroads Tower: anywhere on Kharak. -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Convoy-EventCondition-TraderPlayerOnPlanet</SubtypeId>
+			</Id>
+			<Description>
+				[MES Event Condition]
+				[CheckPlayerNear:true]
+				[PlayerNearCoords:{X:62495 Y:28019 Z:37195}]
+				[PlayerNearDistanceFromCoords:300000]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Convoy-EventAction-TraderA</SubtypeId>
+			</Id>
+			<Description>
+				[MES Event Action]
+				[SpawnEncounter:true]
+				[SpawnCoords:{X:60487.1180668017 Y:32965.0642252912 Z:44090.2929086085}]
+				[SpawnFactionTags:COALITION]
+				[SpawnData:GVK-Convoy-EventSpawner-TraderA]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Convoy-EventSpawner-TraderA</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Spawn]
+				[UseSpawn:true]
+				[SpawningType:CustomSpawn]
+				[StartsReady:true]
+				[ProcessAsAdminSpawn:true]
+				[SpawnGroups:GVK-PlanetaryCargoShip-Land-COALITION-SpawnGroup-TraderA]
+				[MinDistance:200]
+				[MaxDistance:500]
+				[MinAltitude:40]
+				[MaxAltitude:50]
+				[InheritNpcAltitude:false]
+				[IgnoreSafetyChecks:true]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Convoy-EventAction-TraderB</SubtypeId>
+			</Id>
+			<Description>
+				[MES Event Action]
+				[SpawnEncounter:true]
+				[SpawnCoords:{X:61272.4981949369 Y:23606.8090237343 Z:32536.2033243986}]
+				[SpawnFactionTags:COALITION]
+				[SpawnData:GVK-Convoy-EventSpawner-TraderB]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Convoy-EventSpawner-TraderB</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Spawn]
+				[UseSpawn:true]
+				[SpawningType:CustomSpawn]
+				[StartsReady:true]
+				[ProcessAsAdminSpawn:true]
+				[SpawnGroups:GVK-PlanetaryCargoShip-Land-COALITION-SpawnGroup-TraderB]
+				[MinDistance:200]
+				[MaxDistance:500]
+				[MinAltitude:40]
+				[MaxAltitude:50]
+				[InheritNpcAltitude:false]
+				[IgnoreSafetyChecks:true]
+			</Description>
+		</EntityComponent>
 	</EntityComponents>
 </Definitions>
