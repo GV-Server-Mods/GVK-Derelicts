@@ -380,7 +380,7 @@
 					<Frequency>0.1</Frequency>
 					<Id>
 						<TypeId>AmmoMagazine</TypeId>
-						<SubtypeId>Missiles_Torpedo</SubtypeId>
+						<SubtypeId>Torpedo_Heavy</SubtypeId>
 					</Id>
 				</Item>
 				<Item AmountMin="5" AmountMax="10">
@@ -627,7 +627,7 @@
 					<Frequency>1</Frequency>
 					<Id>
 						<TypeId>AmmoMagazine</TypeId>
-						<SubtypeId>Missiles_Torpedo</SubtypeId>
+						<SubtypeId>Torpedo_Heavy</SubtypeId>
 					</Id>
 				</Item>
 				<Item AmountMin="10" AmountMax="20">
@@ -2198,6 +2198,208 @@
 					<Id>
 						<TypeId>Component</TypeId>
 						<SubtypeId>GVK_SalvageGoods_TechnicalBlueprints</SubtypeId>
+					</Id>
+				</Item>
+			</Items>
+		</ContainerType>
+		<!-- Copies of Keen's tables as of SE 1.211, so a game update can't change wreck loot (GVK-Settings#815) -->
+		<ContainerType CountMin="1" CountMax="2"> <!-- Consumables -->
+			<Id>
+				<TypeId>ContainerTypeDefinition</TypeId>
+				<SubtypeId>GVK-ContainerTypes-Consumables</SubtypeId>
+			</Id>
+			<Items>
+				<Item AmountMin="1" AmountMax="3">
+					<Frequency>2</Frequency>
+					<Id>
+						<TypeId>ConsumableItem</TypeId>
+						<SubtypeId>Medkit</SubtypeId>
+					</Id>
+				</Item>
+				<Item AmountMin="1" AmountMax="3">
+					<Frequency>2</Frequency>
+					<Id>
+						<TypeId>ConsumableItem</TypeId>
+						<SubtypeId>Powerkit</SubtypeId>
+					</Id>
+				</Item>
+				<Item AmountMin="1" AmountMax="1">
+					<Frequency>2</Frequency>
+					<Id>
+						<TypeId>ConsumableItem</TypeId>
+						<SubtypeId>RadiationKit</SubtypeId>
+					</Id>
+				</Item>
+			</Items>
+		</ContainerType>
+		<ContainerType CountMin="1" CountMax="3"> <!-- Spoiled Food Items -->
+			<Id>
+				<TypeId>ContainerTypeDefinition</TypeId>
+				<SubtypeId>GVK-ContainerTypes-SpoiledFood</SubtypeId>
+			</Id>
+			<Items>
+				<Item AmountMin="1" AmountMax="3">
+					<Frequency>1</Frequency>
+					<Id>
+						<TypeId>ConsumableItem</TypeId>
+						<SubtypeId>ClangCola</SubtypeId>
+					</Id>
+				</Item>
+				<Item AmountMin="1" AmountMax="3">
+					<Frequency>1</Frequency>
+					<Id>
+						<TypeId>ConsumableItem</TypeId>
+						<SubtypeId>CosmicCoffee</SubtypeId>
+					</Id>
+				</Item>
+				<Item AmountMin="1" AmountMax="1">
+					<Frequency>1</Frequency>
+					<Id>
+						<TypeId>ConsumableItem</TypeId>
+						<SubtypeId>MealPack_Unknown</SubtypeId>
+					</Id>
+				</Item>
+				<Item AmountMin="1" AmountMax="1">
+					<Frequency>1</Frequency>
+					<Id>
+						<TypeId>ConsumableItem</TypeId>
+						<SubtypeId>MealPack_FoodPaste</SubtypeId>
+					</Id>
+				</Item>
+				<Item AmountMin="1" AmountMax="1">
+					<Frequency>1</Frequency>
+					<Id>
+						<TypeId>ConsumableItem</TypeId>
+						<SubtypeId>MealPack_SynthLoaf</SubtypeId>
+					</Id>
+				</Item>
+				<Item AmountMin="1" AmountMax="1">
+					<Frequency>1</Frequency>
+					<Id>
+						<TypeId>ConsumableItem</TypeId>
+						<SubtypeId>MealPack_ClangCrunchies</SubtypeId>
+					</Id>
+				</Item>
+				<Item AmountMin="1" AmountMax="1">
+					<Frequency>1</Frequency>
+					<Id>
+						<TypeId>ConsumableItem</TypeId>
+						<SubtypeId>MealPack_BananaBeef</SubtypeId>
+					</Id>
+				</Item>
+				<Item AmountMin="1" AmountMax="1">
+					<Frequency>1</Frequency>
+					<Id>
+						<TypeId>ConsumableItem</TypeId>
+						<SubtypeId>MealPack_Hardtack</SubtypeId>
+					</Id>
+				</Item>
+				<Item AmountMin="1" AmountMax="1">
+					<Frequency>5</Frequency>
+					<Id>
+						<TypeId>ConsumableItem</TypeId>
+						<SubtypeId>MealPack_ExpiredSlop</SubtypeId>
+					</Id>
+				</Item>
+			</Items>
+		</ContainerType>
+		<ContainerType CountMin="1" CountMax="2"> <!-- Small Stash of Precious Items -->
+			<Id>
+				<TypeId>ContainerTypeDefinition</TypeId>
+				<SubtypeId>GVK-ContainerTypes-SmallStash</SubtypeId>
+			</Id>
+			<Items>
+				<Item AmountMin="1" AmountMax="3">
+					<Frequency>2</Frequency>
+					<Id>
+						<TypeId>ConsumableItem</TypeId>
+						<SubtypeId>Medkit</SubtypeId>
+					</Id>
+				</Item>
+				<Item AmountMin="1" AmountMax="3">
+					<Frequency>2</Frequency>
+					<Id>
+						<TypeId>ConsumableItem</TypeId>
+						<SubtypeId>Powerkit</SubtypeId>
+					</Id>
+				</Item>
+				<Item AmountMin="1" AmountMax="1">
+					<Frequency>2</Frequency>
+					<Id>
+						<TypeId>ConsumableItem</TypeId>
+						<SubtypeId>RadiationKit</SubtypeId>
+					</Id>
+				</Item>
+				<!-- Flare Gun -->
+				<Item AmountMin="1" AmountMax="1" Set="FlareGun">
+					<Frequency>2</Frequency>
+					<Id>
+						<TypeId>PhysicalGunObject</TypeId>
+						<SubtypeId>FlareGunItem</SubtypeId>
+					</Id>
+				</Item>
+				<Item AmountMin="1" AmountMax="3" Set="FlareGun">
+					<Frequency>2</Frequency>
+					<Id>
+						<TypeId>AmmoMagazine</TypeId>
+						<SubtypeId>FlareClip</SubtypeId>
+					</Id>
+				</Item>
+				<Item AmountMin="2" AmountMax="36">
+					<Frequency>2</Frequency>
+					<Id>
+						<TypeId>Component</TypeId>
+						<SubtypeId>ZoneChip</SubtypeId>
+					</Id>
+				</Item>
+				<Item AmountMin="25" AmountMax="200">
+					<Frequency>2</Frequency>
+					<Id>
+						<TypeId>Ingot</TypeId>
+						<SubtypeId>Silver</SubtypeId>
+					</Id>
+				</Item>
+				<Item AmountMin="25" AmountMax="200">
+					<Frequency>2</Frequency>
+					<Id>
+						<TypeId>Ingot</TypeId>
+						<SubtypeId>Platinum</SubtypeId>
+					</Id>
+				</Item>
+				<Item AmountMin="25" AmountMax="200">
+					<Frequency>2</Frequency>
+					<Id>
+						<TypeId>Ingot</TypeId>
+						<SubtypeId>Gold</SubtypeId>
+					</Id>
+				</Item>
+				<Item AmountMin="100" AmountMax="5000">
+					<Frequency>2</Frequency>
+					<Id>
+						<TypeId>PhysicalObject</TypeId>
+						<SubtypeId>SpaceCredit</SubtypeId>
+					</Id>
+				</Item>
+				<Item AmountMin="1" AmountMax="1">
+					<Frequency>0.25</Frequency>
+					<Id>
+						<TypeId>Component</TypeId>
+						<SubtypeId>EngineerPlushie</SubtypeId>
+					</Id>
+				</Item>
+				<Item AmountMin="1" AmountMax="1">
+					<Frequency>0.25</Frequency>
+					<Id>
+						<TypeId>Component</TypeId>
+						<SubtypeId>SabiroidPlushie</SubtypeId>
+					</Id>
+				</Item>
+				<Item AmountMin="1" AmountMax="1">
+					<Frequency>0.5</Frequency>
+					<StoryCategory>EconomyStation</StoryCategory>
+					<Id>
+						<TypeId>Datapad</TypeId>
+						<SubtypeId>Datapad</SubtypeId>
 					</Id>
 				</Item>
 			</Items>

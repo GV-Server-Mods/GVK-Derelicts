@@ -22,6 +22,8 @@
     cap no lower than Dogfight's.
     Checks that no behavior with a KOTH or Zone 0 despawn sends a chat on its spawn pass, before that despawn can stop it.
     Checks that no prefab or store prefab carries the Sections plugin's mod storage key (cd844fa4-...).
+    Checks that no prefab that gets GVK loot carries a Keen container type (tools/Strip-WreckContainerTypes.py --check),
+    and that every loot profile names a table from GVK-ContainerTypes.sbc.
     Checks every tracked .md file for:
       1. Backticked profile names (GVK-*, Unit-*, RAI-*), prefab names (NWS [COAL] ...) and repo paths
          that no longer exist in Content/ or the repo.
@@ -371,6 +373,33 @@ try {
         Select-String -SimpleMatch -Pattern $sectionsKey -List
     foreach ($hit in $tagged) {
         $warnings.Add("$($hit.Filename): mod storage key $sectionsKey from the Sections plugin; strip the key and the storage sections it leaves empty")
+    }
+
+    # NPC crates that get GVK loot roll Kharak loot only, so a re-exported prefab must not bring back Keen's tables
+    # (GVK-Settings#815). A crash of the check is a warning too, never a silent pass.
+    if (Get-Command python -ErrorAction SilentlyContinue) {
+        $loot = @(& python (Join-Path $root 'tools\Strip-WreckContainerTypes.py') --check 2>&1 | ForEach-Object { "$_" })
+        if ($LASTEXITCODE -ne 0) {
+            $hits = @($loot | Where-Object { $_ -match '^(.+\.sbc): (\d+)' })
+            foreach ($h in $hits) {
+                if ($h -match '^(.+\.sbc): (\d+)') {
+                    $warnings.Add("$($Matches[1]): $($Matches[2]) Keen container type(s) on a prefab that gets GVK loot; run tools/Strip-WreckContainerTypes.py")
+                }
+            }
+            if ($hits.Count -eq 0) {
+                $warnings.Add("tools/Strip-WreckContainerTypes.py --check failed (exit $LASTEXITCODE): $($loot | Select-Object -Last 1)")
+            }
+        }
+    }
+
+    # Loot profiles name only GVK tables, so a Keen update can't change NPC loot; copy a Keen table rather than name it.
+    $gvkTables = @([regex]::Matches((Get-Content -Raw 'Content\Data\GVK-ContainerTypes.sbc'), '<TypeId>ContainerTypeDefinition</TypeId>\s*<SubtypeId>([^<]+)</SubtypeId>') | ForEach-Object { $_.Groups[1].Value })
+    foreach ($hit in Get-ChildItem 'Content\Data\Encounters' -Recurse -Filter *.sbc | Select-String -Pattern '\[ContainerTypes:([^\]]+)\]' -AllMatches) {
+        foreach ($t in $hit.Matches.ForEach({ $_.Groups[1].Value -split ',' })) {
+            if ($t.Trim() -and $gvkTables -notcontains $t.Trim()) {
+                $warnings.Add("$($hit.Filename):$($hit.LineNumber): loot table $($t.Trim()) is not in GVK-ContainerTypes.sbc; copy it there under a GVK name")
+            }
+        }
     }
 
     foreach ($doc in $docs) {
