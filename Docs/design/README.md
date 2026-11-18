@@ -11,9 +11,9 @@ The old README notes live here. Note numbers are kept because hub issues and too
 | Doc | Notes | Covered files | Checked | Against |
 | --- | --- | --- | --- | --- |
 | [Alliance territory ladder and influence](alliance-territory-ladder.md) | 28, 35, 36 | 2 | - | - |
-| [NPC dialogue banks](dialogue-banks.md) | 37 | 3 | 2026-11-14 | MES d500922 |
+| [NPC dialogue banks](dialogue-banks.md) | 37 | 3 | 2026-11-17 | MES d500922 |
 | [Escorts and peer wings](escorts-and-peer-wings.md) | 40, 41 | 4 | - | - |
-| [Freighter dispatch and supply depots](freighter-dispatch.md) | 45 | 2 | 2026-11-08 | MES d500922 |
+| [Freighter dispatch and supply depots](freighter-dispatch.md) | 45 | 2 | 2026-11-17 | MES d500922 |
 | [Installation terrain rule](installation-terrain.md) | 48 | 2 | 2026-11-08 | MES d500922 |
 | [KOTH 5 km despawn](koth-despawn.md) | 42 | 2 | 2026-11-14 | MES d500922 |
 | [Defeated NPC core removal](npc-core-removal.md) | 49 | 2 | 2026-11-13 | MES d500922 |
