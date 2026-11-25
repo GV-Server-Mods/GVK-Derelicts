@@ -65,6 +65,47 @@
 				BountyOnKill=3000000;
 			</Description>
 		</EntityComponent>
+		<!-- Convoy Salvager: escorts like the others, but when the convoy ends (Scatter, leader lost, no leader) it patrols where it is, like a Unit Salvager.
+		     Primary keeps the slot, Secondary is the Unit Salvager's retreat profile (GVK-Unit-All-Action-SalvagerRetreat sets it), Tertiary its patrol profile.
+		     Its retreat detectors and 30 min lifetime start only once it patrols: MES's own retreat timer counts from spawn and Escort never acts on it. -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Convoy-Escort-Behavior-Salvager-GAALSIEN</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Behavior]
+				[BehaviorName:Escort]
+				[DialogueBanks:GVK-Units-GAALSIEN-Medium.xml]
+				[WeaponSystem:GVK-Universal-Weapons-All]
+				[UsePlayerDistanceTimer:true]
+				[PlayerDistanceTimerTrigger:1800]
+				[PlayerDistanceTrigger:5000]
+				[UseNoTargetTimer:false]
+				[UseRetreatTimer:false]
+				[RetreatDespawnDistance:2000]
+				[TargetData:GVK-Universal-Target-EnemyGrids2km-Ground-GAALSIEN]
+				[OverrideTargetData:GVK-Universal-Target-Override-Ground]
+				[AutopilotData:GVK-Convoy-Escort-PrimaryAutopilot]
+				[SecondaryAutopilotData:GVK-Unit-Encounter-Autopilot-Salvager-GAALSIEN-Secondary]
+				[TertiaryAutopilotData:GVK-Unit-Encounter-Autopilot-Salvager-GAALSIEN]
+				[Triggers:GVK-Universal-Trigger-TargetAttacker]
+				[Triggers:GVK-Universal-Trigger-WeaponsToMaxRange]
+				[Triggers:GVK-Convoy-Escort-Trigger-RequestEscortSlot]
+				[Triggers:GVK-Convoy-Escort-Salvager-Trigger-Scatter]
+				[Triggers:GVK-Convoy-Escort-Salvager-Trigger-LeaderLost]
+				[Triggers:GVK-Convoy-Escort-Salvager-Trigger-LeaderFound]
+				[Triggers:GVK-Convoy-Escort-Salvager-Trigger-NoLeader]
+				[Triggers:GVK-Convoy-Escort-Salvager-Trigger-PlayerNear]
+				[Triggers:GVK-Convoy-Escort-Salvager-Trigger-TargetNear]
+				[Triggers:GVK-Convoy-Escort-Salvager-Trigger-Damage]
+				[Triggers:GVK-Unit-All-ManualTrigger-SalvagerRetreat]
+				[Triggers:GVK-Convoy-Escort-Salvager-Trigger-Lifetime]
+				[TriggerGroups:GVK-Universal-TriggerGroup-DefeatedAndAttacked]
+				[Triggers:GVK-Convoy-Escort-Trigger-EncounterInit-UnitMedium]
+				BountyOnKill=1000000;
+			</Description>
+		</EntityComponent>
 		<!-- Escort Unit Rover Autopilot -->
 		<!-- Steering: MaxRotationStep 0.5 keeps the gyros at full strength (Unit-All-Autopilot-HoverCruiserHorsefly.sbc explains it); MaxRotationMagnitude sets the turn rate. FlyLevelWithGravity already stops backflips, so pitch stays 1. Banks up to 15 degrees into turns for looks -->
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
@@ -254,6 +295,196 @@
 				[NewAutopilotSpeed:70]
 				[DisableTriggers:true]
 				[DisableTriggerNames:GVK-Convoy-Escort-Trigger-NoLeader]
+			</Description>
+		</EntityComponent>
+		<!-- Convoy Salvager: the same three ways out of Escort, all to ToPatrol -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Convoy-Escort-Salvager-Trigger-Scatter</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Trigger]
+				[Type:CommandReceived]
+				[UseTrigger:true]
+				[StartsReady:true]
+				[MaxActions:1]
+				[CommandReceiveCode:GVK_Command_Escort_Scatter]
+				[Actions:GVK-Convoy-Escort-Salvager-Action-ToPatrol]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Convoy-Escort-Salvager-Trigger-LeaderLost</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Trigger]
+				[UseTrigger:true]
+				[Type:BehaviorTriggerB]
+				[StartsReady:true]
+				[MaxActions:1]
+				[Actions:GVK-Convoy-Escort-Salvager-Action-ToPatrol]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Convoy-Escort-Salvager-Trigger-LeaderFound</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Trigger]
+				[UseTrigger:true]
+				[Type:BehaviorTriggerA]
+				[StartsReady:true]
+				[MaxActions:-1]
+				[Actions:GVK-Convoy-Escort-Salvager-Action-LeaderFound]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Convoy-Escort-Salvager-Trigger-NoLeader</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Trigger]
+				[UseTrigger:true]
+				[Type:Timer]
+				[StartsReady:false]
+				[MinCooldownMs:15000]
+				[MaxCooldownMs:15001]
+				[MaxActions:1]
+				[Actions:GVK-Convoy-Escort-Salvager-Action-ToPatrol]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Convoy-Escort-Salvager-Action-LeaderFound</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Action]
+				[DisableTriggers:true]
+				[DisableTriggerNames:GVK-Convoy-Escort-Salvager-Trigger-NoLeader]
+			</Description>
+		</EntityComponent>
+		<!-- Patrol around where the convoy ended, at the patrol profile's own speed, and start the Salvager's retreat detectors and lifetime -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Convoy-Escort-Salvager-Action-ToPatrol</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Action]
+				[LeaveEscortSlot:true]
+				[ChangeBehaviorSubclass:true]
+				[NewBehaviorSubclass:Patrol]
+				[ChangeAutopilotProfile:true]
+				[AutopilotProfile:Tertiary]
+				[//Lifts the leader-speed cap Escort.cs set near the slot (escorts-and-peer-wings.md, Speed cap)]
+				[ChangeAutopilotSpeed:true]
+				[NewAutopilotSpeed:-1]
+				[UseCurrentPositionAsPatrolReference:true]
+				[DisableTriggers:true]
+				[DisableTriggerNames:GVK-Convoy-Escort-Salvager-Trigger-Scatter]
+				[DisableTriggerNames:GVK-Convoy-Escort-Salvager-Trigger-LeaderLost]
+				[DisableTriggerNames:GVK-Convoy-Escort-Salvager-Trigger-LeaderFound]
+				[DisableTriggerNames:GVK-Convoy-Escort-Salvager-Trigger-NoLeader]
+				[EnableTriggers:true]
+				[EnableTriggerNames:GVK-Convoy-Escort-Salvager-Trigger-PlayerNear]
+				[EnableTriggerNames:GVK-Convoy-Escort-Salvager-Trigger-TargetNear]
+				[EnableTriggerNames:GVK-Convoy-Escort-Salvager-Trigger-Damage]
+				[EnableTriggerNames:GVK-Convoy-Escort-Salvager-Trigger-Lifetime]
+				[//Timer cooldowns run from spawn, so restart them here]
+				[ResetCooldownTimeOfTriggers:true]
+				[ResetTriggerCooldownNames:GVK-Convoy-Escort-Salvager-Trigger-PlayerNear]
+				[ResetTriggerCooldownNames:GVK-Convoy-Escort-Salvager-Trigger-TargetNear]
+				[ResetTriggerCooldownNames:GVK-Convoy-Escort-Salvager-Trigger-Damage]
+				[ResetTriggerCooldownNames:GVK-Convoy-Escort-Salvager-Trigger-Lifetime]
+			</Description>
+		</EntityComponent>
+		<!-- Copies of the Unit Salvager's retreat detectors (Unit-All-TriggerGroup-SalvagerRetreat.sbc), off until ToPatrol -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Convoy-Escort-Salvager-Trigger-PlayerNear</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Trigger]
+				[Type:PlayerNear]
+				[UseTrigger:false]
+				[StartsReady:false]
+				[MinCooldownMs:2000]
+				[MaxCooldownMs:2001]
+				[TargetDistance:500]
+				[MaxActions:1]
+				[ActionExecution:All]
+				[Actions:GVK-Unit-All-Action-ManualTriggerSalvagerRetreat]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Convoy-Escort-Salvager-Trigger-TargetNear</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Trigger]
+				[Type:TargetNear]
+				[UseTrigger:false]
+				[StartsReady:false]
+				[MinCooldownMs:2000]
+				[MaxCooldownMs:2001]
+				[TargetDistance:500]
+				[MaxActions:1]
+				[ActionExecution:All]
+				[Actions:GVK-Unit-All-Action-ManualTriggerSalvagerRetreat]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Convoy-Escort-Salvager-Trigger-Damage</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Trigger]
+				[Type:Damage]
+				[UseTrigger:false]
+				[StartsReady:false]
+				[MinCooldownMs:2000]
+				[MaxCooldownMs:2001]
+				[DamageTypes:Any]
+				[MaxActions:1]
+				[ActionExecution:All]
+				[Actions:GVK-Unit-All-Action-ManualTriggerSalvagerRetreat]
+			</Description>
+		</EntityComponent>
+		<!-- Lifetime: retreats 30 min after it starts patrolling (the Unit Salvager's RetreatTimerTrigger 1800) -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Convoy-Escort-Salvager-Trigger-Lifetime</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Trigger]
+				[Type:Timer]
+				[UseTrigger:false]
+				[StartsReady:false]
+				[MinCooldownMs:1800000]
+				[MaxCooldownMs:1800001]
+				[MaxActions:1]
+				[Actions:GVK-Convoy-Escort-Salvager-Action-Lifetime]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Convoy-Escort-Salvager-Action-Lifetime</SubtypeId>
+			</Id>
+			<Description>
+				[RivalAI Action]
+				[ChangeAutopilotProfile:true]
+				[AutopilotProfile:Secondary]
+				[Retreat:true]
 			</Description>
 		</EntityComponent>		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
