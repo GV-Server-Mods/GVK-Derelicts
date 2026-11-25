@@ -9,13 +9,15 @@ identical across all prefabs"):
   facing. Every saved track that lists the block moves its roller to the new cell.
 - Keen's Wheel 1x1 in a track is turned to face out (its top away from the hull, like the suspensions), the way the
   Track Wheel 1x1 look swapped onto it is drawn.
-- Every saved track becomes Rubber Track (GVK_RubberTrack_Large; owner, 2026-11-23).
+- Every saved track gets its prefab's tread (design_for): Kharak Double Tread on COALITION and SOBAN NPCs (owner,
+  2026-11-25: "Make all of the COAL and SOBA NPCs use the Kharak Double tread"), Rubber Track on every other grid,
+  store grids included (owner, 2026-11-23).
 The 3x3 Track Wheel blocks are left as they are and listed.
 
 Usage (from the repo root): python tools/Update-PrefabTracks.py [--check]
 --check lists what it would change and exits 1 if anything is left, without writing. Files keep their BOM and line
 endings. Checks every track roller against the [Blocks] lines in GVK_Suspension's TankTracks.ini: a roller with no
-Rubber Track style makes Tank Tracks drop the whole track.
+style for its track's tread makes Tank Tracks drop the whole track.
 """
 import argparse
 import base64
@@ -32,7 +34,7 @@ ROOT = Path(__file__).resolve().parents[1]
 DATA = ROOT / "Content/Data"
 TANK_TRACKS_INI = ROOT.parent / "GVK_Suspension/Content/Data/TankTracks.ini"
 KEY = "1b597013-2bd3-4de5-a591-f0b0ee9ec513"     # Tank Tracks' mod storage key (SerializedTrack, protobuf)
-DESIGN = "GVK_RubberTrack_Large"
+RUBBER, DOUBLE = "GVK_RubberTrack_Large", "KharakDoubleTread_Large"
 XSI = "{http://www.w3.org/2001/XMLSchema-instance}type"
 
 SUSPENSIONS = {}
@@ -132,19 +134,25 @@ def write_track(raw, design, moves):
     return base64.b64encode(enc_fields(out)).decode()
 
 
-# --- TankTracks.ini: which blocks have a Rubber Track style ---
+def design_for(path):
+    """The tread every track on this prefab gets."""
+    if path.parent.name == "Prefabs" and re.search(r"\[(COAL|SOBA)\]", path.name):
+        return DOUBLE
+    return RUBBER
 
-def rubber_blocks():
-    ok, block = set(), False
+
+# --- TankTracks.ini: each block's style list ---
+
+def block_styles():
+    styles, block = {}, False
     for line in TANK_TRACKS_INI.read_text(encoding="utf-8-sig").splitlines():
         line = line.split(";", 1)[0].strip()
         if line.startswith("["):
             block = line == "[Blocks]"
         elif block and "=" in line:
-            name, styles = line.split("=", 1)
-            if DESIGN + "_" in styles:
-                ok.add(name.strip().split("/", 1)[1])
-    return ok
+            name, value = line.split("=", 1)
+            styles[name.strip().split("/", 1)[1]] = value
+    return styles
 
 
 # --- prefab blocks ---
@@ -181,7 +189,7 @@ def grid_sets(root):
         yield "projection %d" % (i + 1), pg.findall("MyObjectBuilder_CubeGrid")
 
 
-def plan(path, rubber, notes):
+def plan(path, styles, notes):
     text = path.read_bytes().decode("utf-8-sig")
     root = ET.fromstring(text.encode("utf-8"))
     order = [Block(el) for el in root.iter("MyObjectBuilder_CubeBlock")]
@@ -232,12 +240,13 @@ def plan(path, rubber, notes):
                     if p.new.get("min", p.min)[axis] != hull:
                         notes.append("%s, %s: Wheel 1x1 roller at %s is not against the hull; its look will float"
                                      % (path.name, label, p.new.get("min", p.min)))
+                tread = design_for(path)
                 for p in parts:
-                    if p.new.get("subtype", p.subtype) not in rubber:
+                    if tread + "_" not in styles.get(p.new.get("subtype", p.subtype), ""):
                         sys.exit("%s, %s: %s has no %s style in TankTracks.ini"
-                                 % (path.name, label, p.new.get("subtype", p.subtype), DESIGN))
-                if design != DESIGN or moves:
-                    b.new["track"] = write_track(b.track, DESIGN, moves)
+                                 % (path.name, label, p.new.get("subtype", p.subtype), tread))
+                if design != tread or moves:
+                    b.new["track"] = write_track(b.track, tread, moves)
                     if write_track(b.track, design, {}) != b.track:
                         sys.exit("%s: a saved track does not re-encode to itself; format changed?" % path.name)
     return text, order
@@ -275,10 +284,10 @@ def apply(text, order):
 
 
 def main():
-    rubber = rubber_blocks()
+    styles = block_styles()
     notes, left = [], 0
     for path in sorted(list(DATA.glob("Prefabs/*.sbc")) + list(DATA.glob("StorePrefabs/*.sbc"))):
-        text, order = plan(path, rubber, notes)
+        text, order = plan(path, styles, notes)
         changed = [b for b in order if b.new]
         if not changed:
             continue

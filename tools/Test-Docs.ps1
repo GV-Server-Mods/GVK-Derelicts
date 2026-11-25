@@ -24,7 +24,7 @@
     Checks that no prefab or store prefab carries the Sections plugin's mod storage key (cd844fa4-...).
     Checks that no prefab that gets GVK loot carries a Keen container type (tools/Strip-WreckContainerTypes.py --check),
     and that every loot profile names a table from GVK-ContainerTypes.sbc.
-    Checks that no prefab carries a hidden GVK_Suspension block or a track design other than Rubber Track
+    Checks that no prefab carries a hidden GVK_Suspension block or a track on another tread than its own
     (tools/Update-PrefabTracks.py --check).
     Checks every tracked .md file for:
       1. Backticked profile names (GVK-*, Unit-*, RAI-*), prefab names (NWS [COAL] ...) and repo paths
@@ -394,14 +394,14 @@ try {
         }
     }
 
-    # Prefabs use only suspensions players can build, and Rubber Track (Docs/design/prefab-tracks.md). A re-exported
-    # prefab with a hidden GVK_Suspension block or another track design shows up here.
+    # Prefabs use only suspensions players can build, and each prefab's tread (Docs/design/prefab-tracks.md). A
+    # re-exported prefab with a hidden GVK_Suspension block or another track design shows up here.
     if (Get-Command python -ErrorAction SilentlyContinue) {
         $tracks = @(& python (Join-Path $root 'tools\Update-PrefabTracks.py') --check 2>&1 | ForEach-Object { "$_" })
         if ($LASTEXITCODE -ne 0) {
             $hits = @($tracks | Where-Object { $_ -match '^(Prefabs|StorePrefabs)/.+\.sbc$' })
             foreach ($h in $hits) {
-                $warnings.Add("${h}: hidden suspension blocks or a non-Rubber track; run tools/Update-PrefabTracks.py")
+                $warnings.Add("${h}: hidden suspension blocks or a track on the wrong tread; run tools/Update-PrefabTracks.py")
             }
             if ($hits.Count -eq 0) {
                 $warnings.Add("tools/Update-PrefabTracks.py --check failed (exit $LASTEXITCODE): $($tracks | Select-Object -Last 1)")
