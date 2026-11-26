@@ -9,7 +9,7 @@ covers:
   - Content/Data/Prefabs/NW*.sbc
   - tools/Strip-WreckContainerTypes.py
 checked-against: MES 13bcb1d
-checked: 2026-11-16
+checked: 2026-11-25
 ---
 
 # Wreck prefabs and vanilla encounters

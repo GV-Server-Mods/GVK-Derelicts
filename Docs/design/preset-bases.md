@@ -6,7 +6,7 @@ covers:
   - Content/Data/Encounters/Alliance/GVK-Alliance-Base-Behavior-*.sbc
   - Content/Data/Encounters/Alliance/GVK-Alliance-Turret-Behavior-*.sbc
 checked-against: MES d500922
-checked: 2026-11-14
+checked: 2026-11-25
 ---
 
 # Preset alliance bases
