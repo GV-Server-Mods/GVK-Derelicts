@@ -17,6 +17,7 @@
 			[PlayerDistanceTrigger:5000]
 			[UseNoTargetTimer:false]
 			[UseRetreatTimer:false]
+			[RetreatDespawnDistance:3000]
 			[AutopilotData:GVK-Convoy-GAALSIENSmallConvoy-Lead-Autopilot]
 			[TargetData:GVK-Universal-Target-EnemyGridsLongRange-GAALSIEN]
 			[EscortOffsets:{X:0 Y:0 Z:-250}]
@@ -36,6 +37,7 @@
 			[Triggers:GVK-Universal-ManualTrigger-TargetCallout-LongRange]
 			[Triggers:GVK-Convoy-GAALSIENSmallConvoy-Lead-Trigger-AssignEscortSlot]
 			[Triggers:GVK-Convoy-GAALSIENSmallConvoy-Lead-Trigger-Despawn]
+			[Triggers:GVK-Convoy-GAALSIENSmallConvoy-Lead-Trigger-RouteEnd]
 			[Triggers:GVK-Convoy-GAALSIENSmallConvoy-Lead-Trigger-Compromised]
 			[Triggers:GVK-Convoy-GAALSIENSmallConvoy-Lead-Trigger-SpawnFighters]
 			[Triggers:GVK-Convoy-GAALSIENSmallConvoy-Lead-Trigger-EncounterInit]
@@ -64,6 +66,8 @@
 			[MaxRotationStep:0.5]
 			[RollIntoTurnsMultiplier:0.25]
 			[MaxBankAngle:15]
+			[//25, not the default 10: in level mode MES cuts up and forward thrust once the grid tilts past this, a bank into a turn or a nose-up lean on a slope alike (ThrustSystem.CalculateHoverThrust), so it coasted through sharp turns and paused on hills]
+			[HoverUpAngle:25]
 			[FlyLevelWithGravity:true]
 			[LevelWithGravityWhenIdle:true]
 			[IdealPlanetAltitude:30]
@@ -211,6 +215,9 @@
 			[WaypointsToAdd:GVK-Convoy-Waypoint-LandRouteD46]
 			[WaypointsToAdd:GVK-Convoy-Waypoint-LandRouteD47]
 			[WaypointsToAdd:GVK-Convoy-Waypoint-LandRouteD48]
+			[//Arms the route end only now: MES also flags the switch to its despawn point at spawn, before the route is in]
+			[EnableTriggers:true]
+			[EnableTriggerNames:GVK-Convoy-GAALSIENSmallConvoy-Lead-Trigger-RouteEnd]
 			</Description>
 		</EntityComponent>
 		<!-- Trigger sequence for Carrier to spawn initial defenses -->
@@ -302,25 +309,14 @@
 			[StartsReady:true]
 			[MaxActions:1]
 			[ActionExecution:All]
+			[//No chat here: this also fires for despawns mid-route (no-player timer, cleanup). Lead-Action-RouteEnd announces the arrival]
 			[Actions:GVK-Convoy-GAALSIENSmallConvoy-Lead-Action-SendScatterCommand]
-			[Actions:GVK-Convoy-GAALSIENSmallConvoy-Lead-Action-Despawn]
 			</Description>
 		</EntityComponent>
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
 			<Id>
 				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Convoy-GAALSIENSmallConvoy-Lead-Action-Despawn</SubtypeId>
-			</Id>
-			<Description>
-			[RivalAI Action]
-			[UseChatBroadcast:true]
-			[ChatData:GVK-Convoy-GAALSIENSmallConvoy-Lead-Chat-Despawn]
-			</Description>
-		</EntityComponent>
-		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
-			<Id>
-				<TypeId>Inventory</TypeId>
-				<SubtypeId>GVK-Convoy-GAALSIENSmallConvoy-Lead-Chat-Despawn</SubtypeId>
+				<SubtypeId>GVK-Convoy-GAALSIENSmallConvoy-Lead-Chat-RouteEnd</SubtypeId>
 			</Id>
 			<Description>
 			[RivalAI Chat]
@@ -337,6 +333,35 @@
 			[SendToAllOnlinePlayers:false]
 			[IgnoreAntennaRequirement:true]
 			[IgnoredAntennaRangeOverride:9999999]
+			</Description>
+		</EntityComponent>
+		<!-- Route end: after the last route point MES would drive to a random despawn point 8-11 km off and retreat only from players within 1.2 km.
+		     Instead the cruiser announces its arrival and retreats at once. Retreat despawns it as soon as no player is within RetreatDespawnDistance (3 km), on the spot if nobody is near, and Lead-Trigger-Despawn then scatters the escorts -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Convoy-GAALSIENSmallConvoy-Lead-Trigger-RouteEnd</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Trigger]
+			[//BehaviorTriggerD: CargoShip ran out of route points and switched to its despawn point]
+			[Type:BehaviorTriggerD]
+			[UseTrigger:false]
+			[StartsReady:true]
+			[MaxActions:1]
+			[Actions:GVK-Convoy-GAALSIENSmallConvoy-Lead-Action-RouteEnd]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Convoy-GAALSIENSmallConvoy-Lead-Action-RouteEnd</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Action]
+			[UseChatBroadcast:true]
+			[ChatData:GVK-Convoy-GAALSIENSmallConvoy-Lead-Chat-RouteEnd]
+			[Retreat:true]
 			</Description>
 		</EntityComponent>
 		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">

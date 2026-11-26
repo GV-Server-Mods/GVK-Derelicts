@@ -41,6 +41,7 @@ TIER_OVERRIDE = {
     "GVK-Other-Recovery-Behavior-COALITION": "Large",
     "GVK-Convoy-GAALSIENCarrier-Lead-Behavior": "Large",
     "GVK-Convoy-GAALSIENSmallConvoy-Lead-Behavior": "Large",
+    "GVK-Test-Behavior-SmallConvoyRouteEnd": "Large",
 }
 SIZE = {"S": "Small", "M": "Medium", "L": "Large"}
 BANK_RE = re.compile(r"^GVK-(Units|Travellers|Structures|Installations)-([A-Z]+)(?:-(Small|Medium|Large))?\.xml$")

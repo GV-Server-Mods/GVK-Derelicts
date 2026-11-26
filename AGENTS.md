@@ -95,6 +95,7 @@ Each kind of fact has exactly one home. Don't copy it anywhere else.
   - a `[PlanetaryInstallation:true]` conditions profile without `[InstallationTerrainValidation:true]` and `[DisallowedTerrainTypes:Rock]`, or with `[UseTerrainTypeValidation:true]` (README note 48)
   - a prefab or store prefab carrying mod storage key `cd844fa4-4ac0-4d9c-8a01-73416b225772`. The owner's Sections plugin (Pulsar, client side) writes it on blocks while the owner builds, and no mod registers it, so the game logs a mod storage error. Strip the key and the storage sections it leaves empty from every new export (GVK-Settings#492).
   - a prefab or store prefab with a GVK_Suspension block players can't build (Short Track or Lifted Short Track suspensions, Real Track Wheels, Track Wheel 1x1 blocks) or a track on the wrong tread (Kharak Double Tread on COALITION and SOBAN NPCs, Rubber Track on everything else). Run `python tools/Update-PrefabTracks.py` after the export (`Docs/design/prefab-tracks.md`).
+  - a trigger with both `[UseElseActions:true]` and a `MaxActions` limit that doesn't switch itself off by name in its own actions. Once it has used up its MaxActions, MES still runs its else actions on the next pass.
   - a GAALSIEN or DERELICT behavior on a shared target profile instead of its `-GAALSIEN` or `-DERELICT` copy. The shared profiles skip COALITION and DERELICT grids. The GAALSIEN copies fight both factions, and the DERELICT copy also skips SOBAN and KHAANEPH.
 
 ---

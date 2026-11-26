@@ -107,6 +107,13 @@ try {
     $bankDir = 'Content\Data\DialogueBanks'
     $checkedBanks = New-Object 'System.Collections.Generic.HashSet[string]'
     $stripBank = { param($d) ($d -replace '(?m)^\s*\[(DialogueBanks|//CopyOf):[^\]]*\]\s*$', '' -replace '(\[TargetData:[^\]]+?)-(GAALSIEN|DERELICT)\]', '$1]' -replace '\s+', ' ').Trim() }
+    # Once a trigger uses up its MaxActions, MES still runs its else actions on the next pass (TriggerProfile.ActivateTrigger), so one with both must switch itself off in its own actions.
+    foreach ($name in $profiles.Keys) {
+        $td = [string]$profiles[$name]
+        if ($td -notmatch '\[UseElseActions:true\]' -or $td -notmatch '\[MaxActions:(\d+)\]') { continue }
+        $own = [regex]::Matches($td, '\[(Actions|ElseActions):([^\]]+)\]') | Where-Object { [string]$profiles[$_.Groups[2].Value.Trim()] -match ('\[DisableTriggerNames:' + [regex]::Escape($name) + '\]') }
+        if (-not @($own).Count) { $warnings.Add("${name}: has UseElseActions and MaxActions, so MES runs its else actions after the last use; disable it by name in its own actions") }
+    }
     foreach ($name in $profiles.Keys | Sort-Object) {
         $desc = $profiles[$name]
         if ($desc -notmatch '\[RivalAI Behavior\]') { continue }

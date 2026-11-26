@@ -597,6 +597,35 @@
 				</Prefab>
 			</Prefabs>
 		</SpawnGroup>
+		<!-- /MES.Spawn.DroneEncounter.GVK-Test-SpawnGroup-SmallConvoyRouteEnd: the small convoy lead on the last two Route D points only, to test its route end in minutes. Stand at GPS:Route D46:29484.54:5220.27:43497.92: -->
+		<SpawnGroup>
+			<Id>
+				<TypeId>SpawnGroupDefinition</TypeId>
+				<SubtypeId>GVK-Test-SpawnGroup-SmallConvoyRouteEnd</SubtypeId>
+			</Id>
+			<Description>
+				[Modular Encounters SpawnGroup]
+				[IgnoreCleanupRules:true]
+				[ReplenishSystems:true]
+				[ManipulationProfiles:MES-Manipulation-RivalAi]
+				[ManipulationProfiles:GVK-Convoy-Lead-Manipulation-GAALSIENSmallConvoy]
+				[SpawnConditionsProfiles:GVK-Test-SpawnCondition-SmallConvoy]
+			</Description>
+			<IsPirate>true</IsPirate>
+			<Frequency>0.1</Frequency>
+			<Prefabs>
+				<Prefab SubtypeId="NUN [GAAL] Production Cruiser">
+					<Position>
+						<X>0.0</X>
+						<Y>0.0</Y>
+						<Z>0.0</Z>
+					</Position>
+					<Speed>0</Speed>
+					<BeaconText>Production Cruiser</BeaconText>
+					<Behaviour>GVK-Test-Behavior-SmallConvoyRouteEnd</Behaviour>
+				</Prefab>
+			</Prefabs>
+		</SpawnGroup>
 		<!-- /MES.Spawn.PlanetaryInstallation.GVK-Test-SpawnGroup-RecolorWreck: a small wreck, all Dust_Armor, that a RecolorGrid action reskins Frozen_Armor 120 s after spawn -->
 		<SpawnGroup>
 			<Id>
@@ -1265,6 +1294,82 @@
 			[MatchAllFilters:Relation]
 			[Relations:Enemy]
 			[GetTargetBy:ClosestDistance]
+			</Description>
+		</EntityComponent>
+		<!-- The Lead behavior of GVK-Convoy-GaalsienSmallConvoy-Lead-Behavior.sbc with a two-point route: keep it the same apart from the AddWaypoints trigger -->
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Test-Behavior-SmallConvoyRouteEnd</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Behavior]
+			[BehaviorName:CargoShip]
+			[DialogueBanks:GVK-Units-GAALSIEN-Large.xml]
+			[WeaponSystem:GVK-Universal-Weapons-All]
+			[UsePlayerDistanceTimer:true]
+			[PlayerDistanceTimerTrigger:1800]
+			[PlayerDistanceTrigger:5000]
+			[UseNoTargetTimer:false]
+			[UseRetreatTimer:false]
+			[RetreatDespawnDistance:3000]
+			[AutopilotData:GVK-Convoy-GAALSIENSmallConvoy-Lead-Autopilot]
+			[TargetData:GVK-Universal-Target-EnemyGridsLongRange-GAALSIEN]
+			[EscortOffsets:{X:0 Y:0 Z:-250}]
+			[EscortOffsets:{X:0 Y:0 Z:200}]
+			[EscortOffsets:{X:0 Y:0 Z:-500}]
+			[EscortOffsets:{X:0 Y:0 Z:400}]
+			[Triggers:GVK-Test-Trigger-SmallConvoyShortRoute]
+			[Triggers:GVK-Convoy-GAALSIENSmallConvoy-Lead-Trigger-BeaconDisabled]
+			[Triggers:GVK-Convoy-GAALSIENSmallConvoy-Lead-Trigger-Session]
+			[Triggers:GVK-Convoy-GAALSIENSmallConvoy-Lead-Trigger-SpawnDefenses]
+			[Triggers:GVK-Universal-Trigger-WeaponsToMaxRange]
+			[Triggers:GVK-Universal-Trigger-TargetAcquiredChatter]
+			[Triggers:GVK-Universal-ManualTrigger-TargetCallout-Structure]
+			[Triggers:GVK-Universal-ManualTrigger-TargetCallout-Aircraft]
+			[Triggers:GVK-Universal-ManualTrigger-TargetCallout-Infantry]
+			[Triggers:GVK-Universal-ManualTrigger-TargetCallout-FastMover]
+			[Triggers:GVK-Universal-ManualTrigger-TargetCallout-LongRange]
+			[Triggers:GVK-Convoy-GAALSIENSmallConvoy-Lead-Trigger-AssignEscortSlot]
+			[Triggers:GVK-Convoy-GAALSIENSmallConvoy-Lead-Trigger-Despawn]
+			[Triggers:GVK-Convoy-GAALSIENSmallConvoy-Lead-Trigger-RouteEnd]
+			[Triggers:GVK-Convoy-GAALSIENSmallConvoy-Lead-Trigger-Compromised]
+			[Triggers:GVK-Convoy-GAALSIENSmallConvoy-Lead-Trigger-SpawnFighters]
+			[Triggers:GVK-Convoy-GAALSIENSmallConvoy-Lead-Trigger-EncounterInit]
+			[TriggerGroups:GVK-Universal-TriggerGroup-DefeatedAndAttacked]
+			[TriggerGroups:GVK-Universal-TriggerGroup-LeashBeacon]
+			[RemoteControlCode:ConvoyEncounter]
+			BountyOnKill=10000000;
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Test-Trigger-SmallConvoyShortRoute</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Trigger]
+			[Type:Timer]
+			[UseTrigger:true]
+			[StartsReady:false]
+			[MaxActions:1]
+			[MinCooldownMs:3000]
+			[MaxCooldownMs:3001]
+			[Actions:GVK-Test-Action-SmallConvoyShortRoute]
+			</Description>
+		</EntityComponent>
+		<EntityComponent xsi:type="MyObjectBuilder_InventoryComponentDefinition">
+			<Id>
+				<TypeId>Inventory</TypeId>
+				<SubtypeId>GVK-Test-Action-SmallConvoyShortRoute</SubtypeId>
+			</Id>
+			<Description>
+			[RivalAI Action]
+			[AddWaypoints:true]
+			[WaypointsToAdd:GVK-Convoy-Waypoint-LandRouteD47]
+			[WaypointsToAdd:GVK-Convoy-Waypoint-LandRouteD48]
+			[EnableTriggers:true]
+			[EnableTriggerNames:GVK-Convoy-GAALSIENSmallConvoy-Lead-Trigger-RouteEnd]
 			</Description>
 		</EntityComponent>
 	</EntityComponents>
